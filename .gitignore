@@ -1,6 +1,6 @@
-# Object file
-*.o
-#My file
-.css
+/dist
+/.idea
+/node_modules
+
 
 

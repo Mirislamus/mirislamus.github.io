@@ -1,0 +1,77 @@
+@import "fonts";
+@import "libs";
+@import "vars";
+@import "stylers";
+// START PAGE STYLES
+//header
+.header {
+    background-color: #000000;
+}
+.top {
+    width: 100%;
+    display: flex;
+}
+.navbar {
+    display: flex;
+    min-height: 72px;
+    width: 100%; 
+    margin: 0 46px;
+        
+}
+.top__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 688px;
+    width: 100%;
+    
+
+    a {
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: 600;
+        position: relative;
+        &:hover {
+            &:before {
+                // transform: scaleX(1); 
+                width: 100%;
+                left: 0;
+            }
+        }
+        &.active {
+            &:before {
+                width: 100%;
+            } 
+        }
+            &:before {
+                content: '';
+                height: 3px;
+                background-color: #826550;
+                right: 0;
+                width: 0;
+                transition: $tr;
+                position: absolute;
+                bottom: -27px;
+            }
+             
+    }
+}
+.log_in {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-right: 37px;
+    padding-left: 37px;
+    position: relative;
+    &:before {
+        content: '';
+        background-image: url(../img/login.svg);
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: 0;
+    }
+}
+
+@import "media";
