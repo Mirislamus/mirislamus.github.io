@@ -15,7 +15,7 @@
     display: flex;
     min-height: 72px;
     width: 100%; 
-    margin: 0 46px;
+    margin: 0 32px;
         
 }
 .top__menu {
@@ -33,7 +33,6 @@
         position: relative;
         &:hover {
             &:before {
-                // transform: scaleX(1); 
                 width: 100%;
                 left: 0;
             }
@@ -61,9 +60,10 @@
     align-items: center;
     text-transform: uppercase;
     font-weight: 600;
-    padding-right: 37px;
+    margin-right: 22px;
     padding-left: 37px;
     position: relative;
+    color: #ffffff;
     &:before {
         content: '';
         background-image: url(../img/login.svg);
@@ -73,5 +73,139 @@
         left: 0;
     }
 }
+//header end
+.main-bg {
+    background-image: url("../img/back-desktop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 648px;
+    padding-top: 58px;
+    background-position-y: -72px;
+    position: relative;
 
+
+}
+.logo {
+    display: flex;
+    justify-content: center;
+}
+.prices {
+    margin-top: -161px;
+    &__profit {
+        background-color: #fff;
+        color: #000000;
+        padding: 30px 41px 31px;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            border: 12px solid transparent;
+            border-right: 12px solid #fff;
+            border-top: 12px solid #fff;
+            display: block;
+            width: 0;
+            height: 0;
+            top: 37px;
+            left: -24px;
+        }
+    }
+    &__text {
+
+        h3 {
+            font-weight: bold;
+            font-size: 40px;
+            line-height: 40px;
+            letter-spacing: 0.1px;
+            margin-bottom: 42px;
+        }
+        p {
+            margin: 0;
+            font-size: 20px;
+            line-height: 27px;
+            letter-spacing: 0.2px;
+            margin-bottom: 30px;
+        }
+        span {
+            color: #c9c9c9;
+            font-size: 20px;
+
+        }
+    }
+    &__numbers {
+        display: flex;
+        flex-direction: column;
+    }
+    &__info {
+        padding: 15px 40px 31px 34px;
+
+    }
+    &__info {
+        height: 160px;
+        background-color: #404040;
+        span {
+            font-size: 72px;
+            font-weight: 600;
+            position: relative;
+            &:after {
+                content: '*';
+                position: absolute;
+                right: -27px;
+                top: 8px;
+                font-size: 38px;
+            }
+        }
+        p {
+            font-size: 20px;
+            margin-top: -3px;
+            letter-spacing: 0.1px;
+            margin-left: 1px;
+        }
+    }
+    &--grey {
+        background-color: #353535;
+        span {
+            &:after {
+                content: none;
+            }
+        }
+
+    }
+    &--grayish {
+        background-color: #4e4e4e;
+        span {
+            &:after {
+                content: none;
+            }
+        }
+    }
+
+}
+.grey-bg {
+  background-color: #353535;
+}
+.qualities {
+  margin-top: 79px;
+}
+.quality-box {
+  &__img {
+    text-align: center;
+    min-height: 94px;
+  }
+  &__text {
+    text-align: center;
+    margin-top: 25px;
+    h4 {
+      font-weight: bold;
+      font-size: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    p {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 9px;
+      line-height: 27px;
+    }
+  }
+}
 @import "media";

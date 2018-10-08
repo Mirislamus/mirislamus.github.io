@@ -44,5 +44,7 @@
  }
 //For Retina
  @media (min-resolution:$retina-dpi), (min-resolution:$retina-dppx) {
-   
+  .main-bg {
+   background-image: url("../img/back-desktop@2x.png");
+  }
 }
