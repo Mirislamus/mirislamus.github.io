@@ -5,6 +5,8 @@ var close = document.querySelector(".modal-close");
 link.addEventListener("click", function (evt) {
     evt.preventDefault();
     popup.classList.add("modal-show");
-
+close.addEventListener("click", function () {
+    popup.classList.remove("modal-show");
+})
 });
 
