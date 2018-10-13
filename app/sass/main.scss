@@ -86,8 +86,10 @@
 
 }
 .logo {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+    max-width: 370px;
+    margin: 0 auto;
 }
 .prices {
     margin-top: -161px;
@@ -223,6 +225,34 @@
 }
 .modal-area {
   padding-top: 46px;
+  &__form {
+  [type="submit"] {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #826550;
+    border: 0;
+    max-width: 320px;
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: .3s;
+    &:hover {
+      color: #826550;
+      background-color: #fff;
+      border-color: #826550;
+    }
+  }
+    .send {
+      display: flex;
+      justify-content: center;
+      margin-top: 36px;
+    }
+
+  }
   &__title {
     margin-bottom: 24px;
 
@@ -238,7 +268,6 @@
     }
 
   }
-  .form-group {
     .form-item {
       max-width: 320px;
       margin: 0 auto;
@@ -249,6 +278,9 @@
         border: 1px solid #e5ddd5;
         width: 100%;
         padding: 0 15px;
+        &:focus {
+          border: 1px solid black;
+        }
         &::placeholder {
           font-size: 24px;
         }
@@ -271,26 +303,43 @@
       }
     }
   }
-}
 .modal-show {
   display: block;
 }
 .modal-close {
   position: absolute;
   right: -100px;
-  top: 0;
+  top: 60px;
 }
 .remember-me {
   display: flex;
   max-width: 320px;
   margin: 0 auto;
   height: 33px;
+  margin-top: 19px;
+  justify-content: space-between;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: #000000;
+    text-decoration: underline;
+    transition: .3s;
+    &:hover {
+      text-decoration: none;
+    }
+  }
   &__checkbox {
     input[type="checkbox"] {
       display: none;
     }
+
     label {
       padding-left: 30px;
+      color: #000000;
+      display: flex;
+      align-items: center;
+
       &:before {
         content: '';
         display: inline-block;
@@ -299,11 +348,16 @@
         border: 1px solid #e5ddd5;
         background-color: #fff;
         margin-left: -30px;
+        vertical-align: middle;
+        margin-right: 10px;
       }
     }
     input[type="checkbox"]:checked + label:before {
-
+      background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ5MC40MzQgNDkwLjQzMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDkwLjQzNCA0OTAuNDMzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTQ3Mi4wMDMsNTguMzZsLTEzLjEzMi0xMS4yODJjLTIxLjc5OC0xOC43MzItNTQuNTU0LTE2LjY0NC03My43OTksNC42OTdMMTY1LjM5LDI5NS4zNTlsLTY2LjMxMi01Ny4xMTIgICBjLTIxLjc3NS0xOC43NTMtNTQuNTM2LTE2LjcwNy03My44MDQsNC42MTFsLTExLjYxMSwxMi44NDhjLTkuNDE2LDEwLjQxMy0xNC4zMDUsMjQuMTQ5LTEzLjU5NSwzOC4xOCAgIGMwLjcxNywxNC4wMjMsNi45NzMsMjcuMTg4LDE3LjQwMiwzNi42bDEyMS41NTMsMTExLjMxMWMxMC41MjQsOS44ODMsMjQuNjI4LDE1LjAzNywzOS4wNDQsMTQuMjcyICAgYzE0LjQxNi0wLjc2MywyNy44OTQtNy4zODYsMzcuMzExLTE4LjMyOWwyNjIuMjQ1LTMwNC43MWM5LjE2Mi0xMC42NDYsMTMuNzE3LTI0LjQ5NCwxMi42NjEtMzguNDk2ICAgQzQ4OS4yMjksODAuNTIyLDQ4Mi42NTUsNjcuNTEyLDQ3Mi4wMDMsNTguMzZ6IiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==');
+      background-repeat: no-repeat;
+      background-position: center center;
     }
   }
 }
 @import "media";
+
