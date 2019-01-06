@@ -49,6 +49,7 @@
 												<li><a href="#">Партнерам</a></li>
 												<li><a href="#">Статистика</a></li>
 												<li><a href="#">Контакты</a></li>
+												<li class='btn_log-in'><a href="#">Вход</a></li>
 											</ul>
 										</nav>
 										
@@ -59,23 +60,7 @@
 										<a href="/" class="logo__link"></a>
 											<img src="img/logo.png" alt="">
 									</div>
-								<div class="log_in ">
-									<p class="log_in__welcome">
-										Приветствуем! <br>
-										<strong>nickname</strong>
-										<button class="btn_cabinet">Личный кабинет</button>
-										<button class="btn_exit">Выход</button>
-									</p>
-									<div class="log_in__form">
-										<form class="form">
-											<input type="text" class="input_password field" placeholder="Логин">
-											<input type="password" placeholder="Пароль" class="input_text field">
-											<button class="btn_login btn_login--down">войти</button>
-											<button class="btn_forgot">забыли пароль ?</button>
-											<button class="btn_reg btn_reg--down">регистрация</button>
-										</form>
-									</div>
-								</div>
+								
 								
 							</div>
 							<div class="header__text">
@@ -250,9 +235,9 @@
 
 											</div>			
 											<select>
-												<option>Btc</option>
-												<option>Visa</option>
-												<option>WebMoney</option>
+												<option>Paer</option>
+												<option>AdvCash</option>
+												<option>Perfect</option>
 											</select>
 											<svg class="change-color">
 												<filter id="change-color">
@@ -267,7 +252,7 @@
 										</div>
 										<div class="popap-calculate__text">
 											<label for="amount">Сумма вложения</label>
-											<input type="text" id="amount" class="from_to-start" value="1$">
+											<input type="text" id="amount" class="from_to-start">
 										</div>
 										
 					<input type="text" class="range" name="my_range"  />
@@ -405,6 +390,26 @@
 
 					
 					<a href="#" class="invest">Сохранить</a>
+			</div>
+			<div class="table-item popup_login popup_modal">
+					<h3 class="popap-calculate__title">Приветствуем <span>Вход</span></h3>
+					<div class="popap-calculate__text">
+						<label for="login">Логин:</label>
+						<input type="text" class="input_item" id="login">
+					</div>
+					<div class="popap-calculate__text">
+							<label for="password">Пароль:</label>
+							<input type="password" class="input_item" id="password">
+					</div>
+					<div class="log_in ">
+							<div class="log_in__form">
+									<button class="btn_forgot">забыли пароль ?</button>
+									<button class="btn_reg">регистрация</button>
+							</div>
+						</div>
+
+					
+					<a href="#" class="invest btn_login btn_login--down">Войти</a>
 			</div>
 
 	</div>
