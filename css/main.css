@@ -1044,7 +1044,10 @@ button {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   background: none !important;
-  margin-top: 50px !important; }
+  margin-top: 50px !important;
+  -webkit-transform: none !important;
+      -ms-transform: none !important;
+          transform: none !important; }
   .popup--partners .popap-calculate__title {
     color: #5a7571;
     font-size: 20px;
