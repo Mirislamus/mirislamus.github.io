@@ -2178,8 +2178,14 @@ button {
 
 .table--head span {
   color: #5a7571;
-  font-size: 21px;
-  font-family: sans-serif; }
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: normal;
+  border: 0; }
+
+.table--history .table-item-col span {
+  width: 20%;
+  border: 0; }
 
 .table--body span {
   font-family: sans-serif;
@@ -2730,7 +2736,11 @@ button {
 
 @media (max-width: 575px) {
   .admin {
-    height: auto; } }
+    height: auto; }
+  .table--history {
+    overflow: scroll; }
+    .table--history .table-item-col {
+      width: 470px; } }
 
 @media (min-width: 768px) and (max-width: 949px) {
   .admin .content-bottom.partner .partner-balance {
