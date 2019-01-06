@@ -1,2 +1,0 @@
-# mirislamus.github.io
-привет
