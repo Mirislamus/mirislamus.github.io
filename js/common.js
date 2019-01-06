@@ -74,7 +74,7 @@ $(document).ready(function(){
         $('body').removeClass('hidden');
     });
     $('.content-top-balance').on('click', function() {
-        $('.content-balance').toggleClass('open');
+        $('.content-balance').slideToggle();
     });
     
 });
