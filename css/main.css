@@ -1351,7 +1351,7 @@ button {
   top: 160px;
   display: none; }
   .popup_modal h3 {
-    margin-bottom: 38px;
+    margin-bottom: 80px;
     position: relative;
     width: -webkit-calc(100% - 100px);
     width: calc(100% - 100px); }
@@ -1462,6 +1462,12 @@ button {
   padding-left: 10px;
   padding-right: 10px;
   line-height: 45px; }
+
+.payment_system--investors .jq-selectbox__dropdown ul {
+  margin: 0; }
+
+.payment_system--investors .opened .jq-selectbox__select::after {
+  display: none; }
 
 /* Index pages end*/
 /*   Cabinet pages ------ */
