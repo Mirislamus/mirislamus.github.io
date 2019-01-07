@@ -7,6 +7,11 @@ $(document).ready(function(){
         e.preventDefault();
         $('.log_in').removeClass('in');
     });
+    $('.btn_login').on('click', function(e){
+        e.preventDefault();
+        $('.btn_log-in, .popup_login, .overlay').hide();
+        $('.link_cabinet').show();
+    });
     $('.toggle-text').on('click', function(){
         $(this).toggleClass('active').siblings('.trader-item__text-min').slideToggle();
     });
@@ -41,7 +46,7 @@ $(document).ready(function(){
         data_grid: true,
         force_edges: true,
         onChange:  function (data) {
-        $('.from_to-start').val(data['from']);
+        $('.from_to-start').val(data['from']+"$");
         }
         
     });

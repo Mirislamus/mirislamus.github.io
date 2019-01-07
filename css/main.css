@@ -348,6 +348,9 @@ button {
     top: 105px;
     right: 72px; }
 
+.link_cabinet {
+  display: none; }
+
 .log_in .btn_cabinet {
   margin-bottom: 25px;
   margin-top: 50px; }
