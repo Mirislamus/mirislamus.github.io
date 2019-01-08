@@ -106,14 +106,36 @@
                 </div>
             </div>
             <div class="content-bottom replenishment attachment">
+                
                     <h2 class="content-bottom__title">Вложение средств</h2>
                     <div class="content-bottom-block">
                        <form action="form" class="form">
                            <h2 class="form__title"><span>Инвестиция</span>Название</h2>
+                           <div class="payment_system payment_system--investors payment_system--attachment">
+                                <div class="payment_system__title">
+                                        <h5>Платёжная система</h5>
+
+                                </div>			
+                                <select>
+                                    <option>Btc</option>
+                                    <option>Visa</option>
+                                    <option>WebMoney</option>
+                                </select>
+                                <svg class="change-color">
+                                    <filter id="change-color">
+                                            <feColorMatrix
+                                              type="matrix"
+                                              values="0    0     0     0     1
+                                                      0     0    0     0     1
+                                                        0     0     0    0     1
+                                                        0     0     0     1    0  "/>
+                                        </filter>	
+                                </svg>
+                            </div>
                            <p>10.00$</p>
                            <p>100.00$</p>
-                           <span class="form__text">365дней</span>
-                           <span class="form__text">1%</span>
+                           <span class="form__text">30дней</span>
+                           <span class="form__text">3%</span>
                            <span class="form__text">Начисление каждый день</span>
                            <span class="content-bottom__input"><label for="summ">Сумма вложения</label><input type="text" id='summ' value="10.00$"></span>
                            <button class="content-bottom__button">Инвестировать</button>
