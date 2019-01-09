@@ -1027,6 +1027,11 @@ button {
 .profit_block--investors {
   width: 240px; }
 
+.btn_top {
+  font-size: 18px;
+  margin-top: 30px;
+  font-family: serif; }
+
 .daily-profit {
   display: -webkit-box;
   display: -webkit-flex;

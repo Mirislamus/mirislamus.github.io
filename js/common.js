@@ -42,11 +42,11 @@ $(document).ready(function(){
         step: 1,
         hide_min_max: true,
         hide_from_to: true,
-        postfix: "$",
         data_grid: true,
         force_edges: true,
+        postfix: '$',
         onChange:  function (data) {
-        $('.from_to-start').val(data['from']+"$");
+        $('.from_to-start').val(data['from'] + '$');
         }
         
     });
@@ -81,5 +81,14 @@ $(document).ready(function(){
     // $('.content-top-balance').on('click', function() {
     //     $('.content-balance').slideToggle();
     // });
-    
+    $('.from_to-start').keypress(
+        function(event) {
+            //Allow only backspace and delete
+            if (event.keyCode != 46 && event.keyCode != 8) {
+                if (!parseInt(String.fromCharCode(event.which))) {
+                    event.preventDefault();
+                }
+            }
+        }
+    );
 });
