@@ -2732,3 +2732,71 @@ button {
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between; } }
+
+.success-fargot {
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  width: 390px;
+  font-size: 22px;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  position: absolute;
+  z-index: 11;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 240px;
+  display: none;
+}
+.success-reg {
+  height: 96px;
+  flex-direction: column;
+
+}
+.success-reg__text {
+  display: block;
+}
+.fargot-pass {
+  height: 57px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.fargot-pass__input {
+  border: #9cbbb6 1px solid;
+  border-radius: 5px!important;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 38px;
+  color: #5a7571;
+  text-align: center;
+}
+.fargot-pass__input:hover, :focus, :active {
+  border-color: rgb(86, 180, 2);
+}
+.fargot-pass__input::placeholder {
+  color: #5a7571;
+}
+.text-block {
+  font-size: 22px;
+}
+.button-block {
+    background-color: rgb(86, 180, 2);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+    width: 68px;
+    min-height: 32px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 15px;
+    transition: .3s;
+    cursor: pointer;
+}
+.button-block:hover, :active{
+  box-shadow: none;
+}
+.success-reg__button {
+  margin-top: 12px;
+}

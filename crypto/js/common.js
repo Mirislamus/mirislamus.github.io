@@ -91,4 +91,17 @@ $(document).ready(function(){
             }
         }
     );
+    // Зыбыли пароль & успешная регистрация
+    $('.button-block').on('click', function(){
+        $('.success-fargot, .overlay').fadeOut();
+    });
+    $('.js-save').on('click', function(){
+        $('.popup_modal').fadeOut();
+        $('.success-reg').fadeIn();
+    });
+    $('.btn_forgot').on('click', function(){
+        $('.popup_modal').fadeOut();
+        $('.fargot-pass').fadeIn();
+    });
+    
 });
