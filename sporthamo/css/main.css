@@ -27,15 +27,16 @@
     box-sizing: border-box; }
   *:focus {
     outline: none; }
-
+html, body {
+  overflow-x: hidden;
+}
 body {
   height: 100%;
   font-size: 16px;
   min-width: 320px;
   line-height: normal;
   font-family: "Proxima Nova", sans-serif;
-  color: #000;
-  overflow-x: hidden; }
+  color: #000; }
 
 ul {
   margin: 0;
@@ -328,7 +329,8 @@ a {
   display: grid;
   grid-template-columns: 61.5% 38.5%;
   grid-template-rows: repeat(2, 286px);
-  grid-template-areas: 'slider top' 'slider bottom'; }
+  grid-template-areas: 'slider top'
+ 'slider bottom'; }
   .grid .grid__item:nth-child(1) {
     grid-area: slider; }
   .grid .grid__item:nth-child(2) {
