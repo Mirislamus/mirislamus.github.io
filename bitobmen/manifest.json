@@ -5,6 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#5A8BB2",
+  "scope" : "./",
   "icons": [
     {
       "src": "/apple-icon-57x57.png",
