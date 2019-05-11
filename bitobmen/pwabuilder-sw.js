@@ -54,4 +54,4 @@ self.addEventListener("refreshOffline", function () {
       return cache.put(offlinePageRequest, response);
     });
   });
-});
+})
