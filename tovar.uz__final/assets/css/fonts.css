@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Open Sans T";
+    src: url("../fonts/OpenSans-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Open Sans T";
+    src: url("../fonts/OpenSans-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "ProximaNova T";
+    src: url("../fonts/ProximaNova-Bold.ttf");
+    font-weight: 700;
+}
