@@ -1,6 +1,11 @@
 {
- "name": "App",
- "icons": [
+  "name": "FPWA",
+  "short_name": "FWA",
+  "lang": "ru-RU",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#5A8BB2",
+  "icons": [
   {
    "src": "\/android-icon-36x36.png",
    "sizes": "36x36",
