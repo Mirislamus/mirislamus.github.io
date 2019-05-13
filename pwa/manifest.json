@@ -9,7 +9,7 @@
     }
   ],
  
-  "start_url": "/app/",
+  "start_url": "/",
   "background_color": "#ffbe76",
   "theme_color": "#ffbe76",
   "orientation": "any",
