@@ -1,0 +1,17 @@
+{
+  "short_name": "3dCard",
+  "name": "3dCards",
+  "icons": [
+        {
+      "src":"/app/favicon/apple-touch-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+ 
+  "start_url": "/app/",
+  "background_color": "#7ACCE5",
+  "theme_color": "#7ACCE5",
+  "orientation": "any",
+  "display": "standalone"
+ }

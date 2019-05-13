@@ -19,7 +19,6 @@ self.addEventListener('activate', event => {
            )
    );
 });
-
 // 'install' вызывается, как только пользователь впервые открывает PWA 
 self.addEventListener('install', function(event) {
    if (doCache) {
@@ -36,11 +35,10 @@ self.addEventListener('install', function(event) {
                            const urlsToCache = [
                                '/index.html',
                                '/css/vendors.min.css',
-                               '/img/**',
+                               '/img/',
                                '/css/main.css',
                                '/js/scripts.min.js',
                                '/js/common.js',
-                               '/static/core/logo.svg*',
                            ]
                            cache.addAll(urlsToCache)
                            console.log('cached');
