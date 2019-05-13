@@ -10,8 +10,8 @@
   ],
  
   "start_url": "/app/",
-  "background_color": "#7ACCE5",
-  "theme_color": "#7ACCE5",
+  "background_color": "#ffbe76",
+  "theme_color": "#ffbe76",
   "orientation": "any",
   "display": "standalone"
  }
