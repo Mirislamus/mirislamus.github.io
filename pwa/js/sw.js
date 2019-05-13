@@ -1,60 +1,57 @@
-// Должно быть true в production
-var doCache = true;
+// This is the "Offline page" service worker
 
-// Имя кэша
-var CACHE_NAME = 'my-pwa-cache-v2';
+const CACHE = "pwabuilder-page";
 
-// Очищает старый кэш
-self.addEventListener('activate', event => {
-   const cacheWhitelist = [CACHE_NAME];
-   event.waitUntil(
-       caches.keys()
-           .then(keyList =>
-               Promise.all(keyList.map(key => {
-                   if (!cacheWhitelist.includes(key)) {
-                       console.log('Deleting cache: ' + key)
-                       return caches.delete(key);
-                   }
-               }))
-           )
-   );
-});
-// 'install' вызывается, как только пользователь впервые открывает PWA 
-self.addEventListener('install', function(event) {
-   if (doCache) {
-       event.waitUntil(
-           caches.open(CACHE_NAME)
-               .then(function(cache) {
-                   // Получаем данные из манифеста (они кэшируются)
-                   fetch('/')
-                       .then(response => {
-                           response.json()
-                       })
-                       .then(assets => {
-                       // Открываем и кэшируем нужные страницы и файлы
-                           const urlsToCache = [
-                               '/pwa/index.html',
-                               '/pwa/css/vendors.min.css',
-                               '/pwa/img/',
-                               '/pwa/css/main.css',
-                               '/pwa/js/scripts.min.js',
-                               '/pwa/js/common.js',
-                           ]
-                           cache.addAll(urlsToCache)
-                           console.log('cached');
-                       })
-               })
-       );
-   }
+// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
+const offlineFallbackPage = "ToDo-replace-this-name.html";
+
+// Install stage sets up the offline page in the cache and opens a new cache
+self.addEventListener("install", function (event) {
+  console.log("[PWA Builder] Install Event processing");
+
+  event.waitUntil(
+    caches.open(CACHE).then(function (cache) {
+      console.log("[PWA Builder] Cached offline page during install");
+
+      if (offlineFallbackPage === "ToDo-replace-this-name.html") {
+        return cache.add(new Response("TODO: Update the value of the offlineFallbackPage constant in the serviceworker."));
+      }
+
+      return cache.add(offlineFallbackPage);
+    })
+  );
 });
 
-// Когда приложение запущено, сервис-воркер перехватывает запросы и отвечает на них данными из кэша, если они есть
-self.addEventListener('fetch', function(event) {
-   if (doCache) {
-       event.respondWith(
-           caches.match(event.request).then(function(response) {
-               return response || fetch(event.request);
-           })
-       );
-   }
+// If any fetch fails, it will show the offline page.
+self.addEventListener("fetch", function (event) {
+  if (event.request.method !== "GET") return;
+
+  event.respondWith(
+    fetch(event.request).catch(function (error) {
+      // The following validates that the request was for a navigation to a new document
+      if (
+        event.request.destination !== "document" ||
+        event.request.mode !== "navigate"
+      ) {
+        return;
+      }
+
+      console.error("[PWA Builder] Network request Failed. Serving offline page " + error);
+      return caches.open(CACHE).then(function (cache) {
+        return cache.match(offlineFallbackPage);
+      });
+    })
+  );
+});
+
+// This is an event that can be fired from your page to tell the SW to update the offline page
+self.addEventListener("refreshOffline", function () {
+  const offlinePageRequest = new Request(offlineFallbackPage);
+
+  return fetch(offlineFallbackPage).then(function (response) {
+    return caches.open(CACHE).then(function (cache) {
+      console.log("[PWA Builder] Offline page updated from refreshOffline event: " + response.url);
+      return cache.put(offlinePageRequest, response);
+    });
+  });
 });
