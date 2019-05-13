@@ -1,57 +1,109 @@
-// This is the "Offline page" service worker
 
-const CACHE = "pwabuilder-page";
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "ToDo-replace-this-name.html";
 
-// Install stage sets up the offline page in the cache and opens a new cache
-self.addEventListener("install", function (event) {
-  console.log("[PWA Builder] Install Event processing");
 
-  event.waitUntil(
-    caches.open(CACHE).then(function (cache) {
-      console.log("[PWA Builder] Cached offline page during install");
+var URLS = {
+  app: [
+    '/index.html',
+    '/img/',
+    '/css/main.css',
+    '/css/vendors.min.css',
+    '/js/scripts.min.js',
+    '/js/common.js',
 
-      if (offlineFallbackPage === "ToDo-replace-this-name.html") {
-        return cache.add(new Response("TODO: Update the value of the offlineFallbackPage constant in the serviceworker."));
-      }
+  ],
+}
 
-      return cache.add(offlineFallbackPage);
-    })
-  );
-});
+var CACHE_NAMES = {
+  app: 'app-cache-v5',
+};
 
-// If any fetch fails, it will show the offline page.
-self.addEventListener("fetch", function (event) {
-  if (event.request.method !== "GET") return;
+function isVendor(url) {
+  return url.startsWith(cdn.unpkg) || url.startsWith(cdn.max);
+}
 
-  event.respondWith(
-    fetch(event.request).catch(function (error) {
-      // The following validates that the request was for a navigation to a new document
-      if (
-        event.request.destination !== "document" ||
-        event.request.mode !== "navigate"
-      ) {
-        return;
-      }
+function cacheAll(cacheName, urls) {
+  return caches.open(cacheName).then((cache) => cache.addAll(urls));
+}
 
-      console.error("[PWA Builder] Network request Failed. Serving offline page " + error);
-      return caches.open(CACHE).then(function (cache) {
-        return cache.match(offlineFallbackPage);
-      });
-    })
-  );
-});
+function addToCache(cacheName, request, response) {
+  if (response.ok) {
+    var clone = response.clone()
+    caches.open(cacheName).then((cache) => cache.put(request, clone));
+  }
+  return response;
+}
 
-// This is an event that can be fired from your page to tell the SW to update the offline page
-self.addEventListener("refreshOffline", function () {
-  const offlinePageRequest = new Request(offlineFallbackPage);
-
-  return fetch(offlineFallbackPage).then(function (response) {
-    return caches.open(CACHE).then(function (cache) {
-      console.log("[PWA Builder] Offline page updated from refreshOffline event: " + response.url);
-      return cache.put(offlinePageRequest, response);
-    });
+function lookupCache(request) {
+  return caches.match(request).then(function(cachedResponse) {
+    if (!cachedResponse) {
+      throw Error(`${request.url} not found in cache`);
+    }
+    return cachedResponse;
   });
+}
+
+function fetchThenCache(request, cacheName) {
+  var fetchRequest = fetch(request);
+  // add to cache, but don't block resolve of this promise on caching
+  fetchRequest.then((response) => addToCache(cacheName, request, response));
+  return fetchRequest;
+}
+
+function raceRequest(request, cacheName) {
+  var attempts = [
+    fetchThenCache(request, cacheName),
+    lookupCache(request)
+  ];
+  return new Promise(function(resolve, reject) {
+    // resolve this promise once one resolves
+    attempts.forEach((attempt) => attempt.then(resolve));
+    // reject if all promises reject
+    attempts.reduce((verdict, attempt) => verdict.catch(() => attempt))
+      .catch(() => reject(Error('Unable to resolve request from network or cache.')));
+  })
+}
+
+function cleanupCache() {
+  var validKeys = Object.keys(CACHE_NAMES).map((key) => CACHE_NAMES[key]);
+  return caches.keys().then((localKeys) => Promise.all(
+    localKeys.map((key) => {
+      if (validKeys.indexOf(key) === -1) { // key no longer in our list
+        return caches.delete(key);
+      }
+    })
+  ));
+}
+
+self.addEventListener('install', function(evt) {
+  var cachingCompleted = Promise.all([
+    cacheAll(CACHE_NAMES.app, URLS.app),
+  ]).then(() => self.skipWaiting())
+
+  evt.waitUntil(cachingCompleted);
+});
+
+self.addEventListener('activate', function(evt) {
+  evt.waitUntil(Promise.all([
+    cleanupCache(),
+    self.clients.claim() // claim immediately so the page can be controlled by the sw immediately
+  ]));
+});
+
+self.addEventListener('fetch', function(evt) {
+  var request = evt.request;
+  var response;
+
+  // only handle GET requests
+  if (request.method !== 'GET') return;
+
+  if (isVendor(request.url)) {
+    // vendor requests: check cache first, fallback to fetch
+    response = lookupCache(request)
+      .catch(() => fetchThenCache(request, CACHE_NAMES.vendor));
+  } else {
+    // app request: race cache/fetch (bonus: update in background)
+    response = raceRequest(request, CACHE_NAMES.app);
+  }
+  evt.respondWith(response);
 });
