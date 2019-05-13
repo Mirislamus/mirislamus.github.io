@@ -6,7 +6,9 @@ var urlsToCache = [
   '/pwa/js/scripts.min.js',
   '/pwa/js/common.js',
   '/pwa/scripts/main.js',
-  '/pwa/img/'
+  '/pwa/img/favicon/apple-touch-icon-180x180.png',
+  '/pwa/img/favicon/apple-touch-icon-192x192.png',
+  '/pwa/img/favicon/apple-touch-icon-512x512.png'
 ];
 
 self.addEventListener('install', function(event) {
