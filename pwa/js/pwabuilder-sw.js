@@ -1,109 +1,47 @@
+var CACHE_NAME = 'my-site-cache-v1';
+var urlsToCache = [
+  '/',
+  '/css/vendors.min.css',
+  '/css/main.css',
+  '/js/scripts.min.js',
+  '/js/common.js',
+  '/scripts/main.js',
+  '/img/'
+];
 
+self.addEventListener('install', function(event) {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );  
+});
 
-
-
-var URLS = {
-  app: [
-    '/index.html',
-    '/img/',
-    '/css/main.css',
-    '/css/vendors.min.css',
-    '/js/scripts.min.js',
-    '/js/common.js',
-
-  ],
-}
-
-var CACHE_NAMES = {
-  app: 'app-cache-v5',
-};
-
-function isVendor(url) {
-  return url.startsWith(cdn.unpkg) || url.startsWith(cdn.max);
-}
-
-function cacheAll(cacheName, urls) {
-  return caches.open(cacheName).then((cache) => cache.addAll(urls));
-}
-
-function addToCache(cacheName, request, response) {
-  if (response.ok) {
-    var clone = response.clone()
-    caches.open(cacheName).then((cache) => cache.put(request, clone));
-  }
-  return response;
-}
-
-function lookupCache(request) {
-  return caches.match(request).then(function(cachedResponse) {
-    if (!cachedResponse) {
-      throw Error(`${request.url} not found in cache`);
-    }
-    return cachedResponse;
-  });
-}
-
-function fetchThenCache(request, cacheName) {
-  var fetchRequest = fetch(request);
-  // add to cache, but don't block resolve of this promise on caching
-  fetchRequest.then((response) => addToCache(cacheName, request, response));
-  return fetchRequest;
-}
-
-function raceRequest(request, cacheName) {
-  var attempts = [
-    fetchThenCache(request, cacheName),
-    lookupCache(request)
-  ];
-  return new Promise(function(resolve, reject) {
-    // resolve this promise once one resolves
-    attempts.forEach((attempt) => attempt.then(resolve));
-    // reject if all promises reject
-    attempts.reduce((verdict, attempt) => verdict.catch(() => attempt))
-      .catch(() => reject(Error('Unable to resolve request from network or cache.')));
-  })
-}
-
-function cleanupCache() {
-  var validKeys = Object.keys(CACHE_NAMES).map((key) => CACHE_NAMES[key]);
-  return caches.keys().then((localKeys) => Promise.all(
-    localKeys.map((key) => {
-      if (validKeys.indexOf(key) === -1) { // key no longer in our list
-        return caches.delete(key);
+self.addEventListener('activate', function(event) {
+  console.log('Finally active. Ready to start serving content!');  
+});
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - return response
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
       }
-    })
-  ));
-}
-
-self.addEventListener('install', function(evt) {
-  var cachingCompleted = Promise.all([
-    cacheAll(CACHE_NAMES.app, URLS.app),
-  ]).then(() => self.skipWaiting())
-
-  evt.waitUntil(cachingCompleted);
+    )
+  );
 });
-
-self.addEventListener('activate', function(evt) {
-  evt.waitUntil(Promise.all([
-    cleanupCache(),
-    self.clients.claim() // claim immediately so the page can be controlled by the sw immediately
-  ]));
-});
-
-self.addEventListener('fetch', function(evt) {
-  var request = evt.request;
-  var response;
-
-  // only handle GET requests
-  if (request.method !== 'GET') return;
-
-  if (isVendor(request.url)) {
-    // vendor requests: check cache first, fallback to fetch
-    response = lookupCache(request)
-      .catch(() => fetchThenCache(request, CACHE_NAMES.vendor));
-  } else {
-    // app request: race cache/fetch (bonus: update in background)
-    response = raceRequest(request, CACHE_NAMES.app);
-  }
-  evt.respondWith(response);
+self.addEventListener('install', function(event) {
+  debugger;
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );  
 });
