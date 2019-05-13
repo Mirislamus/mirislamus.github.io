@@ -33,12 +33,12 @@ self.addEventListener('install', function(event) {
                        .then(assets => {
                        // Открываем и кэшируем нужные страницы и файлы
                            const urlsToCache = [
-                               '/index.html',
-                               '/css/vendors.min.css',
-                               '/img/',
-                               '/css/main.css',
-                               '/js/scripts.min.js',
-                               '/js/common.js',
+                               '/pwa/index.html',
+                               '/pwa/css/vendors.min.css',
+                               '/pwa/img/',
+                               '/pwa/css/main.css',
+                               '/pwa/js/scripts.min.js',
+                               '/pwa/js/common.js',
                            ]
                            cache.addAll(urlsToCache)
                            console.log('cached');
