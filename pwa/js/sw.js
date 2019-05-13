@@ -1,12 +1,12 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  '/',
-  '/css/vendors.min.css',
-  '/css/main.css',
-  '/js/scripts.min.js',
-  '/js/common.js',
-  '/scripts/main.js',
-  '/img/'
+  '/pwa/',
+  '/pwa/css/vendors.min.css',
+  '/pwa/css/main.css',
+  '/pwa/js/scripts.min.js',
+  '/pwa/js/common.js',
+  '/pwa/scripts/main.js',
+  '/pwa/img/'
 ];
 
 self.addEventListener('install', function(event) {
