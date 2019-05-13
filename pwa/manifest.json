@@ -14,7 +14,7 @@
     }
   ],
  
-  "start_url": "/",
+  "start_url": "/pwa/",
   "background_color": "#ffbe76",
   "theme_color": "#ffbe76",
   "orientation": "any",
