@@ -14,7 +14,7 @@
     }
   ],
  
-  "start_url": "https://mirislamus.github.io/pwa/",
+  "start_url": "/pwa/",
   "background_color": "#ffbe76",
   "theme_color": "#ffbe76",
   "orientation": "any",
