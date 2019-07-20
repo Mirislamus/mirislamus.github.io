@@ -4,8 +4,6 @@ $(document).ready(function(){
         if ($('.accordion').hasClass('.active')) {
             $('.accordion').removeClass('active')
         } $(this).toggleClass('active');
-        
-
     });
     $('.dropbtn').on('click', function () {
         $('.accordion-menu').toggleClass('show');
@@ -38,6 +36,7 @@ $(document).ready(function(){
     });
    
 });
+
 
 
 
