@@ -1,0 +1,239 @@
+.top-menu a {
+    text-decoration: underline transparent;
+    transition: .3s;
+}
+.top-menu a:hover {
+    text-decoration: underline;
+}
+.logo-link {
+    display: block;
+    text-decoration: none;
+    width: 60px;
+    height: 60px;
+}
+.logo-link .logo {
+    background: #cd3a30;
+    height: 80px;
+    width: 25px;
+    position: relative;
+    left: 40px;
+    display: block;
+}
+.logo-link .logo:after {
+    content: "";
+    height: 25px;
+    width: 80px;
+    background: #cd3a30;
+    position: absolute;
+    left: -28px;
+    top: 28px;
+}
+.logo__text {
+    font-family: serif;
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: -11px;
+    transform: translateY(-50%);
+}
+.sticky-wrapper, .main-header-area {
+    height: 80px!important;
+}
+.ti-angle-left, .ti-angle-right {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+}
+.ti-angle-left::before, .ti-angle-right::before {
+    content: '';
+}
+.ti-angle-left {
+    background: url("img/back.svg");
+}
+.ti-angle-right {
+    background: url("img/next.svg");
+}
+.owl-carousel .owl-controls .owl-nav .owl-prev, .owl-carousel .owl-controls .owl-nav .owl-next  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section_padding_100 {
+    padding: 50px 0;
+}
+.footer-widget-area p {
+    margin-bottom: 0;
+}
+.widget-single-contact:not(:last-child) {
+    margin-bottom: 20px;
+}
+.footer-logo, .widget-title {
+    margin-bottom: 0;
+}
+.footer__social a {
+    opacity: .6;
+    transition: .3s;
+}
+.footer__social a:hover {
+    opacity: 1;
+}
+.height-800 {
+    height: 500px !important;
+}
+.red-text {
+    color: #ed372c;
+}
+.medica-load {
+    border-color: #ffffff #ffffff #ed372c;
+}
+.fa-bars {
+    margin-right: 5px;
+}
+.fa-bars:before {
+    content: '';
+    background-image: url(img/menu.svg);
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.navbar-toggler {
+    display: flex;
+    align-items: center;
+}
+.doctor-slider .owl-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: -60px;
+    right: -60px;
+    top: 170px;
+}
+.doctor-slider .owl-nav .owl-prev,  .doctor-slider .owl-nav .owl-next {
+    width: 30px;
+    height: 30px;
+    background: #2f88fd;
+    transition: .3s;
+}
+.doctor-slider .owl-nav .owl-prev:hover,  .doctor-slider .owl-nav .owl-next:hover{
+    background: #1063cf;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+body {
+    overflow-x: hidden;
+}
+.doctor-thumbnail {
+    display: flex;
+    justify-content: center;
+}
+.doctor-thumbnail img {
+    max-width: 232px;
+    max-height: 310px;
+}
+.gallery-grid a {
+    position: relative;
+    overflow: hidden;
+}
+.gallery-grid a:hover img {
+    transform: scale(1.09);
+}
+.gallery-grid img {
+    transition: .5s;
+}
+.gallery-grid a:after {
+    content: '';
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.gallery-block {
+    padding-top: 70px;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+.logo-link img {
+    flex-shrink: 0;
+}
+.logo__left {
+    margin-left: 8px;
+    font-size: 20px;
+    color: #102494;
+    letter-spacing: -1.5px;
+    white-space: nowrap;
+    font-family: Serif;
+}
+
+.logo__left.logo__left--white {
+    color: #fff;
+}
+.medica-emergency-card p, .medica-doctors-card p {
+    margin-bottom: 0;
+}
+.medica-about-thumbnail img:not(:last-child){
+    margin-bottom: 40px;
+}
+.single-hero-slide {
+    position: relative;
+    z-index: 1;
+}
+.single-hero-slide:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .3);
+    z-index: -1;
+}
+@media (max-width: 1299px) {
+    .hero-slides .owl-nav {
+        display: none;
+    }
+}
+@media (max-width: 1199px) {
+    .doctor-slider .owl-nav {
+        right: -15px;
+        left: -15px;
+    }
+    .main-footer-area {
+        padding-bottom: 40px;
+    }
+    .footer-widget-area {
+        margin-bottom: 30px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar .navbar-toggler {
+        margin: 0;
+    }
+}
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .logo-link .logo__left {
+        display: none;
+    }
+    .hero-area .owl-prev, .hero-area .owl-next, .medica-testimonials-area .owl-prev, .medica-testimonials-area .owl-next {
+        top: initial;
+        bottom: 88px;
+    }
+    .medica-emergency-card, .medica-doctors-card, .medica-appointment-card, .medica-department-card, .medica-contact-card, .medica-catagories-card, .latest-news-widget-area {
+        padding: 25px;
+    }
+}
