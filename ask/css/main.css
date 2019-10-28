@@ -163,6 +163,8 @@ body {
   padding: 0;
   border: none;
   cursor: pointer; }
+  .menu-open:focus {
+    outline: none; }
 
 .services {
   display: -webkit-box;
