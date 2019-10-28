@@ -643,10 +643,10 @@ body {
             flex-direction: column-reverse;
     -webkit-box-align: center;
             align-items: center; }
-    .networking__item:nth-child(2) .networking__item-left--rotated {
-      padding-left: 0; }
-    .networking__item:nth-child(2):not(:last-child) {
-      margin-bottom: 25px; }
+  .networking__item .networking__item-left--rotated {
+    padding-left: 0; }
+  .networking__item:not(:last-child) {
+    margin-bottom: 25px; }
   .challenge__items {
     max-width: 100%; }
   .challenges {
@@ -657,7 +657,10 @@ body {
     -webkit-box-pack: center;
             justify-content: center; }
   .challenge__image {
-    margin-left: 0; }
+    margin-left: 0;
+    text-align: center; }
+    .challenge__image img {
+      width: 80%; }
   .subtitle {
     font-size: 17px; }
   .challenge__item {
@@ -678,6 +681,10 @@ body {
         text-align: left; }
       .challenge__item--end img {
         margin-left: 0; }
+  .premium {
+    padding-top: 20px; }
+  .premium__title {
+    margin-bottom: 40px; }
   .premium__row {
     flex-wrap: wrap; }
   .premium__image {
@@ -685,6 +692,8 @@ body {
     width: 100%;
     text-align: center;
     margin-bottom: 30px; }
+    .premium__image img {
+      width: 80%; }
   .premium__bottom {
     background: url(../img/shape3.svg) -410px top no-repeat; }
   .premium__item img {
