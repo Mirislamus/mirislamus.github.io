@@ -646,7 +646,7 @@ body {
   .networking__item .networking__item-left--rotated {
     padding-left: 0; }
   .networking__item:not(:last-child) {
-    margin-bottom: 25px; }
+    margin-bottom: 5px; }
   .challenge__items {
     max-width: 100%; }
   .challenges {
