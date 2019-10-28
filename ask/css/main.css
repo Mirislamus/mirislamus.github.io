@@ -381,6 +381,42 @@ body {
   .challenge__item--end .challenge__item-title {
     text-align: right; }
 
+.premium {
+  padding-top: 110px; }
+
+.premium__bottom {
+  background: url(../img/shape3.svg) -210px center no-repeat; }
+
+.premium__title {
+  margin-bottom: 70px;
+  text-align: center; }
+
+.premium__image {
+  margin-right: 60px; }
+
+.premium__row {
+  display: -webkit-box;
+  display: flex; }
+
+.premium__item {
+  display: -webkit-box;
+  display: flex;
+  max-width: 642px; }
+  .premium__item:not(:last-child) {
+    margin-bottom: 35px; }
+  .premium__item img {
+    margin-right: 20px;
+    flex-shrink: 0; }
+  .premium__item .premium__item-title {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase; }
+  .premium__item .premium__item-p {
+    margin: 0;
+    line-height: 24px; }
+
 .btn {
   padding: 0;
   font-weight: 600;
@@ -581,7 +617,7 @@ body {
     .wedo__item .wedo__text {
       font-size: 14px; }
   .networking__bottom {
-    background: url(../img/gridcircle.svg) no-repeat 240px 240px, url(../img/union.svg) center bottom no-repeat; }
+    background: url(../img/gridcircle.svg) no-repeat 500px 240px, url(../img/union.svg) center bottom no-repeat; }
   .title {
     font-size: 34px;
     line-height: 28px;
@@ -641,6 +677,17 @@ body {
       .challenge__item--end .challenge__item-title {
         text-align: left; }
       .challenge__item--end img {
-        margin-left: 0; } }
+        margin-left: 0; }
+  .premium__row {
+    flex-wrap: wrap; }
+  .premium__image {
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px; }
+  .premium__bottom {
+    background: url(../img/shape3.svg) -410px top no-repeat; }
+  .premium__item img {
+    flex-shrink: 0.5; } }
 
 /*# sourceMappingURL=main.css.map */
