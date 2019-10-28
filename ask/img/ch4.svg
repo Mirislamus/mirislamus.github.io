@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="198.192" height="152.263" viewBox="0 0 198.192 152.263">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.237" y1="0.5" x2="-0.143" y2="0.778" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4ede9e"/>
+      <stop offset="0.483" stop-color="#38a0f8"/>
+      <stop offset="1" stop-color="#5b40f2"/>
+    </linearGradient>
+  </defs>
+  <g id="ch4" transform="translate(0 0.606)">
+    <g id="Group_1115" data-name="Group 1115" transform="translate(-606.808 -764.717)" opacity="0.345">
+      <circle id="Ellipse_120" data-name="Ellipse 120" cx="14.5" cy="14.5" r="14.5" transform="translate(762 769)" fill="none" stroke="#1bbde2" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_12" data-name="Line 12" y1="18.021" x2="13.724" transform="translate(657.534 870.098)" fill="none" stroke="#1bbde2" stroke-miterlimit="10" stroke-width="2" opacity="0.3"/>
+      <g id="Group_985" data-name="Group 985" transform="translate(606.808 790.717)">
+        <path id="Path_961" data-name="Path 961" d="M515.546,114.087a6.718,6.718,0,0,1-5.365-10.755l42.432-56.445a6.718,6.718,0,1,1,10.739,8.074l-42.431,56.445A6.708,6.708,0,0,1,515.546,114.087Z" transform="translate(-508.833 -44.206)" fill="#1e6de0"/>
+      </g>
+      <line id="Line_23" data-name="Line 23" y1="37.069" x2="28.25" transform="translate(625.847 764.717)" fill="none" stroke="#1e6de0" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+    <path id="Union_24" data-name="Union 24" d="M136,159.374H18.941a20.236,20.236,0,0,1-9.857-2.694A20.076,20.076,0,0,1,1.71,129.217c.016-.03.033-.059.051-.088L60.255,31.716l.018-.03a20.178,20.178,0,0,1,34.463,0l.018.031,58.494,97.413c.018.03.035.059.051.087a20.095,20.095,0,0,1-17.23,30.157Zm-.041-12.652a7.449,7.449,0,0,0,6.379-11.141l-26.482-44.1c0,.166,0,.331,0,.5a39.486,39.486,0,0,1-35.013,39.23,6.9,6.9,0,0,1-6.243.222,39.5,39.5,0,0,1-36.8-29.8C23.667,141.791,50.52,146.708,135.958,146.722ZM76.378,52.5a39.3,39.3,0,0,1,18.985,4.856L83.884,38.235a7.417,7.417,0,0,0-4.6-3.361,7.55,7.55,0,0,0-1.79-.217,7.487,7.487,0,0,0-6.367,3.577Q65.64,47.377,60.909,55.522A39.353,39.353,0,0,1,76.1,52.5Z" transform="translate(42.192 -7.717)" fill="url(#linear-gradient)"/>
+    <text id="_04" data-name="04" transform="translate(48.192 97.283)" fill="#3f3356" font-size="100" font-family="Raleway-ExtraBold, Raleway" font-weight="800" letter-spacing="0.03em"><tspan x="0" y="0">04</tspan></text>
+  </g>
+</svg>

@@ -200,7 +200,25 @@ body {
     padding-left: 60px;
     padding-top: 8px;
     padding-bottom: 8px;
-    background: url(../img/security.svg) no-repeat center left; }
+    position: relative; }
+    .services__list li:before {
+      content: '';
+      background: url(../img/security.svg) no-repeat center #fff;
+      border-radius: 13px;
+      background-size: 16px;
+      width: 38px;
+      height: 38px;
+      position: absolute;
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+              justify-content: center;
+      top: 50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%); }
     .services__list li:not(:last-child) {
       margin-bottom: 24px; }
 
@@ -265,19 +283,22 @@ body {
   padding-top: 85px; }
 
 .title {
-  max-width: 450px;
   margin: 0 auto;
-  text-align: center;
   font-weight: 600;
   font-size: 38px;
-  margin-bottom: 90px;
   line-height: 36px; }
+
+.networking__title {
+  margin-bottom: 90px;
+  max-width: 450px;
+  text-align: center; }
 
 .networking__item {
   display: -webkit-box;
   display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 75px; }
+  flex-wrap: wrap; }
+  .networking__item:not(:last-child) {
+    margin-bottom: 75px; }
   .networking__item .scope {
     position: relative;
     background: url(../img/scope-right.svg) no-repeat right center;
@@ -285,6 +306,13 @@ body {
   .networking__item .networking__item-left {
     padding-right: 90px;
     max-width: 610px; }
+    .networking__item .networking__item-left--rotated {
+      padding-right: 0;
+      padding-left: 90px;
+      background: url(../img/scope-left.svg) no-repeat left center; }
+  .networking__item .networking__item-img {
+    max-width: 610px;
+    width: 100%; }
   .networking__item .networking__item-right {
     display: -webkit-box;
     display: flex;
@@ -295,6 +323,63 @@ body {
     font-size: 52px;
     margin-top: 40px;
     padding: 0 34px; }
+
+.networking__bottom {
+  background: url(../img/gridcircle.svg) no-repeat 1030px 90px, url(../img/union.svg) center bottom no-repeat; }
+
+.challenges {
+  padding-top: 112px;
+  background: url(../img/shape2.svg) no-repeat right; }
+
+.challenges__title {
+  margin: 0 auto;
+  max-width: 360px; }
+
+.subtitle {
+  font-size: 20px;
+  color: #6f8eba;
+  margin-top: 10px;
+  margin-bottom: 45px; }
+
+.challenge__row {
+  display: -webkit-box;
+  display: flex; }
+
+.challenge__image {
+  margin-left: 68px; }
+  .challenge__image img {
+    margin-top: 20px; }
+
+.challenge__items {
+  max-width: 830px; }
+
+.challenge__item {
+  display: -webkit-box;
+  display: flex; }
+  .challenge__item:not(:last-child) {
+    margin-bottom: 35px; }
+  .challenge__item img {
+    margin-right: 25px;
+    flex-shrink: 0; }
+  .challenge__item .challenge__item-text {
+    margin-top: auto; }
+  .challenge__item .challenge__item-title {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0; }
+  .challenge__item .challenge__item-p {
+    line-height: 24px;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    max-width: 563px; }
+  .challenge__item--end img {
+    margin-right: 0;
+    margin-left: 25px; }
+  .challenge__item--end .challenge__item-title {
+    text-align: right; }
 
 .btn {
   padding: 0;
@@ -395,6 +480,9 @@ body {
   .networking__item .networking__item-left {
     max-width: 50%;
     padding-right: 50px; }
+  .networking__item .networking__item-left--rotated {
+    padding-right: 0;
+    background-size: contain; }
   .networking__item .networking__item-title {
     font-size: 40px; } }
 
@@ -441,7 +529,11 @@ body {
   .services__list {
     margin-bottom: 45px; }
     .services__list li {
-      padding-left: 35px; }
+      padding-left: 45px; }
+      .services__list li::before {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px; }
       .services__list li:not(:last-child) {
         margin-bottom: 14px; }
   .services__btns {
@@ -488,10 +580,12 @@ body {
       margin-bottom: 28px; }
     .wedo__item .wedo__text {
       font-size: 14px; }
+  .networking__bottom {
+    background: url(../img/gridcircle.svg) no-repeat 240px 240px, url(../img/union.svg) center bottom no-repeat; }
   .title {
     font-size: 34px;
     line-height: 28px;
-    margin-bottom: 40px; }
+    margin-bottom: 20px; }
   .networking__item {
     -webkit-box-pack: center;
             justify-content: center; }
@@ -506,6 +600,47 @@ body {
       background-size: contain; }
     .networking__item .networking__item-title {
       text-align: center;
-      font-size: 30px; } }
+      font-size: 30px; }
+  .networking__item:nth-child(2) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+    -webkit-box-align: center;
+            align-items: center; }
+    .networking__item:nth-child(2) .networking__item-left--rotated {
+      padding-left: 0; }
+    .networking__item:nth-child(2):not(:last-child) {
+      margin-bottom: 25px; }
+  .challenge__items {
+    max-width: 100%; }
+  .challenges {
+    padding-top: 60px;
+    background: url(../img/shape2.svg) no-repeat center bottom; }
+  .challenge__row {
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+            justify-content: center; }
+  .challenge__image {
+    margin-left: 0; }
+  .subtitle {
+    font-size: 17px; }
+  .challenge__item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-pack: center;
+            justify-content: center; }
+    .challenge__item:not(:last-child) {
+      margin-bottom: 15px; }
+    .challenge__item img {
+      margin-bottom: 20px; }
+    .challenge__item--end {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+              flex-direction: column-reverse; }
+      .challenge__item--end .challenge__item-title {
+        text-align: left; }
+      .challenge__item--end img {
+        margin-left: 0; } }
 
 /*# sourceMappingURL=main.css.map */
