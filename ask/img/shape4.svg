@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1173.048" height="1275.573" viewBox="0 0 1173.048 1275.573">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="891.775" height="1051.462" fill="none"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="1.138" y1="0.5" x2="-0.371" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#45e9ff"/>
+      <stop offset="1" stop-color="#5c02ff"/>
+    </linearGradient>
+  </defs>
+  <g id="shape4" transform="matrix(-0.951, -0.309, 0.309, -0.951, -106.43, 1229.104)">
+    <g id="Repeat_Grid_4" data-name="Repeat Grid 4" transform="translate(-922.198 250.779)" clip-path="url(#clip-path)">
+      <g transform="translate(922.198 -250.779)">
+        <path id="Path_1027" data-name="Path 1027" d="M516.779,1187.57C234.067,1178.077,238.81,989.1,263.422,914.741c1.831-5.493,3.908-11.021,6.232-16.513A230.882,230.882,0,0,1,299.9,846.717c.739-.951,1.479-1.936,2.289-2.887a278.825,278.825,0,0,1,34.364-35.949c137.633-121.19,349.7-141.858,262.133-307.024-64.257-121.26-65.172-245.338,41.864-295.969,1.232-.563,2.5-1.162,3.767-1.69,43.589-19.471,104.36-27.146,185.095-18.238q3.222.37,6.549.739a890.334,890.334,0,0,1,91.579,16.267c32.531,7.422,284.949,638.752,199.514,899.041C1051.958,1329.79,649.374,1192.021,516.779,1187.57Z" transform="translate(-1175.031 69.507)" opacity="0.045" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>
