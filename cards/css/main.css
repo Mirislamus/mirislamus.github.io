@@ -209,8 +209,8 @@ img, svg, iframe {
 .page-header__left {
   max-width: 454px;
   width: 100%;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D1D1E), to(#1D373B));
-  background-image: linear-gradient(to top, #1D1D1E 0%, #1D373B 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D373B), to(#1D1D1E));
+  background-image: linear-gradient(to top, #1D373B 0%, #1D1D1E 100%);
   padding-top: 105px;
   padding-bottom: 80px;
   position: relative;
