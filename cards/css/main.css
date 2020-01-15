@@ -209,8 +209,8 @@ img, svg, iframe {
 .page-header__left {
   max-width: 454px;
   width: 100%;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D1D1E), to(#1D2121));
-  background-image: linear-gradient(to top, #1D1D1E 0%, #1D2121 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D1D1E), to(#1D373B));
+  background-image: linear-gradient(to top, #1D1D1E 0%, #1D373B 100%);
   padding-top: 105px;
   padding-bottom: 80px;
   position: relative;
@@ -341,7 +341,8 @@ img, svg, iframe {
 }
 
 .page-header__right {
-  background-image: url(../img/bg.png);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D1D1E), to(#1D373B));
+  background-image: linear-gradient(to top, #1D1D1E 0%, #1D373B 100%);
   padding-top: 70px;
   padding-left: 40px;
   width: 100%;
@@ -455,13 +456,11 @@ img, svg, iframe {
   height: 52px;
   display: inline-block;
   background-image: url(../img/icons/cart.png);
-  -webkit-transition: .31s;
-  transition: .31s;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.cart__btn:hover {
+.cart__btn:hover .cart-icon {
   background-image: url(../img/icons/cart-f.png);
 }
 
@@ -765,8 +764,6 @@ img, svg, iframe {
   height: 84px;
   display: inline-block;
   background-image: url(../img/icons/exit.png);
-  -webkit-transition: .31s;
-  transition: .31s;
   background-repeat: no-repeat;
   background-position: center;
 }
