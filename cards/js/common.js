@@ -1,17 +1,14 @@
 $(document).ready(function(){
   var hamburger = $('.hamburger');
   var sidebar = $('.sidebar');
-
   var cartBtn = $('.cart__btn, .add-to-cart-area-js, .sidebar__cart');
   var sidebarCart = $('.sidebar-cart');
-
   var sidebarCartLink = $('.sidebar__cart');
-
   var sidebarLk = $('.sidebar__lk');
   var lkModal = $('.modal-lk');
-
-
   var modalCart = $('.modal-cart');
+
+
   hamburger.on('click', function() {
     sidebar.toggleClass('rotated');
     $(this).toggleClass('active');
@@ -53,13 +50,16 @@ $(document).ready(function(){
 
 
   var modalOpen = function(hoverEl, modal) {
-    hoverEl.hover(function() {
-      $('.sidebar-open').removeClass('active');
-      $(this).addClass('active');
-      $('.modal').removeClass('active');
-      modal.addClass('active');
-    });
+      hoverEl.hover(function() {
+        $('.sidebar-open').removeClass('active');
+        $('.sidebar-open').addClass('hidden');
+        $(this).addClass('active');
+        $('.modal').removeClass('active');
+        modal.addClass('active');
+      });
     $('.modal-exit').on('click', function(){
+
+      $('.sidebar-open').removeClass('hidden');
       hoverEl.removeClass('active');
       modal.removeClass('active');
     });
