@@ -925,7 +925,8 @@ img, svg, iframe {
   max-width: 344px;
   width: 100%;
   height: 61px;
-  box-shadow: 0 0 13px rgba(255, 255, 190, 0.25);
+  -webkit-transition: .3s;
+  transition: .3s;
   border-radius: 31px;
   border: 1px solid #fbf5f5;
   color: #fcf8f8;
@@ -939,6 +940,10 @@ img, svg, iframe {
   background: none;
   padding: 0;
   cursor: pointer;
+}
+
+.btn-cancel:hover {
+  box-shadow: 0 0 13px rgba(255, 255, 190, 0.25);
 }
 
 .modal-school .modal__text,
@@ -1016,18 +1021,26 @@ img, svg, iframe {
   opacity: 0;
 }
 
-.cart-btns .sidebar__item-title:hover {
-  border-color: #fbf5f5;
-}
-
 .cart-btns .sidebar__item-title:hover::after {
   opacity: 1;
+}
+
+.cart-btns .sidebar__item-title:focus {
+  border-color: #fbf5f5;
 }
 
 .column-container {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
+}
+
+.modal-garante .modal__full .modal__text {
+  text-align: center;
+}
+
+.modal-school2 .modal__text p {
+  font-size: 27px;
 }
 
 .container {

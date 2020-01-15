@@ -2,10 +2,14 @@ $(document).ready(function(){
   var hamburger = $('.hamburger');
   var sidebar = $('.sidebar');
 
-  var cartBtn = $('.cart__btn, .add-to-cart-area-js');
+  var cartBtn = $('.cart__btn, .add-to-cart-area-js, .sidebar__cart');
   var sidebarCart = $('.sidebar-cart');
 
   var sidebarCartLink = $('.sidebar__cart');
+
+  var sidebarLk = $('.sidebar__lk');
+  var lkModal = $('.modal-lk');
+
 
   var modalCart = $('.modal-cart');
   hamburger.on('click', function() {
@@ -14,18 +18,40 @@ $(document).ready(function(){
   });
 
   cartBtn.on('click', function(){
+    $('.sidebar__link').removeClass('active');
     sidebar.addClass('hidden');
     sidebarCart.addClass('active');
     sidebarCartLink.addClass('active');
     modalCart.addClass('active');
   });
+  
   $('.modal-cart .modal-exit').on('click', function() {
     sidebar.removeClass('hidden');
     sidebarCart.removeClass('active');
     sidebarCartLink.removeClass('active');
     modalCart.removeClass('active');
-
   });
+
+  $('.modal-lk .modal-exit').on('click', function() {
+    sidebarCart.removeClass('active');
+    sidebar.removeClass('hidden');
+    lkModal.removeClass('active');
+  });
+  sidebarCartLink.on('click', function() {
+    $('.sidebar__link').removeClass('active');
+    $(this).addClass('active');
+    lkModal.removeClass('active');
+    modalCart.addClass('active');
+  });
+  sidebarLk.on('click', function(){
+    $('.sidebar__link').removeClass('active');
+    $(this).addClass('active');
+    lkModal.addClass('active');
+    modalCart.removeClass('active');
+  });
+
+
+
   var modalOpen = function(hoverEl, modal) {
     hoverEl.hover(function() {
       $('.sidebar-open').removeClass('active');
