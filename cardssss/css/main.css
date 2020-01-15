@@ -159,6 +159,7 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #fbfdfd;
   font-size: 24px;
+  overflow-x: hidden;
 }
 
 img, svg, iframe {
@@ -668,11 +669,15 @@ img, svg, iframe {
   opacity: 0;
   visibility: hidden;
   z-index: 5;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 
 .modal.active {
   opacity: 1;
   visibility: visible;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 
 .modal__container {
@@ -959,6 +964,11 @@ img, svg, iframe {
 
 .cart-btns {
   padding-bottom: 20px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
 }
 
 .cart-btns .sidebar__item-title {
@@ -973,10 +983,15 @@ img, svg, iframe {
   padding-left: 0;
   -webkit-transition: .3s;
   transition: .3s;
+  display: inline-block;
 }
 
 .cart-btns .sidebar__item-title:not(:last-child) {
   margin-bottom: 24px;
+}
+
+.cart-btns .sidebar__item-title:last-child {
+  width: calc(100% - 70px);
 }
 
 .cart-btns .sidebar__item-title::before {
