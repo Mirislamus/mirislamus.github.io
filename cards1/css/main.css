@@ -784,7 +784,8 @@ img, svg, iframe {
 }
 
 .modal-sponsors {
-  background: url(../img/sponsors.jpg);
+  background: url(../img/sponsors.jpg) no-repeat;
+  background-size: cover;
 }
 
 .text-link {
