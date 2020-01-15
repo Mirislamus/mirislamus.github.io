@@ -29,7 +29,7 @@
 	<header class="page-header">
 		<div class="page-header__left">
 			<div class="sidebar-cart">
-				<div class="sidebar__link" tabindex="0">
+				<div class="sidebar__link sidebar__cart" tabindex="0">
 					КОРЗИНА
 				</div>
 				<div class="sidebar__link" tabindex="0">
@@ -39,7 +39,7 @@
 			<aside class="sidebar">
 
 				<div class="sidebar__front sidebar-main">
-					<div class="sidebar__item about">
+					<div class="sidebar__item sidebar-open about">
 						<span class="sidebar__item-title">
 							ЧТО ЭТО ЗА ИГРА?
 						</span>
@@ -50,7 +50,7 @@
 						</p>
 						<img class="sidebar__item-arrow" src="./img/icons/arrow.svg" alt="arrow">
 					</div>
-					<div class="sidebar__item winner">
+					<div class="sidebar__item sidebar-open winner">
 						<span class="sidebar__item-title">
 							КТО ПОБЕДИТЕЛЬ?
 						</span>
@@ -61,7 +61,7 @@
 						</p>
 						<img class="sidebar__item-arrow" src="./img/icons/arrow.svg" alt="arrow">
 					</div>
-					<div class="sidebar__item give">
+					<div class="sidebar__item sidebar-open give">
 						<span class="sidebar__item-title">
 							ЧТО ЭТА ИГРА ДАЕТ?
 						</span>
@@ -70,7 +70,7 @@
 						</p>
 						<img class="sidebar__item-arrow" src="./img/icons/arrow.svg" alt="arrow">
 					</div>
-					<div class="sidebar__item whom">
+					<div class="sidebar__item sidebar-open whom">
 						<span class="sidebar__item-title">
 							ДЛЯ КОГО ЭТА ИГРА?
 						</span>
@@ -81,7 +81,7 @@
 						</p>
 						<img class="sidebar__item-arrow" src="./img/icons/arrow.svg" alt="arrow">
 					</div>
-					<div class="sidebar__item school">
+					<div class="sidebar__item sidebar-open school">
 						<span class="sidebar__item-title">
 							ДЛЯ ШКОЛ
 						</span>
@@ -92,7 +92,7 @@
 						</p>
 						<img class="sidebar__item-arrow" src="./img/icons/arrow.svg" alt="arrow">
 					</div>
-					<div class="sidebar__item invented">
+					<div class="sidebar__item sidebar-open invented">
 						<span class="sidebar__item-title">
 							КТО ПРИДУМАЛ ЭТУ ИГРУ?
 						</span>
@@ -104,22 +104,22 @@
 
 				</div>
 				<div class="sidebar__back sidebar-hamburger">
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open school2" tabindex="0">
 						Школам
 					</div>
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open sponsors" tabindex="0">
 						Мы – спонсоры
 					</div>
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open bloger" tabindex="0">
 						Блогерам
 					</div>
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open opt" tabindex="0">
 						Купить оптом
 					</div>
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open garante" tabindex="0">
 						Гарантийные обязательства
 					</div>
-					<div class="sidebar__link" tabindex="0">
+					<div class="sidebar__link sidebar-open back" tabindex="0">
 						Условия возврата товара
 					</div>
 				</div>
@@ -165,7 +165,7 @@
 				</nav>
 				<div class="cart">
 					<button class="cart__btn" type="button" aria-label="add to cart">
-						<img src="./img/icons/cart.png" alt="cart">
+						<span class="cart-icon"></span>
 					</button>
 					<div class="cart__counter">
 						1
@@ -188,7 +188,7 @@
 							СТОИМОСТЬ ДОСТАВКИ
 						</p>
 						<div class="tac">
-							<button class="add-to-cart-area" type="button">
+							<button class="add-to-cart-area add-to-cart-area-js" type="button">
 								<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 								<div class="btn-add-to-cart__circle"></div>
 							</button>
@@ -205,8 +205,7 @@
 
 			<div class="modal modal-about">
 				<button class="modal-exit" type="button">
-					<span>выход</span>	
-					<img src="./img/icons/big-arrow.png" alt="big arrow">
+					<div class="exit-icon"></div>
 				</button>
 				<div class="page-header__container modal__container">
 					<div class="modal__left">
@@ -252,7 +251,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -306,7 +305,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -365,7 +364,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -425,7 +424,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -479,7 +478,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -531,7 +530,7 @@
 								</div>
 
 								<div class="tac">
-									<button class="add-to-cart-area" type="button">
+									<button class="add-to-cart-area add-to-cart-area-js" type="button">
 										<div class="btn-add-to-cart">ПОЛОЖИТЬ В КОРЗИНУ</div>
 										<div class="btn-add-to-cart__circle"></div>
 									</button>
@@ -540,6 +539,255 @@
 
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="modal modal-school2">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Школам
+						</h2>
+						<div class="modal__text">
+							<p>
+								Мы предлагаем школам использовать математические карты Веры Снегиревой в качестве пособия для уроков математики, либо для дополнительных занятий после уроков.
+							</p>
+							<p>
+								Школа может закупить карты оптом, либо рекомендовать родителям, чтобы они самостоятельно закупили карты для своих детей.
+							</p>
+							<p>
+								Если производится централизованная закупка карт, мы готовы предоставить хорошие оптовые скидки. Их размер оговаривается отдельно в каждом случае.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-sponsors">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Мы – спонсоры
+						</h2>
+						<div class="modal__text ">
+							<p>
+								В благотворительных целях, а так же для 
+								популяризации изучения математики 
+								с помощью математических карт
+								 Веры Снегиревой, наша компания выступает
+								 в качестве спонсора школьных, городских и 
+								областных соревнований.
+							</p>
+							<p>
+								Для победителей мы выделяем денежные призы: 
+							</p>
+							<p>
+								- победителю школы – <b>10 тыс рублей</b>
+							</p>	
+							<p>
+								- победителю города – <b>50 тыс рублей </b> 
+							</p>
+							<p>
+								- победителю области – <b>100 тыс рублей </b>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-bloger">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Мы – спонсоры
+						</h2>
+						<div class="modal__text ">
+							<p>
+								Если у Вас есть блог (или – группа) с числом подписчиков больше 1000 человек в ВКонтакте, Facebook, Инстаграме, на Youtube, в ЖЖ, в Твиттере, Телеграме или другой социальной сети, 
+							</p>
+							<p>
+								Вас заинтересовали математические карты Веры Снегиревой и Вы хотели бы поиграв в них, поделиться своими впечатлениями со своими подписчиками, мы вышлем Вам один комплект карт абсолютно бесплатно.
+							</p>
+							<p>
+								Напишите письмо на email <a class="text-link" href="mailto:smm@8888.ae">smm@8888.ae</a>   о своем желании, дайте в нем ссылку на ваш профиль и Ваши контакты (адрес, имя и телефон получателя) для отправки. 
+							</p>	
+							<p>
+								Будем рады увидеть обзор игры и Ваше мнение о ней!
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-opt">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Купить оптом
+						</h2>
+						<div class="modal__text ">
+							<p>
+								Мы предлагаем сотрудничество всем заинтересованным организациям – онлайн и оффлайн-магазинам, оптовым компаниям и дистрибьюторам, школам и учителям.
+							</p>
+							<p>
+								Для оптовых покупателей мы гарантируем хорошие скидки, возможна так же кастомизация карт и разработка отдельного индивидуального дизайна под потребности заказчика.
+							</p>
+							<p>
+								Наше производство расположено в Китае, мы готовы поставить карты, как в рамках внешнеторгового контракта, так и предоставить местную компанию для проведения закупки.
+							</p>	
+							<p>
+								Если Вас интересует партнерство с нами, заполните, пожалуйста эту форму, и отправьте нам. Наши менеджеры свяжутся с Вами и предоставят Вам условия для сотрудничества.
+							</p>
+							<div class="tac">
+								<button type="button" class="form-btn">
+									форма сотрудничества
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-form">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Форма заказа
+						</h2>
+						<form action="#">
+							<div class="form">
+								<label class="form__label">
+									<span class="form__name">Название компании</span>
+									<input type="text" class="form__input">
+								</label>
+								<label class="form__label">
+									<span class="form__name">Контактное лицо</span>
+									<input type="text" class="form__input">
+								</label>
+								<label class="form__label">
+									<span class="form__name">Email</span>
+									<input type="email" inputmode="email" class="form__input">
+								</label>
+								<label class="form__label">
+									<span class="form__name">Телефон</span>
+									<input type="tel" inputmode="numeric" class="form__input" >
+								</label>
+								<label class="form__label">
+									<span class="form__name">Название компании</span>
+									<input type="text" class="form__input">
+								</label>
+								<div class="check-area">
+									<h3 class="check-area__title">Сфера деятельности (поставить галочку в квадратик):</h3>
+									<label class="form__label form__label--check">
+										<span class="form__name">- дистрибьютор/оптовик</span>
+										<input type="checkbox">
+									</label>
+									<label class="form__label form__label--check">
+										<span class="form__name">- интернет-магазин</span>
+										<input type="checkbox">
+									</label>
+									<label class="form__label form__label--check">
+										<span class="form__name">- городской магазин</span>
+										<input type="checkbox">
+									</label>
+									<label class="form__label form__label--check">
+										<span class="form__name">- школа/орган образования</span>
+										<input type="checkbox">
+									</label>
+									<h3 class="check-area__title">Какой объем закупок Вас интересует (поставить галочку в квадратик):</h3>
+									<label class="form__label form__label--check">
+										<span class="form__name">- от 10 до 100 штук разовая закупка</span>
+										<input type="checkbox">
+									</label>
+									<label class="form__label form__label--check">
+										<span class="form__name">- от 100 до 1000 штук в год</span>
+										<input type="checkbox">
+									</label>
+									<label class="form__label form__label--check">
+										<span class="form__name">- от 1000 до 10000 штук в год</span>
+										<input type="checkbox">
+									</label>
+								</div>
+							</div>
+						</form>
+						<div class="tar">
+							<button class="add-to-cart-area cabinet-js" type="button">
+								<div class="btn-add-to-cart">ПЕРЕЙТИ В ЛИЧНЫЙ КАБИНЕТ </div>
+								<div class="btn-add-to-cart__circle"></div>
+							</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-garante">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Гарантийные обязательства
+						</h2>
+						<div class="modal__text ">
+							<p>
+								Покупатель вправе отказаться от заказанного товара в любое время до его получения, а после получения товара - в течение семи календарных дней с даты получения товара при условии, если сохранены его товарный вид, потребительские свойства, а также документ, подтверждающий факт и условия покупки указанного товара. При этом покупатель обязан вернуть товар на наш склад в Китае за свой счет. Мы возвращаем покупателю стоимость оплаченного товара в течение десяти дней со дня предъявления покупателем соответствующего требования. Невозможен возврат товара, бывшего в употреблении. 
+							</p>
+							<p>
+								Обмен и возврат товара производится на основании заявления, заполненного и подписанного покупателем. 
+							</p>
+							<p>
+								При возврате покупателем товара надлежащего качества составляются акт о возврате товара, в котором указываются: полное фирменное наименование продавца, фамилия, имя, отчество покупателя, наименование товара, даты покупки товара, сумма, подлежащая возврату, подписи продавца и покупателя. 
+							</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-back">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					<div class="modal__full">
+						<h2 class="modal__title">
+							Условия возврата товара 
+						</h2>
+						<div class="modal__text ">
+							<p>
+								Мы гарантируем безопасность приобретенных товаров при использовании изделий по назначению. 
+							</p>
+							<p>
+								Мы предупреждаем о недопустимости использования изделий не по назначению, в том числе по неосторожности, и наличии других опасностей, связанных с неправильной эксплуатацией или использованием не по назначению. 
+							</p>
+	
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal modal-cart">
+				<button class="modal-exit" type="button">
+					<span>выход</span>	
+					<img src="./img/icons/big-arrow.png" alt="big arrow">
+				</button>
+				<div class="page-header__container modal__container">
+					
 				</div>
 			</div>
 		</div>

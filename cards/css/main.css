@@ -209,8 +209,8 @@ img, svg, iframe {
 .page-header__left {
   max-width: 454px;
   width: 100%;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#1d373b), to(#24263d));
-  background-image: linear-gradient(to top, #1d373b 0%, #24263d 100%);
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#1D1D1E), to(#1D2121));
+  background-image: linear-gradient(to top, #1D1D1E 0%, #1D2121 100%);
   padding-top: 105px;
   padding-bottom: 80px;
   position: relative;
@@ -396,10 +396,19 @@ img, svg, iframe {
   height: 22px;
   cursor: pointer;
   margin-left: 20px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  -webkit-perspective: 86px;
+          perspective: 86px;
+}
+
+.hamburger.active {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
 }
 
 .navbar {
-  margin-right: 70px;
+  margin-right: 50px;
 }
 
 .navbar ul {
@@ -429,6 +438,7 @@ img, svg, iframe {
 .cart {
   display: -webkit-box;
   display: flex;
+  margin-top: -5px;
 }
 
 .cart__btn {
@@ -437,6 +447,22 @@ img, svg, iframe {
   border: none;
   margin-right: 16px;
   cursor: pointer;
+  position: relative;
+}
+
+.cart__btn .cart-icon {
+  width: 52px;
+  height: 52px;
+  display: inline-block;
+  background-image: url(../img/icons/cart.png);
+  -webkit-transition: .31s;
+  transition: .31s;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cart__btn:hover {
+  background-image: url(../img/icons/cart-f.png);
 }
 
 .cart__counter {
@@ -524,8 +550,10 @@ img, svg, iframe {
   padding: 0;
 }
 
-.add-to-cart-area:focus .btn-add-to-cart {
-  border-color: #fbfdfd;
+.add-to-cart-area:focus .btn-add-to-cart__circle {
+  z-index: 3;
+  bottom: 0;
+  right: 0;
 }
 
 .add-to-cart-area:hover .btn-add-to-cart__circle {
@@ -575,8 +603,8 @@ img, svg, iframe {
 
 .btn-add-to-cart__circle {
   position: absolute;
-  width: calc(100% + 6px);
-  height: calc(100% + 6px);
+  width: 100%;
+  height: 100%;
   bottom: -23px;
   right: -23px;
   border: 3px solid #fbfdfd;
@@ -595,6 +623,10 @@ img, svg, iframe {
   margin-bottom: 95px;
   padding: 0 22px;
   cursor: pointer;
+}
+
+.sidebar__link:hover, .sidebar__link.active {
+  color: #fff;
 }
 
 .sidebar-cart {
@@ -728,8 +760,131 @@ img, svg, iframe {
   transition: .3s;
 }
 
-.modal-exit:hover span {
-  color: #fcf8f8;
+.modal-exit .exit-icon {
+  width: 114px;
+  height: 84px;
+  display: inline-block;
+  background-image: url(../img/icons/exit.png);
+  -webkit-transition: .31s;
+  transition: .31s;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.modal-exit:hover .exit-icon {
+  background-image: url(../img/icons/exit-f.png);
+}
+
+.modal__full {
+  width: 100%;
+}
+
+.modal__full .modal__text {
+  font-size: 24px;
+  max-width: 100%;
+  text-align: center;
+  margin-left: 0;
+}
+
+.modal-sponsors {
+  background: url(../img/sponsors.jpg);
+}
+
+.text-link {
+  color: #646ef7;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.modal-opt .modal__full .modal__text,
+.modal-garante .modal__full .modal__text {
+  text-align: left;
+}
+
+.form-btn {
+  border-radius: 34px;
+  border: 1px solid #fdfdfd;
+  color: #faf6f6;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  background: transparent;
+  padding: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  max-width: 332px;
+  width: 100%;
+  height: 67px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.modal-form .modal__title {
+  text-align: center;
+}
+
+.form {
+  margin-top: 100px;
+}
+
+.form .form__label {
+  display: block;
+  margin-bottom: 35px;
+  display: -webkit-box;
+  display: flex;
+}
+
+.form .form__label--check {
+  max-width: 700px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+          align-items: flex-end;
+  margin-bottom: 0;
+}
+
+.form .form__name {
+  color: #faf6f6;
+  font-size: 24px;
+  font-style: italic;
+  letter-spacing: 0.24px;
+  margin-right: 25px;
+  min-width: 282px;
+  display: block;
+}
+
+.form .form__input {
+  background: none;
+  border: none;
+  max-width: 610px;
+  width: 100%;
+  border-bottom: 1px solid #fdfdfd;
+  color: #fdfdfd;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.form .form__input:focus {
+  border-color: #fff;
+}
+
+.check-area__title {
+  color: #faf6f6;
+  font-size: 24px;
+  font-style: italic;
+  letter-spacing: 0.24px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.tar {
+  text-align: right;
 }
 
 .container {

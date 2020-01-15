@@ -2,24 +2,33 @@ $(document).ready(function(){
   var hamburger = $('.hamburger');
   var sidebar = $('.sidebar');
 
-  var cartBtn = $('.cart__btn');
+  var cartBtn = $('.cart__btn, .add-to-cart-area-js');
   var sidebarCart = $('.sidebar-cart');
 
-  
+  var sidebarCartLink = $('.sidebar__cart');
 
+  var modalCart = $('.modal-cart');
   hamburger.on('click', function() {
     sidebar.toggleClass('rotated');
+    $(this).toggleClass('active');
   });
 
   cartBtn.on('click', function(){
-    sidebar.toggleClass('hidden');
-    sidebarCart.toggleClass('active');
+    sidebar.addClass('hidden');
+    sidebarCart.addClass('active');
+    sidebarCartLink.addClass('active');
+    modalCart.addClass('active');
   });
+  $('.modal-cart .modal-exit').on('click', function() {
+    sidebar.removeClass('hidden');
+    sidebarCart.removeClass('active');
+    sidebarCartLink.removeClass('active');
+    modalCart.removeClass('active');
 
+  });
   var modalOpen = function(hoverEl, modal) {
     hoverEl.hover(function() {
-
-      $('.sidebar__item').removeClass('active');
+      $('.sidebar-open').removeClass('active');
       $(this).addClass('active');
       $('.modal').removeClass('active');
       modal.addClass('active');
@@ -35,6 +44,23 @@ $(document).ready(function(){
   modalOpen($('.whom'), $('.modal-whom'));
   modalOpen($('.school'), $('.modal-school'));
   modalOpen($('.invented'), $('.modal-invented'));
+  modalOpen($('.school2'), $('.modal-school2'));
+  modalOpen($('.sponsors'), $('.modal-sponsors'));
+  modalOpen($('.bloger'), $('.modal-bloger'));
+  modalOpen($('.opt'), $('.modal-opt'));
+  modalOpen($('.garante'), $('.modal-garante'));
+  modalOpen($('.back'), $('.modal-back'));
+
+  var openForm = function(clickEl, window) {
+    clickEl.on('click', function() {
+      window.addClass('active');
+    });
+    $('.modal-exit').on('click', function() {
+      window.removeClass('active');
+    });
+  }
+  openForm($('.form-btn'), $('.modal-form'));
+  
 });
 
 
