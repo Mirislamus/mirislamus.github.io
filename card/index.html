@@ -127,7 +127,7 @@
 			</aside>
 		</div>
 		<div class="page-header__right">
-			<div class="page-header__container pb300">
+			<div class="page-header__container pb300 flex">
 				<div class="logo-area">
 					<a href="/" class="logo">
 						<img src="./img/logo.png" alt="logo">
@@ -201,8 +201,31 @@
 
 					</div>
 				</div>
-			</div>
 
+			</div>
+			<div class="page-header__social">
+				<div class="social">
+					<a href="#" class="social__item">
+						<img src="./img/social/share-icon.svg" alt="share" width="35" height="35">
+					</a>
+					<a href="#" class="social__item">
+						<img src="./img/social/twitter.svg" alt="twitter" width="35" height="35">
+					</a>
+					<a href="#" class="social__item">
+						<img src="./img/social/odnoklassniki.svg" alt="odnoklassniki" width="35" height="35">
+					</a>
+					<a href="#" class="social__item">
+						<img src="./img/social/instagram.svg" alt="instagram" width="35" height="35">
+					</a>
+					<a href="#" class="social__item">
+						<img src="./img/social/social.svg" alt="vk" width="35" height="35">
+					</a>
+					<a href="#" class="social__item">
+						<img src="./img/social/facebook.svg" alt="facebook" width="35" height="35">
+					</a>
+
+				</div>
+			</div>
 			<div class="modal modal-about">
 				<button class="modal-exit" type="button">
 					<div class="exit-icon"></div>	
@@ -803,7 +826,7 @@
 							<a href="#" class="sidebar__item-title">
 								Положить в корзину
 							</a>
-							<a href="#" class="sidebar__item-title">
+							<a href="#" class="sidebar__item-title to-lk">
 								Перейти к  оплате
 							</a>
 						</div>
@@ -815,15 +838,78 @@
 				<button class="modal-exit" type="button">
 					<div class="exit-icon"></div>	
 				</button>
-				<div class="page-header__container modal__container cart-container column-container">
-				
+				<div class="page-header__container modal__container column-container lk__container">
+					<h3 class="lk-title">Заполните форму</h3>
+					<form action="#" class="form-js">
+						<div class="form form--lk">
+							<input type="text" class="form__input" placeholder="Ваше имя">
+							<input type="text" class="form__input" placeholder="Адрес доставки">
+							<input type="text" class="form__input" placeholder="Ваш тел. для связи">
+							<div class="email-help">
+								<span class="email-invalid">
+									не правильно ввели емейл
+								</span>
+								<input type="text" class="form__input form-email" placeholder="Ваш е-мейл">
+							</div>
+							<button class="btn-cancel email-check">
+								Подтвердить е-мейл
+							</button>
+							<p class="text-mail">
+								Выслано письмо с ссылкой на оплату. Проверьте Ваш е-мейл <br>
+								Если по какой-нибудь причине Вы не получили письмо,проверьте папку “Спам”, <br>
+								или нажмите на кнопку Подтвердить е-мейл ещё раз. 
+							</p>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</header>
+	
 <main class="page-main">
   
+  <section class="about-us">
 
+    <div class="container">
+      <h2 class="about-us__title title">
+        О нас
+      </h2>
+      <div class="about-us__text">
+
+        <div class="text-preview">
+          <p>
+            Мы – группа компаний в России, Гонконге, Китае, принадлежащих одному....
+          </p>
+          <button type="button" class="open-text">
+            <img src="./img/open-text.png" alt="open text">
+
+          </button>
+        </div>
+        <div class="text-open">
+          <p>
+            Мы – группа компаний в России, Гонконге, Китае, принадлежащих одному.... 
+            ..владельцу, бабушка которого придумала игру в Математические карты Веры Снегиревой. Мы организовали их производство, и продвигаем ее по всему миру...
+          </p>
+          <p>
+            Это не наш основной бизнес, мы зарабатываем деньги в других сферах – консалтинг, банковская сфера.
+          </p>
+          <p>
+            Но Математические карты Веры Снегиревой – это дань ее памяти. И новые возможности для миллионов детей
+          </p>
+          <p>
+            Наша миссия – сделать эту игру массовой. Чтобы люди по всей планете играли в нее, становились ближе со своими детьми, и формировали их ум таким образом, чтобы они умели быстро и качественно решать любые задачи.
+          </p>
+          <p>
+            Кто-то тренирует мышцы. Не спорим, это нужно и очень полезно.
+            Но гораздо больше полезно – тренировать мозги.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </section>
 
 </main>
 
