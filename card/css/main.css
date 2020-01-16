@@ -1183,6 +1183,7 @@ img, svg, iframe {
   background: url(../img/bg-about.png) no-repeat center, -webkit-gradient(linear, left bottom, left top, from(#1D373B), to(#1D1D1E));
   background: url(../img/bg-about.png) no-repeat center, linear-gradient(to top, #1D373B 0%, #1D1D1E 100%);
   padding: 130px 0;
+  padding-bottom: 200px;
 }
 
 .about-us__title {
@@ -1257,8 +1258,8 @@ img, svg, iframe {
 .pluses {
   background: url(../img/bg-pluses.png) no-repeat;
   background-size: cover;
-  padding-top: 280px;
-  margin-top: -240px;
+  padding-top: 310px;
+  margin-top: -260px;
   padding-bottom: 50px;
 }
 
