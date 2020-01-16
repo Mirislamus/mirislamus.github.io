@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="stylesheet" href="css/style.bundle.css" />
+
+    <title>Контакты</title>
+  </head>
+
+  <body>
+    <div class="page-wrap page-wrap--ope">
+      <header class="page-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <form action="#">
+                <div class="search" tabindex="0">
+                  <button class="search__btn">
+                    <span class="icon-search-2"></span>
+                  </button>
+                  <input class="search__input" type="search" placeholder="Поиск" />
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6">
+              <div class="page-header__right">
+                <a href="#" class="btn-up page-header__btn">
+                  <span class="btn-up__icon icon-star"></span>
+                  Upgrade account
+                </a>
+
+                <button type="button" class="btn btn--grey page-header__pp">
+                  PP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <aside class="page-aside">
+        <a href="/" class="page-aside__logo">
+          <img src="./img/logo.svg" alt="logo" />
+          MediaDigger
+        </a>
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link active">
+                <span class="icon-contacts"> </span>
+                Контакты
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-message"> </span>
+                Ссылки
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-statistics"></span>
+                Отчеты
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-configurations"> </span>
+                Конфигурации
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-permissions"> </span>
+                Доступ
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-history"> </span>
+                История
+              </a>
+            </li>
+          </ul>
+          <ul class="navigation__list navigation__list--second">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-user"> </span>
+                Аккаунт
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                <span class="icon-support"> </span>
+                Поддержка
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <button type="button" class="btn-icon btn-icon--arr btn-icon__aside">
+          <span class="icon-arrow"></span>
+        </button>
+      </aside>
+
+      <main class="page-main">
+        <div class="container">
+          <div class="row mb-32">
+            <div class="col-md-12 content__top filter-content">
+              <h1 class="content__title">
+                Контакты
+                <button type="button" class="btn-plus">
+                  <span class="icon icon--plus"></span>
+                </button>
+              </h1>
+              <div class="top-filter">
+                <div class="top-filter__item">
+                  <span class="top-filter__name">
+                    Отобразить
+                  </span>
+                  <button type="button" class="top-filter__btn">
+                    Плиткой
+                    <div class="top-filter__arrow">
+                      <span class="icon-arrow-down"></span>
+                    </div>
+                  </button>
+                </div>
+                <div class="top-filter__item">
+                  <span class="top-filter__name">
+                    Сортировать по
+                  </span>
+                  <button type="button" class="top-filter__btn">
+                    Алфавиту
+                    <div class="top-filter__arrow">
+                      <span class="icon-arrow-down"></span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7 content__center content__top--contacts flex-column align-items-start">
+              <div class="btns-row">
+                <div class="popup-filter open">
+                  <button type="button" class="btn btn--arrow">
+                    <span class="icon-filter"></span>
+                    <span class="btn-dot">Фильтры</span>
+                    <div class="btn__arrow">
+                      <span class="icon-arrow-down"></span>
+                    </div>
+                  </button>
+                  <div class="popup-filter__window">
+                    <span class="popup-filter__title">
+                      Категория
+                    </span>
+                    <div class="popup-filter__category">
+                      <div class="popup-filter__category-item active">
+                        <span class="icon-name"></span>
+                        Имя
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-last-name"></span>
+                        Фамилия
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-key-word"></span>
+                        Ключевое <br />
+                        слово
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-organization"></span>
+                        Организация
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-occupation"></span>
+                        Должность
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-journalists"></span>
+                        Тэг по журналистам
+                      </div>
+                      <div class="popup-filter__category-item">
+                        <span class="icon-press"></span>
+                        Тэг по сми
+                      </div>
+                    </div>
+                    <div class="search-stage__wrapper search-popup">
+                      <span class="icon-search-2"></span>
+                      <input type="text" class="search-stage__input" value="Иван" />
+                      <button type="button" class="search-popup__add"><span class="icon-new"></span> Добавить</button>
+                    </div>
+                    <div class="tac">
+                      <button type="button" class="next popup-filter__btn" disabled>Применить</button>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn--arrow">
+                  <span class="icon-group"></span>
+                  <span class="btn-dot">Группы</span>
+                  <div class="btn__arrow">
+                    <span class="icon-arrow-down"></span>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-5 content__center content__center--end content__top--contacts align-items-start">
+              <div class="add-staff add-staff--contacts">
+                <button type="button" class="btn btn--add add-staff__btn">
+                  <span class="icon-select-all"></span>
+                  Выбрать все
+                </button>
+                <button type="button" class="btn btn--arrow btn-alert">
+                  <span class="icon-alert"></span>
+                  <span class="btn-alert__text">Оповещения</span>
+                  <div class="btn__arrow">
+                    <span class="icon-arrow-down"></span>
+                  </div>
+                  <span class="btn-alert__counter">
+                    8
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item">
+                <span class="contact-item__email">blablabla@gmail.com</span>
+                <a href="#" class="contact-item__link">
+                  <span class="icon-new-tab"></span>
+                </a>
+                <h4 class="contacts-item__title">
+                  Святослав Богомолов
+                </h4>
+                <div class="contacts-item__category">
+                  Редактор
+                </div>
+                <p class="contacts-item__from">
+                  Золотой Дуб Пресненского района
+                </p>
+                <div class="contacts-item__bottom">
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item active">
+                <span class="contact-item__email">pochtarossiyi@@gmail.com</span>
+                <a href="#" class="contact-item__link">
+                  <span class="icon-new-tab"></span>
+                </a>
+                <h4 class="contacts-item__title">
+                  Ибрагим Рерих
+                </h4>
+                <div class="contacts-item__category">
+                  Журналист
+                </div>
+                <p class="contacts-item__from">
+                  газета "Русский слесарь"
+                </p>
+                <div class="contacts-item__bottom">
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item ">
+                <div class="contact-item__top">
+                  <span class="contact-item__email item--dot">pochtarossiyi@@gmail.com</span>
+                  <a href="#" class="contact-item__link">
+                    <span class="icon-new-tab"></span>
+                  </a>
+                  <h4 class="contacts-item__title">
+                    Руководитель отдела финансов
+                  </h4>
+                  <div class="contacts-item__category">
+                    Журналист
+                  </div>
+                  <p class="contacts-item__from">
+                    MediaDigger
+                  </p>
+                </div>
+
+                <div class="contacts-item__bottom">
+                  <div class="mail-use">
+                    <span class="icon-alert mail-use__icon"></span>
+                    <p class="mail-use__text">
+                      Email не используется. <a href="#" class="mail-use__link">Обновить?</a>
+                    </p>
+                    <span class="plus plus--orange">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item">
+                <span class="contact-item__email">blablabla@gmail.com</span>
+                <a href="#" class="contact-item__link">
+                  <span class="icon-new-tab"></span>
+                </a>
+                <h4 class="contacts-item__title">
+                  Святослав Богомолов
+                </h4>
+                <div class="contacts-item__category">
+                  Редактор
+                </div>
+                <p class="contacts-item__from">
+                  Золотой Дуб Пресненского района
+                </p>
+                <div class="contacts-item__bottom">
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item active">
+                <span class="contact-item__email">pochtarossiyi@@gmail.com</span>
+                <a href="#" class="contact-item__link">
+                  <span class="icon-new-tab"></span>
+                </a>
+                <h4 class="contacts-item__title">
+                  Ибрагим Рерих
+                </h4>
+                <div class="contacts-item__category">
+                  Журналист
+                </div>
+                <p class="contacts-item__from">
+                  газета "Русский слесарь"
+                </p>
+                <div class="contacts-item__bottom">
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 mb32">
+              <div class="contact-item ">
+                <span class="contact-item__email">pochtarossiyi@@gmail.com</span>
+                <a href="#" class="contact-item__link">
+                  <span class="icon-new-tab"></span>
+                </a>
+                <h4 class="contacts-item__title">
+                  Руководитель отдела финансов
+                </h4>
+                <div class="contacts-item__category">
+                  Журналист
+                </div>
+                <p class="contacts-item__from">
+                  MediaDigger
+                </p>
+                <div class="contacts-item__bottom">
+                  <div class="mail-use">
+                    <span class="icon-alert mail-use__icon"></span>
+                    <p class="mail-use__text">
+                      Email не используется. <a href="#" class="mail-use__link">Обновить?</a>
+                    </p>
+                    <span class="plus plus--orange">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn contacts-item__btn--purple">
+                      <span class="icon-group"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag tag--purple contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus">
+                      +1
+                    </span>
+                  </div>
+                  <div class="contacts-item__row">
+                    <button type="button" class="contacts-item__btn">
+                      <span class="icon-add-tag"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234568
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <button type="button" class="team-item__tag tag contacts-item__tag">
+                      <span class="tag__text">
+                        Group 1234
+                      </span>
+                      <span class="icon-cross-thin tag__close tag__close--purple"></span>
+                    </button>
+                    <span class="plus plus--grey">
+                      +1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="scroll"></div>
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
