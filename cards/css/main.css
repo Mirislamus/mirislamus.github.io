@@ -1273,6 +1273,7 @@ img, svg, iframe {
 
 .pluses__text {
   margin-top: 0;
+  font-style: italic;
   text-indent: 140px;
 }
 
@@ -1322,6 +1323,67 @@ img, svg, iframe {
 
 .plus-mini .plus__title {
   margin-bottom: 34px;
+}
+
+.pluses2 {
+  background: url(../img/bg-pluses2.png) no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.plus-big {
+  max-width: 692px;
+}
+
+.mt80 {
+  margin-top: 80px;
+}
+
+.rules {
+  background: url(../img/bg-rules.png) no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+  padding-top: 100px;
+}
+
+.ti0 {
+  padding-left: 100px;
+  margin-right: -100px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.img-center {
+  margin: 0 auto;
+  margin-top: -30px;
+  display: block;
+}
+
+.title-img {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.title-img img {
+  position: absolute;
+  top: -70px;
+  right: 0;
+}
+
+b.plus__text {
+  text-decoration: underline;
+  color: inherit;
+  display: block;
+  font-weight: normal;
+}
+
+.mb35 {
+  margin-bottom: 35px;
 }
 
 .container {
