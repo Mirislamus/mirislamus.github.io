@@ -205,6 +205,7 @@ img, svg, iframe {
 .page-header {
   display: -webkit-box;
   display: flex;
+  overflow-x: hidden;
 }
 
 .page-header__left {
@@ -772,46 +773,6 @@ img, svg, iframe {
   margin-top: -5px;
 }
 
-.modal-exit {
-  border: 0;
-  padding: 0;
-  background: none;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  position: absolute;
-  top: 58px;
-  right: 68px;
-  cursor: pointer;
-}
-
-.modal-exit span {
-  font-size: 30px;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-  font-style: italic;
-  color: rgba(252, 248, 248, 0.7);
-  display: block;
-  margin-bottom: 5px;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-.modal-exit .exit-icon {
-  width: 114px;
-  height: 84px;
-  display: inline-block;
-  background-image: url(../img/icons/exit.png);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.modal-exit:hover .exit-icon {
-  background-image: url(../img/icons/exit-f.png);
-}
-
 .modal__full {
   width: 100%;
 }
@@ -1266,10 +1227,6 @@ img, svg, iframe {
   padding-bottom: 50px;
 }
 
-.container.mw1252 {
-  max-width: 1324px;
-}
-
 .pluses__title {
   margin-bottom: 10px;
 }
@@ -1303,7 +1260,7 @@ img, svg, iframe {
   font-size: 36px;
   font-weight: bold;
   margin: 0;
-  margin-left: -23px;
+  position: relative;
 }
 
 .square {
@@ -1314,9 +1271,15 @@ img, svg, iframe {
   margin-right: 10px;
 }
 
+.tal .square {
+  position: absolute;
+  top: 18px;
+  left: -32px;
+}
+
 .plus-mini {
   text-align: center;
-  max-width: 485px;
+  max-width: 500px;
 }
 
 .plus-mini img {
@@ -1343,7 +1306,7 @@ img, svg, iframe {
 }
 
 .mt80 {
-  margin-top: 80px;
+  margin-top: 110px;
 }
 
 .rules {
@@ -1410,7 +1373,7 @@ b.plus__text {
   display: flex;
   -webkit-box-pack: justify;
           justify-content: space-between;
-  max-width: 1490px;
+  max-width: 1470px;
   margin: 0 auto;
 }
 
@@ -1541,7 +1504,6 @@ b.plus__text {
 }
 
 .page-footer .page-footer__container {
-  max-width: 1490px;
   margin: 0 auto;
 }
 
@@ -1580,6 +1542,28 @@ b.plus__text {
 
 .page-footer .page-footer__row .social {
   align-self: flex-end;
+}
+
+.tal {
+  text-align: left;
+}
+
+.container.mw1252 {
+  max-width: 1570px;
+}
+
+.mw1252 {
+  max-width: 1570px;
+  padding: 0 100px;
+}
+
+.modal-exit {
+  max-width: 144px;
+  height: 35px;
+  position: absolute;
+  top: 58px;
+  right: 68px;
+  font-style: italic;
 }
 
 .container {

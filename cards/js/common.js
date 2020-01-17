@@ -113,6 +113,20 @@ $(document).ready(function(){
     $('.text-open').addClass('active');
 
   });
+  var scrollMenu = function(el, to) {
+    $(el).click(function (e) {
+      e.preventDefault();
+      $('html, body').animate({
+          scrollTop: $(to).offset().top
+      }, 1000);
+    });
+  };
+  scrollMenu('#about-us', '.about-us');
+  scrollMenu('#pluses', '.pluses');
+  scrollMenu('#rules', '.rules');
+  scrollMenu('#pay', '.pay');
+  scrollMenu('#delivery', '.delivery');
+  scrollMenu('#contacts', '.contacts');
 });
 
 

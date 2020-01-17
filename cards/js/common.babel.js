@@ -106,4 +106,20 @@ $(document).ready(function () {
     $('.text-preview').addClass('hidden');
     $('.text-open').addClass('active');
   });
+
+  var scrollMenu = function scrollMenu(el, to) {
+    $(el).click(function (e) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: $(to).offset().top
+      }, 1000);
+    });
+  };
+
+  scrollMenu('#about-us', '.about-us');
+  scrollMenu('#pluses', '.pluses');
+  scrollMenu('#rules', '.rules');
+  scrollMenu('#pay', '.pay');
+  scrollMenu('#delivery', '.delivery');
+  scrollMenu('#contacts', '.contacts');
 });
