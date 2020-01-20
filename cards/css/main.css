@@ -172,6 +172,11 @@ img, svg, iframe {
   list-style-type: none;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 ::-webkit-input-placeholder {
   opacity: 1;
 }
@@ -425,10 +430,15 @@ img, svg, iframe {
   color: #fff;
   -webkit-transition: .3s;
   transition: .3s;
+  white-space: nowrap;
 }
 
 .language a.active {
   color: #fe7c09;
+}
+
+.mobile-img {
+  display: none;
 }
 
 .hamburger {
@@ -483,6 +493,13 @@ img, svg, iframe {
   display: -webkit-box;
   display: flex;
   margin-top: -5px;
+}
+
+.nav-cart {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .cart__btn {
@@ -1571,6 +1588,273 @@ b.plus__text {
   width: 100%;
   margin: 0 auto;
   padding: 0 100px;
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  .page-header__left {
+    padding-top: 26px;
+    border-top: 1px solid #fff;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
+  }
+  .page-header__right {
+    -webkit-box-ordinal-group: 1;
+            order: 0;
+    padding-left: 27px;
+    padding-right: 27px;
+    padding-top: 35px;
+    padding-bottom: 22px;
+  }
+  .sidebar__item-title {
+    font-size: 18px;
+  }
+  .sidebar__item-title::before {
+    width: 13px;
+    height: 5px;
+    margin-top: -2px;
+  }
+  .sidebar__item-text {
+    font-size: 13px;
+  }
+  .sidebar__item-text {
+    padding-left: 60px;
+  }
+  .sidebar__item-arrow {
+    padding-right: 0;
+  }
+  .logo-area {
+    margin-right: 0;
+    margin-left: 40px;
+  }
+  .header-logo-area {
+    display: block;
+  }
+  .navbar ul {
+    display: block;
+  }
+  .navbar a {
+    font-size: 8px;
+    display: inline-block;
+    padding: 5px 14px;
+  }
+  .pb300 {
+    padding-bottom: 32px;
+  }
+  .game-price__title {
+    font-size: 15px;
+  }
+  .game-price__price {
+    font-size: 17px;
+    margin-bottom: 15px;
+  }
+  .mlr30 {
+    margin-left: 8px;
+    margin-right: 8px;
+    height: 17px;
+  }
+  .game-price__order {
+    font-size: 8px;
+    margin-bottom: 15px;
+  }
+  .game-price {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+  .game-price__title {
+    max-width: 110px;
+    margin: 0 auto;
+    padding-bottom: 12px;
+  }
+  .add-to-cart-area {
+    z-index: 0;
+  }
+  .add-to-cart-area, .btn-add-to-cart {
+    max-width: 100px;
+    font-size: 5px;
+    height: 27px;
+  }
+  .btn-add-to-cart::after {
+    width: 115px;
+    height: 43px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: -18px;
+    right: -18px;
+  }
+  .btn-add-to-cart__circle {
+    bottom: -7px;
+    right: -7px;
+  }
+  .mobile-img {
+    display: block;
+    max-width: 165px;
+    margin: 0 auto;
+    margin-bottom: 11px;
+  }
+  .game-price__right {
+    margin-left: 0;
+  }
+  .game-price__right .img-none {
+    display: none;
+  }
+  .game-price__right img {
+    max-width: 165px;
+    margin: 0 auto;
+    display: block;
+  }
+  .page-header__social {
+    display: none;
+  }
+  .modal-about, .modal-winner, .modal-about, .modal-whom, .modal-school, .modal-invented, .modal-give {
+    top: 107%;
+    bottom: initial;
+    max-height: 662px;
+  }
+  .modal-school .modal__text, .modal-winner .modal__text, .modal-give .modal__text {
+    margin-top: 90px;
+  }
+  .modal {
+    border-width: 15px;
+  }
+  .modal__title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .modal__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    padding-top: 19px;
+    padding-bottom: 19px;
+  }
+  .btn-cancel {
+    max-width: 180px;
+    font-size: 11px;
+    height: 36px;
+    margin-top: 20px;
+  }
+  .modal-exit {
+    top: initial;
+    bottom: 10px;
+    right: initial;
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(0.8);
+            transform: translateX(-50%) scale(0.8);
+    max-width: 90px;
+    font-size: 15px;
+  }
+  .modal__text {
+    max-width: 166px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .modal__text p {
+    font-size: 11px;
+  }
+  .modal-about .modal__text {
+    margin-top: 20px;
+  }
+  .modal__right .game-price {
+    margin-left: 0;
+  }
+  .modal-cards {
+    display: -webkit-box;
+    display: flex;
+    margin-bottom: 26px;
+  }
+  .modal-cards img {
+    max-width: 100px;
+  }
+  .modal__right {
+    margin: 0 auto;
+  }
+  .modal__right .game-price__right {
+    margin-left: 0;
+  }
+  .modal__text.modal__inveted-text img {
+    max-width: 115px;
+  }
+  .modal__inveted-text {
+    max-width: 100%;
+  }
+  .modal__inveted-text p {
+    max-width: 275px;
+  }
+  .modal__inveted-text p br {
+    display: none;
+  }
+  .modal__inveted-text {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+  }
+  .modal__inveted-text p {
+    -webkit-box-ordinal-group: 0;
+            order: -1;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  .sidebar__link {
+    font-size: 22px;
+    margin-bottom: 60px;
+  }
+  .sidebar__back {
+    height: auto;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#1D373B), to(#1D1D1E));
+    background-image: linear-gradient(to top, #1D373B 0%, #1D1D1E 100%);
+    top: -102%;
+    z-index: 10;
+    padding-top: 40px;
+  }
+  .sidebar.rotated .sidebar__front {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+  }
+  .modal__full .modal__text p {
+    font-size: 19px;
+    padding: 0 15px;
+  }
+  .modal__full .modal__text > br {
+    display: none;
+  }
+  .sidebar-open.hidden {
+    visibility: visible;
+    opacity: 1;
+  }
+  .modal__full .modal__text b {
+    display: block;
+  }
+  .modal-bloger .modal__full .modal__text p {
+    font-size: 17px;
+  }
+  .modal-opt .modal__full .modal__text {
+    max-width: 242px;
+    margin: 0 auto;
+  }
+  .modal-opt .modal__full .modal__text p {
+    font-size: 13px;
+    text-align: center;
+  }
+  .modal-garante .modal__text {
+    margin-top: 90px;
+  }
+  .modal-garante .modal__text p:first-child {
+    margin-bottom: 90px;
+  }
+  .modal-back .modal__full .modal__text p {
+    font-size: 14px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 
   var modalOpen = function(hoverEl, modal) {
-      hoverEl.hover(function() {
+      hoverEl.click(function() {
         $('.sidebar-open').removeClass('active');
         $('.sidebar-open').addClass('hidden');
         $(this).addClass('active');
