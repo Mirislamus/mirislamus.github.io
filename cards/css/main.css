@@ -1820,9 +1820,13 @@ b.plus__text {
     height: auto;
     background-image: -webkit-gradient(linear, left bottom, left top, from(#1D373B), to(#1D1D1E));
     background-image: linear-gradient(to top, #1D373B 0%, #1D1D1E 100%);
-    top: -102%;
+    top: 0;
     z-index: 10;
     padding-top: 40px;
+  }
+  .sidebar.rotated .sidebar__back {
+    -webkit-transform: rotateY(360deg) translateY(-123%);
+            transform: rotateY(360deg) translateY(-123%);
   }
   .sidebar.rotated .sidebar__front {
     -webkit-transform: rotateY(0);
