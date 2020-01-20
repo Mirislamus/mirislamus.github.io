@@ -127,6 +127,10 @@ $(document).ready(function(){
   scrollMenu('#pay', '.pay');
   scrollMenu('#delivery', '.delivery');
   scrollMenu('#contacts', '.contacts');
+  if($(window).width() < 768) {
+    $('.page-header__social').appendTo('.page-header__left');
+
+  }
 });
 
 
