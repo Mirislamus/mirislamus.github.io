@@ -1,0 +1,724 @@
+
+  <!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Главная</title>
+	<meta name="description" content="">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+
+	<meta name="theme-color" content="#b99470">
+
+	<link rel="stylesheet" href="./css/styles.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	
+	<div class="page-top">
+		<header class="page-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 page-header__mobile">
+						<a href="/" class="logo" aria-label="logo">
+							<img src="./img/logo.jpg" alt="logo">
+						</a>
+						<button type="button" class="btn-unstyled hamburger">
+							<svg class="ham hamRotate ham4" viewBox="0 0 100 100" width="70px">
+								<path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path>
+								<path class="line middle" d="m 70,50 h -40"></path>
+								<path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path>
+							</svg>
+						</button>
+					</div>
+					<div class="col-md-10">
+						<nav class="navigation">
+							<ul class="list-unstyled">
+								<li><a href="#" class="active">Главная</a></li>
+								<li><a href="#">Номера</a></li>
+								<li><a href="#">Галерея</a></li>
+								<li><a href="#">Контакты</a></li>
+							</ul>
+							<div class="navigation__right">
+								<ul class="language list-unstyled">
+									<li>
+										<a href="#" class="active">RU</a>
+									</li>
+									<li>
+										<a href="#">EN</a>
+									</li>
+									<li>
+										<a href="#">UZ</a>
+									</li>
+								</ul>
+								<a href="tel:+99878 120-88-22" class="phone">+99878 120-88-22</a>
+							</div>
+	
+						</nav>
+					</div>
+				</div>
+	
+			</div>
+		</header>
+
+		<div class="header-slider swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" style="background-image: url(./img/header-bg.jpg)">
+					<div class="container">
+						<div class="header-slider__info">
+							<p class="header-slider__suptitle">
+								Добро пожаловать
+							</p>
+							<h2 class="header-slider__title">
+								Artist hotel 
+							</h2>
+							<blockquote class="header-slider__subtitle">
+								Откройте для себя роскошь 
+							</blockquote>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide" style="background-image: url(./img/header-bg.jpg)">
+					<div class="container">
+						<div class="header-slider__info">
+							<p class="header-slider__suptitle">
+								Добро пожаловать
+							</p>
+							<h2 class="header-slider__title">
+								Artist hotel 
+							</h2>
+							<blockquote class="header-slider__subtitle">
+								Откройте для себя роскошь 
+							</blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header-slider__container container">
+				<div class="swiper-button-next">
+					<img src="./img/round-left-button.svg" alt="prev">
+				</div>
+				<div class="swiper-button-prev">
+					<img src="./img/round-left-button.svg" alt="next">
+				</div>
+			</div>
+
+		</div>
+		<div class="reservations">
+			<div class="container">
+				<form action="#">
+					<div class="reservation__form">
+						<div class="reservation__row">
+							<label class="reservation__label">
+								<input type="text" class="reservation__input calendar-js" placeholder="Дата въезда">
+							</label>
+							<label class="reservation__label">
+								<input type="text" class="reservation__input calendar-js" placeholder="Дата выезда">
+							</label>
+							<div class="reservation__label reservation__label--guest">
+								<input type="text" class="reservation__input dropdown-js" placeholder="Гостей">
+								<div class="guest-dropdown">
+									<div class="guest-row">
+										<div class="guest-info">
+											<img src="./img/bed.svg" alt="bed" width="24" height="24">
+											<span class="guest-name">
+												Номеров
+											</span>
+										</div>
+										<div class="range-slider">
+											<button class="range-slider__btn range-slider__minus btn-unstyled" type="button" aria-label="remove 1">
+													<img src="./img/minus.svg" alt="minus" width="15" height="15">
+											</button>
+											<input type="number" class="range-slider__value" min="0" value="0">
+											<button class="range-slider__btn range-slider__plus btn-unstyled" type="button" aria-label="add 1">
+													<img src="./img/plus.svg" alt="minus" width="15" height="15">
+											</button>
+										</div>
+									</div>
+									<div class="guest-row">
+										<div class="guest-info">
+											<img src="./img/human.svg" alt="bed" width="24" height="24">
+											<span class="guest-name">
+												Взрослых
+											</span>
+										</div>
+										<div class="range-slider">
+											<button class="range-slider__btn range-slider__minus btn-unstyled" type="button" aria-label="remove 1">
+													<img src="./img/minus.svg" alt="minus" width="15" height="15">
+											</button>
+											<input type="number" class="range-slider__value" min="0" value="0">
+											<button class="range-slider__btn range-slider__plus btn-unstyled" type="button" aria-label="add 1">
+													<img src="./img/plus.svg" alt="minus" width="15" height="15">
+											</button>
+										</div>
+									</div>
+									<div class="guest-row">
+										<div class="guest-info">
+											<img src="./img/children.svg" alt="bed" width="24" height="24">
+											<span class="guest-name">
+												Детей
+											</span>
+										</div>
+										<div class="range-slider">
+											<button class="range-slider__btn range-slider__minus btn-unstyled" type="button" aria-label="remove 1">
+													<img src="./img/minus.svg" alt="minus" width="15" height="15">
+											</button>
+											<input type="number" class="range-slider__value" min="0" value="0">
+											<button class="range-slider__btn range-slider__plus btn-unstyled" type="button" aria-label="add 1">
+													<img src="./img/plus.svg" alt="minus" width="15" height="15">
+											</button>
+										</div>
+									</div>
+									<button class="btn-unstyled btn guest__btn" type="button">
+										Обновить
+									</button>
+								</div>
+							</div>
+							<button class="btn-unstyled btn reservation__btn">
+								Забронировать	
+							</button>
+						</div>
+						<label class="custom-checkbox">
+							<input type="checkbox" class="custom-checkbox__check">
+							<span class="checkbox"></span>
+							 с трансфером
+						</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+<main class="page-main">
+  
+  <section class="welcome">
+  <div class="container">
+    <div class="row row--reverse">
+      <div class="col-md-12 col-lg-6">
+        <div class="swiper-container welcome__slider">
+          <div class="swiper-wrapper welcome__images">
+            <div class="swiper-slide welcome__image">
+              <img src="./img/w01.jpg" alt="slider image">
+            </div>
+            <div class="swiper-slide welcome__image">
+              <img src="./img/w02.jpg" alt="slider image">
+            </div>
+            <div class="swiper-slide welcome__image">
+              <img src="./img/w03.jpg" alt="slider image">
+            </div>
+          </div>
+          <div class="best__slider-btns">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <h3 class="title welcome__title">
+          Добро пожаловать в отель Артист 
+        </h3>
+        <span class="subtitle">
+          Уютный отель в центре Ташкента
+        </span>
+        <p class="text">
+          Артист -это уютная гостиница с просторными номерами, отзывчивым персоналом и высоким качеством обслуживания. Благодаря расположению в центре города – Яккасарайском районе, ее легко найти как местным жителям, так и иностранным туристам. Рядом расположены сети магазинов, кафе и рестораны, супермаркеты, торгово-развлекательный центры, все необходимое в шаговой доступности. <br>
+          Гостиница состоит из трех блоков и 36 номеров: одноместные, двухместные, трехместные, семейные. Номера оборудованы всем необходимым для работы и отдыха. В гостиницы расположен ресторан с баром, где постояльцы могут позавтракать или просто расслабиться чашечкой кофе.
+        </p>
+        <span class="subtitle">
+          Уникальный дизайн отеля
+        </span>
+        <p class="text">
+          Дизайн каждого номера в гостинице продуман так, чтобы постояльцы чувствовали себя как дома. Приятные пастельные тона преобладают в интерьерах номеров для максимального комфорта расслабленности. Каждый номер оборудован необходимой техникой: кондиционер, холодильник, телевизор. Постояльцы отеля могут пользоваться высокоскоростным wi-fi в любое время суток.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+  <section class="pluses">
+  <div class="container">
+    <div class="row mb-30">
+      <div class="col-md-3 col-6 mb30">
+        <figure class="pluses__item">
+          <div class="pluses__circle">
+            <img src="./img/breakfast.svg" alt="breakfast"  width="45"  height="45">
+          </div>
+          <figcaption class="pluses__title">
+            Бесплатный завтрак
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-md-3 col-6 mb30">
+        <figure class="pluses__item">
+          <div class="pluses__circle">
+            <img src="./img/cart.png" alt="cart"  width="33"  height="33">
+          </div>
+          <figcaption class="pluses__title">
+            Обслуживание номеров
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-md-3 col-6 mb30">
+        <figure class="pluses__item">
+          <div class="pluses__circle">
+            <img src="./img/cam.svg" alt="cam"  width="36"  height="36">
+          </div>
+          <figcaption class="pluses__title">
+            Охраняемая парковка
+          </figcaption>
+        </figure>
+      </div>
+      <div class="col-md-3 col-6 mb30">
+        <figure class="pluses__item">
+          <div class="pluses__circle">
+            <img src="./img/wifi.svg" alt="wifi"  width="34"  height="34">
+          </div>
+          <figcaption class="pluses__title">
+            Бесплатный WI-FI
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+  <section class="best">
+  <div class="container">
+    <h2 class="title best__title">
+      Лучшие номера
+    </h2>
+    <div class="row mb-60">
+      <div class="col-md-12 col-lg-7 mb60">
+        <div class="swiper-container best__slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./img/bs01.jpg" alt="slider image">
+            </div>
+            <div class="swiper-slide">
+              <img src="./img/bs01.jpg" alt="slider image">
+            </div>
+          </div>
+          <div class="best__slider-btns">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-5 mb60 best__column">
+        <div class="best__text">
+          <h3 class="title title--noline best__title-left">
+            Комфортабельные номера
+          </h3>
+          <p class="text">
+            Гостиница Артист предлагает комфортные номера и люкс, тихую и уютную обстановку для каждого постояльца. Номера оснащены всем необходимым: просторные комфортабельные кровати с ортопедическим матрасом, отдельная ванная комната, рабочая область для продуктивной работы, телевизор, кондиционер, холодильник для хранения еды или напитков и шкафом для одежды.
+          </p>
+        </div>
+        <div class="room">
+          <p class="room__title">
+            Одноместный номер
+          </p>
+          <div class="room__price">
+            <strong class="room__value">
+              500 000сум 
+            </strong>
+            <sup class="room__day">
+              день
+            </sup>
+            <a href="#" class="btn-reserv link-unstyled">
+              Забронировать
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-xl-6 mb60">
+        <div class="best-item">
+          <div class="best-item__img">
+            <img src="./img/b01.jpg" alt="best image">
+          </div>
+          <div class="best-item__info">
+            <div class="best-item__square">
+              <span class="best-item__title">
+                Двухместный номер
+              </span>
+              <p class="best-item__text">
+                Номер оснащен шикарной односпальной кроватью, прекрасное решение для отдыха в поездке. Большой телевизор, рабочая область (письменным стол), бесплатный wi-fi,
+              </p>
+            </div>
+            <div class="room room--mini">
+              <p class="room__title">
+                От
+              </p>
+              <div class="room__price">
+                <strong class="room__value">
+                  500.000сум 
+                </strong>
+                <sup class="room__day">
+                  сутки
+                </sup>
+                <a href="#" class="btn-reserv link-unstyled">
+                  Забронировать
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-xl-6 mb60">
+        <div class="best-item">
+          <div class="best-item__img">
+            <img src="./img/b02.jpg" alt="best image">
+          </div>
+          <div class="best-item__info">
+            <div class="best-item__square">
+              <span class="best-item__title">
+                Трёхместный номер
+              </span>
+              <p class="best-item__text">
+                Номер оснащен шикарной односпальной кроватью, прекрасное решение для отдыха в поездке. Большой телевизор, рабочая область (письменным стол), бесплатный wi-fi,
+              </p>
+            </div>
+            <div class="room room--mini">
+              <p class="room__title">
+                От
+              </p>
+              <div class="room__price">
+                <strong class="room__value">
+                  500.000сум 
+                </strong>
+                <sup class="room__day">
+                  сутки
+                </sup>
+                <a href="#" class="btn-reserv link-unstyled">
+                  Забронировать
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <section class="gallery">
+  <div class="gallery__slider swiper-container">
+    <div class="swiper-wrapper gallery__row">
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g1.jpg" alt="g1">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g2.jpg" alt="g2">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g3.jpg" alt="g3">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g4.jpg" alt="g4">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g5.jpg" alt="g5">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g6.jpg" alt="g6">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g7.jpg" alt="g7">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g8.jpg" alt="g8">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g9.jpg" alt="g9">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g10.jpg" alt="g10">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g11.jpg" alt="g11">
+        </div>
+      
+        <div class="gallery__item swiper-slide">
+          <img src="./img/g12.jpg" alt="g12">
+        </div>
+      
+    </div>
+    <div class="best__slider-btns">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+  <a href="#" class="link-unstyled btn btn__gallery more-js">
+    Посмотреть все фото	
+  </a>
+</section>
+  <section class="reviews">
+  <div class="container">
+    <h2 class="title best__title">
+      Отзывы наших гостей
+    </h2>
+    <div class="swiper-container reviews__slider">
+      <div class="swiper-wrapper">
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Отлично
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Хорошо
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Средне
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Отлично
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Хорошо
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 swiper-slide">
+          <div class="reviews-item">
+            <div class="reviews-item__top">
+              <span class="reviews-item__title">
+                Средне
+              </span>
+              <div class="reviews-item__stars">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+                <img src="./img/star.svg" alt="star" width="13" height="13">
+              </div>
+              <p class="reviews-item__text">
+                Уютный отель за приемлимую цену, приветливый персонал, удобное расположение аэропорт-центр города, отличный завтрак, все необходимое (магазин, покушать) рядом в двух шагах
+              </p>
+            </div>
+            <div class="reviews-item__bottom">
+              <p class="reviews-item__name">
+                Котовска Софья 
+              </p>
+              <time class="reviews-item__date">
+                8.02.2019
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination reviews__pagination "></div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+<footer class="page-footer">
+  <div class="page-footer__top">
+    <div class="container">
+      <div class="row mb-30">
+        <div class="col-md-2 mb30">
+          <a href="/" class="logo" aria-label="logo">
+						<img src="./img/logo.jpg" alt="logo">
+          </a>
+
+        </div>
+        <div class="col-md-3 col-sm-6 mb30">
+          <p class="page-footer__title">
+            Полезные ссылки
+          </p>
+          <ul class="page-footer__menu list-unstyled">
+            <li>
+              <a href="#">Главная</a>
+            </li>
+            <li>
+              <a href="#">Номера</a>
+            </li>
+            <li>
+              <a href="#">Галерея</a>
+            </li>
+            <li>
+              <a href="#">Контакты</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6 mb30">
+          <div class="address">
+            <p class="page-footer__title">
+              Связаться с нами:
+            </p>
+            <ul class="page-footer__menu list-unstyled">
+              <li>
+                Ташкент, Яккасарайский р-н, <br>
+                Кичик Миробод, 14
+              </li>
+              <li><a href="tel:+998781208822">+ 99878 120-88-22</a></li>
+              <li><a href="mailto:office@email.com">office@email.com</a></li>
+            </ul>
+          </div>
+          
+        </div>
+        <div class="col-md-3 mb30">
+          <div class="social">
+            <p class="page-footer__title">
+              Мы в соц. сетях
+            </p>
+            <a href="#" class="social__item" aria-label="instagram">
+              <img src="./img/instagram.svg" alt="instagram" width="20" height="20">
+            </a>
+            <a href="#" class="social__item" aria-label="facebook">
+              <img src="./img/facebook.svg" alt="facebook" width="20" height="20">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer__bottom">
+    <div class="container">
+      <div class="page-footer__row">
+        <small class="copyright">
+          Copyright © 2019. Все права защищены
+        </small>
+        <a href="https://oneweb.uz/" class="development">
+          Сайт разработан веб студией ONE WEB
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+  <button class="to-top btn-unstyled" type="button" aria-label="to top">
+    <img src="./img/fast-forward.svg" alt="arrow" width="23" height="23">
+  </button>
+</footer>
+
+<script src="./js/scripts.min.js"></script>
+<script src="./js/common.js"></script>
+</body>
+</html>
