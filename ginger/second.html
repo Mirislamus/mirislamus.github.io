@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Главная - 2</title>
+	<meta name="description" content="">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+
+	<meta name="theme-color" content="#fbf9f3">
+	<link rel="stylesheet" href="./css/fonts.css">
+	<link rel="stylesheet" href="./css/styles.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body class="second">
+	<header class="page-header">
+		<div class="container">
+			<div class="page-header__row">
+				<div class="page-header__col">
+					<a href="/" class="logo" aria-label="logo">
+						<img src="./img/logo.svg" alt="logo">
+					</a>
+					<nav class="navigation">
+						<ul class="list-unstyled">
+							<li>
+								<a href="#delivery">Заказать</a>
+							</li>
+							<li>
+								<a href="#order">Доставка</a>
+							</li>
+							<li>
+								<a href="#pay">Оплата</a>
+							</li>
+							<li>
+								<a href="#plus">Польза имбиря</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="page-header__col direction-column">
+					<a class="phone" href="tel:+7 (495) 377-00-11">+7 (495) 377-00-11</a>
+					<button type="button" class="btn-unstyled btn btn-order">
+						Заказать звонок
+					</button>
+					<button class="hamburger btn-unstyled" type="button">
+						<img src="./img/hamburger.png" alt="hamburger" width="25" height="20">
+					</button>
+				</div>
+
+			</div>
+			<div class="page-header__content">
+				<div class="header-col">
+					<h1 class="title">
+						Свежий корень имбиря <br>
+						1500 руб / кг
+					</h1>
+					<p class="text">
+						Имбирь — мощный комплекс минералов, витаминов, <br>
+						 всех видов аминокислот, незаменимых для <br>
+						 поддержания жизнедеятельности человека и защиты <br>
+						 от вирусов.
+					</p>
+					<div class="header__info">
+						<div class="header-item">
+							<div class="header-item__img">
+								<img src="./img/h1.svg" alt="icon">
+							</div>
+
+							<span class="header-item__text">
+								Доставим <br>
+								сегодня
+							</span>
+						</div>
+						<div class="header-item">
+							<div class="header-item__img">
+								<img src="./img/h2.svg" alt="icon">
+							</div>
+							<span class="header-item__text">
+								Оплата при <br>
+								получении
+							</span>
+						</div>
+						<div class="header-item">
+							<div class="header-item__img">
+								<img src="./img/h3.svg" alt="icon">
+							</div>
+							<span class="header-item__text">
+								Москва и <br>
+								область
+							</span>
+						</div>
+					</div>
+				</div>
+				<picture class="header-img">
+					<source srcset="./img/ginger-m.png" media="(max-width: 767px)">
+					<img src="./img/ginger.png" alt="ginger" >
+				</picture>
+			</div>
+		</div>
+	</header>
+<main class="page-main">
+  
+  <div class="delivery-new">
+    <section class="delivery" id="delivery">
+      <div class="delivery__form">
+        <div class="container">
+  
+          <form action="#">
+            <div class="form form-circle">
+              <h2 class="title-order">
+                Закажи сейчас!
+              </h2>
+              <h3 class="h-title">
+                Свежий имбирь с доставкой
+              </h3>
+              <div class="row">
+                <label class="form__item">
+                  <b class="form__item-name">
+                    1. Выберите количество
+                  </b>
+                  <div class="range-slider">
+                    <input type="text" class="js-input-from number input input--mini" min="10" max="100">
+                    <input type="text" class="js-range-slider">
+                  </div>
+                </label>
+                <label class="form__item">
+                  <b class="form__item-name">
+                    2. Желаемая дата доставки
+                  </b>
+                  <input type="text" class="input date-picker datepicker-here">
+                </label>
+                <label class="form__item">
+                  <b class="form__item-name">
+                    3. Адрес доставки
+                  </b>
+                  <input type="text" class="input" placeholder="улица, дом, квартира">
+                </label>
+                <label class="form__item">
+                  <b class="form__item-name">
+                    4. Ваш телефон
+                  </b>
+                  <input type="text" class="input" placeholder="+7 (800) 910-11-11">
+                </label>
+              </div>
+              <hr class="form__hr">
+              <div class="form__values">
+                <div class="form__value">
+                  Стоимость 3 500 руб
+                </div>
+                <div class="form__value">
+                  Доставка 500 руб
+                </div>
+                <strong class="form__value">
+                  Итого 4500 руб
+                </strong>
+              </div>
+              <button class="btn btn--big btn--center btn-order-3" type="button">
+                Заказать
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="delivery__pay" id="pay">
+        <div class="container">
+          <div class="delivery__pay-container">
+            <div class="delivery__pay-col">
+              <h2 class="h-title">
+                Без предоплаты
+              </h2>
+              <p class="text">
+                Оплата при получении
+              </p>
+            </div>
+            <div class="delivery__pay-col flex">
+              <div class="delivery-item">
+                <div class="delivery-circle">
+                  <img src="./img/p2.svg" alt="icon">
+                </div>
+                <strong class="delivery-item__name">
+                  Наличными курьеру
+                </strong>
+              </div>
+              <div class="delivery-item mt50">
+                <div class="delivery-circle">
+                  <img src="./img/p1.svg" alt="icon">
+                </div>
+                <strong class="delivery-item__name ">
+                  Банковским переводом
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+  
+    </section>
+  </div>
+
+  <section class="day-order" id="order">
+    <div class="container">
+      <div class="row">
+        <picture class="day-order__img">
+					<source srcset="./img/do-m.png" media="(max-width: 767px)">
+					<img src="./img/do.png" alt="do">
+				</picture>
+        <div class="day-order__col">
+          <h2 class="h-title">
+            Доставка в день заказа
+          </h2>
+          <p class="text">
+            Наши курьеры соблюдают все меры предосторожности <br class="br-mobile"> и <br>
+             обеспечены средствами защиты для вашей безопасности.
+          </p>
+          <ul class="list-unstyled day-order__list">
+            <li>
+              <span>✓</span>Доставка в день заказа <br class="br-mobile"> или на следующий
+            </li>
+            <li>
+              <span>✓</span>Курьер приедет в маске
+            </li>
+            <li>
+              <span>✓</span>Доставка 500 руб в <br class="br-mobile"> пределах МКАД
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="order-form mt-10">
+        <div class="order-form__text">
+          <strong>
+            Бесплатная доставка <br>
+            при заказе 10 и более кг!
+          </strong>
+        </div>
+          <div class="order-info">
+            <input type="text" class="input input--white" placeholder="Введите ваш телефон">
+            <button class="btn btn--big btn-order-2" type="button">
+              Заказать
+            </button>
+          </div>
+      </div>
+
+    </div>
+  </section>
+  <section class="structure" id="plus">
+    <div class="container">
+      <div class="row">
+        <div class="structure__col">
+          <h2 class="h-title">
+            Богатый химический состав
+          </h2>
+          <p class="text">
+            Противовирусные свойства имбиря доказаны <br>
+             исследованиями. Он способен бороться с вирусами <br>
+              разных видов, включая простуду и грипп. Всё <br>
+               благодаря его уникальному химическому составу:
+          </p>
+          <div class="structure__lists">
+            <ul class="list-unstyled day-order__list">
+              <li>
+                <span>✓</span>кальций
+              </li>
+              <li>
+                <span>✓</span>натрий
+              </li>
+              <li>
+                <span>✓</span>фосфор
+              </li>
+              <li>
+                <span>✓</span>цинк
+              </li>
+              <li>
+                <span>✓</span>железо
+              </li>
+              <li>
+                <span>✓</span>магний
+              </li>
+            </ul>
+            <ul class="list-unstyled day-order__list">
+              <li>
+                <span>✓</span>витамин С
+              </li>
+              <li>
+                <span>✓</span>витамин А
+              </li>
+              <li>
+                <span>✓</span>витамины В1, В2
+              </li>
+              <li>
+                <span>✓</span>никотиновая кислота
+              </li>
+              <li>
+                <span>✓</span>эфирные масла <br>
+                и прочие
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <picture>
+          <source srcset="./img/ginger-2-m.png" media="(max-width: 767px)">
+          <img src="./img/ginger-2.png" alt="ginger">
+        </picture>
+      </div>
+    </div>
+  </section>
+  <section class="pluses">
+    <div class="container">
+      <div class="pluses__container">
+        <div class="delivery-item">
+          <div class="delivery-item__top">
+            <div class="delivery-circle">
+              <img src="./img/pl1.svg" alt="icon">
+            </div>
+            <strong class="delivery-item__name">
+              Против простуды
+            </strong>
+          </div>
+          <p class="text">
+            Мощный комплекс <br class="br-mobile"> минералов, витаминов, всех <br class="br-mobile"> видов аминокислот, <br class="br-mobile"> незаменимых для защиты <br class="br-mobile">от  вирусов.
+          </p>
+        </div>
+        <div class="delivery-item mt47">
+          <div class="delivery-item__top">
+            <div class="delivery-circle">
+              <img src="./img/pl2.svg" alt="icon">
+            </div>
+            <strong class="delivery-item__name">
+              Для похудения
+            </strong>
+          </div>
+          <p class="text">
+            Выступает кaтaлизaтopoм <br class="br-mobile">
+             отдельных пpoцeccoв, <br class="br-mobile">
+            cпocoбcтвующиx быcтpoму <br class="br-mobile">
+             жиpocжигaнию.
+          </p>
+        </div>
+        <div class="delivery-item mt86">
+          <div class="delivery-item__top">
+            <div class="delivery-circle">
+              <img src="./img/pl3.svg" alt="icon">
+            </div>
+            <strong class="delivery-item__name">
+              Долго хранится
+            </strong>
+          </div>
+          <p class="text">
+            В замороженном виде <br class="br-mobile">
+             хранится 6 месяцев, срок <br class="br-mobile">
+              хранения в холодильнике — <br class="br-mobile">
+              1-2 месяца.
+          </p>
+        </div>
+      </div>
+      <div class="order-form order-form--white">
+        <div class="order-form__text">
+          <strong>
+            Закажите в 2 клика!
+          </strong>
+          <p class="text">
+            Перезвоним вам в течение 2 минут <br>
+             и уточним детали
+          </p>
+        </div>
+          <div class="order-info">
+            <input type="text" class="input" placeholder="Введите ваш телефон">
+            <button class="btn btn--big btn-order-2" type="button">
+              Заказать звонок
+            </button>
+          </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="page-footer">
+  <div class="container">
+    <div class="page-header__row">
+      <div class="page-header__col">
+        <a href="/" class="logo" aria-label="logo">
+          <img src="./img/logo.svg" alt="logo">
+        </a>
+        <div class="navigation">
+          <ul class="list-unstyled">
+            <li>
+              <a href="#delivery">Заказать</a>
+            </li>
+            <li>
+              <a href="#order">Доставка</a>
+            </li>
+            <li>
+              <a href="#plus">Имбирь против вируса</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="page-header__col direction-column">
+        <a class="phone" href="tel:+7 (495) 377-00-11">+7 (495) 377-00-11</a>
+        <button type="button" class="btn-unstyled btn btn-order">
+          Заказать звонок
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="modal modal-order" role="dialog" style="display: none" aria-label="Заказать звонок">
+  <div class="modal__content modal__content--big">
+    <button class="modal__close btn-unstyled" type="button" aria-label="modal close">
+      <img src="./img/cross.svg" alt="close">
+    </button>
+    <div class="modal__body">
+      <strong class="modal__title">
+        Заказать звонок
+      </strong>
+      <p class="text">
+        Перезвоним в течение 5 минут
+      </p>
+      <form action="#">
+        <div class="modal__form">
+          <input type="tel" class="input" placeholder="Телефон">
+          <button class="btn btn--big" type="button">
+            Жду звонка
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-order-3" role="dialog" style="display: none" aria-label="Заказать звонок">
+  <div class="modal__content modal__content--big">
+    <button class="modal__close btn-unstyled" type="button" aria-label="modal close">
+      <img src="./img/cross.svg" alt="close">
+    </button>
+    <div class="modal__body">
+      <strong class="modal__title">
+        Ваш заказ принят!
+      </strong>
+      <p class="text">
+        Ожидайте звонка нашего менеджера
+      </p>
+    </div>
+  </div>
+</div>
+<script src="./js/scripts.min.js"></script>
+<script src="./js/common.js"></script>
+</body>
+</html>
