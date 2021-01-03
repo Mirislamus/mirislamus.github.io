@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Bebas';
+  src: url('./subset-BebasNeueBold.woff2') format('woff2'),
+      url('./subset-BebasNeueBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
