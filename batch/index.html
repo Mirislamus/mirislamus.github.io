@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Main</title>
+	<meta name="description" content="">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<meta property="og:image" content="path/to/image.jpg">
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+
+	<meta name="theme-color" content="#000">
+	<link rel="stylesheet" href="./css/fonts.css">
+	<link rel="stylesheet" href="./css/styles.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	<header class="page-header">
+		<div class="container">
+			<div class="page-header__row">
+				<a href="/" class="logo" aria-label="logo">
+					<img src="./img/logo.png" alt="logo" width="95" height="64">
+				</a>
+				<button class="btn-unstyled hamburger">
+					<svg class="ham hamRotate ham4" viewBox="0 0 100 100" width="70px">
+						<path class="line top" d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20"></path>
+						<path class="line middle" d="m 70,50 h -40"></path>
+						<path class="line bottom" d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20"></path>
+					</svg>
+				</button>
+				<nav class="navigation">
+					<ul class="list-unstyled">
+						<li class="">
+							<a href="#">
+								Pricing                  
+							</a>
+						</li>
+						<li class="">
+							<a href="#">
+								PORTFOLIO           
+							</a>
+						</li>
+						<li class="drop-element ">
+							<a href="#">
+								Services
+								<span class="arrow"></span>
+							</a>
+							<div class="dropdown">
+								<ul class="list-unstyled">
+									<li>
+										<a href="#">Jewelry Photo Retouching</a>
+									</li>
+									<li>
+										<a href="#">Product Photo Editing</a>
+									</li>
+									<li>
+										<a href="#">Babies Photo Editing</a>
+									</li>
+									<li>
+										<a href="#">Jewelry Photo Retouching</a>
+									</li>
+									<li>
+										<a href="#">Product Photo Editing</a>
+									</li>
+									<li>
+										<a href="#">Babies Photo Editing</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="">
+							<a href="#">
+								Contact Us
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+  
+<main class="page-main">
+  
+  <div class="swiper-container main-slider">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="./img/slider-img.jpg" alt="slider image">
+    </div>
+
+  </div>
+  <div class="main-slider__arrows container">
+    <div class="swiper-button-prev">
+      <img src="./img/ms-prev.png" alt="prev">
+    </div>
+    <div class="swiper-button-next">
+      <img src="./img/ms-next.png" alt="prev" >
+    </div>
+  </div>
+  <div class="container">
+    <button type="button" class="main-slider__info main-slider__btn btnOpen btn-unstyled">
+      Free trial now 
+    </button>
+  </div>
+
+</div>
+
+  <section class="photo">
+  <div class="container">
+    <h1 class="title">
+      Photo Editing Services
+    </h1>
+    <div class="swiper-container comparison-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="image-mini">
+            <img src="./img/before-1.jpg" alt="before">
+            <img src="./img/after-1.jpg" alt="after">
+          </div>
+          <div class="comparison-slider__title">
+            Retouching Services
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="image-mini">
+            <img src="./img/before-2.jpg" alt="before">
+            <img src="./img/after-2.jpg" alt="after">
+          </div>
+          <div class="comparison-slider__title">
+            Beauty Retouching
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="image-mini">
+            <img src="./img/before-3.jpg" alt="before">
+            <img src="./img/after-3.jpg" alt="after">
+          </div>
+          <div class="comparison-slider__title">
+            Retouching Services
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="image-mini">
+            <img src="./img/before-2.jpg" alt="before">
+            <img src="./img/after-2.jpg" alt="after">
+          </div>
+          <div class="comparison-slider__title">
+            Beauty Retouching
+          </div>
+        </div>
+
+
+      </div>
+      <div class="comrison-slider__arrows">
+        <div class="swiper-button-next">
+          <img src="./img/cs-prev.png" alt="prev">
+        </div>
+        <div class="swiper-button-prev">
+          <img src="./img/cs-next.png" alt="next">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</section>
+<section class="work">
+  <div class="container">
+    <h2 class="title">
+      Work process
+    </h2>
+    <div class="row mb-30">
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="work-item">
+          <div class="work-item__content">
+            <div class="work__img">
+              <img src="./img/email.png" alt="email">
+            </div>
+            <p class="work__title">
+              Request for quote
+            </p>
+          </div>
+          <div class="work__item-hover">
+            <p class="work__item-hover__title">
+              Request for quote
+            </p>
+            <p class="work__item-hover__text">
+              Skillful team is a definite key to success in every business. That is why we carefully select every photo
+              editor basing on the practical skills and eagerness to show off creativity when editing photos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="work-item">
+          <div class="work-item__content">
+            <div class="work__img">
+              <img src="./img/submit.png" alt="submit">
+            </div>
+            <p class="work__title">
+              Agree volume & fees
+            </p>
+          </div>
+          <div class="work__item-hover">
+            <p class="work__item-hover__title">
+              Agree volume & fees
+            </p>
+            <p class="work__item-hover__text">
+              Skillful team is a definite key to success in every business. That is why we carefully select every photo
+              editor basing on the practical skills and eagerness to show off creativity when editing photos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="work-item">
+          <div class="work-item__content">
+            <div class="work__img">
+              <img src="./img/raw.png" alt="raw">
+            </div>
+            <p class="work__title">
+              Send photos and instructions
+            </p>
+          </div>
+          <div class="work__item-hover">
+            <p class="work__item-hover__title">
+              Send photos and instructions
+            </p>
+            <p class="work__item-hover__text">
+              Skillful team is a definite key to success in every business. That is why we carefully select every photo
+              editor basing on the practical skills and eagerness to show off creativity when editing photos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="work-item">
+          <div class="work-item__content">
+            <div class="work__img">
+              <img src="./img/download.png" alt="download">
+            </div>
+            <p class="work__title">
+              Download the ready
+              files
+            </p>
+          </div>
+          <div class="work__item-hover">
+            <p class="work__item-hover__title">
+              Download the ready
+              files
+            </p>
+            <p class="work__item-hover__text">
+              Skillful team is a definite key to success in every business. That is why we carefully select every photo
+              editor basing on the practical skills and eagerness to show off creativity when editing photos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="edit">
+  <div class="container">
+    <h2 class="title">
+      We Edit Photos – Photo Editing Company
+    </h2>
+    <div class="row mb-40">
+      <div class="col-lg-5 col-md-12 mb40 order-1 order-lg-1">
+        <div class="image-big">
+          <img src="./img/before.jpg" alt="before">
+          <img src="./img/after.jpg" alt="after">
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-12 mb40 order-2 order-lg-2">
+        <p class="edit__text">
+          We Edit Photos is an outsource photo editing company for photographers who value their time. Professional
+          photo editing services provided by our skilled retouchers always stand out from the crowd of different photo
+          editing companies. We edit photography since 2003 and have never stopped providing the full service solutions
+          to photographers. We constantly develop our expertise in professional photo editing to meet the highest
+          industry standards and customer expectations.
+        </p>
+        <p class="edit__text">
+          We Edit Photos created a team of professional photo editors who reached outstanding level in photo editing
+          techniques. Our company works with photographers located in any country and operates as an international photo
+          editing service. Due to digital transformation of our world We Edit Photos has an amazing opportunity not only
+          to partner with international customers, but also to collaborate with skillful and highly motivated photo
+          editors from different countries. That helps us to be more open to all demands of our clients, as usually
+          customers` demands from different countries vary greatly. We offer any special type of photography editing
+          services our clients may ask for. to showcase our retouch examples to prove skills of professional photo
+          editing.
+        </p>
+        <span class="edit__title">
+          Professional photo editing services for photographers
+        </span>
+        <p class="edit__text">
+          We Edit Photos editing services are suitable for photographers of any level of professionalism. For beginners
+          we propose naturally looking photo editing in combination with valuable advice in case they need it. For
+          those, who have already achieved professional level in photography, we offer more advanced photo editing
+          services.
+        </p>
+      </div>
+      <div class="col-lg-7 col-md-12 mb40 order-4 order-lg-3">
+        <p class="edit__text">
+          We Edit Photos is an outsource photo editing company for photographers who value their time. Professional
+          photo editing services provided by our skilled retouchers always stand out from the crowd of different photo
+          editing companies. We edit photography since 2003 and have never stopped providing the full service solutions
+          to photographers. We constantly develop our expertise in professional photo editing to meet the highest
+          industry standards and customer expectations.
+        </p>
+        <p class="edit__text">
+          We Edit Photos created a team of professional photo editors who reached outstanding level in photo editing
+          techniques. Our company works with photographers located in any country and operates as an international photo
+          editing service. Due to digital transformation of our world We Edit Photos has an amazing opportunity not only
+          to partner with international customers, but also to collaborate with skillful and highly motivated photo
+          editors from different countries. That helps us to be more open to all demands of our clients, as usually
+          customers` demands from different countries vary greatly. We offer any special type of photography editing
+          services our clients may ask for. to showcase our retouch examples to prove skills of professional photo
+          editing.
+        </p>
+        <span class="edit__title">
+          Professional photo editing services for photographers
+        </span>
+        <p class="edit__text">
+          We Edit Photos editing services are suitable for photographers of any level of professionalism. For beginners
+          we propose naturally looking photo editing in combination with valuable advice in case they need it. For
+          those, who have already achieved professional level in photography, we offer more advanced photo editing
+          services.
+        </p>
+      </div>
+      <div class="col-lg-5 col-md-12 mb40 order-3 order-lg-4">
+        <div class="image-big">
+          <img src="./img/before.jpg" alt="before">
+          <img src="./img/after.jpg" alt="after">
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-12 mb40 order-5 order-lg-5">
+        <div class="image-big">
+          <img src="./img/before.jpg" alt="before">
+          <img src="./img/after.jpg" alt="after">
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-12 mb40 order-6 order-lg-6">
+        <p class="edit__text">
+          We Edit Photos is an outsource photo editing company for photographers who value their time. Professional
+          photo editing services provided by our skilled retouchers always stand out from the crowd of different photo
+          editing companies. We edit photography since 2003 and have never stopped providing the full service solutions
+          to photographers. We constantly develop our expertise in professional photo editing to meet the highest
+          industry standards and customer expectations.
+        </p>
+        <p class="edit__text">
+          We Edit Photos created a team of professional photo editors who reached outstanding level in photo editing
+          techniques. Our company works with photographers located in any country and operates as an international photo
+          editing service. Due to digital transformation of our world We Edit Photos has an amazing opportunity not only
+          to partner with international customers, but also to collaborate with skillful and highly motivated photo
+          editors from different countries. That helps us to be more open to all demands of our clients, as usually
+          customers` demands from different countries vary greatly. We offer any special type of photography editing
+          services our clients may ask for. to showcase our retouch examples to prove skills of professional photo
+          editing.
+        </p>
+        <span class="edit__title">
+          Professional photo editing services for photographers
+        </span>
+        <p class="edit__text">
+          We Edit Photos editing services are suitable for photographers of any level of professionalism. For beginners
+          we propose naturally looking photo editing in combination with valuable advice in case they need it. For
+          those, who have already achieved professional level in photography, we offer more advanced photo editing
+          services.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="order">
+  <div class="container">
+    <h2 class="title">
+      Why order online photo editing services ?
+    </h2>
+    <div class="row mb-30">
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="order-item">
+          <img src="./img/monitor.png" alt="monitor">
+          <span class="order-item__title">
+            Quick Bulk Image Editing
+          </span>
+          <p class="order-item__text">
+            We offer a wide asset of professional photo editing services for photographers, advertising companies and
+            just those, who care about the visual quality of their pictures.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="order-item">
+          <img src="./img/team.png" alt="team">
+          <span class="order-item__title">
+            Professional team of
+            image editors
+          </span>
+          <p class="order-item__text">
+            We offer a wide asset of professional photo editing services for photographers, advertising companies and
+            just those, who care about the visual quality of their pictures.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="order-item">
+          <img src="./img/life-insurance.png" alt="life insurance">
+          <span class="order-item__title">
+            Privacy and safety
+          </span>
+          <p class="order-item__text">
+            We offer a wide asset of professional photo editing services for photographers, advertising companies and
+            just those, who care about the visual quality of their pictures.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb30">
+        <div class="order-item">
+          <img src="./img/laptop.png" alt="laptop">
+          <span class="order-item__title">
+            Great quality at lower
+            prices
+          </span>
+          <p class="order-item__text">
+            We offer a wide asset of professional photo editing services for photographers, advertising companies and
+            just those, who care about the visual quality of their pictures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="reviews">
+  <div class="container">
+    <h2 class="title">
+      What Our Client Say
+    </h2>
+    <div class="row mb-30">
+      <div class="col-md-6 mb30">
+        <div class="review">
+          <strong class="review__title">
+            Jane Walker
+          </strong>
+          <span class="review__position">
+            Director, Fit PRO
+          </span>
+          <p class="review__text">
+            We have worked with Rebecca and her team on a number of occasions, from photo editing to animations, and always been very pleased with the results. They are our ‘go to’ team for speciality pieces that our In-house design team either don’t have the time or specialty skills to complete.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 mb30">
+        <div class="review">
+          <strong class="review__title">
+            Jane Walker
+          </strong>
+          <span class="review__position">
+            Director, Fit PRO
+          </span>
+          <p class="review__text">
+            We have worked with Rebecca and her team on a number of occasions, from photo editing to animations, and always been very pleased with the results. They are our ‘go to’ team for speciality pieces that our In-house design team either don’t have the time or specialty skills to complete.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <a href="/" class="logo" aria-label="logo">
+					<img src="./img/logo.png" alt="logo" width="95" height="64">
+				</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-menu">
+          <p class="footer-menu__title">
+            QUICK LINKS
+          </p>
+          <ul class="footer-menu__nav footer-menu__nav--arrow list-unstyled">
+            <li>
+              <a href="#">
+                Pricing 
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Portfolio 
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Services  
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Contacts 
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-menu">
+          <p class="footer-menu__title">
+            CONTACT US
+          </p>
+          <ul class="footer-menu__nav list-unstyled">
+            <li>
+              221 B, Baker Street, London
+            </li>
+            <li>
+              Phone:
+              <a href="tel:123-12345678">123-12345678</a>
+            </li>
+            <li>
+              Email:
+              <a href="mailto:@test.com">@test.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <p class="footer-menu__title">
+          Social networks
+        </p>
+        <ul class="social list-unstyled">
+          <li>
+            <a href="#" class="social__item" aria-label="viber" target="_blank">
+              <img src="./img/s01.svg" alt="viber" width="25" height="25">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social__item" aria-label="google plus" target="_blank">
+              <img src="./img/s02.svg" alt="google plus" width="25" height="25">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social__item" aria-label="facebook" target="_blank">
+              <img src="./img/s03.svg" alt="facebook" width="25" height="25">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social__item" aria-label="twitter" target="_blank">
+              <img src="./img/s04.svg" alt="twitter" width="25" height="25">
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social__item" aria-label="telegram" target="_blank">
+              <img src="./img/s05.svg" alt="telegram" width="25" height="25">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+      <div class="page-footer__bottom">
+      <a href="https://oneweb.uz/">Developed by ONEWEB web studio</a>
+    </div>
+  </div>
+</footer>
+<div class="modal modalWindow" role="dialog">
+  <div class="modal__content">
+    <button class="modal__close btn-unstyled" type="button" aria-label="modal close">
+      <img src="./img/close.svg" alt="close" width="20" height="20">
+    </button>
+    <form action="#">
+      <div class="form">
+        <label class="form__label">
+          <span>Name</span>
+          <input type="text" class="form__input" placeholder="Awesome You">
+        </label>
+        <label class="form__label">
+          <span>Email</span>
+          <input type="email" class="form__input" placeholder="youremail@domain.com">
+        </label>
+        <label class="form__label">
+          <span>Phone Number</span>
+          <input type="tel" class="form__input" id="phone-mask" placeholder="Include Country + Area Code">
+        </label>
+        <label class="form__label">
+          <span>Сountry</span>
+          <input type="text" class="form__input" placeholder="Ex: United States">
+        </label>
+        <label class="form__label">
+          <span>Message</span>
+          <textarea class="form__input" placeholder="Write your Message here"></textarea>
+        </label>
+        <div class="form__btns">
+          <label class="form__file">
+            <input type="file">
+            <img src="./img/attach.svg" alt="attach" width="18" height="18">
+            Select a file
+          </label>
+          <button class="btn btn--form btn-unstyled">
+            Send Message
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="./js/scripts.min.js"></script>
+<script src="./js/common.js"></script>
+</body>
+</html>
