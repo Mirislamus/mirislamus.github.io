@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html class="page" lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="path/to/image.jpg">
+	<meta name="theme-color" content="">
+
+	<title>Ошибка Заявки</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="apple-touch-icon" sizes="57x57" href="./img/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="./img/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="./img/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="./img/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="./img/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="./img/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="./img/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="./img/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="./img/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="./img/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="./img/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,400&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="./css/styles.min.css?v6">
+	<link rel="stylesheet" href="./css/main.css?v6">
+
+</head>
+<body class="page__body bg-grey">
+	<header class="page-header">
+		<div class="container">
+			<div class="page-header__row">
+				<button class="hamburger btn-reset" type="button">
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+						<path class="path-open" d="M3.33331 5H16.6666" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path class="path-open" d="M3.33331 10H16.6666" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path class="path-open" d="M3.33331 15H16.6666" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+						<path class="path-close" d="M15 5L5 15" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path class="path-close" d="M5 5L15 15" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<a href="/" class="link-reset logo">
+					<img src="./img/logo.svg" alt="Logo">
+				</a>
+				<nav class="nav">
+					<ul class="nav__list list-reset">
+						<li>
+							<a href="#">Обмен</a>
+						</li>
+						<li>
+							<a href="#">Отзывы</a>
+						</li>
+						<li>
+							<a href="#">FAQ</a>
+						</li>
+						<li>
+							<a href="#">Контакты</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="page-header__col">
+				
+					<a href="#" class="btn btn--h44 btn--normal btn--auth authBtn btn--border link-reset">
+						<svg width="21" height="20" viewBox="0 0 21 20" fill="none">
+							<path d="M9.8367 9.66667C11.7612 9.66667 13.3215 7.95044 13.3215 5.83336C13.3215 3.71622 12.8092 2 9.8367 2C6.86417 2 6.35181 3.71622 6.35181 5.83336C6.35181 7.95044 7.91209 9.66667 9.8367 9.66667Z" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M11.7662 10C15.8884 10.6897 16.4271 11.7794 16.4925 15.6035L16.4997 16.1657C16.4997 16.1657 15.5182 18 9.83344 18C4.14858 18 3.16718 16.1657 3.16718 16.1657L3.17674 15.4792C3.25188 11.7557 3.82333 10.6822 7.90058 10C7.90058 10 8.48095 10.6855 9.83344 10.6855C11.1859 10.6855 11.7662 10 11.7662 10Z" stroke="#262830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<span>Личный кабинет</span>
+					</a>
+					<div class="auth-menu">
+						<ul class="auth-menu__list list-reset">
+							<li>
+								<a href="#">Баланс</a>
+							</li>
+							<li>
+								<a href="#">Автозаполнение</a>
+							</li>
+							<li>
+								<a href="#">Градация скидки</a>
+							</li>
+							<li>
+								<a href="#">Партнерская программа</a>
+							</li>
+							<li>
+								<a href="#">Рекламные материалы</a>
+							</li>
+							<li>
+								<a href="#">Мои обмены</a>
+							</li>
+							<li>
+								<a href="javascript:void()" class="modalSettingsBtn">Настройки</a>
+							</li>
+						</ul>
+					</div>
+				
+				<div class="lang">
+					<button class="lang__switcher btn-reset" type="button">
+						<img src="./img/ru.svg" alt="">
+					</button>
+					<ul class="lang__dropdown list-reset">
+						<li>
+							<a href="#" class="lang__link">
+								<img src="./img/ru.svg" alt="">
+								<span class="lang__text">
+									Русский
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="lang__link">
+								<img src="./img/ua.svg" alt="">
+								<span class="lang__text">
+									Украiнська
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="lang__link">
+								<img src="./img/ch.svg" alt="">
+								<span class="lang__text">
+									中文
+								</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="lang__link">
+								<img src="./img/en.svg" alt="">
+								<span class="lang__text">
+									English
+								</span>
+							</a>
+						</li>
+					</ul>
+					<div class="overlay"></div>
+				</div>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	<div class="mobile-menu">
+		<div class="mobile-menu__content">
+			<ul class="mobile-menu__list list-reset">
+				<li>
+					<a href="/">Главная</a>
+				</li>
+				<li>
+					<a href="#">Обмен</a>
+				</li>
+				<li>
+					<a href="#">Партнерская программа</a>
+				</li>
+				<li>
+					<a href="#">Вопрос-ответ</a>
+				</li>
+				<li>
+					<a href="#">Личный кабинет</a>
+				</li>
+				<li>
+					<a href="#">Контакты</a>
+				</li>
+			</ul>
+			<div class="stores">
+				<a href="#" class="link-reset" target="_blank">
+					<img src="./img/store1.png" alt="App Store">
+				</a>
+				<a href="#" class="link-reset" target="_blank">
+					<img src="./img/store2.png" alt="Google Play">
+				</a>
+			</div>
+			<div class="mobile-menu__contacts">
+				<a href="tel:8 (800) 495-12-34">
+					8 (800) 495-12-34
+				</a>
+				<a href="mailto:info@coinstrike.com">
+					<svg width="16" height="16">
+						<image href="./img/mail.svg"></image>
+					</svg>
+					info@coinstrike.com
+				</a>
+				<a href="mailto:partner@coinstrike.com">
+					<svg width="16" height="16">
+						<image href="./img/mail.svg"></image>
+					</svg>
+					partner@coinstrike.com
+				</a>
+			</div>
+		</div>
+	</div>
+
+  
+<main class="page-main">
+  
+<section class="order order--error">
+  <div class="order__top">
+    <div class="container">
+      <div class="order__row">
+        <h1 class="order__title">
+          Не удалось выполнить заявку #123043
+        </h1>
+        <div class="access">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6 6L18 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>Произошла ошибка</span>
+        </div>
+      </div>
+      <div class="order__grid">
+        <div class="order-item">
+          <div class="order-item__value">
+            <img src="./img/or1.svg" alt="">
+            <b>0.0521 BTC</b>
+          </div>
+        </div>
+        <div class="order-item">
+          <div class="order-item__value">
+            <img src="./img/or2.svg" alt="">
+            <b>0.0521 BTC</b>
+          </div>
+          <div class="order-item__row">
+            <p>
+              <span>Карта:</span>
+              5536 9123 5567 8787
+            </p>
+            <p>
+              <span>ФИО:</span>
+              Иванов Иван Иванович
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="order-error">
+        Причина: Карта 5536 9123 5567 8787 была заблокирована по истечению срока годности.
+      </p>
+      <div class="error__grid">
+        <div class="error-item">
+          <h6>
+            Новые реквизиты
+          </h6>
+          <div class="form-group">
+            <div class="form-group__selected custom-select-btn" role="button" tabindex="0">
+
+            </div>
+            <div class="custom-select btlr0">
+              <div class="custom-select__item selected" tabindex="0" role="button">
+                <div class="custom-select__val">
+                  <img src="./img/bitcoin.svg" alt="qiwi">
+                  <span>Bitcoin</span>
+                </div>
+                <p class="custom-select__currency">
+                  BTC
+                </p>
+              </div>
+              <div class="custom-select__item" tabindex="0" role="button">
+                <div class="custom-select__val">
+                  <img src="./img/qiwi.svg" alt="qiwi">
+                  <span>Qiwi</span>
+                </div>
+                <span class="custom-select__currency">
+                  RUB
+                </span>
+              </div>
+            </div>
+            <div class="form-group__value">
+              <input type="text" placeholder="Вы отдаёте сумму">
+              <span class="form-group__curr">BTC</span>
+            </div>
+          </div>
+          <button class="btn-reset btn btn--big btn--h50" type="button">
+            Отправить новые реквизиты
+          </button>
+        </div>
+        <div class="error-item">
+          <h6>
+            Новые реквизиты
+          </h6>
+          <div class="form-group">
+            <div class="form-group__selected custom-select-btn" role="button" tabindex="0">
+                  <img src="./img/ya.svg" alt="bitcoin">
+                  <span>Яндекс.Деньги</span>
+                </div>
+            <div class="custom-select btlr0">
+              <div class="custom-select__item selected" tabindex="0" role="button">
+                <div class="custom-select__val">
+                  <img src="./img/ya.svg" alt="bitcoin">
+                  <span>Яндекс.Деньги</span>
+                </div>
+                <p class="custom-select__currency">
+                  RUB
+                </p>
+              </div>
+              <div class="custom-select__item" tabindex="0" role="button">
+                <div class="custom-select__val">
+                  <img src="./img/qiwi.svg" alt="qiwi">
+                  <span>Qiwi</span>
+                </div>
+                <span class="custom-select__currency">
+                  RUB
+                </span>
+              </div>
+              <div class="custom-select__item" tabindex="0" role="button">
+                <div class="custom-select__val">
+                  <img src="./img/bitcoin.svg" alt="qiwi">
+                  <span>Bitcoin</span>
+                </div>
+                <p class="custom-select__currency">
+                  BTC
+                </p>
+              </div>
+            </div>
+            <div class="form-group__value">
+              <input type="text" placeholder="Вы отдаёте сумму">
+              <span>RUB</span>
+            </div>
+          </div>
+          <button class="btn-reset btn btn--big btn--h50" type="button">
+            Запросить возврат
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="page-footer">
+  <div class="container">
+    <div class="page-footer__row">
+      <div class="page-footer__col">
+        <a href="/" class="footer-logo">
+          <img src="./img/logo.svg" alt="">
+        </a>
+        <small class="copyright">
+          Copyright © 2020 Coinstrike
+        </small>
+        <div class="rules">
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Пользовательское соглашение</a>
+        </div>
+      </div>
+      <div class="page-footer__col">
+        <ul class="list-reset footer-menu">
+          <li>
+            <a href="#">Главная</a>
+          </li>
+          <li>
+            <a href="#">Обмен</a>
+          </li>
+          <li>
+            <a href="#">Партнерская программа</a>
+          </li>
+        </ul>
+      </div>
+      <div class="page-footer__col">
+        <ul class="list-reset footer-menu">
+          <li>
+            <a href="#">Вопрос-ответ</a>
+          </li>
+          <li>
+            <a href="#">Личный кабинет</a>
+          </li>
+          <li>
+            <a href="#">Контакты</a>
+          </li>
+        </ul>
+      </div>
+      <div class="page-footer__col">
+        <div class="stores">
+          <a href="#" class="link-reset" target="_blank">
+            <img src="./img/store1-big.png" alt="App Store">
+          </a>
+          <a href="#" class="link-reset" target="_blank">
+            <img src="./img/store2-big.png" alt="Google Play">
+          </a>
+
+        </div>
+        <a href="#" class="dev dev-mob link-reset">
+          разработка и маркетинг
+          <img src="./img/webbo.svg" alt="">
+        </a>
+      </div>
+      <div class="page-footer__col">
+        <div class="mobile-menu__contacts">
+          <a href="tel:8 (800) 495-12-34">
+            8 (800) 495-12-34
+          </a>
+          <a href="mailto:info@coinstrike.com">
+            <svg width="16" height="16">
+              <image href="./img/mail.svg"></image>
+            </svg>
+            info@coinstrike.com
+          </a>
+          <a href="mailto:partner@coinstrike.com">
+            <svg width="16" height="16">
+              <image href="./img/mail.svg"></image>
+            </svg>
+            partner@coinstrike.com
+          </a>
+        </div>
+        <a href="#" class="dev link-reset">
+          разработка и маркетинг
+          <img src="./img/webbo.svg" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal modalEnter" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L4 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4L12 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <form action="#">
+      <div class="modal__body">
+        <h4 class="modal__title">
+          Вход на сайт
+        </h4>
+        <div class="modal__form">
+          <div class="form-item">
+            <input type="email" id="name" placeholder="Электронная почта">
+            <label for="name">Электронная почта</label>
+          </div>
+          <div class="form-item">
+            <input type="password" id="name" placeholder="Пароль">
+            <label for="name">Пароль</label>
+          </div>
+          <div class="modal__row">
+            <label class="custom-checkbox modal__confirm">
+              <input type="checkbox">
+              <span></span>
+              <p>
+                Запомнить меня
+              </p>
+            </label>
+            <button type="button" class="btn-reset reset-password modalClose modalRecoveryBtn">
+              Забыли пароль?
+            </button>
+          </div>
+          <div class="modal__btns modal__row">
+            <button class="btn btn--border btn--normal btn--h50 btn-reset modalRegistryBtn" type="button">
+              Регистрация
+            </button>
+            <button class="btn btn--normal btn--h50 btn-reset modalClose" type="button">
+              Войти
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="modal modalRegistry" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L4 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4L12 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <form action="#">
+      <div class="modal__body">
+        <h4 class="modal__title">
+          Регистрация
+        </h4>
+        <div class="modal__form">
+          <div class="form-item">
+            <input type="email" id="name" placeholder="Электронная почта">
+            <label for="name">Электронная почта</label>
+          </div>
+          <div class="form-item">
+            <input type="password" id="name" placeholder="Пароль">
+            <label for="name">Пароль</label>
+          </div>
+          <div class="form-item">
+            <input type="password" id="name" placeholder="Пароль ещё раз">
+            <label for="name">Пароль ещё раз</label>
+          </div>
+          <div class="modal__row">
+            <div class="confirm-modal">
+              <label class="custom-checkbox">
+                <input type="checkbox">
+                <span></span>
+              </label>
+              <p>
+                Я даю согласие на обработку своих персональных данных и соглашаюсь с <a href="#">Политикой конфиденциальности</a> 
+              </p>
+            </div>
+          </div>
+          <div class="modal__btns modal__row">
+            <button class="btn btn--border btn--normal btn--h50 btn-reset modalRegistryBtn" type="button">
+              Регистрация
+            </button>
+            <button class="btn btn--normal btn--h50 btn-reset modalClose modalEnterBtn" type="button">
+              Войти
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="modal modalRecovery" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L4 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4L12 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <form action="#">
+      <div class="modal__body">
+        <h4 class="modal__title">
+          Восстановить пароль
+        </h4>
+        <p class="modal__text">
+          Пароль будет отправлен вам на Email
+        </p>
+        <div class="modal__form">
+          <div class="form-item">
+            <input type="email" id="name" placeholder="Электронная почта">
+            <label for="name">Электронная почта</label>
+          </div>
+          <div class="modal__btns modal__row">
+            <button class="btn btn--border btn--normal btn--h50 btn-reset modalClose mobalEnterBtn" type="button">
+              Войти
+            </button>
+            <button class="btn btn--normal btn--h50 btn-reset modalClose" type="button">
+              Восстановить
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="modal modalSettings" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L4 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4L12 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <form action="#">
+      <div class="modal__body">
+        <h4 class="modal__title">
+          Настройки
+        </h4>
+        <div class="modal__form">
+          <div class="form-item">
+            <input type="password" id="name1" placeholder="Пароль">
+            <label for="name1">Старый пароль</label>
+          </div>
+          <div class="form-item">
+            <input type="password" id="name2" placeholder="Пароль">
+            <label for="name2">Новый пароль</label>
+          </div>
+          <div class="form-item">
+            <input type="password" id="name3" placeholder="Пароль ещё раз">
+            <label for="name3">Новый пароль ещё раз</label>
+          </div>
+          <div class="modal__row">
+            <label class="two-auth">
+              <div class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </div>
+              <p>
+                Двухфакторная авторизация
+              </p>
+            </label>
+          </div>
+          <div class="modal__btns modal__row">
+            <button class="btn btn--border btn--normal btn--h50 btn-reset modalRegistryBtn" type="button">
+              Регистрация
+            </button>
+            <button class="btn btn--normal btn--h50 btn-reset modalClose modalEnterBtn" type="button">
+              Войти
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="modal modalReviews" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4L4 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4L12 12" stroke="#BBBCC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <form action="#">
+      <div class="modal__body">
+        <h4 class="modal__title">
+          Отзыв
+        </h4>
+        <div class="modal__form">
+          <div class="form-item">
+            <input type="email" id="name" placeholder="Ваша почта">
+            <label for="name">Ваша почта</label>
+          </div>
+          <div class="form-item">
+            <input type="text" id="name2" placeholder="Ваше имя">
+            <label for="name2">Ваше имя</label>
+          </div>
+          <div class="form-item">
+            <textarea id="message" placeholder="Ваш email"></textarea>
+            <label for="message">Ваш вопрос</label>
+          </div>
+          <div class="order-stars">
+            <p class="order-stars__text">
+              Сроки обработки
+            </p>
+             <div class="rating__group">
+              <input class="rating__star" type="radio" name="rating-1" value="1">
+              <input class="rating__star" type="radio" name="rating-1" value="2">
+              <input class="rating__star" type="radio" name="rating-1" value="3">
+              <input class="rating__star" type="radio" name="rating-1" value="4">
+              <input class="rating__star" type="radio" name="rating-1" value="5">
+            </div>
+          </div>
+          <div class="order-stars">
+            <p class="order-stars__text">
+              Качество обслуживания
+            </p>
+             <div class="rating__group">
+              <input class="rating__star" type="radio" name="rating-2" value="1">
+              <input class="rating__star" type="radio" name="rating-2" value="2">
+              <input class="rating__star" type="radio" name="rating-2" value="3">
+              <input class="rating__star" type="radio" name="rating-2" value="4">
+              <input class="rating__star" type="radio" name="rating-2" value="5">
+            </div>
+          </div>
+          <div class="order-stars">
+            <p class="order-stars__text">
+              Удобство пользования
+            </p>
+             <div class="rating__group">
+              <input class="rating__star" type="radio" name="rating-3" value="1">
+              <input class="rating__star" type="radio" name="rating-3" value="2">
+              <input class="rating__star" type="radio" name="rating-3" value="3">
+              <input class="rating__star" type="radio" name="rating-3" value="4">
+              <input class="rating__star" type="radio" name="rating-3" value="5">
+            </div>
+          </div>
+          <div class="order-send__bonus">
+            Вам будет начислено&nbsp;<b>5 бонусов</b> 
+          </div>
+          <div class="modal__btns modal__row">
+            <button class="btn btn--border btn--normal btn--h50 btn-reset modalClose" type="button">
+              Отмена
+            </button>
+            <button class="btn btn--normal btn--h50 btn-reset" type="submit">
+              Оставить отзыв
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<script src="./js/scripts.min.js?v6"></script>
+<script src="./js/common.js?v6"></script>
+</body>
+</html>
