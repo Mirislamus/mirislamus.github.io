@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<html class="page" lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="path/to/image.jpg">
+	<meta name="theme-color" content="#FF3B30">
+
+	<title>Blog Article</title>
+
+	<link rel="icon" href="img/favicon/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="./css/styles.min.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body class="page__body">
+	<header class="page-header">
+		<div class="container">
+			<div class="page-header__row">
+				<a class="logo" href="/">
+					<img src="./img/logo.svg" alt="">
+				</a>
+				<nav class="nav">
+					<ul class="list-reset">
+						<li>
+							<a href="#" class="current">Все</a>
+						</li>
+						<li>
+							<a href="#">Новости</a>
+						</li>
+						<li>
+							<a href="#">Статьи</a>
+						</li>
+						<li>
+							<a href="#">Видео</a>
+						</li>
+						<li>
+							<a href="#">События</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="page-header__right">
+					<button class="hamburger btn-reset" type="button">
+						<svg width="18" height="13" viewBox="0 0 18 13" fill="none">
+							<g class="hamburger__open">
+								<rect width="18" height="1" fill="black"/>
+								<rect y="6" width="18" height="1" fill="black"/>
+								<rect y="12" width="18" height="1" fill="black"/>
+							</g>
+							<g class="hamburger__close" transform="translate(2 0)">
+								<rect y="12.728" width="18" height="1" transform="rotate(-45 0 12.728)" fill="black"/>
+								<rect width="18" height="1" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 13.4355 12.728)" fill="black"/>
+							</g>
+						</svg>
+					</button>
+					<form action="#">
+						<div class="search">
+							<label>
+								<span class="search__btn btn-reset" role="button">
+									<svg width="18" height="20" viewBox="0 0 18 20" fill="none">
+										<path d="M8.5 15.5391C12.366 15.5391 15.5 12.4051 15.5 8.53906C15.5 4.67307 12.366 1.53906 8.5 1.53906C4.63401 1.53906 1.5 4.67307 1.5 8.53906C1.5 12.4051 4.63401 15.5391 8.5 15.5391Z" stroke="black" stroke-width="2"/>
+										<path d="M13.5 14.5391L16.5 18.5391" stroke="black" stroke-width="2" stroke-linecap="square"/>
+									</svg>
+								</span>
+								<input type="search" class="search__input" placeholder="Search">
+							</label>
+							<button class="search__close btn-reset" type="button">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M6.98417 6.74683L5.58594 8.17684L10.0697 12.561L5.58594 16.9451L6.98417 18.3751L11.5001 13.9595L16.016 18.3751L17.4142 16.9451L12.9304 12.561L17.4142 8.17684L16.016 6.74683L11.5001 11.1624L6.98417 6.74683Z" fill="#C7C3C8"/>
+								</svg>
+							</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+  
+<main class="page-main">
+  
+  <section class="article-head" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./img/article-head-bg.jpg) no-repeat center/cover;">
+    <div class="container">
+      <strong class="article-head__suptitle">
+        НОВОСТИ
+      </strong>
+      <h1 class="article-head__title">
+        How British Airways created the world's first business class bed
+      </h1>
+      <div class="article-head__info">
+        <time>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="5.5" stroke="white"/>
+            <path d="M12 9.42847V11.9999H15" stroke="white"/>
+          </svg>
+          21 января, 2021  21:15
+        </time>
+        <span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M11.9611 8.12C12.4861 6.872 13.6841 6 15.0801 6C16.9581 6 18.3101 7.612 18.4801 9.533C18.4801 9.533 18.5721 10.01 18.3701 10.869C18.0951 12.038 17.4481 13.077 16.5761 13.869L11.9611 18L7.42505 13.87C6.55305 13.076 5.90605 12.037 5.63005 10.867C5.42805 10.009 5.52005 9.532 5.52005 9.532C5.69005 7.612 7.04305 6 8.92005 6C10.3151 6 11.4351 6.872 11.9601 8.12H11.9611Z" stroke="white"/>
+          </svg>
+          85
+        </span>
+        <span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9.664 16.375L6.313 17.5L7.433 15.242C6.24 14.316 5.5 13.029 5.5 11.607C5.5 8.787 8.41 6.5 12 6.5C15.59 6.5 18.5 8.787 18.5 11.607C18.5 14.427 15.59 16.714 12 16.714C11.177 16.714 10.39 16.594 9.664 16.374V16.375Z" stroke="white"/>
+          </svg>
+          5
+        </span>
+      </div>
+    </div>
+  </section>
+  <section class="article-content">
+    <div class="container">
+      <div class="article-container">
+        <div class="article-user">
+          <img src="./img/au.jpg" alt="George Gurdjieff">
+          <strong>George Gurdjieff</strong>
+          <span>CEO  British Airways</span>
+          <div class="article-user__social">
+            <a href="#">
+              <img src="./img/facebook.svg" alt="facebook">
+            </a>
+            <a href="#">
+              <img src="./img/twitter.svg" alt="facebook">
+            </a>
+            <a href="#">
+              <img src="./img/www.svg" alt="facebook">
+            </a>
+          </div>
+          <a href="#" class="article-user__link link-reset">
+            All posts
+          </a>
+        </div>
+        <div class="article-quote">
+          <svg width="23" height="16" viewBox="0 0 23 16" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 9.59V15.89H6.44V8.54H3.85V7.98C3.85 5.41332 5.41332 3.57001 8.54 2.45L7.7 0C4.99332 0.60667 3.03334 1.65666 1.82 3.15C0.606661 4.64334 0 6.78999 0 9.59ZM14 9.59V15.89H20.37V8.54H17.85V7.98C17.85 5.41332 19.4133 3.57001 22.54 2.45L21.7 0C18.9933 0.60667 17.0333 1.65666 15.82 3.15C14.6067 4.64334 14 6.78999 14 9.59Z" fill="#FC2A2A"/>
+          </svg>
+          <p>
+            Rather than a stack of documents and specifications, they wanted to be really astounded and create a different experience for their passengers
+          </p>
+          <b>
+            Matt Round,
+          </b>
+          <span>
+            CEO, Tangerine
+          </span>
+        </div>
+        <div class="article-text">
+          <b>
+            British Airways will soon reveal its all-new Club World business class seat, which will take wing in July 2019 on the airline’s factory-fresh Airbus A350-1000 jets, with a fleet of Boeing 787-10 Dreamliners to follow in 2020. It’s worth noting, then, that almost 20 years ago, the launch of another.
+          </b>
+          <h2>
+            Where did it all begin
+          </h2>
+          <p>
+            1998. UK Prime Minister Tony Blair marks his first year of office, while Pierce Brosnan renews his license to kill in Tomorrow Never Dies. Apple’s audacious iMac is taking the tech world by storm, although it will be another year until the suited-and-booted brigade clamp eager eyes on the very first BlackBerry and transform it into an executive icon.
+          </p>
+          <p>
+            And business class – itself a mode of travel just two decades young – is about to take its biggest leap ever, swapping reclining chairs for fully-flat beds. In the crisp autumn of 1998, British Airways handed London-based design firm Tangerine a brief as broad as it was.
+          </p>
+          <img src="./img/arcticle-img.jpg" alt="article">
+          <h2>
+            Where did it all begin
+          </h2>
+          <p>
+            1998. UK Prime Minister Tony Blair marks his first year of office, while Pierce Brosnan renews his license to kill in Tomorrow Never Dies. Apple’s audacious iMac is taking the tech world by storm, although it will be another year until the suited-and-booted brigade clamp eager eyes on the very first BlackBerry and transform it into an executive icon.
+          </p>
+          <blockquote>
+            And business class – itself a mode of travel just two decades young – is about to take its biggest leap ever, swapping reclining chairs for fully-flat beds.
+          </blockquote>
+          <p>
+            In the crisp autumn of 1998, British Airways handed London-based design firm Tangerine a brief as broad as it was mind-boggling – to uncover “the Holy Grail of airline travel” and, in the process, <a href="#">totally</a>  reinvent business class. The breakthrough came about during those exercises in seat geometry. Mulling the tapered shape of the human body – wider at the shoulders, narrower at the feet – Round hit upon a Tetris-like solution.
+          </p>
+          <span>
+            <div>
+              <h2>
+                London-based
+              </h2>
+              <p>
+                And business class – itself a mode of travel just two decades young – is about to take its biggest leap ever, swapping reclining chairs for fully-flat beds. In the crisp autumn of 1998, <a href="#">British Airways</a> handed London-based design firm Tangerine.
+              </p>
+            </div>
+            <img src="./img/right.jpg" alt="">
+          </span>
+          <span>
+            <img src="./img/left.jpg" alt="">
+
+            <div>
+              <h2>
+                London-based
+              </h2>
+              <p>
+                And business class – itself a mode of travel just two decades young – is about to take its biggest leap ever, swapping reclining chairs for fully-flat beds. In the crisp autumn of 1998, <a href="#">British Airways</a> handed London-based design firm Tangerine.
+              </p>
+            </div>
+          </span>
+          <h2>
+            British Airways had to see a solid business case for lie-flat business class  case for lie-flat business class
+          </h2>
+          <p>
+            1998. UK Prime Minister Tony Blair marks his first year of office, while Pierce Brosnan renews his license to kill in <a href="#">Tomorrow</a> Never Dies. Apple’s audacious iMac is taking the tech world by storm, although it will be another year until the suited-and-booted brigade clamp eager eyes on the very first BlackBerry and transform it into an executive icon. In the crisp autumn of 1998, British Airways handed London-based design firm Tangerine a brief as broad as it was mind-boggling – to uncover “the Holy Grail of airline travel” and, in the process, totally reinvent business class. The breakthrough came about during those exercises in seat geometry. Mulling the tapered shape of the human body – wider at the shoulders, narrower at the feet – Round hit upon a Tetris-like solution.
+          </p>
+          <h2>
+            Дальнейшее развитие
+          </h2>
+          <ul>
+            <li>
+              Пункт 1
+            </li>
+            <li>
+              Пункт 2
+            </li>
+            <li>
+              Пункт 3
+            </li>
+            <li>
+              Пункт 4
+            </li>
+            <li>
+              Пункт 5
+            </li>
+          </ul>
+          <h2>
+            Спецификации современных стандартов, действия
+          </h2>
+          <p>
+            И нет сомнений, что активно развивающиеся страны третьего мира представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть функционально разнесены на независимые элементы. Банальные, но неопровержимые выводы, а также представители современных социальных резервов, превозмогая сложившуюся непростую экономическую ситуацию, заблокированы.
+          </p>
+          <p>
+            И нет сомнений, что активно развивающиеся страны третьего мира представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть функционально разнесены на независимые элементы. Банальные, но неопровержимые выводы, а также представители современных социальных резервов, превозмогая сложившуюся непростую экономическую ситуацию, заблокированы.
+          </p>
+        </div>
+        <div class="article-text">
+          <div class="article-tags">
+            <a href="#">Инвестиции</a>
+            <a href="#">Займы</a>
+            <a href="#">Бизнес</a>
+          </div>
+          <div class="article-social">
+            <div class="article-social__item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M6.25719 14.531C7.33719 15.655 9.20719 16.984 12.0002 16.984C14.7922 16.984 16.6622 15.646 17.7432 14.531C18.9102 13.323 19.4112 12.106 19.4372 12.06C19.4992 11.92 19.4992 11.753 19.4372 11.614C19.4202 11.568 18.9452 10.425 17.7872 9.29199C16.7242 8.25199 14.8442 7.01599 11.9462 7.01599C9.04919 7.01599 7.20519 8.25999 6.16019 9.29999C5.01919 10.434 4.57119 11.577 4.55419 11.633C4.50219 11.773 4.50219 11.93 4.56419 12.06C4.58119 12.106 5.09019 13.323 6.25819 14.531H6.25719ZM11.9212 8.16799C13.3342 8.16799 14.4842 9.38499 14.4842 10.88C14.4842 12.376 13.3342 13.593 11.9202 13.593C10.5062 13.593 9.35619 12.376 9.35619 10.88C9.35619 9.38499 10.5062 8.16799 11.9202 8.16799H11.9212ZM8.94419 8.70599C8.54019 9.31999 8.30319 10.072 8.30319 10.88C8.30319 12.989 9.92719 14.708 11.9212 14.708C13.9142 14.708 15.5382 12.989 15.5382 10.88C15.5382 10.063 15.2932 9.30999 14.8802 8.68799C17.0222 9.56099 18.0412 11.233 18.3482 11.846C18.1552 12.218 17.7082 13.008 16.9612 13.779C15.6002 15.181 13.9312 15.887 11.9912 15.887C10.0512 15.887 8.38219 15.163 7.02119 13.769C6.26619 12.99 5.81819 12.2 5.62419 11.828C5.91419 11.233 6.86219 9.58899 8.94319 8.70599H8.94419Z" fill="black"/>
+              </svg>
+              1085
+            </div>
+            <button class="article-social__item like btn-reset" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M11.9506 6.826C12.6346 5.163 14.2026 4 16.0256 4C18.4816 4 20.2496 6.15 20.4726 8.711C20.4726 8.711 20.5926 9.347 20.3286 10.491C19.9686 12.051 19.1226 13.435 17.9826 14.493L11.9506 20L6.01856 14.492C4.87756 13.435 4.03056 12.05 3.67056 10.492C3.40756 9.345 3.52756 8.71 3.52756 8.71C3.75056 6.149 5.51856 4 7.97456 4C9.79856 4 11.2636 5.163 11.9506 6.826Z" fill="#7F7F7F"/>
+              </svg>
+              Like
+            </button>
+            <button class="article-social__item share btn-reset" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M14.423 6.209C14.368 5.96 14.339 5.706 14.339 5.449C14.34 3.55 15.832 2 17.67 2C19.508 2 21 3.548 21 5.45C21 7.351 19.507 8.9 17.67 8.9C16.55 8.9 15.524 8.317 14.91 7.373L9.45 10.783C9.589 11.168 9.661 11.573 9.661 11.986C9.661 12.399 9.588 12.805 9.449 13.19L14.909 16.626C15.029 16.439 15.165 16.268 15.313 16.114C16.613 14.767 18.727 14.767 20.026 16.114C20.654 16.765 21 17.631 21 18.552C21 19.472 20.654 20.338 20.026 20.99C19.394 21.645 18.548 22 17.669 22C16.79 22 15.945 21.645 15.313 20.99C14.685 20.339 14.339 19.473 14.339 18.552C14.339 18.295 14.367 18.04 14.422 17.791L8.811 14.284C8.188 15.006 7.294 15.436 6.331 15.436C4.492 15.436 3 13.887 3 11.986C3 10.085 4.493 8.536 6.33 8.536C7.302 8.536 8.203 8.974 8.826 9.706L14.423 6.209Z" fill="#7F7F7F"/>
+              </svg>                
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comments">
+    <div class="container">
+      <div class="comments__container">
+        <div class="comments__head">
+          <h2>
+            Комментарии <b class="commentCount"></b>
+          </h2>
+          <button type="button" class="comments-all btn-reset">
+            Показать все
+          </button>
+        </div>
+        <div class="comment">
+          <div class="comment__wrap">
+            <img src="./img/comment-avatar.jpg" alt="comment avatar">
+            <div class="comment__content">
+              <strong>
+                Сабина Белая
+                <span>21 янв, 2021  23:25</span>
+              </strong>
+              <p>
+                Разнообразный и богатый опыт говорит нам, что новая модель организационной деятельности, в своём классическом представлении.
+              </p>
+              <button class="btn-reset comment-answer" type="button">
+                Ответить
+              </button>
+            </div>
+          </div>
+          <div class="comment__wrap subcomment">
+            <img src="./img/comment-avatar2.jpg" alt="comment avatar">
+            <div class="comment__content">
+              <strong>
+                Ильнул Хамилов
+                <span>21 янв, 2021  23:25</span>
+              </strong>
+              <p>
+                Разнообразный и богатый опыт говорит нам, что новая модель организационной деятельности, в своём классическом представлении.
+              </p>
+              <button class="btn-reset comment-answer" type="button">
+                Ответить
+              </button>
+            </div>
+          </div>
+          <div class="comment__wrap subcomment">
+            <img src="./img/comment-avatar3.jpg" alt="comment avatar">
+            <div class="comment__content">
+              <strong>
+                Ильнул Хамилов
+                <span>21 янв, 2021  23:25</span>
+              </strong>
+              <p>
+                <span class="user-answer">
+                  Ильнул Хамилов
+                </span>
+                и богатый опыт говорит нам, что новая модель организационной деятельности, в своём классическом представлении.
+              </p>
+              <button class="btn-reset comment-answer" type="button">
+                Ответить
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn-reset comment-all-answer">
+            Ответов 2
+          </button>
+        </div>
+        <div class="comment">
+          <div class="comment__wrap">
+            <img src="./img/comment-avatar.jpg" alt="comment avatar">
+            <div class="comment__content">
+              <strong>
+                Сабина Серая
+                <span>21 янв, 2021  23:25</span>
+              </strong>
+              <p>
+                Разнообразный и богатый опыт говорит нам, что новая модель организационной деятельности, в своём классическом представлении.
+              </p>
+              <button class="btn-reset comment-answer" type="button">
+                Ответить
+              </button>
+            </div>
+          </div>
+          <div class="comment__wrap subcomment">
+            <img src="./img/comment-avatar3.jpg" alt="comment avatar">
+            <div class="comment__content">
+              <strong>
+                Ильнул Хамилов
+                <span>21 янв, 2021  23:25</span>
+              </strong>
+              <p>
+                И богатый опыт говорит нам, что новая модель организационной деятельности, в своём классическом представлении.
+              </p>
+              <button class="btn-reset comment-answer" type="button">
+                Ответить
+              </button>
+            </div>
+          </div>
+          <button type="button" class="btn-reset comment-all-answer"></button>
+        </div>
+        <div class="comment__form">
+          <textarea placeholder="Комментарий" id="textarea"></textarea>
+          <button class="btn-reset btn btn--black btn--big" type="submit">
+            Отправить
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="read-more">
+    <div class="container">
+      <h3 class="read-more__title">
+        Читайте также
+      </h3>
+      <div class="news-grid">
+        <a href="#" class="news-item link-reset">
+          <img src="./img/ni1.jpg" alt="" class="news-item__img">
+          <div class="news-item__info">
+            <div class="news-item__top">
+              <strong class="news-item__title">
+                Как малому бизнесу повысить шансы на одобрение кредита
+              </strong>
+              <p class="news-item__text">
+                Кредитная история — один из самых важных факторов, влияющих на решение о выдаче денег.
+              </p>
+            </div>
+  
+            <div class="news-item__row">
+              <b class="news-item__category">
+                НОВОСТИ
+              </b>
+              <time class="news-item__date">
+                Декабрь 2020
+              </time>
+              <span class="news-item__views">
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                  <path d="M2.25695 7.53111C3.33695 8.65511 5.20695 9.98411 7.99995 9.98411C10.7919 9.98411 12.6619 8.64611 13.7429 7.53111C14.9099 6.32311 15.4109 5.10611 15.4369 5.06011C15.4989 4.92011 15.4989 4.75311 15.4369 4.61411C15.4199 4.56811 14.9449 3.42511 13.7869 2.29211C12.7239 1.25211 10.8439 0.0161133 7.94595 0.0161133C5.04895 0.0161133 3.20495 1.26011 2.15995 2.30011C1.01895 3.43411 0.570946 4.57711 0.553946 4.63311C0.501946 4.77311 0.501946 4.93011 0.563946 5.06011C0.580946 5.10611 1.08995 6.32311 2.25795 7.53111H2.25695ZM7.92095 1.16811C9.33395 1.16811 10.4839 2.38511 10.4839 3.88011C10.4839 5.37611 9.33395 6.59311 7.91995 6.59311C6.50595 6.59311 5.35595 5.37611 5.35595 3.88011C5.35595 2.38511 6.50595 1.16811 7.91995 1.16811H7.92095ZM4.94395 1.70611C4.53995 2.32011 4.30295 3.07211 4.30295 3.88011C4.30295 5.98911 5.92695 7.70811 7.92095 7.70811C9.91395 7.70811 11.5379 5.98911 11.5379 3.88011C11.5379 3.06311 11.2929 2.31011 10.8799 1.68811C13.0219 2.56111 14.0409 4.23311 14.3479 4.84611C14.1549 5.21811 13.7079 6.00811 12.9609 6.77911C11.5999 8.18111 9.93095 8.88711 7.99095 8.88711C6.05095 8.88711 4.38195 8.16311 3.02095 6.76911C2.26595 5.99011 1.81795 5.20011 1.62395 4.82811C1.91395 4.23311 2.86195 2.58911 4.94295 1.70611H4.94395Z" fill="#C7C3C8"></path>
+                </svg>
+                1085
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="news-item link-reset">
+          <img src="./img/ni2.jpg" alt="" class="news-item__img">
+          <div class="news-item__info">
+            <div class="news-item__top">
+              <strong class="news-item__title">
+                Как малому бизнесу повысить шансы на одобрение кредита
+              </strong>
+              <p class="news-item__text">
+                Кредитная история — один из самых важных факторов, влияющих на решение о выдаче денег.
+              </p>
+            </div>
+  
+            <div class="news-item__row">
+              <b class="news-item__category">
+                НОВОСТИ
+              </b>
+              <time class="news-item__date">
+                Декабрь 2020
+              </time>
+              <span class="news-item__views">
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                  <path d="M2.25695 7.53111C3.33695 8.65511 5.20695 9.98411 7.99995 9.98411C10.7919 9.98411 12.6619 8.64611 13.7429 7.53111C14.9099 6.32311 15.4109 5.10611 15.4369 5.06011C15.4989 4.92011 15.4989 4.75311 15.4369 4.61411C15.4199 4.56811 14.9449 3.42511 13.7869 2.29211C12.7239 1.25211 10.8439 0.0161133 7.94595 0.0161133C5.04895 0.0161133 3.20495 1.26011 2.15995 2.30011C1.01895 3.43411 0.570946 4.57711 0.553946 4.63311C0.501946 4.77311 0.501946 4.93011 0.563946 5.06011C0.580946 5.10611 1.08995 6.32311 2.25795 7.53111H2.25695ZM7.92095 1.16811C9.33395 1.16811 10.4839 2.38511 10.4839 3.88011C10.4839 5.37611 9.33395 6.59311 7.91995 6.59311C6.50595 6.59311 5.35595 5.37611 5.35595 3.88011C5.35595 2.38511 6.50595 1.16811 7.91995 1.16811H7.92095ZM4.94395 1.70611C4.53995 2.32011 4.30295 3.07211 4.30295 3.88011C4.30295 5.98911 5.92695 7.70811 7.92095 7.70811C9.91395 7.70811 11.5379 5.98911 11.5379 3.88011C11.5379 3.06311 11.2929 2.31011 10.8799 1.68811C13.0219 2.56111 14.0409 4.23311 14.3479 4.84611C14.1549 5.21811 13.7079 6.00811 12.9609 6.77911C11.5999 8.18111 9.93095 8.88711 7.99095 8.88711C6.05095 8.88711 4.38195 8.16311 3.02095 6.76911C2.26595 5.99011 1.81795 5.20011 1.62395 4.82811C1.91395 4.23311 2.86195 2.58911 4.94295 1.70611H4.94395Z" fill="#C7C3C8"></path>
+                </svg>
+                1085
+              </span>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="news-item link-reset">
+          <img src="./img/ni1.jpg" alt="" class="news-item__img">
+          <div class="news-item__info">
+            <div class="news-item__top">
+              <strong class="news-item__title">
+                Как малому бизнесу повысить шансы на одобрение кредита
+              </strong>
+              <p class="news-item__text">
+                Кредитная история — один из самых важных факторов, влияющих на решение о выдаче денег.
+              </p>
+            </div>
+  
+            <div class="news-item__row">
+              <b class="news-item__category">
+                НОВОСТИ
+              </b>
+              <time class="news-item__date">
+                Декабрь 2020
+              </time>
+              <span class="news-item__views">
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                  <path d="M2.25695 7.53111C3.33695 8.65511 5.20695 9.98411 7.99995 9.98411C10.7919 9.98411 12.6619 8.64611 13.7429 7.53111C14.9099 6.32311 15.4109 5.10611 15.4369 5.06011C15.4989 4.92011 15.4989 4.75311 15.4369 4.61411C15.4199 4.56811 14.9449 3.42511 13.7869 2.29211C12.7239 1.25211 10.8439 0.0161133 7.94595 0.0161133C5.04895 0.0161133 3.20495 1.26011 2.15995 2.30011C1.01895 3.43411 0.570946 4.57711 0.553946 4.63311C0.501946 4.77311 0.501946 4.93011 0.563946 5.06011C0.580946 5.10611 1.08995 6.32311 2.25795 7.53111H2.25695ZM7.92095 1.16811C9.33395 1.16811 10.4839 2.38511 10.4839 3.88011C10.4839 5.37611 9.33395 6.59311 7.91995 6.59311C6.50595 6.59311 5.35595 5.37611 5.35595 3.88011C5.35595 2.38511 6.50595 1.16811 7.91995 1.16811H7.92095ZM4.94395 1.70611C4.53995 2.32011 4.30295 3.07211 4.30295 3.88011C4.30295 5.98911 5.92695 7.70811 7.92095 7.70811C9.91395 7.70811 11.5379 5.98911 11.5379 3.88011C11.5379 3.06311 11.2929 2.31011 10.8799 1.68811C13.0219 2.56111 14.0409 4.23311 14.3479 4.84611C14.1549 5.21811 13.7079 6.00811 12.9609 6.77911C11.5999 8.18111 9.93095 8.88711 7.99095 8.88711C6.05095 8.88711 4.38195 8.16311 3.02095 6.76911C2.26595 5.99011 1.81795 5.20011 1.62395 4.82811C1.91395 4.23311 2.86195 2.58911 4.94295 1.70611H4.94395Z" fill="#C7C3C8"></path>
+                </svg>
+                1085
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+<footer class="page-footer">
+  <div class="container">
+    <div class="social">
+      <a href="#">
+        <img src="./img/s1.svg" alt="">
+      </a>
+      <a href="#">
+        <img src="./img/s2.svg" alt="">
+      </a>
+      <a href="#">
+        <img src="./img/s3.svg" alt="">
+      </a>
+      <a href="#">
+        <img src="./img/s4.svg" alt="">
+      </a>
+      <a href="#">
+        <img src="./img/s5.svg" alt="">
+      </a>
+      <a href="#">
+        <img src="./img/s6.svg" alt="">
+      </a>
+    </div>
+    <p class="page-footer__text">
+      Все материалы, опубликованные в разделе «Блог» на Сайте, носят информативный характер и представляют личное мнение автора. <br>
+      Любая публикация не может рассматриваться как подстрекательство к каким-либо действиям, инвестициям или иному.
+    </p>
+    <div class="page-footer__bottom">
+      <small>
+        © 2021 InvestGo
+      </small>
+      <a href="#" class="link-reset">
+        Пользовательское соглашение
+      </a>
+      <a href="#" class="link-reset">
+        Политика конфиденциальности
+      </a>
+    </div>
+  </div>
+</footer>
+<div class="overlay"></div>
+<script src="./js/scripts.min.js"></script>
+<script src="./js/common.js"></script>
+</body>
+</html>
