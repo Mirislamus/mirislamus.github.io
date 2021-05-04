@@ -1,7 +1,7 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
   // Scrollbar
-  OverlayScrollbars(document.querySelector("body"), { });
+  // OverlayScrollbars(document.querySelector("body"), { });
   // Range Slider
   function numVoid(x) {
     x = x.toString();
