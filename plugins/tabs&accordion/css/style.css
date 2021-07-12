@@ -1,0 +1,26 @@
+.tab-content {
+  display: none;
+}
+.tab-item {
+  display: block;
+}
+.tab-content.active {
+  display: block;
+}
+.tab-item.active {
+  color: red;
+}
+
+
+.accordion-content {
+  display: none;
+}
+.accordion-item {
+  display: block;
+}
+.accordion-content.active {
+  display: block;
+}
+.accordion-item.active {
+  color: red;
+}

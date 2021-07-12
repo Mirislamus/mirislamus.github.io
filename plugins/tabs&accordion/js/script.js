@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   {
-    class Tabs  {
+    class Tabs {
       constructor(options = {}) {
         const {
           tab = '.tabItem',
@@ -40,5 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     new Tabs();
+    new Tabs({
+      tab: '.accordionItem',
+      tabContents: '.accordionContent'
+    })
   }
 });
