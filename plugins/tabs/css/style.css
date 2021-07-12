@@ -1,0 +1,13 @@
+.tab-content {
+  display: none;
+}
+.tab-item {
+  display: block;
+}
+.tab-content.active {
+  display: block;
+}
+.tab-item.active {
+  color: red;
+}
+

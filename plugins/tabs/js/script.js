@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.forEach((element, index, array) => {
           element.addEventListener('click', () => {
             const tabContentItem = document.querySelector(`${element.dataset.target}`);
-
             for(let tabItems of array) {
               tabItems.classList.remove('active');
               tabItems.attributes['aria-selected'].value = false;
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
               tabContentItems.attributes['aria-selected'].value = false;
             }
             if(tabContentItem) {
-              tabContentItem.classList.add('active');
+              tabContentItem.classList.toggle('active');
               tabContentItem.attributes['aria-selected'].value = true;
             }
           })
@@ -40,9 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     new Tabs();
-    new Tabs({
-      tab: '.accordionItem',
-      tabContents: '.accordionContent'
-    })
   }
 });

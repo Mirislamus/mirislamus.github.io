@@ -1,6 +1,13 @@
+
 .accordion-content {
   display: none;
 }
-.accordion-btn.open + .accordion-content{
+.accordion-item {
   display: block;
+}
+.accordion-content.active {
+  display: block;
+}
+.accordion-item.active {
+  color: red;
 }
