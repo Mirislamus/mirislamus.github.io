@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/modal.css">
+  <title>modal</title>
+</head>
+<body>
+  <button class="modalOpen">
+    Open Modal
+  </button>
+  <div class="modal modalWindow" role="dialog" aria-modal="true">
+    <div class="modal__content">
+      <button type="button" class="modal__close modalClose" aria-label="Close modal">
+        &times;
+      </button>
+      <div class="modal__body">
+       Random Text
+        <button class="modalOpen1 closeModal">
+          Open Modal
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal modalWindow1" role="dialog" aria-modal="true">
+    <div class="modal__content">
+      <button type="button" class="modal__close modalClose" aria-label="Close modal">
+        &times;
+      </button>
+      <div class="modal__body">
+       Random Text
+        <button class="modalClose modalOpen1">
+          Open Modal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/modal.js"></script>
+</body>
+</html>

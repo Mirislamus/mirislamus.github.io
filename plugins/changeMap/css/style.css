@@ -1,0 +1,6 @@
+.map-container {
+  height: 340px;
+  padding: 0;
+  background-image: url(/uploads/common/ymap0.png);
+  background-position: center center;
+}
