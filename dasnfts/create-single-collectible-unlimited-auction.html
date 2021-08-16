@@ -11,7 +11,7 @@
 	<meta property="og:image" content="path/to/image.jpg">
 	<meta name="theme-color" content="#000">
 
-	<title>Dasnfts - Create collectible</title>
+	<title>Dasnfts - Create single collectible unlimited auction</title>
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
@@ -83,39 +83,228 @@
 
 <main class="page-main">
   
-  <section class="connect-wallet">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-6">
-            <h1 class="h4 connect-wallet__title tac">
-              Create Collectible
-            </h1>
-            <p class="connect-wallet__text tac">
-              Choose “Single” if you want your collectible to be one of a kind or “Multiple” if you want to sell one <br>
-              collectible multiple times
-            </p>
-            <div class="row row-cols-2 mb-40 connect-wallet__row">
-              <div class="col mb40">
-                <a href="#" class="cc-item link-reset">
-                  <img src="./img/create-collectable/collectible.svg" alt="Single" width="180" height="180">
-                  <h6 class="cc-item__title">
-                    Single
-                  </h6>
-                </a>
+  <section class="single">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <a href="#" class="single__back title-1">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14 8L10 12L14 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Go Back
+          </a>
+          <h1 class="cc-title h4 tac">
+            Create Single Collectible
+          </h1>
+          <form action="#">
+            <div class="cc-row">
+              <div class="cc-col-left">
+                <label class="input-upload">
+                  <span class="input-label__text">
+                    Upload file
+                  </span>
+                  <div class="input-upload__wrap">
+                    <input class="input-upload__field" type="file">
+                    <p class="input-upload__text">
+                      PNG, GIF, WEBP, MP4 or MP3. Max 30mb.
+                    </p>
+                    <div class="btn btn--secondary btn--center btn--210w btn--40h btn-16">
+                      <span>Choose File</span>
+                    </div>
+                  </div>
+                </label>
+                <label class="input-label">
+                  <span class="input-label__text">
+                    Title
+                  </span>
+                  <div class="input-wrap">
+                    <input type="text" class="input p0 input--56h" placeholder="Enter your NFT name">
+                  </div>
+                </label>
+                <label class="input-label">
+                  <span class="input-label__text">
+                    Description
+                  </span>
+                  <div class="input-wrap">
+                    <textarea type="text" class="input p0 input--64h" placeholder="Enter your description"></textarea>
+                  </div>
+                </label>
+                <label class="input-label">
+                  <span class="input-label__text">
+                    Royalties
+                  </span>
+                  <div class="input-wrap input-wrap--procent">
+                    <input type="text" class="input p0 input--56h" placeholder="10">
+                  </div>
+                  <p class="input-label__subtext caption-12">
+                    Suggested: 10%, 20%, 30%
+                  </p>
+                </label>
+                <div class="input-group">
+                  <span class="input-label__text">
+                    Properties (optional)
+                  </span>
+                  <div class="input-group__grid">
+                    <label class="input-label">
+                      <div class="input-wrap">
+                        <input type="text" class="input p0 input--56h" placeholder="e.g Size">
+                      </div>
+                    </label>
+                    <label class="input-label">
+                      <div class="input-wrap">
+                        <input type="text" class="input p0 input--56h" placeholder="e.g M">
+                      </div>
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div class="col mb40">
-                <a href="#" class="cc-item link-reset">
-                  <img src="./img/create-collectable/multiple.svg" alt="Multiple" width="180" height="180">
-                  <h6 class="cc-item__title">
-                    Multiple
-                  </h6>
-                </a>
-              </div>
+              <div class="cc-col-right">
+                <div class="cc-box">
+                  <div class="cc-box__top">
+                    <strong class="cc-box__title title-1">
+                      Put on marketplace
+                    </strong>
+                    <p class="cc-box__text">
+                      Enter price to allow users instantly purchase your NFT
+                    </p>
+                    <label class="input-switch">
+                      <input type="checkbox" class="input-switch__checkbox inputSwitch" checked>
+                      <span class="input-switch__dot"></span>
+                    </label>
+                  </div>
+                  <div class="cc-box__bottom">
+                    <div class="cc-choose">
+                      <div class="cc-choose__grid">
+                        <label class="input-choose">
+                          <input class="input-choose__field" type="radio" name="choose" checked>
+                          <div class="input-choose__block">
+                            <div class="input-choose__wrap">
+                              
+  <svg height="48" width="48">
+    <image height="48" width="48" href="./img/create/fixed-price.svg">
+  </svg>
 
+                              <p class="input-choose__text">
+                                Fixed <br>
+                                Price
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+                        <label class="input-choose">
+                          <input class="input-choose__field" type="radio" name="choose">
+                          <div class="input-choose__block">
+                            <div class="input-choose__wrap">
+                              
+  <svg height="48" width="48">
+    <image height="48" width="48" href="./img/create/timed-auction.svg">
+  </svg>
+
+                              <p class="input-choose__text">
+                                Timed <br>
+                                Auction
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+                        <label class="input-choose">
+                          <input class="input-choose__field" type="radio" name="choose">
+                          <div class="input-choose__block">
+                            <div class="input-choose__wrap">
+                              
+  <svg height="48" width="48">
+    <image height="48" width="48" href="./img/create/unlimited-auction.svg">
+  </svg>
+
+                              <p class="input-choose__text">
+                                Timed <br>
+                                Auction
+                              </p>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cc-box">
+                  <div class="cc-box__top">
+                    <strong class="cc-box__title title-1">
+                      Unlock once purchased
+                    </strong>
+                    <p class="cc-box__text">
+                      Content will be unlocked after successful transaction
+                    </p>
+                    <label class="input-switch">
+                      <input type="checkbox" class="input-switch__checkbox inputSwitch" >
+                      <span class="input-switch__dot"></span>
+                    </label>
+                  </div>
+                  <div class="cc-box__bottom">
+                    <label class="input-label">
+                      <div class="input-wrap">
+                        <input type="text" class="input p0 input--56h" placeholder="Digital key, code to redeem or link to a file...">
+                      </div>
+                      <p class="input-label__subtext caption-12">
+                        Tip: Markdown syntax is supported
+                      </p>
+                    </label>
+                  </div>
+                </div>
+                <div class="cc-collection">
+                  <span class="input-label__text">
+                    Choose collection
+                  </span>
+                  <div class="cc-collection__grid">
+                    <button class="cc-create btnOpenCreate btn-reset" type="button">
+                      <div class="cc-create__image">
+                        <img src="./img/create/plus-circle.svg" alt="create image">
+                      </div>
+                      <strong class="cc-collection__title">
+                        Create
+                      </strong>
+                      <p class="cc-collection__text">
+                        BEP-20
+                      </p>
+                    </button>
+                    <button class="cc-create btn-reset" type="button">
+                      <div class="cc-create__image">
+                        <img src="./img/create/iconic.svg" alt="create image">
+                      </div>
+                      <strong class="cc-collection__title">
+                        DASNFTS
+                      </strong>
+                      <p class="cc-collection__text">
+                        DASN
+                      </p>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+              <div class="cc-col-bottom">
+
+                <div class="cc-create__container">
+                  <p class="cc-clue">
+                    Saved 14 minutes ago
+                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.5 15.75V15.75C5.77175 15.75 2.75 12.7283 2.75 9V9C2.75 5.27175 5.77175 2.25 9.5 2.25V2.25C13.2283 2.25 16.25 5.27175 16.25 9V9C16.25 12.7283 13.2283 15.75 9.5 15.75Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M9.5 9.93775V9.75025C9.5 9.1375 9.87875 8.80525 10.2582 8.55025C10.6287 8.3005 11 7.975 11 7.375C11 6.54625 10.3288 5.875 9.5 5.875C8.67125 5.875 8 6.54625 8 7.375" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M9.49925 12C9.39575 12 9.31175 12.084 9.3125 12.1875C9.3125 12.291 9.3965 12.375 9.5 12.375C9.6035 12.375 9.6875 12.291 9.6875 12.1875C9.6875 12.084 9.6035 12 9.49925 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </p>
+                  <button class="btn modalOpenNft btn--100p btn--primary btn--56h btn-16 btn-reset" type="button">
+                    <span>Create NFT</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
+
         </div>
       </div>
+
+    </div>
   </section>
 
 </main>

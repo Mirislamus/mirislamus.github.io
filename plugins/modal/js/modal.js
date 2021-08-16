@@ -1,6 +1,5 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
-  const test = 23;
   class Modal {
     constructor(options = {}) {
       const {
