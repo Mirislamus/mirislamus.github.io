@@ -22,13 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Data Filter
 
   const dataFilterBtn = document.querySelectorAll('.data-filter__btn');
-  const dataFilterItem = document.querySelectorAll('.data-item');
+  const dataFilterItem = document.querySelectorAll('.dataItem');
+  const dataFilter = document.querySelector('[data-filter=all]');
 
   if(document.querySelector('.data-filter__btn.active')) {
     const dataActive = document.querySelector('.data-filter__btn.active').dataset.filter;
     const dataActiveItems = document.querySelectorAll(`[data-item=${dataActive}]`);
+
     for(let item of dataActiveItems) {
       item.classList.add('active');
+    }
+
+    if(dataFilter) {
+      for(let item of dataFilterItem) {
+        item.classList.add('active');
+      }
     }
   }
 
@@ -44,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       for(let item of dataFilterSet) {
         item.classList.add('active');
+      }
+      if(element.dataset.filter === 'all') {
+        for(let item of dataFilterItem) {
+          item.classList.add('active');
+        }
       }
     });
   });
@@ -155,4 +168,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   new Modal({btnOpen: '.btnOpenCreate', modalWindow: '.modalCollection'});
   new Modal({btnOpen: '.modalOpenNft', modalWindow: '.modalNft'});
+  new Modal({btnOpen: '.modalOpenBid', modalWindow: '.modalBid'});
 });

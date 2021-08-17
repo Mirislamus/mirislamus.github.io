@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   var dataFilterBtn = document.querySelectorAll('.data-filter__btn');
-  var dataFilterItem = document.querySelectorAll('.data-item');
+  var dataFilterItem = document.querySelectorAll('.dataItem');
+  var dataFilter = document.querySelector('[data-filter=all]');
 
   if (document.querySelector('.data-filter__btn.active')) {
     var dataActive = document.querySelector('.data-filter__btn.active').dataset.filter;
@@ -43,44 +44,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var item = _step.value;
-        item.classList.add('active');
+        var _item = _step.value;
+
+        _item.classList.add('active');
       }
     } catch (err) {
       _iterator.e(err);
     } finally {
       _iterator.f();
     }
-  }
 
-  dataFilterBtn.forEach(function (element, index, array) {
-    element.addEventListener('click', function () {
-      var _iterator2 = _createForOfIteratorHelper(array),
+    if (dataFilter) {
+      var _iterator2 = _createForOfIteratorHelper(dataFilterItem),
           _step2;
 
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var _item = _step2.value;
-
-          _item.classList.remove('active');
+          var item = _step2.value;
+          item.classList.add('active');
         }
       } catch (err) {
         _iterator2.e(err);
       } finally {
         _iterator2.f();
       }
+    }
+  }
 
-      element.classList.add('active');
-      var dataFilterSet = document.querySelectorAll("[data-item=".concat(element.dataset.filter, "]"));
-
-      var _iterator3 = _createForOfIteratorHelper(dataFilterItem),
+  dataFilterBtn.forEach(function (element, index, array) {
+    element.addEventListener('click', function () {
+      var _iterator3 = _createForOfIteratorHelper(array),
           _step3;
 
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var _item2 = _step3.value;
+          var _item3 = _step3.value;
 
-          _item2.classList.remove('active');
+          _item3.classList.remove('active');
         }
       } catch (err) {
         _iterator3.e(err);
@@ -88,19 +88,54 @@ document.addEventListener('DOMContentLoaded', function () {
         _iterator3.f();
       }
 
-      var _iterator4 = _createForOfIteratorHelper(dataFilterSet),
+      element.classList.add('active');
+      var dataFilterSet = document.querySelectorAll("[data-item=".concat(element.dataset.filter, "]"));
+
+      var _iterator4 = _createForOfIteratorHelper(dataFilterItem),
           _step4;
 
       try {
         for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var _item3 = _step4.value;
+          var _item4 = _step4.value;
 
-          _item3.classList.add('active');
+          _item4.classList.remove('active');
         }
       } catch (err) {
         _iterator4.e(err);
       } finally {
         _iterator4.f();
+      }
+
+      var _iterator5 = _createForOfIteratorHelper(dataFilterSet),
+          _step5;
+
+      try {
+        for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+          var _item5 = _step5.value;
+
+          _item5.classList.add('active');
+        }
+      } catch (err) {
+        _iterator5.e(err);
+      } finally {
+        _iterator5.f();
+      }
+
+      if (element.dataset.filter === 'all') {
+        var _iterator6 = _createForOfIteratorHelper(dataFilterItem),
+            _step6;
+
+        try {
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var _item2 = _step6.value;
+
+            _item2.classList.add('active');
+          }
+        } catch (err) {
+          _iterator6.e(err);
+        } finally {
+          _iterator6.f();
+        }
       }
     });
   }); // Input Switch
@@ -189,20 +224,20 @@ document.addEventListener('DOMContentLoaded', function () {
           modalWindow.removeAttribute('tabindex');
 
           if (closeAll !== false) {
-            var _iterator5 = _createForOfIteratorHelper(allModal),
-                _step5;
+            var _iterator7 = _createForOfIteratorHelper(allModal),
+                _step7;
 
             try {
-              for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-                var modalItem = _step5.value;
+              for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+                var modalItem = _step7.value;
                 modalItem.firstElementChild.classList.remove('modal__content--open');
                 modalItem.classList.remove('modal--open');
                 modalItem.removeAttribute('tabindex');
               }
             } catch (err) {
-              _iterator5.e(err);
+              _iterator7.e(err);
             } finally {
-              _iterator5.f();
+              _iterator7.f();
             }
           }
         };
@@ -239,5 +274,9 @@ document.addEventListener('DOMContentLoaded', function () {
   new Modal({
     btnOpen: '.modalOpenNft',
     modalWindow: '.modalNft'
+  });
+  new Modal({
+    btnOpen: '.modalOpenBid',
+    modalWindow: '.modalBid'
   });
 });

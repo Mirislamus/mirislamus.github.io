@@ -627,6 +627,74 @@
     </div>
   </div>
 </div>
+<div class="modal modalBid modalWindow" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M7 7L17 17" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M7 17L17 7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+    <div class="modal__body">
+      <h4 class="modal__title bid-title">
+        Place a Bid
+      </h4>
+      <p class="modal__text">
+        You are about to place a bid for <span>Animal Collection</span> by <span>Madalenan</span>
+      </p>
+      <div class="modal__bid">
+        <label class="input-label">
+          <span class="input-label__text">
+            Your Bid
+          </span>
+          <div class="input-wrap input-wrap--bnb">
+            <input type="text" class="input p0 input--56h" placeholder="1.53" value="1.53">
+          </div>
+          <p class="input-label__subtext caption-12">
+            Must be at Least 1.53 BNB
+          </p>
+        </label>
+        <div class="balance">
+          <div class="balance-item">
+            <strong class="title-2">
+              Your bidding balance
+            </strong>
+            <span class="title-2">
+              1.53 BNB
+            </span>
+          </div>
+          <div class="balance-item">
+            <strong class="title-2">
+              Your balance
+            </strong>
+            <span class="title-2">
+              7.87 BNB
+            </span>
+          </div>
+          <div class="balance-item">
+            <strong class="title-2">
+              Service fee
+            </strong>
+            <span class="title-2">
+              0.005 BNB
+            </span>
+          </div>
+          <div class="balance-item">
+            <strong class="title-2">
+              Total bid amount
+            </strong>
+            <span class="title-2">
+              1.535 BNB
+            </span>
+          </div>
+        </div>
+        <button class="btn modalOpenBid btn--primary btn--48h btn--100p btn-16 btn-reset" type="button">
+          <span>Place a Bid</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="./js/scripts.min.js"></script>
 <script src="./js/common.js"></script>
