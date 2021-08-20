@@ -62,5 +62,24 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       header.classList.remove('scroll');
     }
+  }); // Inits
+
+  var reviewsSlider = new Swiper(".reviewsSlider", {
+    spaceBetween: 24,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    breakpoints: {
+      992: {
+        slidesPerView: 3
+      },
+      768: {
+        slidesPerView: 2
+      },
+      320: {
+        slidesPerView: 1
+      }
+    }
   });
 });
