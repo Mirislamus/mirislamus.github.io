@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="185.192" height="145.89" viewBox="0 0 185.192 145.89">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.237" y1="0.5" x2="-0.143" y2="0.778" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4ede9e"/>
+      <stop offset="0.483" stop-color="#38a0f8"/>
+      <stop offset="1" stop-color="#5b40f2"/>
+    </linearGradient>
+  </defs>
+  <g id="ch2" transform="translate(0 0.606)">
+    <g id="Group_1115" data-name="Group 1115" transform="translate(-606.808 -764.717)" opacity="0.345">
+      <circle id="Ellipse_120" data-name="Ellipse 120" cx="14.5" cy="14.5" r="14.5" transform="translate(762 769)" fill="none" stroke="#1bbde2" stroke-miterlimit="10" stroke-width="2"/>
+      <line id="Line_12" data-name="Line 12" y1="18.021" x2="13.724" transform="translate(657.534 870.098)" fill="none" stroke="#1bbde2" stroke-miterlimit="10" stroke-width="2" opacity="0.3"/>
+      <g id="Group_985" data-name="Group 985" transform="translate(606.808 790.717)">
+        <path id="Path_961" data-name="Path 961" d="M515.546,114.087a6.718,6.718,0,0,1-5.365-10.755l42.432-56.445a6.718,6.718,0,1,1,10.739,8.074l-42.431,56.445A6.708,6.708,0,0,1,515.546,114.087Z" transform="translate(-508.833 -44.206)" fill="#1e6de0"/>
+      </g>
+      <line id="Line_23" data-name="Line 23" y1="37.069" x2="28.25" transform="translate(625.847 764.717)" fill="none" stroke="#1e6de0" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+    <path id="Union_24" data-name="Union 24" d="M62.167,145a21,21,0,0,1-21-21V80.075H6a6,6,0,0,1-6-6V6A6,6,0,0,1,6,0H74.166a6,6,0,0,1,6,6V56.269H109a21,21,0,0,1,21,21V124a21,21,0,0,1-21,21Z" transform="translate(42.192 0.283)" fill="url(#linear-gradient)"/>
+    <text id="_02" data-name="02" transform="translate(45.192 110.283)" fill="#3f3356" font-size="100" font-family="Raleway-ExtraBold, Raleway" font-weight="800" letter-spacing="0.03em"><tspan x="0" y="0">02</tspan></text>
+  </g>
+</svg>

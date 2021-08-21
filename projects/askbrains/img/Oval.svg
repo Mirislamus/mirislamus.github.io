@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="60" viewBox="0 0 60 60">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.956" y1="-0.346" x2="0.153" y2="1.325" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7024c4"/>
+      <stop offset="0.415" stop-color="#c21975"/>
+      <stop offset="0.702" stop-color="#c74c4d"/>
+      <stop offset="1" stop-color="#e09b3d"/>
+    </linearGradient>
+    <filter id="Oval" x="0" y="0" width="60" height="60" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Oval)">
+    <circle id="Oval-2" data-name="Oval" cx="18" cy="18" r="18" transform="translate(12 8)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
