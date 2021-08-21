@@ -1,5 +1,11 @@
 'use strict';
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -62,7 +68,94 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       header.classList.remove('scroll');
     }
-  }); // Inits
+  }); // Accordion
+
+  {
+    var Accordion = /*#__PURE__*/function () {
+      function Accordion() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, Accordion);
+
+        var _options$accordion = options.accordion,
+            accordion = _options$accordion === void 0 ? '.accordionItem' : _options$accordion,
+            _options$accordionCon = options.accordionContents,
+            accordionContents = _options$accordionCon === void 0 ? '.accordionContent' : _options$accordionCon,
+            _options$closeOther = options.closeOther,
+            closeOther = _options$closeOther === void 0 ? true : _options$closeOther;
+        this.accordion = accordion;
+        this.accordionContents = accordionContents;
+        this.closeOther = closeOther;
+        this.init();
+      }
+
+      _createClass(Accordion, [{
+        key: "init",
+        value: function init() {
+          var _this2 = this;
+
+          var accordion = document.querySelectorAll(this.accordion);
+          var accordionContents = document.querySelectorAll(this.accordionContents);
+          accordion.forEach(function (element, index, array) {
+            element.addEventListener('click', function () {
+              var accordionContentItem = document.querySelector("".concat(element.dataset.target));
+
+              if (_this2.closeOther) {
+                if (!element.classList.contains('active')) {
+                  var _iterator = _createForOfIteratorHelper(array),
+                      _step;
+
+                  try {
+                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                      var accordionItems = _step.value;
+                      accordionItems.classList.remove('active');
+                      accordionItems.attributes['aria-selected'].value = false;
+                    }
+                  } catch (err) {
+                    _iterator.e(err);
+                  } finally {
+                    _iterator.f();
+                  }
+
+                  var _iterator2 = _createForOfIteratorHelper(accordionContents),
+                      _step2;
+
+                  try {
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      var accordionContentItems = _step2.value;
+                      accordionContentItems.classList.remove('active');
+                      accordionContentItems.attributes['aria-selected'].value = false;
+                    }
+                  } catch (err) {
+                    _iterator2.e(err);
+                  } finally {
+                    _iterator2.f();
+                  }
+                }
+              }
+
+              element.classList.toggle('active');
+
+              if (element.classList.contains('active')) {
+                element.attributes['aria-selected'].value = true;
+              } else {
+                element.attributes['aria-selected'].value = false;
+              }
+
+              if (accordionContentItem) {
+                accordionContentItem.classList.toggle('active');
+                accordionContentItem.attributes['aria-selected'].value = true;
+              }
+            });
+          });
+        }
+      }]);
+
+      return Accordion;
+    }();
+
+    new Accordion();
+  } // Inits
 
   var reviewsSlider = new Swiper(".reviewsSlider", {
     spaceBetween: 24,
