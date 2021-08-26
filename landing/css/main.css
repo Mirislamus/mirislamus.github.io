@@ -256,6 +256,7 @@ img, svg, iframe {
 }
 .page-header {
   background: url(../img/header-bg.svg) no-repeat top/cover;
+  padding-top: 94px;
   padding-bottom: 345px;
   overflow: hidden;
 }
@@ -267,7 +268,6 @@ img, svg, iframe {
   width: -moz-max-content;
   width: max-content;
   margin-left: auto;
-  padding-top: 22px;
 }
 .navigation li:not(:last-child) {
   margin-right: 41px;
@@ -278,6 +278,7 @@ img, svg, iframe {
 
 .logo {
   display: inline-block;
+  transition: 0.2s ease-in;
 }
 
 .navigation__list {
@@ -305,7 +306,7 @@ img, svg, iframe {
   transform: translateY(-19px);
 }
 .navigation__link:hover::after, .navigation__link:focus::after {
-  transform: translateY(-6px);
+  transform: translateY(-1px);
 }
 
 .navigation__btn {
@@ -329,11 +330,48 @@ img, svg, iframe {
 }
 
 .page-header__top {
-  margin-bottom: 47px;
+  padding-top: 22px;
+  padding-bottom: 10px;
+  margin-top: -14px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  transition: 0.2s ease-in;
+  border-bottom: 2px solid transparent;
+}
+.page-header__top .container {
+  display: flex;
+  align-items: center;
+}
+.page-header__top .logo {
+  height: 50px;
+  visibility: hidden;
+  opacity: 0;
+}
+.page-header__top .logo img {
+  height: 100%;
+}
+.page-header__top.scroll {
+  background-color: var(--pink);
+  border-color: var(--red);
+}
+.page-header__top.scroll .logo {
+  visibility: visible;
+  opacity: 1;
+}
+.page-header__top.scroll + .page-header__bottom .logo {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .header-info__logo {
   margin-bottom: 90px;
+}
+
+.page-header__bottom > .container {
+  position: relative;
 }
 
 .social {
@@ -419,9 +457,12 @@ img, svg, iframe {
 }
 
 .parallax {
-  flex: 0 0 715px;
-  position: relative;
+  max-width: 715px;
+  width: 100%;
+  position: absolute;
   min-height: 793px;
+  right: 35px;
+  padding-right: 35px;
 }
 
 .parallax__image--1 {
@@ -434,8 +475,8 @@ img, svg, iframe {
 
 .parallax__image--2 {
   top: 50% !important;
-  margin-top: -160px;
-  right: 40px !important;
+  margin-top: -152px;
+  right: 0 !important;
   left: initial !important;
 }
 

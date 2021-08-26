@@ -7,5 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
     animateClass: 'animate__animated' // animation css class (default is animated)
 
   });
-  wow.init();
+  wow.init(); //Scroll Header
+
+  var header = document.querySelector('.page-header__top');
+  window.addEventListener('scroll', function (e) {
+    var scrollPosition = window.scrollY;
+
+    if (scrollPosition >= 100) {
+      header.classList.add('scroll');
+    } else {
+      header.classList.remove('scroll');
+    }
+  });
 });
