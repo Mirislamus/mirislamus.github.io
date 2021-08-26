@@ -1,5 +1,8 @@
 
 
+
+
+
 <!DOCTYPE html>
 <html class="page" lang="en">
 <head>
@@ -9,15 +12,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property="og:image" content="path/to/image.jpg">
-	<meta name="theme-color" content="#000">
+	<meta name="theme-color" content="#ff6363">
 
 	<title>Digitalised</title>
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
-	<link rel="stylesheet" href="./fonts/fonts.css">
-	<link rel="stylesheet" href="./css/styles.min.css">
-	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./fonts/fonts.css?v2">
+	<link rel="stylesheet" href="./css/styles.min.css?v2">
+	<link rel="stylesheet" href="./css/main.css?v2">
 </head>
 <body class="page__body">
 	<header class="page-header">
@@ -27,7 +30,7 @@
 					<img src="./img/logo-pc.svg" alt="Digitalised logo">
 				</a>
 				<nav class="navigation">
-					<ul class="navigation__list list-reset">
+					<ul class="navigation__list list-reset" id="menu">
 						<li>
 							<a href="#" class="navigation__link">MAIN</a>
 						</li>
@@ -38,12 +41,12 @@
 							<a href="#" class="navigation__link">REQUEST ACCESS</a>
 						</li>
 						<li>
-							<a href="#" class="navigation__btn">PROTOTYPE</a>
+							<a href="#" class="navigation__link navigation__btn">PROTOTYPE</a>
 						</li>
 					</ul>
 					<button class="hamburger btn-reset" type="button">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<rect y="9" width="6" height="6" rx="1" fill="#F9DEDE"/>
+							<rect class="hamburger__path" y="9" width="6" height="6" rx="1" fill="#F9DEDE"/>
 							<rect x="9" y="9" width="6" height="6" rx="1" fill="#253656"/>
 							<rect x="18" y="9" width="6" height="6" rx="1" fill="#253656"/>
 							<rect y="18" width="24" height="6" rx="1" fill="#253656"/>
@@ -112,13 +115,16 @@
 							</form>
 						</div>
 						<div class="parallax" id="parallax" data-relative-input="true">
-							<picture data-depth="0.3" class="parallax__image parallax__image--1 wow fromLeft">
+							<picture data-depth="0.2" class="parallax__image parallax__image--1 wow fromLeft">
+								<source srcset="./img/digi-mob.svg" media="(max-width: 767px)">
 								<img src="./img/digi.svg" alt="digi">
 							</picture>
-							<picture data-depth="-0.3" class="parallax__image parallax__image--2 wow fromRight">
-								<img  src="./img/tali.svg" alt="tali">
+							<picture data-depth="-0.2" class="parallax__image parallax__image--2 wow fromRight">
+								<source srcset="./img/tali-mob.svg" media="(max-width: 767px)">
+								<img src="./img/tali.svg" alt="tali">
 							</picture>
-							<picture data-depth="0.3" class="parallax__image parallax__image--3 wow fromLeft">
+							<picture data-depth="0.2" class="parallax__image parallax__image--3 wow fromLeft">
+								<source srcset="./img/sed-mob.svg" media="(max-width: 767px)">
 								<img src="./img/sed.svg" alt="sed">
 							</picture>
 						</div>
@@ -131,14 +137,13 @@
 
 <main class="page-main">
   
-
-
+  
 </main>
 <footer class="page-footer">
 
 </footer>
 
-<script src="./js/scripts.min.js"></script>
-<script src="./js/common.js"></script>
+<script src="./js/scripts.min.js?v2"></script>
+<script src="./js/common.js?v2"></script>
 </body>
 </html>
