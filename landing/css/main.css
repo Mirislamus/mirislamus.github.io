@@ -271,7 +271,7 @@ img {
   padding-top: 94px;
   padding-bottom: 481px;
   position: relative;
-  z-index: 2;
+  z-index: 6;
 }
 .page-header::before {
   content: url(../img/header-line.svg);
@@ -336,7 +336,7 @@ img {
   transition: 0.2s ease-in;
   transform: translateY(-19px);
 }
-.navigation__link:hover::after, .navigation__link:focus::after {
+.navigation__link:hover::after, .navigation__link:focus::after, .navigation__link.current::after {
   transform: translateY(-1px);
 }
 .hamburger {
@@ -424,6 +424,16 @@ img {
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
+  box-shadow: none;
+}
+.header-info__input::-moz-placeholder {
+  color: var(--blue);
+}
+.header-info__input:-ms-input-placeholder {
+  color: var(--blue);
+}
+.header-info__input::placeholder {
+  color: var(--blue);
 }
 .header-info__input:focus {
   outline: none;
@@ -1112,7 +1122,7 @@ img {
   }
 
   .navigation__list {
-    background: url(../img/menu-shape.svg) no-repeat left top/contain, rgba(37, 54, 86, 0.7);
+    background: url(../img/menu-shape.svg) no-repeat left top, rgba(37, 54, 86, 0.7);
     flex-direction: column;
     bottom: 0;
     left: 0;
@@ -1147,6 +1157,14 @@ img {
   .navigation li:not(:last-child) {
     margin-right: 0;
     margin-bottom: 30px;
+  }
+
+  .header-info__input {
+    border-width: 2px;
+  }
+
+  .features__top h3 br {
+    display: block;
   }
   .smart {
     margin-top: 0;
@@ -1322,6 +1340,10 @@ img {
   .features-row {
     position: relative;
     z-index: 3;
+  }
+
+  .benefit-wrap {
+    z-index: 2;
   }
 }
 /*# sourceMappingURL=main.css.map */
