@@ -1,8 +1,5 @@
 
 
-
-
-
 <!DOCTYPE html>
 <html class="page" lang="en">
 <head>
@@ -18,12 +15,16 @@
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
-	<link rel="stylesheet" href="./fonts/fonts.css?v2">
-	<link rel="stylesheet" href="./css/styles.min.css?v2">
-	<link rel="stylesheet" href="./css/main.css?v2">
+	<link rel="stylesheet" href="./fonts/fonts.css?v3">
+	<link rel="stylesheet" href="./css/styles.min.css?v3">
+	<link rel="stylesheet" href="./css/main.css?v3">
 </head>
 <body class="page__body">
 	<header class="page-header">
+		<picture>
+			<source srcset="./img/header-bg-mob.svg" media="(max-width: 767px)">
+			<img src="./img/header-bg.svg" alt="">
+		</picture>
 		<div class="page-header__top">
 			<div class="container">
 				<a href="#" class="logo">
@@ -115,17 +116,17 @@
 							</form>
 						</div>
 						<div class="parallax" id="parallax" data-relative-input="true">
-							<picture data-depth="0.2" class="parallax__image parallax__image--1 wow fromLeft">
+							<picture data-depth="0.2" class="parallax__image parallax__image--1">
 								<source srcset="./img/digi-mob.svg" media="(max-width: 767px)">
-								<img src="./img/digi.svg" alt="digi">
+								<img src="./img/digi.svg" alt="digi" class="wow fromLeft">
 							</picture>
-							<picture data-depth="-0.2" class="parallax__image parallax__image--2 wow fromRight">
+							<picture data-depth="-0.2" class="parallax__image parallax__image--2">
 								<source srcset="./img/tali-mob.svg" media="(max-width: 767px)">
-								<img src="./img/tali.svg" alt="tali">
+								<img src="./img/tali.svg" alt="tali" class="wow fromRight">
 							</picture>
-							<picture data-depth="0.2" class="parallax__image parallax__image--3 wow fromLeft">
+							<picture data-depth="0.2" class="parallax__image parallax__image--3">
 								<source srcset="./img/sed-mob.svg" media="(max-width: 767px)">
-								<img src="./img/sed.svg" alt="sed">
+								<img src="./img/sed.svg" alt="sed" class="wow fromLeft">
 							</picture>
 						</div>
 					</div>
@@ -137,13 +138,158 @@
 
 <main class="page-main">
   
-  
+  <section class="smart-wrap">
+    <div class="smart-wrap__bg">
+      <img src="./img/smart-bg.svg" alt="">
+      <img src="./img/smart-bg-2.svg" alt="" class="rellax-shape" data-rellax-speed="-1" data-rellax-speed="-2"  data-rellax-percentage="0.5">
+    </div>
+    <div class="container">
+      <div class="parallax-2" id="parallax2">
+        <img src="./img/p01.svg" alt="p1" data-depth="0.2">
+        <img src="./img/p02.svg" alt="p2" data-depth="-0.2">
+        <img src="./img/p03.svg" alt="p3" data-depth="0.1">
+        <img src="./img/p04.svg" alt="p4" data-depth="0.3">
+      </div>
+      <div class="inside-container inside-container--smart">
+        <h2 class="title smart__title wow bttAnimate">
+          <b>
+            Smart & <br>
+            Professional
+          </b>
+          <hr class="title__line">
+          <span class="p">
+            ABOUT US
+          </span>
+        </h2>
+        <div class="smart__text wow animate__fadeInUp">
+          <p>
+            Lorem ipsum dolor sit ametcon sectetur adipisicing elit, sed doiusmod tempor incidi labore et dolore. agnat aliqua. Ut enim ad mini veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat sit amet. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit ametcon sectetur adipisicing elit, sed doiusmod tempor incidi labore et dolore. agnat aliqua. Ut enim ad mini veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat sit amet. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="benefit-wrap">
+    <div class="benefit-wrap__bg">
+      <img src="./img/benefit-line-mob.svg" alt="" class="rellax-shape" data-rellax-speed="-1"  data-rellax-percentage="0.5">
+      <img src="./img/dots-shape.svg" alt="" class="rellax-shape" data-rellax-speed="1"  data-rellax-percentage="0.5">
+    </div>
+    <picture>
+			<source srcset="./img/benefit-bg-mob.svg" media="(max-width: 767px)">
+			<img src="./img/benefit-bg.svg" alt="">
+		</picture>
+
+    <div class="container">
+      <div class="parallax-3" id="parallax3">
+        <div class="circle" data-depth="-0.2"></div>
+        <div class="circle" data-depth="0.1"></div>
+        <div class="circle" data-depth="0.3"></div>
+        <img src="./img/circle.svg" alt="" data-depth="-0.2">
+      </div>
+      <div class="inside-container inside-container--btop">
+        <h2 class="title benefit__title title--right wow bttAnimate">
+          <span class="p">
+            OUR FEATURES
+          </span>
+          <hr class="title__line">
+          <b>
+            Convenience <br>
+            & Benefit
+          </b>
+        </h2>
+      </div>
+      <div class="inside-container inside-container--features">
+        <div class="features-row">
+          <div class="features__up">
+            <article class="feature">
+              <div class="features__top wow animate__fadeInUp">
+                <img src="./img/f1.svg" alt="Only Digital Services">
+                <h3>
+                  Only Digital <br>
+                  Services
+                </h3>
+              </div>
+              <p class="feature__text wow animate__fadeInUp">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+            <article class="feature">
+              <div class="features__top wow animate__fadeInUp">
+                <img src="./img/f2.svg" alt="Crypto & Fiat Payments">
+                <h3>
+                  Crypto & <br>
+                  Fiat Payments
+                </h3>
+              </div>
+              <p class="feature__text wow animate__fadeInUp">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+            <article class="feature">
+              <div class="features__top">
+                <img src="./img/f2.svg" alt="Trully Decentralised">
+                <h3>
+                  Trully <br>
+                  Decentralised
+                </h3>
+              </div>
+              <p class="feature__text">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+          </div>
+          <div class="features__down">
+            <article class="feature">
+              <div class="features__top wow animate__fadeInUp">
+                <img src="./img/f4.svg" alt="NFT-based">
+                <h3>
+                  NFT-based
+                </h3>
+              </div>
+              <p class="feature__text wow animate__fadeInUp">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+            <article class="feature">
+              <div class="features__top wow animate__fadeInUp">
+                <img src="./img/f5.svg" alt="Protection Mechanism">
+                <h3>
+                  Protection <br>
+                  Mechanism
+                </h3>
+              </div>
+              <p class="feature__text wow animate__fadeInUp">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+            <article class="feature">
+              <div class="features__top wow animate__fadeInUp">
+                <img src="./img/f6.svg" alt="Resonable Fees and Rewards">
+                <h3>
+                  Resonable Fees <br>
+                  and Rewards
+                </h3>
+              </div>
+              <p class="feature__text wow animate__fadeInUp">
+                Lorem ipsum dolor sit ametcon sectetur adipisicing elit sed doiusmod tempor incidi labore.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 <footer class="page-footer">
 
 </footer>
 
-<script src="./js/scripts.min.js?v2"></script>
-<script src="./js/common.js?v2"></script>
+<script src="./js/scripts.min.js?v3"></script>
+<script src="./js/common.js?v3"></script>
 </body>
 </html>

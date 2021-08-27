@@ -1,27 +1,21 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
-  // Parallax and Animations
-  const wordsScene = document.getElementById('parallax');
-  const parallaxInstance = new Parallax(wordsScene);
+
+  const parallax1 = new Parallax(document.getElementById('parallax'));
+  const parallax2 = new Parallax(document.getElementById('parallax2'));
+  const parallax3 = new Parallax(document.getElementById('parallax3'));
+  const rellaxShape = new Rellax('.rellax-shape');
+
+
+
 
   const wow = new WOW({
-    animateClass: 'animate__animated', // animation css class (default is animated)
+    animateClass: 'animate__animated',
   });
   wow.init();
 
-  // Scroll Header
-  const header = document.querySelector('.page-header__top');
-  window.addEventListener('scroll', function(e) {
-    const scrollPosition = window.scrollY;
 
-    if (scrollPosition >= 50) {
-      header.classList.add('scroll');
-    } else {
-      header.classList.remove('scroll');
-    }
-  });
 
-  // Mobile Menu
   if(window.innerWidth < 768) {
     var mobileMenu = new MobileSwipeMenu('#menu', {
       mode: 'left',
@@ -32,6 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.hamburger').addEventListener('click', function () {
         mobileMenu.toggle();
     });
-  }
 
+  }
 });

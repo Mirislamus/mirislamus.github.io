@@ -29,8 +29,8 @@
   }
 }
 .fromLeft {
-  -webkit-animation: 0.3s ease-in;
-          animation: 0.3s ease-in;
+  -webkit-animation: 1s ease-in;
+          animation: 1s ease-in;
 }
 .fromLeft.animate__animated {
   -webkit-animation-name: fromLeft;
@@ -38,8 +38,8 @@
 }
 
 .fromRight {
-  -webkit-animation: 0.3s ease-in;
-          animation: 0.3s ease-in;
+  -webkit-animation: 1s ease-in;
+          animation: 1s ease-in;
 }
 .fromRight.animate__animated {
   -webkit-animation-name: fromRight;
@@ -48,42 +48,42 @@
 
 @-webkit-keyframes fromLeft {
   0% {
-    margin-left: -50px;
+    transform: translateX(-50px);
     opacity: 0;
   }
   100% {
-    margin-left: 0;
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes fromLeft {
   0% {
-    margin-left: -50px;
+    transform: translateX(-50px);
     opacity: 0;
   }
   100% {
-    margin-left: 0;
+    transform: translateX(0);
     opacity: 1;
   }
 }
 @-webkit-keyframes fromRight {
   0% {
-    margin-right: -50px;
+    transform: translateX(50px);
     opacity: 0;
   }
   100% {
-    margin-right: 0;
+    transform: translateX(0);
     opacity: 1;
   }
 }
 @keyframes fromRight {
   0% {
-    margin-right: -50px;
+    transform: translateX(50px);
     opacity: 0;
   }
   100% {
-    margin-right: 0;
+    transform: translateX(0);
     opacity: 1;
   }
 }

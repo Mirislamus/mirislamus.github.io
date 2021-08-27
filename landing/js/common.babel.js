@@ -1,25 +1,14 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Parallax and Animations
-  var wordsScene = document.getElementById('parallax');
-  var parallaxInstance = new Parallax(wordsScene);
+  var parallax1 = new Parallax(document.getElementById('parallax'));
+  var parallax2 = new Parallax(document.getElementById('parallax2'));
+  var parallax3 = new Parallax(document.getElementById('parallax3'));
+  var rellaxShape = new Rellax('.rellax-shape');
   var wow = new WOW({
-    animateClass: 'animate__animated' // animation css class (default is animated)
-
+    animateClass: 'animate__animated'
   });
-  wow.init(); // Scroll Header
-
-  var header = document.querySelector('.page-header__top');
-  window.addEventListener('scroll', function (e) {
-    var scrollPosition = window.scrollY;
-
-    if (scrollPosition >= 50) {
-      header.classList.add('scroll');
-    } else {
-      header.classList.remove('scroll');
-    }
-  }); // Mobile Menu
+  wow.init();
 
   if (window.innerWidth < 768) {
     var mobileMenu = new MobileSwipeMenu('#menu', {
