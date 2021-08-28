@@ -4,13 +4,13 @@
 </mask>
 <g mask="url(#mask0)">
 <rect y="10.4414" width="158.973" height="80.4271" fill="#253656"/>
-<ellipse cx="42.8221" cy="93.1766" rx="42.8221" ry="43.1766" fill="#DA5454"/>
+<ellipse cx="42.8221" cy="93.1766" rx="42.8221" ry="43.1766" fill="#D24747"/>
 <ellipse cx="113.633" cy="89.7397" rx="42.8221" ry="43.1766" fill="#F9DEDE"/>
 <ellipse cx="113.633" cy="89.7397" rx="42.8221" ry="43.1766" fill="#F9DEDE"/>
-<ellipse cx="113.633" cy="89.7397" rx="42.8221" ry="43.1766" fill="#FF9696"/>
+<ellipse cx="113.633" cy="89.7397" rx="42.8221" ry="43.1766" fill="#D17777"/>
 <ellipse cx="16.7928" cy="5.07961" rx="42.8221" ry="43.1766" fill="#F9DEDE"/>
 <ellipse cx="16.7928" cy="5.07961" rx="42.8221" ry="43.1766" fill="#F9DEDE"/>
-<ellipse cx="16.7928" cy="5.07961" rx="42.8221" ry="43.1766" fill="#FF9696"/>
-<ellipse cx="103.556" cy="28.5022" rx="28.2682" ry="28.5022" fill="#F9DEDE"/>
+<ellipse cx="16.7928" cy="5.07961" rx="42.8221" ry="43.1766" fill="#D17777"/>
+<ellipse cx="103.556" cy="28.5022" rx="28.2682" ry="28.5022" fill="#F8C6C6"/>
 </g>
 </svg>
