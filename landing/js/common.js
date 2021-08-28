@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const rellaxShape = new Rellax('.rellax-shape');
 
 
-
+  if(window.innerWidth > 767) {
+    const rellaxForm = new Rellax('.rellax-form');
+  }
 
   const wow = new WOW({
     animateClass: 'animate__animated',
@@ -51,12 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const leaveModal = document.querySelector('.leaveModal');
 
   leaveModal.addEventListener('click', () => {
-    modal.classList.remove('open');
+    modal.classList.add('close');
   });
 
   okModal.addEventListener('click', () => {
     localStorage.setItem('modalWindowClosed', true);
     modal.classList.remove('open');
+
   });
 
   window.addEventListener('scroll', function(e) {
@@ -67,5 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(halfHeight && localStorage.getItem('modalWindowClosed') === null) {
       modal.classList.add('open');
     }
+
   });
 });

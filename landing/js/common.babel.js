@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // const parallax3 = new Parallax(document.getElementById('parallax3'));
 
   var rellaxShape = new Rellax('.rellax-shape');
+
+  if (window.innerWidth > 767) {
+    var rellaxForm = new Rellax('.rellax-form');
+  }
+
   var wow = new WOW({
     animateClass: 'animate__animated'
   });
@@ -40,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var okModal = document.querySelector('.okModal');
   var leaveModal = document.querySelector('.leaveModal');
   leaveModal.addEventListener('click', function () {
-    modal.classList.remove('open');
+    modal.classList.add('close');
   });
   okModal.addEventListener('click', function () {
     localStorage.setItem('modalWindowClosed', true);
