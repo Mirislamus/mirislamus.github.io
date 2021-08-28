@@ -642,7 +642,15 @@ picture {
 }
 
 .parallax__image {
+  -webkit-font-smooth: subpixel-antialiased;
+}
+.parallax__image img {
   will-change: transform;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  transform: perspective(1px) translateZ(0);
+  filter: blur(0);
 }
 .smart {
   margin-top: -270px;
