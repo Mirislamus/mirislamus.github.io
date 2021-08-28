@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const parallax1 = new Parallax(document.getElementById('parallax'));
-  // const parallax2 = new Parallax(document.getElementById('parallax2'));
-  // const parallax3 = new Parallax(document.getElementById('parallax3'));
+  const parallax2 = new Parallax(document.getElementById('parallax2'));
+  const parallax3 = new Parallax(document.getElementById('parallax3'));
   const rellaxShape = new Rellax('.rellax-shape');
 
 
@@ -27,4 +27,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   }
+
+  // LocalStorage
+
+  const cookiesModal = document.querySelector('.cookies');
+  const cookiesModalAccept = document.querySelector('.acceptCookies');
+  const cookiesModalClose = document.querySelector('.closeCookies');
+
+  cookiesModalClose.addEventListener('click', () => {
+    cookiesModal.classList.remove('open');
+  });
+  cookiesModalAccept.addEventListener('click', () => {
+    localStorage.setItem('cookies-modal', true);
+    cookiesModal.classList.remove('open');
+  });
+
+  if(localStorage.getItem('cookies-modal') === null) {
+    cookiesModal.classList.add('open')
+  }
+
+  const modal = document.querySelector('.modal');
+  const okModal = document.querySelector('.okModal');
+  const leaveModal = document.querySelector('.leaveModal');
+
+  leaveModal.addEventListener('click', () => {
+    modal.classList.remove('open');
+  });
+  okModal.addEventListener('click', () => {
+    localStorage.setItem('modal', true);
+    modal.classList.remove('open');
+  });
+
+  window.addEventListener('scroll', function(e) {
+    const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const halfHeight = parseInt(windowScroll / windowHeight * 100) === 50;
+
+    if(halfHeight && localStorage.getItem('modal') === null) {
+      modal.classList.add('open');
+      console.log(1)
+    }
+  });
 });
