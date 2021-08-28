@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const parallax1 = new Parallax(document.getElementById('parallax'));
-  const parallax2 = new Parallax(document.getElementById('parallax2'));
-  const parallax3 = new Parallax(document.getElementById('parallax3'));
+  // const parallax2 = new Parallax(document.getElementById('parallax2'));
+  // const parallax3 = new Parallax(document.getElementById('parallax3'));
   const rellaxShape = new Rellax('.rellax-shape');
 
 
