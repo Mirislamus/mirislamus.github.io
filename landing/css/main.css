@@ -709,7 +709,7 @@ picture {
 }
 
 .benefit-wrap {
-  z-index: 2;
+  z-index: 3;
   position: relative;
   padding-top: 300px;
   margin-top: -140px;
@@ -1580,10 +1580,6 @@ picture {
   .features-row {
     position: relative;
     z-index: 3;
-  }
-
-  .benefit-wrap {
-    z-index: 2;
   }
 
   .container {
