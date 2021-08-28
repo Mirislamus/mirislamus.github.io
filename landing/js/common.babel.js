@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
     cookiesModal.classList.remove('open');
   });
   cookiesModalAccept.addEventListener('click', function () {
-    localStorage.setItem('cookies-modal1', true);
+    localStorage.setItem('cookiesModalClosed', true);
     cookiesModal.classList.remove('open');
   });
 
-  if (localStorage.getItem('cookies-modal1') === null) {
+  if (localStorage.getItem('cookiesModalClosed') === null) {
     cookiesModal.classList.add('open');
   }
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.classList.remove('open');
   });
   okModal.addEventListener('click', function () {
-    localStorage.setItem('modalClosed', true);
+    localStorage.setItem('modalWindowClosed', true);
     modal.classList.remove('open');
   });
   window.addEventListener('scroll', function (e) {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     var halfHeight = parseInt(windowScroll / windowHeight * 100) === 50;
 
-    if (halfHeight && localStorage.getItem('modalClosed') === null) {
+    if (halfHeight && localStorage.getItem('modalWindowClosed') === null) {
       modal.classList.add('open');
     }
   });
