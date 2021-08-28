@@ -80,24 +80,12 @@ img {
 img, svg, iframe {
   vertical-align: top;
 }
-
-img {
-  image-rendering: optimizeSpeed;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -o-crisp-edges;
-  -ms-interpolation-mode: nearest-neighbor;
-      image-rendering: pixelated;
-  image-rendering: optimize-contrast;
-}
-
 ::-moz-placeholder {
   opacity: 1;
 }
-
 :-ms-input-placeholder {
   opacity: 1;
 }
-
 ::placeholder {
   opacity: 1;
 }
@@ -641,10 +629,9 @@ picture {
   top: initial !important;
 }
 
-.parallax__image {
-  -webkit-font-smooth: subpixel-antialiased;
-}
-.parallax__image img {
+.parallax__image img,
+.parallax__image,
+.parallax {
   will-change: transform;
   -webkit-font-smoothing: subpixel-antialiased;
   -webkit-backface-visibility: hidden;
@@ -954,6 +941,17 @@ picture {
   }
   .navigation__btn:hover, .navigation__btn:focus {
     color: var(--blue);
+  }
+}
+
+@media (min-width: 1140px) {
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: pixelated;
+    image-rendering: optimize-contrast;
   }
 }
 
