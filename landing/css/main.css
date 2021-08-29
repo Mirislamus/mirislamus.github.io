@@ -1706,7 +1706,7 @@ picture {
   .footer-line {
     display: block;
     position: absolute;
-    top: -10px;
+    top: 0;
     left: 0;
     right: 0;
     width: 100%;
