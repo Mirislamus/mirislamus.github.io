@@ -1844,7 +1844,8 @@ picture {
   }
 
   .benefit-wrap > picture img {
-    top: 160px;
+    top: initial;
+    bottom: 160px;
   }
 
   .features__top {
