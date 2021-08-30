@@ -1308,6 +1308,13 @@ textarea.form__input {
     z-index: 2;
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .navigation__link:not(.navigation__btn):hover::after,
+.navigation__link:not(.navigation__btn):focus::after,
+.navigation__link:not(.navigation__btn).current::after {
+    transform: translateY(-8px);
+  }
+}
 @media (min-width: 1140px) {
   .page__wrap {
     overflow: hidden;
@@ -1585,12 +1592,6 @@ textarea.form__input {
 
   .smart__text {
     max-width: 100%;
-  }
-
-  .navigation__link:not(.navigation__btn):hover::after,
-.navigation__link:not(.navigation__btn):focus::after,
-.navigation__link:not(.navigation__btn).current::after {
-    transform: translateY(-8px);
   }
 
   .lang-container {
@@ -2247,8 +2248,7 @@ textarea.form__input {
     line-height: 16px;
   }
 
-  .navigation__link:not(.navigation__btn):hover::after,
-.navigation__link:not(.navigation__btn):focus::after,
+  .navigation__link:not(.navigation__btn):focus::after,
 .navigation__link:not(.navigation__btn).current::after {
     transform: translateY(0);
   }
