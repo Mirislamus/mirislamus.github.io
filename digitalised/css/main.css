@@ -1109,8 +1109,8 @@ picture {
 
 .lang__items {
   row-gap: 10px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 100%;
   align-items: center;
   max-height: 20px;
   overflow: hidden;

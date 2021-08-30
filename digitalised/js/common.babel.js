@@ -89,8 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var lang = document.querySelector('.lang');
   lang.addEventListener('click', function () {
     lang.classList.toggle('open');
-    var timeout = setTimeout(function () {
+    var timeout = setInterval(function () {
       lang.classList.remove('open');
+      console.log('removed');
     }, 5000);
     langSwith.forEach(function (element, index, array) {
       element.addEventListener('click', function () {

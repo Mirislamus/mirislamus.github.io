@@ -101,10 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lang.classList.toggle('open');
 
-    let timeout = setTimeout(function() {
+    let timeout = setInterval(function() {
       lang.classList.remove('open');
+      console.log('removed')
     }, 5000);
-    
+
     langSwith.forEach((element, index, array) => {
       element.addEventListener('click', ()=> {
         for(let item of array) {
