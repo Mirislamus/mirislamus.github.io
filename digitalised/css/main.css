@@ -1329,7 +1329,6 @@ textarea.form__input {
   }
   .lang:not(.open):hover .lang__switch {
     color: #FF9696;
-    transition: 0s;
   }
   .lang:not(.open):hover path {
     fill: #FF9696;
