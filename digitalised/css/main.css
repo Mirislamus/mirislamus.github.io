@@ -1132,18 +1132,14 @@ picture {
   overflow: hidden;
   border-radius: 0 0 15px 15px;
 }
-.lang.open .lang__switch:hover {
-  background-color: #628BD9;
-  color: var(--pink);
-}
-.lang:not(.open):hover, .lang:not(.open):focus {
+.lang:not(.open):focus {
   background-color: #628BD9;
 }
-.lang:not(.open):hover .lang__switch, .lang:not(.open):focus .lang__switch {
+.lang:not(.open):focus .lang__switch {
   color: var(--red);
   transition: 0s;
 }
-.lang:not(.open):hover path, .lang:not(.open):focus path {
+.lang:not(.open):focus path {
   fill: var(--red);
 }
 .lang .lang__switch {
@@ -1323,6 +1319,20 @@ textarea.form__input {
   }
   .navigation__btn:hover, .navigation__btn:focus {
     color: var(--blue);
+  }
+  .lang.open .lang__switch:hover {
+    background-color: #628BD9;
+    color: var(--pink);
+  }
+  .lang:not(.open):hover {
+    background-color: #628BD9;
+  }
+  .lang:not(.open):hover .lang__switch {
+    color: var(--red);
+    transition: 0s;
+  }
+  .lang:not(.open):hover path {
+    fill: var(--red);
   }
   .lang__btn:hover path {
     fill: var(--red);
@@ -2230,7 +2240,7 @@ textarea.form__input {
     font-size: 12px;
     line-height: 15px;
     height: 24px;
-    padding-bottom: 9px;
+    padding-bottom: 7px;
     margin: 0;
   }
 
