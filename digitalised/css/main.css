@@ -1114,6 +1114,8 @@ picture {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 43px 43px;
+  transition: 0.2s ease-in;
+  margin-top: 8px;
 }
 
 .lang {
@@ -1131,13 +1133,17 @@ picture {
   height: 65px;
   overflow: hidden;
   border-radius: 0 0 15px 15px;
+  pointer-events: all;
 }
 .lang:not(.open):focus .lang__switch {
-  color: var(--red);
+  color: #FF9696;
   transition: 0s;
 }
 .lang:not(.open):focus path {
-  fill: var(--red);
+  fill: #FF9696;
+}
+.lang.open .lang__items {
+  margin-top: 0;
 }
 .lang .lang__switch {
   text-decoration: none;
@@ -1151,7 +1157,7 @@ picture {
   width: 100%;
   height: 43px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding-bottom: 4px;
   justify-content: center;
 }
@@ -1319,14 +1325,14 @@ textarea.form__input {
     color: var(--blue);
   }
   .lang.open .lang__switch:hover {
-    color: var(--pink);
+    color: #FF9696;
   }
   .lang:not(.open):hover .lang__switch {
-    color: var(--red);
+    color: #FF9696;
     transition: 0s;
   }
   .lang:not(.open):hover path {
-    fill: var(--red);
+    fill: #FF9696;
   }
   .lang__btn:hover path {
     fill: var(--red);
