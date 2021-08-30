@@ -15,9 +15,9 @@
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
-	<link rel="stylesheet" href="./fonts/fonts.css">
-	<link rel="stylesheet" href="./css/styles.min.css">
-	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./fonts/fonts.css?version-1.0">
+	<link rel="stylesheet" href="./css/styles.min.css?version-1.0">
+	<link rel="stylesheet" href="./css/main.css?version-1.0">
 </head>
 <body class="page__body">
 	<div class="page__wrap">
@@ -28,6 +28,21 @@
 			</picture>
 			<div class="page-header__top">
 				<div class="container">
+					<div class="inside-container lang-container">
+						<div class="lang">
+							<a href="#">
+								EN
+							</a>
+							<a href="#">
+								TR
+							</a>
+							<button class="btn-reset lang__btn" type="button">
+								<svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+									<path d="M0 6.32837L12.6569 6.32848L6.32848 12.6569L0 6.32837Z" fill="#F9DEDE"/>
+								</svg>
+							</button>
+						</div>
+					</div>
 					<a href="#" class="logo">
 						<img src="./img/logo-pc.svg" alt="Digitalised logo">
 					</a>
@@ -56,11 +71,15 @@
 							</svg>
 						</button>
 					</nav>
-				</div>
+				</div><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 4.99258L9.98525 4.99268L4.99267 9.98525L0 4.99258Z" fill="#F9DEDE"/>
+					</svg>
+
 			</div>
 			<div class="page-header__bottom">
 				<div class="container">
 					<div class="inside-container">
+
 						<div class="page-header__row">
 							<div class="header-info">
 								<a href="#" class="logo header-info__logo wow animate__fadeInUp">
@@ -313,7 +332,9 @@
         <form action="#" class="form rellax-form wow animate__fadeIn" data-rellax-percentage="0.5" data-rellax-speed="-1.8">
           <input type="text" class="form__input input-reset" placeholder="Enter your name*" required>
           <input type="email" class="form__input input-reset" placeholder="Enter your e-mail*" required>
-          <input type="text" class="form__input input-reset" placeholder="Enter your message*" required>
+          <div class="scroll-wrap" data-simplebar data-simplebar-auto-hide="false">
+            <textarea data-autoresize rows="1" class="form__input input-reset" placeholder="Enter your message*" required></textarea>
+          </div>
           <button class="form__btn btn-reset" type="submit">
             GO!
           </button>
@@ -437,8 +458,8 @@
     </div>
   </div>
 </div>
-<script src="./js/scripts.min.js"></script>
-<script src="./js/common.js"></script>
+<script src="./js/scripts.min.js?version-1.0"></script>
+<script src="./js/common.js?version-1.0"></script>
 </body>
 </html>
 

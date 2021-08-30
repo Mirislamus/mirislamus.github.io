@@ -60,4 +60,23 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.classList.add('open');
     }
   });
+  var textarea = document.querySelector('textarea');
+  textarea.value = '';
+
+  function addAutoResize() {
+    document.querySelectorAll('[data-autoresize]').forEach(function (element) {
+      var offset = element.offsetHeight - element.clientHeight;
+      element.addEventListener('keyup', function (event) {
+        event.target.style.height = 'auto';
+        event.target.style.height = event.target.scrollHeight + offset + 4 + 'px';
+      });
+      element.removeAttribute('data-autoresize');
+    });
+  }
+
+  addAutoResize();
+  var langBtn = document.querySelector('.lang__btn');
+  langBtn.addEventListener('click', function () {
+    langBtn.parentElement.classList.add('open');
+  });
 });

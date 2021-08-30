@@ -800,7 +800,7 @@ picture {
 }
 
 .benefit-wrap {
-  z-index: 4;
+  z-index: 1;
   position: relative;
   padding-top: 300px;
   margin-top: -140px;
@@ -827,7 +827,7 @@ picture {
 
 .smart-wrap {
   position: relative;
-  z-index: 3;
+  z-index: 1;
 }
 .smart-wrap > .container {
   position: relative;
@@ -984,7 +984,7 @@ picture {
 
 .contact {
   position: relative;
-  z-index: 1;
+  z-index: 0;
   margin-top: -350px;
 }
 
@@ -1024,8 +1024,6 @@ picture {
 
 .contact {
   padding-top: 600px;
-  position: relative;
-  z-index: 3;
 }
 .contact .title {
   padding-left: 75px;
@@ -1065,6 +1063,7 @@ picture {
   background-color: transparent;
   height: 38px;
   border-bottom: 3px solid currentColor;
+  width: 260px;
 }
 .form__input:focus {
   outline: none;
@@ -1107,6 +1106,137 @@ picture {
   display: none;
 }
 
+.lang {
+  width: 59px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--blue);
+  padding-top: 22px;
+  border-radius: 0 0 15px 15px;
+  padding-bottom: 13px;
+  transition: 0.2s ease-in;
+  pointer-events: all;
+}
+.lang a {
+  text-decoration: none;
+  color: var(--pink);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  transition: 0.2s ease-in;
+}
+.lang a:hover, .lang a:focus {
+  color: var(--red);
+}
+.lang a:nth-child(2) {
+  display: none;
+  margin-top: 10px;
+}
+.lang.open {
+  padding-bottom: 16px;
+}
+.lang.open a:nth-child(2) {
+  display: block;
+}
+.lang.open .lang__btn {
+  display: none;
+}
+
+.lang__btn {
+  height: 13px;
+  width: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lang__btn path {
+  transition: 0.2s ease-in;
+}
+.lang__btn:hover path, .lang__btn:focus path {
+  fill: var(--red);
+}
+
+.page-header .container {
+  position: relative;
+}
+
+.lang-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -8px;
+  pointer-events: none;
+}
+textarea.form__input {
+  padding-top: 7px;
+  padding-bottom: 5px;
+  resize: none;
+  overflow: hidden;
+  border-bottom: 0;
+  transition: 0.1s ease-in;
+}
+
+.simplebar-track {
+  left: 0;
+  right: initial;
+  background: #FF9696;
+  border-radius: 7px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.1s ease-in;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar::before {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.simplebar-scrollbar::before {
+  background-color: var(--blue);
+  border-radius: 7px;
+}
+
+.simplebar-scrollbar.simplebar-visible::before {
+  opacity: 1;
+}
+
+.scroll-wrap {
+  overflow-y: auto;
+  max-height: 98px;
+  padding-left: 26px;
+  margin-left: -26px;
+  position: relative;
+}
+.scroll-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 26px;
+  right: 0;
+  border-bottom: 3px solid var(--litered);
+}
+.scroll-wrap::before {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 26px;
+  right: 0;
+  border-bottom: 6px solid var(--white);
+  z-index: 2;
+}
+@media (min-width: 360px) and (max-width: 767px) {
+  footer.page-footer {
+    margin-top: 70px;
+  }
+}
 @media (min-width: 768px) {
   .navigation__link:not(.navigation__btn):hover::after, .navigation__link:not(.navigation__btn):focus::after, .navigation__link:not(.navigation__btn).current::after {
     transform: translateY(-1px);
@@ -1131,19 +1261,20 @@ picture {
     z-index: 2;
   }
 }
-
 @media (min-width: 1140px) {
   .page__wrap {
     overflow: hidden;
   }
 }
-
 @media (min-width: 1900px) {
   .form {
     padding-bottom: 130px;
   }
-}
 
+  .page-footer {
+    margin-top: 450px;
+  }
+}
 @media (max-width: 1189px) {
   .features__up,
 .features__down {
@@ -1171,7 +1302,6 @@ picture {
     padding-top: 500px;
   }
 }
-
 @media (max-width: 1139px) {
   h1, .h1 {
     font-size: 64px;
@@ -1240,7 +1370,7 @@ picture {
 
   .parallax-3 {
     zoom: 70%;
-    right: 169px;
+    right: 0;
     top: -330px;
   }
 
@@ -1260,7 +1390,6 @@ picture {
     margin-bottom: 100px;
   }
 }
-
 @media (max-width: 991px) {
   h1, .h1 {
     font-size: 44px;
@@ -1410,6 +1539,17 @@ picture {
     max-width: 100%;
   }
 
+  .navigation__link:not(.navigation__btn):hover::after,
+.navigation__link:not(.navigation__btn):focus::after,
+.navigation__link:not(.navigation__btn).current::after {
+    transform: translateY(-8px);
+  }
+
+  .lang-container {
+    top: -22px;
+    left: var(--gap);
+  }
+
   .features__up,
 .features__down {
     display: contents;
@@ -1461,7 +1601,6 @@ picture {
     padding-right: 75px;
   }
 }
-
 @media (max-width: 767px) {
   h1, .h1 {
     font-size: 25px;
@@ -1989,6 +2128,60 @@ picture {
 
   .contact {
     overflow: hidden;
+  }
+
+  .form__input {
+    width: 100%;
+  }
+
+  .scroll-wrap {
+    max-height: 81px;
+    min-height: 40px;
+  }
+  .scroll-wrap::after {
+    border-width: 2px;
+    bottom: 4px;
+  }
+  .scroll-wrap::before {
+    bottom: 6px;
+  }
+
+  .lang {
+    width: 28px;
+    border-radius: 2px;
+    padding-top: 1px;
+    padding-bottom: 2px;
+    margin-right: 48px;
+    margin-top: 5px;
+  }
+  .lang.open {
+    padding-bottom: 2px;
+  }
+  .lang a {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .lang-container {
+    top: 0;
+    left: initial;
+    right: var(--gap);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .lang__btn {
+    width: 10px;
+    height: 10px;
+    margin-top: -4px;
+  }
+  .lang__btn svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .lang a:nth-child(2) {
+    margin-top: 2px;
   }
 }
 /*# sourceMappingURL=main.css.map */

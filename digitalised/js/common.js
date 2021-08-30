@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rellaxShape = new Rellax('.rellax-shape');
 
 
-  if(window.innerWidth > 767) {
+  if (window.innerWidth > 767) {
     const rellaxForm = new Rellax('.rellax-form');
   }
 
@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  if(window.innerWidth < 768) {
+  if (window.innerWidth < 768) {
     var mobileMenu = new MobileSwipeMenu('#menu', {
       mode: 'left',
       hookWidth: 15,
     });
 
     document.querySelector('.hamburger').addEventListener('click', function () {
-        mobileMenu.toggle();
+      mobileMenu.toggle();
     });
 
   }
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cookiesModal.classList.remove('open');
   });
 
-  if(localStorage.getItem('cookiesModalClosed1') === null) {
+  if (localStorage.getItem('cookiesModalClosed1') === null) {
     cookiesModal.classList.add('open')
   }
 
@@ -62,14 +62,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  window.addEventListener('scroll', function(e) {
+  window.addEventListener('scroll', function (e) {
     const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const halfHeight = parseInt(windowScroll / windowHeight * 100) === 50;
 
-    if(halfHeight && localStorage.getItem('modalWindowClosed1') === null) {
+    if (halfHeight && localStorage.getItem('modalWindowClosed1') === null) {
       modal.classList.add('open');
     }
 
+  });
+
+  var textarea = document.querySelector('textarea');
+
+  textarea.value = '';
+
+  function addAutoResize() {
+    document.querySelectorAll('[data-autoresize]').forEach(function (element) {
+      var offset = element.offsetHeight - element.clientHeight;
+      element.addEventListener('keyup', function (event) {
+        event.target.style.height = 'auto';
+        event.target.style.height = event.target.scrollHeight + offset + 4 + 'px';
+      });
+      element.removeAttribute('data-autoresize');
+    });
+  }
+  addAutoResize();
+
+  const langBtn = document.querySelector('.lang__btn');
+  langBtn.addEventListener('click', () => {
+    langBtn.parentElement.classList.add('open');
   });
 });
