@@ -1132,9 +1132,6 @@ picture {
   overflow: hidden;
   border-radius: 0 0 15px 15px;
 }
-.lang:not(.open):focus {
-  background-color: #628BD9;
-}
 .lang:not(.open):focus .lang__switch {
   color: var(--red);
   transition: 0s;
@@ -1187,6 +1184,7 @@ picture {
   bottom: 13px;
   left: 50%;
   transform: translateX(-50%);
+  transition: 0.2s ease-in;
 }
 .lang__btn path {
   transition: 0.2s ease-in;
@@ -1321,11 +1319,7 @@ textarea.form__input {
     color: var(--blue);
   }
   .lang.open .lang__switch:hover {
-    background-color: #628BD9;
     color: var(--pink);
-  }
-  .lang:not(.open):hover {
-    background-color: #628BD9;
   }
   .lang:not(.open):hover .lang__switch {
     color: var(--red);
