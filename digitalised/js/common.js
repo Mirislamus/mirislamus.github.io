@@ -97,14 +97,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const langSwith = document.querySelectorAll('.lang__switch');
   const lang = document.querySelector('.lang');
 
+  window.isTimeoutLocked = false;
   lang.addEventListener('click', ()=> {
 
     lang.classList.toggle('open');
 
-    let timeout = setInterval(function() {
-      lang.classList.remove('open');
-      console.log('removed')
-    }, 5000);
+    if(!window.isTimeoutLocked) {
+      var myFunction = function () {
+        window.isTimeoutLocked = false;
+        lang.classList.remove('open');
+      }
+     window.setTimeout(myFunction, 5000);
+     window.isTimeoutLocked = true;
+    }
 
     langSwith.forEach((element, index, array) => {
       element.addEventListener('click', ()=> {
@@ -124,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   });
+
 
   window.addEventListener('click', event => {
     if(!event.target.closest('.lang')) {

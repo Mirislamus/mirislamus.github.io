@@ -87,12 +87,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   var langSwith = document.querySelectorAll('.lang__switch');
   var lang = document.querySelector('.lang');
+  window.isTimeoutLocked = false;
   lang.addEventListener('click', function () {
     lang.classList.toggle('open');
-    var timeout = setInterval(function () {
-      lang.classList.remove('open');
-      console.log('removed');
-    }, 5000);
+
+    if (!window.isTimeoutLocked) {
+      var myFunction = function myFunction() {
+        window.isTimeoutLocked = false;
+        lang.classList.remove('open');
+      };
+
+      window.setTimeout(myFunction, 5000);
+      window.isTimeoutLocked = true;
+    }
+
     langSwith.forEach(function (element, index, array) {
       element.addEventListener('click', function () {
         var _iterator = _createForOfIteratorHelper(array),

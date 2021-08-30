@@ -1146,6 +1146,7 @@ picture {
   line-height: 20px;
   transition: 0.2s ease-in;
   cursor: pointer;
+  text-align: center;
 }
 .lang .lang__switch:hover {
   color: var(--red);
