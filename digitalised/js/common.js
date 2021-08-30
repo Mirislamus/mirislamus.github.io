@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function addAutoResize() {
     document.querySelectorAll('[data-autoresize]').forEach(function (element) {
       var offset = element.offsetHeight - element.clientHeight;
-      element.addEventListener('keyup', function (event) {
+      element.addEventListener('input', function (event) {
         event.target.style.height = 'auto';
         event.target.style.height = event.target.scrollHeight + offset + 4 + 'px';
       });
@@ -89,8 +89,53 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   addAutoResize();
 
-  const langBtn = document.querySelector('.lang__btn');
-  langBtn.addEventListener('click', () => {
-    langBtn.parentElement.classList.add('open');
+  const simpleBar = new SimpleBar(document.querySelector('.scroll-wrap'), {
+    autoHide: false,
+    direction: 'rtl',
+  });
+
+  const langSwith = document.querySelectorAll('.lang__switch');
+  const lang = document.querySelector('.lang');
+
+  lang.addEventListener('click', ()=> {
+
+    lang.classList.toggle('open');
+
+    let timeout = setTimeout(function() {
+      lang.classList.remove('open');
+    }, 5000);
+    
+    langSwith.forEach((element, index, array) => {
+      element.addEventListener('click', ()=> {
+        for(let item of array) {
+          item.classList.remove('current');
+        }
+        element.classList.add('current');
+        lang.classList.add('open');
+      });
+    });
+
+  });
+  langSwith.forEach(element => {
+    element.addEventListener('click', () => {
+      if(!element.classList.contains('current')) {
+        lang.classList.remove('open');
+      }
+    })
+  });
+
+  window.addEventListener('click', event => {
+    if(!event.target.closest('.lang')) {
+      lang.classList.remove('open');
+    }
+  });
+
+  const navigationTooltipBtn = document.querySelector('.navigation__btn');
+
+  navigationTooltipBtn.addEventListener('click', () => {
+    navigationTooltipBtn.nextElementSibling.classList.add('open');
+    setTimeout(function() {
+      navigationTooltipBtn.nextElementSibling.classList.remove('open');
+    }, 3000);
   });
 });

@@ -1,5 +1,11 @@
 'use strict';
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 document.addEventListener('DOMContentLoaded', function () {
   var parallax1 = new Parallax(document.getElementById('parallax')); // const parallax2 = new Parallax(document.getElementById('parallax2'));
   // const parallax3 = new Parallax(document.getElementById('parallax3'));
@@ -66,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function addAutoResize() {
     document.querySelectorAll('[data-autoresize]').forEach(function (element) {
       var offset = element.offsetHeight - element.clientHeight;
-      element.addEventListener('keyup', function (event) {
+      element.addEventListener('input', function (event) {
         event.target.style.height = 'auto';
         event.target.style.height = event.target.scrollHeight + offset + 4 + 'px';
       });
@@ -75,8 +81,55 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   addAutoResize();
-  var langBtn = document.querySelector('.lang__btn');
-  langBtn.addEventListener('click', function () {
-    langBtn.parentElement.classList.add('open');
+  var simpleBar = new SimpleBar(document.querySelector('.scroll-wrap'), {
+    autoHide: false,
+    direction: 'rtl'
+  });
+  var langSwith = document.querySelectorAll('.lang__switch');
+  var lang = document.querySelector('.lang');
+  lang.addEventListener('click', function () {
+    lang.classList.toggle('open');
+    var timeout = setTimeout(function () {
+      lang.classList.remove('open');
+    }, 5000);
+    langSwith.forEach(function (element, index, array) {
+      element.addEventListener('click', function () {
+        var _iterator = _createForOfIteratorHelper(array),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var item = _step.value;
+            item.classList.remove('current');
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        element.classList.add('current');
+        lang.classList.add('open');
+      });
+    });
+  });
+  langSwith.forEach(function (element) {
+    element.addEventListener('click', function () {
+      if (!element.classList.contains('current')) {
+        lang.classList.remove('open');
+      }
+    });
+  });
+  window.addEventListener('click', function (event) {
+    if (!event.target.closest('.lang')) {
+      lang.classList.remove('open');
+    }
+  });
+  var navigationTooltipBtn = document.querySelector('.navigation__btn');
+  navigationTooltipBtn.addEventListener('click', function () {
+    navigationTooltipBtn.nextElementSibling.classList.add('open');
+    setTimeout(function () {
+      navigationTooltipBtn.nextElementSibling.classList.remove('open');
+    }, 3000);
   });
 });
