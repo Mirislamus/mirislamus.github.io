@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navigationTooltipBtn.nextElementSibling.classList.add('open');
     setTimeout(function() {
       navigationTooltipBtn.nextElementSibling.classList.remove('open');
+      navigationTooltipBtn.blur();
     }, 3000);
   });
 });

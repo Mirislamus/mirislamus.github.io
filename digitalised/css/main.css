@@ -1273,7 +1273,7 @@ textarea.form__input {
   }
 }
 @media (min-width: 768px) {
-  .navigation__link:not(.navigation__btn):hover::after, .navigation__link:not(.navigation__btn).current::after {
+  .navigation__link:not(.navigation__btn):hover::after, .navigation__link:not(.navigation__btn).current::after, .navigation__link:not(.navigation__btn):focus::after {
     transform: translateY(-1px);
   }
   .navigation__btn {
@@ -1475,7 +1475,7 @@ textarea.form__input {
     transform: translateY(-23px);
   }
 
-  .navigation__link:hover::after {
+  .navigation__link:focus::after {
     transform: translateY(-8px);
   }
 
@@ -1790,10 +1790,10 @@ textarea.form__input {
   .navigation__link {
     color: #fff;
   }
-  .navigation__link:hover, .navigation__link.current {
+  .navigation__link:focus, .navigation__link.current {
     color: var(--blue);
   }
-  .navigation__link:hover::after, .navigation__link.current::after {
+  .navigation__link:focus::after, .navigation__link.current::after {
     transform: translateX(0);
   }
 
