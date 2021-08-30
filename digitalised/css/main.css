@@ -2246,5 +2246,11 @@ textarea.form__input {
     font-size: 13px;
     line-height: 16px;
   }
+
+  .navigation__link:not(.navigation__btn):hover::after,
+.navigation__link:not(.navigation__btn):focus::after,
+.navigation__link:not(.navigation__btn).current::after {
+    transform: translateY(0);
+  }
 }
 /*# sourceMappingURL=main.css.map */
