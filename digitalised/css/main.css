@@ -1108,12 +1108,12 @@ picture {
 }
 
 .lang__items {
-  row-gap: 10px;
+  width: 100%;
+  height: 43px;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 100%;
-  align-items: center;
-  max-height: 20px;
-  overflow: hidden;
+  grid-template-rows: 43px 43px;
 }
 
 .lang {
@@ -1121,16 +1121,30 @@ picture {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--blue);
-  padding-top: 22px;
-  border-radius: 0 0 15px 15px;
-  padding-bottom: 13px;
+  overflow: hidden;
   transition: 0.2s ease-in;
   pointer-events: all;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--blue);
+  height: 65px;
+  overflow: hidden;
+  border-radius: 0 0 15px 15px;
 }
-.lang.open .lang__items {
-  max-height: initial;
+.lang.open .lang__switch:hover {
+  background-color: #628BD9;
+  color: var(--pink);
+}
+.lang:not(.open):hover, .lang:not(.open):focus {
+  background-color: #628BD9;
+}
+.lang:not(.open):hover .lang__switch, .lang:not(.open):focus .lang__switch {
+  color: var(--red);
+  transition: 0s;
+}
+.lang:not(.open):hover path, .lang:not(.open):focus path {
+  fill: var(--red);
 }
 .lang .lang__switch {
   text-decoration: none;
@@ -1141,15 +1155,29 @@ picture {
   transition: 0.2s ease-in;
   cursor: pointer;
   text-align: center;
+  width: 100%;
+  height: 43px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+  justify-content: center;
 }
 .lang .lang__switch.current {
   order: -1;
 }
 .lang.open {
-  padding-bottom: 16px;
+  height: auto;
+}
+.lang.open .lang__items {
+  height: auto;
 }
 .lang.open .lang__btn {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.lang.open .lang__switch {
+  align-items: center;
+  padding-bottom: 0;
 }
 
 .lang__btn {
@@ -1159,6 +1187,10 @@ picture {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 13px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .lang__btn path {
   transition: 0.2s ease-in;
@@ -1291,15 +1323,6 @@ textarea.form__input {
   }
   .navigation__btn:hover, .navigation__btn:focus {
     color: var(--blue);
-  }
-  .lang:not(.open):hover path {
-    fill: var(--red);
-  }
-  .lang:not(.open):hover .lang__switch {
-    color: var(--red);
-  }
-  .lang .lang__switch:hover {
-    color: var(--red);
   }
   .lang__btn:hover path {
     fill: var(--red);
@@ -2194,11 +2217,11 @@ textarea.form__input {
 
   .lang {
     width: 28px;
+    height: 24px;
     border-radius: 2px;
-    padding-top: 1px;
-    padding-bottom: 2px;
     margin-right: 48px;
     margin-top: 5px;
+    overflow: hidden;
   }
   .lang.open {
     padding-bottom: 2px;
@@ -2206,6 +2229,18 @@ textarea.form__input {
   .lang .lang__switch {
     font-size: 12px;
     line-height: 15px;
+    height: 24px;
+    padding-bottom: 9px;
+    margin: 0;
+  }
+
+  .lang__items {
+    height: 24px;
+    grid-template-rows: 24px 24px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: -1px;
+    margin-bottom: -2px;
   }
 
   .lang-container {
@@ -2219,7 +2254,7 @@ textarea.form__input {
   .lang__btn {
     width: 10px;
     height: 10px;
-    margin-top: -4px;
+    bottom: 2px;
   }
   .lang__btn svg {
     max-width: 100%;
@@ -2228,10 +2263,6 @@ textarea.form__input {
 
   .scroll-wrap::after {
     bottom: 0;
-  }
-
-  .lang__items {
-    max-height: 15px;
   }
 
   .navigation__tooltip {

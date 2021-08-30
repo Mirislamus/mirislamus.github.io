@@ -118,15 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         element.classList.add('current');
-        lang.classList.add('open');
       });
-    });
-  });
-  langSwith.forEach(function (element) {
-    element.addEventListener('click', function () {
-      if (!element.classList.contains('current')) {
-        lang.classList.remove('open');
-      }
     });
   });
   window.addEventListener('click', function (event) {
