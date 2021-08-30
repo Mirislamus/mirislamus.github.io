@@ -1129,12 +1129,6 @@ picture {
   pointer-events: all;
   cursor: pointer;
 }
-.lang:not(.open):hover path {
-  fill: var(--red);
-}
-.lang:not(.open):hover .lang__switch {
-  color: var(--red);
-}
 .lang.open .lang__items {
   max-height: initial;
 }
@@ -1147,9 +1141,6 @@ picture {
   transition: 0.2s ease-in;
   cursor: pointer;
   text-align: center;
-}
-.lang .lang__switch:hover {
-  color: var(--red);
 }
 .lang .lang__switch.current {
   order: -1;
@@ -1171,9 +1162,6 @@ picture {
 }
 .lang__btn path {
   transition: 0.2s ease-in;
-}
-.lang__btn:hover path {
-  fill: var(--red);
 }
 
 .page-header .container {
@@ -1303,6 +1291,18 @@ textarea.form__input {
   }
   .navigation__btn:hover, .navigation__btn:focus {
     color: var(--blue);
+  }
+  .lang:not(.open):hover path {
+    fill: var(--red);
+  }
+  .lang:not(.open):hover .lang__switch {
+    color: var(--red);
+  }
+  .lang .lang__switch:hover {
+    color: var(--red);
+  }
+  .lang__btn:hover path {
+    fill: var(--red);
   }
   .smart-wrap {
     z-index: 2;
