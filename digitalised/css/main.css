@@ -1978,6 +1978,9 @@ textarea.form__input {
     position: relative;
     z-index: 2;
   }
+  .smart__text a {
+    color: var(--white);
+  }
   .smart {
     margin-top: 0;
   }
