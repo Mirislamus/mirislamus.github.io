@@ -155,12 +155,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }();
 
     new Accordion();
-  } // Inits
+  } // Tooltip
+
+  var tooltiBtn = document.querySelectorAll('.tooltipBtn');
+  tooltiBtn.forEach(function (element, index, array) {
+    element.addEventListener('click', function (event) {
+      if (!element.parentElement.classList.contains('tooltip--open')) {
+        var _iterator3 = _createForOfIteratorHelper(array),
+            _step3;
+
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var item = _step3.value;
+            item.parentElement.classList.remove('tooltip--open');
+          }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
+        }
+      }
+
+      element.parentElement.classList.toggle('tooltip--open');
+    });
+    window.addEventListener('click', function (event) {
+      if (!event.target.closest('.tooltip')) {
+        element.parentElement.classList.remove('tooltip--open');
+      }
+    });
+  }); // Inits
 
   var reviewsSlider = new Swiper(".reviewsSlider", {
     spaceBetween: 24,
     pagination: {
-      el: ".swiper-pagination",
+      el: ".reviewsSlider .swiper-pagination",
       clickable: true
     },
     breakpoints: {
@@ -174,5 +202,10 @@ document.addEventListener('DOMContentLoaded', function () {
         slidesPerView: 1
       }
     }
+  });
+  var merchSlider = new Swiper(".merchSlider", {
+    spaceBetween: 42,
+    slidesPerView: 'auto',
+    loop: true
   });
 });

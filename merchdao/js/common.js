@@ -108,11 +108,30 @@ document.addEventListener('DOMContentLoaded', () => {
     new Accordion();
   }
 
+  // Tooltip
+
+  const tooltiBtn = document.querySelectorAll('.tooltipBtn');
+  tooltiBtn.forEach((element, index, array) => {
+    element.addEventListener('click', (event) => {
+      if(!element.parentElement.classList.contains('tooltip--open')) {
+        for(let item of array) {
+          item.parentElement.classList.remove('tooltip--open')
+        }
+      }
+      element.parentElement.classList.toggle('tooltip--open');
+    });
+    window.addEventListener('click', event => {
+      if(!event.target.closest('.tooltip')) {
+        element.parentElement.classList.remove('tooltip--open');
+      }
+    });
+  });
+
   // Inits
   var reviewsSlider = new Swiper(".reviewsSlider", {
     spaceBetween: 24,
     pagination: {
-      el: ".swiper-pagination",
+      el: ".reviewsSlider .swiper-pagination",
       clickable: true,
     },
     breakpoints: {
@@ -126,5 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesPerView: 1,
       },
     }
+  });
+  var merchSlider = new Swiper(".merchSlider", {
+    spaceBetween: 42,
+    slidesPerView: 'auto',
+    loop: true,
   });
 });
