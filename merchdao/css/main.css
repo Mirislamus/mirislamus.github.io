@@ -1355,12 +1355,25 @@ img, svg, iframe {
 }
 
 .form {
-  background: url(../img/form-bg.svg) no-repeat 100% 136px;
   padding-bottom: 85px;
+  overflow: hidden;
+}
+
+.form__row {
+  display: flex;
 }
 
 .form__container {
   max-width: 516px;
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.form__image {
+  position: relative;
+  margin-left: -210px;
 }
 
 .input__text {
@@ -1479,6 +1492,9 @@ textarea.input__field {
 
   .review__content::after {
     bottom: -23px;
+  }
+  .form__image {
+    margin-left: -330px;
   }
 }
 
@@ -1660,7 +1676,7 @@ textarea.input__field {
     margin-bottom: 35px;
   }
   .form__container {
-    max-width: 100%;
+    max-width: 430px;
   }
 
   .form {
@@ -1944,6 +1960,10 @@ textarea.input__field {
     padding-bottom: 20px;
   }
 
+  .form__row {
+    display: block;
+  }
+
   .accordion-item {
     padding: 15px 20px;
     padding-right: 60px;
@@ -1951,6 +1971,11 @@ textarea.input__field {
 
   .accordion-content {
     padding: 15px 20px;
+  }
+
+  .form__image {
+    margin: 0;
+    margin-top: 20px;
   }
 }
 
