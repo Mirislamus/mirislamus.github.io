@@ -1717,6 +1717,14 @@ textarea.form__input {
     padding-left: 75px;
     padding-right: 75px;
   }
+
+  .benefit-bg {
+    display: none;
+  }
+
+  .benefit-wrap {
+    background: url(../img/benefit-left.svg) no-repeat left top 155px, url(../img/benefit-right.svg) no-repeat right bottom 125px;
+  }
 }
 
 @media (max-width: 767px) {
