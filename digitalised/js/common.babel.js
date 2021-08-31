@@ -20,6 +20,26 @@ document.addEventListener('DOMContentLoaded', function () {
     animateClass: 'animate__animated'
   });
   wow.init();
+  var navLink = document.querySelectorAll('.navigation__link:not(.navigation__btn)');
+  navLink.forEach(function (el, i, arr) {
+    el.addEventListener('click', function () {
+      var _iterator = _createForOfIteratorHelper(arr),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+          item.classList.remove('current');
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      el.classList.add('current');
+    });
+  });
 
   if (window.innerWidth < 768) {
     var mobileMenu = new MobileSwipeMenu('#menu', {
@@ -28,6 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.querySelector('.hamburger').addEventListener('click', function () {
       mobileMenu.toggle();
+    });
+    document.querySelectorAll('.navigation__link:not(.navigation__btn)').forEach(function (el) {
+      el.addEventListener('click', function () {
+        mobileMenu.toggle();
+      });
     });
   } // LocalStorage
 
@@ -103,18 +128,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     langSwith.forEach(function (element, index, array) {
       element.addEventListener('click', function () {
-        var _iterator = _createForOfIteratorHelper(array),
-            _step;
+        var _iterator2 = _createForOfIteratorHelper(array),
+            _step2;
 
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var item = _step.value;
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var item = _step2.value;
             item.classList.remove('current');
           }
         } catch (err) {
-          _iterator.e(err);
+          _iterator2.e(err);
         } finally {
-          _iterator.f();
+          _iterator2.f();
         }
 
         element.classList.add('current');
@@ -126,12 +151,15 @@ document.addEventListener('DOMContentLoaded', function () {
       lang.classList.remove('open');
     }
   });
-  var navigationTooltipBtn = document.querySelector('.navigation__btn');
-  navigationTooltipBtn.addEventListener('click', function () {
-    navigationTooltipBtn.nextElementSibling.classList.add('open');
-    setTimeout(function () {
-      navigationTooltipBtn.nextElementSibling.classList.remove('open');
-      navigationTooltipBtn.blur();
-    }, 3000);
+  var navigationTooltipBtn = document.querySelectorAll('.tooltipBtn');
+  navigationTooltipBtn.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      el.nextElementSibling.classList.add('open');
+      setTimeout(function () {
+        el.nextElementSibling.classList.remove('open');
+        el.blur();
+      }, 3000);
+    });
   });
 });

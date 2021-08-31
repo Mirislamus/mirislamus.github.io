@@ -17,7 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
   wow.init();
 
 
+  const navLink = document.querySelectorAll('.navigation__link:not(.navigation__btn)');
 
+  navLink.forEach((el, i, arr) => {
+    el.addEventListener('click', ()=> {
+      for(let item of arr) {
+        item.classList.remove('current')
+      }
+      el.classList.add('current');
+    });
+  });
   if (window.innerWidth < 768) {
     var mobileMenu = new MobileSwipeMenu('#menu', {
       mode: 'left',
@@ -27,6 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.hamburger').addEventListener('click', function () {
       mobileMenu.toggle();
     });
+    document.querySelectorAll('.navigation__link:not(.navigation__btn)').forEach(el => {
+     el.addEventListener('click', function () {
+        mobileMenu.toggle();
+      });
+    })
+
 
   }
 
@@ -129,13 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const navigationTooltipBtn = document.querySelector('.navigation__btn');
+  const navigationTooltipBtn = document.querySelectorAll('.tooltipBtn');
 
-  navigationTooltipBtn.addEventListener('click', () => {
-    navigationTooltipBtn.nextElementSibling.classList.add('open');
-    setTimeout(function() {
-      navigationTooltipBtn.nextElementSibling.classList.remove('open');
-      navigationTooltipBtn.blur();
-    }, 3000);
-  });
+  navigationTooltipBtn.forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      el.nextElementSibling.classList.add('open');
+      setTimeout(function() {
+        el.nextElementSibling.classList.remove('open');
+        el.blur();
+      }, 3000);
+    });
+  })
 });
