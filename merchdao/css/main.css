@@ -597,7 +597,7 @@ img, svg, iframe {
 }
 .limited--about {
   --bg-size: auto;
-  background: url(../img/name.svg) no-repeat 98% calc(0% + 82px)/var(--bg-size), url(../img/bg-3.svg) no-repeat bottom/cover, var(--bg-color);
+  background: url(../img/name.svg) no-repeat 98% calc(0% + 82px)/var(--bg-size), url(../img/bg-3.svg) no-repeat top/100% 500px, var(--bg-color);
   padding-bottom: 360px;
   overflow: hidden;
 }
@@ -702,10 +702,11 @@ img, svg, iframe {
   max-width: initial;
 }
 
-.merch-slider {
-  width: 100vw;
+.limited-wrapper {
+  width: 1500px;
   overflow: hidden;
 }
+
 .merch-slider .swiper-slide {
   width: 342px;
 }
@@ -1461,6 +1462,62 @@ textarea.input__field {
   margin-left: auto;
   margin-top: 39px;
 }
+.art {
+  padding-top: 63px;
+  margin-top: -255px;
+  padding-bottom: 170px;
+  background: url(../img/bg-2.svg) no-repeat left bottom;
+}
+
+.art__image {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 350px;
+  width: 100%;
+  flex-shrink: 0;
+  margin-right: 43px;
+  max-height: 293px;
+}
+.art__image:before {
+  content: "";
+  position: absolute;
+  top: -23px;
+  left: -23px;
+  bottom: -23px;
+  right: 74px;
+  background: url(../img/art-dots.svg) 10px 9px, #fff;
+  box-shadow: 0px 4px 84px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+  z-index: -1;
+}
+.art__image img {
+  border-radius: 26px;
+}
+
+.art__title {
+  margin: 0;
+  margin-bottom: 45px;
+}
+
+.art__row {
+  display: flex;
+}
+
+.art__info .exclusive-info__list {
+  white-space: nowrap;
+  margin-bottom: 69px;
+}
+
+.art__subtitle {
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.art__text {
+  margin: 0;
+  max-width: 585px;
+}
 
 @media (max-width: 1151px) {
   .page-footer__img {
@@ -1495,6 +1552,13 @@ textarea.input__field {
   }
   .form__image {
     margin-left: -330px;
+  }
+  .art__info .exclusive-info__list {
+    white-space: normal;
+  }
+
+  .art__image {
+    margin-right: 0;
   }
 }
 
@@ -1682,6 +1746,31 @@ textarea.input__field {
   .form {
     padding-bottom: 40px;
   }
+  .art {
+    margin-top: 0px;
+    background-position: top 98px left;
+    background-size: auto 400px;
+    padding-bottom: 40px;
+  }
+
+  .art__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  .art__info {
+    display: contents;
+  }
+
+  .art__texts {
+    grid-column: 1/3;
+    margin-top: 60px;
+  }
+
+  .art__info .exclusive-info__list {
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1857,7 +1946,7 @@ textarea.input__field {
     max-width: initial;
   }
 
-  .merch-slider {
+  .limited-wrapper {
     width: 100%;
   }
   .about {
@@ -1977,6 +2066,26 @@ textarea.input__field {
     margin: 0;
     margin-top: 20px;
   }
+  .art__image {
+    max-width: 328px;
+    margin: 0 auto;
+  }
+
+  .art__text {
+    max-width: 100%;
+  }
+
+  .art__row {
+    display: block;
+  }
+
+  .art__image {
+    margin-bottom: 50px;
+  }
+
+  .art__texts {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 575px) {
@@ -2035,6 +2144,12 @@ textarea.input__field {
 
   .token__img {
     max-width: 120px;
+  }
+  .art__image::before {
+    right: -10px;
+    left: -10px;
+    top: -10px;
+    bottom: -10px;
   }
 }
 
