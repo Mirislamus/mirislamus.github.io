@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var reviewsSlider = new Swiper(".reviewsSlider", {
     spaceBetween: 24,
+    loop: true,
     pagination: {
       el: ".reviewsSlider .swiper-pagination",
       clickable: true
