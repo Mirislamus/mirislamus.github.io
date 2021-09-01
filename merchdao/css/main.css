@@ -1110,6 +1110,30 @@ img, svg, iframe {
 .nft__list ul {
   margin-bottom: 0;
 }
+
+.ntf-2__info {
+  flex-shrink: 0;
+  max-width: 615px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.ntf-2__info p {
+  margin: 0;
+}
+
+.nft-2 {
+  margin-top: -105px;
+}
+
+.nft-2__image {
+  margin-left: -50px;
+}
+
+.ntf-2__row {
+  display: flex;
+  align-items: center;
+}
 .platform {
   padding-top: 80px;
   padding-bottom: 62px;
@@ -1599,6 +1623,49 @@ textarea.input__field {
   margin: 0;
   max-width: 585px;
 }
+.market {
+  padding-top: 20px;
+  padding-bottom: 105px;
+}
+
+.market__images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.market__images::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  background: url(../img/nft-market.svg) no-repeat center/contain;
+  width: 100%;
+  height: 94px;
+}
+
+.market__circle {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.market__laptop {
+  position: relative;
+  z-index: 1;
+}
+
+.market__text {
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
 
 @media (min-width: 1200px) {
   .nft {
@@ -1666,6 +1733,10 @@ textarea.input__field {
   .exclusive-info__list {
     font-size: 21px;
     line-height: 25px;
+  }
+
+  .nft-2__image {
+    margin-left: -120px;
   }
   .review {
     padding-bottom: 24px;
@@ -1825,6 +1896,24 @@ textarea.input__field {
   .exclusive-info__list li:not(:last-child) {
     margin-bottom: 15px;
   }
+
+  .nft-2 {
+    margin-top: 0;
+  }
+
+  .ntf-2__row {
+    flex-direction: column-reverse;
+  }
+
+  .nft-2__image {
+    margin-left: 0;
+    margin-bottom: 30px;
+    width: 85%;
+  }
+
+  .ntf-2__info {
+    max-width: 100%;
+  }
   .platform__list {
     margin-top: -110px;
   }
@@ -1894,6 +1983,17 @@ textarea.input__field {
 
   .art__info .exclusive-info__list {
     margin-bottom: 0;
+  }
+  .market {
+    padding-top: 120px;
+  }
+
+  .market__circle {
+    top: -75px;
+  }
+
+  .market__images::before {
+    top: -20px;
   }
 }
 
@@ -2018,7 +2118,7 @@ textarea.input__field {
   .navigation__close {
     position: absolute;
     right: 15px;
-    top: 15px;
+    top: 8px;
     display: flex;
     width: 40px;
     height: 40px;
@@ -2144,6 +2244,10 @@ textarea.input__field {
   .exclusive-info__list li {
     padding-left: 30px;
   }
+
+  .nft-2__image {
+    width: 95%;
+  }
   .platform {
     padding-top: 0;
     padding-bottom: 90px;
@@ -2227,6 +2331,18 @@ textarea.input__field {
 
   .art__texts {
     margin-top: 40px;
+  }
+  .market__circle {
+    top: -75px;
+  }
+
+  .market__images::before {
+    top: -35px;
+  }
+
+  .market__laptop {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 }
 
