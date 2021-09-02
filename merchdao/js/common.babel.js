@@ -183,7 +183,64 @@ document.addEventListener('DOMContentLoaded', function () {
         element.parentElement.classList.remove('tooltip--open');
       }
     });
-  }); // Inits
+  }); // Video
+
+  var LazyVideoYt = /*#__PURE__*/function () {
+    function LazyVideoYt() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      _classCallCheck(this, LazyVideoYt);
+
+      var _options$videoEl = options.videoEl,
+          videoEl = _options$videoEl === void 0 ? '.LazyVideoYt' : _options$videoEl;
+      this.videoEl = videoEl;
+      this.init();
+    }
+
+    _createClass(LazyVideoYt, [{
+      key: "init",
+      value: function init() {
+        var videoEl = document.querySelectorAll(this.videoEl);
+        videoEl.forEach(function (element, index, array) {
+          var videoUrl = "https://www.youtube.com/embed/".concat(element.dataset.id, "/?autoplay=1&").concat(element.dataset.params);
+          var imgUrl = "https://img.youtube.com/vi/".concat(element.dataset.id, "/maxresdefault.jpg");
+          var imgAlt = element.dataset.alt;
+
+          var createIframe = function createIframe() {
+            var _iterator4 = _createForOfIteratorHelper(array),
+                _step4;
+
+            try {
+              for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                var items = _step4.value;
+
+                if (items.lastElementChild.tagName === 'IFRAME') {
+                  items.lastElementChild.remove();
+                }
+              }
+            } catch (err) {
+              _iterator4.e(err);
+            } finally {
+              _iterator4.f();
+            }
+
+            this.innerHTML += "<iframe\n            class=\"video__iframe\"\n            frameborder=\"0\"\n            src=\"".concat(videoUrl, "\"\n            width=\"100%\"\n            height=\"100%\"\n            allowfullscreen=\"allowfullscreen\">\n          </iframe>");
+          };
+
+          if (element.firstElementChild.tagName === 'IMG') {
+            element.addEventListener('click', createIframe);
+          } else {
+            element.innerHTML += "<img class=\"video__img\" src=\"".concat(imgUrl, "\" alt=\"").concat(imgAlt, "\">");
+            element.addEventListener('click', createIframe);
+          }
+        });
+      }
+    }]);
+
+    return LazyVideoYt;
+  }();
+
+  new LazyVideoYt(); // Inits
 
   var reviewsSlider = new Swiper(".reviewsSlider", {
     spaceBetween: 24,
@@ -208,5 +265,13 @@ document.addEventListener('DOMContentLoaded', function () {
     spaceBetween: 42,
     slidesPerView: 'auto',
     loop: true
+  });
+  var ASocialSlider = new Swiper(".ASocialSlider", {
+    spaceBetween: 34,
+    slidesPerView: 'auto',
+    pagination: {
+      el: ".ASocialSlider .swiper-pagination",
+      clickable: true
+    }
   });
 });
