@@ -59,16 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
     new Menu();
   } // Scroll Header
 
-  var header = document.querySelector('.page-header');
-  window.addEventListener('scroll', function (e) {
-    var scrollPosition = window.scrollY;
+  {
+    var header = document.querySelector('.page-header');
+    window.addEventListener('scroll', function (e) {
+      var scrollPosition = window.scrollY;
 
-    if (scrollPosition >= 100) {
-      header.classList.add('scroll');
-    } else {
-      header.classList.remove('scroll');
-    }
-  }); // Accordion
+      if (scrollPosition >= 100) {
+        header.classList.add('scroll');
+      } else {
+        header.classList.remove('scroll');
+      }
+    });
+  } // Accordion
 
   {
     var Accordion = /*#__PURE__*/function () {
@@ -157,121 +159,144 @@ document.addEventListener('DOMContentLoaded', function () {
     new Accordion();
   } // Tooltip
 
-  var tooltiBtn = document.querySelectorAll('.tooltipBtn');
-  tooltiBtn.forEach(function (element, index, array) {
-    element.addEventListener('click', function (event) {
-      if (!element.parentElement.classList.contains('tooltip--open')) {
-        var _iterator3 = _createForOfIteratorHelper(array),
-            _step3;
+  {
+    var tooltiBtn = document.querySelectorAll('.tooltipBtn');
+    tooltiBtn.forEach(function (element, index, array) {
+      element.addEventListener('click', function (event) {
+        if (!element.parentElement.classList.contains('tooltip--open')) {
+          var _iterator3 = _createForOfIteratorHelper(array),
+              _step3;
 
-        try {
-          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-            var item = _step3.value;
-            item.parentElement.classList.remove('tooltip--open');
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var item = _step3.value;
+              item.parentElement.classList.remove('tooltip--open');
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
           }
-        } catch (err) {
-          _iterator3.e(err);
-        } finally {
-          _iterator3.f();
+        }
+
+        element.parentElement.classList.toggle('tooltip--open');
+      });
+      window.addEventListener('click', function (event) {
+        if (!event.target.closest('.tooltip')) {
+          element.parentElement.classList.remove('tooltip--open');
+        }
+      });
+    });
+  } // Video
+
+  {
+    var LazyVideoYt = /*#__PURE__*/function () {
+      function LazyVideoYt() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, LazyVideoYt);
+
+        var _options$videoEl = options.videoEl,
+            videoEl = _options$videoEl === void 0 ? '.LazyVideoYt' : _options$videoEl;
+        this.videoEl = videoEl;
+        this.init();
+      }
+
+      _createClass(LazyVideoYt, [{
+        key: "init",
+        value: function init() {
+          var videoEl = document.querySelectorAll(this.videoEl);
+          videoEl.forEach(function (element, index, array) {
+            var videoUrl = "https://www.youtube.com/embed/".concat(element.dataset.id, "/?autoplay=1&").concat(element.dataset.params);
+            var imgUrl = "https://img.youtube.com/vi/".concat(element.dataset.id, "/maxresdefault.jpg");
+            var imgAlt = element.dataset.alt;
+
+            var createIframe = function createIframe() {
+              var _iterator4 = _createForOfIteratorHelper(array),
+                  _step4;
+
+              try {
+                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                  var items = _step4.value;
+
+                  if (items.lastElementChild.tagName === 'IFRAME') {
+                    items.lastElementChild.remove();
+                  }
+                }
+              } catch (err) {
+                _iterator4.e(err);
+              } finally {
+                _iterator4.f();
+              }
+
+              this.innerHTML += "<iframe\n              class=\"video__iframe\"\n              frameborder=\"0\"\n              src=\"".concat(videoUrl, "\"\n              width=\"100%\"\n              height=\"100%\"\n              allowfullscreen=\"allowfullscreen\">\n            </iframe>");
+            };
+
+            if (element.firstElementChild.tagName === 'IMG') {
+              element.addEventListener('click', createIframe);
+            } else {
+              element.innerHTML += "<img class=\"video__img\" src=\"".concat(imgUrl, "\" alt=\"").concat(imgAlt, "\">");
+              element.addEventListener('click', createIframe);
+            }
+          });
+        }
+      }]);
+
+      return LazyVideoYt;
+    }();
+
+    new LazyVideoYt();
+  } // Cookies
+
+  {
+    var cookiesModal = document.querySelector('.cookies');
+    var rejectCookies = document.querySelector('.rejectCookies');
+    var acceptCookies = document.querySelector('.acceptCookies');
+    rejectCookies.addEventListener('click', function () {
+      cookiesModal.classList.remove('cookies--open');
+    });
+    acceptCookies.addEventListener('click', function () {
+      localStorage.setItem('cookiesModalClosed', true);
+      cookiesModal.classList.remove('open');
+    });
+
+    if (localStorage.getItem('cookiesModalClosed1') === null) {
+      cookiesModal.classList.add('cookies--open');
+    }
+  } // Inits
+
+  {
+    var reviewsSlider = new Swiper(".reviewsSlider", {
+      spaceBetween: 24,
+      loop: true,
+      pagination: {
+        el: ".reviewsSlider .swiper-pagination",
+        clickable: true
+      },
+      breakpoints: {
+        992: {
+          slidesPerView: 3
+        },
+        768: {
+          slidesPerView: 2
+        },
+        320: {
+          slidesPerView: 1
         }
       }
-
-      element.parentElement.classList.toggle('tooltip--open');
     });
-    window.addEventListener('click', function (event) {
-      if (!event.target.closest('.tooltip')) {
-        element.parentElement.classList.remove('tooltip--open');
+    var merchSlider = new Swiper(".merchSlider", {
+      spaceBetween: 42,
+      slidesPerView: 'auto',
+      loop: true
+    });
+    var ASocialSlider = new Swiper(".ASocialSlider", {
+      spaceBetween: 34,
+      slidesPerView: 'auto',
+      pagination: {
+        el: ".ASocialSlider .swiper-pagination",
+        clickable: true
       }
     });
-  }); // Video
-
-  var LazyVideoYt = /*#__PURE__*/function () {
-    function LazyVideoYt() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      _classCallCheck(this, LazyVideoYt);
-
-      var _options$videoEl = options.videoEl,
-          videoEl = _options$videoEl === void 0 ? '.LazyVideoYt' : _options$videoEl;
-      this.videoEl = videoEl;
-      this.init();
-    }
-
-    _createClass(LazyVideoYt, [{
-      key: "init",
-      value: function init() {
-        var videoEl = document.querySelectorAll(this.videoEl);
-        videoEl.forEach(function (element, index, array) {
-          var videoUrl = "https://www.youtube.com/embed/".concat(element.dataset.id, "/?autoplay=1&").concat(element.dataset.params);
-          var imgUrl = "https://img.youtube.com/vi/".concat(element.dataset.id, "/maxresdefault.jpg");
-          var imgAlt = element.dataset.alt;
-
-          var createIframe = function createIframe() {
-            var _iterator4 = _createForOfIteratorHelper(array),
-                _step4;
-
-            try {
-              for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                var items = _step4.value;
-
-                if (items.lastElementChild.tagName === 'IFRAME') {
-                  items.lastElementChild.remove();
-                }
-              }
-            } catch (err) {
-              _iterator4.e(err);
-            } finally {
-              _iterator4.f();
-            }
-
-            this.innerHTML += "<iframe\n            class=\"video__iframe\"\n            frameborder=\"0\"\n            src=\"".concat(videoUrl, "\"\n            width=\"100%\"\n            height=\"100%\"\n            allowfullscreen=\"allowfullscreen\">\n          </iframe>");
-          };
-
-          if (element.firstElementChild.tagName === 'IMG') {
-            element.addEventListener('click', createIframe);
-          } else {
-            element.innerHTML += "<img class=\"video__img\" src=\"".concat(imgUrl, "\" alt=\"").concat(imgAlt, "\">");
-            element.addEventListener('click', createIframe);
-          }
-        });
-      }
-    }]);
-
-    return LazyVideoYt;
-  }();
-
-  new LazyVideoYt(); // Inits
-
-  var reviewsSlider = new Swiper(".reviewsSlider", {
-    spaceBetween: 24,
-    loop: true,
-    pagination: {
-      el: ".reviewsSlider .swiper-pagination",
-      clickable: true
-    },
-    breakpoints: {
-      992: {
-        slidesPerView: 3
-      },
-      768: {
-        slidesPerView: 2
-      },
-      320: {
-        slidesPerView: 1
-      }
-    }
-  });
-  var merchSlider = new Swiper(".merchSlider", {
-    spaceBetween: 42,
-    slidesPerView: 'auto',
-    loop: true
-  });
-  var ASocialSlider = new Swiper(".ASocialSlider", {
-    spaceBetween: 34,
-    slidesPerView: 'auto',
-    pagination: {
-      el: ".ASocialSlider .swiper-pagination",
-      clickable: true
-    }
-  });
+  }
 });
