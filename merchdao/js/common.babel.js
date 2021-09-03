@@ -257,10 +257,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     acceptCookies.addEventListener('click', function () {
       localStorage.setItem('cookiesModalClosed', true);
-      cookiesModal.classList.remove('open');
+      cookiesModal.classList.remove('cookies--open');
     });
 
-    if (localStorage.getItem('cookiesModalClosed1') === null) {
+    if (localStorage.getItem('cookiesModalClosed') === null) {
       cookiesModal.classList.add('cookies--open');
     }
   } // Inits
