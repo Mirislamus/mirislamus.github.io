@@ -263,6 +263,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (localStorage.getItem('cookiesModalClosed') === null) {
       cookiesModal.classList.add('cookies--open');
     }
+  } // Subscribe
+
+  {
+    var thankyouModal = document.querySelector('.thankyou');
+    var thankyouOpen = document.querySelector('.thankyouOpen'); // const thankyouClose = document.querySelectorAll('.thankyouClose');
+
+    thankyouOpen.addEventListener('click', function () {
+      thankyouModal.classList.add('thankyou--open');
+    });
+    thankyouModal.addEventListener('click', function (event) {
+      var target = event.target;
+
+      if (target.closest('.thankyouClose') || target.closest('.thankyou') && !target.closest('.thankyou__content')) {
+        thankyouModal.classList.remove('thankyou--open');
+      }
+    });
   } // Inits
 
   {

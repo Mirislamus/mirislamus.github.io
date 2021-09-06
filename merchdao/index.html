@@ -9,7 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property="og:image" content="path/to/image.jpg">
-	<meta name="theme-color" content="#000">
+	<meta name="theme-color" content="#F9738B">
 
 	<title>Merchdao Landing</title>
 
@@ -17,9 +17,9 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
 	<link rel="icon" href="./img/favicon/favicon.ico">
-	<link rel="stylesheet" href="./fonts/fonts.css?v4">
-	<link rel="stylesheet" href="./css/styles.min.css?v4">
-	<link rel="stylesheet" href="./css/main.css?v4">
+	<link rel="stylesheet" href="./fonts/fonts.css?v7">
+	<link rel="stylesheet" href="./css/styles.min.css?v7">
+	<link rel="stylesheet" href="./css/main.css?v7">
 </head>
 <body class="page__body">
 	<header class="page-header">
@@ -374,6 +374,34 @@
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+  <section class="subscribe">
+  <div class="container">
+
+    <h2 class="subscribe__title">
+      <span class="gradient-text subscribe__title-left">
+        be the first <br>
+        to know
+      </span>
+      <span class="subscribe__title-right">
+        the<br>
+        <b>good news</b>
+      </span>
+    </h2>
+    <form action="#" class="subscribe__form">
+      <label class="subcribe-field">
+        <input type="email" class="subcribe-field__input input-reset" placeholder="Write your e-mail">
+      </label>
+      <button class="subscribe-btn btn-reset thankyouOpen" type="button">
+        <span class="gradient-text">
+          SUBSCRIBE
+        </span>
+      </button>
+    </form>
+    <img src="./img/subscribe-shape.svg" alt="subscribe shape" class="subscribe__image">
+    <img src="./img/mail-subscribe.svg" alt="subscribe shape" class="subscribe__mail">
   </div>
 </section>
 
@@ -1031,7 +1059,7 @@
     </div>
   </div>
 </footer>
-<div class="cookies">
+<div class="cookies" role="dialog">
   <div class="container">
     <div class="cookies__content">
       <div class="cookies__left">
@@ -1076,8 +1104,28 @@
   </div>
 </div>
 
-<script src="./js/scripts.min.js?v4"></script>
-<script src="./js/common.js?v4"></script>
+<div class="thankyou" role="dialog">
+  <div class="thankyou__content">
+    <button class="subscribe__close thankyouClose btn-reset" type="button">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4744 19.5002L27.9868 11.9876C28.6711 11.3034 28.6711 10.1974 27.9868 9.51318C27.3026 8.82894 26.1967 8.82894 25.5124 9.51318L18 17.0258L10.4876 9.51318C9.80334 8.82894 8.69739 8.82894 8.01317 9.51318C7.32894 10.1974 7.32894 11.3034 8.01317 11.9876L15.5256 19.5002L8.01317 27.0128C7.32894 27.697 7.32894 28.803 8.01317 29.4873C8.3544 29.8285 8.80238 30 9.25036 30C9.69835 30 10.1463 29.8285 10.4876 29.4873L18 21.9747L25.5124 29.4873C25.8537 29.8285 26.3017 30 26.7496 30C27.1976 30 27.6456 29.8285 27.9868 29.4873C28.6711 28.803 28.6711 27.697 27.9868 27.0128L20.4744 19.5002Z" fill="white"/>
+      </svg>
+    </button>
+    <h3 class="thankyou__title">
+      Thank <span class="gradient-text">You!</span>
+    </h3>
+    <img class="thankyou__image" src="./img/thankyou.svg" alt="thank you">
+    <p class="thankyou__text">
+      You will be the first to know the good news from us
+    </p>
+    <button class="c-btn c-btn--fill c-btn--258w btn-reset thankyouClose" type="button">
+      <span>CLOSE</span>
+    </button>
+  </div>
+</div>
+
+<script src="./js/scripts.min.js?v7"></script>
+<script src="./js/common.js?v7"></script>
 </body>
 </html>
 

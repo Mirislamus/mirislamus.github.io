@@ -196,6 +196,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Subscribe
+  {
+    const thankyouModal = document.querySelector('.thankyou');
+    const thankyouOpen = document.querySelector('.thankyouOpen');
+    // const thankyouClose = document.querySelectorAll('.thankyouClose');
+
+    thankyouOpen.addEventListener('click', () => {
+      thankyouModal.classList.add('thankyou--open');
+    });
+    thankyouModal.addEventListener('click', event => {
+      const target = event.target;
+
+      if(target.closest('.thankyouClose') || target.closest('.thankyou') && !target.closest('.thankyou__content')) {
+        thankyouModal.classList.remove('thankyou--open');
+      }
+    })
+  }
   // Inits
   {
     var reviewsSlider = new Swiper(".reviewsSlider", {
