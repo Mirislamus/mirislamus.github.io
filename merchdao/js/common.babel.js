@@ -267,18 +267,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   {
     var thankyouModal = document.querySelector('.thankyou');
-    var thankyouOpen = document.querySelector('.thankyouOpen'); // const thankyouClose = document.querySelectorAll('.thankyouClose');
+    var thankyouOpen = document.querySelector('.thankyouOpen');
 
-    thankyouOpen.addEventListener('click', function () {
-      thankyouModal.classList.add('thankyou--open');
-    });
-    thankyouModal.addEventListener('click', function (event) {
-      var target = event.target;
+    if (thankyouOpen) {
+      thankyouOpen.addEventListener('click', function () {
+        thankyouModal.classList.add('thankyou--open');
+      });
+      thankyouModal.addEventListener('click', function (event) {
+        var target = event.target;
 
-      if (target.closest('.thankyouClose') || target.closest('.thankyou') && !target.closest('.thankyou__content')) {
-        thankyouModal.classList.remove('thankyou--open');
-      }
-    });
+        if (target.closest('.thankyouClose') || target.closest('.thankyou') && !target.closest('.thankyou__content')) {
+          thankyouModal.classList.remove('thankyou--open');
+        }
+      });
+    }
   } // Inits
 
   {

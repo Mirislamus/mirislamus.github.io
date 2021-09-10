@@ -578,7 +578,7 @@ img, svg, iframe {
   left: 0;
   right: 0;
   top: 0;
-  z-index: 5;
+  z-index: 7;
   transition: 0.3s;
 }
 .page-header::after {
@@ -1611,7 +1611,7 @@ img, svg, iframe {
 
 .platform__image {
   margin-top: -50px;
-  margin-left: -110px;
+  margin-left: -135px;
 }
 
 .platform__list {
@@ -2169,6 +2169,7 @@ textarea.input__field {
 .a-social {
   position: relative;
   z-index: 5;
+  margin-bottom: 25px;
 }
 
 .a-social__slide {
@@ -2457,6 +2458,10 @@ textarea.input__field {
   .map {
     margin-top: 30px;
   }
+
+  .a-social {
+    margin-bottom: 0;
+  }
   .limited {
     --bg-size: 55px;
     padding-bottom: 110px;
@@ -2607,7 +2612,7 @@ textarea.input__field {
   }
 
   .platform__image {
-    margin-left: -105px;
+    margin-left: -125px;
   }
 
   .platform .about__grid .about-item:last-child {
@@ -2942,6 +2947,10 @@ textarea.input__field {
 
   .footer-bottom__name {
     top: 65px;
+  }
+
+  .a-social {
+    margin-bottom: -50px;
   }
   .limited {
     --bg-size: 44px;
