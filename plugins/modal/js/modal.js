@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const btnOpen = document.querySelectorAll(this.btnOpen);
 
       const openModal = () => {
+        this.closeModalWindow();
         modalWindow.classList.add('modal--open');
         modalWindow.setAttribute('tabindex', '-1');
         modalWindow.focus();
@@ -38,10 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         element.addEventListener('click', event => {
           event.preventDefault();
           openModal();
-          this.closeModalWindow();
         });
       });
-    }
+    };
 
     closeModalWindow(closeModalWindowOptions = {}) {
       const {
@@ -50,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } = closeModalWindowOptions;
 
       const modalWindow = document.querySelector(this.modalWindow);
-      const allModal = document.querySelectorAll(this.allModal)
+      const allModal = document.querySelectorAll(this.allModal);
+
+      if(closeValue === true) closeModal();
 
       const closeModal = () => {
         modalWindow.firstElementChild.classList.remove('modal__content--open');
@@ -64,13 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modalItem.removeAttribute('tabindex');
           }
         }
-      }
-
-      if(closeValue === true) closeModal();
+      };
 
       modalWindow.addEventListener('click', event => {
         const target = event.target;
-        if(target.closest(this.bntClose) || target.closest(this.modalWindow) && !target.closest('.modal__content')) {
+        if(target.closest(this.btnClose) || target.closest(this.modalWindow) && !target.closest('.modal__content')) {
           closeModal();
         }
       });
@@ -78,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('keydown', event => {
         if(event.key === 'Escape') closeModal();
       });
-    }
+    };
 
     init() {
       this.openModalWindow();
-    }
-  }
+    };
+  };
 
   new Modal({btnOpen: '.modalOpen', modalWindow: '.modalWindow'});
   new Modal({btnOpen: '.modalOpen1', modalWindow: '.modalWindow1'});
