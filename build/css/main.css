@@ -224,6 +224,7 @@ img, svg, iframe {
   right: 0;
   bottom: 0;
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .video__img {
