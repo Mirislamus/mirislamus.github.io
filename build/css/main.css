@@ -144,10 +144,6 @@ img, svg, iframe {
   background-color: var(--black);
   color: #fff;
 }
-
-.page-main {
-  overflow: hidden;
-}
 .list-reset {
   margin: 0;
   padding: 0;
@@ -231,6 +227,7 @@ img, svg, iframe {
   left: 0;
   right: 0;
   bottom: 0;
+  border-radius: 20px;
 }
 
 .video__img {
@@ -240,6 +237,9 @@ img, svg, iframe {
 
 .video__iframe {
   z-index: 2;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .video__play {
@@ -645,10 +645,10 @@ img, svg, iframe {
 .research__col--user .research__name {
   cursor: pointer;
 }
-.research__col--user .research__name:hover + .research__info {
+.research__col--user .research__name:hover + .research__info, .research__col--user .research__name:focus + .research__info {
   display: flex;
 }
-.research__col--user .research__name:hover ~ .research__col-text {
+.research__col--user .research__name:hover ~ .research__col-text, .research__col--user .research__name:focus ~ .research__col-text {
   display: none;
 }
 
@@ -1154,6 +1154,7 @@ img, svg, iframe {
   width: -moz-max-content;
   width: max-content;
   position: relative;
+  display: block;
 }
 .partner:hover .partner__img-hover {
   opacity: 1;
@@ -1378,17 +1379,18 @@ img, svg, iframe {
 .disclosure__dates span {
   font-weight: normal;
   transition: 0.3s;
+  position: relative;
 }
 .disclosure__dates span:not(:last-child) {
   margin-right: 20px;
 }
-.disclosure__dates:hover span:not(:first-child) {
-  visibility: hidden;
-  opacity: 0;
-}
-.disclosure__dates:hover .disclosure__link {
+.disclosure__dates span:hover .disclosure__link {
   visibility: visible;
   opacity: 1;
+}
+.disclosure__dates span:hover ~ span {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .disclosure__subtitle {
@@ -1405,10 +1407,16 @@ img, svg, iframe {
   line-height: 138%;
   color: var(--black);
   position: absolute;
-  left: 50px;
+  left: 40px;
   transition: 0.3s;
   visibility: hidden;
   opacity: 0;
+  top: 0;
+  background-color: #fff;
+  white-space: nowrap;
+  z-index: 2;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .disclosure__link svg {
   margin-left: 10px;
@@ -2004,9 +2012,9 @@ footer .container-footer {
 
   .tooltip {
     top: 100%;
-    transform: translateY(0) translateX(-50%);
-    left: 50%;
-    margin-left: 0;
+    transform: translateY(0) translateX(0);
+    left: 0;
+    margin-left: -5px;
     margin-top: 30px;
     padding: 30px 20px;
   }
@@ -2311,6 +2319,10 @@ footer .container-footer {
   .partners__col:nth-child(15), .partners__col:nth-child(16) {
     margin-top: -4px;
   }
+
+  .main-partner {
+    right: -30px;
+  }
   .events-page__title {
     line-height: 136%;
     margin-bottom: 41px;
@@ -2341,12 +2353,14 @@ footer .container-footer {
   .tickets {
     width: 86px;
     margin-left: 3px;
+    margin-top: -7px;
   }
 
   .tickets__btn {
     width: 30px;
     height: 30px;
     font-weight: 600;
+    position: relative;
   }
 
   .video-wrap--live .video {
