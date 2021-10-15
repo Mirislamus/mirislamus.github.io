@@ -218,10 +218,6 @@ img, svg, iframe {
 }
 
 .video__img, .video__iframe {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
@@ -1247,11 +1243,6 @@ img, svg, iframe {
   padding: 0;
   height: 304px;
 }
-.video-wrap--live img {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 .video__live {
   position: absolute;
@@ -1384,11 +1375,11 @@ img, svg, iframe {
 .disclosure__dates span:not(:last-child) {
   margin-right: 20px;
 }
-.disclosure__dates span:hover .disclosure__link {
+.disclosure__dates span:hover .disclosure__link, .disclosure__dates span:focus .disclosure__link {
   visibility: visible;
   opacity: 1;
 }
-.disclosure__dates span:hover ~ span {
+.disclosure__dates span:hover ~ span, .disclosure__dates span:focus ~ span {
   visibility: hidden;
   opacity: 0;
 }
