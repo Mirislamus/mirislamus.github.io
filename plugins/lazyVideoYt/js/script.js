@@ -1,16 +1,16 @@
 class LazyVideoYt {
   constructor(options = {}) {
     const {
-      videoEl = '.LazyVideoYt',
+      videoElement = '.LazyVideoYt',
     } = options;
-    this.videoEl = videoEl;
+    this.videoElement = videoElement;
     this.init();
   }
   init() {
-    const videoEl = document.querySelectorAll(this.videoEl);
+    const videoElement = document.querySelectorAll(this.videoElement);
 
-    videoEl.forEach((element, index, array) => {
-      const videoUrl = `https://www.youtube.com/embed/${element.dataset.id}/?autoplay=1&enablejsapi=1&rel=0&showinfo=0&playsinline=1&${element.dataset.params}`;
+    videoElement.forEach((element, index, array) => {
+      const videoUrl = `https://www.youtube.com/embed/${element.dataset.id}/?autoplay=1&enablejsapi=1&rel=0&showinfo=0&playsinline=1&${element.dataset.parameters}`;
       const imgUrl = `https://img.youtube.com/vi/${element.dataset.id}/maxresdefault.jpg`;
       const imgAlt = element.dataset.alt;
 
@@ -27,7 +27,8 @@ class LazyVideoYt {
           src="${videoUrl}"
           width="100%"
           height="100%"
-          allowfullscreen="allowfullscreen">
+          allow="autoplay"
+          allowfullscreen>
         </iframe>`;
       };
 
