@@ -204,7 +204,7 @@ img, svg, iframe {
   border-radius: 60px;
   font-size: 18px;
   line-height: 22px;
-  position: relative;
+  position: static;
   flex-shrink: 0;
 }
 .m-center__info--257 {
