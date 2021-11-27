@@ -149,6 +149,10 @@ img, svg, iframe {
   cursor: pointer;
   border: 1px solid #ACACAC;
   border-radius: 6px;
+  transition: 0.2s ease;
+}
+.login:hover, .login:focus {
+  border-color: var(--blue);
 }
 
 .m-section__container {
@@ -212,6 +216,7 @@ img, svg, iframe {
   position: static;
   flex-shrink: 0;
   color: var(--blue);
+  transition: 0.2s ease;
 }
 .m-center__info strong {
   font-weight: 600;
@@ -237,6 +242,13 @@ img, svg, iframe {
   width: 213px;
   top: 33px;
   right: 66px;
+}
+.m-center__info:hover, .m-center__info:focus {
+  font-weight: 700;
+  border-color: var(--blue);
+}
+.m-center__info:hover .m-center__info strong, .m-center__info:focus .m-center__info strong {
+  font-weight: 700;
 }
 
 .m-center__top,
