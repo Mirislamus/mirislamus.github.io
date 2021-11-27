@@ -647,5 +647,9 @@ img, svg, iframe {
   .m-center__social {
     padding-top: 49px;
   }
+
+  .pf-top .center {
+    white-space: nowrap;
+  }
 }
 /*# sourceMappingURL=main.css.map */
