@@ -258,10 +258,9 @@ img, svg, iframe {
 
 .m-center__mid {
   align-items: center;
-  margin-top: 85px;
-  margin-bottom: 59px;
-  color: #000;
-  font-weight: 600;
+  margin-top: 74px;
+  margin-bottom: 74px;
+  font-weight: 500;
 }
 .m-center__mid p {
   margin: 0;
@@ -365,6 +364,13 @@ img, svg, iframe {
 .page-main {
   margin: auto;
   width: 100%;
+}
+
+.m-center__top,
+.m-center__top {
+  max-width: 728px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 991px) {
@@ -550,6 +556,15 @@ img, svg, iframe {
 
   .page-footer {
     padding-bottom: 45px;
+  }
+
+  .m-center__info {
+    position: relative;
+  }
+
+  .m-center__mid {
+    margin-bottom: 55px;
+    margin-top: 100px;
   }
 }
 /*# sourceMappingURL=main.css.map */
