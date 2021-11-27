@@ -590,15 +590,11 @@ img, svg, iframe {
   .copyright {
     order: 1;
     margin-bottom: 12px !important;
-    display: flex;
-    justify-content: center;
   }
 
   .address {
     order: 2;
     margin-bottom: 22px !important;
-    display: flex;
-    justify-content: center;
   }
 
   .pf-social {
