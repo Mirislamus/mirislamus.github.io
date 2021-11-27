@@ -59,12 +59,12 @@ img, svg, iframe {
 }
 
 ::-moz-selection {
-  background-color: #000;
+  background-color: var(--blue);
   color: #fff;
 }
 
 ::selection {
-  background-color: #000;
+  background-color: var(--blue);
   color: #fff;
 }
 
