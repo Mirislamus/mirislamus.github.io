@@ -287,6 +287,7 @@ img, svg, iframe {
   margin-top: 74px;
   margin-bottom: 74px;
   font-weight: 500;
+  color: #414141;
 }
 .m-center__mid p {
   margin: 0;
@@ -435,17 +436,18 @@ img, svg, iframe {
 
   .quote {
     display: none;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
     text-align: center;
   }
 
   .quote--mob {
     display: block;
+    letter-spacing: 1px;
   }
 
   .page__body {
-    background: url(../img/bg-mob.svg) no-repeat top center;
+    background: url(../img/bg-mob.svg) no-repeat top -5px center;
     background-size: initial;
   }
 
@@ -457,7 +459,7 @@ img, svg, iframe {
     font-size: 36px;
     line-height: 43px;
     height: auto;
-    margin-top: 30px;
+    margin-top: 31px;
     display: block;
   }
   .m-section__title .gray {
@@ -488,7 +490,7 @@ img, svg, iframe {
   }
 
   .btn {
-    margin-top: 6px;
+    margin-top: 2px;
   }
 
   .m-center__info--218 {
@@ -569,7 +571,7 @@ img, svg, iframe {
   }
 
   .pf-top {
-    margin-bottom: 28px;
+    margin-bottom: 45px;
   }
 
   .copyright {
@@ -598,6 +600,7 @@ img, svg, iframe {
 
   .page-footer {
     padding-bottom: 45px;
+    padding-top: 44px;
   }
 
   .m-center__info {
@@ -605,7 +608,7 @@ img, svg, iframe {
   }
 
   .m-center__mid {
-    margin-bottom: 55px;
+    margin-bottom: 49px;
     margin-top: 100px;
   }
 
@@ -617,6 +620,15 @@ img, svg, iframe {
 
   .m-center--mob {
     font-weight: 500;
+    margin-top: 102px;
+  }
+
+  .login {
+    margin-top: -6px;
+  }
+
+  .m-center__social {
+    padding-top: 49px;
   }
 }
 /*# sourceMappingURL=main.css.map */
