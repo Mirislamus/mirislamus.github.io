@@ -443,7 +443,7 @@ img, svg, iframe {
 
 @media (max-width: 767px) {
   :root {
-    --gap: 35px;
+    --gap: 30px;
   }
 
   .quote {
@@ -644,7 +644,8 @@ img, svg, iframe {
     padding-top: 49px;
   }
 
-  .pf-top .center {
+  .pf-top .center,
+.pf-top p {
     white-space: nowrap;
   }
 }
