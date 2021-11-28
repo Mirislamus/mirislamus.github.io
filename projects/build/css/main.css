@@ -648,5 +648,12 @@ img, svg, iframe {
 .pf-top p {
     white-space: nowrap;
   }
+
+  .pf-center p, .pf-bot p,
+.pf-bot small, .pf-top .center,
+.pf-top p,
+.quote--mob {
+    white-space: nowrap;
+  }
 }
 /*# sourceMappingURL=main.css.map */
