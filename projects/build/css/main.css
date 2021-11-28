@@ -648,6 +648,10 @@ img, svg, iframe {
 .pf-top p {
     white-space: nowrap;
   }
+
+  .copyright span {
+    display: none;
+  }
 }
 
 @media (max-width: 567px) {
