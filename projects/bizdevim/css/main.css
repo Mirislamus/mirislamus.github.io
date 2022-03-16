@@ -472,7 +472,7 @@ iframe {
   }
 }
 
-@media(min-width: 900px) {
+@media(min-width: 900px) and (max-height: 749px) {
   .page-main {
     padding-bottom: 88px;
   }
