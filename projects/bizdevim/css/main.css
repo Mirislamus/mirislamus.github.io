@@ -466,7 +466,7 @@ iframe {
   }
 }
 
-@media(min-width: 900px) and (min-width: 750px) {
+@media(min-width: 900px) and (min-height: 750px) {
   html, body {
     overflow: hidden;
   }
