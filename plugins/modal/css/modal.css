@@ -1,5 +1,8 @@
 .modal {
   --overlay-color: rgba(0, 0, 0, .5);
+  --crossHeight: 20px;
+  --max-width: 500px;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -13,6 +16,7 @@
   animation: fadeOut .25s both ease;
   cursor: pointer;
 }
+
 .modal--open {
   animation: fadeIn .25s both ease;
   display: block;
@@ -24,20 +28,21 @@
   position: relative;
   visibility: hidden;
   opacity: 0;
-  transform: translateY(-10%);
-  transition: .15s ease;
+  transform: translateY(-15%);
+  transition: .25s ease;
   cursor: default;
-  max-width: 500px;
+  max-width: var(--max-width);
   margin: 0 auto;
   margin-top: 50px;
 }
+
 .modal__content--open {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
+
 .modal__close {
-  --crossHeight: 20px;
   border: 0;
   padding: 0;
   background: 0;
@@ -53,21 +58,24 @@
   right: 14px;
   top: 17px;
   cursor: pointer;
-  transition: opacity .3s ease;
+  transition: opacity .25s ease;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
+
 @keyframes fadeOut {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }

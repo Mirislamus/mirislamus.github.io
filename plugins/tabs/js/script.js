@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
               tabContentItem.classList.toggle('active');
               tabContentItem.attributes['aria-selected'].value = true;
             }
-          })
+          });
         });
       }
     }

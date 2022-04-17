@@ -6,22 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
         btnOpen = '.modalOpen',
         modalWindow = '.modalWindow',
         bntClose = '.modalClose',
-        allModal = '.modal'
+        allModal = '.modal',
+
+        btnOpenEl = document.querySelectorAll(this.btnOpen)
       } = options;
 
       this.btnOpen = btnOpen;
       this.modalWindow = modalWindow;
       this.btnClose = bntClose;
       this.allModal = allModal;
+      this.btnOpenEl = btnOpenEl;
       this.init();
     }
 
-    openModalWindow(openModalWindowOptions = {}) {
-      const {
-        openValue = false,
-      } = openModalWindowOptions;
-      const modalWindow = document.querySelector(this.modalWindow);
-      const btnOpen = document.querySelectorAll(this.btnOpen);
+    openModalWindow(open = false) {
+
+      const modalWindow = document.querySelector(this.modalWindow),
+            btnOpen = document.querySelectorAll(this.btnOpen);
 
       const openModal = () => {
         this.closeModalWindow();
@@ -31,9 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         modalWindow.addEventListener('animationend', () => {
           modalWindow.firstElementChild.classList.add('modal__content--open');
         });
-      }
+      };
 
-      if(openValue !== false) openModal();
+      if(open !== false) {
+        openModal();
+      }
 
       btnOpen.forEach(element => {
         element.addEventListener('click', event => {
@@ -41,25 +44,23 @@ document.addEventListener('DOMContentLoaded', () => {
           openModal();
         });
       });
-    };
+    }
 
     closeModalWindow(closeModalWindowOptions = {}) {
       const {
         closeAll = true,
-        closeValue = false,
+        close = false,
       } = closeModalWindowOptions;
 
-      const modalWindow = document.querySelector(this.modalWindow);
-      const allModal = document.querySelectorAll(this.allModal);
-
-      if(closeValue === true) closeModal();
+      const modalWindow = document.querySelector(this.modalWindow),
+            allModal = document.querySelectorAll(this.allModal);
 
       const closeModal = () => {
         modalWindow.firstElementChild.classList.remove('modal__content--open');
         modalWindow.classList.remove('modal--open');
         modalWindow.removeAttribute('tabindex');
 
-        if(closeAll !== false) {
+        if(closeAll === true) {
           for(let modalItem of allModal) {
             modalItem.firstElementChild.classList.remove('modal__content--open');
             modalItem.classList.remove('modal--open');
@@ -67,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       };
+
+      if(close === true) {
+        closeModal();
+      }
 
       modalWindow.addEventListener('click', event => {
         const target = event.target;
@@ -76,15 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       window.addEventListener('keydown', event => {
-        if(event.key === 'Escape') closeModal();
+        if(event.key === 'Escape') {
+          closeModal();
+        }
       });
-    };
+    }
 
     init() {
       this.openModalWindow();
-    };
-  };
+    }
+  }
 
-  new Modal({btnOpen: '.modalOpen', modalWindow: '.modalWindow'});
-  new Modal({btnOpen: '.modalOpen1', modalWindow: '.modalWindow1'});
+
+  window.addEventListener('load', () => {
+    new Modal().openModalWindow(true);
+
+  });
 });
