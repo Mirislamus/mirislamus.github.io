@@ -91,10 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       this.openModalWindow();
     }
   }
+  new Modal();
 
-
-  window.addEventListener('load', () => {
-    new Modal().openModalWindow(true);
-
-  });
 });
