@@ -6,34 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
       constructor(options = {}) {
         const {
           tab = '.tabItem',
-          tabContents = '.tabContent',
+          tabsContent = '.tabContents',
         } = options;
         this.tab = tab;
-        this.tabContents = tabContents;
+        this.tabsContent = tabsContent;
         this.init();
       }
       init() {
         const tab = document.querySelectorAll(this.tab);
-        const tabContents = document.querySelectorAll(this.tabContents);
+        const tabsContent = document.querySelectorAll(this.tabsContent);
 
         tab.forEach((element, index, array) => {
           element.addEventListener('click', () => {
-            const tabContentItem = document.querySelector(`${element.dataset.target}`);
-            for(let tabItems of array) {
-              tabItems.classList.remove('active');
-              tabItems.attributes['aria-selected'].value = false;
-            }
-            element.classList.add('active');
-            element.attributes['aria-selected'].value = true;
 
-            for(let tabContentItems of tabContents) {
-              tabContentItems.classList.remove('active');
-              tabContentItems.attributes['aria-selected'].value = false;
-            }
-            if(tabContentItem) {
-              tabContentItem.classList.toggle('active');
-              tabContentItem.attributes['aria-selected'].value = true;
-            }
           });
         });
       }
