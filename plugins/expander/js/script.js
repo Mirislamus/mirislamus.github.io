@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
   {
-    class Menu {
+    class Expander {
       constructor(options = {}) {
         const {
-          hamburgerButton = '.hamburgerButton',
-          navigationList = '.navigationMenu',
-          navigationClose = '.navigationClose'
+          button = '.hamburgerButton',
+          openingElement = '.navigationMenu',
+          close = '.navigationClose'
         } = options;
 
-        this.hamburgerButton = hamburgerButton;
-        this.navigationList = navigationList;
-        this.navigationClose = navigationClose;
+        this.button = button;
+        this.openingElement = openingElement;
+        this.close = close;
         this.init();
       }
       init() {
-        const button = document.querySelector(this.hamburgerButton);
-        const menu = document.querySelector(this.navigationList);
-        const close = document.querySelector(this.navigationClose);
+        const button = document.querySelector(this.button);
+        const menu = document.querySelector(this.openingElement);
+        const close = document.querySelector(this.close);
 
         let toggleMenu = () => {
           let expanded = button.getAttribute('aria-expanded');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         close.addEventListener('click', toggleMenu);
 
         document.addEventListener('click', e => {
-          if(!e.target.closest('.navigation') && !e.target.closest('.hamburger')) {
+          if(!e.target.closest(this.openingElement) && !e.target.closest(this.button)) {
             button.setAttribute('aria-expanded', false);
             menu.classList.remove('active');
           }
@@ -40,6 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
     }
-    new Menu();
+    new Expander();
   }
 });
