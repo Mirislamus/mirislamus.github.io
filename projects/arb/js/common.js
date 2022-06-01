@@ -2,15 +2,12 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/common.js":
-/*!**************************!*\
-  !*** ./src/js/common.js ***!
-  \**************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ 368:
+/***/ ((__unused_webpack___webpack_module__, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_navigation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/navigation.js */ "./src/js/components/navigation.js");
-/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/modal.js */ "./src/js/components/modal.js");
+/* harmony import */ var _components_navigation_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(867);
+/* harmony import */ var _components_modal_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(221);
+
 
 
 
@@ -19,13 +16,13 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  new _components_navigation_js__WEBPACK_IMPORTED_MODULE_0__.Menu();
-  new _components_navigation_js__WEBPACK_IMPORTED_MODULE_0__.Menu({
+  new _components_navigation_js__WEBPACK_IMPORTED_MODULE_1__/* .Menu */ .v();
+  new _components_navigation_js__WEBPACK_IMPORTED_MODULE_1__/* .Menu */ .v({
     hamburgerButton: '.searchBtn',
     navigationList: '.searchWrap',
     navigationClose: '.searchClose'
   });
-  new _components_modal_js__WEBPACK_IMPORTED_MODULE_1__.Modal();
+  new _components_modal_js__WEBPACK_IMPORTED_MODULE_0__/* .Modal */ .u();
 
   const searchBtn = document.querySelector('.searchBtn');
   const focusInput = document.querySelector('.searchWrap input');
@@ -145,6 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
+  const gallerySlider = new Swiper(".gallerySlider", {
+    slidesPerView: 'auto',
+    spaceBetween: 8,
+
+    navigation: {
+      nextEl: ".news-single__gallery .swiper-button-next",
+      prevEl: ".news-single__gallery .swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+
   // Video
   const playerElement = document.querySelectorAll('.player');
 
@@ -207,72 +218,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Calendar
 
-  // const calendarAll = document.querySelector('.calendarAll'),
-  //   calendarSubmit = document.querySelector('.calendarSubmit'),
-  //   calendarBtn = document.querySelector('.calendarBtn');
+  const calendarAll = document.querySelector('.calendarAll'),
+    calendarSubmit = document.querySelector('.calendarSubmit'),
+    calendarBtn = document.querySelector('.calendarBtn');
 
-  // if (document.querySelector('.calendar')) {
-  //   let calendar = flatpickr(".calendar-wrapper", {
-  //     inline: true,
-  //     monthSelectorType: 'static',
-  //     locale: "ru",
-  //     mode: "range",
-  //     onMonthChange: function (selectedDates, dateStr, instance) {
-  //       document.querySelector('.numInputWrapper').innerHTML = instance.currentYear;
-  //     },
-  //     onReady: function (selectedDates, dateStr, instance) {
-  //       document.querySelector('.numInputWrapper').innerHTML = instance.currentYear;
-  //     },
-  //     onChange: function () {
-  //       if (document.querySelector('.flatpickr-day.selected')) {
-  //         calendarSubmit.removeAttribute('disabled');
-  //       } else {
-  //         calendarSubmit.setAttribute('disabled', 'disabled');
-  //       }
-  //     }
+  if (document.querySelector('.calendar')) {
+    let calendar = flatpickr(".calendar-wrapper", {
+      inline: true,
+      monthSelectorType: 'static',
+      locale: "ru",
+      mode: "range",
+      onMonthChange: function (selectedDates, dateStr, instance) {
+        document.querySelector('.numInputWrapper').innerHTML = instance.currentYear;
+      },
+      onReady: function (selectedDates, dateStr, instance) {
+        document.querySelector('.numInputWrapper').innerHTML = instance.currentYear;
+      },
+      onChange: function () {
+        if (document.querySelector('.flatpickr-day.selected')) {
+          calendarSubmit.removeAttribute('disabled');
+        } else {
+          calendarSubmit.setAttribute('disabled', 'disabled');
+        }
+      }
 
-  //   });
-  //   const calendarBtnText = calendarBtn.querySelector('span'),
-  //         calendarMonth = document.querySelector('.flatpickr-current-month');
+    });
+    const calendarBtnText = calendarBtn.querySelector('input'),
+          calendarMonth = document.querySelector('.flatpickr-current-month');
 
-  //   function setMonthAndYear() {
+          calendarBtnText.value = 'За всё время';
+    function setMonthAndYear() {
 
-  //     let editMonthName = month => {
-  //       if (month === 'январь') return 'январе';
-  //       else if (month === 'февраль') return 'феврале';
-  //       else if (month === 'март') return 'марте';
-  //       else if (month === 'апрель') return 'апрелe';
-  //       else if (month === 'май') return 'мае';
-  //       else if (month === 'июнь') return 'июне';
-  //       else if (month === 'июль') return 'июле';
-  //       else if (month === 'август') return 'августе';
-  //       else if (month === 'сентябрь') return 'сентябре';
-  //       else if (month === 'октябрь') return 'октябре';
-  //       else if (month === 'ноябрь') return 'ноябре';
-  //       else if (month === 'декабрь') return 'декабре';
-  //     };
-
-  //     calendarBtnText.textContent = `${calendarMonth.firstElementChild.textContent.trim().toLowerCase()}`;
-  //     // ${calendarMonth.lastElementChild.textContent.trim()};
-  //   }
-
-  //   setMonthAndYear();
+      calendarBtnText.value = `${calendarMonth.firstElementChild.textContent.trim()} ${calendarMonth.lastElementChild.textContent.trim()}`;
+    }
 
 
-  //   function toggleCalendar() {
-  //     calendarBtn.nextElementSibling.classList.toggle('active');
-  //     setMonthAndYear();
-  //   }
 
-  //   document.addEventListener('click', e => {
-  //     if (!e.target.closest('.calendar') && !e.target.closest('.calendarBtn')) {
-  //       calendarBtn.nextElementSibling.classList.remove('active');
-  //     }
-  //   });
+    function toggleCalendar() {
+      calendarBtn.nextElementSibling.classList.toggle('active');
+    }
 
-  //   calendarSubmit.addEventListener('click', toggleCalendar);
-  //   calendarBtn.addEventListener('click', toggleCalendar);
-  // }
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.calendar') && !e.target.closest('.calendarBtn')) {
+        calendarBtn.nextElementSibling.classList.remove('active');
+      }
+    });
+
+    calendarSubmit.addEventListener('click', () => {
+      toggleCalendar();
+      setMonthAndYear();
+    });
+    calendarAll.addEventListener('click', () => {
+      calendarBtnText.value = 'За всё время';
+      toggleCalendar();
+    });
+    calendarBtn.addEventListener('click', toggleCalendar);
+  }
 
 
   // Date Switcher
@@ -455,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       formAreaInput.forEach(el => {
         if(el.value !== '') {
-          new _components_modal_js__WEBPACK_IMPORTED_MODULE_1__.Modal().closeModalWindow({close: true});
+          new _components_modal_js__WEBPACK_IMPORTED_MODULE_0__/* .Modal */ .u().closeModalWindow({close: true});
           el.parentElement.classList.remove('error');
           notify.classList.add('open');
 
@@ -495,15 +496,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /***/ }),
 
-/***/ "./src/js/components/modal.js":
-/*!************************************!*\
-  !*** ./src/js/components/modal.js ***!
-  \************************************/
+/***/ 221:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Modal": () => (/* binding */ Modal)
+/* harmony export */   "u": () => (/* binding */ Modal)
 /* harmony export */ });
 class Modal {
   constructor(options = {}) {
@@ -601,15 +598,11 @@ new Modal();
 
 /***/ }),
 
-/***/ "./src/js/components/navigation.js":
-/*!*****************************************!*\
-  !*** ./src/js/components/navigation.js ***!
-  \*****************************************/
+/***/ 867:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Menu": () => (/* binding */ Menu)
+/* harmony export */   "v": () => (/* binding */ Menu)
 /* harmony export */ });
 class Menu {
   constructor(options = {}) {
@@ -699,25 +692,14 @@ class Menu {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	__webpack_require__("./src/js/common.js");
+/******/ 	__webpack_require__(368);
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	__webpack_require__("./src/js/components/modal.js");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/components/navigation.js");
+/******/ 	__webpack_require__(221);
+/******/ 	var __webpack_exports__ = __webpack_require__(867);
 /******/ 	
 /******/ })()
 ;

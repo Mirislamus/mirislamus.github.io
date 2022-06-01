@@ -1,1 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@font-face {
+  font-family: 'lg';
+  src: url("/fonts/lg.woff2") format("woff2"),
+  url("/fonts/lg.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
