@@ -1447,7 +1447,7 @@ img, svg, iframe {
   display: flex;
 }
 .media-item:hover .media__title, .media-item:focus .media__title {
-  color: var(--green);
+  color: var(--green) !important;
 }
 .media-item .media-item__info {
   margin-left: 20px;
@@ -2258,8 +2258,11 @@ img, svg, iframe {
 .archive-page .media-item__small .media__title {
   color: #000000;
 }
-.archive-page .media-item .media__time {
+.archive-page .media-item__small .media__time {
   color: rgba(0, 0, 0, 0.4);
+}
+.archive-page .media-item__big .media-item__info {
+  margin-left: 0;
 }
 
 .archive-page__grid {
@@ -2288,6 +2291,34 @@ img, svg, iframe {
 .archive-single__grid img {
   border-radius: 8px;
 }
+.direction-news {
+  overflow: hidden;
+  padding-top: 48px;
+  padding-bottom: 100px;
+}
+
+.direction-docs {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.direction-docs__title {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.direction-doc {
+  margin-bottom: 0;
+}
+
+.direction-docs__row {
+  margin-bottom: -16px;
+}
+
+.direction-docs__col {
+  margin-bottom: 16px;
+}
+
 @media (min-width: 992px) {
   .media-item__big {
     position: relative;
@@ -2333,6 +2364,7 @@ img, svg, iframe {
     grid-row: 2 span;
   }
 }
+
 @media (max-width: 1199px) {
   .page-header {
     padding-top: 16px;
@@ -2410,6 +2442,7 @@ img, svg, iframe {
     margin-right: 70px;
   }
 }
+
 @media (max-width: 991px) {
   .page-header__info {
     display: none;
@@ -2545,6 +2578,7 @@ img, svg, iframe {
     gap: 12px;
   }
 }
+
 @media (max-width: 767px) {
   h2, .h2 {
     font-size: 20px;
@@ -3157,7 +3191,12 @@ img, svg, iframe {
     padding: 0 12px;
     height: 32px;
   }
+  .direction-docs {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }
+
 @media (max-width: 575px) {
   .search-page__tags {
     flex-wrap: nowrap;

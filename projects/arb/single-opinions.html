@@ -11,7 +11,7 @@
 	<meta property="og:image" content="path/to/image.jpg">
 	<meta name="theme-color" content="#000">
 
-	<title>Фотографии</title>
+	<title>Новость</title>
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
@@ -219,180 +219,97 @@
         <a href="#">Главная</a>
       </li>
       <li>
-        <a href="#">Все новости</a>
+        <a href="#">Экспертные мнения</a>
       </li>
       <li>
-        Фотографии
+        Мнение
       </li>
     </ul>
   </div>
 </section>
-<section class="news-page archive-single">
+<section class="news-single">
   <div class="container">
-    <div class="archive-single__row">
-      <div class="archive-single__info">
+    <div class="row justify-content-between">
+      <div class="col-lg-7">
         <h1 class="service-single__title news-single__title breadcrumbs__title">
-          Вебинар «Что сегодня с таргетом в Instagram <br>
-          и как перенести трафик в Вконтакте»
+          Треть регионов России сняли антиковидные ограничения для бизнеса
         </h1>
         <span class="news-single__date">
           20 марта 2022
         </span>
+        <div class="service-single__content news-single__content">
+          <img src="./img/opinions-image.jpg" alt="news">
+          <p>
+            МОСКВА, 23 марта. /ТАСС/. Совет Федерации на заседании в среду одобрил закон, направленный на упрощение
+            регулирования импорта товаров на территорию РФ и таможенную территорию Евразийского экономического союза
+            (ЕАЭС). Документ разработан правительством в рамках второго пакета антикризисных мер и направлен на
+            поддержку участников внешнеэкономической деятельности в условиях санкционного давления.
+          </p>
+          <p>
+            Согласно закону на шесть лет предоставляется право ввоза многокомпонентного товара в рамках нескольких
+            внешнеэкономических сделок. Исключается необходимость исполнения обязанности по уплате таможенных пошлин,
+            налогов в отношении участников внешнеэкономической деятельности, если они занимаются этим менее года.
+            Участники внешнеэкономической деятельности, внесшие денежный залог при выпуске товаров, освобождаются от
+            уплаты пени в случае доначисления таможенных платежей по результатам таможенной экспертизы. Сокращается
+            процедура выдачи классификационных решений таможенными органами.
+          </p>
+          <div class="news-single__gallery">
+            <div class="swiper gallerySlider">
+              <div class="swiper-wrapper">
+                <a href="./img/n1.jpg" class="swiper-slide spotlight" data-autohide="false" data-control="download, close, prev, next">
+                  <img src="./img/n1.jpg">
+                </a>
+                <a href="./img/news-image.jpg" class="swiper-slide spotlight" data-autohide="false" data-control="download, close, prev, next">
+                  <img src="./img/news-image.jpg">
+                </a>
+              </div>
+
+              <div class="swiper-pagination pagination"></div>
+            </div>
+            <div class="container container-arrows">
+              <div class="swiper-button-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18.1201 19.88L10.2401 12L18.1201 4.12L16.0001 2L6.00012 12L16.0001 22L18.1201 19.88Z"
+                    fill="#10B7A7" />
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5.87988 4.12L13.7599 12L5.87988 19.88L7.99988 22L17.9999 12L7.99988 2L5.87988 4.12Z"
+                    fill="#10B7A7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <p>
+            Правительство РФ наделяется полномочиями по определению случаев предоставления отсрочки (рассрочки) уплаты суммы задолженности по таможенным платежам, а также случаев, когда декларантом товаров, помещаемых под таможенную процедуру свободного склада, может выступать лицо, не являющееся владельцем свободного склада. Кабмин получает право определять приоритетные виды деятельности для реализации инвестиционных проектов, в отношении которых может предоставляться тарифная льгота на ввоз технологического оборудования, комплектующих и запчастей.
+          </p>
+        </div>
+
       </div>
-      <a href="#" download class="btn link-reset">
-        Скачать весь архив
-      </a>
+      <form class="form formArea" action="#">
+        <h2 class="form__title">
+          Подпишитесь на дайджест и мы пришлем вам подборку с новостями за неделю
+        </h2>
+        <div class="form-item">
+          <input type="email" id="email" placeholder="Электронная почта" class="required">
+          <label for="email">Электронная почта</label>
+          <div class="error__text">Проверьте, вероно ли указана почта</div>
+        </div>
+
+        <button class="btn form__btn btn-reset" type="submit">
+          Отправить
+        </button>
+        <p class="form__confirm">
+          Нажимая кнопку «Отправить», я даю согласие <br>
+          на обработку персональных данных <br>
+          и соглашаюсь с условиями <a href="#">
+            Политики <br>
+            конфиденциальности
+          </a>
+        </p>
+      </form>
     </div>
-    <div class="archive-single__grid">
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-        <a href="./img/archive-image.jpg" class="spotlight" data-autohide="false" data-control="download, close, prev, next">
-          <img src="./img/archive-image.jpg">
-        </a>
-      
-    </div>
-    <button type="button" class="btn-border btn-reset">
-      Загрузить ещё фото
-    </button>
   </div>
   </div>
 </section>
