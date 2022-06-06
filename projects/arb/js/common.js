@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     navigationClose: '.searchClose'
   });
   new _components_modal_js__WEBPACK_IMPORTED_MODULE_0__/* .Modal */ .u();
+  new _components_modal_js__WEBPACK_IMPORTED_MODULE_0__/* .Modal */ .u({
+    btnOpen: '.modalEventOpen',
+    modalWindow: '.modalEvent'
+  });
 
   const searchBtn = document.querySelector('.searchBtn');
   const focusInput = document.querySelector('.searchWrap input');
@@ -155,6 +159,90 @@ document.addEventListener('DOMContentLoaded', () => {
       clickable: true,
     },
   });
+  const directionSlider = new Swiper(".directionSlider", {
+    slidesPerView: 'auto',
+    spaceBetween: 8,
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+
+  if(window.innerHeight > 767) {
+    const growSlider = new Swiper(".growSlider", {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  }
+
+  if(window.innerWidth > 991) {
+    const teamSlider = new Swiper(".teamSlider", {
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  }
+
+  const teamItem = document.querySelectorAll('.direction-team .team-item');
+  const teamItemHover = document.querySelectorAll('.direction-team .team-item__hover');
+  if(window.innerWidth < 992) {
+    teamItem.forEach(item => {
+      item.addEventListener('click', e => {
+        for(let hoverItem of teamItemHover) {
+          hoverItem.classList.remove('open');
+        }
+        item.lastElementChild.classList.add('open');
+
+        if(e.target.closest('.team-item__hover-close')) {
+          item.lastElementChild.classList.remove('open');
+        }
+      });
+
+      document.addEventListener('click', e => {
+        if(!e.target.closest('.team-item')
+        && !e.target.closest('.team-item__hover-close')) {
+          for(let hoverItem of teamItemHover) {
+            hoverItem.classList.remove('open');
+          }
+        }
+      });
+    });
+  }
+
+  // Table
+  const table = document.querySelector('.doer__table');
+  const tableMoreBtn = document.querySelector('.doer__btn');
+
+  if(table) {
+    const tableRows = table.querySelectorAll('tbody tr');
+    if(tableRows.length > 7) {
+      table.parentElement.classList.add('full');
+      tableMoreBtn.addEventListener('click', function() {
+        tableRows.forEach(el => {
+          el.style.display = 'flex';
+          table.parentElement.classList.remove('full');
+          tableMoreBtn.remove();
+        });
+      });
+    } else {
+      tableMoreBtn.remove();
+    }
+  }
+
 
   // Video
   const playerElement = document.querySelectorAll('.player');
@@ -489,6 +577,14 @@ document.addEventListener('DOMContentLoaded', () => {
     IMask(el, {
       mask: '+7 000 000 00 00'
     });
+  });
+  // All Text
+  const allTextBtn = document.querySelector('.grow__btn');
+  const textP = allTextBtn.previousElementSibling.children;
+
+  allTextBtn.addEventListener('click', () => {
+    allTextBtn.previousElementSibling.classList.add('open');
+    allTextBtn.remove();
   });
 
 });

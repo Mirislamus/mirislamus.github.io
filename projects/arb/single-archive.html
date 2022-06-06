@@ -15,9 +15,9 @@
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
-	<link rel="stylesheet" href="./fonts/fonts.css?v=20220603193808">
-	<link rel="stylesheet" href="./css/styles.min.css?v=20220603193808">
-	<link rel="stylesheet" href="./css/main.css?v=20220603193808">
+	<link rel="stylesheet" href="./fonts/fonts.css?v=20220606193257">
+	<link rel="stylesheet" href="./css/styles.min.css?v=20220606193257">
+	<link rel="stylesheet" href="./css/main.css?v=20220606193257">
 </head>
 <body class="page__body">
 	<header class="page-header">
@@ -442,7 +442,7 @@
           консультацию
         </h2>
         <p class="form__text">
-          Заполните поля и подтвердите свое согласие на обработку персональных данных. Мы перезвоним вам в течение рабочего дня
+          Заполните поля и подтвердите свое <br> согласие на обработку персональных <br> данных. Мы перезвоним вам в течение рабочего дня
         </p>
         <div class="form-item">
           <input type="text" id="name-modal" placeholder="Фамилия, имя и отчество*" class="required">
@@ -474,18 +474,60 @@
     </div>
   </div>
 </div>
-
-<div class="notify">
-  <div class="container">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="white"/>
-    </svg>
-    <span>Заявка отправлена. Мы позвоним вам в течение рабочего дня</span>
+<div class="modal modalEvent" role="dialog" aria-modal="true">
+  <div class="modal__content">
+    <button type="button" class="modal__close modalClose" aria-label="Close modal">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <path d="M23.75 8.0125L21.9875 6.25L15 13.2375L8.0125 6.25L6.25 8.0125L13.2375 15L6.25 21.9875L8.0125 23.75L15 16.7625L21.9875 23.75L23.75 21.9875L16.7625 15L23.75 8.0125Z" fill="#10B7A7"/>
+      </svg>
+    </button>
+    <div class="modal__body">
+      <form class="form formArea" action="#">
+        <h2 class="form__title">
+          Заявка на <br>
+          Мероприятие
+        </h2>
+        <p class="form__text">
+          Заполните поля и подтвердите свое <br> согласие на обработку персональных <br> данных. Мы перезвоним вам в течение рабочего дня
+        </p>
+        <div class="form-item">
+          <input type="text" id="name-modal" placeholder="Фамилия, имя и отчество*" class="required">
+          <label for="name-modal">Фамилия, имя и отчество*</label>
+          <div class="error__text">Заполните обязательное поле</div>
+        </div>
+        <div class="form-item">
+          <input type="tel" id="tel-modal" placeholder="Телефон*" inputmode="tel" class="required">
+          <label for="tel-modal">Телефон*</label>
+          <div class="error__text">Заполните обязательное поле</div>
+        </div>
+        <div class="form-item">
+          <input type="email" id="email" placeholder="Электронная почта">
+          <label for="email">Электронная почта</label>
+        </div>
+        <div class="form-item">
+          <input type="text" id="inn" placeholder="ИНН*" class="required">
+          <label for="inn">ИНН*</label>
+          <div class="error__text">Заполните обязательное поле</div>
+        </div>
+        <button class="btn form__btn btn-reset" type="submit">
+          Отправить
+        </button>
+        <p class="form__confirm">
+          Нажимая кнопку «Отправить», я даю согласие <br>
+          на обработку персональных данных <br>
+          и соглашаюсь с условиями <br> <a href="#">
+            Политики
+            конфиденциальности
+          </a>
+        </p>
+      </form>
+    </div>
   </div>
 </div>
 
-<script src="./js/scripts.min.js?v=20220603193808"></script>
-<script src="./js/common.js?v=20220603193808"></script>
+
+<script src="./js/scripts.min.js?v=20220606193257"></script>
+<script src="./js/common.js?v=20220606193257"></script>
 </body>
 </html>
 
