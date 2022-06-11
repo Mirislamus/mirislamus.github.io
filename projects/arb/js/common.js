@@ -363,6 +363,28 @@ document.addEventListener('DOMContentLoaded', () => {
     calendarBtn.addEventListener('click', toggleCalendar);
   }
 
+  const dateInput = document.querySelector('.order-date input');
+  if(dateInput) {
+    dateInput.value = '20.03.1985';
+  }
+
+  let calendar = flatpickr(".calendar-wrapper-date", {
+    inline: true,
+    monthSelectorType: 'static',
+    locale: "ru",
+
+    onChange: function (selectedDates, dateStr, instance) {
+      let date = new Date(instance.latestSelectedDateObj);
+      let getDate = date.toLocaleDateString('ru-RU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      dateInput.value = getDate;
+      document.querySelector('.calendar-order').classList.remove('active');
+    }
+  });
+
 
   // Date Switcher
   const dateMonths = document.querySelectorAll('.dateMonths');
@@ -480,24 +502,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dropFileZone.forEach(el => {
     const uploadFileArea = el.parentElement.nextElementSibling;
+    async function addFiles() {
 
-    el.addEventListener('dragover', e => {
-      e.preventDefault();
-      el.classList.add('dragover');
-    });
-
-    el.addEventListener('dragleave', e => {
-      e.preventDefault();
-      el.classList.remove('dragover');
-    });
-
-    el.addEventListener('drop', e => {
-      e.preventDefault();
-      el.classList.remove('dragover');
-
-      el.nextElementSibling.files = e.dataTransfer.files;
-
-      uploadFileArea.innerHTML = `
+      uploadFileArea.innerHTML += `
       <div class="uploded-files">
         <div class="upload-files__top">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -516,19 +523,39 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="upload-files__size">
           ${(el.nextElementSibling.files[0].size / 1024 / 1024).toFixed(2)} мб
         </div>
-      </div>
-      `;
+      </div>`;
+
+      let removeFile = document.querySelectorAll('.upload-files__delete');
+      removeFile.forEach(close => {
+        close.addEventListener('click', () => {
+          close.parentElement.parentElement.remove();
+        });
+      });
+    }
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      el.classList.add('dragover');
     });
 
+    el.addEventListener('dragleave', e => {
+      e.preventDefault();
+      el.classList.remove('dragover');
+    });
+
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      el.classList.remove('dragover');
+
+      el.nextElementSibling.files = e.dataTransfer.files;
+
+      addFiles();
+
+    });
+
+
+    el.nextElementSibling.addEventListener('input', addFiles);
     el.addEventListener('click', e => {
       el.nextElementSibling.click();
-    });
-
-    form.addEventListener('click', e => {
-      if(e.target.closest('.upload-files__delete')) {
-        uploadFileArea.innerHTML = '';
-        el.nextElementSibling.value = '';
-      }
     });
 
   });
@@ -580,13 +607,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // All Text
   const allTextBtn = document.querySelector('.grow__btn');
-  const textP = allTextBtn.previousElementSibling.children;
 
-  allTextBtn.addEventListener('click', () => {
-    allTextBtn.previousElementSibling.classList.add('open');
-    allTextBtn.remove();
+  if (allTextBtn) {
+    allTextBtn.addEventListener('click', () => {
+      allTextBtn.previousElementSibling.classList.add('open');
+      allTextBtn.remove();
+    });
+  }
+
+  // Copy
+
+  const copyBtnTel = document.querySelectorAll('.copyBtnTel');
+  const copyBtnLink = document.querySelectorAll('.copyBtnLink');
+
+  copyBtnTel.forEach(btn => {
+    let i = 1;
+    btn.addEventListener('click', () => {
+      i++;
+      btn.insertAdjacentHTML('beforebegin',
+      `
+      <div class="form-item">
+        <input type="tel" id="tel-contact-${i}" placeholder="Контактный телефон" name="tel-contact-${i}">
+        <label for="tel-contact-${i}">Контактный телефон</label>
+      </div>
+      `);
+    });
   });
 
+  copyBtnLink.forEach(btn => {
+    let i = 1;
+    btn.addEventListener('click', () => {
+      i++;
+      btn.insertAdjacentHTML('beforebegin',
+      `
+      <div class="form-item">
+        <input type="text" id="url-contact-${i}" placeholder="Ссылка" name="url-contact-${i}">
+        <label for="url-contact-${i}">Ссылка</label>
+      </div>
+      `);
+    });
+  });
 });
 
 

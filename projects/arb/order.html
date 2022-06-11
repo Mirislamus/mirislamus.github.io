@@ -11,7 +11,7 @@
 	<meta property="og:image" content="path/to/image.jpg">
 	<meta name="theme-color" content="#000">
 
-	<title>Ничего не найдено</title>
+	<title>Заявка</title>
 
 	<link rel="icon" href="./img/favicon/favicon.ico">
 	<link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon-180x180.png">
@@ -212,65 +212,152 @@
 
 <main class="page-main">
   
-  <section class="search-page">
-    <div class="container">
-      <a href="/" class="link-back link-reset">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M11.6663 6.41683H4.56717L7.82801 3.156L6.99967 2.3335L2.33301 7.00016L6.99967 11.6668L7.82217 10.8443L4.56717 7.5835H11.6663V6.41683Z" fill="#10B7A7"/>
-        </svg>
-        Назад
-      </a>
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="search-page__form">
-            <form action="#">
-              <label>
-                <input type="search" class="input-reset" placeholder="Поиск по сайту">
+<section class="search-page order">
+  <div class="container">
+    <a href="/" class="link-back link-reset">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path
+          d="M11.6663 6.41683H4.56717L7.82801 3.156L6.99967 2.3335L2.33301 7.00016L6.99967 11.6668L7.82217 10.8443L4.56717 7.5835H11.6663V6.41683Z"
+          fill="#10B7A7" />
+      </svg>
+      Назад
+    </a>
+    <div class="row">
+      <div class="col-lg-9">
+        <h2 class="order__title">
+          Заявка на публикацию на витрине
+        </h2>
+        <p class="order__text">
+          Заполните все поля и подтвердите свое согласие на обработку <br>
+          персональных данных и наши эксперты добавят вас на витрину самозанятых
+        </p>
+
+        <form action="#">
+          <div class="order-group">
+            <strong>Имя и фамилия</strong>
+            <div class="form-item">
+              <input type="text" id="name" placeholder="Имя и фамилия">
+              <label for="name">Имя и фамилия</label>
+            </div>
+            <div class="order-wrap form-item">
+              <div class="form-item calendarBtn order-date">
+                <input type="text" id="calendar" placeholder="Дата рождения" readonly value="Дата рождения">
+                <label for="calendar">Дата рождения</label>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#10B7A7"/>
+                  <path d="M17 12H12V17H17V12ZM16 1V3H8V1H6V3H5C3.89 3 3.01 3.9 3.01 5L3 19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3H18V1H16ZM19 19H5V8H19V19Z" fill="black"/>
                 </svg>
-              </label>
-            </form>
-            <div class="search-page__tags">
-              <a href="#" class="link-reset tag">
-                Рязань
-              </a>
-              <a href="#" class="link-reset tag">
-                Губернатор
-              </a>
-              <a href="#" class="link-reset tag">
-                Развитие бизнеса
-              </a>
-              <a href="#" class="link-reset tag">
-                Сельское хозяйство
-              </a>
-              <a href="#" class="link-reset tag">
-                Поддержка производства
-              </a>
-              <a href="#" class="link-reset tag">
-                Бережливое производство
-              </a>
-              <a href="#" class="link-reset tag">
-                АБР
-              </a>
-              <a href="#" class="link-reset tag">
-                Строительство
-              </a>
+              </div>
+              <div class="calendar calendar-order">
+                <div class="calendar-wrapper-date"></div>
+                <div class="calendar__btns">
+                  <button type="button" class="calendar__btn calendarAll btn-reset">
+                    За всё время
+                  </button>
+                  <button type="button" class="calendar__btn calendarSubmit btn-reset" disabled>
+                    Применить
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-item">
+              <input type="email" id="email" placeholder="Электронная почта">
+              <label for="email">Электронная почта</label>
+            </div>
+            <div class="form-item">
+              <input type="tel" id="tel" placeholder="Телефон">
+              <label for="tel">Телефон</label>
+            </div>
+            <div class="form-item">
+              <input type="text" id="place" placeholder="Место проживания">
+              <label for="place">Место проживания</label>
+            </div>
+            <div class="form-item">
+              <input type="text" id="inn" placeholder="ИНН">
+              <label for="inn">ИНН</label>
             </div>
           </div>
-          <div class="not-found">
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-              <path d="M28.4164 25.6667H26.968L26.4547 25.1717C28.2514 23.0817 29.333 20.3683 29.333 17.4167C29.333 10.835 23.998 5.5 17.4164 5.5C11.1464 5.5 6.01302 10.34 5.55469 16.5H9.25802C9.71635 12.375 13.163 9.16667 17.4164 9.16667C21.9814 9.16667 25.6664 12.8517 25.6664 17.4167C25.6664 21.9817 21.9814 25.6667 17.4164 25.6667C17.1047 25.6667 16.8114 25.6117 16.4997 25.575V29.2783C16.8114 29.315 17.1047 29.3333 17.4164 29.3333C20.368 29.3333 23.0814 28.2517 25.1714 26.455L25.6664 26.9683V28.4167L34.833 37.565L37.5647 34.8333L28.4164 25.6667Z" fill="black"/>
-              <path d="M11.8613 19.8364L7.33293 24.3648L2.8046 19.8364L1.50293 21.1381L6.03126 25.6664L1.50293 30.1948L2.8046 31.4964L7.33293 26.9681L11.8613 31.4964L13.1629 30.1948L8.6346 25.6664L13.1629 21.1381L11.8613 19.8364Z" fill="black"/>
-            </svg>
-            <span>
-              По вашему запросу ничего не найдено
-            </span>
+          <div class="order-group">
+            <strong>О вашей услуге</strong>
+            <div class="order-info">
+              <div class="form-item">
+                <input type="text" id="name-order" placeholder="Название">
+                <label for="name-order">Название</label>
+              </div>
+              <p>
+                Например: Услуги фотографа
+              </p>
+            </div>
+            <div class="order-info">
+              <div class="form-item">
+                <textarea id="question" placeholder="Подробное описание"></textarea>
+                <label for="question">Подробное описание</label>
+              </div>
+              <p>
+                Несколько предложений, чтобы клиентам было понятно, что вы предлагаете, какая ваша целевая аудитория и т. д.
+              </p>
+            </div>
+
           </div>
-        </div>
+          <div class="order-group">
+            <strong>Фото</strong>
+            <div class="order-info order-info--files">
+              <div>
+                <div class="form-item drop-file">
+                  <div class="drop-file__zone" tabindex="0">
+                    Загрузите документы
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.91 0 14C0 17.31 2.69 20 6 20H19C21.76 20 24 17.76 24 15C24 12.36 21.95 10.22 19.35 10.04ZM14 13V17H10V13H7L12 8L17 13H14Z" fill="#C8D7E0"/>
+                    </svg>
+                  </div>
+                  <input type="file" multiple class="visually-hidden" accept=".jpg, .jpeg, .png">
+                </div>
+                <div class="uploadFileArea"></div>
+              </div>
+              <p>
+                Не более 8 фото, до 4 мб каждое. <br>
+                Формат png, jpg, jpeg
+              </p>
+            </div>
+
+          </div>
+          <div class="order-group">
+            <strong>Контакты</strong>
+            <div class="order-add">
+              <div class="form-item">
+                <input type="tel" id="tel-contact-1" placeholder="Контактный телефон" name="tel-contact-1">
+                <label for="tel-contact-1">Контактный телефон</label>
+              </div>
+              <button class="copyBtnTel order-add__btn btn-reset" type="button">
+                + Добавить телефон
+              </button>
+            </div>
+            <div class="order-add">
+              <div class="form-item">
+                <input type="url" id="url-contact-1" placeholder="Ссылка" name="url-contact-1">
+                <label for="url-contact-1">Ссылка</label>
+              </div>
+              <button class="copyBtnLink order-add__btn btn-reset" type="button">
+                + Добавить ссылку
+              </button>
+            </div>
+          </div>
+
+          <button class="btn form__btn btn-reset" type="submit">
+            Отправить
+          </button>
+          <p class="form__confirm">
+            Нажимая кнопку «Отправить», я даю согласие <br>
+            на обработку персональных данных <br>
+            и соглашаюсь с условиями <br> <a href="#">
+              Политики
+              конфиденциальности
+            </a>
+          </p>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 <footer class="page-footer">
