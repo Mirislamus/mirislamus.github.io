@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   class Modal {
     constructor(options = {}) {
       const {
-        btnOpen = '.modalOpen',
+        openingButton = '.modalOpen',
         modalWindow = '.modalWindow',
-        bntClose = '.modalClose',
-        allModal = '.modal',
+        closingButton = '.modalClose',
+        allModals = '.modal',
 
-        btnOpenEl = document.querySelectorAll(this.btnOpen)
+        btnOpenEl = document.querySelectorAll(this.openingButton)
       } = options;
 
-      this.btnOpen = btnOpen;
+      this.openingButton = openingButton;
       this.modalWindow = modalWindow;
-      this.btnClose = bntClose;
-      this.allModal = allModal;
+      this.closingButton = closingButton;
+      this.allModals = allModals;
       this.btnOpenEl = btnOpenEl;
       this.init();
     }
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openModalWindow(open = false) {
 
       const modalWindow = document.querySelector(this.modalWindow),
-            btnOpen = document.querySelectorAll(this.btnOpen);
+            openingButton = document.querySelectorAll(this.openingButton);
 
       const openModal = () => {
         this.closeModalWindow();
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal();
       }
 
-      btnOpen.forEach(element => {
+      openingButton.forEach(element => {
         element.addEventListener('click', event => {
           event.preventDefault();
           openModal();
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } = closeModalWindowOptions;
 
       const modalWindow = document.querySelector(this.modalWindow),
-            allModal = document.querySelectorAll(this.allModal);
+            allModals = document.querySelectorAll(this.allModals);
 
       const closeModal = () => {
         modalWindow.firstElementChild.classList.remove('modal__content--open');
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalWindow.removeAttribute('tabindex');
 
         if(closeAll === true) {
-          for(let modalItem of allModal) {
+          for(let modalItem of allModals) {
             modalItem.firstElementChild.classList.remove('modal__content--open');
             modalItem.classList.remove('modal--open');
             modalItem.removeAttribute('tabindex');
@@ -75,7 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       modalWindow.addEventListener('click', event => {
         const target = event.target;
-        if(target.closest(this.btnClose) || target.closest(this.modalWindow) && !target.closest('.modal__content')) {
+        if(target.closest(this.closingButton) ||
+          target.closest(this.modalWindow) &&
+          !target.closest('.modal__content')) {
           closeModal();
         }
       });

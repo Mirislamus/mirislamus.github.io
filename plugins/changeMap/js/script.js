@@ -32,7 +32,7 @@ class ChangeMap  {
       mapContainer.removeEventListener('mouseover', lazyMap, this.mapOptions);
       mapContainer.removeEventListener('touchstart', lazyMap, this.mapOptions);
       mapContainer.removeEventListener('touchmove', lazyMap, this.mapOptions);
-    }
+    };
 
     mapContainer.addEventListener('click', lazyMap, this.mapOptions);
     mapContainer.addEventListener('mouseover', lazyMap, this.mapOptions);

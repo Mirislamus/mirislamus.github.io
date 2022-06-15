@@ -4,37 +4,39 @@ document.addEventListener('DOMContentLoaded', () => {
     class Expander {
       constructor(options = {}) {
         const {
-          button = '.hamburgerButton',
+          openingButton = '.hamburgerButton',
           openingElement = '.navigationMenu',
-          close = '.navigationClose'
+          closingButton = '.navigationClose',
+          togglerClass = 'active',
         } = options;
 
-        this.button = button;
+        this.openingButton = openingButton;
         this.openingElement = openingElement;
-        this.close = close;
+        this.closingButton = closingButton;
+        this.togglerClass = togglerClass;
         this.init();
       }
       init() {
-        const button = document.querySelector(this.button);
+        const openingButton = document.querySelector(this.openingButton);
         const menu = document.querySelector(this.openingElement);
-        const close = document.querySelector(this.close);
+        const close = document.querySelector(this.closingButton);
 
         let toggleMenu = () => {
-          let expanded = button.getAttribute('aria-expanded');
+          let expanded = openingButton.getAttribute('aria-expanded');
 
           (expanded === 'false') ?
-          button.setAttribute('aria-expanded', true) :
-          button.setAttribute('aria-expanded', false);
-          menu.classList.toggle('active');
+          openingButton.setAttribute('aria-expanded', true) :
+          openingButton.setAttribute('aria-expanded', false);
+          menu.classList.toggle(this.togglerClass);
         };
 
-        button.addEventListener('click', toggleMenu);
+        openingButton.addEventListener('click', toggleMenu);
         close.addEventListener('click', toggleMenu);
 
         document.addEventListener('click', e => {
-          if(!e.target.closest(this.openingElement) && !e.target.closest(this.button)) {
-            button.setAttribute('aria-expanded', false);
-            menu.classList.remove('active');
+          if(!e.target.closest(this.openingElement) && !e.target.closest(this.openingButton)) {
+            openingButton.setAttribute('aria-expanded', false);
+            menu.classList.remove(this.togglerClass);
           }
         });
 
