@@ -1453,6 +1453,9 @@ img, svg, iframe {
   height: 100%;
   display: flex;
 }
+.media-item__small img {
+  max-width: 252px;
+}
 .media-item:hover .media__title, .media-item:focus .media__title {
   color: var(--green) !important;
 }
@@ -3247,6 +3250,9 @@ img, svg, iframe {
   .media-item {
     display: block;
     border-radius: 0;
+  }
+  .media-item__small img {
+    max-width: 100%;
   }
   .media-item img {
     height: 233px;
