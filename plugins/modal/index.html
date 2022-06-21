@@ -1,12 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/normalize.css">
-  <link rel="stylesheet" href="./css/modal.css">
+  <style>
+    .modal {
+      --overlay-color: rgba(0, 0, 0, .5);
+      --crossHeight: 20px;
+      --max-width: 500px;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--overlay-color);
+      z-index: 100;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: none;
+      animation: fadeOut .25s both ease;
+      cursor: pointer;
+    }
+
+    .modal--open {
+      animation: fadeIn .25s both ease;
+      display: block;
+    }
+
+    .modal__content {
+      background-color: #ffffff;
+      width: 100%;
+      position: relative;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-15%);
+      transition: .25s ease;
+      cursor: default;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    .modal__content--open {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .modal__close {
+      border: 0;
+      padding: 0;
+      background: 0;
+      font-size: var(--crossHeight);
+      font-weight: bold;
+      width: var(--crossHeight);
+      height: var(--crossHeight);
+      line-height: var(--crossHeight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 14px;
+      top: 17px;
+      cursor: pointer;
+      transition: opacity .25s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
   <title>modal</title>
 </head>
+
 <body>
   <button class="modalOpen">
     Open Modal
@@ -17,12 +102,116 @@
         &times;
       </button>
       <div class="modal__body">
-       Random Text
+        Random Text
       </div>
     </div>
   </div>
 
 
-  <script src="./js/modal.js"></script>
+  <script>
+    'use strict';
+    document.addEventListener('DOMContentLoaded', () => {
+      {
+        class Modal {
+          constructor(options = {}) {
+            const {
+              openingButton = '.modalOpen',
+              modalWindow = '.modalWindow',
+              closingButton = '.modalClose',
+              allModals = '.modal',
+
+              btnOpenEl = document.querySelectorAll(this.openingButton)
+            } = options;
+
+            this.openingButton = openingButton;
+            this.modalWindow = modalWindow;
+            this.closingButton = closingButton;
+            this.allModals = allModals;
+            this.btnOpenEl = btnOpenEl;
+            this.init();
+          }
+
+          openModalWindow(open = false) {
+
+            const modalWindow = document.querySelector(this.modalWindow),
+              openingButton = document.querySelectorAll(this.openingButton);
+
+            const openModal = () => {
+              this.closeModalWindow();
+              modalWindow.classList.add('modal--open');
+              modalWindow.setAttribute('tabindex', '-1');
+              modalWindow.focus();
+              modalWindow.addEventListener('animationend', () => {
+                modalWindow.firstElementChild.classList.add('modal__content--open');
+              });
+            };
+
+            if (open !== false) {
+              openModal();
+            }
+
+            openingButton.forEach(element => {
+              element.addEventListener('click', event => {
+                event.preventDefault();
+                openModal();
+              });
+            });
+          }
+
+          closeModalWindow(closeModalWindowOptions = {}) {
+            const {
+              closeAll = true,
+              close = false,
+            } = closeModalWindowOptions;
+
+            const modalWindow = document.querySelector(this.modalWindow),
+              allModals = document.querySelectorAll(this.allModals);
+
+            const closeModal = () => {
+              modalWindow.firstElementChild.classList.remove('modal__content--open');
+              modalWindow.classList.remove('modal--open');
+              modalWindow.removeAttribute('tabindex');
+
+              if (closeAll === true) {
+                for (let modalItem of allModals) {
+                  modalItem.firstElementChild.classList.remove('modal__content--open');
+                  modalItem.classList.remove('modal--open');
+                  modalItem.removeAttribute('tabindex');
+                }
+              }
+            };
+
+            if (close === true) {
+              closeModal();
+            }
+
+            modalWindow.addEventListener('click', event => {
+              const target = event.target;
+              if (target.closest(this.closingButton) ||
+                target.closest(this.modalWindow) &&
+                !target.closest('.modal__content')) {
+                closeModal();
+              }
+            });
+
+            window.addEventListener('keydown', event => {
+              if (event.key === 'Escape') {
+                closeModal();
+              }
+            });
+          }
+
+          init() {
+            this.openModalWindow();
+          }
+        }
+        new Modal();
+      }
+
+
+    });
+
+  </script>
 </body>
+
 </html>

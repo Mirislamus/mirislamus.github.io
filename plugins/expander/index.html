@@ -1,12 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hamburger Menu</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    *,
+    *:after,
+    *:before {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      padding: 25px;
+    }
+
+    .navigation {
+      padding: 10px;
+    }
+
+    .navigation__list {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      width: max-content;
+    }
+
+    .navigation__list li:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    .navigation__list a {
+      text-decoration: none;
+      color: #000;
+      text-decoration: underline transparent;
+      transition: .3s;
+    }
+
+    .navigation__list a:hover {
+      text-decoration: underline;
+    }
+
+    .navigation__button {
+      display: none;
+    }
+
+    @media(max-width: 767px) {
+      .navigation__button {
+        display: block;
+      }
+
+      .navigation__list {
+        display: block;
+        margin: 0;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: blanchedalmond;
+        padding: 30px;
+        z-index: 10;
+        box-shadow: 0px 0px 5px 3px rgba(34, 60, 80, 0.2);
+        transform: translateX(-100%);
+        transition: .3s ease-in-out;
+      }
+
+      .navigation__list.active {
+        transform: none;
+      }
+
+      .navigation__list li:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      .navigation__button {
+        margin-left: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <nav class="navigation">
@@ -43,6 +121,56 @@
       </ul>
     </div>
   </nav>
-  <script src="./js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      'use strict';
+      {
+        class Expander {
+          constructor(options = {}) {
+            const {
+              openingButton = '.hamburgerButton',
+              openingElement = '.navigationMenu',
+              closingButton = '.navigationClose',
+              togglerClass = 'active',
+            } = options;
+
+            this.openingButton = openingButton;
+            this.openingElement = openingElement;
+            this.closingButton = closingButton;
+            this.togglerClass = togglerClass;
+            this.init();
+          }
+          init() {
+            const openingButton = document.querySelector(this.openingButton);
+            const menu = document.querySelector(this.openingElement);
+            const close = document.querySelector(this.closingButton);
+
+            let toggleMenu = () => {
+              let expanded = openingButton.getAttribute('aria-expanded');
+
+              (expanded === 'false') ?
+                openingButton.setAttribute('aria-expanded', true) :
+                openingButton.setAttribute('aria-expanded', false);
+              menu.classList.toggle(this.togglerClass);
+            };
+
+            openingButton.addEventListener('click', toggleMenu);
+            close.addEventListener('click', toggleMenu);
+
+            document.addEventListener('click', e => {
+              if (!e.target.closest(this.openingElement) && !e.target.closest(this.openingButton)) {
+                openingButton.setAttribute('aria-expanded', false);
+                menu.classList.remove(this.togglerClass);
+              }
+            });
+
+          }
+        }
+        new Expander();
+      }
+    });
+
+  </script>
 </body>
+
 </html>

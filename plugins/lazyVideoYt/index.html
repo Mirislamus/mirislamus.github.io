@@ -1,29 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video From YT</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .video {
+      box-sizing: border-box;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 55.4%;
+    }
+
+    .video__img,
+    .video__iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .video__img {
+      z-index: 1;
+    }
+
+    .video__iframe {
+      z-index: 2;
+    }
+
+    .video__play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="video LazyVideoYt" data-id="mE1AvBP08Cs" data-alt="Верстать как" data-parameters="modestbranding=1&showinfo=0&controls=1&vq=hd720&?autoplay=1" tabindex="0">
+  <div class="video LazyVideoYt" data-id="mE1AvBP08Cs" data-alt="Верстать как"
+    data-parameters="modestbranding=1&showinfo=0&controls=1&vq=hd720&?autoplay=1" tabindex="0">
     <div class="video__play">
       <svg height="150px" width="150px" viewBox="0 -77 512.002 512">
-        <path d="M501.453 56.094c-5.902-21.934-23.195-39.223-45.125-45.13C416.262 0 255.996 0 255.996 0S95.734 0 55.668 10.547C34.16 16.449 16.445 34.164 10.543 56.094 0 96.156 0 179.242 0 179.242s0 83.504 10.543 123.149c5.906 21.93 23.195 39.222 45.129 45.129C96.156 358.484 256 358.484 256 358.484s160.262 0 200.328-10.546c21.934-5.903 39.223-23.196 45.129-45.125C512 262.745 512 179.663 512 179.663s.422-83.508-10.547-123.57zm0 0" fill="red"/>
-        <path d="M204.969 256l133.27-76.758-133.27-76.758zm0 0" fill="#fff"/>
+        <path
+          d="M501.453 56.094c-5.902-21.934-23.195-39.223-45.125-45.13C416.262 0 255.996 0 255.996 0S95.734 0 55.668 10.547C34.16 16.449 16.445 34.164 10.543 56.094 0 96.156 0 179.242 0 179.242s0 83.504 10.543 123.149c5.906 21.93 23.195 39.222 45.129 45.129C96.156 358.484 256 358.484 256 358.484s160.262 0 200.328-10.546c21.934-5.903 39.223-23.196 45.129-45.125C512 262.745 512 179.663 512 179.663s.422-83.508-10.547-123.57zm0 0"
+          fill="red" />
+        <path d="M204.969 256l133.27-76.758-133.27-76.758zm0 0" fill="#fff" />
       </svg>
     </div>
   </div>
-  <div class="video LazyVideoYt" data-id="mE1AvBP08Cs" data-alt="Верстать как" data-parameters="modestbranding=1&showinfo=0&controls=1&vq=hd720&?autoplay=1" tabindex="0">
-    <img class="video__img" src="https://www.kolpaper.com/wp-content/uploads/2020/09/Among-Us-Wallpaper.jpg" alt="video img">
+  <div class="video LazyVideoYt" data-id="mE1AvBP08Cs" data-alt="Верстать как"
+    data-parameters="modestbranding=1&showinfo=0&controls=1&vq=hd720&?autoplay=1" tabindex="0">
+    <img class="video__img" src="https://www.kolpaper.com/wp-content/uploads/2020/09/Among-Us-Wallpaper.jpg"
+      alt="video img">
     <div class="video__play">
       <svg height="150px" width="150px" viewBox="0 -77 512.002 512">
-        <path d="M501.453 56.094c-5.902-21.934-23.195-39.223-45.125-45.13C416.262 0 255.996 0 255.996 0S95.734 0 55.668 10.547C34.16 16.449 16.445 34.164 10.543 56.094 0 96.156 0 179.242 0 179.242s0 83.504 10.543 123.149c5.906 21.93 23.195 39.222 45.129 45.129C96.156 358.484 256 358.484 256 358.484s160.262 0 200.328-10.546c21.934-5.903 39.223-23.196 45.129-45.125C512 262.745 512 179.663 512 179.663s.422-83.508-10.547-123.57zm0 0" fill="red"/>
-        <path d="M204.969 256l133.27-76.758-133.27-76.758zm0 0" fill="#fff"/>
+        <path
+          d="M501.453 56.094c-5.902-21.934-23.195-39.223-45.125-45.13C416.262 0 255.996 0 255.996 0S95.734 0 55.668 10.547C34.16 16.449 16.445 34.164 10.543 56.094 0 96.156 0 179.242 0 179.242s0 83.504 10.543 123.149c5.906 21.93 23.195 39.222 45.129 45.129C96.156 358.484 256 358.484 256 358.484s160.262 0 200.328-10.546c21.934-5.903 39.223-23.196 45.129-45.125C512 262.745 512 179.663 512 179.663s.422-83.508-10.547-123.57zm0 0"
+          fill="red" />
+        <path d="M204.969 256l133.27-76.758-133.27-76.758zm0 0" fill="#fff" />
       </svg>
     </div>
   </div>
-  <script src="./js/script.js"></script>
+
+  <script>
+    {
+      class LazyVideoYt {
+        constructor(options = {}) {
+          const {
+            videoElement = '.LazyVideoYt',
+          } = options;
+          this.videoElement = videoElement;
+          this.init();
+        }
+        init() {
+          const videoElement = document.querySelectorAll(this.videoElement);
+
+          videoElement.forEach((element, index, array) => {
+            const videoUrl = `https://www.youtube.com/embed/${element.dataset.id}/?autoplay=1&enablejsapi=1&rel=0&showinfo=0&playsinline=1&${element.dataset.parameters}`;
+            const imgUrl = `https://img.youtube.com/vi/${element.dataset.id}/maxresdefault.jpg`;
+            const imgAlt = element.dataset.alt;
+
+            const createIframe = function () {
+              for (let items of array) {
+                if (items.lastElementChild.tagName === 'IFRAME') {
+                  items.lastElementChild.remove();
+                }
+              }
+              this.innerHTML +=
+                `<iframe
+                  class="video__iframe"
+                  frameborder="0"
+                  src="${videoUrl}"
+                  width="100%"
+                  height="100%"
+                  allow="autoplay"
+                  allowfullscreen>
+                </iframe>`;
+            };
+
+            if (element.firstElementChild.tagName === 'IMG') {
+              element.addEventListener('click', createIframe);
+            } else {
+              element.innerHTML += `<img class="video__img" src="${imgUrl}" alt="${imgAlt}">`;
+              element.addEventListener('click', createIframe);
+            }
+          });
+
+        }
+
+      }
+
+      new LazyVideoYt();
+
+    }
+  </script>
 </body>
+
 </html>
