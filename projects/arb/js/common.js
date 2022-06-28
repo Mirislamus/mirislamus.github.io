@@ -499,36 +499,56 @@ document.addEventListener('DOMContentLoaded', () => {
   // Drag Area
   const dropFileZone = document.querySelectorAll('.drop-file__zone');
   const form = document.querySelector('.form');
+  const Store = {
+    files: [],
+  };
+  var dt  = new DataTransfer();
+
 
   dropFileZone.forEach(el => {
     const uploadFileArea = el.parentElement.nextElementSibling;
-    async function addFiles() {
+    function addFiles() {
 
-      uploadFileArea.innerHTML += `
-      <div class="uploded-files">
-        <div class="upload-files__top">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#0AAA4A"/>
-          </svg>
-          <div class="upload-files__name">
-            ${el.nextElementSibling.files[0].name}
-          </div>
-          <button class="upload-files__delete btn-reset" type="button">
+      const files = Object.keys(el.nextElementSibling.files).map((i) => el.nextElementSibling.files[i]);
+      Store.files = Store.files.concat(files);
+      uploadFileArea.innerHTML = '';
+
+      Store.files.forEach(file => {
+        dt.items.add(file);
+      });
+
+      el.nextElementSibling.files = dt.files;
+
+      Store.files.forEach((file, fileIndex, fileArray) => {
+        uploadFileArea.innerHTML += `
+        <div class="uploded-files">
+          <div class="upload-files__top">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="12" fill="#FFF3F3"/>
-              <path d="M17.8334 7.34199L16.6584 6.16699L12.0001 10.8253L7.34175 6.16699L6.16675 7.34199L10.8251 12.0003L6.16675 16.6587L7.34175 17.8337L12.0001 13.1753L16.6584 17.8337L17.8334 16.6587L13.1751 12.0003L17.8334 7.34199Z" fill="#E12323"/>
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#0AAA4A"/>
             </svg>
-          </button>
-        </div>
-        <div class="upload-files__size">
-          ${(el.nextElementSibling.files[0].size / 1024 / 1024).toFixed(2)} мб
-        </div>
-      </div>`;
+            <div class="upload-files__name">
+              ${file.name}
+            </div>
+            <button class="upload-files__delete btn-reset" type="button">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="12" fill="#FFF3F3"/>
+                <path d="M17.8334 7.34199L16.6584 6.16699L12.0001 10.8253L7.34175 6.16699L6.16675 7.34199L10.8251 12.0003L6.16675 16.6587L7.34175 17.8337L12.0001 13.1753L16.6584 17.8337L17.8334 16.6587L13.1751 12.0003L17.8334 7.34199Z" fill="#E12323"/>
+              </svg>
+            </button>
+          </div>
+          <div class="upload-files__size">
+            ${(file.size / 1024 / 1024).toFixed(2)} мб
+          </div>
+        </div>`;
+      });
 
       let removeFile = document.querySelectorAll('.upload-files__delete');
-      removeFile.forEach(close => {
+      removeFile.forEach((close, closeIndex, closeArray) => {
+
         close.addEventListener('click', () => {
           close.parentElement.parentElement.remove();
+          Store.files.splice(closeIndex, 1);
+          dt.items.remove(closeIndex);
         });
       });
     }
