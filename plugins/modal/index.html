@@ -119,15 +119,12 @@
               modalWindow = '.modalWindow',
               closingButton = '.modalClose',
               allModals = '.modal',
-
-              btnOpenEl = document.querySelectorAll(this.openingButton)
             } = options;
 
             this.openingButton = openingButton;
             this.modalWindow = modalWindow;
             this.closingButton = closingButton;
             this.allModals = allModals;
-            this.btnOpenEl = btnOpenEl;
             this.init();
           }
 
@@ -158,11 +155,11 @@
             });
           }
 
-          closeModalWindow(closeModalWindowOptions = {}) {
+          closeModalWindow(close = {}) {
             const {
               closeAll = true,
               close = false,
-            } = closeModalWindowOptions;
+            } = close;
 
             const modalWindow = document.querySelector(this.modalWindow),
               allModals = document.querySelectorAll(this.allModals);
