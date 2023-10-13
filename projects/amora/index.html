@@ -118,7 +118,7 @@
           </div>
 
           <div class="face__subtitle moveAnimation animate-from-right">
-            <div class="scale-img">
+            <div class="huge-img scale-img">
               <img src="./img/face-img.jpg" alt="photo">
             </div>
             <p class="p-24">
@@ -130,7 +130,7 @@
           </div>
 
           <div class="face__options moveAnimation animate-from-left">
-            <div class="scale-img">
+            <div class="small-img" class="scale-img">
               <img src="./img/face-img2.jpg" alt="photo">
             </div>
             <div class="face__options-item">
@@ -470,70 +470,7 @@
       </div>
       <div class="container">
         <h2 class="main-text moveAnimation animate-from-top">Отзывы</h2>
-        <div class="swiper feedbackSlider moveAnimation animate-from-top">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="feedback__video">
-                <video class="video" poster="img/feedback3.jpg">
-                  <source src="files/feedback.mp4" type="video/mp4">
-                </video>
-                <div class="controls">
-                  <button class="btn-reset play-pause">
-                    <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
-                      <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
-                        <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
-                      </mask>
-                      <g mask="url(#mask0_36_240)">
-                        <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
-                      </g>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="feedback__video">
-                <div class="feedback__user">
-                  <img src="img/feedback_avatar.png" alt="avatar">
-                  <p>beauty.katya</p>
-                </div>
-                <video class="video" poster="img/feedback1.jpg">
-                  <source src="files/feedback.mp4" type="video/mp4">
-                </video>
-                <div class="controls">
-                  <button class="btn-reset play-pause">
-                    <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
-                      <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
-                        <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
-                      </mask>
-                      <g mask="url(#mask0_36_240)">
-                        <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
-                      </g>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="feedback__video">
-                <video class="video" poster="img/feedback2.jpg">
-                  <source src="files/feedback.mp4" type="video/mp4">
-                </video>
-                <div class="controls">
-                  <button class="btn-reset play-pause">
-                    <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
-                      <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
-                        <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
-                      </mask>
-                      <g mask="url(#mask0_36_240)">
-                        <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
-                      </g>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="feedback__wrapper">
           <div class="swiper-button-prev">
             <svg width="23" height="15" viewBox="0 0 23 15" fill="none">
               <path d="M23 7.5H1" stroke="#645140" />
@@ -548,7 +485,76 @@
               <path d="M14.5 15C14.5 11.5 16 8 22 7.5" stroke="#645140" />
             </svg>
           </div>
+          <div class="feedback__carousel">
+            <div class="swiper feedbackSlider moveAnimation animate-from-top">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="feedback__video">
+                    <video class="video" poster="img/feedback3.jpg">
+                      <source src="files/feedback.mp4" type="video/mp4">
+                    </video>
+                    <div class="controls">
+                      <button class="btn-reset play-pause">
+                        <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
+                          <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
+                            <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
+                          </mask>
+                          <g mask="url(#mask0_36_240)">
+                            <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="feedback__video">
+                    <div class="feedback__user">
+                      <img src="img/feedback_avatar.png" alt="avatar">
+                      <p>beauty.katya</p>
+                    </div>
+                    <video class="video" poster="img/feedback1.jpg">
+                      <source src="files/feedback.mp4" type="video/mp4">
+                    </video>
+                    <div class="controls">
+                      <button class="btn-reset play-pause">
+                        <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
+                          <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
+                            <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
+                          </mask>
+                          <g mask="url(#mask0_36_240)">
+                            <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="feedback__video">
+                    <video class="video" poster="img/feedback2.jpg">
+                      <source src="files/feedback.mp4" type="video/mp4">
+                    </video>
+                    <div class="controls">
+                      <button class="btn-reset play-pause">
+                        <svg width="37" height="37" viewBox="0 0 37 37" fill="none">
+                          <mask id="mask0_36_240" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="37" height="37">
+                            <rect x="0.0305176" y="0.0307617" width="36.1832" height="36.1832" fill="#D9D9D9" />
+                          </mask>
+                          <g mask="url(#mask0_36_240)">
+                            <path d="M15.4631 24.7705C15.0572 25.0392 14.645 25.0532 14.2266 24.8125C13.8081 24.5719 13.5989 24.208 13.5989 23.721V12.5238C13.5989 12.0368 13.8081 11.6729 14.2266 11.4323C14.645 11.1916 15.0572 11.2056 15.4631 11.4743L24.2712 17.1018C24.6462 17.3454 24.8336 17.6856 24.8336 18.1224C24.8336 18.5592 24.6462 18.8994 24.2712 19.143L15.4631 24.7705Z" fill="white" />
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+
         <div class="feedback__text moveAnimation animate-from-top">
           <p>Эти прекрасные женщины выбрали AMORA проводником к своейкрасоте. Посмотри, как они отзываются о нашей косметике. <br> <br>
             Если ты тоже поделишься в своих социальных сетях тем, куда привело тебя путешествие с AMORA – мы будем очень рады и благодарны.
