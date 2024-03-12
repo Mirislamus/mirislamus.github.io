@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Neometric';
+  src: url('Neometric-Regular.woff2') format('woff2'),
+      url('Neometric-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neometric';
+  src: url('Neometric-Bold.woff2') format('woff2'),
+      url('Neometric-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
