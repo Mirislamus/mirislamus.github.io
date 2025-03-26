@@ -5,6 +5,8 @@ import sitemap from "@astrojs/sitemap";
 
 
 export default defineConfig({
+  site: "https://mirislamus.github.io",
+  base: "/mirislamus.github.io/",
   output: "static",
   integrations: [react(), sitemap()],
   server: {
