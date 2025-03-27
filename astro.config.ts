@@ -13,6 +13,9 @@ export default defineConfig({
     host: true,
   },
   vite: {
+    css: {
+      postcss: './postcss.config.js',
+    },
     resolve: {
       alias: {
         '@shared': '/src/shared',
