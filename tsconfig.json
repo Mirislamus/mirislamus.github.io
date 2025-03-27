@@ -2,10 +2,16 @@
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist", "node_modules"],
+  "plugins": [
+    {
+      "name": "@astrojs/ts-plugin"
+    }
+  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
+    "verbatimModuleSyntax": true,
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@widgets/*": ["src/widgets/*"],
