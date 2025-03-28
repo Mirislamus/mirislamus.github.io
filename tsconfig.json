@@ -15,7 +15,8 @@
     "paths": {
       "@shared/*": ["src/shared/*"],
       "@widgets/*": ["src/widgets/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"],
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

@@ -21,6 +21,7 @@ export default defineConfig({
         '@shared': '/src/shared',
         '@widgets': '/src/widgets',
         '@utils': '/src/utils',
+        '@styles': '/src/styles',
       },
     },
     build: {
