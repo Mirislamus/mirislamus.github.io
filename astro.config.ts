@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
@@ -11,6 +10,7 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+    open: true,
   },
   vite: {
     css: {
@@ -29,4 +29,18 @@ export default defineConfig({
       sourcemap: false,
     },
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ru', 'uz'],
+    routing: 'manual',
+  },
+  trailingSlash: 'never',
+  experimental: {
+    clientPrerender: true,
+    contentIntellisense: true,
+    responsiveImages: true,
+    svg: {
+      mode: 'sprite',
+    }
+  }
 });
