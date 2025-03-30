@@ -1,0 +1,22 @@
+@use '@styles/helpers/mixins' as *;
+
+.container {
+  --gap: 15px;
+  width: 100%;
+  padding-right: var(--gap);
+  padding-left: var(--gap);
+  margin-right: auto;
+  margin-left: auto;
+  @include media(min, 576) {
+    max-width: 540px;
+  }
+  @include media(min, 768) {
+    max-width: 720px;
+  }
+  @include media(min, 992) {
+    max-width: 960px;
+  }
+  @include media(min, 1200) {
+    max-width: 1170px;
+  }
+}

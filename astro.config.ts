@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://mirislamus.github.io',
-  base: '/mirislamus.github.io/',
   output: 'static',
   integrations: [react(), sitemap()],
   server: {
@@ -22,6 +21,7 @@ export default defineConfig({
         '@widgets': '/src/widgets',
         '@utils': '/src/utils',
         '@styles': '/src/styles',
+        '@layouts': '/src/layouts',
       },
     },
     build: {
@@ -32,7 +32,6 @@ export default defineConfig({
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ru', 'uz'],
-    routing: 'manual',
   },
   trailingSlash: 'never',
   experimental: {
@@ -41,6 +40,6 @@ export default defineConfig({
     responsiveImages: true,
     svg: {
       mode: 'sprite',
-    }
-  }
+    },
+  },
 });

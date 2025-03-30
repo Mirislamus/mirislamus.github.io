@@ -1,0 +1,161 @@
+@mixin list-reset {
+  margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+@mixin btn-reset {
+	padding: 0;
+	margin: 0;
+	background: 0;
+	border: 0;
+	color: inherit;
+	text-align: left;
+	appearance: none;
+}
+
+@mixin link-reset {
+	text-decoration: none;
+	color: inherit;
+	appearance: none;
+}
+
+@mixin input-reset {
+	padding: 0;
+	border: 0;
+	appearance: none;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+@mixin visually-hidden {
+	clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@mixin full($position: absolute, $gap: 0) {
+  position: $position;
+  top: $gap;
+  left: $gap;
+  right: $gap;
+  bottom: $gap;
+}
+
+@mixin img-fluid {
+	max-width: 100%;
+	height: auto;
+}
+
+@mixin center {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin center-x {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+@mixin center-y {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin px($gap) {
+  padding-left: $gap;
+  padding-right: $gap;
+}
+
+@mixin py($gap) {
+  padding-top: $gap;
+  padding-bottom: $gap;
+}
+
+@mixin mx($gap) {
+  margin-left: $gap;
+  margin-right: $gap;
+}
+
+@mixin my($gap) {
+  margin-top: $gap;
+  margin-bottom: $gap;
+}
+
+@mixin hideScroll {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+    display: none;
+	}
+}
+
+@mixin img2x($image-path, $extension) {
+	background-image: image-set(
+										url("#{$image-path}.#{$extension}") 1x,
+										url("#{$image-path}@2x.#{$extension}") 2x);
+}
+
+@mixin retinaImage($filename, $extension, $width, $height) {
+  background: url('#{$filename}.#{$extension}') no-repeat;
+  @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
+      background: url('#{$filename}@2x.#{$extension}') no-repeat;
+      background-size: $width $height;
+  }
+}
+
+@mixin media($minmax, $width) {
+	@media screen and (#{$minmax}-width: #{$width}px) {
+		@content;
+	}
+}
+
+@mixin media-mm($min, $max) {
+	@media screen and (min-width: #{$min}px) and (max-width: #{$max}px) {
+		@content;
+	}
+}
+
+@mixin is-touch($enable: true) {
+	@if $enable {
+		@media (hover: hover) and (pointer: fine) {
+			@content;
+		}
+	} @else {
+		@media (hover: none) and (pointer: coarse) {
+			@content;
+		}
+	}
+}
+
+@mixin customScroll($trackColor, $thumbColor) {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $thumbColor $trackColor;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumbColor;
+    transition: var(--transition);
+    &:hover {
+      background-color: rgba($thumbColor, .5)
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $trackColor;
+  }
+}
