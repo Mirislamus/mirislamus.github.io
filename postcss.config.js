@@ -1,7 +1,12 @@
 export default {
   plugins: {
     autoprefixer: {},
-    'postcss-preset-env': { stage: 1 },
+    'postcss-preset-env': {
+      stage: 1,
+      features: {
+        'custom-properties': true,
+      },
+    },
     cssnano: {
       preset: [
         'default',

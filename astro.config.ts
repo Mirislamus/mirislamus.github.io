@@ -27,6 +27,8 @@ export default defineConfig({
     build: {
       minify: 'esbuild',
       sourcemap: false,
+      assetsInlineLimit: 0,
+      cssMinify: true,
     },
   },
   i18n: {
