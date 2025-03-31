@@ -1,7 +1,7 @@
 @use '@styles/helpers/mixins' as *;
 
 .container {
-  --gap: 15px;
+  --gap: 12px;
   width: 100%;
   padding-right: var(--gap);
   padding-left: var(--gap);
@@ -13,10 +13,10 @@
   @include media(min, 768) {
     max-width: 720px;
   }
-  @include media(min, 992) {
+  @include media(min, 1024) {
     max-width: 960px;
   }
-  @include media(min, 1200) {
-    max-width: 1170px;
+  @include media(min, 1280) {
+    max-width: calc(var(--gap) * 2 + 1240px);
   }
 }
