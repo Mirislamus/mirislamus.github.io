@@ -33,7 +33,6 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'ru', 'uz'],
   },
-  trailingSlash: 'never',
   experimental: {
     clientPrerender: true,
     contentIntellisense: true,
