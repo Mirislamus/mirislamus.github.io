@@ -21,6 +21,14 @@
   --green: #44ff62;
   --orange: #ff8660;
   --blue: #157ce1;
+  --purple: #ad5aff;
+
+  --gradient: linear-gradient(180deg, var(--orange) 0%, var(--purple) 100%);
+
+  --gap-4: 4px;
+  --gap-12: 12px;
+  --gap-15: 15px;
+  --gap-30: 30px;
 }
 
 [data-theme='light'] {

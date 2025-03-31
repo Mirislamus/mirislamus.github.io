@@ -1,15 +1,15 @@
 @use '@styles/helpers/mixins' as *;
 
-.page,
-.page__body {
+html,
+body {
   scrollbar-gutter: stable;
 }
 
-.page {
+html {
   scroll-behavior: smooth;
 }
 
-.page__body {
+body {
   font-family: var(--main-font);
   font-size: var(--font-size);
   line-height: var(--line-height);
@@ -19,6 +19,6 @@
   flex-direction: column;
 }
 
-.page-footer {
+footer {
   margin-top: auto;
 }
