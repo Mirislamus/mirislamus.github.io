@@ -1,0 +1,21 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Mirislam Usmanov</title>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+      const theme = savedTheme || (prefersDark.matches ? 'dark' : 'light');
+
+      document.documentElement.setAttribute('data-theme', theme);
+
+      prefersDark.addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
+  </script>
+</head>
