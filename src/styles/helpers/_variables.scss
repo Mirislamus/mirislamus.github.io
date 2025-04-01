@@ -1,6 +1,7 @@
 @use '@styles/helpers/mixins' as *;
 
 :root {
+  --font: 'SF Pro Display', sans-serif;
   --transition: 0.25s ease;
 
   --white: #ffffff;
