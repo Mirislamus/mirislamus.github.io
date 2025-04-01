@@ -17,7 +17,9 @@
       "@widgets/*": ["src/widgets/*"],
       "@utils/*": ["src/utils/*"],
       "@styles/*": ["src/styles/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@data/*": ["src/data/*"],
+      "@types/*": ["src/types/*"]
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

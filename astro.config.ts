@@ -22,6 +22,8 @@ export default defineConfig({
         '@utils': '/src/utils',
         '@styles': '/src/styles',
         '@layouts': '/src/layouts',
+        '@data': '/src/data',
+        '@types': '/src/types',
       },
     },
     build: {

@@ -1,22 +1,59 @@
+---
+import meta_en from '@data/meta/en.json';
+import meta_ru from '@data/meta/ru.json';
+import meta_uz from '@data/meta/uz.json';
+
+const meta = {
+  en: meta_en,
+  ru: meta_ru,
+  uz: meta_uz,
+} as const;
+
+const localeMeta = meta[Astro.currentLocale as keyof typeof meta];
+---
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>Mirislam Usmanov</title>
+
+  <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
+
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+
+  <meta property="og:title" content={localeMeta.title} />
+  <meta property="og:description" content={localeMeta.description} />
+  <meta property="og:image" content="/opengraph.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://mirislamus.github.io" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={localeMeta.title} />
+  <meta name="twitter:description" content={localeMeta.description} />
+  <meta name="twitter:image" content="/opengraph.jpg" />
+
+  <title>{localeMeta.title}</title>
   <script>
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : prefersDark ? 'dark' : 'light';
-
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-
-
-    if (savedTheme === 'auto' || !savedTheme) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-      });
+    function updateTheme(theme: string) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
     }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    const theme = savedTheme ?? (prefersDark.matches ? 'dark' : 'light');
+
+    updateTheme(theme);
+
+    prefersDark.addEventListener('change', ({ matches }) => {
+      if (savedTheme !== 'auto' && savedTheme) return;
+      updateTheme(matches ? 'dark' : 'light');
+    });
   </script>
 </head>
