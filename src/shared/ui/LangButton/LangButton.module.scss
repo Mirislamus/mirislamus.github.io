@@ -1,0 +1,21 @@
+.langButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text);
+  border-radius: var(--radius-10);
+  border: 1px solid var(--black-3);
+  transition: var(--transition);
+
+  &:hover {
+    border-color: var(--grey-5);
+  }
+  &:focus {
+    border-color: var(--grey-6);
+  }
+}
