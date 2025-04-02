@@ -1,0 +1,56 @@
+@use '@styles/helpers/mixins' as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 5px;
+  border-radius: var(--radius-12);
+  font-weight: 500;
+  transition: var(--transition);
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--accent-alpha);
+  }
+}
+
+.fill {
+  color: var(--text-reverse);
+  border: 2px solid var(--accent);
+  background-color: var(--accent);
+  &:hover {
+    background-color: var(--accent-alpha);
+    color: var(--text);
+  }
+}
+
+.outline {
+  color: var(--text);
+  border: 2px solid var(--black-3);
+  &:hover {
+    border-color: var(--grey-5);
+  }
+  &:focus {
+    border-color: var(--grey-6);
+  }
+}
+
+.sm {
+  font-size: 14px;
+  padding-inline: 16px;
+  height: 40px;
+}
+
+.lg {
+  font-size: 16px;
+  padding-inline: 24px;
+  height: 48px;
+
+  @include media(max, 767) {
+    height: 44px;
+  }
+}
+
+.fluid {
+  width: 100%;
+}

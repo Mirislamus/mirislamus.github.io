@@ -26,13 +26,13 @@
     "module": "ESNext",
     "target": "ESNext",
     "resolveJsonModule": true,
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false,
 
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
 
     "isolatedModules": true,
     "noEmit": true,

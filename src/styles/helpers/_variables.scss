@@ -2,7 +2,7 @@
 
 :root {
   --font: 'SF Pro Display', sans-serif;
-  --transition: 0.25s ease;
+  --transition: 0.25s ease-in;
 
   --white: #ffffff;
 
@@ -15,9 +15,13 @@
   --grey-2: #eeeeee;
   --grey-3: #e9e9e9;
   --grey-4: #9a9a9a;
+  --grey-5: #505050;
+  --grey-6: #707070;
 
   --green: #44ff62;
+  --green-alpha: rgb(68 255 98 / 35%);
   --orange: #ff8660;
+  --orange-alpha: rgb(255 134 96 / 35%);
   --blue: #157ce1;
   --purple: #ad5aff;
 
@@ -27,22 +31,28 @@
   --gap-12: 12px;
   --gap-15: 15px;
   --gap-30: 30px;
+
+  --radius-12: 12px;
 }
 
 [data-theme='light'] {
   --background: var(--white);
   --text: var(--black);
+  --text-reverse: var(--white);
   --primary: var(--grey);
   --secondary: var(--grey-2);
   --tertiary: var(--grey-3);
   --accent: var(--orange);
+  --accent-alpha: var(--orange-alpha);
 }
 
 [data-theme='dark'] {
   --background: var(--black);
   --text: var(--white);
+  --text-reverse: var(--black);
   --primary: var(--black-2);
   --secondary: var(--black-1);
   --tertiary: var(--black-3);
-  --accent: var(--orange);
+  --accent: var(--green);
+  --accent-alpha: var(--green-alpha);
 }

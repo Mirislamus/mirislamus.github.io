@@ -23,3 +23,8 @@ body {
 footer {
   margin-top: auto;
 }
+
+::selection {
+  background-color: var(--accent);
+  color: var(--text-reverse);
+}
