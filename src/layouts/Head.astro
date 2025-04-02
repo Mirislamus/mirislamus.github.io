@@ -7,9 +7,7 @@ const meta = {
   en: meta_en,
   ru: meta_ru,
   uz: meta_uz,
-} as const;
-
-const localeMeta = meta[Astro.currentLocale as keyof typeof meta];
+}[Astro.currentLocale];
 ---
 
 <head>
@@ -22,8 +20,8 @@ const localeMeta = meta[Astro.currentLocale as keyof typeof meta];
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 
-  <meta property="og:title" content={localeMeta.title} />
-  <meta property="og:description" content={localeMeta.description} />
+  <meta property="og:title" content={meta.title} />
+  <meta property="og:description" content={meta.description} />
   <meta property="og:image" content="/opengraph.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -31,11 +29,11 @@ const localeMeta = meta[Astro.currentLocale as keyof typeof meta];
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={localeMeta.title} />
-  <meta name="twitter:description" content={localeMeta.description} />
+  <meta name="twitter:title" content={meta.title} />
+  <meta name="twitter:description" content={meta.description} />
   <meta name="twitter:image" content="/opengraph.jpg" />
 
-  <title>{localeMeta.title}</title>
+  <title>{meta.title}</title>
   <script>
     function updateTheme(theme: string) {
       document.documentElement.setAttribute('data-theme', theme);
