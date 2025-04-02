@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { noop } from '@utils/noop';
-import s from '@shared/Button/Button.module.scss';
+import s from '@shared/ui/Button/Button.module.scss';
 import cx from 'clsx';
 
 interface ButtonProps {
