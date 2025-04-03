@@ -1,0 +1,55 @@
+.switcher {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--gap-4);
+  border: 1px solid var(--tertiary);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border-radius: var(--radius-10);
+  height: 40px;
+  padding: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+
+  &.active {
+    &:nth-child(1) {
+      ~ .square {
+        transform: translateX(0);
+      }
+    }
+
+    &:nth-child(2) {
+      ~ .square {
+        transform: translateX(36px);
+      }
+    }
+
+    &:nth-child(3) {
+      ~ .square {
+        transform: translateX(72px);
+      }
+    }
+  }
+}
+
+.square {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-8);
+  background-color: var(--tertiary);
+  z-index: -1;
+  transition: var(--transition);
+}
