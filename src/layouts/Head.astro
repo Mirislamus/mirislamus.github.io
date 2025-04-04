@@ -1,13 +1,7 @@
 ---
-import meta_en from '@data/meta/en.json';
-import meta_ru from '@data/meta/ru.json';
-import meta_uz from '@data/meta/uz.json';
+import metaData from '@data/meta/meta.json';
 
-const meta = {
-  en: meta_en,
-  ru: meta_ru,
-  uz: meta_uz,
-}[Astro.currentLocale];
+const meta = metaData[Astro.currentLocale];
 ---
 
 <head>
