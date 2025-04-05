@@ -11,10 +11,13 @@
     max-width: 540px;
   }
   @include media(min, 768) {
-    max-width: 720px;
+    max-width: 740px;
+  }
+  @include media(min, 992) {
+    max-width: 940px;
   }
   @include media(min, 1024) {
-    max-width: 960px;
+    max-width: 980px;
   }
   @include media(min, 1280) {
     max-width: calc(var(--gap) * 2 + 1240px);

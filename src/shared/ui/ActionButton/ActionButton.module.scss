@@ -1,12 +1,15 @@
-.langButton {
+@use '@styles/helpers/mixins' as *;
+
+.actionButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  width: 40px;
+  height: 42px;
+  width: 42px;
   font-size: 16px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: var(--letter-spacing);
   color: var(--text);
   border-radius: var(--radius-10);
   border: 1px solid var(--black-3);
@@ -17,5 +20,10 @@
   }
   &:focus {
     border-color: var(--grey-6);
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 40px;
+    width: 40px;
   }
 }

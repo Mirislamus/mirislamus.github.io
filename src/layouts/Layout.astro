@@ -1,12 +1,16 @@
 ---
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
+import { Header } from '@widgets/Header/Header';
+
+const { currentLocale, routePattern } = Astro;
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale}>
+<html lang={currentLocale}>
   <Head />
   <body>
+    <Header url={routePattern} lang={currentLocale} client:load />
     <slot />
   </body>
 </html>

@@ -11,26 +11,23 @@ type Item = {
 
 interface SwitcherProps {
   items: Item[];
+  className?: string;
 }
 
-export const Switcher = ({ items }: SwitcherProps) => {
+export const Switcher = ({ items, className }: SwitcherProps) => {
   return (
-    <div className={s.switcher}>
+    <div className={cx(s.switcher, className)}>
       {items.map(({ content, onClick, href, isActive }) => {
         const buttonClasses = cx(s.button, { [s.active]: isActive });
 
-        return (
-          <>
-            {href ? (
-              <a href={href} className={buttonClasses}>
-                {content}
-              </a>
-            ) : (
-              <button type="button" onClick={onClick} className={buttonClasses}>
-                {content}
-              </button>
-            )}
-          </>
+        return href ? (
+          <a href={href} className={buttonClasses}>
+            {content}
+          </a>
+        ) : (
+          <button type="button" onClick={onClick} className={buttonClasses}>
+            {content}
+          </button>
         );
       })}
       <div className={s.square} />

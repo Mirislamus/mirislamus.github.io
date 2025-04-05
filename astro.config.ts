@@ -18,6 +18,8 @@ export default defineConfig({
     resolve: {
       alias: {
         '@shared': '/src/shared',
+        '@icons': '/src/shared/icons',
+        '@hooks': '/src/shared/hooks',
         '@widgets': '/src/widgets',
         '@utils': '/src/utils',
         '@styles': '/src/styles',
