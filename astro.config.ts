@@ -43,8 +43,6 @@ export default defineConfig({
     clientPrerender: true,
     contentIntellisense: true,
     responsiveImages: true,
-    svg: {
-      mode: 'sprite',
-    },
+    svg: true,
   },
 });
