@@ -1,0 +1,9 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
+}
+---
+
+<Layout />
