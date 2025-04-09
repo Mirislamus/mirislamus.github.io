@@ -74,19 +74,16 @@ export const Header = ({ url, lang }: HeaderProps) => {
     {
       href: '/',
       content: 'EN',
-      onClick: () => {},
       isActive: lang === 'en',
     },
     {
       href: '/ru',
       content: 'RU',
-      onClick: () => {},
       isActive: lang === 'ru',
     },
     {
       href: '/uz',
       content: 'UZ',
-      onClick: () => {},
       isActive: lang === 'uz',
     },
   ];
