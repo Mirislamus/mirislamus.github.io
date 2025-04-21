@@ -39,10 +39,4 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'ru', 'uz'],
   },
-  experimental: {
-    clientPrerender: true,
-    contentIntellisense: true,
-    responsiveImages: true,
-    svg: true,
-  },
 });
