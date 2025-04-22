@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import s from '@widgets/Header/Header.module.scss';
 import cx from 'clsx';
 import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
-import { useBreakpoint } from '@shared/hooks';
+import { useBreakpoint, useClickOutside } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { motion, AnimatePresence } from 'motion/react';
 import { updateTheme } from '@utils/updateTheme';
@@ -22,6 +22,8 @@ export const Header = ({ url, lang }: HeaderProps) => {
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
+  const langsRef = useRef<HTMLDivElement>(null);
+  const langsButtonRef = useRef<HTMLButtonElement>(null);
 
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
@@ -29,6 +31,8 @@ export const Header = ({ url, lang }: HeaderProps) => {
   const [itemActiveWidth, setItemActiveWidth] = useState<number>(43);
   const [itemOffsetLeft, setItemOffsetLeft] = useState<number>(0);
   const [theme, setTheme] = useState<string>('system');
+
+  useClickOutside([langsRef, langsButtonRef], () => setLangsIsOpen(false));
 
   useLayoutEffect(() => {
     setItemActiveWidth(linksRef.current[itemActiveIndex].offsetWidth);
@@ -155,17 +159,19 @@ export const Header = ({ url, lang }: HeaderProps) => {
           <div className={s.end}>
             <Switcher className={s.themesSwitcher} items={themesData} />
             <div className={s.langsSwitcher}>
-              <ActionButton onClick={onLangClick}>{lang}</ActionButton>
+              <ActionButton ref={langsButtonRef} onClick={onLangClick}>
+                {lang}
+              </ActionButton>
               <AnimatePresence>
                 {langsIsOpen && (
                   <motion.div
                     className={s.langsList}
-                    initial={{ opacity: 1, width: 0 }}
-                    animate={{ opacity: 1, width: '114px' }}
-                    exit={{ opacity: 0, width: 0 }}
+                    initial={{ opacity: 1, height: 0 }}
+                    animate={{ opacity: 1, height: '114px' }}
+                    exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3, ease: 'easeIn' }}
                   >
-                    <Switcher items={langsData} />
+                    <Switcher ref={langsRef} variant="column" items={langsData} />
                   </motion.div>
                 )}
               </AnimatePresence>

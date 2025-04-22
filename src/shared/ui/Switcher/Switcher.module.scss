@@ -15,6 +15,18 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+
+  > div {
+    display: contents;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
 }
 
 .button {
@@ -39,40 +51,11 @@
   }
 
   &.active {
-    pointer-events: none;
     color: var(--white);
-    
-    &:nth-child(1) {
-      ~ .square {
-        transform: translateX(0);
-      }
-    }
-
-    &:nth-child(2) {
-      ~ .square {
-        transform: translateX(36px);
-      }
-    }
-
-    &:nth-child(3) {
-      ~ .square {
-        transform: translateX(72px);
-      }
-    }
+    background-color: var(--black-3);
   }
 
   &:focus-visible {
     box-shadow: 0 0 0 1px var(--black-3-alpha);
   }
-}
-
-.square {
-  position: absolute;
-  top: 4px;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-8);
-  background-color: var(--black-3);
-  z-index: -1;
-  transition: var(--transition);
 }

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, RefObject } from 'react';
 import s from '@shared/ui/Switcher/Switcher.module.scss';
 import cx from 'clsx';
 import { noop } from '@utils/noop';
@@ -12,26 +12,33 @@ type Item = {
 
 interface SwitcherProps {
   items: Item[];
+  variant?: 'row' | 'column';
   className?: string;
+  ref?: RefObject<HTMLDivElement>;
 }
 
-export const Switcher = ({ items, className }: SwitcherProps) => {
+export const Switcher = ({ items, variant = 'row', className, ref }: SwitcherProps) => {
   return (
-    <div className={cx(s.switcher, className)}>
-      {items.map(({ content, onClick = noop, href, isActive }) => {
+    <div className={cx(s.switcher, s[variant], className)} ref={ref}>
+      {items.map((item, index) => {
+        const { content, onClick = noop, href, isActive } = item;
         const buttonClasses = cx(s.button, { [s.active]: isActive });
+        const key = href ?? index;
 
-        return href ? (
-          <a key={href} href={href} className={buttonClasses}>
-            {content}
-          </a>
-        ) : (
-          <button key={content.toString()} type="button" onClick={onClick} className={buttonClasses}>
+        if (href) {
+          return (
+            <a key={key} href={href} className={buttonClasses}>
+              {content}
+            </a>
+          );
+        }
+
+        return (
+          <button key={key} type="button" onClick={onClick} className={buttonClasses}>
             {content}
           </button>
         );
       })}
-      <div className={s.square} />
     </div>
   );
 };
