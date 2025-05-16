@@ -10,7 +10,7 @@ const { currentLocale, routePattern } = Astro;
 <html lang={currentLocale}>
   <Head />
   <body>
-    <Header url={routePattern} lang={currentLocale} client:load />
+    <Header url={routePattern} locale={currentLocale} client:load />
     <slot />
   </body>
 </html>

@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import s from '@widgets/Header/Header.module.scss';
 import cx from 'clsx';
 import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
-import { useBreakpoint, useClickOutside } from '@shared/hooks';
+import { useClickOutside } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { motion, AnimatePresence } from 'motion/react';
 import { updateTheme } from '@utils/updateTheme';
@@ -11,14 +11,12 @@ import menuData from '@data/menu/menu.json';
 
 interface HeaderProps {
   url: string;
-  lang: string;
+  locale: string;
 }
 
-export const Header = ({ url, lang }: HeaderProps) => {
-  const menuItems = menuData.data[lang];
+export const Header = ({ url, locale }: HeaderProps) => {
+  const menuItems = menuData.data[locale];
   const menuUrls = menuData.urls;
-
-  const isMobile = useBreakpoint('(max-width: 1199px)');
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
@@ -78,17 +76,17 @@ export const Header = ({ url, lang }: HeaderProps) => {
     {
       href: '/',
       content: 'EN',
-      isActive: lang === 'en',
+      isActive: locale === 'en',
     },
     {
       href: '/ru',
       content: 'RU',
-      isActive: lang === 'ru',
+      isActive: locale === 'ru',
     },
     {
       href: '/uz',
       content: 'UZ',
-      isActive: lang === 'uz',
+      isActive: locale === 'uz',
     },
   ];
 
@@ -105,62 +103,45 @@ export const Header = ({ url, lang }: HeaderProps) => {
     setItemActiveIndex(index);
   };
 
+  const currentHref = locale === 'en' ? '/' : `/${locale}`;
+
   return (
     <header className={s.header}>
       <div className="container">
-        <motion.div className={s.wrap}>
-          <a href={url}>
+        <div className={s.wrap}>
+          <a href={currentHref}>
             <Logo />
           </a>
-          <motion.div
-            initial={isMobile && { opacity: 0, visibility: 'hidden' }}
-            variants={{
-              open: { opacity: 1, visibility: 'visible' },
-              closed: { opacity: 0, visibility: 'hidden' },
-            }}
-            animate={menuIsOpen ? 'open' : 'closed'}
-            transition={{ duration: 0.25, ease: 'easeIn' }}
-            className={s.navWrapper}
-          >
-            <nav className={s.nav}>
-              <ul>
-                {menuItems.map((item: string, index: number) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, y: -50 }}
-                    variants={{
-                      open: { opacity: 1, y: 0 },
-                      closed: { opacity: 0, y: -50 },
+          <nav className={s.nav}>
+            <ul>
+              {menuItems.map((item: string, index: number) => (
+                <li key={item}>
+                  <a
+                    href={`#${menuUrls[index]}`}
+                    ref={(ref: HTMLAnchorElement) => {
+                      linksRef.current[index] = ref;
                     }}
-                    transition={{ duration: 0.25, ease: 'easeIn' }}
+                    className={cx(s.link, { [s.active]: index === itemActiveIndex })}
+                    onClick={() => onLinkClick(index)}
                   >
-                    <a
-                      href={`#${menuUrls[index]}`}
-                      ref={(ref: HTMLAnchorElement) => {
-                        linksRef.current[index] = ref;
-                      }}
-                      className={cx(s.link, { [s.active]: index === itemActiveIndex })}
-                      onClick={() => onLinkClick(index)}
-                    >
-                      {item}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
-              <div
-                ref={lineRef}
-                className={s.line}
-                style={{ '--width': `${itemActiveWidth}px`, '--offset': `${itemOffsetLeft}px` } as CSSProperties}
-              />
-              <Switcher className={s.mobileSwitcher} items={themesData} />
-            </nav>
-          </motion.div>
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div
+              ref={lineRef}
+              className={s.line}
+              style={{ '--width': `${itemActiveWidth}px`, '--offset': `${itemOffsetLeft}px` } as CSSProperties}
+            />
+            <Switcher className={s.mobileSwitcher} items={themesData} />
+          </nav>
 
           <div className={s.end}>
             <Switcher className={s.themesSwitcher} items={themesData} />
             <div className={s.langsSwitcher}>
               <ActionButton ref={langsButtonRef} onClick={onLangClick}>
-                {lang}
+                {locale}
               </ActionButton>
               <AnimatePresence>
                 {langsIsOpen && (
@@ -181,7 +162,7 @@ export const Header = ({ url, lang }: HeaderProps) => {
               <Close />
             </ActionButton>
           </div>
-        </motion.div>
+        </div>
       </div>
     </header>
   );
