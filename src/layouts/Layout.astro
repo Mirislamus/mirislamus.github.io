@@ -1,16 +1,20 @@
 ---
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
-import { Header } from '@widgets/Header/Header';
+import { Header, type Locale } from '@widgets/components';
+import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
-const { currentLocale, routePattern } = Astro;
+gsap.registerPlugin(useGSAP);
+
+const { currentLocale } = Astro;
 ---
 
 <!doctype html>
 <html lang={currentLocale}>
   <Head />
   <body>
-    <Header url={routePattern} locale={currentLocale} client:load />
+    <Header locale={currentLocale as Locale} client:load />
     <slot />
   </body>
 </html>

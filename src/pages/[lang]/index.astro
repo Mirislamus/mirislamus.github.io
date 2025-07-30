@@ -1,9 +1,14 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import { Hero, type Locale } from '@widgets/components';
+
+const { currentLocale } = Astro;
 
 export function getStaticPaths() {
   return [{ params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
 }
 ---
 
-<Layout />
+<Layout>
+  <Hero locale={currentLocale as Locale} client:load />
+</Layout>

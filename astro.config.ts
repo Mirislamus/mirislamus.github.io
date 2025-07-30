@@ -17,6 +17,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
+        '@types': '/src/types',
         '@shared': '/src/shared',
         '@icons': '/src/shared/icons',
         '@hooks': '/src/shared/hooks',
@@ -25,7 +26,6 @@ export default defineConfig({
         '@styles': '/src/styles',
         '@layouts': '/src/layouts',
         '@data': '/src/data',
-        '@types': '/src/types',
       },
     },
     build: {

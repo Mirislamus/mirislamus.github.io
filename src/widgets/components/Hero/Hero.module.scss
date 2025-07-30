@@ -1,0 +1,84 @@
+@use '@styles/helpers/functions' as *;
+@use '@styles/helpers/mixins' as *;
+
+.hero {
+  padding-block: vh(66);
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  margin-bottom: vh(24);
+  width: vh(260);
+  height: vh(260);
+}
+
+.content {
+  width: min(vh(560), 100%);
+  text-align: center;
+  margin-inline: auto;
+  h1 {
+    margin-bottom: vh(12);
+    font-size: vh(56);
+  }
+  strong {
+    display: block;
+    font-size: vh(24);
+    margin-bottom: vh(22);
+    color: var(--accent);
+  }
+  p {
+    color: var(--grey-4);
+    font-size: vh(18);
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  margin-top: vh(22);
+  button {
+    width: vh(170);
+    font-size: vh(18);
+    height: vh(48);
+  }
+}
+
+@include media(max, 767) {
+  .hero {
+    padding-top: 55px;
+    padding-bottom: 80px;
+  }
+
+  .avatar {
+    width: 165px;
+    height: 165px;
+    margin-bottom: 24px;
+  }
+
+  .content {
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    strong {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 14px;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      margin-top: 26px;
+      button {
+        width: auto;
+        font-size: 16px;
+        height: 44px;
+      }
+    }
+  }
+}

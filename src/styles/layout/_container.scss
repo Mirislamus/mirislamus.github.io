@@ -3,10 +3,8 @@
 .container {
   --gap: 12px;
   width: 100%;
-  padding-right: var(--gap);
-  padding-left: var(--gap);
-  margin-right: auto;
-  margin-left: auto;
+  padding-inline: var(--gap);
+  margin-inline: auto;
   @include media(min, 576) {
     max-width: 540px;
   }

@@ -2,7 +2,8 @@
 
 .header {
   position: sticky;
-  top: 20px;
+  top: 0;
+  margin-top: 20px;
 }
 
 .wrap {
@@ -73,7 +74,8 @@
 
 @include media(max, 1199) {
   .header {
-    top: 12px;
+    top: 0;
+    margin-top: 12px;
   }
 
   .wrap {

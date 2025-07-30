@@ -11,26 +11,27 @@
     "lint": "bunx eslint . --ext .js,.jsx,.ts,.tsx,.astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.4",
-    "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.7.4",
-    "motion": "^12.7.4",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/sitemap": "^3.4.1",
+    "@gsap/react": "^2.1.2",
+    "astro": "^5.12.3",
+    "gsap": "^3.13.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.4",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
-    "cssnano": "^7.0.6",
-    "eslint": "^9.25.0",
-    "postcss": "^8.5.3",
-    "postcss-preset-env": "^10.1.6",
+    "cssnano": "^7.1.0",
+    "eslint": "^9.32.0",
+    "postcss": "^8.5.6",
+    "postcss-preset-env": "^10.2.4",
     "prettier": "3.5.3",
     "prettier-plugin-astro": "0.14.1",
-    "sass": "^1.86.3"
+    "sass": "^1.89.2"
   }
 }

@@ -1,20 +1,19 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, RefObject } from 'react';
+import type { Locale } from '@widgets/components';
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import s from '@widgets/Header/Header.module.scss';
+import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
 import { useClickOutside } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
-import { motion, AnimatePresence } from 'motion/react';
 import { updateTheme } from '@utils/updateTheme';
 import menuData from '@data/menu/menu.json';
 
 interface HeaderProps {
-  url: string;
-  locale: string;
+  locale: Locale;
 }
 
-export const Header = ({ url, locale }: HeaderProps) => {
+export const Header = ({ locale }: HeaderProps) => {
   const menuItems = menuData.data[locale];
   const menuUrls = menuData.urls;
 
@@ -36,7 +35,7 @@ export const Header = ({ url, locale }: HeaderProps) => {
     setItemActiveWidth(linksRef.current[itemActiveIndex].offsetWidth);
     setItemOffsetLeft(linksRef.current[itemActiveIndex].offsetLeft);
 
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme') ?? 'system';
     setTheme(savedTheme);
   }, [itemActiveIndex]);
 
@@ -140,22 +139,14 @@ export const Header = ({ url, locale }: HeaderProps) => {
           <div className={s.end}>
             <Switcher className={s.themesSwitcher} items={themesData} />
             <div className={s.langsSwitcher}>
-              <ActionButton ref={langsButtonRef} onClick={onLangClick}>
+              <ActionButton ref={langsButtonRef as RefObject<HTMLButtonElement>} onClick={onLangClick}>
                 {locale}
               </ActionButton>
-              <AnimatePresence>
-                {langsIsOpen && (
-                  <motion.div
-                    className={s.langsList}
-                    initial={{ opacity: 1, height: 0 }}
-                    animate={{ opacity: 1, height: '114px' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeIn' }}
-                  >
-                    <Switcher ref={langsRef} variant="column" items={langsData} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {langsIsOpen && (
+                <div className={cx(s.langsList, { [s.active]: langsIsOpen })}>
+                  <Switcher ref={langsRef as RefObject<HTMLDivElement>} variant="column" items={langsData} />
+                </div>
+              )}
             </div>
             <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick}>
               <Hamburger />

@@ -1,7 +1,9 @@
+@use 'sass:math';
+
 @function vw($value, $size: 1440) {
-  @return $value / $size * 100vw;
+  @return max(math.div($value, $size) * 100vw, #{$value}px);
 }
 
 @function vh($value, $size: 800) {
-  @return $value / $size * 100vh;
+  @return max(math.div($value, $size) * 100vh, #{$value}px);
 }
