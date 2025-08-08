@@ -1,0 +1,38 @@
+{
+  "en": {
+    "title": "Approach and |Principles|",
+    "cooperation": "I prioritize cooperation with clients, promoting open communication",
+    "flexibility": "Flexibility and individual approach to each client",
+    "approach": "My approach to work",
+    "ui": "Lover of user-friendly and pleasant interfaces",
+    "together": "Do you want to start a project together?",
+    "email": "Copy my email address",
+    "success": "Email successfully copied",
+    "developing": "Currently developing a Focus Timer",
+    "pomotomo": "Pomotomo"
+  },
+  "ru": {
+    "title": "Подход и |принципы|",
+    "cooperation": "Я уделяю приоритетное внимание сотрудничеству с клиентами, способствуя открытому общению",
+    "flexibility": "Гибкость и индивидуальный подход к каждому клиенту",
+    "approach": "Мой подход к работе",
+    "ui": "Любитель удобных и приятных интерфейсов",
+    "together": "Хотите начать работать вместе?",
+    "email": "Скопировать мой email",
+    "success": "Email успешно скопирован",
+    "developing": "В настоящее время разрабатываю Focus Timer",
+    "pomotomo": "Pomotomo"
+  },
+  "uz": {
+    "title": "Yondashuv va |ko'nikmalar|",
+    "cooperation": "Men mijozlar bilan hamkorlikni birinchi o'ringa qo'yaman, ochiq muloqotni targ'ib qilaman",
+    "flexibility": "Moslashuvchanlik va har bir mijozga individual yondashuv",
+    "approach": "Ishga yondashuvim",
+    "ui": "Foydalanuvchi uchun qulay va yoqimli interfeyslarni yaxshi ko'radigan",
+    "together": "Birgalikda ishlashni boshlamoqchimisiz?",
+    "email": "Elektron pochtani nusxalash",
+    "success": "Elektron pochta muvaffaqiyatli ko'chirildi",
+    "developing": "Hozirda men Focus Timer-ni ishlab chiqmoqdaman",
+    "pomotomo": "Pomotomo"
+  }
+}

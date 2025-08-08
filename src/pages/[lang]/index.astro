@@ -1,6 +1,7 @@
 ---
+import type { Locale } from '@typings/global';
 import Layout from '@layouts/Layout.astro';
-import { Hero, type Locale } from '@widgets/components';
+import { Approach, Hero } from '@widgets/components';
 
 const { currentLocale } = Astro;
 
@@ -11,4 +12,5 @@ export function getStaticPaths() {
 
 <Layout>
   <Hero locale={currentLocale as Locale} client:load />
+  <Approach locale={currentLocale as Locale} client:load />
 </Layout>

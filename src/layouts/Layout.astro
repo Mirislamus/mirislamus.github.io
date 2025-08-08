@@ -1,9 +1,11 @@
 ---
+import type { Locale } from '@typings/global';
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
-import { Header, type Locale } from '@widgets/components';
+import { Header } from '@widgets/components';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { Toaster } from 'sonner';
 
 gsap.registerPlugin(useGSAP);
 
@@ -16,5 +18,22 @@ const { currentLocale } = Astro;
   <body>
     <Header locale={currentLocale as Locale} client:load />
     <slot />
+    <Toaster
+      position="bottom-left"
+      duration={4000}
+      expand={false}
+      toastOptions={{
+        unstyled: true,
+        classNames: {
+          toast: 'toast',
+          title: 'toast__title',
+          description: 'toast__description',
+          actionButton: 'toast__action-button',
+          cancelButton: 'toast__cancel-button',
+          closeButton: 'toast__close-button',
+        },
+      }}
+      client:load
+    />
   </body>
 </html>

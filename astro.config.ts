@@ -17,7 +17,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        '@types': '/src/types',
+        '@typings': '/src/typings',
         '@shared': '/src/shared',
         '@icons': '/src/shared/icons',
         '@hooks': '/src/shared/hooks',

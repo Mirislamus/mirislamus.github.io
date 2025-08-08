@@ -6,7 +6,7 @@
   justify-content: center;
   width: fit-content;
   gap: 5px;
-  border-radius: var(--radius-12);
+  border-radius: var(--radius-8);
   font-weight: 500;
   transition: var(--transition);
   &:focus-visible {
@@ -29,9 +29,11 @@
   border: 2px solid var(--black-3);
   &:hover {
     border-color: var(--grey-5);
+    color: var(--grey-5);
   }
   &:focus {
     border-color: var(--grey-6);
+    color: var(--grey-6);
   }
 }
 

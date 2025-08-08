@@ -1,6 +1,6 @@
 ---
 import metaData from '@data/meta/meta.json';
-import type { Locale } from '@widgets/components';
+import type { Locale } from '@typings/global';
 
 const locale = Astro.currentLocale as Locale;
 
@@ -22,7 +22,7 @@ const meta = metaData[locale];
   <meta property="og:image" content="/opengraph.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content="https://mirislamus.github.io" />
+  <meta property="og:url" content={meta.link} />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -32,23 +32,14 @@ const meta = metaData[locale];
 
   <title>{meta.title}</title>
   <script>
-    function updateTheme(theme: string) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
-    }
+    import { updateTheme, subscribeToSystemThemeChange, type Theme } from '@utils/theme';
+    const savedTheme = (localStorage.getItem('theme') ?? 'system') as Theme;
+    updateTheme(savedTheme);
 
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme');
-    const theme = savedTheme ?? (prefersDark.matches ? 'dark' : 'light');
-
-    updateTheme(theme);
-
-    prefersDark.addEventListener('change', ({ matches }) => {
-      if (savedTheme !== 'auto' && savedTheme) return;
-      updateTheme(matches ? 'dark' : 'light');
+    subscribeToSystemThemeChange(() => {
+      const current = localStorage.getItem('theme') ?? 'system';
+      if (current !== 'auto' && current !== 'system') return;
+      updateTheme('system');
     });
   </script>
 </head>

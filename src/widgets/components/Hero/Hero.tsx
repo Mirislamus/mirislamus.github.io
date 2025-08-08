@@ -1,8 +1,7 @@
+import type { Locale } from '@typings/global';
 import { Avatar, Button } from '@shared/ui';
 import s from './Hero.module.scss';
 import heroData from '@data/hero/hero.json';
-
-export type Locale = 'en' | 'ru' | 'uz';
 
 interface HeroProps {
   locale: Locale;
@@ -12,7 +11,7 @@ export const Hero = ({ locale }: HeroProps) => {
   const data = heroData[locale];
 
   return (
-    <section className={s.hero}>
+    <section className={s.hero} id="about">
       <div className="container">
         <div className={s.content}>
           <Avatar className={s.avatar} />

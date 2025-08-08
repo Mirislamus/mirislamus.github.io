@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "verbatimModuleSyntax": true,
     "paths": {
+      "@typings/*": ["src/typings/*"],
       "@shared/*": ["src/shared/*"],
       "@icons/*": ["src/shared/icons/*"],
       "@hooks/*": ["src/shared/hooks/*"],
@@ -20,8 +21,7 @@
       "@utils/*": ["src/utils/*"],
       "@styles/*": ["src/styles/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@data/*": ["src/data/*"],
-      "@types/*": ["src/types/*"]
+      "@data/*": ["src/data/*"]
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -41,6 +41,6 @@
     "skipLibCheck": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
 
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types"]
   }
 }

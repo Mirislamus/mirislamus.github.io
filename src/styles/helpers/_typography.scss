@@ -24,7 +24,6 @@ h1,
   }
 }
 
-
 h2,
 .h2 {
   font-size: 48px;
@@ -90,7 +89,7 @@ h4,
 
 .text-sm {
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 
 .regular {
@@ -99,4 +98,8 @@ h4,
 
 .medium {
   font-weight: 500;
+}
+
+.accent {
+  color: var(--accent);
 }

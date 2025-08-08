@@ -12,4 +12,4 @@ export const useBreakpoint = (query: string) => {
   }, [query]);
 
   return matches;
-}
+};

@@ -1,12 +1,12 @@
+import type { Locale } from '@typings/global';
 import type { CSSProperties, RefObject } from 'react';
-import type { Locale } from '@widgets/components';
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
 import { useClickOutside } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
-import { updateTheme } from '@utils/updateTheme';
+import { updateTheme } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
 
 interface HeaderProps {
@@ -34,9 +34,6 @@ export const Header = ({ locale }: HeaderProps) => {
   useLayoutEffect(() => {
     setItemActiveWidth(linksRef.current[itemActiveIndex].offsetWidth);
     setItemOffsetLeft(linksRef.current[itemActiveIndex].offsetLeft);
-
-    const savedTheme = localStorage.getItem('theme') ?? 'system';
-    setTheme(savedTheme);
   }, [itemActiveIndex]);
 
   useEffect(() => {
@@ -108,7 +105,7 @@ export const Header = ({ locale }: HeaderProps) => {
     <header className={s.header}>
       <div className="container">
         <div className={s.wrap}>
-          <a href={currentHref}>
+          <a href={currentHref} aria-label="logo">
             <Logo />
           </a>
           <nav className={s.nav}>

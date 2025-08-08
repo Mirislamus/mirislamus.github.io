@@ -7,3 +7,4 @@ export * from '@icons/System';
 export * from '@icons/Dark';
 export * from '@icons/Hamburger';
 export * from '@icons/Close';
+export * from '@icons/Copy';

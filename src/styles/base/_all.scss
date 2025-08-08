@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: var(--font);
   font-size: 16px;
   line-height: 1;
   height: 100%;
@@ -28,4 +28,20 @@ footer {
 ::selection {
   background-color: var(--accent);
   color: var(--text-reverse);
+}
+
+.section {
+  padding-bottom: 150px;
+
+  @include media(max, 767) {
+    padding-bottom: 80px;
+  }
+}
+
+.title {
+  margin-bottom: 50px;
+
+  @include media(max, 767) {
+    padding-bottom: 36px;
+  }
 }
