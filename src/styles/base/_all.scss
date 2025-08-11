@@ -32,9 +32,11 @@ footer {
 
 .section {
   padding-bottom: 150px;
+  scroll-margin-top: calc(82px + 50px);
 
   @include media(max, 767) {
     padding-bottom: 80px;
+    scroll-margin-top: calc(82px + 36px);
   }
 }
 

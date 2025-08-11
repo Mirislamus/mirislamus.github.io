@@ -1,13 +1,14 @@
 import type { Locale } from '@typings/global';
 import type { CSSProperties, RefObject } from 'react';
-import { useLayoutEffect, useRef, useState, useEffect } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
-import { useClickOutside } from '@shared/hooks';
+import { useClickOutside, useThemeWatcher } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
-import { updateTheme } from '@utils/theme';
+import { updateTheme, type Theme } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
+import { useActiveSection } from '@shared/hooks/useActiveSection';
 
 interface HeaderProps {
   locale: Locale;
@@ -22,49 +23,57 @@ export const Header = ({ locale }: HeaderProps) => {
   const langsRef = useRef<HTMLDivElement>(null);
   const langsButtonRef = useRef<HTMLButtonElement>(null);
 
+  const theme = useThemeWatcher();
+  const activeId = useActiveSection();
+
+  const [currentTheme, setCurrentTheme] = useState<Theme>('dark');
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
-  const [itemActiveIndex, setItemActiveIndex] = useState<number>(0);
   const [itemActiveWidth, setItemActiveWidth] = useState<number>(43);
   const [itemOffsetLeft, setItemOffsetLeft] = useState<number>(0);
-  const [theme, setTheme] = useState<string>('system');
 
   useClickOutside([langsRef, langsButtonRef], () => setLangsIsOpen(false));
 
+  const activeLinkIndex = useMemo(() => {
+    const index = linksRef.current.findIndex(link => link.hash.replace('#', '') === activeId);
+    return index === -1 ? 0 : index;
+  }, [activeId]);
+
   useLayoutEffect(() => {
-    setItemActiveWidth(linksRef.current[itemActiveIndex].offsetWidth);
-    setItemOffsetLeft(linksRef.current[itemActiveIndex].offsetLeft);
-  }, [itemActiveIndex]);
+    setItemActiveWidth(linksRef.current[activeLinkIndex].offsetWidth);
+    setItemOffsetLeft(linksRef.current[activeLinkIndex].offsetLeft);
+  }, [activeId]);
 
   useEffect(() => {
     if (menuIsOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
   }, [menuIsOpen]);
 
+  useEffect(() => {
+    setCurrentTheme(theme);
+  }, [theme]);
+
   const themesData = [
     {
       content: <Light />,
       onClick: () => {
         updateTheme('light');
-        setTheme('light');
       },
-      isActive: theme === 'light',
+      isActive: currentTheme === 'light',
     },
     {
       content: <System />,
       onClick: () => {
         updateTheme('system');
-        setTheme('system');
       },
-      isActive: theme === 'system',
+      isActive: currentTheme === 'system',
     },
     {
       content: <Dark />,
       onClick: () => {
         updateTheme('dark');
-        setTheme('dark');
       },
-      isActive: theme === 'dark',
+      isActive: currentTheme === 'dark',
     },
   ];
 
@@ -94,9 +103,8 @@ export const Header = ({ locale }: HeaderProps) => {
     setMenuIsOpen(!menuIsOpen);
   };
 
-  const onLinkClick = (index: number) => {
+  const onLinkClick = () => {
     setMenuIsOpen(false);
-    setItemActiveIndex(index);
   };
 
   const currentHref = locale === 'en' ? '/' : `/${locale}`;
@@ -117,8 +125,8 @@ export const Header = ({ locale }: HeaderProps) => {
                     ref={(ref: HTMLAnchorElement) => {
                       linksRef.current[index] = ref;
                     }}
-                    className={cx(s.link, { [s.active]: index === itemActiveIndex })}
-                    onClick={() => onLinkClick(index)}
+                    className={cx(s.link, { [s.active]: menuUrls[index] === activeId })}
+                    onClick={() => onLinkClick()}
                   >
                     {item}
                   </a>

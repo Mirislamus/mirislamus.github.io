@@ -3,7 +3,8 @@
 
 .hero {
   padding-block: vh(66);
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
+  margin-top: -62px;
   display: flex;
   align-items: center;
 }
@@ -49,6 +50,7 @@
   .hero {
     padding-top: 55px;
     padding-bottom: 80px;
+    margin-top: -62px;
   }
 
   .avatar {

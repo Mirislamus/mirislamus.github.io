@@ -1,5 +1,6 @@
-import { info } from '@data/global';
+import type { Theme } from '@utils/theme';
 import type { Locale } from '@typings/global';
+import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
@@ -8,7 +9,6 @@ import { Button } from '@shared/ui';
 import { Copy } from '@shared/icons';
 import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
-import type { Theme } from '@utils/theme';
 
 interface ApproachProps {
   locale: Locale;
@@ -17,7 +17,7 @@ interface ApproachProps {
 export const Approach = ({ locale }: ApproachProps) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
-  const [currentTheme, setCurrentTheme] = useState<Theme>('system');
+  const [currentTheme, setCurrentTheme] = useState<Theme>('dark');
 
   const [copyToClipboard] = useCopyToClipboard();
   const theme = useThemeWatcher();
