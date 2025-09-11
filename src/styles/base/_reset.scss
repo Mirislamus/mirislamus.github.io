@@ -11,8 +11,7 @@ body {
   text-size-adjust: 100%;
 }
 
-ul,
-ol {
+:where(ul, ol) {
   list-style: none;
 }
 
@@ -33,8 +32,7 @@ a {
   cursor: pointer;
 }
 
-input,
-textarea {
+:where(input, textarea) {
   border: none;
   outline: none;
   font: inherit;
@@ -64,15 +62,11 @@ img {
   height: auto;
 }
 
-img,
-svg,
-video,
-iframe {
+:where(img, svg, video, iframe) {
   vertical-align: top;
 }
 
-a,
-button {
+:where(a, button) {
   -webkit-tap-highlight-color: transparent;
 }
 

@@ -10,10 +10,11 @@
 .wrap {
   background-color: var(--secondary-alpha);
   backdrop-filter: blur(5px);
-  border-radius: var(--radius-12);
+  border-radius: var(--radius-16);
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  box-shadow: 0 0 0 1px var(--tertiary);
 }
 
 .nav {
