@@ -6,7 +6,7 @@
   background-color: var(--secondary-alpha);
   padding: 15px 20px;
   border-radius: var(--radius-8);
-  box-shadow: 0 0 0 1px var(--tertiary);
+  border: 1px solid var(--tertiary);
   display: flex;
   align-items: center;
   gap: 8px;
