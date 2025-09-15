@@ -105,9 +105,18 @@
     right: 0;
     height: calc(100vh - 96px);
     background-color: var(--secondary);
+    border: 1px solid var(--tertiary);
     border-radius: var(--radius-12);
     visibility: hidden;
     opacity: 0;
+    transition: var(--transition);
+    overflow: auto;
+    @include hideScroll;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
 
     ul {
       flex-direction: column;
@@ -146,6 +155,7 @@
   .header {
     .mobileSwitcher {
       display: flex;
+      margin-inline: auto;
     }
 
     .hamburger {
@@ -178,7 +188,7 @@
 
 @include media(max, 767) {
   .header {
-    margin-top: -60px;
+    top: 12px;
     .themesSwitcher {
       display: none;
     }

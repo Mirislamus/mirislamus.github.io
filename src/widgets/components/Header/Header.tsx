@@ -116,7 +116,7 @@ export const Header = ({ locale }: HeaderProps) => {
           <a href={currentHref} aria-label="logo">
             <Logo />
           </a>
-          <nav className={s.nav}>
+          <nav className={cx(s.nav, { [s.active]: menuIsOpen })}>
             <ul>
               {menuItems.map((item: string, index: number) => (
                 <li key={item}>
