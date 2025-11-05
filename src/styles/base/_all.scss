@@ -39,11 +39,3 @@ footer {
     scroll-margin-top: calc(82px + 36px);
   }
 }
-
-.title {
-  margin-bottom: 50px;
-
-  @include media(max, 767) {
-    margin-bottom: 36px;
-  }
-}

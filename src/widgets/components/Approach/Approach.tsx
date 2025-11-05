@@ -17,7 +17,7 @@ interface ApproachProps {
 export const Approach = ({ locale }: ApproachProps) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
-  const [currentTheme, setCurrentTheme] = useState<Theme>('dark');
+  const [currentTheme, setCurrentTheme] = useState<Omit<Theme, 'system'>>('dark');
 
   const [copyToClipboard] = useCopyToClipboard();
   const theme = useThemeWatcher();
@@ -83,12 +83,7 @@ export const Approach = ({ locale }: ApproachProps) => {
           </article>
           <article className={cx(s.item, s.item_4)}>
             <h4>{data.together}</h4>
-            <Button
-              size="sm"
-              onClick={() => {
-                handleCopy();
-              }}
-            >
+            <Button size="sm" onClick={handleCopy}>
               <Copy />
               {data.email}
             </Button>
