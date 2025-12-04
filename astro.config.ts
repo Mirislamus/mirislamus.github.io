@@ -14,6 +14,11 @@ export default defineConfig({
   vite: {
     css: {
       postcss: './postcss.config.js',
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use '@styles/helpers/mixins' as *;`,
+        },
+      },
     },
     resolve: {
       alias: {
@@ -39,4 +44,6 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'ru', 'uz'],
   },
+  prefetch: true,
+  compressHTML: true,
 });

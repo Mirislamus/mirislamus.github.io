@@ -1,0 +1,17 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="chakraui" clip-path="url(#clip0_115_353)">
+<g id="chakraui_2">
+<path id="Vector" d="M80 40C80 17.9086 62.0914 0 40 0C17.9086 0 0 17.9086 0 40C0 62.0914 17.9086 80 40 80C62.0914 80 80 62.0914 80 40Z" fill="url(#paint0_linear_115_353)"/>
+<path id="Vector_2" d="M21.6524 41.7074L48.9184 14.6288C49.4276 14.1233 50.2475 14.7387 49.9036 15.369L39.7554 33.9689C39.5288 34.3835 39.8292 34.8897 40.3017 34.8897H57.8394C58.4044 34.8897 58.6771 35.5817 58.264 35.9673L27.5316 64.6497C26.9806 65.1639 26.1604 64.4392 26.6027 63.8291L41.1509 43.7597C41.4491 43.3482 41.1552 42.7717 40.6469 42.7717H22.0913C21.5353 42.7717 21.258 42.099 21.6524 41.7074Z" fill="white"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_115_353" x1="40" y1="0" x2="40" y2="80" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7BCBD4"/>
+<stop offset="1" stop-color="#29C6B7"/>
+</linearGradient>
+<clipPath id="clip0_115_353">
+<rect width="80" height="80" fill="white"/>
+</clipPath>
+</defs>
+</svg>

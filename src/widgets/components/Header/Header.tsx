@@ -1,4 +1,4 @@
-import type { Locale } from '@typings/global';
+import type { Section } from '@typings/global';
 import type { CSSProperties, RefObject } from 'react';
 import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
 import s from './Header.module.scss';
@@ -10,11 +10,7 @@ import { updateTheme, type Theme } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
 import { useActiveSection } from '@shared/hooks/useActiveSection';
 
-interface HeaderProps {
-  locale: Locale;
-}
-
-export const Header = ({ locale }: HeaderProps) => {
+export const Header = ({ locale }: Section) => {
   const menuItems = menuData.data[locale];
   const menuUrls = menuData.urls;
 

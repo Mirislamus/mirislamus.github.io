@@ -1,5 +1,5 @@
 import type { Theme } from '@utils/theme';
-import type { Locale } from '@typings/global';
+import type { Section } from '@typings/global';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
@@ -10,11 +10,7 @@ import { Copy } from '@shared/icons';
 import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 
-interface ApproachProps {
-  locale: Locale;
-}
-
-export const Approach = ({ locale }: ApproachProps) => {
+export const Approach = ({ locale }: Section) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
   const [currentTheme, setCurrentTheme] = useState<Omit<Theme, 'system'>>('dark');
