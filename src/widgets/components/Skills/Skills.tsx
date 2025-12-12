@@ -1,3 +1,4 @@
+import type { Theme } from '@utils/theme';
 import type { Section } from '@typings/global';
 import s from './Skills.module.scss';
 import cx from 'clsx';
@@ -6,7 +7,6 @@ import skills from '@data/skills/skills';
 import { useTextHighlight } from '@shared/hooks';
 import { useEffect, useState } from 'react';
 import { useThemeWatcher } from '@shared/hooks';
-import type { Theme } from '@utils/theme';
 
 export const Skills = ({ locale }: Section) => {
   const [currentTheme, setCurrentTheme] = useState<Omit<Theme, 'system'>>('dark');
@@ -25,11 +25,19 @@ export const Skills = ({ locale }: Section) => {
         <h2 className="title">{title}</h2>
         <div className={s.grid}>
           {skills.map(skill => (
-            <a aria-label={skill.name} href={skill.link} className={s.skill} key={skill.name} target="_blank">
+            <a
+              aria-label={skill.name}
+              href={skill.link}
+              className={s.skill}
+              key={skill.id}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img
-                src={`/images/skills/${skill.name + (skill.hasTheme ? `-${currentTheme}` : '')}.svg`}
+                src={`/images/skills/${skill.id + (skill.hasTheme ? `-${currentTheme}` : '')}.svg`}
                 alt={skill.name}
               />
+              <span>{skill.name}</span>
             </a>
           ))}
         </div>

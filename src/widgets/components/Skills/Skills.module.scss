@@ -14,12 +14,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: var(--gap-12);
   background-color: var(--secondary-alpha);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-12);
   padding: 15px;
   aspect-ratio: 1;
   transition: var(--transition-ease);
+  position: relative;
+
+  img,
+  span {
+    transition: var(--transition-ease);
+  }
+
+  span {
+    position: absolute;
+    bottom: 15px;
+    translate: 0 12px;
+    opacity: 0;
+    text-align: center;
+  }
+
+  @include is-touch(false) {
+    &:hover {
+      img {
+        scale: 0.88;
+        translate: 0 -12px;
+      }
+      span {
+        translate: 0 0;
+        opacity: 1;
+      }
+    }
+  }
 }
 
 @include media(max, 1199) {
@@ -54,10 +83,21 @@
   .grid {
     gap: 8px;
   }
+
   .skill {
+    font-size: 12px;
+
     img {
       width: 50px;
       height: 50px;
+    }
+
+    @include is-touch(false) {
+      &:hover {
+        span {
+          translate: 0 10px;
+        }
+      }
     }
   }
 }
