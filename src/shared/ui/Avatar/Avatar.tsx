@@ -52,7 +52,7 @@ export const Avatar = ({ className }: AvatarProps) => {
 
       <g mask="url(#circleMask)">
         <rect fill="url(#circleGradient)" width="260" height="260" />
-        <image href="/images/avatar.png" width="260" height="260" preserveAspectRatio="xMidYMid slice" />
+        <image href="/images/avatar.png" width="260" height="260" preserveAspectRatio="xMidYMid" transform="translate(0 26)" />
       </g>
     </svg>
   );

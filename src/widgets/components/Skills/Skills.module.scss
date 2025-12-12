@@ -37,7 +37,7 @@
     text-align: center;
   }
 
-  @include is-touch(false) {
+  @include is-touch {
     &:hover {
       img {
         scale: 0.88;
@@ -92,7 +92,7 @@
       height: 50px;
     }
 
-    @include is-touch(false) {
+    @include is-touch {
       &:hover {
         span {
           translate: 0 10px;
