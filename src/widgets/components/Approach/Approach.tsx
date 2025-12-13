@@ -6,7 +6,7 @@ import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
 import { useCopyToClipboard, useTextHighlight, useThemeWatcher } from '@shared/hooks';
 import { Button } from '@shared/ui';
-import { Copy } from '@shared/icons';
+import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 
@@ -80,7 +80,7 @@ export const Approach = ({ locale }: Section) => {
           <article className={cx(s.item, s.item_4)}>
             <h4>{data.together}</h4>
             <Button size="sm" onClick={handleCopy}>
-              <Copy />
+              <Copy size={14} />
               {data.email}
             </Button>
           </article>

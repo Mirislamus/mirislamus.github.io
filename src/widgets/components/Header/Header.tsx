@@ -3,7 +3,8 @@ import type { CSSProperties, RefObject } from 'react';
 import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
-import { Logo, Light, System, Dark, Hamburger, Close } from '@shared/icons';
+import { Logo } from '@shared/icons';
+import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
 import { useClickOutside, useThemeWatcher } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { updateTheme, type Theme } from '@utils/theme';
@@ -51,21 +52,21 @@ export const Header = ({ locale }: Section) => {
 
   const themesData = [
     {
-      content: <Light />,
+      content: <Sun />,
       onClick: () => {
         updateTheme('light');
       },
       isActive: currentTheme === 'light',
     },
     {
-      content: <System />,
+      content: <Monitor />,
       onClick: () => {
         updateTheme('system');
       },
       isActive: currentTheme === 'system',
     },
     {
-      content: <Dark />,
+      content: <Moon />,
       onClick: () => {
         updateTheme('dark');
       },
@@ -150,8 +151,8 @@ export const Header = ({ locale }: Section) => {
               )}
             </div>
             <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick}>
-              <Hamburger />
-              <Close />
+              <Menu />
+              <X />
             </ActionButton>
           </div>
         </div>
