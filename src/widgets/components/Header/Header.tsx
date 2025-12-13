@@ -7,7 +7,7 @@ import { Logo } from '@shared/icons';
 import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
 import { useClickOutside, useThemeWatcher } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
-import { updateTheme, type Theme } from '@utils/theme';
+import { updateTheme } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
 import { useActiveSection } from '@shared/hooks/useActiveSection';
 
@@ -23,7 +23,6 @@ export const Header = ({ locale }: Section) => {
   const theme = useThemeWatcher();
   const activeId = useActiveSection();
 
-  const [currentTheme, setCurrentTheme] = useState<Theme>('dark');
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [itemActiveWidth, setItemActiveWidth] = useState<number>(43);
@@ -46,31 +45,27 @@ export const Header = ({ locale }: Section) => {
     else document.body.style.overflow = '';
   }, [menuIsOpen]);
 
-  useEffect(() => {
-    setCurrentTheme(theme);
-  }, [theme]);
-
   const themesData = [
     {
       content: <Sun />,
       onClick: () => {
         updateTheme('light');
       },
-      isActive: currentTheme === 'light',
+      isActive: theme === 'light',
     },
     {
       content: <Monitor />,
       onClick: () => {
         updateTheme('system');
       },
-      isActive: currentTheme === 'system',
+      isActive: theme === 'system',
     },
     {
       content: <Moon />,
       onClick: () => {
         updateTheme('dark');
       },
-      isActive: currentTheme === 'dark',
+      isActive: theme === 'dark',
     },
   ];
 

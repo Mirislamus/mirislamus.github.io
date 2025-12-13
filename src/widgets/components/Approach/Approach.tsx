@@ -1,4 +1,3 @@
-import type { Theme } from '@utils/theme';
 import type { Section } from '@typings/global';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
@@ -8,12 +7,10 @@ import { useCopyToClipboard, useTextHighlight, useThemeWatcher } from '@shared/h
 import { Button } from '@shared/ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import { useEffect, useState } from 'react';
 
 export const Approach = ({ locale }: Section) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
-  const [currentTheme, setCurrentTheme] = useState<Omit<Theme, 'system'>>('dark');
 
   const [copyToClipboard] = useCopyToClipboard();
   const theme = useThemeWatcher();
@@ -23,10 +20,6 @@ export const Approach = ({ locale }: Section) => {
       toast.success(data.success);
     });
   };
-
-  useEffect(() => {
-    setCurrentTheme(theme);
-  }, [theme]);
 
   return (
     <section className={cx(s.approach, 'section')} id="approach">
@@ -89,7 +82,7 @@ export const Approach = ({ locale }: Section) => {
               <span>{data.pomotomo}</span>
               <h3>{data.developing}</h3>
             </div>
-            <img width="510" height="292" src={`/images/code-${currentTheme}.png`} alt="Code" />
+            <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />
           </article>
         </div>
       </div>

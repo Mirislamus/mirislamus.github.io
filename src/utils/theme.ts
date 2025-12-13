@@ -5,9 +5,12 @@ export const getSystemTheme = (): Theme => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
-export const getCurrentTheme = () => {
-  if (typeof document === 'undefined') return 'system';
-  return document.documentElement.getAttribute('data-theme') ?? 'system';
+export const getCurrentTheme = (): Theme => {
+  if (typeof localStorage === 'undefined') return 'system';
+
+  const storedTheme = localStorage.getItem('theme');
+
+  return storedTheme as Theme;
 };
 
 export const resolveTheme = (theme: Theme) => {
@@ -25,20 +28,12 @@ export const applyTheme = (resolvedTheme: Theme) => {
 };
 
 export const updateTheme = (theme: Theme) => {
-  const resolvedTheme = resolveTheme(theme);
-  applyTheme(resolvedTheme);
+  const resolved = resolveTheme(theme);
 
-  if (typeof localStorage === 'undefined') return;
+  applyTheme(resolved);
+  localStorage.setItem('theme', theme);
 
-  if (theme === 'system') {
-    localStorage.removeItem('theme');
-  } else {
-    localStorage.setItem('theme', theme);
-  }
-
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('themechange', { detail: resolvedTheme }));
-  }
+  window.dispatchEvent(new CustomEvent('themechange', { detail: resolved }));
 };
 
 export const subscribeToSystemThemeChange = (onChange: (theme: Theme) => void) => {
