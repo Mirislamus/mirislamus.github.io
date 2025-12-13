@@ -27,9 +27,19 @@ const skills = [
     hasTheme: true,
   },
   {
+    id: 'gatsby',
+    name: 'Gatsby',
+    link: 'https://www.gatsbyjs.com',
+  },
+  {
     id: 'zustand',
     name: 'Zustand',
     link: 'https://zustand-demo.pmnd.rs',
+  },
+  {
+    id: 'redux',
+    name: 'Redux',
+    link: 'https://redux-toolkit.js.org',
   },
   {
     id: 'html',
@@ -60,11 +70,6 @@ const skills = [
     id: 'storybook',
     name: 'Storybook',
     link: 'https://storybook.js.org',
-  },
-  {
-    id: 'gatsby',
-    name: 'Gatsby',
-    link: 'https://www.gatsbyjs.com',
   },
   {
     id: 'tanstackquery',
@@ -159,11 +164,6 @@ const skills = [
     id: 'discord',
     name: 'Discord',
     link: 'https://discord.com',
-  },
-  {
-    id: 'notion',
-    name: 'Notion',
-    link: 'https://notion.so',
   },
   {
     id: 'telegram',
