@@ -3,7 +3,7 @@ import type { Locale } from '@typings/global';
 import Layout from '@layouts/Layout.astro';
 import { Approach, Hero, Skills } from '@widgets/components';
 
-const { currentLocale } = Astro;
+const locale = Astro.currentLocale as Locale;
 
 export function getStaticPaths() {
   return [{ params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
@@ -11,7 +11,7 @@ export function getStaticPaths() {
 ---
 
 <Layout>
-  <Hero locale={currentLocale as Locale} client:load />
-  <Approach locale={currentLocale as Locale} client:load />
-  <Skills locale={currentLocale as Locale} client:load />
+  <Hero locale={locale} client:load />
+  <Approach locale={locale} client:load />
+  <Skills locale={locale} client:load />
 </Layout>

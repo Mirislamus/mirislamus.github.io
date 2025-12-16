@@ -3,7 +3,7 @@ import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
-import { useCopyToClipboard, useTextHighlight, useThemeWatcher } from '@shared/hooks';
+import { useCopyToClipboard, useTextHighlight, useTheme } from '@shared/hooks';
 import { Button } from '@shared/ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
@@ -11,9 +11,9 @@ import { toast } from 'sonner';
 export const Approach = ({ locale }: Section) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
+  const { theme, mounted } = useTheme();
 
   const [copyToClipboard] = useCopyToClipboard();
-  const theme = useThemeWatcher();
 
   const handleCopy = async () => {
     await copyToClipboard(info.email).then(() => {
@@ -82,7 +82,7 @@ export const Approach = ({ locale }: Section) => {
               <span>{data.pomotomo}</span>
               <h3>{data.developing}</h3>
             </div>
-            <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />
+            {mounted && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />}
           </article>
         </div>
       </div>

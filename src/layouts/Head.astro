@@ -8,14 +8,27 @@ const meta = metaData[locale];
 ---
 
 <head>
+  <script is:inline>
+    (() => {
+      const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      const stored = localStorage.getItem('theme');
+      const theme = stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
+
+      document.documentElement.setAttribute('data-theme', theme);
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: dark)" />
-  <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" media="(prefers-color-scheme: dark)" />
 
-  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 
   <meta property="og:title" content={meta.title} />
   <meta property="og:description" content={meta.description} />
@@ -31,15 +44,4 @@ const meta = metaData[locale];
   <meta name="twitter:image" content="/opengraph.jpg" />
 
   <title>{meta.title}</title>
-  <script>
-    import { updateTheme, subscribeToSystemThemeChange, type Theme } from '@utils/theme';
-    const savedTheme = (localStorage.getItem('theme') ?? 'system') as Theme;
-    updateTheme(savedTheme);
-
-    subscribeToSystemThemeChange(() => {
-      const current = localStorage.getItem('theme') ?? 'system';
-      if (current !== 'auto' && current !== 'system') return;
-      updateTheme('system');
-    });
-  </script>
 </head>

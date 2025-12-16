@@ -1,52 +1,74 @@
-export type Theme = 'dark' | 'light' | 'system';
+export type Theme = 'light' | 'dark';
+export type ThemeMode = Theme | 'system';
+
+const STORAGE_KEY = 'theme';
 
 export const getSystemTheme = (): Theme => {
-  if (typeof window === 'undefined') return 'system';
+  if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
-export const getCurrentTheme = (): Theme => {
-  if (typeof localStorage === 'undefined') return 'system';
+export const getStoredThemeMode = (): ThemeMode | null => {
+  if (typeof localStorage === 'undefined') return null;
 
-  const storedTheme = localStorage.getItem('theme');
+  const value = localStorage.getItem(STORAGE_KEY);
+  if (value === 'light' || value === 'dark' || value === 'system') {
+    return value;
+  }
 
-  return storedTheme as Theme;
+  return null;
 };
 
-export const resolveTheme = (theme: Theme) => {
-  return theme === 'system' ? getSystemTheme() : theme;
-};
-
-export const applyTheme = (resolvedTheme: Theme) => {
+export const applyTheme = (theme: Theme) => {
   if (typeof document === 'undefined') return;
 
-  document.documentElement.setAttribute('data-theme', resolvedTheme);
+  document.documentElement.setAttribute('data-theme', theme);
 
-  document
-    .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', resolvedTheme === 'dark' ? '#121212' : '#ffffff');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
 };
 
-export const updateTheme = (theme: Theme) => {
-  const resolved = resolveTheme(theme);
+export const initTheme = () => {
+  const mode = getStoredThemeMode();
 
-  applyTheme(resolved);
-  localStorage.setItem('theme', theme);
+  if (!mode || mode === 'system') {
+    const systemTheme = getSystemTheme();
+    applyTheme(systemTheme);
+    return;
+  }
 
-  window.dispatchEvent(new CustomEvent('themechange', { detail: resolved }));
+  applyTheme(mode);
+};
+
+export const setThemeMode = (mode: ThemeMode) => {
+  if (mode === 'system') {
+    localStorage.removeItem(STORAGE_KEY);
+    const systemTheme = getSystemTheme();
+    applyTheme(systemTheme);
+
+    window.dispatchEvent(new CustomEvent('themechange', { detail: systemTheme }));
+
+    return;
+  }
+
+  localStorage.setItem(STORAGE_KEY, mode);
+  applyTheme(mode);
+
+  window.dispatchEvent(new CustomEvent('themechange', { detail: mode }));
 };
 
 export const subscribeToSystemThemeChange = (onChange: (theme: Theme) => void) => {
   if (typeof window === 'undefined') return;
 
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handler = (event: MediaQueryListEvent) => {
-    onChange(event.matches ? 'dark' : 'light');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const handler = (e: MediaQueryListEvent) => {
+    const stored = getStoredThemeMode();
+
+    if (!stored || stored === 'system') {
+      onChange(e.matches ? 'dark' : 'light');
+    }
   };
 
-  mediaQuery.addEventListener('change', handler);
-
-  return () => {
-    mediaQuery.removeEventListener('change', handler);
-  };
+  media.addEventListener('change', handler);
+  return () => media.removeEventListener('change', handler);
 };

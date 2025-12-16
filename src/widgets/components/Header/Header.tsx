@@ -5,11 +5,10 @@ import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo } from '@shared/icons';
 import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
-import { useClickOutside, useThemeWatcher } from '@shared/hooks';
+import { useClickOutside, useTheme, useActiveSection } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
-import { updateTheme } from '@utils/theme';
+import { setThemeMode } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
-import { useActiveSection } from '@shared/hooks/useActiveSection';
 
 export const Header = ({ locale }: Section) => {
   const menuItems = menuData.data[locale];
@@ -20,7 +19,7 @@ export const Header = ({ locale }: Section) => {
   const langsRef = useRef<HTMLDivElement>(null);
   const langsButtonRef = useRef<HTMLButtonElement>(null);
 
-  const theme = useThemeWatcher();
+  const { mode } = useTheme();
   const activeId = useActiveSection();
 
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
@@ -48,24 +47,18 @@ export const Header = ({ locale }: Section) => {
   const themesData = [
     {
       content: <Sun />,
-      onClick: () => {
-        updateTheme('light');
-      },
-      isActive: theme === 'light',
+      onClick: () => setThemeMode('light'),
+      isActive: mode === 'light',
     },
     {
       content: <Monitor />,
-      onClick: () => {
-        updateTheme('system');
-      },
-      isActive: theme === 'system',
+      onClick: () => setThemeMode('system'),
+      isActive: mode === 'system',
     },
     {
       content: <Moon />,
-      onClick: () => {
-        updateTheme('dark');
-      },
-      isActive: theme === 'dark',
+      onClick: () => setThemeMode('dark'),
+      isActive: mode === 'dark',
     },
   ];
 
