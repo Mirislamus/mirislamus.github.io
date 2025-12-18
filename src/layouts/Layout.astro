@@ -2,26 +2,27 @@
 import type { Locale } from '@typings/global';
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
-import { Header } from '@widgets/components';
+import { Header, Footer } from '@widgets/components';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Toaster } from 'sonner';
 
 gsap.registerPlugin(useGSAP);
 
-const { currentLocale } = Astro;
+const locale = Astro.currentLocale as Locale;
 ---
 
 <!doctype html>
-<html lang={currentLocale}>
+<html lang={locale}>
   <Head />
   <body>
-    <Header locale={currentLocale as Locale} client:load />
+    <Header locale={locale} client:load />
     <slot />
     <Toaster
       position="bottom-left"
-      duration={4000}
+      duration={5000}
       expand={false}
+      visibleToasts={1}
       toastOptions={{
         unstyled: true,
         classNames: {
@@ -35,5 +36,6 @@ const { currentLocale } = Astro;
       }}
       client:load
     />
+    <Footer locale={locale} client:load />
   </body>
 </html>

@@ -51,8 +51,16 @@ h4,
   }
 }
 
-.large {
-  font-size: 84px;
+.text-xxl {
+  font-size: 100px;
+
+  @include media(max, 1199) {
+    font-size: 84px;
+  }
+
+  @include media(max, 991) {
+    font-size: 72px;
+  }
 
   @include media(max, 767) {
     font-size: 56px;

@@ -1,9 +1,12 @@
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode, ElementType } from 'react';
 import { noop } from '@utils/noop';
 import s from '@shared/ui/Button/Button.module.scss';
 import cx from 'clsx';
 
 interface ButtonProps {
+  tag?: ElementType;
+  href?: string;
+  isExternal?: boolean;
   children: ReactNode;
   variant?: 'fill' | 'outline';
   size?: 'sm' | 'lg';
@@ -11,7 +14,17 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-export const Button = ({ children, variant = 'fill', size = 'lg', isFluid, onClick = noop }: ButtonProps) => {
+export const Button = ({
+  tag: Tag = 'button',
+  href,
+  isExternal,
+  children,
+  variant = 'fill',
+  size = 'lg',
+  isFluid,
+  onClick = noop,
+  ...props
+}: ButtonProps) => {
   const buttonClasses = {
     [s.fill]: variant === 'fill',
     [s.outline]: variant === 'outline',
@@ -21,8 +34,16 @@ export const Button = ({ children, variant = 'fill', size = 'lg', isFluid, onCli
   };
 
   return (
-    <button type="button" onClick={onClick} className={cx(s.button, buttonClasses)}>
+    <Tag
+      type="button"
+      {...(Tag === 'a' && { href })}
+      {...(isExternal && Tag === 'a' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      {...(Tag === 'button' && { type: 'button' })}
+      onClick={onClick}
+      className={cx(s.button, buttonClasses)}
+      {...props}
+    >
       {children}
-    </button>
+    </Tag>
   );
 };

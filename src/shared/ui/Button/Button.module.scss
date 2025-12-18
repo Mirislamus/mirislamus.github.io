@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  gap: 5px;
+  gap: var(--gap-8);
   border-radius: var(--radius-8);
   font-weight: 500;
   transition: var(--transition-ease);
@@ -30,11 +30,9 @@
   border: 1px solid var(--black-3);
   &:hover {
     border-color: var(--grey-5);
-    color: var(--grey-5);
   }
   &:focus {
     border-color: var(--grey-6);
-    color: var(--grey-6);
   }
 }
 
