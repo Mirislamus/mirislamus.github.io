@@ -56,8 +56,4 @@
     color: var(--white);
     background-color: var(--black-3);
   }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 1px var(--black-3-alpha);
-  }
 }
