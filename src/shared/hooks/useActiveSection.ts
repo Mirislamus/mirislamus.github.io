@@ -4,7 +4,7 @@ export const useActiveSection = () => {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const sections = document.querySelectorAll<HTMLElement>('section[id], footer[id]');
 
     const observer = new IntersectionObserver(
       entries => {

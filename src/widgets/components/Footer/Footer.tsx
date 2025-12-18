@@ -3,13 +3,12 @@ import footerData from '@data/footer/footer.json';
 import { info } from '@data/global';
 import s from './Footer.module.scss';
 import { Button } from '@shared/ui/Button/Button';
-import { Mail, Send, ArrowUpRight } from 'lucide-react';
 
 export const Footer = ({ locale }: Section) => {
   const data = footerData[locale];
 
   return (
-    <footer className={s.footer}>
+    <footer id="contacts" className={s.footer}>
       <div className="container">
         <div className={s.content}>
           <h2 className="text-xxl">
