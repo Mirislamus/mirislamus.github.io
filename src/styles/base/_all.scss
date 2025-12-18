@@ -39,3 +39,12 @@ footer {
     scroll-margin-top: calc(82px + 36px);
   }
 }
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+*:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-alpha);
+}
