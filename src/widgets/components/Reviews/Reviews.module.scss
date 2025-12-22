@@ -1,0 +1,33 @@
+.reviews {
+  &Top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.reviews .slide {
+  height: auto;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 12px;
+  background-color: var(--secondary-alpha);
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-20);
+  line-height: 1.5;
+  height: 100%;
+  p {
+    color: var(--grey-4);
+  }
+  h4 {
+    margin-top: auto;
+  }
+}
+
+.pagination {
+  text-emphasis: none;
+}

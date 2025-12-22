@@ -1,0 +1,217 @@
+{
+  "en": {
+    "title": "Reviews",
+    "reviews": [
+      {
+        "id": 1,
+        "author": "Peter L.",
+        "text": "Everything is clear, fast, and high quality! Highly recommend and hope to work together again."
+      },
+      { "id": 2, "author": "Bryan Finch", "text": "Excellent work on the landing page (React+Next). Thank you!" },
+      {
+        "id": 3,
+        "author": "Ivan Latypin",
+        "text": "Fast and high quality. He was the only one who communicated adequately before starting the work."
+      },
+      {
+        "id": 4,
+        "author": "Anonymous",
+        "text": "Everything was done perfectly. Thank you! I will be glad to cooperate again."
+      },
+      { "id": 5, "author": "Alexey Doronin", "text": "Completed the project on time and with excellent quality!" },
+      { "id": 6, "author": "andro_g", "text": "Responsive developer, I recommend him with confidence!" },
+      {
+        "id": 7,
+        "author": "Illarion Panovsky",
+        "text": "Completed the CSS fixes in the shortest possible time. Very satisfied with the cooperation."
+      },
+      { "id": 8, "author": "Egor Burkaba", "text": "Excellent communication and great code. Highly recommend." },
+      {
+        "id": 9,
+        "author": "Ekaterina Blokhina",
+        "text": "Fixed several issues on the WordPress site. Everything is great!"
+      },
+      { "id": 10, "author": "Roma B.", "text": "Website copy completed. Everything is excellent, thanks!" },
+      { "id": 11, "author": "Evgeny Butkov", "text": "Good programmer. Performed the task quickly and on time." },
+      { "id": 12, "author": "Nikolay MPM", "text": "Recommended! 5 out of 5 stars for everything." },
+      {
+        "id": 13,
+        "author": "Dmitry Evdokimov",
+        "text": "Mirislam did the job quickly and correctly. Very happy with the result."
+      },
+      {
+        "id": 14,
+        "author": "Ivan Chernev",
+        "text": "Responded quickly to clarifications and completed the task on time."
+      },
+      {
+        "id": 15,
+        "author": "Ilya Usanov",
+        "text": "Handled the layout perfectly. Polite, punctual, and highly recommended."
+      },
+      { "id": 16, "author": "Selfie77", "text": "Excellent executor. Fixed the block on the landing page perfectly." },
+      { "id": 17, "author": "DoingGood", "text": "Everything is perfect. Recommend for cooperation." },
+      { "id": 18, "author": "Domino Tor", "text": "Layout for the Sketch application — everything is super." },
+      {
+        "id": 19,
+        "author": "Nikita Zaitsev",
+        "text": "Very patient and professional. Did everything fast and even cheaper than requested. A great guy!"
+      },
+      { "id": 20, "author": "kostia_o", "text": "Inserted ready-made images into the layout. All good!" },
+      {
+        "id": 21,
+        "author": "dcpr",
+        "text": "Reliable and conscientious. Completed 10 pages exactly according to the technical requirements."
+      },
+      {
+        "id": 22,
+        "author": "Alexey Kopievsky",
+        "text": "Pleasant to work with. Mirislam understands tasks without issues and provides high-quality work."
+      },
+      {
+        "id": 23,
+        "author": "Ren Ren",
+        "text": "Clean and readable code. Handled the complex form layout quickly. Recommended!"
+      },
+      {
+        "id": 24,
+        "author": "Andrey Petrov",
+        "text": "High-quality site development. All minor edits were fixed immediately. I advise everyone to work with him."
+      }
+    ]
+  },
+  "ru": {
+    "title": "Отзывы",
+    "reviews": [
+      {
+        "id": 1,
+        "author": "Пётр Л.",
+        "text": "Все отлично, быстро, качественно! Рекомендую! Надеюсь еще посотрудничать в будущем."
+      },
+      { "id": 2, "author": "Bryan Finch", "text": "Отличная работа по лендингу на React+Next. Спасибо!" },
+      {
+        "id": 3,
+        "author": "Иван Латынин",
+        "text": "Быстро и качественно. Оказался единственным, кто адекватно прокоммуниковал перед взятием в работу."
+      },
+      { "id": 4, "author": "Аноним", "text": "Все отлично выполнено. Спасибо. Буду сотрудничать еще." },
+      { "id": 5, "author": "Алексей Доронин", "text": "Выполнил все в срок и с отличным качеством!" },
+      { "id": 6, "author": "andro_g", "text": "Отзывчивый разработчик, уверенно рекомендую!" },
+      {
+        "id": 7,
+        "author": "Илларион Пановский",
+        "text": "В кратчайшие сроки сделал правки по CSS. Сотрудничеством доволен."
+      },
+      { "id": 8, "author": "Егор Буркаба", "text": "Отличная коммуникация, отличный код. Рекомендую." },
+      { "id": 9, "author": "Екатерина Блохина", "text": "Выполнила ряд правок сайта на WP. Все отлично!" },
+      { "id": 10, "author": "Рома B.", "text": "Сделал копию сайта. Спасибо! Все отлично!" },
+      { "id": 11, "author": "Евгений Бутков", "text": "Хороший программист. Выполнил быстро и в срок." },
+      { "id": 12, "author": "Николай MPM", "text": "Рекомендую! По всем 5 из 5." },
+      {
+        "id": 13,
+        "author": "Дмитрий Евдокимов",
+        "text": "Мирислам работу сделал быстро и правильно, результатом доволен."
+      },
+      { "id": 14, "author": "Иван Чернев", "text": "Оперативно реагировал на уточнения и выполнил задачу в срок." },
+      {
+        "id": 15,
+        "author": "Илья Усанов",
+        "text": "Вовремя и качественно справился с вёрсткой, вежливый и пунктуальный, рекомендую."
+      },
+      { "id": 16, "author": "Selfie77", "text": "Отличный исполнитель. Поправил блок на лендинге." },
+      { "id": 17, "author": "DoingGood", "text": "Все отлично. Рекомендую к сотрудничеству." },
+      { "id": 18, "author": "Domino Tor", "text": "Сверстал макет приложения из Sketch — все супер." },
+      {
+        "id": 19,
+        "author": "Никита Зайцев",
+        "text": "Очень терпеливый и профессиональный человек. Сделал все быстро и даже дешевле, чем просили. Красавчик!"
+      },
+      { "id": 20, "author": "kostia_o", "text": "Вставил готовые картинки в готовую верстку. Все хорошо!" },
+      { "id": 21, "author": "dcpr", "text": "Надежный и добросовестный. Сверстал 10 страниц четко по ТЗ и вовремя." },
+      {
+        "id": 22,
+        "author": "Алексей Копиевский",
+        "text": "Приятно сотрудничать. Понимает задачу без проблем, качество отличное."
+      },
+      {
+        "id": 23,
+        "author": "Ren Ren",
+        "text": "Чистый и читабельный код. Быстро справился с версткой сложной формы. Рекомендую!"
+      },
+      {
+        "id": 24,
+        "author": "Андрей Петров",
+        "text": "Качественная разработка сайта. Все мелкие правки вносил сразу. Советую всем работать с ним."
+      }
+    ]
+  },
+  "uz": {
+    "title": "Sharhlar",
+    "reviews": [
+      {
+        "id": 1,
+        "author": "Pyotr L.",
+        "text": "Hammasi a'lo, tez va sifatli! Tavsiya qilaman! Kelajakda yana hamkorlik qilishga umid qilaman."
+      },
+      { "id": 2, "author": "Bryan Finch", "text": "React+Next-dagi lending bo'yicha a'lo ish. Rahmat!" },
+      {
+        "id": 3,
+        "author": "Ivan Latypin",
+        "text": "Tez va sifatli. Ishni boshlashdan oldin muloqot qilgan yagona mutaxassis bo'ldi."
+      },
+      { "id": 4, "author": "Anonim", "text": "Hammasi a'lo bajarildi. Rahmat. Yana hamkorlik qilaman." },
+      { "id": 5, "author": "Alexey Doronin", "text": "Vazifani o'z vaqtida va a'lo sifat bilan bajardi!" },
+      { "id": 6, "author": "andro_g", "text": "E'tiborli dasturchi, ishonch bilan tavsiya qilaman!" },
+      {
+        "id": 7,
+        "author": "Ilnar Panovsky",
+        "text": "Qisqa vaqt ichida CSS tuzatishlarini kiritdi. Hamkorlikdan mamnunman."
+      },
+      { "id": 8, "author": "Egor Burkaba", "text": "A'lo muloqot va sifatli kod. Tavsiya qilaman." },
+      {
+        "id": 9,
+        "author": "Ekaterina Blinova",
+        "text": "WP saytidagi bir qator kamchiliklarni tuzatdi. Hammasi zo'r!"
+      },
+      { "id": 10, "author": "Roma B.", "text": "Sayt nusxasini tayyorladi. Rahmat! Hammasi a'lo!" },
+      { "id": 11, "author": "Evgeny Butenko", "text": "Yaxshi dasturchi. Tez va vaqtida bajardi." },
+      { "id": 12, "author": "Nikolay MPM", "text": "Tavsiya qilaman! Barcha ko'rsatkichlar bo'yicha 5 dan 5." },
+      { "id": 13, "author": "Dmitry Evdokimov", "text": "Mirislam ishni tez va to'g'ri bajardi, natijadan mamnunman." },
+      {
+        "id": 14,
+        "author": "Ivan Chernov",
+        "text": "Anliqlashtirishlarga tez javob berdi va vazifani vaqtida yakunladi."
+      },
+      {
+        "id": 15,
+        "author": "Ilya Usanov",
+        "text": "Verstkani sifatli va o'z vaqtida bajardi, xushmuomala va punktual, tavsiya qilaman."
+      },
+      { "id": 16, "author": "Selfie77", "text": "A'lo ijrochi. Lendingdagi blokni tuzatib berdi." },
+      { "id": 17, "author": "DoingGood", "text": "Hammasi zo'r. Hamkorlik uchun tavsiya qilaman." },
+      { "id": 18, "author": "Domino Tor", "text": "Sketch-dan ilova maketini verstka qildi — hammasi super." },
+      {
+        "id": 19,
+        "author": "Nikita Zaitsev",
+        "text": "Juda sabrli va professional inson. Tez va so'ralganidan ham arzonroq qilib berdi. Baraka topsin!"
+      },
+      { "id": 20, "author": "kostia_o", "text": "Tayyor rasmlarni verstkaga joylashtirdi. Hammasi yaxshi!" },
+      { "id": 21, "author": "dcpr", "text": "Ishonchli va vijdonli. 10 ta sahifani aniq va vaqtida topshirdi." },
+      {
+        "id": 22,
+        "author": "Alexey Kopievsky",
+        "text": "Hamkorlik qilish yoqimli. Vazifani muammosiz tushunadi, sifat a'lo darajada."
+      },
+      {
+        "id": 23,
+        "author": "Ren Ren",
+        "text": "Toza va tushunarli kod. Murakkab shaklni tezda verstka qildi. Tavsiya qilaman!"
+      },
+      {
+        "id": 24,
+        "author": "Andrey Petrov",
+        "text": "Sifatli sayt ishlab chiqish. Barcha mayda tuzatishlarni darhol kiritdi. Hamkorlik qilishni maslahat beraman."
+      }
+    ]
+  }
+}

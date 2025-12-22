@@ -1,0 +1,33 @@
+.arrowControls {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-16);
+  overflow: hidden;
+  background-color: var(--secondary-alpha);
+  border: 1px solid var(--tertiary);
+  position: relative;
+}
+
+.line {
+  width: 1px;
+  height: 36px;
+  background-color: var(--tertiary);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: var(--primary-reverse);
+  transition: var(--transition-ease);
+  &:hover {
+    color: var(--accent);
+  }
+  &:disabled {
+    color: var(--grey-4);
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
