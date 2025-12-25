@@ -26,7 +26,7 @@ export const Header = ({ locale }: Section) => {
 
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
-  const [itemActiveWidth, setItemActiveWidth] = useState<number>(43);
+  const [itemActiveWidth, setItemActiveWidth] = useState<number>(0);
   const [itemOffsetLeft, setItemOffsetLeft] = useState<number>(0);
 
   useClickOutside([langsRef, langsButtonRef], () => setLangsIsOpen(false));
@@ -37,8 +37,10 @@ export const Header = ({ locale }: Section) => {
   }, [activeId]);
 
   useLayoutEffect(() => {
-    setItemActiveWidth(linksRef.current[activeLinkIndex].offsetWidth);
-    setItemOffsetLeft(linksRef.current[activeLinkIndex].offsetLeft);
+    const link = linksRef.current[activeLinkIndex];
+
+    setItemActiveWidth(link.offsetWidth);
+    setItemOffsetLeft(link.offsetLeft);
   }, [activeId]);
 
   useLayoutEffect(() => {
