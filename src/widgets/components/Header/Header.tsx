@@ -1,6 +1,6 @@
 import type { Section } from '@typings/global';
 import type { CSSProperties, RefObject } from 'react';
-import { useLayoutEffect, useRef, useState, useEffect, useMemo } from 'react';
+import { useLayoutEffect, useRef, useState, useMemo } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo } from '@shared/icons';
@@ -13,6 +13,8 @@ import menuData from '@data/menu/menu.json';
 export const Header = ({ locale }: Section) => {
   const menuItems = menuData.data[locale];
   const menuUrls = menuData.urls;
+
+  const currentHref = locale === 'en' ? '/' : `/${locale}`;
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
@@ -39,7 +41,7 @@ export const Header = ({ locale }: Section) => {
     setItemOffsetLeft(linksRef.current[activeLinkIndex].offsetLeft);
   }, [activeId]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (menuIsOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = '';
   }, [menuIsOpen]);
@@ -91,8 +93,6 @@ export const Header = ({ locale }: Section) => {
   const onLinkClick = () => {
     setMenuIsOpen(false);
   };
-
-  const currentHref = locale === 'en' ? '/' : `/${locale}`;
 
   return (
     <header className={s.header}>

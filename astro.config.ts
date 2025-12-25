@@ -12,14 +12,6 @@ export default defineConfig({
     open: true,
   },
   vite: {
-    css: {
-      postcss: './postcss.config.js',
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@use '@styles/helpers/mixins' as *;`,
-        },
-      },
-    },
     resolve: {
       alias: {
         '@typings': '/src/typings',
@@ -38,6 +30,14 @@ export default defineConfig({
       sourcemap: false,
       assetsInlineLimit: 0,
       cssMinify: true,
+    },
+    css: {
+      postcss: './postcss.config.js',
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use '@styles/helpers/mixins' as *;`,
+        },
+      },
     },
   },
   i18n: {
