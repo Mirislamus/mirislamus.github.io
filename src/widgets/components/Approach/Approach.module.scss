@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 540px repeat(2, 180px);
-  gap: 30px;
+  gap: var(--gap-20);
 }
 
 .item {
@@ -117,7 +117,6 @@
 
 @include media(max, 1199) {
   .grid {
-    gap: 24px;
     grid-template-rows: 540px repeat(3, 180px);
   }
 
@@ -143,7 +142,6 @@
   .grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 340px 140px 360px;
-    gap: 20px;
   }
   .item {
     grid-column: auto;
@@ -184,7 +182,7 @@
   .grid {
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, 315px) repeat(2, 150px) 305px;
-    gap: 15px;
+    gap: var(--gap-15);
   }
   .item {
     grid-column: auto;

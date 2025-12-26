@@ -7,7 +7,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: 15px;
+  gap: var(--gap-15);
 }
 
 .skill {
@@ -53,7 +53,7 @@
 
 @include media(max, 1199) {
   .grid {
-    gap: var(--gap-12)
+    gap: var(--gap-12);
   }
   .skill {
     font-size: 12px;
@@ -79,13 +79,13 @@
 @include media(max, 767) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: var(--gap-10);
   }
 }
 
 @include media(max, 575) {
   .grid {
-    gap: 8px;
+    gap: var(--gap-8);
   }
 
   .skill {

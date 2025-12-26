@@ -20,7 +20,7 @@
     border-color: var(--grey-6);
   }
 
-  @media screen and (max-width: 767px) {
+  @include media(max, 767) {
     height: 40px;
     width: 40px;
   }

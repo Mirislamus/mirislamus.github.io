@@ -28,6 +28,65 @@
   }
 }
 
+.reviewsControls {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-20);
+}
+
+.wrapper {
+  position: relative;
+}
+
 .pagination {
-  text-emphasis: none;
+  --swiper-pagination-color: var(--secondary-alpha);
+  --swiper-pagination-bullet-size: 24px;
+  --swiper-pagination-bullet-border-radius: 5px;
+  --swiper-pagination-bullet-inactive-color: var(--secondary-alpha);
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  transform: none !important;
+  position: static;
+  > * {
+    transition: var(--transition-ease) !important;
+    background-color: var(--secondary-alpha);
+    transform: none !important;
+    border: 1px solid var(--tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 3px;
+      margin: auto;
+      scale: 0 0;
+      transition: var(--transition-ease);
+    }
+
+    &:global(.swiper-pagination-bullet-active) {
+      &::after {
+        scale: 1;
+      }
+    }
+  }
+}
+
+@include media(min, 767) {
+  .wrapper {
+    padding-bottom: 48px;
+  }
+  .pagination {
+    --swiper-pagination-bottom: 0;
+    --swiper-pagination-top: auto;
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%) !important;
+  }
 }
