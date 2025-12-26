@@ -1,8 +1,8 @@
 {
   "data": {
     "en": ["About", "Approach", "Skills", "Projects", "Career", "Reviews", "Contacts"],
-    "ru": ["Обо мне", "Подход", "Навыки", "Проекты", "Карьера", "Отзывы", "Контакты"],
-    "uz": ["Haqida", "Yondashuv", "Ko'nikmalar", "Loyihalar", "Kasb", "Fikrlar", "Aloqa"]
+    "ru": ["Обо мне", "Подход", "Навыки", "Карьера", "Проекты", "Отзывы", "Контакты"],
+    "uz": ["Haqida", "Yondashuv", "Ko'nikmalar", "Kasb", "Loyihalar", "Fikrlar", "Aloqa"]
   },
-  "urls": ["about", "approach", "skills", "projects", "career", "reviews", "contacts"]
+  "urls": ["about", "approach", "skills", "career", "projects", "reviews", "contacts"]
 }
