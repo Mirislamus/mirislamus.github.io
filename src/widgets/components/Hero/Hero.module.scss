@@ -38,7 +38,8 @@
   display: flex;
   justify-content: center;
   margin-top: vh(22);
-  button {
+  button,
+  a {
     width: vh(170);
     font-size: vh(18);
     height: vh(48);
@@ -75,7 +76,8 @@
       display: flex;
       justify-content: center;
       margin-top: 26px;
-      button {
+      button,
+      a {
         width: auto;
         font-size: 16px;
         height: 44px;

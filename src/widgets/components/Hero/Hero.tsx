@@ -15,7 +15,9 @@ export const Hero = ({ locale }: Section) => {
           <strong className="text-xl medium">{data.role}</strong>
           <p className="text-md regular">{data.text}</p>
           <div className={s.btns}>
-            <Button>{data.button}</Button>
+            <Button tag="a" href="#contacts">
+              {data.button}
+            </Button>
           </div>
         </div>
       </div>
