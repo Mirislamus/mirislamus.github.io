@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode, ElementType } from 'react';
+import type { ReactNode, ElementType } from 'react';
 import { noop } from '@utils/noop';
 import s from '@shared/ui/Button/Button.module.scss';
 import cx from 'clsx';

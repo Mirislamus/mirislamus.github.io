@@ -1,0 +1,119 @@
+{
+  "data": {
+    "en": {
+      "title": "Career",
+      "technologies": "Technologies",
+      "items": [
+        {
+          "company": "Web Pult",
+          "position": "HTML/CSS Developer",
+          "year": 2018,
+          "description": "Mainly worked on the layout of various projects of different complexity. Used build tools and preprocessors for development. Primarily developed landing pages, online stores, etc. Also decided to move into freelancing to challenge myself and successfully completed a significant number of projects."
+        },
+        {
+          "company": "One Web",
+          "position": "Web developer",
+          "year": 2019,
+          "description": "A large variety of layouts of different complexity, animations, and more. Experience with various templating engines and preprocessors and build tools, as well as integrating them into WordPress."
+        },
+        {
+          "company": "Margin Digital Studio",
+          "position": "Technical Lead & Web developer",
+          "year": 2020,
+          "description": "Head of the Technical Development Department while also working as a frontend developer, creating various turnkey websites. Developed interactive quizzes for websites. Notable projects include ||age.uz|| and ||rebus.uz||. Focused on improving skills in native JavaScript, React, TypeScript and exploring new frameworks and libraries."
+        },
+        {
+          "company": "Humandone",
+          "position": "Front-end developer",
+          "year": 2022,
+          "description": "Development of web applications and websites, specializing in React and Web3 apps. Worked on projects like the corporate website ||humandone.com||, a partner/client website ||caldera.humandone.com||, and a crypto landing with Storybook demo ||crypto.humandone.com||. Contributed to the AI assistant platform Perspecta and etc. Also developed a pet project ||mirislamus.github.io/pomodoro||, a Pomodoro focus timer for productivity. Continuously learning and improving frontend skills."
+        },
+        {
+          "company": "Dafna",
+          "position": "Front-end developer",
+          "year": "Now",
+          "description": "Complete redesign of the client side ||dafna.uz|| for new design, refactoring, optimization, adding new pages, refinement of functionality and full support. Complete development of your own landing page ||mirislamus.github.io|| c 0 design + development. Telegram mini app development for product suppliers. Also parallel development of the proxy service ||hit-proxy.net|| frontend."
+        }
+      ]
+    },
+    "ru": {
+      "title": "Карьера",
+      "technologies": "Технологии",
+      "items": [
+        {
+          "company": "Web Pult",
+          "position": "HTML/CSS разработчик",
+          "year": 2018,
+          "description": "В основном занимался версткой различных проектов разной сложности. Использовал сборщики и препроцессоры в разработке. Преимущественно разрабатывал лендинги, интернет-магазины и другие сайты. Также решил попробовать себя во фрилансе, чтобы выйти из зоны комфорта, и успешно выполнил значительное количество проектов."
+        },
+        {
+          "company": "One Web",
+          "position": "Веб-разработчик",
+          "year": 2019,
+          "description": "Большое количество версток различной сложности, анимации и другое. Опыт работы с различными шаблонизаторами, препроцессорами и сборщиками, а также их интеграция в WordPress."
+        },
+        {
+          "company": "Margin Digital Studio",
+          "position": "Технический лидер и веб-разработчик",
+          "year": 2020,
+          "description": "Руководил техническим отделом разработки, параллельно работая фронтенд-разработчиком и создавая сайты «под ключ». Разрабатывал интерактивные квизы для сайтов. Среди заметных проектов — ||age.uz|| и ||rebus.uz||. Сфокусировался на углублении знаний в нативном JavaScript, React, TypeScript и изучении новых фреймворков и библиотек."
+        },
+        {
+          "company": "Humandone",
+          "position": "Фронтенд-разработчик",
+          "year": 2022,
+          "description": "Разработка веб-приложений и сайтов с фокусом на React и Web3-приложения. Работал над проектами: корпоративный сайт ||humandone.com||, сайт партнёра/клиента ||caldera.humandone.com|| и крипто-лендинг с демо Storybook ||crypto.humandone.com||. Принимал участие в разработке AI-ассистент платформы Perspecta и других проектов. Также разработал pet-проект ||mirislamus.github.io/pomodoro|| — Pomodoro-таймер для повышения продуктивности. Постоянно обучаюсь и развиваю навыки фронтенд-разработки."
+        },
+        {
+          "company": "Dafna",
+          "position": "Фронтенд-разработчик",
+          "year": "Сейчас",
+          "description": "Полный редизайн клиентской части сайта ||dafna.uz|| под новый дизайн: рефакторинг, оптимизация, добавление новых страниц, доработка функционала и полная поддержка. Полная разработка собственного лендинга ||mirislamus.github.io|| с нуля (дизайн + разработка). Разработка Telegram mini-app для поставщиков товаров. Параллельная разработка фронтенда прокси-сервиса ||hit-proxy.net||."
+        }
+      ]
+    },
+    "uz": {
+      "title": "Karyera",
+      "technologies": "Texnologiyalar",
+      "items": [
+        {
+          "company": "Web Pult",
+          "position": "HTML/CSS dasturchi",
+          "year": 2018,
+          "description": "Asosan turli murakkablikdagi loyihalarning layout (verstka) qismi bilan shug‘ullandim. Ish jarayonida build-tool va preprocessorlardan foydalandim. Ko‘proq landing page, onlayn do‘konlar va shunga o‘xshash saytlarni ishlab chiqdim. Shuningdek, o‘zimni sinab ko‘rish va tajribani oshirish uchun frilansga o‘tdim va ko‘plab loyihalarni muvaffaqiyatli yakunladim."
+        },
+        {
+          "company": "One Web",
+          "position": "Veb-dasturchi",
+          "year": 2019,
+          "description": "Turli murakkablikdagi ko‘plab layoutlar, animatsiyalar va boshqa funksiyalar ustida ishladim. Turli template engine, preprocessor va build-tool’lar bilan ishlash hamda ularni WordPress’ga integratsiya qilish tajribasiga ega bo‘ldim."
+        },
+        {
+          "company": "Margin Digital Studio",
+          "position": "Texnik yetakchi va veb-dasturchi",
+          "year": 2020,
+          "description": "Texnik rivojlanish bo‘limiga rahbarlik qildim va bir vaqtning o‘zida frontend dasturchi sifatida «kalit topshirish» asosida saytlar ishlab chiqdim. Saytlar uchun interaktiv quiz’lar yaratdim. Muhim loyihalar: ||age.uz|| va ||rebus.uz||. Asosiy e’tiborimni native JavaScript, React, TypeScript’ni chuqur o‘rganish va yangi framework hamda kutubxonalarni tadqiq qilishga qaratdim."
+        },
+        {
+          "company": "Humandone",
+          "position": "Frontend dasturchi",
+          "year": 2022,
+          "description": "React va Web3 ilovalarga ixtisoslashgan holda veb-ilovalar va saytlar ishlab chiqish bilan shug‘ullandim. ||humandone.com|| korporativ sayti, ||caldera.humandone.com|| hamkor sayti va ||crypto.humandone.com|| kripto-landing (Storybook demo bilan) loyihalarida ishladim. Perspecta AI assistant platformasi va boshqa loyihalarga hissa qo‘shdim. Shuningdek, ||mirislamus.github.io/pomodoro|| nomli pet-loyihani — produktivlik uchun Pomodoro taymerini ishlab chiqdim. Frontend ko‘nikmalarimni doimiy ravishda rivojlantirib boryapman."
+        },
+        {
+          "company": "Dafna",
+          "position": "Frontend dasturchi",
+          "year": "Hozir",
+          "description": "||dafna.uz|| saytining client-side qismini yangi dizayn asosida to‘liq qayta ishlab chiqish: refaktoring, optimizatsiya, yangi sahifalar qo‘shish, funksionallikni takomillashtirish va to‘liq qo‘llab-quvvatlash. Shaxsiy landing sahifam ||mirislamus.github.io||’ni noldan (dizayn + development) ishlab chiqdim. Mahsulot yetkazib beruvchilar uchun Telegram mini-app ishlab chiqish. Parallel ravishda ||hit-proxy.net|| proxy servisining frontend qismini ishlab chiqyapman."
+        }
+      ]
+    }
+  },
+  "stacks": [
+    ["html", "css", "scss", "js", "jquery", "gulp"],
+    ["html", "scss", "js", "jquery", "gulp", "nunjucks", "php", "wordpress"],
+    ["html", "scss", "js", "gulp", "nunjucks", "php", "wordpress"],
+    ["react", "ts", "gatsby", "next.js", "scss", "tailwind", "chakra.ui", "axios"],
+    ["react", "ts", "js", "next.js", "scss", "axios", "redux", "zustand"]
+  ]
+}

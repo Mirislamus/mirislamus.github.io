@@ -1,0 +1,118 @@
+.career {
+  overflow: hidden;
+  &Top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &Item {
+    flex-shrink: 0;
+    article {
+      display: flex;
+      flex-direction: column;
+    }
+    .circle {
+      background-color: var(--secondary-alpha);
+      width: 18px;
+      height: 18px;
+      border: 4px solid var(--accent);
+      border-radius: 50%;
+    }
+    .content {
+      padding-top: var(--gap-24);
+      position: relative;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+    }
+    &:nth-child(1) {
+      width: 260px;
+    }
+    &:nth-child(2),
+    &:nth-child(3) {
+      width: 283px;
+    }
+    &:nth-child(4) {
+      width: 373px;
+    }
+    &:nth-child(5) {
+      width: 382px;
+    }
+    &:not(:first-child) {
+      .content {
+        padding-left: var(--gap-24);
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 8px;
+          bottom: 0;
+          border-left: 1px dashed var(--tertiary);
+        }
+      }
+    }
+    h3 {
+      margin-bottom: var(--gap-10);
+    }
+    strong {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      color: var(--grey-4);
+      margin-bottom: var(--gap-24);
+      span:last-child {
+        opacity: 0.7;
+      }
+    }
+    a {
+      color: var(--blue);
+      text-decoration: underline transparent;
+      transition: var(--transition-ease);
+      &:hover {
+        text-decoration-color: currentColor;
+      }
+    }
+  }
+}
+
+.swiper {
+  > div {
+    &::before {
+      content: '';
+      display: flex;
+      background-color: var(--secondary-alpha);
+      border: 1px solid var(--tertiary);
+      height: 20px;
+      width: 1680px;
+      border-radius: 28px;
+      position: absolute;
+      top: 94px;
+      left: 0;
+      z-index: 0;
+      @include media(max, 767) {
+        top: 88px;
+      }
+    }
+  }
+}
+
+.technologies {
+  margin-top: auto;
+  color: var(--grey-4);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-4);
+  margin-top: var(--gap-8);
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: var(--gap-10);
+    height: 30px;
+    border: 1px solid var(--tertiary);
+    border-radius: var(--radius-8);
+  }
+}
