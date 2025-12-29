@@ -2,11 +2,11 @@ import type { Section } from '@typings/global';
 import s from './Skills.module.scss';
 import cx from 'clsx';
 import skillsData from '@data/skills/skills.json';
-import skills from '@data/skills/skills';
 import { useTheme, useTextHighlight } from '@shared/hooks';
 
 export const Skills = ({ locale }: Section) => {
-  const data = skillsData[locale];
+  const data = skillsData.data[locale];
+  const skills = skillsData.items;
   const title = useTextHighlight(data.title);
 
   const { theme, mounted } = useTheme();
