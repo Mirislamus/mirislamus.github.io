@@ -13,7 +13,7 @@ import { useWrapExternalLinks, useTextHighlight } from '@shared/hooks';
 export const Career = ({ locale }: Section) => {
   const data = careerData.data[locale];
   const stacks = careerData.stacks;
-  const title = useTextHighlight(careerData.data[locale].title);
+  const title = useTextHighlight(data.title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);

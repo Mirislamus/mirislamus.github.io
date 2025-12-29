@@ -1,0 +1,88 @@
+{
+  "data": {
+    "en": {
+      "title": "Recent |projects|",
+      "link": "Check Live Site",
+      "items": [
+        {
+          "id": "pomotomo",
+          "name": "Pomotomo Focus Timer",
+          "text": "Pomotomo is your personal pomodoro focus timer to increase productivity. Ideal for focusing and completing tasks."
+        },
+        {
+          "id": "humandone",
+          "name": "Humandone",
+          "text": "Website for companies developing websites, web applications and design for the crypt and beyond."
+        },
+        {
+          "id": "age-computers",
+          "name": "Age Computers",
+          "text": "Online store for computers, accessories, perefiria, and more. There is a constructor for building a PC."
+        },
+        {
+          "id": "easy-english",
+          "name": "Easy English School",
+          "text": "A convenient educational platform for learning different languages. It's mostly English and Chinese."
+        }
+      ]
+    },
+    "ru": {
+      "title": "Недавние |проекты|",
+      "link": "Посмотреть сайт",
+      "items": [
+        {
+          "id": "pomotomo",
+          "name": "Pomotomo — таймер фокусировки",
+          "text": "Pomotomo — это персональный таймер Pomodoro для повышения продуктивности. Подходит для концентрации и выполнения задач."
+        },
+        {
+          "id": "humandone",
+          "name": "Humandone",
+          "text": "Сайт для компаний, занимающихся разработкой веб-сайтов, веб-приложений и дизайна в сфере крипто и не только."
+        },
+        {
+          "id": "age-computers",
+          "name": "Age Computers",
+          "text": "Интернет-магазин компьютеров, комплектующих, периферии и другого оборудования. Есть конструктор для сборки ПК."
+        },
+        {
+          "id": "easy-english",
+          "name": "Easy English School",
+          "text": "Удобная образовательная платформа для изучения языков. В основном английский и китайский."
+        }
+      ]
+    },
+    "uz": {
+      "title": "Oxirgi |projektlar|",
+      "link": "Siteni ko'rish",
+      "items": [
+        {
+          "id": "pomotomo",
+          "name": "Pomotomo Fokus Taymeri",
+          "text": "Pomotomo — bu samaradorlikni oshirish uchun shaxsiy Pomodoro fokus taymeri. Diqqatni jamlash va vazifalarni bajarish uchun qulay."
+        },
+        {
+          "id": "humandone",
+          "name": "Humandone",
+          "text": "Veb-saytlar, veb-ilovalar va kripto sohasida hamda undan tashqarida dizayn ishlab chiqadigan kompaniyalar uchun sayt."
+        },
+        {
+          "id": "age-computers",
+          "name": "Age Computers",
+          "text": "Kompyuterlar, aksessuarlar, periferik qurilmalar va boshqa mahsulotlar uchun onlayn do‘kon. Shaxsiy ПК yig‘ish uchun konstruktor mavjud."
+        },
+        {
+          "id": "easy-english",
+          "name": "Easy English School",
+          "text": "Chet tillarini o‘rganish uchun qulay ta’lim platformasi. Asosan ingliz va xitoy tillari."
+        }
+      ]
+    }
+  },
+  "links": [
+    "https://mirislamus.github.io/pomodoro",
+    "https://humandone.com",
+    "https://age.uz",
+    "https://easyenglish.best"
+  ]
+}

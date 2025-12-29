@@ -1,7 +1,7 @@
 ---
 import type { Locale } from '@typings/global';
 import Layout from '@layouts/Layout.astro';
-import { Approach, Hero, Skills, Career, Reviews } from '@widgets/components';
+import { Approach, Hero, Skills, Career, Projects, Reviews } from '@widgets/components';
 
 const locale = Astro.currentLocale as Locale;
 ---
@@ -11,5 +11,6 @@ const locale = Astro.currentLocale as Locale;
   <Approach locale={locale} client:load />
   <Skills locale={locale} client:load />
   <Career locale={locale} client:load />
+  <Projects locale={locale} client:load />
   <Reviews locale={locale} client:load />
 </Layout>

@@ -142,6 +142,7 @@
   .grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 340px 140px 360px;
+    gap: var(--gap-16);
   }
   .item {
     grid-column: auto;
@@ -182,7 +183,6 @@
   .grid {
     grid-template-columns: 100%;
     grid-template-rows: repeat(2, 315px) repeat(2, 150px) 305px;
-    gap: var(--gap-15);
   }
   .item {
     grid-column: auto;
