@@ -1,6 +1,5 @@
 .footer {
   > div {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,6 +18,7 @@
 .content {
   width: min(460px, 100%);
   padding-top: calc(48px + 30px);
+  padding-bottom: 150px;
   margin-block: auto;
 }
 
@@ -68,6 +68,7 @@
   }
   .content {
     padding-top: calc(44px + 24px);
+    padding-bottom: 80px;
   }
   .buttons {
     gap: var(--gap-12);
