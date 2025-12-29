@@ -21,9 +21,7 @@ export const Projects = ({ locale }: Section) => {
                 <img src={`/images/projects/${project.id}.jpg`} alt={project.name} />
               </div>
               <h3>{project.name}</h3>
-              <p className="text-lg">
-                {project.text}
-              </p>
+              <p className="text-lg">{project.text}</p>
               <span>{data.link} ↗</span>
             </a>
           ))}

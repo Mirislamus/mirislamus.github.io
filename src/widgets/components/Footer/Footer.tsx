@@ -28,17 +28,17 @@ export const Footer = ({ locale }: Section) => {
           <ul className="list-reset">
             <li>
               <a href={`https://${info.telegram}`} target="_blank" rel="noopener noreferrer">
-                Telegram
+                Telegram ↗
               </a>
             </li>
             <li>
               <a href={`https://${info.github}`} target="_blank" rel="noopener noreferrer">
-                GitHub
+                GitHub ↗
               </a>
             </li>
             <li>
               <a href={`https://${info.linkedin}`} target="_blank" rel="noopener noreferrer">
-                LinkedIn
+                LinkedIn ↗
               </a>
             </li>
           </ul>
