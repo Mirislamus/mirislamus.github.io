@@ -39,7 +39,7 @@
 .line {
   position: absolute;
   left: 0;
-  bottom: -22px;
+  bottom: -21px;
   height: 3px;
   width: var(--width);
   transform: translateX(var(--offset));
@@ -94,7 +94,7 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
-    font-size: 24px;
+    font-size: 20px;
     padding: 24px;
     margin: auto 0;
     position: absolute;

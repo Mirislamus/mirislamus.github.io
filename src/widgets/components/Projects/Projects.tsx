@@ -3,7 +3,6 @@ import projectData from '@data/projects/projects.json';
 import s from './Projects.module.scss';
 import cx from 'clsx';
 import { useTextHighlight } from '@shared/hooks';
-import { ArrowUpRight } from 'lucide-react';
 
 export const Projects = ({ locale }: Section) => {
   const data = projectData.data[locale];

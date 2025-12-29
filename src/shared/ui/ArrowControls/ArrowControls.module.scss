@@ -30,4 +30,9 @@
     opacity: 0.3;
     cursor: not-allowed;
   }
+
+  @include media(max, 767) {
+    width: 44px;
+    height: 44px;
+  }
 }
