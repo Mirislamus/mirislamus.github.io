@@ -8,11 +8,12 @@ import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
-import { useWrapExternalLinks } from '@shared/hooks';
+import { useWrapExternalLinks, useTextHighlight } from '@shared/hooks';
 
 export const Career = ({ locale }: Section) => {
   const data = careerData.data[locale];
   const stacks = careerData.stacks;
+  const title = useTextHighlight(careerData.data[locale].title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
@@ -28,7 +29,7 @@ export const Career = ({ locale }: Section) => {
     <section id="career" className={cx(s.career, 'section')}>
       <div className="container">
         <div className={cx(s.careerTop, 'title')}>
-          <h2>{data.title}</h2>
+          <h2>{title}</h2>
           <ArrowControls
             onPrev={() => swiperRef.current?.slidePrev()}
             onNext={() => swiperRef.current?.slideNext()}

@@ -31,13 +31,13 @@
         {
           "company": "Dafna",
           "position": "Front-end developer",
-          "year": "Now",
+          "year": "2024 - Now",
           "description": "Complete redesign of the client side ||dafna.uz|| for new design, refactoring, optimization, adding new pages, refinement of functionality and full support. Complete development of your own landing page ||mirislamus.github.io|| c 0 design + development. Telegram mini app development for product suppliers. Also parallel development of the proxy service ||hit-proxy.net|| frontend."
         }
       ]
     },
     "ru": {
-      "title": "Карьера",
+      "title": "Опыт |работы|",
       "technologies": "Технологии",
       "items": [
         {
@@ -67,13 +67,13 @@
         {
           "company": "Dafna",
           "position": "Фронтенд-разработчик",
-          "year": "Сейчас",
+          "year": "2024 - Сейчас",
           "description": "Полный редизайн клиентской части сайта ||dafna.uz|| под новый дизайн: рефакторинг, оптимизация, добавление новых страниц, доработка функционала и полная поддержка. Полная разработка собственного лендинга ||mirislamus.github.io|| с нуля (дизайн + разработка). Разработка Telegram mini-app для поставщиков товаров. Параллельная разработка фронтенда прокси-сервиса ||hit-proxy.net||."
         }
       ]
     },
     "uz": {
-      "title": "Karyera",
+      "title": "Ish |tajribasi|",
       "technologies": "Texnologiyalar",
       "items": [
         {
@@ -103,7 +103,7 @@
         {
           "company": "Dafna",
           "position": "Frontend dasturchi",
-          "year": "Hozir",
+          "year": "2024 - Hozir",
           "description": "||dafna.uz|| saytining client-side qismini yangi dizayn asosida to‘liq qayta ishlab chiqish: refaktoring, optimizatsiya, yangi sahifalar qo‘shish, funksionallikni takomillashtirish va to‘liq qo‘llab-quvvatlash. Shaxsiy landing sahifam ||mirislamus.github.io||’ni noldan (dizayn + development) ishlab chiqdim. Mahsulot yetkazib beruvchilar uchun Telegram mini-app ishlab chiqish. Parallel ravishda ||hit-proxy.net|| proxy servisining frontend qismini ishlab chiqyapman."
         }
       ]
