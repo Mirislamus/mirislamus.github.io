@@ -3,10 +3,12 @@ import projectData from '@data/projects/projects.json';
 import s from './Projects.module.scss';
 import cx from 'clsx';
 import { useTextHighlight } from '@shared/hooks';
+import { Spotlight } from '@shared/ui';
 
 export const Projects = ({ locale }: Section) => {
   const data = projectData.data[locale];
   const links = projectData.links;
+  const colors = projectData.colors;
   const projects = data.items;
   const title = useTextHighlight(data.title);
 
@@ -17,6 +19,7 @@ export const Projects = ({ locale }: Section) => {
         <div className={s.grid}>
           {projects.map((project, index) => (
             <a href={links[index]} target="_blank" rel="noopener noreferrer" key={project.id} className={s.project}>
+              <Spotlight className={s.spotlight} spotlightColor={colors[index]} />
               <div className={s.projectImage}>
                 <img src={`/images/projects/${project.id}.jpg`} alt={project.name} />
               </div>

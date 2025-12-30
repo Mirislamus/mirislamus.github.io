@@ -16,6 +16,16 @@
   border-radius: var(--radius-20);
   padding: var(--gap-24);
   position: relative;
+  overflow: hidden;
+
+  &Image,
+  h3,
+  p,
+  span {
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+  }
 
   &Image {
     overflow: hidden;
