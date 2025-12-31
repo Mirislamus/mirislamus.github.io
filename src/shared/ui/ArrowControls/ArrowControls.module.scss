@@ -22,6 +22,9 @@
   height: 48px;
   color: var(--text);
   transition: var(--transition-ease);
+  position: relative;
+  overflow: hidden;
+
   &:hover {
     color: var(--accent);
   }

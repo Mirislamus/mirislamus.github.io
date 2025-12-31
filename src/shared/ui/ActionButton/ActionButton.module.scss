@@ -12,6 +12,8 @@
   border-radius: var(--radius-10);
   border: 1px solid var(--black-3);
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     border-color: var(--grey-5);
