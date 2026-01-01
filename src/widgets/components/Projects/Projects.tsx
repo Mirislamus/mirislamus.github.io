@@ -3,13 +3,14 @@ import projectData from '@data/projects/projects.json';
 import s from './Projects.module.scss';
 import cx from 'clsx';
 import { useTextHighlight } from '@shared/hooks';
-import { Spotlight } from '@shared/ui';
+import { Spotlight, Tag } from '@shared/ui';
 
 export const Projects = ({ locale }: Section) => {
   const data = projectData.data[locale];
   const links = projectData.links;
   const colors = projectData.colors;
   const projects = data.items;
+  const stacks = projectData.stacks;
   const title = useTextHighlight(data.title);
 
   return (
@@ -25,7 +26,13 @@ export const Projects = ({ locale }: Section) => {
               </div>
               <h3>{project.name}</h3>
               <p className="text-lg">{project.text}</p>
-              <span>{data.link} ↗</span>
+              <div className={s.bottom}>
+                <div className={s.stack}>
+                  {stacks[index].map(stack => (
+                    <Tag key={stack}>{stack}</Tag>
+                  ))}
+                </div>
+              </div>
             </a>
           ))}
         </div>

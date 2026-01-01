@@ -1,0 +1,14 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--gap-10);
+  height: 30px;
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-8);
+
+  @include media(max, 767) {
+    height: 28px;
+    padding-inline: var(--gap-8);
+  }
+}

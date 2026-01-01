@@ -2,7 +2,7 @@ import type { Section } from '@typings/global';
 import s from './Career.module.scss';
 import cx from 'clsx';
 import careerData from '@data/career/career.json';
-import { ArrowControls } from '@shared/ui';
+import { ArrowControls, Tag } from '@shared/ui';
 import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -68,9 +68,7 @@ export const Career = ({ locale }: Section) => {
                     {index === 0 && <span className="text-sm">{data.technologies}:</span>}
                     <div className={s.stack}>
                       {stacks[index].map(stack => (
-                        <span key={stack} className="text-sm">
-                          {stack}
-                        </span>
+                        <Tag key={stack}>{stack}</Tag>
                       ))}
                     </div>
                   </div>

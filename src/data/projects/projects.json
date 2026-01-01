@@ -2,7 +2,6 @@
   "data": {
     "en": {
       "title": "Recent |projects|",
-      "link": "Check Live Site",
       "items": [
         {
           "id": "pomotomo",
@@ -28,7 +27,6 @@
     },
     "ru": {
       "title": "Недавние |проекты|",
-      "link": "Посмотреть сайт",
       "items": [
         {
           "id": "pomotomo",
@@ -54,7 +52,6 @@
     },
     "uz": {
       "title": "Oxirgi |projektlar|",
-      "link": "Siteni ko'rish",
       "items": [
         {
           "id": "pomotomo",
@@ -85,5 +82,11 @@
     "https://age.uz",
     "https://easyenglish.best"
   ],
-  "colors": ["#ED4455", "#E13916", "#1D42CD", "#9453FF"]
+  "colors": ["#ED4455", "#E13916", "#1D42CD", "#9453FF"],
+  "stacks": [
+    ["react", "vite", "chakra.ui", "zustand"],
+    ["react", "gatsby", "chakra.ui", "gsap"],
+    ["nunjucks", "scss", "js", "gulp"],
+    ["nunjucks", "scss", "js", "gulp"]
+  ]
 }

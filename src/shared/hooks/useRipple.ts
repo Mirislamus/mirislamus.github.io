@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { type MouseEvent, useCallback } from 'react';
 
 interface RippleOptions {
   duration?: number;
@@ -6,7 +6,7 @@ interface RippleOptions {
 
 export const useRipple = ({ duration = 600 }: RippleOptions = {}) => {
   return useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: MouseEvent<HTMLElement>) => {
       const el = e.currentTarget;
       const rect = el.getBoundingClientRect();
       const size = Math.max(rect.width, rect.height);
