@@ -2,17 +2,30 @@ import type { Section } from '@typings/global';
 import footerData from '@data/footer/footer.json';
 import { info } from '@data/global';
 import s from './Footer.module.scss';
-import { Button } from '@shared/ui/Button/Button';
+import { Button, RotatingText } from '@shared/ui';
 
 export const Footer = ({ locale }: Section) => {
   const data = footerData[locale];
+  const { ready, talk, text } = data;
 
   return (
     <footer id="contacts" className={s.footer}>
       <div className="container">
         <div className={s.content}>
           <h2 className="text-xxl">
-            <span>{data.ready}</span> <span className="accent">{data.talk}</span>
+            <strong>{ready}</strong>
+            <RotatingText
+              texts={[talk, text]}
+              mainClassName="accent"
+              staggerFrom="last"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-120%' }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden"
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+              rotationInterval={4000}
+            />
           </h2>
           <div className={s.buttons}>
             <Button variant="outline" isFluid tag="a" href={`mailto:${info.email}`} isExternal>

@@ -1,5 +1,5 @@
 .visually-hidden {
-	clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
@@ -11,4 +11,24 @@
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  animation: ripple 600ms ease-out;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
