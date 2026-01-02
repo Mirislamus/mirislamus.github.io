@@ -7,7 +7,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: var(--gap-16);
+  gap: var(--gap-12);
 }
 
 .skill {
@@ -18,7 +18,7 @@
   gap: var(--gap-12);
   background-color: var(--secondary-alpha);
   border: 1px solid var(--tertiary);
-  border-radius: var(--radius-12);
+  border-radius: var(--radius-16);
   padding: 15px;
   aspect-ratio: 1;
   transition: var(--transition-ease);
@@ -52,9 +52,6 @@
 }
 
 @include media(max, 1199) {
-  .grid {
-    gap: var(--gap-12);
-  }
   .skill {
     font-size: 12px;
     img {

@@ -17,7 +17,7 @@
   gap: 12px;
   background-color: var(--secondary-alpha);
   border: 1px solid var(--tertiary);
-  border-radius: var(--radius-20);
+  border-radius: var(--radius-24);
   line-height: 1.5;
   height: 100%;
   p {
@@ -40,8 +40,8 @@
 
 .pagination {
   --swiper-pagination-color: var(--secondary-alpha);
-  --swiper-pagination-bullet-size: 24px;
-  --swiper-pagination-bullet-border-radius: 5px;
+  --swiper-pagination-bullet-size: 25px;
+  --swiper-pagination-bullet-border-radius: 50%;
   --swiper-pagination-bullet-inactive-color: var(--secondary-alpha);
   --swiper-pagination-bullet-inactive-opacity: 1;
   transform: none !important;
@@ -54,6 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
     &::after {
       content: '';
       position: absolute;
@@ -61,10 +62,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       background-color: var(--accent);
-      border-radius: 3px;
+      border-radius: var(--swiper-pagination-bullet-border-radius);
       margin: auto;
       scale: 0 0;
       transition: var(--transition-ease);
