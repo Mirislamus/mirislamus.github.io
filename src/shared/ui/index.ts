@@ -5,4 +5,6 @@ export * from '@shared/ui/Avatar/Avatar';
 export * from '@shared/ui/ArrowControls/ArrowControls';
 export * from '@shared/ui/Spotlight/Spotlight';
 export * from '@shared/ui/RotatingText/RotatingText';
+export * from '@shared/ui/SplitText/SplitText';
+export * from '@shared/ui/AnimatedContent/AnimatedContent';
 export * from '@shared/ui/Tag/Tag';

@@ -14,22 +14,6 @@
   }
 }
 
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent-alpha);
-  transform: scale(0);
-  animation: ripple 600ms ease;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
 .fill {
   color: var(--text-reverse);
   border: 1px solid var(--accent);
@@ -48,9 +32,11 @@
   border: 1px solid var(--black-3);
   &:hover {
     border-color: var(--grey-5);
+    color: var(--accent);
   }
   &:focus {
     border-color: var(--grey-6);
+    color: var(--accent);
   }
 }
 
