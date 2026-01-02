@@ -40,11 +40,13 @@
   position: absolute;
   left: 0;
   bottom: -21px;
-  height: 3px;
+  height: 4px;
   width: var(--width);
   transform: translateX(var(--offset));
   background-color: var(--accent);
   transition: var(--transition);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .end {
@@ -81,7 +83,10 @@
 
   .wrap {
     position: relative;
-    padding: 10px;
+    padding: 10px 14px;
+    &.active {
+      background-color: var(--secondary);
+    }
   }
 
   .background {
@@ -93,23 +98,17 @@
   .nav {
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    font-size: 20px;
-    padding: 24px;
-    margin: auto 0;
+    gap: var(--gap-12);
     position: absolute;
     top: 72px;
     left: 0;
     right: 0;
-    height: calc(100vh - 96px);
-    background-color: var(--secondary);
-    border: 1px solid var(--tertiary);
-    border-radius: var(--radius-12);
+    height: 383px;
+    margin-left: 0;
     visibility: hidden;
     opacity: 0;
-    transition: var(--transition);
-    overflow: auto;
-    @include hideScroll;
+    transition: var(--transition-ease);
+    z-index: 15;
 
     &.active {
       visibility: visible;
@@ -117,9 +116,15 @@
     }
 
     ul {
+      display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      gap: var(--gap-24);
+      font-size: 20px;
+      padding: var(--gap-20);
+      background-color: var(--secondary);
+      border: 1px solid var(--tertiary);
+      border-radius: var(--radius-24);
     }
 
     a {
@@ -133,7 +138,7 @@
         height: 2px;
         left: 50%;
         translate: -50% 0;
-        bottom: -10px;
+        bottom: -4px;
         background-color: currentColor;
         transform: scaleX(0);
         transition: var(--transition);
@@ -146,6 +151,24 @@
     }
   }
 
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--black-1-alpha-2);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-ease);
+    z-index: 20;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   .line {
     display: none;
   }
@@ -154,6 +177,7 @@
     .mobileSwitcher {
       display: flex;
       margin-inline: auto;
+      background-color: var(--secondary);
     }
 
     .hamburger {

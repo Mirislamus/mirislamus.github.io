@@ -15,11 +15,12 @@ interface SwitcherProps {
   variant?: 'row' | 'column';
   className?: string;
   ref?: RefObject<HTMLDivElement>;
+  isMoreRadius?: boolean;
 }
 
-export const Switcher = ({ items, variant = 'row', className, ref }: SwitcherProps) => {
+export const Switcher = ({ items, variant = 'row', className, ref, isMoreRadius }: SwitcherProps) => {
   return (
-    <div className={cx(s.switcher, s[variant], className)} ref={ref}>
+    <div className={cx(s.switcher, s[variant], { [s.radius]: isMoreRadius }, className)} ref={ref}>
       {items.map((item, index) => {
         const { content, onClick = noop, href, isActive } = item;
         const buttonClasses = cx(s.button, { [s.active]: isActive });

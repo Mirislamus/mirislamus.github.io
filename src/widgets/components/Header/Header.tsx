@@ -97,56 +97,61 @@ export const Header = ({ locale }: Section) => {
   };
 
   return (
-    <header className={s.header}>
-      <div className="container">
-        <div className={s.wrap}>
-          <a href={currentHref} aria-label="logo">
-            <Logo />
-          </a>
-          <nav className={cx(s.nav, { [s.active]: menuIsOpen })}>
-            <ul>
-              {menuItems.map((item: string, index: number) => (
-                <li key={item}>
-                  <a
-                    href={`#${menuUrls[index]}`}
-                    ref={(ref: HTMLAnchorElement) => {
-                      linksRef.current[index] = ref;
-                    }}
-                    className={cx(s.link, { [s.active]: menuUrls[index] === activeId })}
-                    onClick={() => onLinkClick()}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div
-              ref={lineRef}
-              className={s.line}
-              style={{ '--width': `${itemActiveWidth}px`, '--offset': `${itemOffsetLeft}px` } as CSSProperties}
-            />
-            <Switcher className={s.mobileSwitcher} items={themesData} />
-          </nav>
+    <>
+      <div className={cx(s.overlay, { [s.active]: menuIsOpen })} onClick={onMenuClick} />
+      <header className={s.header}>
+        <div className="container">
+          <div className={cx(s.wrap, { [s.active]: menuIsOpen })}>
+            <a href={currentHref} aria-label="logo">
+              <Logo />
+            </a>
+            <nav className={cx(s.nav, { [s.active]: menuIsOpen })}>
+              <ul>
+                {menuItems.map((item: string, index: number) => (
+                  <li key={item}>
+                    <a
+                      href={`#${menuUrls[index]}`}
+                      ref={(ref: HTMLAnchorElement) => {
+                        linksRef.current[index] = ref;
+                      }}
+                      className={cx(s.link, { [s.active]: menuUrls[index] === activeId })}
+                      onClick={() => onLinkClick()}
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div
+                ref={lineRef}
+                className={s.line}
+                style={
+                  { '--width': `${itemActiveWidth + 16}px`, '--offset': `${itemOffsetLeft - 8}px` } as CSSProperties
+                }
+              />
+              <Switcher className={s.mobileSwitcher} items={themesData} isMoreRadius />
+            </nav>
 
-          <div className={s.end}>
-            <Switcher className={s.themesSwitcher} items={themesData} />
-            <div className={s.langsSwitcher}>
-              <ActionButton ref={langsButtonRef as RefObject<HTMLButtonElement>} onClick={onLangClick}>
-                {locale}
+            <div className={s.end}>
+              <Switcher className={s.themesSwitcher} items={themesData} />
+              <div className={s.langsSwitcher}>
+                <ActionButton ref={langsButtonRef as RefObject<HTMLButtonElement>} onClick={onLangClick}>
+                  {locale}
+                </ActionButton>
+                {langsIsOpen && (
+                  <div className={cx(s.langsList, { [s.active]: langsIsOpen })}>
+                    <Switcher ref={langsRef as RefObject<HTMLDivElement>} variant="column" items={langsData} />
+                  </div>
+                )}
+              </div>
+              <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick}>
+                <Menu />
+                <X />
               </ActionButton>
-              {langsIsOpen && (
-                <div className={cx(s.langsList, { [s.active]: langsIsOpen })}>
-                  <Switcher ref={langsRef as RefObject<HTMLDivElement>} variant="column" items={langsData} />
-                </div>
-              )}
             </div>
-            <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick}>
-              <Menu />
-              <X />
-            </ActionButton>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
