@@ -4,7 +4,7 @@ import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
 import { useCopyToClipboard, useTextHighlight, useTheme } from '@shared/hooks';
-import { Button } from '@shared/ui';
+import { Button, StarBorder } from '@shared/ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -70,13 +70,16 @@ export const Approach = ({ locale }: Section) => {
               />
             </svg>
           </article>
-          <article className={cx(s.item, s.item_4)}>
-            <h4>{data.together}</h4>
-            <Button size="sm" onClick={handleCopy}>
-              <Copy size={14} />
-              {data.email}
-            </Button>
-          </article>
+          <StarBorder color="var(--accent)" as="article" className={cx(s.item, s.item_4)}>
+            <div className={s.itemInner}>
+              <h4>{data.together}</h4>
+              <Button size="sm" onClick={handleCopy}>
+                <Copy size={14} />
+                {data.email}
+              </Button>
+            </div>
+          </StarBorder>
+
           <article className={cx(s.item, s.item_5)}>
             <div className={s.item_text}>
               <span>{data.pomotomo}</span>
