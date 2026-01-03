@@ -4,7 +4,7 @@
   width: fit-content;
   align-items: center;
   gap: var(--gap-4);
-  border: 1px solid var(--black-3);
+  border: 1px solid var(--tertiary);
   background-color: var(--secondary);
   backdrop-filter: blur(5px);
   color: var(--text);
@@ -13,7 +13,7 @@
   letter-spacing: var(--letter-spacing);
   text-transform: uppercase;
   border-radius: var(--radius-10);
-  padding: 4px;
+  padding: var(--gap-4);
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -49,7 +49,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-7);
-  transition: var(--transition);
+  transition: var(--transition-ease);
 
   svg {
     transition: inherit;

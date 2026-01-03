@@ -11,7 +11,7 @@
 }
 
 .project {
-  background-color: var(--secondary-alpha);
+  background-color: var(--secondary);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
   padding: var(--gap-24);
@@ -72,9 +72,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-4);
-  span {
-    mix-blend-mode: screen;
-  }
 }
 
 @include media(max, 1279) {

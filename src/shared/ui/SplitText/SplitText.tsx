@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useRef, useEffect, useState } from 'react';
+import { type CSSProperties, useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText as GSAPSplitText } from 'gsap/SplitText';

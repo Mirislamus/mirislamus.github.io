@@ -15,7 +15,7 @@
   flex-direction: column;
   padding: 24px;
   gap: 12px;
-  background-color: var(--secondary-alpha);
+  background-color: var(--secondary);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
   line-height: 1.5;
@@ -39,16 +39,16 @@
 }
 
 .pagination {
-  --swiper-pagination-color: var(--secondary-alpha);
+  --swiper-pagination-color: var(--secondary);
   --swiper-pagination-bullet-size: 25px;
   --swiper-pagination-bullet-border-radius: 50%;
-  --swiper-pagination-bullet-inactive-color: var(--secondary-alpha);
+  --swiper-pagination-bullet-inactive-color: var(--secondary);
   --swiper-pagination-bullet-inactive-opacity: 1;
   transform: none !important;
   position: static;
   > * {
     transition: var(--transition-ease) !important;
-    background-color: var(--secondary-alpha);
+    background-color: var(--secondary);
     transform: none !important;
     border: 1px solid var(--tertiary);
     display: flex;

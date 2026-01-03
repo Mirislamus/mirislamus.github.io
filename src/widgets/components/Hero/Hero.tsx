@@ -21,7 +21,7 @@ export const Hero = ({ locale }: Section) => {
             <p className={cx(s.text, 'text-md regular')}>{data.text}</p>
           </AnimatedContent>
 
-          <AnimatedContent delay={0.3}>
+          <AnimatedContent distance={50} delay={0.3}>
             <div className={s.btns}>
               <Button tag="a" href="#contacts">
                 {data.button}
