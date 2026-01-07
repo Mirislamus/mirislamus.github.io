@@ -14,14 +14,16 @@ export const Hero = ({ locale }: Section) => {
           <AnimatedContent>
             <Avatar className={s.avatar} />
           </AnimatedContent>
-          <SplitText text={data.title} tag="h1" />
-          <SplitText text={data.role} className={cx(s.role, 'text-xl medium accent')} />
-
-          <AnimatedContent>
+          <AnimatedContent delay={0.15}>
+            <h1>{data.title}</h1>
+          </AnimatedContent>
+          <AnimatedContent delay={0.3}>
+            <strong className={cx(s.role, 'text-xl medium accent')}>{data.role}</strong>
+          </AnimatedContent>
+          <AnimatedContent delay={0.45}>
             <p className={cx(s.text, 'text-md regular')}>{data.text}</p>
           </AnimatedContent>
-
-          <AnimatedContent distance={50} delay={0.3}>
+          <AnimatedContent distance={50} delay={0.6}>
             <div className={s.btns}>
               <Button tag="a" href="#contacts">
                 {data.button}
