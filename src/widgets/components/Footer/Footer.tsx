@@ -23,7 +23,6 @@ export const Footer = ({ locale }: Section) => {
                 animate={{ y: 0 }}
                 exit={{ y: '-120%' }}
                 staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden"
                 transition={{ type: 'spring', damping: 30, stiffness: 400 }}
                 rotationInterval={4000}
               />

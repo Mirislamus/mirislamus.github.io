@@ -6,12 +6,12 @@
   },
   "ru": {
     "ready": "Готовы?",
-    "talk": "Давайте поговорим",
-    "text": "Напишите мне"
+    "talk": "Поговорим?",
+    "text": "Пишите мне"
   },
   "uz": {
     "ready": "Tayyor?",
-    "talk": "Keling, gaplashamiz",
+    "talk": "Gaplashamiz?",
     "text": "Menga yozing"
   }
 }
