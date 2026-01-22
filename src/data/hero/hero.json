@@ -2,19 +2,19 @@
   "en": {
     "role": "Front-end developer",
     "title": "Mirislam Usmanov",
-    "text": "I'm a frontend developer with over 7 years of professional experience. I specialize in website and web application development. I really love creating nice and user-friendly interfaces. Flexible approach to each client and task.",
+    "text": "I'm a frontend developer with over {{years}} years of professional experience. I specialize in website and web application development. I really love creating nice and user-friendly interfaces. Flexible approach to each client and task.",
     "button": "Get in touch"
   },
   "ru": {
     "role": "Front-end developer",
     "title": "Мирислам Усманов",
-    "text": "Я фронтенд-разработчик с более чем 7-летним профессиональным опытом. Я специализируюсь на разработке веб-сайтов и веб-приложений. Мне нравится создавать красивые и удобные интерфейсы. Гибкий подход к каждому клиенту и задаче",
+    "text": "Я фронтенд-разработчик с более чем {{years}}-летним профессиональным опытом. Я специализируюсь на разработке веб-сайтов и веб-приложений. Мне нравится создавать красивые и удобные интерфейсы. Гибкий подход к каждому клиенту и задаче",
     "button": "Связаться"
   },
   "uz": {
     "role": "Front-end developer",
     "title": "Mirislam Usmonov",
-    "text": "Men 7 yildan ortiq professional tajribaga ega front-end dasturchiman. Veb-saytlar va veb-ilovalar ishlab chiqishga ixtisoslashganman. Chiroyli va foydalanuvchi uchun qulay interfeyslar yaratishni yaxshi ko‘raman. Har bir mijoz va vazifaga moslashuvchan yondashuvni afzal ko‘raman.",
+    "text": "Men {{years}} yildan ortiq professional tajribaga ega front-end dasturchiman. Veb-saytlar va veb-ilovalar ishlab chiqishga ixtisoslashganman. Chiroyli va foydalanuvchi uchun qulay interfeyslar yaratishni yaxshi ko‘raman. Har bir mijoz va vazifaga moslashuvchan yondashuvni afzal ko‘raman.",
     "button": "Bog‘lanish"
   }
 }

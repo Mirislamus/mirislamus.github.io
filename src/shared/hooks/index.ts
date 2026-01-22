@@ -6,3 +6,4 @@ export * from '@hooks/useActiveSection';
 export * from '@shared/hooks/useTheme';
 export * from '@shared/hooks/useWrapExternalLinks';
 export * from '@shared/hooks/useRipple';
+export * from '@shared/hooks/useVariable';
