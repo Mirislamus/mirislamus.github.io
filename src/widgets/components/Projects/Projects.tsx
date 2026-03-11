@@ -29,7 +29,7 @@ export const Projects = ({ locale }: Section) => {
               <div className={s.bottom}>
                 <div className={s.stack}>
                   {stacks[index].map(stack => (
-                    <Tag key={stack}>{stack}</Tag>
+                    <Tag className={s.tag} key={stack}>{stack}</Tag>
                   ))}
                 </div>
               </div>
