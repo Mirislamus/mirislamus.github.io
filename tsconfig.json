@@ -10,7 +10,8 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "ignoreDeprecations": "6.0",
     "verbatimModuleSyntax": true,
     "paths": {
       "@typings/*": ["src/typings/*"],
