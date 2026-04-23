@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Lume Studio — Салон красоты в Ташкенте | Маникюр, педикюр, ресницы, брови
+    </title>
+    <meta
+      name="description"
+      content="Lume Studio — профессиональный салон красоты в центре Ташкента. Маникюр, педикюр, наращивание ресниц, ламинирование бровей, окрашивание волос, шугаринг. Проспект Шарафа Рашидова, 40. Запись по телефону +998 97 264 94 24."
+    />
+    <meta
+      name="keywords"
+      content="салон красоты Ташкент, маникюр Ташкент, педикюр, наращивание ресниц, ламинирование бровей, шугаринг, окрашивание волос, Lume Studio"
+    />
+
+    <meta
+      property="og:title"
+      content="Lume Studio — Салон красоты в Ташкенте"
+    />
+    <meta
+      property="og:description"
+      content="Профессиональный салон красоты. Маникюр, педикюр, ресницы, брови, волосы. Запись онлайн."
+    />
+    <meta
+      property="og:image"
+      content="https://lume-studio.uz/images/og-image.jpg"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lume-studio.uz" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Lume Studio — Салон красоты в Ташкенте"
+    />
+    <meta
+      name="twitter:description"
+      content="Профессиональный салон красоты. Маникюр, педикюр, ресницы, брови, волосы."
+    />
+    <meta
+      name="twitter:image"
+      content="https://lume-studio.uz/images/og-image.jpg"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="css/base.css?v=3" />
+    <link rel="stylesheet" href="css/header.css?v=3" />
+    <link rel="stylesheet" href="css/hero.css?v=3" />
+    <link rel="stylesheet" href="css/services.css?v=3" />
+    <link rel="stylesheet" href="css/pricing.css?v=3" />
+    <link rel="stylesheet" href="css/gallery.css?v=3" />
+    <link rel="stylesheet" href="css/reviews.css?v=3" />
+    <link rel="stylesheet" href="css/features.css?v=3" />
+    <link rel="stylesheet" href="css/contact.css?v=3" />
+    <link rel="stylesheet" href="css/footer.css?v=3" />
+    <link rel="stylesheet" href="css/modal.css?v=3" />
+    <link rel="stylesheet" href="css/toast.css?v=3" />
+    <link rel="stylesheet" href="css/responsive.css?v=3" />
+  </head>
+  <body>
+    <header class="header" id="header">
+      <div class="container">
+        <div class="header__inner">
+          <a
+            href="#"
+            class="header__logo"
+            aria-label="Lume Studio — на главную"
+          >
+            <span class="header__logo-text">Lume Studio</span>
+          </a>
+
+          <nav class="header__nav" aria-label="Главная навигация">
+            <ul class="header__menu">
+              <li><a href="#services" class="header__link">Услуги</a></li>
+              <li><a href="#pricing" class="header__link">Цены</a></li>
+              <li><a href="#gallery" class="header__link">Галерея</a></li>
+              <li><a href="#reviews" class="header__link">Отзывы</a></li>
+              <li><a href="#contact" class="header__link">Контакты</a></li>
+            </ul>
+          </nav>
+
+          <div class="header__actions">
+            <a
+              href="tel:+998972649424"
+              class="header__phone"
+              aria-label="Позвонить в салон"
+            >
+              <i data-lucide="phone" class="header__icon"></i>
+              <span>+998 97 264 94 24</span>
+            </a>
+            <button
+              class="header__btn btn btn--primary btn--small"
+              data-micromodal-trigger="booking-modal"
+              aria-label="Записаться онлайн"
+            >
+              Записаться
+            </button>
+          </div>
+
+          <button
+            class="header__burger"
+            id="burger"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <nav aria-label="Мобильная навигация">
+          <ul class="mobile-menu__list">
+            <li><a href="#services" class="mobile-menu__link">Услуги</a></li>
+            <li><a href="#pricing" class="mobile-menu__link">Цены</a></li>
+            <li><a href="#gallery" class="mobile-menu__link">Галерея</a></li>
+            <li><a href="#reviews" class="mobile-menu__link">Отзывы</a></li>
+            <li><a href="#contact" class="mobile-menu__link">Контакты</a></li>
+          </ul>
+        </nav>
+        <a href="tel:+998972649424" class="mobile-menu__phone">
+          <i data-lucide="phone" class="mobile-menu__icon"></i>
+          +998 97 264 94 24
+        </a>
+        <button
+          class="btn btn--full btn--primary"
+          data-micromodal-trigger="booking-modal"
+        >
+          Записаться онлайн
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero" aria-label="Главный экран">
+        <div class="container">
+          <div class="hero__inner">
+            <div class="hero__content">
+              <h1 class="hero__title">
+                <span class="hero__title-accent">Lume</span>
+                <span class="hero__title-main">Studio</span>
+              </h1>
+              <p class="hero__subtitle">Салон красоты в центре Ташкента</p>
+              <p class="hero__text">
+                Профессиональный уход за вашей красотой. Маникюр и педикюр любой
+                сложности, наращивание и ламинирование ресниц, оформление
+                бровей, окрашивание и стрижка волос, шугаринг и депиляция.
+              </p>
+              <div class="hero__actions">
+                <button
+                  class="btn btn--primary"
+                  data-micromodal-trigger="booking-modal"
+                >
+                  Записаться онлайн
+                </button>
+                <a href="tel:+998972649424" class="btn btn--outline">
+                  <i data-lucide="phone-call"></i>
+                  Позвонить
+                </a>
+              </div>
+              <div class="hero__stats">
+                <div class="hero__stat">
+                  <span class="hero__stat-value">5.0</span>
+                  <span class="hero__stat-label">Рейтинг на Яндекс Картах</span>
+                </div>
+                <div class="hero__stat">
+                  <span class="hero__stat-value">200+</span>
+                  <span class="hero__stat-label">Довольных клиентов</span>
+                </div>
+                <div class="hero__stat">
+                  <span class="hero__stat-value">9:00–21:00</span>
+                  <span class="hero__stat-label">Ежедневно без выходных</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero__image">
+              <img
+                src="images/work-1.jpg"
+                alt="Работа мастера Lume Studio — маникюр с дизайном"
+                style="
+                  width: 100%;
+                  height: 520px;
+                  border-radius: 20px;
+                  object-fit: cover;
+                  box-shadow: 0 12px 40px rgba(13, 27, 50, 0.12);
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <div class="section-header gs-reveal">
+            <span class="section-header__label">Наши услуги</span>
+            <h2 id="services-title" class="section-header__title">
+              Полный спектр beauty-услуг
+            </h2>
+            <p class="section-header__text">
+              Все процедуры выполняются профессиональными мастерами с
+              использованием качественных материалов
+            </p>
+          </div>
+
+          <div class="services__grid">
+            <article class="service-card gs-reveal">
+              <div class="service-card__icon">
+                <i data-lucide="hand" aria-hidden="true"></i>
+              </div>
+              <h3 class="service-card__title">Ногтевой сервис</h3>
+              <p class="service-card__text">
+                Маникюр комбинированный и с покрытием гель-лак, педикюр,
+                smart-педикюр, наращивание ногтей, парафинотерапия. Работаем с
+                проблемными ногтями.
+              </p>
+              <ul class="service-card__list">
+                <li>Аппаратный и комби маникюр</li>
+                <li>SPA-маникюр и парафин</li>
+                <li>Наращивание ногтей</li>
+                <li>Дизайн любой сложности</li>
+              </ul>
+            </article>
+
+            <article class="service-card gs-reveal">
+              <div class="service-card__icon">
+                <i data-lucide="eye" aria-hidden="true"></i>
+              </div>
+              <h3 class="service-card__title">Ресницы и брови</h3>
+              <p class="service-card__text">
+                Наращивание ресниц классика и объем, ламинирование ресниц и
+                бровей, окрашивание хной, архитектура бровей, коррекция и
+                депиляция зон лица.
+              </p>
+              <ul class="service-card__list">
+                <li>Классика, 2D, 3D, мега-объем</li>
+                <li>Ламинирование + ботокс</li>
+                <li>Окрашивание бровей хной</li>
+                <li>Коррекция формы</li>
+              </ul>
+            </article>
+
+            <article class="service-card gs-reveal">
+              <div class="service-card__icon">
+                <i data-lucide="scissors" aria-hidden="true"></i>
+              </div>
+              <h3 class="service-card__title">Парикмахерские услуги</h3>
+              <p class="service-card__text">
+                Стрижки любой сложности, укладки, вытяжка кудрявых волос,
+                окрашивание в один тон и сложное, тонирование. Работаем с Color
+                Professional.
+              </p>
+              <ul class="service-card__list">
+                <li>Стрижка + укладка</li>
+                <li>Окрашивание любой сложности</li>
+                <li>Тонирование и уход</li>
+                <li>Выпрямление и текстурирование</li>
+              </ul>
+            </article>
+
+            <article class="service-card gs-reveal">
+              <div class="service-card__icon">
+                <i data-lucide="sparkles" aria-hidden="true"></i>
+              </div>
+              <h3 class="service-card__title">Эпиляция и депиляция</h3>
+              <p class="service-card__text">
+                Шугаринг, восковая депиляция, лазерная эпиляция. Депиляция одной
+                зоны лица. Быстро, качественно и с минимальным дискомфортом.
+              </p>
+              <ul class="service-card__list">
+                <li>Шугаринг всех зон</li>
+                <li>Восковая депиляция</li>
+                <li>Лазерная эпиляция</li>
+                <li>Депиляция лица</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <div class="section-header gs-reveal">
+            <span class="section-header__label">Прайс-лист</span>
+            <h2 id="pricing-title" class="section-header__title">
+              Прозрачные цены
+            </h2>
+            <p class="section-header__text">
+              Актуальные цены на все услуги салона. Топ-мастер — доплата +50 000
+              сум.
+            </p>
+          </div>
+
+          <div
+            class="pricing__tabs"
+            role="tablist"
+            aria-label="Категории услуг"
+          >
+            <button
+              class="pricing__tab pricing__tab--active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-nails"
+              id="tab-nails"
+            >
+              <i data-lucide="hand" aria-hidden="true"></i>
+              Ногти
+            </button>
+            <button
+              class="pricing__tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-brows"
+              id="tab-brows"
+            >
+              <i data-lucide="eye" aria-hidden="true"></i>
+              Брови и ресницы
+            </button>
+            <button
+              class="pricing__tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-lashes"
+              id="tab-lashes"
+            >
+              <i data-lucide="feather" aria-hidden="true"></i>
+              Наращивание ресниц
+            </button>
+            <button
+              class="pricing__tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-hair"
+              id="tab-hair"
+            >
+              <i data-lucide="scissors" aria-hidden="true"></i>
+              Волосы
+            </button>
+          </div>
+
+          <div class="pricing__panels">
+            <div
+              class="pricing__panel pricing__panel--active"
+              id="panel-nails"
+              role="tabpanel"
+              aria-labelledby="tab-nails"
+            >
+              <div class="pricing__table">
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">Ногтевой сервис</h3>
+                  <div class="pricing__row">
+                    <span>Маникюр с покрытием гель-лак и укреплением</span
+                    ><span class="pricing__price">200 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Маникюр комбинированный</span
+                    ><span class="pricing__price">120 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Педикюр с покрытием гель-лак</span
+                    ><span class="pricing__price">210 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Педикюр комбинированный</span
+                    ><span class="pricing__price">150 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Smart-педикюр</span
+                    ><span class="pricing__price">200 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Smart-педикюр с покрытием гель-лак</span
+                    ><span class="pricing__price">270 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Наращивание ногтей с покрытием гель-лак</span
+                    ><span class="pricing__price">от 300 000 сум</span>
+                  </div>
+                </div>
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">Дополнительные услуги</h3>
+                  <div class="pricing__row">
+                    <span>Френч</span
+                    ><span class="pricing__price">40 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Втирка</span
+                    ><span class="pricing__price">40 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Омбре</span
+                    ><span class="pricing__price">40 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Рисунок от руки</span
+                    ><span class="pricing__price">от 5 000 — 30 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Стразы</span
+                    ><span class="pricing__price">1 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Починка ногтя</span
+                    ><span class="pricing__price">25 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Снятие чужой работы</span
+                    ><span class="pricing__price">20 000 сум</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="pricing__panel"
+              id="panel-brows"
+              role="tabpanel"
+              aria-labelledby="tab-brows"
+              hidden
+            >
+              <div class="pricing__table">
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">
+                    Ламинирование бровей и ресниц
+                  </h3>
+                  <div class="pricing__row">
+                    <span>Коррекция бровей</span
+                    ><span class="pricing__price">60 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Архитектура + окрашивание</span
+                    ><span class="pricing__price">120 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Архитектура + окрашивание хной</span
+                    ><span class="pricing__price">140 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Ламинирование бровей</span
+                    ><span class="pricing__price">220 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Ламинирование бровей + ботокс</span
+                    ><span class="pricing__price">260 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Ламинирование ресниц</span
+                    ><span class="pricing__price">200 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Ламинирование ресниц с окрашиванием + ботокс</span
+                    ><span class="pricing__price">230 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Ламинирование нижних ресниц</span
+                    ><span class="pricing__price">120 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание бровей</span
+                    ><span class="pricing__price">70 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание ресниц</span
+                    ><span class="pricing__price">70 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание нижних ресниц</span
+                    ><span class="pricing__price">50 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Депиляция одной зоны лица</span
+                    ><span class="pricing__price">25 000 сум</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="pricing__panel"
+              id="panel-lashes"
+              role="tabpanel"
+              aria-labelledby="tab-lashes"
+              hidden
+            >
+              <div class="pricing__table">
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">Наращивание ресниц</h3>
+                  <div class="pricing__row">
+                    <span>Классика</span
+                    ><span class="pricing__price">210 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Объем 2D</span
+                    ><span class="pricing__price">230 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Объем 3D</span
+                    ><span class="pricing__price">260 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Мега-объем</span
+                    ><span class="pricing__price">300 000 сум</span>
+                  </div>
+                </div>
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">Эффекты</h3>
+                  <div class="pricing__row">
+                    <span>Лучики</span
+                    ><span class="pricing__price">30 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Мокрый</span
+                    ><span class="pricing__price">30 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>L, M изгиб</span
+                    ><span class="pricing__price">30 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Цветные</span
+                    ><span class="pricing__price">30 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Снятие чужой работы</span
+                    ><span class="pricing__price">30 000 сум</span>
+                  </div>
+                </div>
+                <div class="pricing__note">
+                  Коррекция — минус 30% от стоимости наращивания
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="pricing__panel"
+              id="panel-hair"
+              role="tabpanel"
+              aria-labelledby="tab-hair"
+              hidden
+            >
+              <div class="pricing__table">
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">Парикмахерские услуги</h3>
+                  <div class="pricing__row">
+                    <span>Стрижка + укладка</span
+                    ><span class="pricing__price">250 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Стрижка (без укладки)</span
+                    ><span class="pricing__price">150 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Обычная укладка</span
+                    ><span class="pricing__price">100 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Вытяжка кудрявых волос</span
+                    ><span class="pricing__price">150 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Укладка на браш</span
+                    ><span class="pricing__price"
+                      >от 200 000 до 300 000 сум</span
+                    >
+                  </div>
+                </div>
+                <div class="pricing__category">
+                  <h3 class="pricing__category-title">
+                    Окрашивание Color Professional
+                  </h3>
+                  <div class="pricing__row">
+                    <span>Окрашивание в один тон — короткие</span
+                    ><span class="pricing__price">400 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание в один тон — средние</span
+                    ><span class="pricing__price">600 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание в один тон — длинные</span
+                    ><span class="pricing__price">700 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Окрашивание в один тон — супер-длина</span
+                    ><span class="pricing__price">800 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Сложное окрашивание — короткие</span
+                    ><span class="pricing__price">800 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Сложное окрашивание — средние</span
+                    ><span class="pricing__price">1 000 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Сложное окрашивание — длинные</span
+                    ><span class="pricing__price">1 200 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Сложное окрашивание — супер-длина</span
+                    ><span class="pricing__price">1 500 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Тонирование — короткие</span
+                    ><span class="pricing__price">400 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Тонирование — средние</span
+                    ><span class="pricing__price">500 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Тонирование — длинные</span
+                    ><span class="pricing__price">600 000 сум</span>
+                  </div>
+                  <div class="pricing__row">
+                    <span>Тонирование — супер-длина</span
+                    ><span class="pricing__price">800 000 сум</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section-header gs-reveal">
+            <span class="section-header__label">Галерея</span>
+            <h2 id="gallery-title" class="section-header__title">
+              Наши работы
+            </h2>
+            <p class="section-header__text">
+              Фото реальных работ мастеров Lume Studio
+            </p>
+          </div>
+
+          <div class="gallery__slider swiper" id="gallery-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-1.jpg"
+                  alt="Маникюр с дизайном в фиолетовых тонах"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-2.jpg"
+                  alt="Френч-маникюр с втиркой"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-3.jpg"
+                  alt="Классический френч-маникюр"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-4.jpg"
+                  alt="Наращивание ресниц — классика"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-5.jpg"
+                  alt="Педикюр с черно-белым дизайном"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/work-6.jpg"
+                  alt="Маникюр с новогодним декором"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+        <div class="container">
+          <div class="section-header gs-reveal">
+            <span class="section-header__label">Отзывы</span>
+            <h2 id="reviews-title" class="section-header__title">
+              Что говорят клиенты
+            </h2>
+            <p class="section-header__text">
+              Реальные отзывы с Яндекс Карт — рейтинг 5.0 из 208 оценок
+            </p>
+          </div>
+
+          <div class="reviews__slider swiper" id="reviews-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div class="review-card__avatar">НН</div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Николь Николь</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Очень приятный салон с комфортной атмосферой. Осталась
+                    довольна качеством маникюра и отношением персонала. Мастер
+                    работает аккуратно и внимательно, все этапы выполнены
+                    профессионально, без спешки и дискомфорта. Форма и покрытие
+                    получились ровными, кутикула обработана чисто.
+                  </p>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div class="review-card__avatar review-card__avatar--pink">
+                      Ш
+                    </div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Shahzoda Yusupova</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Хожу в этот салон уже больше 2 лет и всегда выхожу
+                    счастливая. Ангелина делает идеальный маникюр — аккуратно,
+                    красиво и стойко. Барно — лучший педикюр, после которого
+                    ножки выглядят ухоженно и нежно. Зуля по шугарингу —
+                    быстрая, внимательная. Адолат и Айжамал — мастера волшебного
+                    взгляда.
+                  </p>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div class="review-card__avatar review-card__avatar--blue">
+                      Д
+                    </div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Диля Н.</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Хороший салон с отличными мастерами. Хожу уже долгое время к
+                    мастеру Наиле, единственный мастер подолог наверное в
+                    городе, которая профессионально делает медицинский педикюр и
+                    не только. Успехов Вашему салону!
+                  </p>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div class="review-card__avatar review-card__avatar--green">
+                      Н
+                    </div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Негина А.</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Делала наращивание ресниц — осталась очень довольна. В
+                    салоне уютно, чисто и комфортно, сразу чувствуется приятная
+                    атмосфера. Сотрудники вежливые, внимательные и настоящие
+                    профессионалы. Процедура прошла спокойно и аккуратно,
+                    результат порадовал. Обязательно приду еще.
+                  </p>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div
+                      class="review-card__avatar review-card__avatar--purple"
+                    >
+                      М
+                    </div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Марина Киниопулу</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Потрясающий салон, безумно приятное обслуживание. Ногти
+                    спокойно носятся месяц, не ломаются и без отслоек. Безумно
+                    рада, что нашла этот салон. Очень рекомендую!
+                  </p>
+                </article>
+              </div>
+              <div class="swiper-slide">
+                <article class="review-card">
+                  <div class="review-card__header">
+                    <div
+                      class="review-card__avatar review-card__avatar--orange"
+                    >
+                      В
+                    </div>
+                    <div class="review-card__info">
+                      <h3 class="review-card__name">Весенний Цветок</h3>
+                      <div
+                        class="review-card__rating"
+                        aria-label="5 из 5 звезд"
+                      >
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                        <i
+                          data-lucide="star"
+                          class="review-card__star"
+                          aria-hidden="true"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="review-card__text">
+                    Наконец-то я нашла хорошую студию маникюра! Рекомендую всем
+                    мастера Ясмин, очень деликатно и качественно выполняет свою
+                    работу. Очень отзывчивый и вежливый администратор. Желаю
+                    успехов и рекомендую!
+                  </p>
+                </article>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features" aria-labelledby="features-title">
+        <div class="container">
+          <div class="section-header gs-reveal">
+            <span class="section-header__label">Почему мы</span>
+            <h2 id="features-title" class="section-header__title">
+              Преимущества Lume Studio
+            </h2>
+          </div>
+
+          <div class="features__grid">
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="award" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Опытные мастера</h3>
+              <p class="feature-item__text">
+                В команде только профессионалы с многолетним опытом. Каждый
+                мастер специализируется на своем направлении.
+              </p>
+            </div>
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="shield-check" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Стерильность и безопасность</h3>
+              <p class="feature-item__text">
+                Все инструменты проходят строгую дезинфекцию и стерилизацию.
+                Используем одноразовые расходники.
+              </p>
+            </div>
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="map-pin" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Центр города</h3>
+              <p class="feature-item__text">
+                Удобное расположение на проспекте Шарафа Рашидова, 40. Рядом
+                метро Космонавтов (280 м) и Выставочный зал (274 м).
+              </p>
+            </div>
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="clock" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Работаем без выходных</h3>
+              <p class="feature-item__text">
+                Ежедневно с 9:00 до 21:00, включая выходные и праздники. Удобная
+                онлайн-запись и предварительная бронь.
+              </p>
+            </div>
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="credit-card" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Оплата картой</h3>
+              <p class="feature-item__text">
+                Принимаем наличные и банковские карты. Wi-Fi на территории
+                салона для комфорта клиентов.
+              </p>
+            </div>
+            <div class="feature-item gs-reveal">
+              <div class="feature-item__icon">
+                <i data-lucide="coffee" aria-hidden="true"></i>
+              </div>
+              <h3 class="feature-item__title">Комфортная атмосфера</h3>
+              <p class="feature-item__text">
+                Уютный интерьер, вежливый персонал, вкусный кофе. Атмосфера, в
+                которую хочется возвращаться снова и снова.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact__grid">
+            <div class="contact__info gs-reveal">
+              <span class="section-header__label">Контакты</span>
+              <h2 id="contact-title" class="section-header__title">
+                Приходите в гости
+              </h2>
+              <p class="contact__text">
+                Запишитесь онлайн или позвоните нам. Мы всегда рады новым и
+                постоянным клиентам.
+              </p>
+
+              <div class="contact__details">
+                <div class="contact__item">
+                  <div class="contact__icon">
+                    <i data-lucide="map-pin" aria-hidden="true"></i>
+                  </div>
+                  <div class="contact__item-content">
+                    <h3 class="contact__item-title">Адрес</h3>
+                    <p class="contact__item-text">
+                      Ташкент, проспект Шарафа Рашидова, 40
+                    </p>
+                    <a
+                      href="https://yandex.uz/maps/org/23067585554"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="contact__item-link"
+                      >Показать на карте</a
+                    >
+                  </div>
+                </div>
+                <div class="contact__item">
+                  <div class="contact__icon">
+                    <i data-lucide="phone" aria-hidden="true"></i>
+                  </div>
+                  <div class="contact__item-content">
+                    <h3 class="contact__item-title">Телефон</h3>
+                    <a
+                      href="tel:+998972649424"
+                      class="contact__item-text contact__item-text--link"
+                      >+998 97 264 94 24</a
+                    >
+                  </div>
+                </div>
+
+                <div class="contact__item">
+                  <div class="contact__icon">
+                    <i data-lucide="clock" aria-hidden="true"></i>
+                  </div>
+                  <div class="contact__item-content">
+                    <h3 class="contact__item-title">Режим работы</h3>
+                    <p class="contact__item-text">Ежедневно: 9:00 — 21:00</p>
+                    <p class="contact__item-text">Без выходных</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact__form-wrapper gs-reveal">
+              <h3 class="contact__form-title">Онлайн-запись</h3>
+              <form class="contact__form" id="booking-form" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="name">Ваше имя</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    id="name"
+                    name="name"
+                    placeholder="Введите имя"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="phone">Телефон</label>
+                  <input
+                    type="tel"
+                    class="form-input"
+                    id="phone"
+                    name="phone"
+                    placeholder="+998 (__) ___-__-__"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="date">Желаемая дата</label>
+                  <input type="date" class="form-input" id="date" name="date" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="comment">Комментарий</label>
+                  <textarea
+                    class="form-textarea"
+                    id="comment"
+                    name="comment"
+                    rows="3"
+                    placeholder="Дополнительные пожелания..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn--primary btn--full"
+                  id="submit-btn"
+                >
+                  Отправить заявку
+                </button>
+                <p class="form-note">
+                  Нажимая кнопку, вы соглашаетесь на обработку персональных
+                  данных
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="map" aria-label="Карта проезда">
+        <script
+          async
+          src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adef641438eaae4c823e2789c61d07f31176071df2e288ca2222f00d7862ec2ae&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=false"
+        ></script>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="#" class="footer__logo" aria-label="Lume Studio">
+              <span>Lume Studio</span>
+            </a>
+            <p class="footer__text">
+              Профессиональный салон красоты в центре Ташкента. Забота о вашей
+              красоте — наша главная задача.
+            </p>
+          </div>
+          <nav class="footer__nav" aria-label="Навигация в подвале">
+            <h3 class="footer__title">Навигация</h3>
+            <ul class="footer__list">
+              <li><a href="#services" class="footer__link">Услуги</a></li>
+              <li><a href="#pricing" class="footer__link">Цены</a></li>
+              <li><a href="#gallery" class="footer__link">Галерея</a></li>
+              <li><a href="#reviews" class="footer__link">Отзывы</a></li>
+              <li><a href="#contact" class="footer__link">Контакты</a></li>
+            </ul>
+          </nav>
+          <div class="footer__contacts">
+            <h3 class="footer__title">Контакты</h3>
+            <ul class="footer__list">
+              <li>
+                <a href="tel:+998972649424" class="footer__link"
+                  >+998 97 264 94 24</a
+                >
+              </li>
+              <li>
+                <span class="footer__text"
+                  >Ташкент, просп. Шарафа Рашидова, 40</span
+                >
+              </li>
+              <li><span class="footer__text">Ежедневно 9:00 — 21:00</span></li>
+            </ul>
+            <div class="footer__social">
+              <a
+                href="https://www.instagram.com/lume_studio_kiet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__social-link"
+                aria-label="Instagram Lume Studio"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="https://www.facebook.com/NailandLashGallery"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__social-link"
+                aria-label="Facebook Lume Studio"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://t.me/+998972649424"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__social-link"
+                aria-label="Telegram Lume Studio"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m22 3-9.3 14.6L8.5 12 2 8.5l20-5.5Z" />
+                  <path d="m8.5 12 1.5 7.5L22 3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">Lume Studio 2026. Все права защищены.</p>
+          <p class="footer__credit">
+            Лендинг создан для салона красоты Lume Studio
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal micromodal-slide" id="booking-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+        >
+          <header class="modal__header">
+            <h2 id="modal-title" class="modal__title">Онлайн-запись</h2>
+            <button
+              class="modal__close"
+              aria-label="Закрыть окно"
+              data-micromodal-close
+            >
+              <i data-lucide="x" aria-hidden="true"></i>
+            </button>
+          </header>
+          <div class="modal__content">
+            <form class="contact__form" id="modal-booking-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="modal-name">Ваше имя</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="modal-name"
+                  name="name"
+                  placeholder="Введите имя"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modal-phone">Телефон</label>
+                <input
+                  type="tel"
+                  class="form-input"
+                  id="modal-phone"
+                  name="phone"
+                  placeholder="+998 (__) ___-__-__"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modal-service">Услуга</label>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modal-date">Желаемая дата</label>
+                <input
+                  type="date"
+                  class="form-input"
+                  id="modal-date"
+                  name="date"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modal-comment"
+                  >Комментарий</label
+                >
+                <textarea
+                  class="form-textarea"
+                  id="modal-comment"
+                  name="comment"
+                  rows="2"
+                  placeholder="Дополнительные пожелания..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn--primary btn--full"
+                id="modal-submit-btn"
+              >
+                Отправить заявку
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="toast-container"
+      id="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/imask@7.6.1/dist/imask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/micromodal@0.4.10/dist/micromodal.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

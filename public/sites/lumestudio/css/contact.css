@@ -1,0 +1,149 @@
+/* ============================================
+   Contact Section
+   ============================================ */
+
+.contact {
+  padding: var(--section-gap) 0;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.contact__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-gray-400);
+  margin-bottom: 8px;
+}
+
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contact__icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(201, 169, 110, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.contact__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact__item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact__item-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.contact__item-text {
+  font-size: 14px;
+  color: var(--color-gray-400);
+  line-height: 1.6;
+}
+
+.contact__item-text--link {
+  color: var(--color-accent);
+  transition: color var(--transition-base);
+}
+
+.contact__item-text--link:hover {
+  color: var(--color-accent-light);
+}
+
+.contact__item-link {
+  font-size: 13px;
+  color: var(--color-accent);
+  margin-top: 2px;
+  transition: color var(--transition-base);
+}
+
+.contact__item-link:hover {
+  color: var(--color-accent-light);
+}
+
+.contact__form-wrapper {
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+}
+
+.contact__form-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .contact__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .contact__form-wrapper {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact__grid {
+    gap: 64px;
+  }
+}
+
+/* ============================================
+   Map Section
+   ============================================ */
+
+.map {
+  width: 100%;
+  line-height: 0;
+}
+
+.map iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  filter: grayscale(0.3);
+}
+
+@media (min-width: 768px) {
+  .map iframe {
+    height: 400px;
+  }
+}

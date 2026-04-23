@@ -1,0 +1,80 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+  /* Colors */
+  --color-bg: #fffaf4;
+  --color-bg-alt: #f5ebe3;
+  --color-primary: #553b3b;
+  --color-primary-light: #6d5050;
+  --color-accent: #a39081;
+  --color-accent-light: #c4b5a9;
+  --color-white: #ffffff;
+  --color-text: #3d2b2b;
+  --color-text-light: #6b5656;
+  --color-text-muted: #9a8585;
+  --color-border: #e8ddd4;
+  --color-border-light: #f0e6dd;
+  --color-success: #5a8c6a;
+  --color-error: #b05a5a;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --fs-hero-title: clamp(2rem, 5vw, 3.5rem);
+  --fs-h1: clamp(1.75rem, 4vw, 2.75rem);
+  --fs-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h3: clamp(1.125rem, 2vw, 1.5rem);
+  --fs-body: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  --fs-small: 0.875rem;
+  --fs-xs: 0.8125rem;
+
+  /* Line heights */
+  --lh-tight: 1.2;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.75;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Container */
+  --container-max: 1200px;
+  --container-padding: clamp(1rem, 4vw, 2.5rem);
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(85, 59, 59, 0.04);
+  --shadow-md: 0 4px 12px rgba(85, 59, 59, 0.06);
+  --shadow-lg: 0 12px 32px rgba(85, 59, 59, 0.08);
+
+  /* Header height */
+  --header-height: 72px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

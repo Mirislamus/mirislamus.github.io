@@ -1,0 +1,114 @@
+/* ============================================
+   CONTACTS
+   ============================================ */
+.contacts {
+  padding: var(--space-2xl) 0;
+  background-color: var(--color-bg-alt);
+}
+
+.contacts__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.contacts__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-lg);
+}
+
+.contacts__address {
+  font-style: normal;
+}
+
+.contacts__item {
+  margin-bottom: var(--space-md);
+}
+
+.contacts__label {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.contacts__value {
+  display: block;
+  font-size: var(--fs-body);
+  color: var(--color-text);
+}
+
+.contacts__hint {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.contacts__link {
+  font-size: var(--fs-body);
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color var(--transition-base);
+}
+
+.contacts__link:hover {
+  color: var(--color-accent);
+}
+
+.contacts__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: var(--space-lg);
+}
+
+.contacts__social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-base);
+}
+
+.contacts__social-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.contacts__map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-height: 350px;
+  background-color: var(--color-border-light);
+}
+
+.contacts__map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: 0;
+  filter: grayscale(0.2) sepia(0.05);
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  .contacts__container {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+}

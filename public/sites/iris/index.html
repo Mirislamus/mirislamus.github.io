@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Iris Hotel — Гостиница в Ташкенте | Бронирование номеров от 480 000 сум</title>
+    <meta
+      name="description"
+      content="Iris Hotel — уютная гостиница в Ташкенте, 1-й проезд Алимкент, 32. 19 номеров, бесплатный Wi-Fi, завтрак, парковка. Рейтинг 4.9. Бронируйте по телефону +998 71 296 90 90"
+    />
+    <meta
+      name="keywords"
+      content="гостиница Ташкент, отель Ташкент, Iris Hotel, бронирование номеров, гостиница Яшнабад, отель рядом с метро Дустлик"
+    />
+
+    <meta property="og:title" content="Iris Hotel — Гостиница в Ташкенте" />
+    <meta
+      property="og:description"
+      content="Уют и комфорт в сердце столицы Узбекистана. 19 номеров, бесплатный Wi-Fi, завтрак включен."
+    />
+    <meta property="og:image" content="/images/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Iris Hotel — Гостиница в Ташкенте" />
+    <meta
+      name="twitter:description"
+      content="Уют и комфорт в сердце столицы Узбекистана. 19 номеров, бесплатный Wi-Fi, завтрак включен."
+    />
+    <meta name="twitter:image" content="/images/og-image.jpg" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Hotel",
+        "name": "Iris Hotel",
+        "description": "Уютная гостиница в Ташкенте с 19 номерами, бесплатным Wi-Fi и завтраком",
+        "url": "https://irishotel.uz",
+        "telephone": "+998712969090",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1-й проезд Алимкент, 32",
+          "addressLocality": "Ташкент",
+          "addressCountry": "UZ"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "41.293863",
+          "longitude": "69.333223"
+        },
+        "priceRange": "480000-650000 UZS",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "236",
+          "bestRating": "5"
+        },
+        "numberOfRooms": "19",
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Breakfast", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true }
+        ],
+        "containsPlace": [
+          {
+            "@type": "HotelRoom",
+            "name": "Стандарт резидент",
+            "description": "Компактная и удобная стандартная комната",
+            "offers": {
+              "@type": "Offer",
+              "price": "480000",
+              "priceCurrency": "UZS"
+            }
+          },
+          {
+            "@type": "HotelRoom",
+            "name": "Люкс резидент",
+            "description": "Просторная и комфортабельная комната люкс",
+            "offers": {
+              "@type": "Offer",
+              "price": "650000",
+              "priceCurrency": "UZS"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="header" id="header" role="banner">
+      <div class="header__container">
+        <a href="#hero" class="header__logo" aria-label="Iris Hotel — на главную">
+          <span class="header__logo-name">IRIS</span>
+          <span class="header__logo-sub">HOTEL</span>
+        </a>
+
+        <nav class="header__nav" role="navigation" aria-label="Основная навигация">
+          <a href="#about" class="header__nav-link">О нас</a>
+          <a href="#rooms" class="header__nav-link">Номера</a>
+          <a href="#amenities" class="header__nav-link">Удобства</a>
+          <a href="#reviews" class="header__nav-link">Отзывы</a>
+          <a href="#location" class="header__nav-link">Контакты</a>
+        </nav>
+
+        <div class="header__actions">
+          <a href="tel:+998712969090" class="header__phone">+998 71 296 90 90</a>
+          <button class="header__btn btn btn--primary" data-modal-trigger="booking-modal" type="button">
+            Забронировать
+          </button>
+        </div>
+
+        <button
+          class="header__burger"
+          id="burgerBtn"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Мобильное меню">
+      <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Закрыть меню">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <nav class="mobile-menu__nav">
+        <a href="#about" class="mobile-menu__link">О нас</a>
+        <a href="#rooms" class="mobile-menu__link">Номера</a>
+        <a href="#amenities" class="mobile-menu__link">Удобства</a>
+        <a href="#reviews" class="mobile-menu__link">Отзывы</a>
+        <a href="#location" class="mobile-menu__link">Контакты</a>
+      </nav>
+      <a href="tel:+998712969090" class="mobile-menu__phone">+998 71 296 90 90</a>
+      <button class="mobile-menu__btn btn btn--primary" data-modal-trigger="booking-modal" type="button">
+        Забронировать
+      </button>
+    </div>
+
+    <main>
+      <section class="hero" id="hero" aria-label="Главный баннер">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+          <span class="hero__label">Гостиница в Ташкенте</span>
+          <h1 class="hero__title">Iris Hotel</h1>
+          <p class="hero__subtitle">Уют и комфорт в сердце столицы Узбекистана</p>
+          <button class="hero__btn btn btn--primary btn--large" data-modal-trigger="booking-modal" type="button">
+            Забронировать номер
+          </button>
+          <div class="hero__rating">
+            <span class="hero__rating-star">&#9733;</span>
+            <span>4.9 — 236 отзывов</span>
+          </div>
+        </div>
+        <div class="hero__scroll">
+          <span class="hero__scroll-line"></span>
+          <span class="hero__scroll-text">Листайте вниз</span>
+        </div>
+      </section>
+
+      <section class="about section" id="about" aria-label="О гостинице">
+        <div class="container about__grid">
+          <div class="about__content">
+            <span class="section__label">О нас</span>
+            <h2 class="section__title">Гостиница Iris Hotel</h2>
+            <p class="about__text">
+              Iris Hotel — это уютная гостиница в Ташкенте, расположенная по адресу 1-й проезд Алимкент, 32. К услугам
+              гостей 19 комфортабельных номеров, бесплатный Wi-Fi на всей территории, крытая охраняемая парковка и
+              вкусные завтраки.
+            </p>
+            <p class="about__text">
+              Мы работаем круглосуточно и предлагаем услуги трансфера от и до аэропорта. Наш приветливый персонал
+              говорит на русском, английском, немецком, испанском, итальянском и польском языках.
+            </p>
+            <div class="about__stats">
+              <div class="about__stat">
+                <span class="about__stat-number">19</span>
+                <span class="about__stat-label">номеров</span>
+              </div>
+              <div class="about__stat-divider"></div>
+              <div class="about__stat">
+                <span class="about__stat-number">4.9</span>
+                <span class="about__stat-label">рейтинг</span>
+              </div>
+              <div class="about__stat-divider"></div>
+              <div class="about__stat">
+                <span class="about__stat-number">24/7</span>
+                <span class="about__stat-label">регистрация</span>
+              </div>
+            </div>
+          </div>
+          <div class="about__image">
+            <img src="images/about-hotel.jpg" alt="Интерьер холла гостиницы Iris Hotel — ресепшн зона" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section class="rooms section section--gray" id="rooms" aria-label="Номера">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Номера</span>
+            <h2 class="section__title section__title--center">Выберите свой номер</h2>
+          </div>
+          <div class="rooms__grid">
+            <article class="room-card">
+              <div class="room-card__image">
+                <img
+                  src="images/room-standard.jpg"
+                  alt="Стандартный номер Iris Hotel с двумя кроватями"
+                  loading="lazy"
+                />
+              </div>
+              <div class="room-card__content">
+                <h3 class="room-card__title">Стандарт резидент</h3>
+                <p class="room-card__desc">
+                  Компактная и удобная стандартная комната. Идеальный выбор для одного или двух гостей. В номере есть
+                  всё необходимое для комфортного отдыха после длинного дня.
+                </p>
+                <div class="room-card__amenities">
+                  <span class="room-card__amenity" title="Wi-Fi">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                      <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                      <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                      <line x1="12" y1="20" x2="12.01" y2="20" />
+                    </svg>
+                    Wi-Fi
+                  </span>
+                  <span class="room-card__amenity" title="Телевизор">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+                      <polyline points="17 2 12 7 7 2" />
+                    </svg>
+                    TV
+                  </span>
+                  <span class="room-card__amenity" title="Кондиционер">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M12 3v18" />
+                      <path d="M6 8h12" />
+                      <path d="M6 16h12" />
+                      <path d="M8 5a4 4 0 0 0 8 0" />
+                      <path d="M8 19a4 4 0 0 1 8 0" />
+                    </svg>
+                    AC
+                  </span>
+                  <span class="room-card__amenity" title="Душ">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M9 12V7a3 3 0 0 1 6 0v5" />
+                      <path d="M6 12h12v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z" />
+                    </svg>
+                    Душ
+                  </span>
+                  <span class="room-card__amenity" title="Холодильник">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <rect x="4" y="3" width="16" height="20" rx="2" />
+                      <line x1="4" y1="11" x2="20" y2="11" />
+                      <line x1="12" y1="3" x2="12" y2="11" />
+                      <line x1="8" y1="7" x2="8" y2="7.01" />
+                      <line x1="8" y1="15" x2="8" y2="15.01" />
+                    </svg>
+                    Мини-бар
+                  </span>
+                </div>
+                <div class="room-card__price">
+                  <span class="room-card__price-value">480 000</span>
+                  <span class="room-card__price-unit">сум/ночь</span>
+                </div>
+                <button class="room-card__btn btn btn--outline" data-modal-trigger="booking-modal" type="button">
+                  Забронировать
+                </button>
+              </div>
+            </article>
+
+            <article class="room-card">
+              <div class="room-card__image">
+                <img
+                  src="images/room-lux.jpg"
+                  alt="Номер люкс Iris Hotel с двуспальной кроватью и рабочей зоной"
+                  loading="lazy"
+                />
+              </div>
+              <div class="room-card__content">
+                <h3 class="room-card__title">Люкс резидент</h3>
+                <p class="room-card__desc">
+                  Пространная и комфортная комната люкс с дополнительным пространством. Идеально подходит для гостей,
+                  ценящих комфорт и удобство.
+                </p>
+                <div class="room-card__amenities">
+                  <span class="room-card__amenity" title="Wi-Fi">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                      <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                      <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                      <line x1="12" y1="20" x2="12.01" y2="20" />
+                    </svg>
+                    Wi-Fi
+                  </span>
+                  <span class="room-card__amenity" title="Телевизор">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+                      <polyline points="17 2 12 7 7 2" />
+                    </svg>
+                    TV
+                  </span>
+                  <span class="room-card__amenity" title="Кондиционер">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M12 3v18" />
+                      <path d="M6 8h12" />
+                      <path d="M6 16h12" />
+                      <path d="M8 5a4 4 0 0 0 8 0" />
+                      <path d="M8 19a4 4 0 0 1 8 0" />
+                    </svg>
+                    AC
+                  </span>
+                  <span class="room-card__amenity" title="Душ">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M9 12V7a3 3 0 0 1 6 0v5" />
+                      <path d="M6 12h12v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4z" />
+                    </svg>
+                    Душ
+                  </span>
+                  <span class="room-card__amenity" title="Холодильник">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <rect x="4" y="3" width="16" height="20" rx="2" />
+                      <line x1="4" y1="11" x2="20" y2="11" />
+                      <line x1="12" y1="3" x2="12" y2="11" />
+                      <line x1="8" y1="7" x2="8" y2="7.01" />
+                      <line x1="8" y1="15" x2="8" y2="15.01" />
+                    </svg>
+                    Мини-бар
+                  </span>
+                  <span class="room-card__amenity" title="Рабочая зона">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    >
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
+                      <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Рабочая зона
+                  </span>
+                </div>
+                <div class="room-card__price">
+                  <span class="room-card__price-value">650 000</span>
+                  <span class="room-card__price-unit">сум/ночь</span>
+                </div>
+                <button class="room-card__btn btn btn--outline" data-modal-trigger="booking-modal" type="button">
+                  Забронировать
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="amenities section" id="amenities" aria-label="Удобства">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Удобства</span>
+            <h2 class="section__title section__title--center">Всё для вашего комфорта</h2>
+          </div>
+          <div class="amenities__grid">
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                  <line x1="12" y1="20" x2="12.01" y2="20" />
+                </svg>
+              </div>
+              <span class="amenities__name">Бесплатный Wi-Fi</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 3v18" />
+                  <path d="M6 8h12" />
+                  <path d="M6 16h12" />
+                  <path d="M8 5a4 4 0 0 0 8 0" />
+                  <path d="M8 19a4 4 0 0 1 8 0" />
+                </svg>
+              </div>
+              <span class="amenities__name">Кондиционер</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18" />
+                  <path d="M9 21V9" />
+                </svg>
+              </div>
+              <span class="amenities__name">Парковка</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                  <line x1="6" y1="1" x2="6" y2="4" />
+                  <line x1="10" y1="1" x2="10" y2="4" />
+                  <line x1="14" y1="1" x2="14" y2="4" />
+                </svg>
+              </div>
+              <span class="amenities__name">Завтрак включён</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <rect x="1" y="3" width="15" height="13" />
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                  <circle cx="5.5" cy="18.5" r="2.5" />
+                  <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg>
+              </div>
+              <span class="amenities__name">Трансфер</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                </svg>
+              </div>
+              <span class="amenities__name">Прачечная</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <span class="amenities__name">Обмен валюты</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </div>
+              <span class="amenities__name">Хранение багажа</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <span class="amenities__name">Круглосуточная регистрация</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                  />
+                </svg>
+              </div>
+              <span class="amenities__name">Обслуживание номеров</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+                  <polyline points="17 2 12 7 7 2" />
+                </svg>
+              </div>
+              <span class="amenities__name">Телевизор</span>
+            </div>
+            <div class="amenities__item">
+              <div class="amenities__icon">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                >
+                  <rect x="4" y="3" width="16" height="20" rx="2" />
+                  <line x1="4" y1="11" x2="20" y2="11" />
+                  <line x1="12" y1="3" x2="12" y2="11" />
+                  <line x1="8" y1="7" x2="8" y2="7.01" />
+                  <line x1="8" y1="15" x2="8" y2="15.01" />
+                </svg>
+              </div>
+              <span class="amenities__name">Холодильник</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews section section--gray" id="reviews" aria-label="Отзывы">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Отзывы</span>
+            <h2 class="section__title section__title--center">Отзывы гостей</h2>
+          </div>
+          <div class="reviews__slider swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Чисто, уютно, тихо. Хороший персонал, комнаты чистые, опрятные, утром завтрак вкусный, сытный,
+                    рекомендую.
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">FA</span>
+                    <span class="review-card__name">Fazilat A.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Номера чистые, уютные и со всем необходимым для комфортного отдыха. Персонал очень доброжелательный
+                    и всегда готов помочь.
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">SS</span>
+                    <span class="review-card__name">Суннат С.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Отличный вариант для короткой остановки. Расположен в 5 км от центра города, рядом метро Дустлик.
+                    Очень удобно!
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">ТМ</span>
+                    <span class="review-card__name">Татьяна М.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Персонал отзывчивый, завтраки разнообразные, цены приемлемые относительно качества номеров. Спасибо
+                    за гостеприимство!
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">СЧ</span>
+                    <span class="review-card__name">Султан Ч.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Всё на европейском уровне. Новый, чистый отель, вкусный завтрак, приветливый персонал. Обязательно
+                    вернёмся!
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">НШ</span>
+                    <span class="review-card__name">Николай Ш.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <p class="review-card__text">
+                    Очень комфортный отель, дружелюбный персонал и очень вкусный завтрак! Рекомендую всем, кто ценит
+                    качество и комфорт.
+                  </p>
+                  <div class="review-card__author">
+                    <span class="review-card__avatar">АА</span>
+                    <span class="review-card__name">Абдукодир А.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reviews__nav">
+              <button class="reviews__nav-btn reviews__nav-btn--prev" aria-label="Предыдущий отзыв">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+              <button class="reviews__nav-btn reviews__nav-btn--next" aria-label="Следующий отзыв">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="location section" id="location" aria-label="Расположение">
+        <div class="container location__grid">
+          <div class="location__content">
+            <span class="section__label">Расположение</span>
+            <h2 class="section__title">Как нас найти</h2>
+
+            <div class="location__item">
+              <div class="location__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c9a96e"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <span class="location__label">Адрес</span>
+                <p class="location__value">Ташкент, 1-й проезд Алимкент, 32</p>
+              </div>
+            </div>
+
+            <div class="location__item">
+              <div class="location__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c9a96e"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="location__label">Телефон</span>
+                <p><a href="tel:+998712969090" class="location__value location__value--link">+998 71 296 90 90</a></p>
+              </div>
+            </div>
+
+            <div class="location__item">
+              <div class="location__icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c9a96e"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div>
+                <span class="location__label">Режим работы</span>
+                <p class="location__value">Круглосуточно</p>
+              </div>
+            </div>
+
+            <div class="location__landmarks">
+              <h4 class="location__landmarks-title">Ориентиры</h4>
+              <ul class="location__landmarks-list">
+                <li>Метро «Дустлик» — 970 м</li>
+                <li>Базар — 298 м</li>
+                <li>Аэропорт — 6 км (20 мин)</li>
+              </ul>
+            </div>
+
+            <a
+              href="https://yandex.com/maps/org/iris_hotel/20228037920/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--outline location__btn"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                style="margin-right: 8px"
+              >
+                <polygon points="3 11 22 2 13 21 11 13 3 11" />
+              </svg>
+              Построить маршрут
+            </a>
+          </div>
+
+          <div class="location__map">
+            <script
+              type="text/javascript"
+              charset="utf-8"
+              async
+              src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A38607a44b590bea6f4a7638f16ce9a3402e9c8a10ff08bb346b1a966ddc607b8&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=false"
+            ></script>
+          </div>
+        </div>
+      </section>
+
+      <section class="booking-section section" id="booking" aria-label="Бронирование">
+        <div class="container booking-section__container">
+          <div class="section__header">
+            <span class="section__label">Бронирование</span>
+            <h2 class="section__title section__title--center section__title--light">Забронируйте номер</h2>
+            <p class="booking-section__subtitle">
+              Заполните форму, и мы свяжемся с вами для подтверждения бронирования
+            </p>
+          </div>
+
+          <form class="booking-form" id="bookingForm" novalidate>
+            <div class="booking-form__grid">
+              <div class="booking-form__field">
+                <label for="checkin" class="booking-form__label">Дата заезда *</label>
+                <input
+                  type="date"
+                  id="checkin"
+                  name="checkin"
+                  class="booking-form__input"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="checkout" class="booking-form__label">Дата выезда *</label>
+                <input
+                  type="date"
+                  id="checkout"
+                  name="checkout"
+                  class="booking-form__input"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="roomType" class="booking-form__label">Тип номера *</label>
+                <select id="roomType" name="roomType" class="booking-form__input" required aria-required="true">
+                  <option value="" disabled selected>Выберите номер</option>
+                  <option value="standard">Стандарт резидент</option>
+                  <option value="lux">Люкс резидент</option>
+                </select>
+              </div>
+              <div class="booking-form__field">
+                <label for="guests" class="booking-form__label">Количество гостей *</label>
+                <select id="guests" name="guests" class="booking-form__input" required aria-required="true">
+                  <option value="" disabled selected>Выберите</option>
+                  <option value="1">1 гость</option>
+                  <option value="2">2 гостя</option>
+                  <option value="3">3 гостя</option>
+                  <option value="4">4 гостя</option>
+                </select>
+              </div>
+              <div class="booking-form__field">
+                <label for="name" class="booking-form__label">Ваше имя *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="booking-form__input"
+                  placeholder="Введите имя"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="phone" class="booking-form__label">Телефон *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="booking-form__input"
+                  placeholder="+998 (__) ___-__-__"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="booking-form__field booking-form__field--full">
+                <label for="comment" class="booking-form__label">Комментарий</label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  class="booking-form__input booking-form__textarea"
+                  rows="3"
+                  placeholder="Особые пожелания"
+                ></textarea>
+              </div>
+            </div>
+            <div class="booking-form__submit">
+              <button type="submit" class="btn btn--primary btn--large">Отправить заявку</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__col">
+            <div class="footer__logo">
+              <span class="footer__logo-name">IRIS</span>
+              <span class="footer__logo-sub">HOTEL</span>
+            </div>
+            <p class="footer__desc">Уютная гостиница в Ташкенте. 19 номеров, бесплатный Wi-Fi, завтрак, парковка.</p>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__title">Навигация</h4>
+            <nav class="footer__nav" aria-label="Навигация в подвале">
+              <a href="#about" class="footer__link">О нас</a>
+              <a href="#rooms" class="footer__link">Номера</a>
+              <a href="#amenities" class="footer__link">Удобства</a>
+              <a href="#reviews" class="footer__link">Отзывы</a>
+              <a href="#location" class="footer__link">Контакты</a>
+            </nav>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__title">Контакты</h4>
+            <p class="footer__contact">Ташкент, 1-й проезд Алимкент, 32</p>
+            <p><a href="tel:+998712969090" class="footer__link">+998 71 296 90 90</a></p>
+            <p class="footer__contact">Круглосуточно</p>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p>&#169; 2026 Iris Hotel. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal" id="booking-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-modal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+          <button class="modal__close" aria-label="Закрыть" data-modal-close>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <h3 class="modal__title" id="booking-modal-title">Бронирование номера</h3>
+          <p class="modal__subtitle">Заполните форму, и мы свяжемся с вами</p>
+          <form class="booking-form booking-form--light" id="modalBookingForm" novalidate>
+            <div class="booking-form__grid">
+              <div class="booking-form__field">
+                <label for="modalCheckin" class="booking-form__label booking-form__label--dark">Дата заезда *</label>
+                <input
+                  type="date"
+                  id="modalCheckin"
+                  name="checkin"
+                  class="booking-form__input booking-form__input--dark"
+                  required
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="modalCheckout" class="booking-form__label booking-form__label--dark">Дата выезда *</label>
+                <input
+                  type="date"
+                  id="modalCheckout"
+                  name="checkout"
+                  class="booking-form__input booking-form__input--dark"
+                  required
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="modalRoomType" class="booking-form__label booking-form__label--dark">Тип номера *</label>
+                <select
+                  id="modalRoomType"
+                  name="roomType"
+                  class="booking-form__input booking-form__input--dark"
+                  required
+                >
+                  <option value="" disabled selected>Выберите номер</option>
+                  <option value="standard">Стандарт резидент</option>
+                  <option value="lux">Люкс резидент</option>
+                </select>
+              </div>
+              <div class="booking-form__field">
+                <label for="modalGuests" class="booking-form__label booking-form__label--dark"
+                  >Количество гостей *</label
+                >
+                <select id="modalGuests" name="guests" class="booking-form__input booking-form__input--dark" required>
+                  <option value="" disabled selected>Выберите</option>
+                  <option value="1">1 гость</option>
+                  <option value="2">2 гостя</option>
+                  <option value="3">3 гостя</option>
+                  <option value="4">4 гостя</option>
+                </select>
+              </div>
+              <div class="booking-form__field">
+                <label for="modalName" class="booking-form__label booking-form__label--dark">Ваше имя *</label>
+                <input
+                  type="text"
+                  id="modalName"
+                  name="name"
+                  class="booking-form__input booking-form__input--dark"
+                  placeholder="Введите имя"
+                  required
+                />
+              </div>
+              <div class="booking-form__field">
+                <label for="modalPhone" class="booking-form__label booking-form__label--dark">Телефон *</label>
+                <input
+                  type="tel"
+                  id="modalPhone"
+                  name="phone"
+                  class="booking-form__input booking-form__input--dark"
+                  placeholder="+998 (__) ___-__-__"
+                  required
+                />
+              </div>
+              <div class="booking-form__field booking-form__field--full">
+                <label for="modalComment" class="booking-form__label booking-form__label--dark">Комментарий</label>
+                <textarea
+                  id="modalComment"
+                  name="comment"
+                  class="booking-form__input booking-form__input--dark booking-form__textarea"
+                  rows="3"
+                  placeholder="Особые пожелания"
+                ></textarea>
+              </div>
+            </div>
+            <div class="booking-form__submit">
+              <button type="submit" class="btn btn--primary btn--large">Отправить заявку</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="toast__content">
+        <span class="toast__icon" id="toastIcon"></span>
+        <span class="toast__message" id="toastMessage"></span>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/imask@7.6.1/dist/imask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

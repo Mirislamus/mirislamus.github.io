@@ -1,0 +1,21 @@
+{
+  "name": "Planet SugarWax",
+  "short_name": "SugarWax",
+  "description": "Профессиональный салон шугаринга и депиляции в Ташкенте",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#e7f8df",
+  "theme_color": "#275218",
+  "icons": [
+    {
+      "src": "images/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+/* ============================================
+   Lume Studio — Base Styles
+   ============================================ */
+
+:root {
+  --color-primary: #0d1b32;
+  --color-primary-light: #1a2d4f;
+  --color-primary-dark: #0a1428;
+  --color-white: #ffffff;
+  --color-gray-100: #f5f7fa;
+  --color-gray-200: #e8ecf1;
+  --color-gray-300: #d1d8e0;
+  --color-gray-400: #9aa5b5;
+  --color-gray-500: #6b7685;
+  --color-gray-600: #4a5568;
+  --color-accent: #c9a96e;
+  --color-accent-light: #d4b97d;
+  --color-success: #48bb78;
+  --color-error: #f56565;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  --shadow-sm: 0 1px 2px rgba(13, 27, 50, 0.04);
+  --shadow-md: 0 4px 16px rgba(13, 27, 50, 0.08);
+  --shadow-lg: 0 12px 40px rgba(13, 27, 50, 0.12);
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+
+  --container-max: 1200px;
+  --container-padding: 20px;
+  --section-gap: 80px;
+  --section-gap-lg: 120px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 32px;
+    --section-gap: 100px;
+    --section-gap-lg: 140px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 48px;
+  }
+}
+
+/* ============================================
+   Reset & Base
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+/* ============================================
+   Container
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-gray-100);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--outline {
+  border: 1.5px solid var(--color-white);
+  color: var(--color-white);
+  background: transparent;
+}
+
+.btn--outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn--small {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ============================================
+   Section Header
+   ============================================ */
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--section-gap);
+}
+
+.section-header__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.section-header__title {
+  font-size: clamp(28px, 5vw, 44px);
+  margin-bottom: 16px;
+  color: var(--color-white);
+}
+
+.section-header__text {
+  font-size: 16px;
+  color: var(--color-gray-400);
+  line-height: 1.7;
+}
+
+/* ============================================
+   Form Elements
+   ============================================ */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-300);
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-primary-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+  font-size: 15px;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-gray-500);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-select option {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.form-note {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ============================================
+   Scroll Reveal Animation Base
+   ============================================ */
+
+.gs-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.swiper-slide {
+  height: auto;
+}

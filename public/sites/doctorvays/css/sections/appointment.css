@@ -1,0 +1,49 @@
+/* ============================================
+   APPOINTMENT
+   ============================================ */
+.appointment {
+  padding: var(--space-2xl) 0;
+}
+
+.appointment__container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.appointment__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: var(--lh-tight);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.appointment__desc {
+  text-align: center;
+  font-size: var(--fs-body);
+  color: var(--color-text-light);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-xl);
+}
+
+.appointment__desc a {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.appointment__desc a:hover {
+  color: var(--color-accent);
+}
+
+.appointment__form {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}

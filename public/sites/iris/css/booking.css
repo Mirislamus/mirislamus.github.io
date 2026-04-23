@@ -1,0 +1,107 @@
+.booking-section {
+  background-color: var(--color-dark);
+}
+
+.booking-section__container {
+  max-width: 800px;
+}
+
+.booking-section__subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin-top: -8px;
+  margin-bottom: 48px;
+}
+
+.booking-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.booking-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.booking-form__label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.booking-form__label--dark {
+  color: var(--color-primary);
+}
+
+.booking-form__input {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  transition: border-color var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+.booking-form__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.booking-form__input:focus {
+  border-color: var(--color-accent);
+}
+
+.booking-form__input--dark {
+  border-color: var(--color-border);
+  color: var(--color-dark);
+}
+
+.booking-form__input--dark::placeholder {
+  color: var(--color-primary);
+}
+
+.booking-form__input--dark:focus {
+  border-color: var(--color-accent);
+}
+
+.booking-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.booking-form__submit {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.booking-form__input option {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+.booking-form__input--dark option {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+}
+
+.booking-form__input--dark[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.4);
+}

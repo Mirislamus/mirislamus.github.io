@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #818181;
+  --color-white: #ffffff;
+  --color-dark: #1a1a1a;
+  --color-accent: #c9a96e;
+  --color-accent-hover: #b8985d;
+  --color-light-gray: #f5f5f5;
+  --color-border: #e0e0e0;
+  --color-overlay: rgba(26, 26, 26, 0.55);
+
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --container-max: 1200px;
+  --container-padding: 24px;
+
+  --transition: 0.3s ease;
+  --shadow-sm: 0 2px 20px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.08);
+}

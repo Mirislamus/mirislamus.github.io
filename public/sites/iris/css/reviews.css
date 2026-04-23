@@ -1,0 +1,117 @@
+/* Reviews section header */
+.reviews .section__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.reviews .section__title {
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Swiper */
+.reviews__slider {
+  position: relative;
+}
+
+.reviews__slider .swiper-wrapper {
+  align-items: stretch;
+}
+
+.reviews__slider .swiper-slide {
+  height: auto;
+}
+
+/* Review card */
+.review-card {
+  background-color: var(--color-white);
+  padding: 32px;
+  border-left: 3px solid var(--color-accent);
+  min-height: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-card__stars {
+  font-size: 16px;
+  color: var(--color-accent);
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+.review-card__text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-primary);
+  font-style: italic;
+  line-height: 1.7;
+  margin-top: 16px;
+  flex: 1;
+}
+
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-light-gray);
+}
+
+.review-card__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.review-card__name {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+/* Swiper navigation arrows */
+.reviews__nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.reviews__nav-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.reviews__nav-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.reviews__nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.reviews__nav-btn--prev svg {
+  transform: rotate(180deg);
+}

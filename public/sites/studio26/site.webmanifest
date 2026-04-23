@@ -1,0 +1,23 @@
+{
+    "name": "Studio 026 — Салон красоты в Ташкенте",
+    "short_name": "Studio 026",
+    "description": "Премиум салон красоты в центре Ташкента. Парикмахерские услуги, маникюр, косметология и лазерная эпиляция.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F2EDE8",
+    "theme_color": "#F2EDE8",
+    "icons": [
+        {
+            "src": "images/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "lang": "ru",
+    "dir": "ltr"
+}

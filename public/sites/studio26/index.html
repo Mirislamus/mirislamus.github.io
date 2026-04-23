@@ -1,0 +1,1766 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta -->
+    <title>
+      Studio 026 — Салон красоты в Ташкенте | Стрижки, маникюр, косметология,
+      лазерная эпиляция
+    </title>
+    <meta
+      name="description"
+      content="Studio 026 — премиум салон красоты в центре Ташкента. Парикмахерские услуги, маникюр, педикюр, косметология и лазерная эпиляция. Ул. Зарафшан, 1. Запишитесь онлайн или по телефону +998 91 795 25 55."
+    />
+    <meta
+      name="keywords"
+      content="салон красоты Ташкент, стрижка Ташкент, маникюр Ташкент, лазерная эпиляция Ташкент, косметология Ташкент, парикмахерская Ташкент, Studio 026, ул Зарафшан 1"
+    />
+    <meta name="author" content="Studio 026" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://studio026.uz" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:url" content="https://studio026.uz" />
+    <meta property="og:title" content="Studio 026 — Салон красоты в Ташкенте" />
+    <meta
+      property="og:description"
+      content="Парикмахерские услуги, маникюр, косметология и лазерная эпиляция в центре Ташкента. Ул. Зарафшан, 1. Рейтинг 5.0 — запишитесь онлайн."
+    />
+    <meta
+      property="og:image"
+      content="/images/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta
+      property="business:contact_data:street_address"
+      content="ул. Зарафшан, 1"
+    />
+    <meta property="business:contact_data:locality" content="Ташкент" />
+    <meta property="business:contact_data:country_name" content="Uzbekistan" />
+    <meta
+      property="business:contact_data:phone_number"
+      content="+998917952555"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Studio 026 — Салон красоты в Ташкенте"
+    />
+    <meta
+      name="twitter:description"
+      content="Премиум салон красоты в центре Ташкента. Стрижки, маникюр, косметология, лазерная эпиляция. Запишитесь онлайн."
+    />
+    <meta
+      name="twitter:image"
+      content="https://studio026.uz/images/og-image.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="64x64"
+      href="images/favicon-64x64.png"
+    />
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon-180x180.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#F2EDE8" />
+    <meta name="msapplication-TileColor" content="#F2EDE8" />
+    <meta name="msapplication-TileImage" content="images/favicon-192x192.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Toast Container -->
+    <div
+      id="toast-container"
+      class="toast-container"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Modal -->
+    <div class="modal micromodal-slide" id="booking-modal" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div
+          class="modal__container"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="booking-modal-title"
+        >
+          <header class="modal__header">
+            <h3 class="modal__title" id="booking-modal-title">Онлайн-запись</h3>
+            <button
+              type="button"
+              class="modal__close"
+              aria-label="Закрыть"
+              data-micromodal-close
+            >
+              &times;
+            </button>
+          </header>
+          <div class="modal__content">
+            <form class="booking-form" id="modal-booking-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="modal-name"
+                  >Ваше имя <span aria-label="обязательно">*</span></label
+                >
+                <input
+                  type="text"
+                  id="modal-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Например: Анна"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modal-phone"
+                  >Телефон <span aria-label="обязательно">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="modal-phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="+998 (__) ___-__-__"
+                  required
+                  aria-required="true"
+                  autocomplete="tel"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn--primary btn--full"
+                id="modal-submit-btn"
+              >
+                <span>Отправить заявку</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="btn__icon"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="header__inner container">
+        <a
+          href="#hero"
+          class="header__logo"
+          aria-label="Studio 026 — на главную"
+        >
+          Studio 026
+        </a>
+        <nav class="header__nav" aria-label="Основная навигация">
+          <ul class="header__nav-list">
+            <li><a href="#services" class="header__nav-link">Услуги</a></li>
+            <li><a href="#about" class="header__nav-link">О нас</a></li>
+            <li><a href="#pricing" class="header__nav-link">Прайс</a></li>
+            <li><a href="#gallery" class="header__nav-link">Галерея</a></li>
+            <li><a href="#testimonials" class="header__nav-link">Отзывы</a></li>
+            <li><a href="#contact" class="header__nav-link">Контакты</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <a
+            href="tel:+998917952555"
+            class="header__phone"
+            aria-label="Позвонить +998 91 795 25 55"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            <span>+998 91 795 25 55</span>
+          </a>
+          <button
+            type="button"
+            class="btn btn--primary header__cta"
+            data-micromodal-trigger="booking-modal"
+            aria-label="Записаться онлайн"
+          >
+            Записаться
+          </button>
+          <button
+            type="button"
+            class="header__burger"
+            id="burger-btn"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav aria-label="Мобильная навигация">
+        <ul class="mobile-menu__list">
+          <li><a href="#services" class="mobile-menu__link">Услуги</a></li>
+          <li><a href="#about" class="mobile-menu__link">О нас</a></li>
+          <li><a href="#pricing" class="mobile-menu__link">Прайс</a></li>
+          <li><a href="#gallery" class="mobile-menu__link">Галерея</a></li>
+          <li><a href="#testimonials" class="mobile-menu__link">Отзывы</a></li>
+          <li><a href="#contact" class="mobile-menu__link">Контакты</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+998917952555" class="mobile-menu__phone"
+        >+998 91 795 25 55</a
+      >
+      <button
+        type="button"
+        class="btn btn--primary btn--full"
+        data-micromodal-trigger="booking-modal"
+      >
+        Записаться онлайн
+      </button>
+    </div>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="hero" aria-label="Главная секция">
+        <div class="hero__inner container">
+          <div class="hero__content">
+            <h1 class="hero__title" id="hero-title">
+              Красота, которая<br />сияет изнутри
+            </h1>
+            <p class="hero__subtitle">
+              Студия эстетики и ухода в центре Ташкента. Парикмахерские услуги,
+              ногтевой сервис, косметология и лазерная эпиляция.
+            </p>
+            <div class="hero__actions">
+              <button
+                type="button"
+                class="btn btn--primary btn--lg"
+                data-micromodal-trigger="booking-modal"
+              >
+                <span>Записаться онлайн</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="btn__icon"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <a
+                href="tel:+998917952555"
+                class="btn btn--outline btn--lg"
+                aria-label="Позвонить"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                <span>Позвонить</span>
+              </a>
+            </div>
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <span class="hero__stat-value">5.0</span>
+                <span class="hero__stat-label">Рейтинг</span>
+              </div>
+              <div class="hero__stat-divider"></div>
+              <div class="hero__stat">
+                <span class="hero__stat-value">201+</span>
+                <span class="hero__stat-label">Довольных клиентов</span>
+              </div>
+              <div class="hero__stat-divider"></div>
+              <div class="hero__stat">
+                <span class="hero__stat-value">5+</span>
+                <span class="hero__stat-label">Лет работы</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero__image-wrapper">
+            <img
+              src="images/hero.jpg"
+              alt="Интерьер салона Studio 026 — уютная зона ожидания с зелеными креслами и живыми растениями"
+              class="hero__image"
+              loading="eager"
+              width="1200"
+              height="800"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="services" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="services-title">Наши услуги</h2>
+            <p class="section-subtitle">
+              Полный спектр beauty-услуг в одном пространстве
+            </p>
+          </div>
+          <div class="services__grid">
+            <article class="service-card">
+              <div class="service-card__image-wrapper">
+                <img
+                  src="images/service-hair.jpg"
+                  alt="Мастер салона выполняет стрижку ножницами и расческой"
+                  class="service-card__image"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </div>
+              <div class="service-card__content">
+                <h3 class="service-card__title">Парикмахерский зал</h3>
+                <p class="service-card__text">
+                  Стрижки, окрашивание, уход за волосами и укладки от
+                  профессиональных стилистов.
+                </p>
+                <a href="#pricing" class="service-card__link">
+                  <span>Смотреть цены</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="service-card">
+              <div class="service-card__image-wrapper">
+                <img
+                  src="images/service-nails.jpg"
+                  alt="Идеальный нюдовый маникюр на фоне зеленой бархатной поверхности"
+                  class="service-card__image"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </div>
+              <div class="service-card__content">
+                <h3 class="service-card__title">Ногтевой сервис</h3>
+                <p class="service-card__text">
+                  Маникюр, педикюр, дизайн любой сложности. Работаем на
+                  премиум-материалах.
+                </p>
+                <a href="#pricing" class="service-card__link">
+                  <span>Смотреть цены</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="service-card">
+              <div class="service-card__image-wrapper">
+                <img
+                  src="images/service-cosmetology.jpg"
+                  alt="Косметолог наносит белую маску на лицо клиентки в спа-кабинете"
+                  class="service-card__image"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </div>
+              <div class="service-card__content">
+                <h3 class="service-card__title">Косметология</h3>
+                <p class="service-card__text">
+                  Уходовые процедуры, чистки, пилинги и профессиональный уход за
+                  кожей лица.
+                </p>
+                <a href="#pricing" class="service-card__link">
+                  <span>Смотреть цены</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="service-card">
+              <div class="service-card__image-wrapper">
+                <img
+                  src="images/service-laser.jpg"
+                  alt="Современный лазерный аппарат в кабинете эпиляции"
+                  class="service-card__image"
+                  loading="lazy"
+                  width="600"
+                  height="450"
+                />
+              </div>
+              <div class="service-card__content">
+                <h3 class="service-card__title">Лазерная эпиляция</h3>
+                <p class="service-card__text">
+                  Безопасное удаление волос на диодном и александритовом лазере.
+                  Долговременный результат.
+                </p>
+                <a href="#pricing" class="service-card__link">
+                  <span>Смотреть цены</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="about__inner container">
+          <div class="about__content">
+            <h2 class="section-title" id="about-title">
+              Пространство для вашей красоты
+            </h2>
+            <p class="about__text">
+              Мы создали студию, в которой хочется оставаться. Уютный интерьер,
+              ароматный кофе, внимательные мастера и стерильность — наш
+              стандарт. Мы используем только premium материалы и одноразовые
+              расходники.
+            </p>
+            <ul class="about__features">
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="about__feature-text">
+                  <strong>Стерильность и безопасность</strong>
+                  <span>Одноразовые инструменты и строгая дезинфекция</span>
+                </div>
+              </li>
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="about__feature-text">
+                  <strong>Premium косметика</strong>
+                  <span>Только профессиональные средства и материалы</span>
+                </div>
+              </li>
+              <li class="about__feature">
+                <div class="about__feature-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="about__feature-text">
+                  <strong>Центр города</strong>
+                  <span>м. Мустакиллик, ул. Зарафшан, 1</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="about__image-wrapper">
+            <img
+              src="images/about.jpg"
+              alt="Уютная зона ожидания салона с зеленым диваном и картиной на стене"
+              class="about__image"
+              loading="lazy"
+              width="800"
+              height="800"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider Line -->
+      <div class="section-divider" aria-hidden="true"><span></span></div>
+
+      <!-- Pricing Section -->
+      <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="pricing-title">Прайс-лист</h2>
+            <p class="section-subtitle">Актуальные цены на все услуги</p>
+          </div>
+          <div class="pricing__content">
+            <!-- Hair -->
+            <div class="pricing__category">
+              <button
+                class="pricing__category-header"
+                aria-expanded="true"
+                aria-controls="pricing-hair"
+              >
+                <div class="pricing__category-title">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                    ></path>
+                  </svg>
+                  <span>Парикмахерский зал</span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="pricing__arrow"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="pricing__category-body" id="pricing-hair">
+                <div class="pricing__item">
+                  <span class="pricing__name">Женская стрижка</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 80 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Мужская стрижка</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 60 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Окрашивание волос</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 300 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Укладка</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 100 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Уход за волосами</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 150 000 сум</span>
+                </div>
+              </div>
+            </div>
+            <!-- Nails -->
+            <div class="pricing__category">
+              <button
+                class="pricing__category-header"
+                aria-expanded="true"
+                aria-controls="pricing-nails"
+              >
+                <div class="pricing__category-title">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+                    ></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span>Ногтевой сервис</span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="pricing__arrow"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="pricing__category-body" id="pricing-nails">
+                <div class="pricing__item">
+                  <span class="pricing__name"
+                    >Классический маникюр с покрытием</span
+                  >
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 80 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Маникюр + наращивание</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 150 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Педикюр</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 120 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Снятие + маникюр</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 100 000 сум</span>
+                </div>
+              </div>
+            </div>
+            <!-- Laser -->
+            <div class="pricing__category">
+              <button
+                class="pricing__category-header"
+                aria-expanded="true"
+                aria-controls="pricing-laser"
+              >
+                <div class="pricing__category-title">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                  </svg>
+                  <span>Лазерная эпиляция</span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="pricing__arrow"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="pricing__category-body" id="pricing-laser">
+                <div class="pricing__item">
+                  <span class="pricing__name">Подмышечные впадины</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 60 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Ноги полностью</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 250 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Бикини</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 120 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Лицо</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 80 000 сум</span>
+                </div>
+              </div>
+            </div>
+            <!-- Cosmetology -->
+            <div class="pricing__category">
+              <button
+                class="pricing__category-header"
+                aria-expanded="true"
+                aria-controls="pricing-cosmetology"
+              >
+                <div class="pricing__category-title">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                    ></path>
+                  </svg>
+                  <span>Косметология</span>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="pricing__arrow"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="pricing__category-body" id="pricing-cosmetology">
+                <div class="pricing__item">
+                  <span class="pricing__name">Чистка лица</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 200 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Пилинг</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 180 000 сум</span>
+                </div>
+                <div class="pricing__item">
+                  <span class="pricing__name">Уходовая процедура</span>
+                  <span class="pricing__dots" aria-hidden="true"></span>
+                  <span class="pricing__price">от 250 000 сум</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pricing__note">
+            <p>
+              * Окончательная стоимость зависит от сложности и длины волос /
+              состояния ногтей. Точную цену уточняйте у мастера.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="gallery-title">Атмосфера</h2>
+            <p class="section-subtitle">Загляните внутрь нашего пространства</p>
+          </div>
+          <div class="gallery__slider swiper" id="gallery-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/1.webp"
+                  alt="Клиентка с профессиональным макияжем и укладкой"
+                  width="400"
+                  height="500"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/2.webp"
+                  alt="Мастер маникюра за работой"
+                  width="400"
+                  height="500"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/3.webp"
+                  alt="Парикмахерский зал с зеркалами и подсветкой"
+                  width="400"
+                  height="500"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/4.webp"
+                  alt="Зона ожидания с зеленым диваном"
+                  width="500"
+                  height="500"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/5.webp"
+                  alt="Косметологическая процедура"
+                  width="600"
+                  height="450"
+                />
+              </div>
+              <div class="swiper-slide gallery__slide">
+                <img
+                  src="images/6.webp"
+                  alt="Косметологическая процедура"
+                  width="600"
+                  height="450"
+                />
+              </div>
+            </div>
+            <div class="gallery__pagination swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section
+        class="testimonials"
+        id="testimonials"
+        aria-labelledby="testimonials-title"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="testimonials-title">
+              Что говорят гости
+            </h2>
+            <p class="section-subtitle">Реальные отзывы наших клиентов</p>
+          </div>
+          <div class="testimonials__grid" id="testimonials-desktop">
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" aria-label="5 из 5 звезд">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+              </div>
+              <p class="testimonial-card__text">
+                "Отличный сервис! Атмосфера салона, уютный кабинет, уголок у
+                бара с ароматным кофе создают приятные впечатления. Всё
+                стерильно, используются одноразовые приборы. Ни разу не уходила
+                недовольная!"
+              </p>
+              <span class="testimonial-card__author">— Мухлисахон</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" aria-label="5 из 5 звезд">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+              </div>
+              <p class="testimonial-card__text">
+                "Мне сделали именно то, что я хотела. Получилось очень красиво и
+                эффектно. Мастер Елена дала важные советы по уходу за волосами.
+                Сам салон очень уютный и приятный."
+              </p>
+              <span class="testimonial-card__author">— Нилгуна</span>
+            </article>
+            <article class="testimonial-card">
+              <div class="testimonial-card__stars" aria-label="5 из 5 звезд">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+              </div>
+              <p class="testimonial-card__text">
+                "Была недавно в этой студии, мне все очень понравилось! Сервис
+                на высшем уровне, очень доброжелательные девочки и аккуратная
+                работа! Работа этой студии смогла покорить мое сердце."
+              </p>
+              <span class="testimonial-card__author">— Райхона</span>
+            </article>
+          </div>
+          <!-- Mobile Swiper -->
+          <div class="testimonials__slider swiper" id="testimonials-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div
+                    class="testimonial-card__stars"
+                    aria-label="5 из 5 звезд"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                  </div>
+                  <p class="testimonial-card__text">
+                    "Отличный сервис! Атмосфера салона, уютный кабинет, уголок у
+                    бара с ароматным кофе создают приятные впечатления. Всё
+                    стерильно, используются одноразовые приборы."
+                  </p>
+                  <span class="testimonial-card__author">— Мухлисахон</span>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div
+                    class="testimonial-card__stars"
+                    aria-label="5 из 5 звезд"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                  </div>
+                  <p class="testimonial-card__text">
+                    "Мне сделали именно то, что я хотела. Получилось очень
+                    красиво и эффектно. Мастер Елена дала важные советы по уходу
+                    за волосами."
+                  </p>
+                  <span class="testimonial-card__author">— Нилгуна</span>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div
+                    class="testimonial-card__stars"
+                    aria-label="5 из 5 звезд"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                      ></polygon>
+                    </svg>
+                  </div>
+                  <p class="testimonial-card__text">
+                    "Сервис на высшем уровне, очень доброжелательные девочки и
+                    аккуратная работа! Я очень капризная в маникюре, но работа
+                    студии покорила мое сердце."
+                  </p>
+                  <span class="testimonial-card__author">— Райхона</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonials__pagination swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="contact__inner container">
+          <div class="contact__content">
+            <h2 class="section-title section-title--light" id="contact-title">
+              Запишитесь к нам
+            </h2>
+            <p class="contact__text">
+              Оставьте заявку и мы свяжемся с вами в ближайшее время для
+              подтверждения записи.
+            </p>
+
+            <div class="contact__info">
+              <div class="contact__info-item">
+                <div class="contact__info-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Адрес</strong>
+                  <span>Ташкент, ул. Зарафшан, 1<br />(м. Мустакиллик)</span>
+                </div>
+              </div>
+              <div class="contact__info-item">
+                <div class="contact__info-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Телефон</strong>
+                  <a href="tel:+998917952555" class="contact__link"
+                    >+998 91 795 25 55</a
+                  >
+                </div>
+              </div>
+              <div class="contact__info-item">
+                <div class="contact__info-icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Часы работы</strong>
+                  <span>Пн-Сб: 09:00 — 19:00<br />Вс: Выходной</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact__social">
+              <span>Мы в соцсетях:</span>
+              <a
+                href="https://www.instagram.com/studio.026"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact__social-link"
+                aria-label="Instagram Studio 026"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            </div>
+
+            <form class="contact__form" id="contact-form" novalidate>
+              <div class="form-group">
+                <label class="form-label form-label--light" for="contact-name"
+                  >Ваше имя <span aria-label="обязательно">*</span></label
+                >
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input form-input--light"
+                  placeholder="Например: Анна"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label form-label--light" for="contact-phone"
+                  >Телефон <span aria-label="обязательно">*</span></label
+                >
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  class="form-input form-input--light"
+                  placeholder="+998 (__) ___-__-__"
+                  required
+                  aria-required="true"
+                  autocomplete="tel"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn--accent btn--full"
+                id="contact-submit-btn"
+              >
+                <span>Отправить заявку</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="btn__icon"
+                  aria-hidden="true"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="contact__map">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?um=constructor%3A747c0287132c6b6fbc28536dfb9ff7ce67be5ae992cac9f5ac8da06e4f900104&amp;source=constructor"
+              width="100%"
+              height="100%"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__inner container">
+        <div class="footer__col">
+          <h3 class="footer__logo">Studio 026</h3>
+          <p class="footer__desc">
+            Премиум салон красоты в центре Ташкента. Создаем красоту с заботой о
+            каждом клиенте.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Услуги</h4>
+          <ul class="footer__list">
+            <li>
+              <a href="#services" class="footer__link">Парикмахерский зал</a>
+            </li>
+            <li>
+              <a href="#services" class="footer__link">Ногтевой сервис</a>
+            </li>
+            <li><a href="#services" class="footer__link">Косметология</a></li>
+            <li>
+              <a href="#services" class="footer__link">Лазерная эпиляция</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Контакты</h4>
+          <ul class="footer__list">
+            <li>
+              <a href="tel:+998917952555" class="footer__link"
+                >+998 91 795 25 55</a
+              >
+            </li>
+            <li><span class="footer__text">Ташкент, ул. Зарафшан, 1</span></li>
+            <li><span class="footer__text">Пн-Сб: 09:00 — 19:00</span></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__heading">Соцсети</h4>
+          <ul class="footer__list">
+            <li>
+              <a
+                href="https://www.instagram.com/studio.026"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__link footer__link--icon"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://yandex.uz/maps/org/31962568631/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__link footer__link--icon"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Яндекс Карты</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="container">
+          <p>&copy; 2026 Studio 026. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button
+      type="button"
+      class="scroll-top"
+      id="scroll-top"
+      aria-label="Наверх"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/imask@7.6.1/dist/imask.min.js"></script>
+    <script src="https://unpkg.com/micromodal@0.4.10/dist/micromodal.min.js"></script>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
