@@ -2,10 +2,10 @@
  * Alpha Plaza Hotel & SPA — Main JavaScript
  */
 
-(function() {
+(function () {
   'use strict';
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     initHeader();
     initMobileMenu();
     initSwiper();
@@ -27,12 +27,16 @@
       }
       ticking = false;
     }
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
     updateHeader();
   }
 
@@ -53,10 +57,10 @@
       document.body.style.overflow = '';
     }
     burger.addEventListener('click', toggleMenu);
-    menuLinks.forEach(function(link) {
+    menuLinks.forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('is-open')) {
         closeMenu();
       }
@@ -111,21 +115,31 @@
 
   function initMicroModal() {
     if (typeof MicroModal === 'undefined') return;
+
+    let currentTrigger = null;
+
+    document.querySelectorAll('[data-micromodal-trigger]').forEach(btn => {
+      btn.addEventListener('click', function () {
+        currentTrigger = this;
+      });
+    });
+
     MicroModal.init({
-      onShow: function(modal) {
+      onShow: function (modal) {
         document.body.style.overflow = 'hidden';
-        var trigger = modal.trigger;
-        if (trigger && trigger.dataset.room) {
-          var roomSelect = modal.querySelector('#booking-room');
+
+        if (currentTrigger && currentTrigger.dataset.room) {
+          const roomSelect = modal.querySelector('#booking-room');
+
           if (roomSelect) {
-            var option = Array.from(roomSelect.options).find(function(opt) {
-              return opt.value === trigger.dataset.room;
-            });
-            if (option) roomSelect.value = option.value;
+            roomSelect.value = currentTrigger.dataset.room;
+
+            roomSelect.dispatchEvent(new Event('change'));
           }
         }
       },
-      onClose: function() {
+
+      onClose: function () {
         document.body.style.overflow = '';
       },
     });
@@ -151,7 +165,7 @@
     var dateOut = document.getElementById('booking-date-out');
     if (dateIn) dateIn.min = today;
     if (dateOut) dateOut.min = today;
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validateForm(form)) return;
       submitToTelegram(form);
@@ -163,8 +177,12 @@
     var nameInput = form.querySelector('#booking-name');
     var phoneInput = form.querySelector('#booking-phone');
     var privacyInput = form.querySelector('#booking-privacy');
-    form.querySelectorAll('.form__error').forEach(function(el) { el.textContent = ''; });
-    form.querySelectorAll('.form__input').forEach(function(el) { el.classList.remove('is-error'); });
+    form.querySelectorAll('.form__error').forEach(function (el) {
+      el.textContent = '';
+    });
+    form.querySelectorAll('.form__input').forEach(function (el) {
+      el.classList.remove('is-error');
+    });
     if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
       showFieldError(nameInput, 'Введите имя (минимум 2 символа)');
       isValid = false;
@@ -215,7 +233,7 @@
       '📍 Alpha Plaza Hotel & SPA',
     ].join('\n');
     if (BOT_TOKEN === 'YOUR_BOT_TOKEN') {
-      setTimeout(function() {
+      setTimeout(function () {
         submitBtn.classList.remove('is-loading');
         submitBtn.disabled = false;
         showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
@@ -238,25 +256,25 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
-    .then(function(response) {
-      if (response.ok) {
-        showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
-        form.reset();
-        var modal = document.getElementById('booking-modal');
-        if (modal && typeof MicroModal !== 'undefined') {
-          MicroModal.close('booking-modal');
+      .then(function (response) {
+        if (response.ok) {
+          showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
+          form.reset();
+          var modal = document.getElementById('booking-modal');
+          if (modal && typeof MicroModal !== 'undefined') {
+            MicroModal.close('booking-modal');
+          }
+        } else {
+          throw new Error('Failed to send');
         }
-      } else {
-        throw new Error('Failed to send');
-      }
-    })
-    .catch(function() {
-      showToast('Ошибка отправки. Пожалуйста, позвоните нам напрямую.', 'error');
-    })
-    .finally(function() {
-      submitBtn.classList.remove('is-loading');
-      submitBtn.disabled = false;
-    });
+      })
+      .catch(function () {
+        showToast('Ошибка отправки. Пожалуйста, позвоните нам напрямую.', 'error');
+      })
+      .finally(function () {
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+      });
   }
 
   function escapeHtml(text) {
@@ -271,23 +289,26 @@
     var toast = document.createElement('div');
     toast.className = 'toast toast--' + type;
     toast.setAttribute('role', 'alert');
-    var iconSvg = type === 'success'
-      ? '<svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'
-      : '<svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+    var iconSvg =
+      type === 'success'
+        ? '<svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'
+        : '<svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
     toast.innerHTML = iconSvg + '<span>' + escapeHtml(message) + '</span>';
     container.appendChild(toast);
-    requestAnimationFrame(function() {
+    requestAnimationFrame(function () {
       toast.classList.add('is-visible');
     });
-    setTimeout(function() {
+    setTimeout(function () {
       toast.classList.remove('is-visible');
-      setTimeout(function() { toast.remove(); }, 400);
+      setTimeout(function () {
+        toast.remove();
+      }, 400);
     }, 5000);
   }
 
   function initScrollAnchors() {
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-      anchor.addEventListener('click', function(e) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
         var href = this.getAttribute('href');
         if (href === '#') return;
         var target = document.querySelector(href);
