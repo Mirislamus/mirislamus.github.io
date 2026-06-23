@@ -1750,7 +1750,7 @@ ol {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   :root {
     --container-padding: 20px;
   }
@@ -1798,6 +1798,7 @@ ol {
 
   .hero__actions .btn {
     width: 100%;
+    padding: 10px 16px;
   }
 
   .hero__features {
