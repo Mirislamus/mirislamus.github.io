@@ -57,7 +57,7 @@ export const Avatar = ({ className }: AvatarProps) => {
           width="260"
           height="260"
           preserveAspectRatio="xMidYMid"
-          transform="translate(0 26)"
+          transform="translate(20 35)"
         />
       </g>
     </svg>
