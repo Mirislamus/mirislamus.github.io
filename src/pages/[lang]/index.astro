@@ -12,9 +12,9 @@ export function getStaticPaths() {
 
 <Layout>
   <Hero locale={locale} client:load />
-  <Approach locale={locale} client:load />
-  <Career locale={locale} client:load />
-  <Skills locale={locale} client:load />
-  <Projects locale={locale} client:load />
-  <Reviews locale={locale} client:load />
+  <Approach locale={locale} client:visible />
+  <Career locale={locale} client:visible />
+  <Skills locale={locale} client:visible />
+  <Projects locale={locale} client:visible />
+  <Reviews locale={locale} client:visible />
 </Layout>
