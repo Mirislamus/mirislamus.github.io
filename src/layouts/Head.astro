@@ -2,32 +2,29 @@
 import metaData from '@data/meta/meta.json';
 import type { Locale } from '@typings/global';
 
-const locale = Astro.currentLocale as Locale;
+interface Props {
+  locale: Locale;
+}
 
+const { locale } = Astro.props;
 const meta = metaData[locale];
+
+const site = Astro.site;
+const localePaths: Record<Locale, string> = { en: '/', ru: '/ru', uz: '/uz' };
+
+const toUrl = (path: string) => new URL(path, site).href;
+const canonical = toUrl(localePaths[locale]);
 ---
 
 <head>
-  <script is:inline>
-    (() => {
-      const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-      const stored = localStorage.getItem('theme');
-      const theme = stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
-
-      document.documentElement.setAttribute('data-theme', theme);
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
-    })();
-  </script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="decription" content={meta.description} />
 
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
 
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 
@@ -44,8 +41,28 @@ const meta = metaData[locale];
   <meta name="twitter:description" content={meta.description} />
   <meta name="twitter:image" content="/opengraph.jpg" />
 
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="en" href={toUrl(localePaths.en)} />
+  <link rel="alternate" hreflang="ru" href={toUrl(localePaths.ru)} />
+  <link rel="alternate" hreflang="uz" href={toUrl(localePaths.uz)} />
+  <link rel="alternate" hreflang="x-default" href={toUrl(localePaths.en)} />
+
   <title>{meta.title}</title>
 
   <meta name="google-site-verification" content="Tzn3iaYEQS1a2OgHpkhiLftCIEJTMl_Psub9fGV1c0A" />
   <meta name="yandex-verification" content="f95a00340036f6fa" />
+
+  <script is:inline>
+    (() => {
+      const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      const stored = localStorage.getItem('theme');
+      const theme = stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
+
+      document.documentElement.setAttribute('data-theme', theme);
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
+    })();
+  </script>
 </head>
