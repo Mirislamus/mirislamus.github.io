@@ -22,7 +22,7 @@
     { "id": "html", "name": "HTML", "link": "https://developer.mozilla.org/en-US/docs/Web/HTML" },
     { "id": "css", "name": "CSS", "link": "https://developer.mozilla.org/en-US/docs/Web/CSS" },
     { "id": "sass", "name": "Sass", "link": "https://sass-lang.com" },
-    { "id": "chakraui", "name": "Chakra UI", "link": "https://chakra-ui.com" },
+    { "id": "chakra-ui", "name": "Chakra UI", "link": "https://chakra-ui.com" },
     { "id": "tailwindcss", "name": "Tailwind CSS", "link": "https://tailwindcss.com" },
     { "id": "storybook", "name": "Storybook", "link": "https://storybook.js.org" },
     { "id": "tanstackquery", "name": "TanStack Query", "link": "https://tanstack.com/query/latest" },
