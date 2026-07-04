@@ -1,4 +1,5 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom } from '@shared/stores';
 import s from './Career.module.scss';
 import cx from 'clsx';
 import careerData from '@data/career/career.json';
@@ -10,7 +11,8 @@ import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
 import { useWrapExternalLinks, useTextHighlight } from '@shared/hooks';
 
-export const Career = ({ locale }: Section) => {
+export const Career = () => {
+  const locale = useStore(localeAtom);
   const data = careerData.data[locale];
   const stacks = careerData.stacks;
   const title = useTextHighlight(data.title);

@@ -1,10 +1,12 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom } from '@shared/stores';
 import footerData from '@data/footer/footer.json';
 import { info } from '@data/global';
 import s from './Footer.module.scss';
 import { Button, RotatingText } from '@shared/ui';
 
-export const Footer = ({ locale }: Section) => {
+export const Footer = () => {
+  const locale = useStore(localeAtom);
   const data = footerData[locale];
   const { ready, talk, text } = data;
 

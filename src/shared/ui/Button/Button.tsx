@@ -42,7 +42,6 @@ export const Button = ({
 
   return (
     <Tag
-      type="button"
       {...(Tag === 'a' && { href })}
       {...(isExternal && Tag === 'a' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       {...(Tag === 'button' && { type: 'button' })}

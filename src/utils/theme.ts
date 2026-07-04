@@ -1,3 +1,5 @@
+import { modeAtom, themeAtom, mountedAtom } from '@shared/stores';
+
 export type Theme = 'light' | 'dark';
 export type ThemeMode = Theme | 'system';
 
@@ -17,6 +19,11 @@ export const getStoredThemeMode = (): ThemeMode | null => {
   }
 
   return null;
+};
+
+export const resolveTheme = (mode: ThemeMode | null): Theme => {
+  if (mode === 'light' || mode === 'dark') return mode;
+  return getSystemTheme();
 };
 
 export const applyTheme = (theme: Theme) => {
@@ -71,4 +78,29 @@ export const subscribeToSystemThemeChange = (onChange: (theme: Theme) => void) =
 
   media.addEventListener('change', handler);
   return () => media.removeEventListener('change', handler);
+};
+
+export const initThemeStore = () => {
+  const sync = () => {
+    const mode = getStoredThemeMode() ?? 'system';
+    const theme = resolveTheme(mode);
+
+    modeAtom.set(mode);
+    themeAtom.set(theme);
+  };
+
+  sync();
+  mountedAtom.set(true);
+
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const onSystemChange = () => sync();
+  const onThemeChange = () => sync();
+
+  media.addEventListener('change', onSystemChange);
+  window.addEventListener('themechange', onThemeChange);
+
+  return () => {
+    media.removeEventListener('change', onSystemChange);
+    window.removeEventListener('themechange', onThemeChange);
+  };
 };

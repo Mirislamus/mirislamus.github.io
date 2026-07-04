@@ -7,6 +7,4 @@ export * from '@shared/ui/Tag/Tag';
 
 export * from '@shared/ui/animations/Spotlight/Spotlight';
 export * from '@shared/ui/animations/RotatingText/RotatingText';
-export * from '@shared/ui/animations/SplitText/SplitText';
-export * from '@shared/ui/animations/AnimatedContent/AnimatedContent';
 export * from '@shared/ui/animations/StarBorder/StarBorder';

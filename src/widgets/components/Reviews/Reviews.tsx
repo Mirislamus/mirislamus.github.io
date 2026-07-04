@@ -1,4 +1,5 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom } from '@shared/stores';
 import type { Swiper as SwiperType } from 'swiper';
 import reviewsData from '@data/reviews/reviews.json';
 import s from './Reviews.module.scss';
@@ -10,7 +11,8 @@ import { Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-export const Reviews = ({ locale }: Section) => {
+export const Reviews = () => {
+  const locale = useStore(localeAtom);
   const data = reviewsData[locale];
 
   const swiperRef = useRef<SwiperType | null>(null);

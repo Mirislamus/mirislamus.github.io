@@ -1,4 +1,5 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom } from '@shared/stores';
 import { Avatar, Button } from '@shared/ui';
 import s from './Hero.module.scss';
 import heroData from '@data/hero/hero.json';
@@ -7,7 +8,8 @@ import { useVariable } from '@shared/hooks';
 
 const workingYears = new Date().getFullYear() - 2018 - (new Date().getMonth() < 5 ? 1 : 0);
 
-export const Hero = ({ locale }: Section) => {
+export const Hero = () => {
+  const locale = useStore(localeAtom);
   const data = heroData[locale];
 
   const { apply } = useVariable();

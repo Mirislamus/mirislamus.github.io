@@ -1,11 +1,13 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom } from '@shared/stores';
 import projectData from '@data/projects/projects.json';
 import s from './Projects.module.scss';
 import cx from 'clsx';
 import { useTextHighlight } from '@shared/hooks';
 import { Spotlight, Tag } from '@shared/ui';
 
-export const Projects = ({ locale }: Section) => {
+export const Projects = () => {
+  const locale = useStore(localeAtom);
   const data = projectData.data[locale];
   const links = projectData.links;
   const colors = projectData.colors;

@@ -4,15 +4,22 @@ import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
 import { Header, Footer } from '@widgets/components';
 import { Toaster } from 'sonner';
+import { localeAtom } from '@shared/stores';
 
 const locale = Astro.currentLocale as Locale;
+
+localeAtom.set(locale);
 ---
 
 <!doctype html>
 <html lang={locale}>
   <Head locale={locale} />
   <body>
-    <Header locale={locale} client:visible />
+    <script>
+      import { initThemeStore } from '@utils/theme';
+      initThemeStore();
+    </script>
+    <Header client:visible />
     <main>
       <slot />
     </main>
@@ -34,6 +41,6 @@ const locale = Astro.currentLocale as Locale;
       }}
       client:load
     />
-    <Footer locale={locale} client:visible />
+    <Footer client:visible />
   </body>
 </html>

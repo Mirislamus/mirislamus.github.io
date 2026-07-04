@@ -1,16 +1,19 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom, modeAtom } from '@shared/stores';
 import type { CSSProperties, RefObject } from 'react';
 import { useLayoutEffect, useRef, useState, useMemo } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo } from '@shared/icons';
 import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
-import { useClickOutside, useTheme, useActiveSection } from '@shared/hooks';
+import { useClickOutside, useActiveSection } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { setThemeMode } from '@utils/theme';
 import menuData from '@data/menu/menu.json';
 
-export const Header = ({ locale }: Section) => {
+export const Header = () => {
+  const locale = useStore(localeAtom);
+  const mode = useStore(modeAtom);
   const menuItems = menuData.data[locale];
   const menuUrls = menuData.urls;
 
@@ -21,7 +24,6 @@ export const Header = ({ locale }: Section) => {
   const langsRef = useRef<HTMLDivElement>(null);
   const langsButtonRef = useRef<HTMLButtonElement>(null);
 
-  const { mode } = useTheme();
   const activeId = useActiveSection();
 
   const [langsIsOpen, setLangsIsOpen] = useState<boolean>(false);
@@ -38,7 +40,7 @@ export const Header = ({ locale }: Section) => {
 
   useLayoutEffect(() => {
     const link = linksRef.current[activeLinkIndex];
-
+    if (!link) return;
     setItemActiveWidth(link.offsetWidth);
     setItemOffsetLeft(link.offsetLeft);
   }, [activeId]);

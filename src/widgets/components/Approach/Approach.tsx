@@ -1,17 +1,20 @@
-import type { Section } from '@typings/global';
+import { useStore } from '@nanostores/react';
+import { localeAtom, themeAtom, mountedAtom } from '@shared/stores';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
-import { useCopyToClipboard, useTextHighlight, useTheme } from '@shared/hooks';
+import { useCopyToClipboard, useTextHighlight } from '@shared/hooks';
 import { Button, StarBorder } from '@shared/ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
-export const Approach = ({ locale }: Section) => {
+export const Approach = () => {
+  const locale = useStore(localeAtom);
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
-  const { theme, mounted } = useTheme();
+  const theme = useStore(themeAtom);
+  const mounted = useStore(mountedAtom);
 
   const [copyToClipboard] = useCopyToClipboard();
 
