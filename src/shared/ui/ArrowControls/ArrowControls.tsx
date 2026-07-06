@@ -28,7 +28,7 @@ export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }
     <div className={s.arrowControls}>
       <button
         type="button"
-        className={cx(s.button, s.prev, 'btn-reset')}
+        className={cx(s.button, s.prev)}
         disabled={isPrevDisabled}
         onClick={handlePrev}
       >
@@ -37,7 +37,7 @@ export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }
       <span className={s.line} />
       <button
         type="button"
-        className={cx(s.button, s.next, 'btn-reset')}
+        className={cx(s.button, s.next)}
         disabled={isNextDisabled}
         onClick={handleNext}
       >

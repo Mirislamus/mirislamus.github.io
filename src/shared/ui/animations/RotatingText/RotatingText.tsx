@@ -14,8 +14,6 @@ import {
   type TargetAndTransition,
   m,
   AnimatePresence,
-  LazyMotion,
-  domAnimation,
 } from 'motion/react';
 import clsx from 'clsx';
 
@@ -180,44 +178,42 @@ export const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((prop
   const totalChars = elements.reduce((sum, w) => sum + w.characters.length, 0);
 
   return (
-    <LazyMotion features={domAnimation}>
-      <m.span {...rest} layout transition={transition} className={clsx(s.root, mainClassName)}>
-        <span className={s.srOnly}>{texts[currentTextIndex]}</span>
+    <m.span {...rest} layout transition={transition} className={clsx(s.root, mainClassName)}>
+      <span className={s.srOnly}>{texts[currentTextIndex]}</span>
 
-        <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-          <m.span
-            key={currentTextIndex}
-            layout
-            aria-hidden
-            className={clsx(splitBy === 'lines' ? s.lines : s.container)}
-          >
-            {elements.map((word, wordIndex, arr) => {
-              const prevCount = arr.slice(0, wordIndex).reduce((sum, w) => sum + w.characters.length, 0);
+      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+        <m.span
+          key={currentTextIndex}
+          layout
+          aria-hidden
+          className={clsx(splitBy === 'lines' ? s.lines : s.container)}
+        >
+          {elements.map((word, wordIndex, arr) => {
+            const prevCount = arr.slice(0, wordIndex).reduce((sum, w) => sum + w.characters.length, 0);
 
-              return (
-                <span key={wordIndex} className={clsx(s.word, splitLevelClassName)}>
-                  {word.characters.map((char, charIndex) => (
-                    <m.span
-                      key={charIndex}
-                      initial={initial}
-                      animate={animate}
-                      exit={exit}
-                      transition={{
-                        ...transition,
-                        delay: getStaggerDelay(prevCount + charIndex, totalChars),
-                      }}
-                      className={clsx(s.element, elementLevelClassName)}
-                    >
-                      {char}
-                    </m.span>
-                  ))}
-                  {word.needsSpace && <span className={s.space}> </span>}
-                </span>
-              );
-            })}
-          </m.span>
-        </AnimatePresence>
-      </m.span>
-    </LazyMotion>
+            return (
+              <span key={wordIndex} className={clsx(s.word, splitLevelClassName)}>
+                {word.characters.map((char, charIndex) => (
+                  <m.span
+                    key={charIndex}
+                    initial={initial}
+                    animate={animate}
+                    exit={exit}
+                    transition={{
+                      ...transition,
+                      delay: getStaggerDelay(prevCount + charIndex, totalChars),
+                    }}
+                    className={clsx(s.element, elementLevelClassName)}
+                  >
+                    {char}
+                  </m.span>
+                ))}
+                {word.needsSpace && <span className={s.space}> </span>}
+              </span>
+            );
+          })}
+        </m.span>
+      </AnimatePresence>
+    </m.span>
   );
 });

@@ -1,7 +1,10 @@
 import type { RefObject } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const useClickOutside = (refs: Array<RefObject<HTMLElement | null>>, callback: () => void) => {
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node;
@@ -9,7 +12,7 @@ export const useClickOutside = (refs: Array<RefObject<HTMLElement | null>>, call
       const isInsideSomeRef = refs.some(ref => ref.current?.contains(target));
 
       if (!isInsideSomeRef) {
-        callback();
+        callbackRef.current();
       }
     };
 
@@ -20,5 +23,5 @@ export const useClickOutside = (refs: Array<RefObject<HTMLElement | null>>, call
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
     };
-  }, [refs, callback]);
+  }, [refs]);
 };

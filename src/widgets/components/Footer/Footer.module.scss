@@ -55,13 +55,13 @@
   }
 }
 
-@include media(max, 1199) {
+@media (width <= 1199px) {
   .bottom {
     font-size: 14px;
   }
 }
 
-@include media(max, 767) {
+@media (width <= 767px) {
   .footer {
     h2 {
       margin-bottom: 24px;

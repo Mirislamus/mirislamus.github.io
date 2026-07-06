@@ -1,6 +1,7 @@
 @use '@styles/helpers/mixins' as *;
 
-:root {
+@layer base {
+  :root {
   --font: 'SF Pro Display', sans-serif;
   --transition: 0.25s ease-in;
   --transition-ease: 0.25s ease;
@@ -33,6 +34,12 @@
   --gradient: linear-gradient(180deg, var(--orange) 0%, var(--purple) 100%);
 
   --letter-spacing: 0.4px;
+
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-tooltip: 40;
 
   --gap-4: 4px;
   --gap-8: 8px;
@@ -76,5 +83,6 @@
     --tertiary: var(--black-3);
     --accent: var(--green);
     --accent-alpha: var(--green-alpha);
+  }
   }
 }

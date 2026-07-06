@@ -6,6 +6,8 @@ export default {
       features: {
         'custom-properties': false,
         'logical-properties-and-values': false,
+        'cascade-layers': false,
+        'media-query-ranges': false,
       },
     },
     cssnano: {

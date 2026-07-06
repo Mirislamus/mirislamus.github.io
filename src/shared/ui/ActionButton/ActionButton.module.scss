@@ -22,7 +22,7 @@
     border-color: var(--grey-6);
   }
 
-  @include media(max, 767) {
+  @media (width <= 767px) {
     height: 40px;
     width: 40px;
   }

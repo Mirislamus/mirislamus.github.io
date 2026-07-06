@@ -1,23 +1,25 @@
 @use '@styles/helpers/mixins' as *;
 
-.container {
-  --gap: 12px;
-  width: 100%;
-  padding-inline: var(--gap);
-  margin-inline: auto;
-  @include media(min, 576) {
-    max-width: 540px;
-  }
-  @include media(min, 768) {
-    max-width: 740px;
-  }
-  @include media(min, 992) {
-    max-width: 940px;
-  }
-  @include media(min, 1024) {
-    max-width: 980px;
-  }
-  @include media(min, 1280) {
-    max-width: calc(var(--gap) * 2 + 1240px);
+@layer components {
+  .container {
+    --gap: 12px;
+    width: 100%;
+    padding-inline: var(--gap);
+    margin-inline: auto;
+    @media (width >= 576px) {
+      max-width: 540px;
+    }
+    @media (width >= 768px) {
+      max-width: 740px;
+    }
+    @media (width >= 992px) {
+      max-width: 940px;
+    }
+    @media (width >= 1024px) {
+      max-width: 980px;
+    }
+    @media (width >= 1280px) {
+      max-width: calc(var(--gap) * 2 + 1240px);
+    }
   }
 }

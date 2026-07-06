@@ -51,7 +51,7 @@
   padding-inline: 24px;
   height: 48px;
 
-  @include media(max, 767) {
+  @media (width <= 767px) {
     height: 44px;
   }
 }

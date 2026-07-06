@@ -79,7 +79,7 @@
   }
 }
 
-@include media(max, 767) {
+@media (width <= 767px) {
   .wrapper {
     padding-bottom: 48px;
   }

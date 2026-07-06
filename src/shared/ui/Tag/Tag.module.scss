@@ -9,7 +9,7 @@
   color: var(--text);
   transition: var(--transition-ease);
 
-  @include media(max, 767) {
+  @media (width <= 767px) {
     height: 28px;
     padding-inline: var(--gap-8);
   }

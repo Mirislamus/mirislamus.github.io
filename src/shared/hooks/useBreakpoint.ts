@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useBreakpoint = (query: string) => {
-  const [matches, setMatches] = useState(false);
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
 
   useEffect(() => {
     const media = window.matchMedia(query);

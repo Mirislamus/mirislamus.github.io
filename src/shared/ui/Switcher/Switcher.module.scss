@@ -15,7 +15,7 @@
   border-radius: var(--radius-10);
   padding: var(--gap-4);
   position: relative;
-  z-index: 1;
+  z-index: var(--z-base);
   overflow: hidden;
   backdrop-filter: blur(20px);
 

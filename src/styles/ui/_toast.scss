@@ -1,16 +1,18 @@
-.toast {
-  font-size: 14px;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
-  font-family: var(--font);
-  background-color: var(--secondary);
-  padding: 14px 20px;
-  border-radius: var(--radius-50);
-  border: 1px solid var(--tertiary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  svg {
-    fill: var(--accent);
+@layer components {
+  .toast {
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+    font-family: var(--font);
+    background-color: var(--secondary);
+    padding: 14px 20px;
+    border-radius: var(--radius-50);
+    border: 1px solid var(--tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    svg {
+      fill: var(--accent);
+    }
   }
 }

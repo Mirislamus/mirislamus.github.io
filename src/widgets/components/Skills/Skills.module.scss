@@ -37,7 +37,7 @@
     text-align: center;
   }
 
-  @include is-touch {
+  @include hover {
     &:hover {
       img {
         scale: 0.88;
@@ -51,7 +51,7 @@
   }
 }
 
-@include media(max, 1199) {
+@media (width <= 1199px) {
   .skill {
     font-size: 12px;
     img {
@@ -61,7 +61,7 @@
   }
 }
 
-@include media(max, 991) {
+@media (width <= 991px) {
   .grid {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -73,14 +73,14 @@
   }
 }
 
-@include media(max, 767) {
+@media (width <= 767px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--gap-10);
   }
 }
 
-@include media(max, 575) {
+@media (width <= 575px) {
   .grid {
     gap: var(--gap-8);
   }
@@ -91,7 +91,7 @@
       height: 50px;
     }
 
-    @include is-touch {
+    @include hover {
       &:hover {
         span {
           translate: 0 10px;

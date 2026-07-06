@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react';
 import { localeAtom, modeAtom } from '@shared/stores';
-import type { CSSProperties, RefObject } from 'react';
+import type { CSSProperties } from 'react';
 import { useLayoutEffect, useRef, useState, useMemo } from 'react';
 import s from './Header.module.scss';
 import cx from 'clsx';
@@ -137,12 +137,12 @@ export const Header = () => {
             <div className={s.end}>
               <Switcher className={s.themesSwitcher} items={themesData} />
               <div className={s.langsSwitcher}>
-                <ActionButton ref={langsButtonRef as RefObject<HTMLButtonElement>} onClick={onLangClick}>
+                <ActionButton ref={langsButtonRef} onClick={onLangClick}>
                   {locale}
                 </ActionButton>
                 {langsIsOpen && (
                   <div className={cx(s.langsList, { [s.active]: langsIsOpen })}>
-                    <Switcher ref={langsRef as RefObject<HTMLDivElement>} variant="column" items={langsData} />
+                    <Switcher ref={langsRef} variant="column" items={langsData} />
                   </div>
                 )}
               </div>
