@@ -31,6 +31,7 @@ export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }
         className={cx(s.button, s.prev)}
         disabled={isPrevDisabled}
         onClick={handlePrev}
+        aria-label="Previous slide"
       >
         <ArrowLeft size={24} />
       </button>
@@ -40,6 +41,7 @@ export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }
         className={cx(s.button, s.next)}
         disabled={isNextDisabled}
         onClick={handleNext}
+        aria-label="Next slide"
       >
         <ArrowRight size={24} />
       </button>

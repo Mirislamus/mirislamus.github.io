@@ -57,16 +57,19 @@ export const Header = () => {
       content: <Sun />,
       onClick: () => setThemeMode('light'),
       isActive: mode === 'light',
+      ariaLabel: 'Light theme',
     },
     {
       content: <Monitor />,
       onClick: () => setThemeMode('system'),
       isActive: mode === 'system',
+      ariaLabel: 'System theme',
     },
     {
       content: <Moon />,
       onClick: () => setThemeMode('dark'),
       isActive: mode === 'dark',
+      ariaLabel: 'Dark theme',
     },
   ];
 
@@ -75,16 +78,19 @@ export const Header = () => {
       href: '/',
       content: 'EN',
       isActive: locale === 'en',
+      ariaLabel: 'English language',
     },
     {
       href: '/ru',
       content: 'RU',
       isActive: locale === 'ru',
+      ariaLabel: 'Russian language',
     },
     {
       href: '/uz',
       content: 'UZ',
       isActive: locale === 'uz',
+      ariaLabel: 'Uzbek language',
     },
   ];
 

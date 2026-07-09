@@ -1,6 +1,5 @@
 import {
   type ComponentPropsWithoutRef,
-  forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -47,7 +46,7 @@ export interface RotatingTextProps
   elementLevelClassName?: string;
 }
 
-export const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
+export const RotatingText = (props: RotatingTextProps & { ref?: React.Ref<RotatingTextRef> }) => {
   const {
     texts,
     transition = { type: 'spring', damping: 25, stiffness: 300 },
@@ -66,6 +65,7 @@ export const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((prop
     mainClassName,
     splitLevelClassName,
     elementLevelClassName,
+    ref,
     ...rest
   } = props;
 
@@ -217,4 +217,4 @@ const segmenter = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segme
       </AnimatePresence>
     </m.span>
   );
-});
+};
