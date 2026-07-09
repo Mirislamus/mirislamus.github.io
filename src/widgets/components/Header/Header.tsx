@@ -9,13 +9,15 @@ import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
 import { useClickOutside, useActiveSection } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { setThemeMode } from '@utils/theme';
-import menuData from '@data/menu/menu.json';
+import menuDataRaw from '@data/menu/menu.json';
+import type { MenuItem } from '@typings/data';
+
+const menuData = menuDataRaw as Record<string, MenuItem[]>;
 
 export const Header = () => {
   const locale = useStore(localeAtom);
   const mode = useStore(modeAtom);
-  const menuItems = menuData.data[locale];
-  const menuUrls = menuData.urls;
+  const menuItems = menuData[locale];
 
   const currentHref = locale === 'en' ? '/' : `/${locale}`;
 
@@ -43,7 +45,7 @@ export const Header = () => {
     if (!link) return;
     setItemActiveWidth(link.offsetWidth);
     setItemOffsetLeft(link.offsetLeft);
-  }, [activeId]);
+  }, [activeId, activeLinkIndex]);
 
   useLayoutEffect(() => {
     if (menuIsOpen) document.body.style.overflow = 'hidden';
@@ -109,17 +111,17 @@ export const Header = () => {
             </a>
             <nav className={cx(s.nav, { [s.active]: menuIsOpen })}>
               <ul>
-                {menuItems.map((item: string, index: number) => (
-                  <li key={item}>
+                {menuItems.map((item, index: number) => (
+                  <li key={item.url}>
                     <a
-                      href={`#${menuUrls[index]}`}
+                      href={`#${item.url}`}
                       ref={(ref: HTMLAnchorElement) => {
                         linksRef.current[index] = ref;
                       }}
-                      className={cx(s.link, { [s.active]: menuUrls[index] === activeId })}
+                      className={cx(s.link, { [s.active]: item.url === activeId })}
                       onClick={() => onLinkClick()}
                     >
-                      {item}
+                      {item.label}
                     </a>
                   </li>
                 ))}
@@ -137,7 +139,7 @@ export const Header = () => {
             <div className={s.end}>
               <Switcher className={s.themesSwitcher} items={themesData} />
               <div className={s.langsSwitcher}>
-                <ActionButton ref={langsButtonRef} onClick={onLangClick}>
+                <ActionButton ref={langsButtonRef} onClick={onLangClick} aria-label="Language selector" aria-expanded={langsIsOpen}>
                   {locale}
                 </ActionButton>
                 {langsIsOpen && (
@@ -146,7 +148,7 @@ export const Header = () => {
                   </div>
                 )}
               </div>
-              <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick}>
+              <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick} aria-label="Menu" aria-expanded={menuIsOpen}>
                 <Menu />
                 <X />
               </ActionButton>

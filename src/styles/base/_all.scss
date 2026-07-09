@@ -7,14 +7,15 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
     font-family: var(--font);
     font-size: 16px;
-    line-height: 1;
-    height: 100%;
+    line-height: 1.2;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

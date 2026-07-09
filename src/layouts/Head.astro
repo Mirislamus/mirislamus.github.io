@@ -11,6 +11,7 @@ const meta = metaData[locale];
 
 const site = Astro.site;
 const localePaths: Record<Locale, string> = { en: '/', ru: '/ru', uz: '/uz' };
+const ogLocales: Record<Locale, string> = { en: 'en_US', ru: 'ru_RU', uz: 'uz_UZ' };
 
 const toUrl = (path: string) => new URL(path, site).href;
 const canonical = toUrl(localePaths[locale]);
@@ -18,8 +19,13 @@ const canonical = toUrl(localePaths[locale]);
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={meta.description} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 
   <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
   <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
@@ -30,17 +36,17 @@ const canonical = toUrl(localePaths[locale]);
 
   <meta property="og:title" content={meta.title} />
   <meta property="og:description" content={meta.description} />
-  <meta property="og:image" content="/opengraph.jpg" />
+  <meta property="og:image" content={toUrl('/opengraph.jpg')} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:url" content={meta.link} />
+  <meta property="og:url" content={canonical} />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content={locale} />
+  <meta property="og:locale" content={ogLocales[locale]} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={meta.title} />
   <meta name="twitter:description" content={meta.description} />
-  <meta name="twitter:image" content="/opengraph.jpg" />
+  <meta name="twitter:image" content={toUrl('/opengraph.jpg')} />
 
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang="en" href={toUrl(localePaths.en)} />

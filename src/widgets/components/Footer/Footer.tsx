@@ -36,7 +36,7 @@ export const Footer = () => {
                 {info.email}
               </Button>
               <Button variant="outline" isFluid tag="a" href={`https://${info.telegram}`} isExternal>
-                {info.telegram}
+                {info.telegram.replace('https://', '')}
               </Button>
             </div>
           </div>

@@ -63,23 +63,6 @@ export const setThemeMode = (mode: ThemeMode) => {
   window.dispatchEvent(new CustomEvent('themechange', { detail: mode }));
 };
 
-export const subscribeToSystemThemeChange = (onChange: (theme: Theme) => void) => {
-  if (typeof window === 'undefined') return;
-
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-  const handler = (e: MediaQueryListEvent) => {
-    const stored = getStoredThemeMode();
-
-    if (!stored || stored === 'system') {
-      onChange(e.matches ? 'dark' : 'light');
-    }
-  };
-
-  media.addEventListener('change', handler);
-  return () => media.removeEventListener('change', handler);
-};
-
 export const initThemeStore = () => {
   const sync = () => {
     const mode = getStoredThemeMode() ?? 'system';

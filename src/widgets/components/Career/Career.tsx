@@ -2,25 +2,27 @@ import { useStore } from '@nanostores/react';
 import { localeAtom } from '@shared/stores';
 import s from './Career.module.scss';
 import cx from 'clsx';
-import careerData from '@data/career/career.json';
+import careerDataRaw from '@data/career/career.json';
+import type { CareerData } from '@typings/data';
 import { ArrowControls, Tag } from '@shared/ui';
+
+const careerData = careerDataRaw as Record<string, CareerData>;
 import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
-import { useWrapExternalLinks, useTextHighlight } from '@shared/hooks';
+import { useTextHighlight } from '@shared/hooks';
+import { parseLinks } from '@utils/text';
 
 export const Career = () => {
   const locale = useStore(localeAtom);
-  const data = careerData.data[locale];
-  const stacks = careerData.stacks;
+  const data = careerData[locale];
   const title = useTextHighlight(data.title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
 
-  const { parseLinks } = useWrapExternalLinks();
 
   const handleSlideChange = (swiper: SwiperType) => {
     setIsPrevDisabled(swiper.isBeginning);
@@ -69,7 +71,7 @@ export const Career = () => {
                   <div className={s.technologies}>
                     {index === 0 && <span className="text-sm">{data.technologies}:</span>}
                     <div className={s.stack}>
-                      {stacks[index].map(stack => (
+                      {item.stack.map(stack => (
                         <Tag key={stack}>{stack}</Tag>
                       ))}
                     </div>

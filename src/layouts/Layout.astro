@@ -6,7 +6,7 @@ import { Header, Footer } from '@widgets/components';
 import { Toaster } from 'sonner';
 import { localeAtom } from '@shared/stores';
 
-const locale = Astro.currentLocale as Locale;
+const locale = (Astro.currentLocale ?? 'en') as Locale;
 
 localeAtom.set(locale);
 ---

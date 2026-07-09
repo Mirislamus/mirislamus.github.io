@@ -1,33 +1,3 @@
-@mixin list-reset {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-@mixin btn-reset {
-  padding: 0;
-  margin: 0;
-  background: 0;
-  border: 0;
-  color: inherit;
-  text-align: left;
-  appearance: none;
-}
-
-@mixin link-reset {
-  text-decoration: none;
-  color: inherit;
-  appearance: none;
-}
-
-@mixin input-reset {
-  padding: 0;
-  border: 0;
-  appearance: none;
-  box-shadow: none;
-  border-radius: 0;
-}
-
 @mixin visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -42,90 +12,8 @@
   @include visually-hidden;
 }
 
-@mixin focus-visible {
-  &:focus-visible {
-    @content;
-  }
-}
-
-@mixin full($position: absolute, $gap: 0) {
-  position: $position;
-  top: $gap;
-  left: $gap;
-  right: $gap;
-  bottom: $gap;
-}
-
-@mixin center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@mixin center-x {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-@mixin center-y {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin imageg-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-@mixin image-2x($image-path, $extension) {
-  background-image: image-set(url('#{$image-path}.#{$extension}') 1x, url('#{$image-path}@2x.#{$extension}') 2x);
-}
-
-@mixin retina-image($filename, $extension, $width, $height) {
-  background: url('#{$filename}.#{$extension}') no-repeat;
-  @media (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    background: url('#{$filename}@2x.#{$extension}') no-repeat;
-    background-size: $width $height;
-  }
-}
-
 @mixin hover {
   @media (hover: hover) and (pointer: fine) {
     @content;
-  }
-}
-
-@mixin hide-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none;
-  }
-}
-
-@mixin scrollbar($trackColor, $thumbColor) {
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: $thumbColor $trackColor;
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $thumbColor;
-    transition: var(--transition);
-    &:hover {
-      background-color: rgba($thumbColor, 0.5);
-    }
-  }
-  &::-webkit-scrollbar-track {
-    background-color: $trackColor;
   }
 }

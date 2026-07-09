@@ -3,7 +3,11 @@ import Layout from '@layouts/Layout.astro';
 import { Approach, Hero, Skills, Career, Projects, Reviews } from '@widgets/components';
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: 'uz' } },
+    { params: { lang: 'ru' } }
+  ];
 }
 ---
 

@@ -22,7 +22,8 @@
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    background: rgba(255, 255, 255, 0.35);
+    background: var(--text);
+    opacity: 0.15;
     transform: scale(0);
     animation: ripple 600ms ease-out;
   }
