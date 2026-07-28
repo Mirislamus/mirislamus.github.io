@@ -36,7 +36,14 @@
     justify-content: center;
     margin-bottom: var(--gap-30);
 
+    picture {
+      display: flex;
+      width: 100%;
+    }
+
     img {
+      width: 100%;
+      height: auto;
       border-radius: var(--radius-16);
       transition: var(--transition-ease);
     }

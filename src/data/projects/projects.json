@@ -3,6 +3,22 @@
     "title": "Recent |projects|",
     "items": [
       {
+        "id": "dafna",
+        "name": "Dafna",
+        "text": "Online store for one of the leading furniture brands in Uzbekistan.",
+        "link": "https://dafna.uz",
+        "color": "#009FE2",
+        "stack": ["react", "next.js", "redux", "css modules"]
+      },
+      {
+        "id": "prowatt",
+        "name": "Prowatt",
+        "text": "Website for providing various electrical installation services in Tashkent",
+        "link": "https://prowatt.uz",
+        "color": "#FFD700",
+        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+      },
+      {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",
         "text": "Pomotomo is your personal pomodoro focus timer to increase productivity. Ideal for focusing and completing tasks.",
@@ -40,6 +56,22 @@
     "title": "Недавние |проекты|",
     "items": [
       {
+        "id": "dafna",
+        "name": "Dafna",
+        "text": "Интернет магазин одного из ведущих мебельных брендов Узбекистана",
+        "link": "https://dafna.uz",
+        "color": "#009FE2",
+        "stack": ["react", "next.js", "redux", "css modules"]
+      },
+      {
+        "id": "prowatt",
+        "name": "Prowatt",
+        "text": "Сайт по оказанию разнообразных  электромонтажных услуг по Ташкенту",
+        "link": "https://prowatt.uz",
+        "color": "#FFD700",
+        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+      },
+      {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",
         "text": "Pomotomo — это персональный таймер Pomodoro для повышения продуктивности. Подходит для концентрации и выполнения задач.",
@@ -76,6 +108,22 @@
   "uz": {
     "title": "Oxirgi |loyihalar|",
     "items": [
+      {
+        "id": "dafna",
+        "name": "Dafna",
+        "text": "O‘zbekistondagi yetakchi mebel brendlaridan birining internet do‘koni",
+        "link": "https://dafna.uz",
+        "color": "#009FE2",
+        "stack": ["react", "next.js", "redux", "css modules"]
+      },
+      {
+        "id": "prowatt",
+        "name": "Prowatt",
+        "text": "Toshkent shahri bo‘ylab turli xil elektr montaj xizmatlarini ko‘rsatuvchi sayt",
+        "link": "https://prowatt.uz",
+        "color": "#FFD700",
+        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+      },
       {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",

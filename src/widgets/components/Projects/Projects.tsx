@@ -24,7 +24,13 @@ export const Projects = () => {
             <a href={project.link} target="_blank" rel="noopener noreferrer" key={project.id} className={s.project}>
               <Spotlight className={s.spotlight} spotlightColor={project.color} />
               <div className={s.projectImage}>
-                <img src={`/images/projects/${project.id}.webp`} alt={project.name} />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={`/images/projects/${project.id}.webp 1x, /images/projects/${project.id}@2x.webp 2x`}
+                  />
+                  <img src={`/images/projects/${project.id}.jpg`} alt={project.name} loading="lazy" />
+                </picture>
               </div>
               <h3>{project.name}</h3>
               <p className="text-lg">{project.text}</p>
