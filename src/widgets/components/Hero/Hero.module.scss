@@ -15,7 +15,7 @@
 }
 
 .content {
-  width: min(vh(560), 100%);
+  width: min(vh(620), 100%);
   text-align: center;
   margin-inline: auto;
   h1 {
@@ -31,6 +31,8 @@
   .text {
     color: var(--grey-4);
     font-size: vh(18);
+    width: min(vh(540), 100%);
+    margin-inline: auto;
   }
 }
 
