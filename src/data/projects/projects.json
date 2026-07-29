@@ -1,6 +1,7 @@
 {
   "en": {
     "title": "Recent |projects|",
+    "loadMore": "Show more",
     "items": [
       {
         "id": "dafna",
@@ -70,6 +71,7 @@
   },
   "ru": {
     "title": "Недавние |проекты|",
+    "loadMore": "Загрузить больше",
     "items": [
       {
         "id": "dafna",
@@ -139,6 +141,7 @@
   },
   "uz": {
     "title": "Oxirgi |loyihalar|",
+    "loadMore": "Ko'proq yuklash",
     "items": [
       {
         "id": "dafna",

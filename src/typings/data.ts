@@ -14,6 +14,7 @@ export interface ProjectItem {
 
 export interface ProjectData {
   title: string;
+  loadMore?: string;
   items: ProjectItem[];
 }
 

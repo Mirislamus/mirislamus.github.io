@@ -12,6 +12,7 @@ interface ButtonProps {
   variant?: 'fill' | 'outline';
   size?: 'sm' | 'lg';
   isFluid?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -23,6 +24,7 @@ export const Button = ({
   variant = 'fill',
   size = 'lg',
   isFluid,
+  disabled,
   onClick = noop,
   ...props
 }: ButtonProps) => {
@@ -33,9 +35,11 @@ export const Button = ({
     [s.sm]: size === 'sm',
     [s.lg]: size === 'lg',
     [s.fluid]: isFluid,
+    [s.disabled]: disabled,
   };
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
+    if (disabled) return;
     ripple(e);
     onClick();
   };
@@ -44,7 +48,7 @@ export const Button = ({
     <Tag
       {...(Tag === 'a' && { href })}
       {...(isExternal && Tag === 'a' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      {...(Tag === 'button' && { type: 'button' })}
+      {...(Tag === 'button' && { type: 'button', disabled })}
       onClick={handleClick}
       className={cx(s.button, buttonClasses)}
       {...props}

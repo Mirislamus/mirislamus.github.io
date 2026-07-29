@@ -84,6 +84,12 @@
   gap: var(--gap-4);
 }
 
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--gap-30);
+}
+
 @media (width <= 1279px) {
   .project {
     &Image {
@@ -114,6 +120,9 @@
   }
   .grid {
     gap: var(--gap-16);
+  }
+  .actions {
+    margin-top: var(--gap-20);
   }
 }
 
