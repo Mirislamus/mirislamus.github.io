@@ -35,6 +35,22 @@
         "stack": ["react", "gatsby", "chakra.ui", "gsap"]
       },
       {
+        "id": "caldera",
+        "name": "Caldera",
+        "text": "Landing page with scrolling animations and a variety of interactive content",
+        "link": "https://caldera.humandone.com",
+        "color": "#FF2021",
+        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+      },
+      {
+        "id": "oceanverse",
+        "name": "Oceanverse",
+        "text": "Landing page for an NFT project with interactive 3D graphics and scrolling animations",
+        "link": "https://oceanverse.humandone.com",
+        "color": "#BEF0BF",
+        "stack": ["nunjucks", "js", "gulp", "gsap"]
+      },
+      {
         "id": "age-computers",
         "name": "Age Computers",
         "text": "Online store for computers, accessories, peripherals, and more. There is a constructor for building a PC.",
@@ -88,6 +104,22 @@
         "stack": ["react", "gatsby", "chakra.ui", "gsap"]
       },
       {
+        "id": "caldera",
+        "name": "Caldera",
+        "text": "Лендинг c анимациями при скролле и разнообразным интерактивом",
+        "link": "https://caldera.humandone.com",
+        "color": "#FF2021",
+        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+      },
+      {
+        "id": "oceanverse",
+        "name": "Oceanverse",
+        "text": "Лендинг для NFT-проекта с интерактивной 3D-графикой, анимациями при скролле",
+        "link": "https://oceanverse.humandone.com",
+        "color": "#BEF0BF",
+        "stack": ["nunjucks", "js", "gulp", "gsap"]
+      },
+      {
         "id": "age-computers",
         "name": "Age Computers",
         "text": "Интернет-магазин компьютеров, комплектующих, периферии и другого оборудования. Есть конструктор для сборки ПК.",
@@ -139,6 +171,22 @@
         "link": "https://humandone.com",
         "color": "#E13916",
         "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+      },
+      {
+        "id": "caldera",
+        "name": "Caldera",
+        "text": "Skroll va turli interaktivlar bilan animatsiyalarga ega landing",
+        "link": "https://caldera.humandone.com",
+        "color": "#FF2021",
+        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+      },
+      {
+        "id": "oceanverse",
+        "name": "Oceanverse",
+        "text": "Interaktiv 3D-grafika va skroll animatsiyalarga ega NFT-loyihasi uchun landing",
+        "link": "https://oceanverse.humandone.com",
+        "color": "#BEF0BF",
+        "stack": ["nunjucks", "js", "gulp", "gsap"]
       },
       {
         "id": "age-computers",
