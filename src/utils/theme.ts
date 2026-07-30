@@ -1,4 +1,4 @@
-import { modeAtom, themeAtom, mountedAtom } from '@shared/stores';
+import { modeAtom, themeAtom } from '@shared/stores';
 
 export type Theme = 'light' | 'dark';
 export type ThemeMode = Theme | 'system';
@@ -73,7 +73,6 @@ export const initThemeStore = () => {
   };
 
   sync();
-  mountedAtom.set(true);
 
   const media = window.matchMedia('(prefers-color-scheme: dark)');
   const onSystemChange = () => sync();

@@ -1,0 +1,21 @@
+import { Toaster } from 'sonner';
+
+export const ToastProvider = () => (
+  <Toaster
+    position="bottom-left"
+    duration={5000}
+    expand={false}
+    visibleToasts={1}
+    toastOptions={{
+      unstyled: true,
+      classNames: {
+        toast: 'toast',
+        title: 'toast__title',
+        description: 'toast__description',
+        actionButton: 'toast__action-button',
+        cancelButton: 'toast__cancel-button',
+        closeButton: 'toast__close-button',
+      },
+    }}
+  />
+);

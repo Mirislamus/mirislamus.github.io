@@ -1,9 +1,9 @@
 import { useStore } from '@nanostores/react';
-import { localeAtom, themeAtom, mountedAtom } from '@shared/stores';
+import { localeAtom, themeAtom } from '@shared/stores';
 import s from './Skills.module.scss';
 import cx from 'clsx';
 import skillsData from '@data/skills/skills.json';
-import { useTextHighlight } from '@shared/hooks';
+import { useIsHydrated, useTextHighlight } from '@shared/hooks';
 
 export const Skills = () => {
   const locale = useStore(localeAtom);
@@ -12,7 +12,7 @@ export const Skills = () => {
   const title = useTextHighlight(data.title);
 
   const theme = useStore(themeAtom);
-  const mounted = useStore(mountedAtom);
+  const isHydrated = useIsHydrated();
 
   return (
     <section className={cx(s.skills, 'section')} id="skills">
@@ -28,7 +28,7 @@ export const Skills = () => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              {mounted && (
+              {isHydrated && (
                 <img src={`/images/skills/${skill.id + (skill.hasTheme ? `-${theme}` : '')}.svg`} alt={skill.name} />
               )}
               <span>{skill.name}</span>

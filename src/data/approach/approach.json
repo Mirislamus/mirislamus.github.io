@@ -8,6 +8,7 @@
     "together": "Do you want to start a project together?",
     "email": "Copy email address",
     "success": "Email successfully copied",
+    "error": "Couldn't copy the email. Please try again",
     "developing": "Currently developing a Focus Timer",
     "pomotomo": "Pomotomo"
   },
@@ -20,6 +21,7 @@
     "together": "Хотите начать работать вместе?",
     "email": "Скопировать email",
     "success": "Email успешно скопирован",
+    "error": "Не удалось скопировать email. Попробуйте ещё раз",
     "developing": "В настоящее время разрабатываю Focus Timer",
     "pomotomo": "Pomotomo"
   },
@@ -32,6 +34,7 @@
     "together": "Birgalikda ishlashni boshlamoqchimisiz?",
     "email": "Elektron pochtani nusxalash",
     "success": "Elektron pochta muvaffaqiyatli ko'chirildi",
+    "error": "Elektron pochtani nusxalab bo'lmadi. Qayta urinib ko'ring",
     "developing": "Hozirda men Focus Timer-ni ishlab chiqmoqdaman",
     "pomotomo": "Pomotomo"
   }

@@ -3,6 +3,7 @@
   top: 20px;
   margin-top: 20px;
   z-index: var(--z-overlay);
+  view-transition-name: site-header;
 }
 
 .wrap {
@@ -57,6 +58,17 @@
 
 .langsSwitcher {
   position: relative;
+
+  .languageButton,
+  a {
+    transition-property: scale, color, background-color, border-color;
+    transition-duration: 150ms, 250ms, 250ms, 250ms;
+    transition-timing-function: ease-out, ease, ease, ease-in;
+
+    &:active {
+      scale: 0.96;
+    }
+  }
 }
 
 .langsList {
@@ -213,6 +225,19 @@
     top: 12px;
     .themesSwitcher {
       display: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .langsSwitcher {
+    .languageButton,
+    a {
+      transition-duration: 0s;
+
+      &:active {
+        scale: 1;
+      }
     }
   }
 }

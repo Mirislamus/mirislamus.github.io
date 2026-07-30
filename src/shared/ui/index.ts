@@ -5,6 +5,7 @@ export * from '@shared/ui/Avatar/Avatar';
 export * from '@shared/ui/ArrowControls/ArrowControls';
 export * from '@shared/ui/Tag/Tag';
 export * from '@shared/ui/LazyMotionWrapper';
+export * from '@shared/ui/ToastProvider/ToastProvider';
 
 export * from '@shared/ui/animations/Spotlight/Spotlight';
 export * from '@shared/ui/animations/RotatingText/RotatingText';

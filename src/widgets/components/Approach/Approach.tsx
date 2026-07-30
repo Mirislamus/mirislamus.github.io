@@ -1,10 +1,10 @@
 import { useStore } from '@nanostores/react';
-import { localeAtom, themeAtom, mountedAtom } from '@shared/stores';
+import { localeAtom, themeAtom } from '@shared/stores';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
-import { useCopyToClipboard, useTextHighlight } from '@shared/hooks';
+import { useCopyToClipboard, useIsHydrated, useTextHighlight } from '@shared/hooks';
 import { Button, StarBorder } from '@shared/ui';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
@@ -14,14 +14,18 @@ export const Approach = () => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
   const theme = useStore(themeAtom);
-  const mounted = useStore(mountedAtom);
+  const isHydrated = useIsHydrated();
 
   const [copyToClipboard] = useCopyToClipboard();
 
   const handleCopy = async () => {
-    await copyToClipboard(info.email).then(() => {
+    const copied = await copyToClipboard(info.email);
+
+    if (copied) {
       toast.success(data.success);
-    });
+    } else {
+      toast.error(data.error);
+    }
   };
 
   return (
@@ -88,7 +92,7 @@ export const Approach = () => {
               <span>{data.pomotomo}</span>
               <h3>{data.developing}</h3>
             </div>
-            {mounted && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />}
+            {isHydrated && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />}
           </article>
         </div>
       </div>

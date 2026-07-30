@@ -6,7 +6,7 @@ import s from './Header.module.scss';
 import cx from 'clsx';
 import { Logo } from '@shared/icons';
 import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
-import { useClickOutside, useActiveSection } from '@shared/hooks';
+import { useClickOutside, useActiveSection, useIsHydrated } from '@shared/hooks';
 import { ActionButton, Switcher } from '@shared/ui';
 import { setThemeMode } from '@utils/theme';
 import menuDataRaw from '@data/menu/menu.json';
@@ -17,6 +17,7 @@ const menuData = menuDataRaw as Record<string, MenuItem[]>;
 export const Header = () => {
   const locale = useStore(localeAtom);
   const mode = useStore(modeAtom);
+  const isHydrated = useIsHydrated();
   const menuItems = menuData[locale];
 
   const currentHref = locale === 'en' ? '/' : `/${locale}`;
@@ -56,19 +57,19 @@ export const Header = () => {
     {
       content: <Sun />,
       onClick: () => setThemeMode('light'),
-      isActive: mode === 'light',
+      isActive: isHydrated ? mode === 'light' : false,
       ariaLabel: 'Light theme',
     },
     {
       content: <Monitor />,
       onClick: () => setThemeMode('system'),
-      isActive: mode === 'system',
+      isActive: isHydrated ? mode === 'system' : true,
       ariaLabel: 'System theme',
     },
     {
       content: <Moon />,
       onClick: () => setThemeMode('dark'),
-      isActive: mode === 'dark',
+      isActive: isHydrated ? mode === 'dark' : false,
       ariaLabel: 'Dark theme',
     },
   ];
@@ -145,7 +146,13 @@ export const Header = () => {
             <div className={s.end}>
               <Switcher className={s.themesSwitcher} items={themesData} />
               <div className={s.langsSwitcher}>
-                <ActionButton ref={langsButtonRef} onClick={onLangClick} aria-label="Language selector" aria-expanded={langsIsOpen}>
+                <ActionButton
+                  ref={langsButtonRef}
+                  className={s.languageButton}
+                  onClick={onLangClick}
+                  aria-label="Language selector"
+                  aria-expanded={langsIsOpen}
+                >
                   {locale}
                 </ActionButton>
                 {langsIsOpen && (
@@ -154,7 +161,12 @@ export const Header = () => {
                   </div>
                 )}
               </div>
-              <ActionButton className={cx(s.hamburger, { [s.active]: menuIsOpen })} onClick={onMenuClick} aria-label="Menu" aria-expanded={menuIsOpen}>
+              <ActionButton
+                className={cx(s.hamburger, { [s.active]: menuIsOpen })}
+                onClick={onMenuClick}
+                aria-label="Menu"
+                aria-expanded={menuIsOpen}
+              >
                 <Menu />
                 <X />
               </ActionButton>

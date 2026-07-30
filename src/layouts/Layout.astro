@@ -3,7 +3,7 @@ import type { Locale } from '@typings/global';
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
 import { Header, Footer } from '@widgets/components';
-import { Toaster } from 'sonner';
+import { ToastProvider } from '@shared/ui';
 import { localeAtom } from '@shared/stores';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
@@ -20,27 +20,10 @@ localeAtom.set(locale);
       initThemeStore();
     </script>
     <Header client:visible />
-    <main>
+    <main class="locale-content">
       <slot />
     </main>
-    <Toaster
-      position="bottom-left"
-      duration={5000}
-      expand={false}
-      visibleToasts={1}
-      toastOptions={{
-        unstyled: true,
-        classNames: {
-          toast: 'toast',
-          title: 'toast__title',
-          description: 'toast__description',
-          actionButton: 'toast__action-button',
-          cancelButton: 'toast__cancel-button',
-          closeButton: 'toast__close-button',
-        },
-      }}
-      client:load
-    />
+    <ToastProvider client:load />
     <Footer client:visible />
   </body>
 </html>
