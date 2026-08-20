@@ -1,0 +1,1 @@
+import{i as e,t}from"./react.SIfiwpqq.js";var n=e(t(),1);function r(){let e=(0,n.useRef)(null);return(0,n.useEffect)(()=>{let t=e.current?.closest(`astro-island`);!t||t.dataset.imageHydrationReady===`true`||(t.dataset.imageHydrationReady=`true`,t.dispatchEvent(new CustomEvent(`exporent:image-island-ready`)))},[]),e}export{r as t};
