@@ -1,1 +1,0 @@
-var e=new Intl.NumberFormat(`ru-RU`,{maximumFractionDigits:0});function t(t){return`${e.format(t).replace(/[\u00a0\u202f]/g,` `)} UZS`}export{t};

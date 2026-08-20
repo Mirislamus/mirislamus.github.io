@@ -1,3 +1,0 @@
-<FilesMatch "^(?!send-form\.php$).*\.php$">
-  Require all denied
-</FilesMatch>
