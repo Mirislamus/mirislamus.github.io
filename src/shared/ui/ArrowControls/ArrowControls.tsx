@@ -2,16 +2,25 @@ import s from './ArrowControls.module.scss';
 import cx from 'clsx';
 import type { MouseEvent } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useRipple } from '@shared/hooks';
+import { useRipple } from '@hooks/useRipple';
 
 interface ArrowControlsProps {
   isNextDisabled?: boolean;
   isPrevDisabled?: boolean;
   onNext: () => void;
   onPrev: () => void;
+  nextLabel: string;
+  prevLabel: string;
 }
 
-export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }: ArrowControlsProps) => {
+export const ArrowControls = ({
+  isNextDisabled,
+  isPrevDisabled,
+  onNext,
+  onPrev,
+  nextLabel,
+  prevLabel,
+}: ArrowControlsProps) => {
   const ripple = useRipple();
 
   const handleNext = (e: MouseEvent<HTMLElement>) => {
@@ -31,17 +40,17 @@ export const ArrowControls = ({ isNextDisabled, isPrevDisabled, onNext, onPrev }
         className={cx(s.button, s.prev)}
         disabled={isPrevDisabled}
         onClick={handlePrev}
-        aria-label="Previous slide"
+        aria-label={prevLabel}
       >
         <ArrowLeft size={24} />
       </button>
-      <span className={s.line} />
+      <span className={s.line} aria-hidden="true" />
       <button
         type="button"
         className={cx(s.button, s.next)}
         disabled={isNextDisabled}
         onClick={handleNext}
-        aria-label="Next slide"
+        aria-label={nextLabel}
       >
         <ArrowRight size={24} />
       </button>

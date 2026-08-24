@@ -29,10 +29,10 @@
     transition: var(--transition);
 
     &:hover {
-      color: var(--accent);
+      color: var(--accent-text);
     }
     &.active {
-      color: var(--accent);
+      color: var(--accent-text);
     }
   }
 }

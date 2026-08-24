@@ -31,7 +31,7 @@ export const applyTheme = (theme: Theme) => {
 
   document.documentElement.setAttribute('data-theme', theme);
 
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
+  document.getElementById('theme-color')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
 };
 
 export const initTheme = () => {
@@ -68,6 +68,7 @@ export const initThemeStore = () => {
     const mode = getStoredThemeMode() ?? 'system';
     const theme = resolveTheme(mode);
 
+    applyTheme(theme);
     modeAtom.set(mode);
     themeAtom.set(theme);
   };

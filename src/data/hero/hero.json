@@ -1,20 +1,20 @@
 {
   "en": {
-    "role": "Front-end engineer",
+    "role": "Frontend Engineer",
     "title": "Mirislam Usmanov",
-    "text": "I'm a frontend engineer with over {{years}} years of professional experience. I specialize in website and web application development. I really love creating nice and user-friendly interfaces. Flexible approach to each client and task.",
-    "button": "Get in touch"
+    "text": "I’m a Frontend Engineer with {{years}}+ years of experience building fast, accessible websites and web applications. I focus on clear interfaces, reliable implementation, and a flexible approach to every product and client.",
+    "button": "Discuss a project"
   },
   "ru": {
-    "role": "Front-end engineer",
+    "role": "Frontend Engineer",
     "title": "Мирислам Усманов",
-    "text": "Я фронтенд-разработчик с более чем {{years}}-летним профессиональным опытом. Я специализируюсь на разработке веб-сайтов и веб-приложений. Мне нравится создавать красивые и удобные интерфейсы. Гибкий подход к каждому клиенту и задаче",
-    "button": "Связаться"
+    "text": "Я — Frontend Engineer с опытом более {{years}} лет. Создаю быстрые и удобные сайты и веб-приложения, внимательно отношусь к деталям интерфейса и подстраиваю процесс под задачи продукта и клиента.",
+    "button": "Обсудить проект"
   },
   "uz": {
-    "role": "Front-end engineer",
+    "role": "Frontend Engineer",
     "title": "Mirislam Usmonov",
-    "text": "Men {{years}} yildan ortiq professional tajribaga ega front-end dasturchiman. Veb-saytlar va veb-ilovalar ishlab chiqishga ixtisoslashganman. Chiroyli va foydalanuvchi uchun qulay interfeyslar yaratishni yaxshi ko‘raman. Har bir mijoz va vazifaga moslashuvchan yondashuvni afzal ko‘raman.",
-    "button": "Bog‘lanish"
+    "text": "Men {{years}}+ yillik tajribaga ega Frontend Engineerman. Tezkor va qulay veb-saytlar hamda veb-ilovalar yarataman, interfeys tafsilotlariga e’tibor beraman va ish jarayonini mahsulot hamda mijoz vazifalariga moslashtiraman.",
+    "button": "Loyihani muhokama qilish"
   }
 }

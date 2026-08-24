@@ -2,11 +2,14 @@
 import type { Locale } from '@typings/global';
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
-import { Header, Footer } from '@widgets/components';
-import { ToastProvider } from '@shared/ui';
+import Footer from '@widgets/components/Footer/Footer.astro';
+import { Header } from '@widgets/components/Header/Header';
+import { ToastProvider } from '@shared/ui/ToastProvider/ToastProvider';
 import { localeAtom } from '@shared/stores';
+import a11yData from '@data/a11y/a11y.json';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
+const a11y = a11yData[locale];
 
 localeAtom.set(locale);
 ---
@@ -15,15 +18,16 @@ localeAtom.set(locale);
 <html lang={locale}>
   <Head locale={locale} />
   <body>
+    <a class="skip-link" href="#main-content">{a11y.skipToContent}</a>
     <script>
       import { initThemeStore } from '@utils/theme';
       initThemeStore();
     </script>
     <Header client:visible />
-    <main class="locale-content">
+    <main id="main-content" class="locale-content" tabindex="-1">
       <slot />
     </main>
     <ToastProvider client:load />
-    <Footer client:visible />
+    <Footer />
   </body>
 </html>

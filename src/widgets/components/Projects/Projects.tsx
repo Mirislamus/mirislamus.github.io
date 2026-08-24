@@ -5,8 +5,10 @@ import projectDataRaw from '@data/projects/projects.json';
 import type { ProjectData } from '@typings/data';
 import s from './Projects.module.scss';
 import cx from 'clsx';
-import { useTextHighlight } from '@shared/hooks';
-import { Spotlight, Tag, Button } from '@shared/ui';
+import { useTextHighlight } from '@hooks/useTextHighlight';
+import { Button } from '@shared/ui/Button/Button';
+import { Tag } from '@shared/ui/Tag/Tag';
+import { Spotlight } from '@shared/ui/animations/Spotlight/Spotlight';
 
 import { ProjectSkeleton } from './ProjectSkeleton';
 
@@ -50,7 +52,13 @@ export const Projects = () => {
                     type="image/webp"
                     srcSet={`/images/projects/${project.id}.webp 1x, /images/projects/${project.id}@2x.webp 2x`}
                   />
-                  <img src={`/images/projects/${project.id}.jpg`} alt={project.name} loading="lazy" />
+                  <img
+                    src={`/images/projects/${project.id}.jpg`}
+                    alt={project.name}
+                    width="1200"
+                    height="630"
+                    loading="lazy"
+                  />
                 </picture>
               </div>
               <h3>{project.name}</h3>
@@ -68,9 +76,7 @@ export const Projects = () => {
           ))}
 
           {isLoading &&
-            Array.from({ length: skeletonCount }).map((_, index) => (
-              <ProjectSkeleton key={`skeleton-${index}`} />
-            ))}
+            Array.from({ length: skeletonCount }).map((_, index) => <ProjectSkeleton key={`skeleton-${index}`} />)}
         </div>
 
         {(hasMore || isLoading) && (

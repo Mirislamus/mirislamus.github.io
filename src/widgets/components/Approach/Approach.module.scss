@@ -20,8 +20,7 @@
   flex-direction: column;
   padding: var(--gap-24);
   overflow: hidden;
-  h3,
-  h4 {
+  h3 {
     line-height: 1.2;
   }
   &_1 {
@@ -32,7 +31,7 @@
       top: 0;
       right: 24px;
     }
-    h4 {
+    h3 {
       margin-top: auto;
       max-width: 348px;
     }
@@ -40,14 +39,14 @@
   &_2 {
     grid-column: span 4;
     span {
-      color: var(--grey-4);
+      color: var(--text-muted);
     }
     img {
       position: absolute;
       bottom: 24px;
       right: 24px;
     }
-    h4 {
+    h3 {
       max-width: 355px;
       margin-top: 10px;
     }
@@ -87,7 +86,7 @@
     }
     span {
       letter-spacing: 1.5px;
-      color: var(--grey-4);
+      color: var(--text-muted);
       text-transform: uppercase;
     }
     .item_text {
@@ -110,7 +109,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--gap-12);
-    h4 {
+    h3 {
       max-width: 340px;
     }
   }

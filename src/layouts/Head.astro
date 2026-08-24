@@ -1,5 +1,6 @@
 ---
 import metaData from '@data/meta/meta.json';
+import { info } from '@data/global';
 import type { Locale } from '@typings/global';
 
 interface Props {
@@ -15,6 +16,26 @@ const ogLocales: Record<Locale, string> = { en: 'en_US', ru: 'ru_RU', uz: 'uz_UZ
 
 const toUrl = (path: string) => new URL(path, site).href;
 const canonical = toUrl(localePaths[locale]);
+const profileUrl = toUrl('/');
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${canonical}#profile-page`,
+  url: canonical,
+  name: meta.title,
+  description: meta.description,
+  inLanguage: locale,
+  mainEntity: {
+    '@type': 'Person',
+    '@id': `${profileUrl}#person`,
+    name: meta.name,
+    jobTitle: 'Frontend Engineer',
+    url: profileUrl,
+    image: toUrl('/opengraph.jpg'),
+    sameAs: [info.telegram, info.github, info.linkedin],
+    knowsAbout: ['TypeScript', 'React', 'Next.js', 'Astro', 'JavaScript', 'HTML', 'CSS', 'Sass'],
+  },
+};
 ---
 
 <head>
@@ -22,23 +43,18 @@ const canonical = toUrl(localePaths[locale]);
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={meta.description} />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-
   <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" media="(prefers-color-scheme: light)" />
   <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+  <meta id="theme-color" name="theme-color" content="#ffffff" />
 
   <meta property="og:title" content={meta.title} />
   <meta property="og:description" content={meta.description} />
   <meta property="og:image" content={toUrl('/opengraph.jpg')} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={meta.imageAlt} />
   <meta property="og:url" content={canonical} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content={ogLocales[locale]} />
@@ -47,6 +63,7 @@ const canonical = toUrl(localePaths[locale]);
   <meta name="twitter:title" content={meta.title} />
   <meta name="twitter:description" content={meta.description} />
   <meta name="twitter:image" content={toUrl('/opengraph.jpg')} />
+  <meta name="twitter:image:alt" content={meta.imageAlt} />
 
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang="en" href={toUrl(localePaths.en)} />
@@ -55,6 +72,7 @@ const canonical = toUrl(localePaths[locale]);
   <link rel="alternate" hreflang="x-default" href={toUrl(localePaths.en)} />
 
   <title>{meta.title}</title>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
   <meta name="google-site-verification" content="Tzn3iaYEQS1a2OgHpkhiLftCIEJTMl_Psub9fGV1c0A" />
   <meta name="yandex-verification" content="f95a00340036f6fa" />
@@ -67,9 +85,7 @@ const canonical = toUrl(localePaths[locale]);
       const theme = stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
 
       document.documentElement.setAttribute('data-theme', theme);
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
+      document.getElementById('theme-color')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
     })();
   </script>
 </head>

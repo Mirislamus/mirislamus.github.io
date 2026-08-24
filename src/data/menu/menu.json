@@ -2,27 +2,27 @@
   "en": [
     { "label": "About", "url": "about" },
     { "label": "Approach", "url": "approach" },
-    { "label": "Skills", "url": "skills" },
     { "label": "Career", "url": "career" },
     { "label": "Projects", "url": "projects" },
+    { "label": "Skills", "url": "skills" },
     { "label": "Reviews", "url": "reviews" },
     { "label": "Contacts", "url": "contacts" }
   ],
   "ru": [
     { "label": "Обо мне", "url": "about" },
     { "label": "Подход", "url": "approach" },
-    { "label": "Навыки", "url": "skills" },
     { "label": "Опыт работы", "url": "career" },
     { "label": "Проекты", "url": "projects" },
+    { "label": "Навыки", "url": "skills" },
     { "label": "Отзывы", "url": "reviews" },
     { "label": "Контакты", "url": "contacts" }
   ],
   "uz": [
     { "label": "Haqida", "url": "about" },
     { "label": "Yondashuv", "url": "approach" },
-    { "label": "Ko'nikmalar", "url": "skills" },
     { "label": "Ish tajribasi", "url": "career" },
     { "label": "Loyihalar", "url": "projects" },
+    { "label": "Ko‘nikmalar", "url": "skills" },
     { "label": "Fikrlar", "url": "reviews" },
     { "label": "Aloqa", "url": "contacts" }
   ]

@@ -1,9 +1,4 @@
-import { gsap } from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
-import { useId } from 'react';
-
-gsap.registerPlugin(MorphSVGPlugin);
+import { useEffect, useId } from 'react';
 
 interface AvatarProps {
   className?: string;
@@ -16,18 +11,41 @@ export const Avatar = ({ className }: AvatarProps) => {
   const gradientId = `gradient_${idPrefix}`;
   const maskId = `mask_${idPrefix}`;
 
-  useGSAP(() => {
-    const timeline = gsap.timeline({
-      repeat: -1,
-      yoyo: true,
-      defaults: { ease: 'power1.inOut', duration: 2 },
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let isCancelled = false;
+    let killTimeline: (() => void) | undefined;
+
+    void Promise.all([import('gsap'), import('gsap/MorphSVGPlugin')]).then(([{ gsap }, { MorphSVGPlugin }]) => {
+      if (isCancelled) return;
+
+      gsap.registerPlugin(MorphSVGPlugin);
+      const timeline = gsap.timeline({
+        repeat: -1,
+        yoyo: true,
+        defaults: { ease: 'power1.inOut', duration: 2 },
+      });
+      timeline.to(`#${shape1Id}`, { morphSVG: `#${shape2Id}` });
+      killTimeline = () => timeline.kill();
     });
 
-    timeline.to(`#${shape1Id}`, { morphSVG: `#${shape2Id}` });
-  });
+    return () => {
+      isCancelled = true;
+      killTimeline?.();
+    };
+  }, [shape1Id, shape2Id]);
 
   return (
-    <svg width="260" height="260" viewBox="0 0 260 260" fill="none" className={className}>
+    <svg
+      aria-label="Mirislam Usmanov"
+      role="img"
+      width="260"
+      height="260"
+      viewBox="0 0 260 260"
+      fill="none"
+      className={className}
+    >
       <defs>
         <linearGradient
           id={gradientId}

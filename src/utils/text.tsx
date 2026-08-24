@@ -11,8 +11,8 @@ export const parseLinks = (text: string): ReactNode[] => {
 
   return parts.map((part, index) => {
     if (index % 2 === 1) {
-      const href = `https://${part.replace(/^\/+|[\/.]+$/g, '')}`;
-      const display = part.replace(/^\/+|[\/.]+$/g, '');
+      const href = `https://${part.replace(/^\/+|[/.]+$/g, '')}`;
+      const display = part.replace(/^\/+|[/.]+$/g, '');
       return (
         <a key={index} href={href} target="_blank" rel="noopener noreferrer">
           {display}

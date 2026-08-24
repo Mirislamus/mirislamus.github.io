@@ -2,87 +2,95 @@
 
 @layer base {
   :root {
-  --font: 'Inter', sans-serif;
-  --transition: 0.25s ease-in;
-  --transition-ease: 0.25s ease;
+    --font: 'Inter', sans-serif;
+    --transition: 0.25s ease-in;
+    --transition-ease: 0.25s ease;
 
-  --white: #ffffff;
+    --white: #ffffff;
 
-  --black: #121212;
-  --black-1: #181818;
-  --black-1-alpha: rgb(24 24 24 / 80%);
-  --black-1-alpha-2: rgb(24 24 24 / 35%);
-  --black-2: #202020;
-  --black-3: #282828;
-  --black-3-alpha: rgb(38 38 38 / 35%);
+    --black: #121212;
+    --black-1: #181818;
+    --black-1-alpha: rgb(24 24 24 / 80%);
+    --black-1-alpha-2: rgb(24 24 24 / 35%);
+    --black-2: #202020;
+    --black-3: #282828;
+    --black-3-alpha: rgb(38 38 38 / 35%);
 
-  --grey: #f5f5f5;
-  --grey-2: #eeeeee;
-  --grey-2-alpha: rgb(238 238 238 / 80%);
-  --grey-3: #dadada;
-  --grey-4: #9a9a9a;
-  --grey-5: #505050;
-  --grey-6: #707070;
+    --grey: #f5f5f5;
+    --grey-2: #eeeeee;
+    --grey-2-alpha: rgb(238 238 238 / 80%);
+    --grey-3: #dadada;
+    --grey-4: #9a9a9a;
+    --grey-5: #505050;
+    --grey-6: #707070;
 
-  --green: #44ff62;
-  --green-alpha: rgb(68 255 98 / 35%);
-  --orange: #ff8660;
-  --orange-alpha: rgb(255 134 96 / 35%);
-  --blue: #157ce1;
-  --purple: #ad5aff;
+    --green: #44ff62;
+    --green-alpha: rgb(68 255 98 / 35%);
+    --orange: #ff8660;
+    --orange-alpha: rgb(255 134 96 / 35%);
+    --blue: #157ce1;
+    --purple: #ad5aff;
 
-  --gradient: linear-gradient(180deg, var(--orange) 0%, var(--purple) 100%);
+    --gradient: linear-gradient(180deg, var(--orange) 0%, var(--purple) 100%);
 
-  --letter-spacing: 0.4px;
+    --letter-spacing: 0.4px;
 
-  --z-base: 1;
-  --z-dropdown: 10;
-  --z-overlay: 20;
-  --z-modal: 30;
-  --z-tooltip: 40;
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-overlay: 20;
+    --z-modal: 30;
+    --z-tooltip: 40;
 
-  --gap-4: 4px;
-  --gap-8: 8px;
-  --gap-10: 10px;
-  --gap-12: 12px;
-  --gap-16: 16px;
-  --gap-20: 20px;
-  --gap-24: 24px;
-  --gap-30: 30px;
+    --gap-4: 4px;
+    --gap-8: 8px;
+    --gap-10: 10px;
+    --gap-12: 12px;
+    --gap-16: 16px;
+    --gap-20: 20px;
+    --gap-24: 24px;
+    --gap-30: 30px;
 
-  --radius-7: 7px;
-  --radius-8: 8px;
-  --radius-10: 10px;
-  --radius-12: 12px;
-  --radius-14: 14px;
-  --radius-16: 16px;
-  --radius-20: 20px;
-  --radius-24: 24px;
-  --radius-50: 50px;
-  --radius-100: 100px;
+    --radius-7: 7px;
+    --radius-8: 8px;
+    --radius-10: 10px;
+    --radius-12: 12px;
+    --radius-14: 14px;
+    --radius-16: 16px;
+    --radius-20: 20px;
+    --radius-24: 24px;
+    --radius-50: 50px;
+    --radius-100: 100px;
 
-  &[data-theme='light'] {
-    --background: var(--white);
-    --text: var(--black);
-    --text-reverse: var(--white);
-    --primary: var(--grey);
-    --secondary: var(--grey-2);
-    --secondary-alpha: var(--grey-2-alpha);
-    --tertiary: var(--grey-3);
-    --accent: var(--orange);
-    --accent-alpha: var(--orange-alpha);
-  }
+    &[data-theme='light'] {
+      --background: var(--white);
+      --text: var(--black);
+      --text-reverse: var(--white);
+      --primary: var(--grey);
+      --secondary: var(--grey-2);
+      --secondary-alpha: var(--grey-2-alpha);
+      --tertiary: var(--grey-3);
+      --accent: var(--orange);
+    --accent-text: #ff6433;
+      --accent-contrast: var(--black);
+      --accent-alpha: var(--orange-alpha);
+      --text-muted: #666666;
+      color-scheme: light;
+    }
 
-  &[data-theme='dark'] {
-    --background: var(--black);
-    --text: var(--white);
-    --text-reverse: var(--black);
-    --primary: var(--black-2);
-    --secondary: var(--black-1);
-    --secondary-alpha: var(--black-1-alpha);
-    --tertiary: var(--black-3);
-    --accent: var(--green);
-    --accent-alpha: var(--green-alpha);
-  }
+    &[data-theme='dark'] {
+      --background: var(--black);
+      --text: var(--white);
+      --text-reverse: var(--black);
+      --primary: var(--black-2);
+      --secondary: var(--black-1);
+      --secondary-alpha: var(--black-1-alpha);
+      --tertiary: var(--black-3);
+      --accent: var(--green);
+      --accent-text: var(--green);
+      --accent-contrast: var(--black);
+      --accent-alpha: var(--green-alpha);
+      --text-muted: var(--grey-4);
+      color-scheme: dark;
+    }
   }
 }

@@ -1,21 +1,22 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { Approach, Hero, Skills, Career, Projects, Reviews } from '@widgets/components';
+import { Approach } from '@widgets/components/Approach/Approach';
+import { Career } from '@widgets/components/Career/Career';
+import Hero from '@widgets/components/Hero/Hero.astro';
+import { Projects } from '@widgets/components/Projects/Projects';
+import { Reviews } from '@widgets/components/Reviews/Reviews';
+import Skills from '@widgets/components/Skills/Skills.astro';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: undefined } },
-    { params: { lang: 'uz' } },
-    { params: { lang: 'ru' } }
-  ];
+  return [{ params: { lang: undefined } }, { params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
 }
 ---
 
 <Layout>
-  <Hero client:load />
+  <Hero />
   <Approach client:visible />
   <Career client:visible />
   <Projects client:visible />
-  <Skills client:visible />
+  <Skills />
   <Reviews client:visible />
 </Layout>

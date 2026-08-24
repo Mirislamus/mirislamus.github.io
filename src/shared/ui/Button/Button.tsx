@@ -2,7 +2,7 @@ import type { ReactNode, ElementType, MouseEvent } from 'react';
 import { noop } from '@utils/noop';
 import s from '@shared/ui/Button/Button.module.scss';
 import cx from 'clsx';
-import { useRipple } from '@shared/hooks';
+import { useRipple } from '@hooks/useRipple';
 
 interface ButtonProps {
   tag?: ElementType;

@@ -51,6 +51,20 @@
   }
 }
 
+.darkIcon {
+  display: none;
+}
+
+:global([data-theme='dark']) {
+  .lightIcon {
+    display: none;
+  }
+
+  .darkIcon {
+    display: block;
+  }
+}
+
 @media (width <= 1199px) {
   .skill {
     font-size: 12px;

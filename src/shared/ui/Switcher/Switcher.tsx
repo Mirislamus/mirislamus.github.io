@@ -19,28 +19,40 @@ interface SwitcherProps {
   isMoreRadius?: boolean;
 }
 
-export const Switcher = ({ items, variant = 'row', className, isMoreRadius, ref }: SwitcherProps & { ref?: React.Ref<HTMLDivElement> }) => {
-    return (
-      <div className={cx(s.switcher, s[variant], { [s.radius]: isMoreRadius }, className)} ref={ref}>
-        {items.map((item, index) => {
-          const { content, onClick = noop, href, isActive, ariaLabel } = item;
-          const buttonClasses = cx(s.button, { [s.active]: isActive });
-          const key = href ?? index;
+export const Switcher = ({
+  items,
+  variant = 'row',
+  className,
+  isMoreRadius,
+  ref,
+}: SwitcherProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div className={cx(s.switcher, s[variant], { [s.radius]: isMoreRadius }, className)} ref={ref}>
+      {items.map((item, index) => {
+        const { content, onClick = noop, href, isActive, ariaLabel } = item;
+        const buttonClasses = cx(s.button, { [s.active]: isActive });
+        const key = href ?? index;
 
-          if (href) {
-            return (
-              <a key={key} href={href} className={buttonClasses} aria-label={ariaLabel}>
-                {content}
-              </a>
-            );
-          }
-
+        if (href) {
           return (
-            <button key={key} type="button" onClick={onClick} className={buttonClasses} aria-label={ariaLabel}>
+            <a
+              key={key}
+              href={href}
+              className={buttonClasses}
+              aria-label={ariaLabel}
+              aria-current={isActive ? 'page' : undefined}
+            >
               {content}
-            </button>
+            </a>
           );
-        })}
-      </div>
-    );
-  };
+        }
+
+        return (
+          <button key={key} type="button" onClick={onClick} className={buttonClasses} aria-label={ariaLabel}>
+            {content}
+          </button>
+        );
+      })}
+    </div>
+  );
+};

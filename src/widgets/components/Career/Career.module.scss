@@ -58,7 +58,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      color: var(--grey-4);
+      color: var(--text-muted);
       margin-bottom: var(--gap-24);
       span:last-child {
         opacity: 0.7;
@@ -98,7 +98,7 @@
 
 .technologies {
   margin-top: auto;
-  color: var(--grey-4);
+  color: var(--text-muted);
 }
 
 .stack {

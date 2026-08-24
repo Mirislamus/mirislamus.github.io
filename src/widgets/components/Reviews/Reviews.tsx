@@ -5,15 +5,17 @@ import reviewsData from '@data/reviews/reviews.json';
 import s from './Reviews.module.scss';
 import cx from 'clsx';
 import { useRef } from 'react';
-import { ArrowControls } from '@shared/ui';
+import { ArrowControls } from '@shared/ui/ArrowControls/ArrowControls';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import a11yData from '@data/a11y/a11y.json';
 
 export const Reviews = () => {
   const locale = useStore(localeAtom);
   const data = reviewsData[locale];
+  const a11y = a11yData[locale];
 
   const swiperRef = useRef<SwiperType | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -30,6 +32,8 @@ export const Reviews = () => {
               <ArrowControls
                 onPrev={() => swiperRef.current?.slidePrev()}
                 onNext={() => swiperRef.current?.slideNext()}
+                prevLabel={a11y.previousReview}
+                nextLabel={a11y.nextReview}
               />
             </div>
           </div>
@@ -45,6 +49,11 @@ export const Reviews = () => {
               dynamicBullets: true,
               dynamicMainBullets: 1,
             }}
+            a11y={{
+              prevSlideMessage: a11y.previousReview,
+              nextSlideMessage: a11y.nextReview,
+              paginationBulletMessage: a11y.goToReview,
+            }}
             spaceBetween={16}
             slidesPerView={3}
             loop
@@ -59,7 +68,7 @@ export const Reviews = () => {
               <SwiperSlide className={s.slide} key={review.id}>
                 <article className={s.review}>
                   <p>{review.text}</p>
-                  <h4 className="text-xl bold">{review.author}</h4>
+                  <cite className="text-xl bold">{review.author}</cite>
                 </article>
               </SwiperSlide>
             ))}

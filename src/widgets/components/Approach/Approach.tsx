@@ -4,8 +4,11 @@ import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
 import approachData from '@data/approach/approach.json';
-import { useCopyToClipboard, useIsHydrated, useTextHighlight } from '@shared/hooks';
-import { Button, StarBorder } from '@shared/ui';
+import { useCopyToClipboard } from '@hooks/useCopyToClipboard';
+import { useIsHydrated } from '@hooks/useIsHydrated';
+import { useTextHighlight } from '@hooks/useTextHighlight';
+import { Button } from '@shared/ui/Button/Button';
+import { StarBorder } from '@shared/ui/animations/StarBorder/StarBorder';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -34,17 +37,17 @@ export const Approach = () => {
         <h2 className="title">{title}</h2>
         <div className={s.grid}>
           <article className={cx(s.item, s.item_1)}>
-            <img width="480" height="480" src="/images/cooperation.svg" alt="Cooperation" />
-            <h4>{data.cooperation}</h4>
+            <img width="480" height="480" src="/images/cooperation.svg" alt="" aria-hidden="true" />
+            <h3>{data.cooperation}</h3>
           </article>
           <article className={cx(s.item, s.item_2)}>
-            <img width="360" height="374" src="/images/flexibility.svg" alt="Flexibility" />
+            <img width="340" height="353" src="/images/flexibility.svg" alt="" aria-hidden="true" />
             <span className="text-sm">{data.approach}</span>
-            <h4>{data.flexibility}</h4>
+            <h3>{data.flexibility}</h3>
           </article>
           <article className={cx(s.item, s.item_3)}>
             <h3 className="text-xl">{data.ui}</h3>
-            <svg width="178" height="83" viewBox="0 0 178 83" fill="none">
+            <svg aria-hidden="true" focusable="false" width="178" height="83" viewBox="0 0 178 83" fill="none">
               <path
                 d="M167.897 0.0317383H10.1034C4.95386 0.0317383 0.779297 3.01116 0.779297 10.5V118.94C0.779297 126.429 4.95386 132.5 10.1034 132.5H167.897C173.046 132.5 177.221 126.429 177.221 118.94V10.5C177.221 3.01116 173.046 0.0317383 167.897 0.0317383Z"
                 fill="#989898"
@@ -79,7 +82,7 @@ export const Approach = () => {
           </article>
           <StarBorder color="var(--accent)" as="article" className={cx(s.item, s.item_4)}>
             <div className={s.itemInner}>
-              <h4>{data.together}</h4>
+              <h3>{data.together}</h3>
               <Button size="sm" onClick={handleCopy}>
                 <Copy size={14} />
                 {data.email}
@@ -92,7 +95,7 @@ export const Approach = () => {
               <span>{data.pomotomo}</span>
               <h3>{data.developing}</h3>
             </div>
-            {isHydrated && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="Code" />}
+            {isHydrated && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="" aria-hidden="true" />}
           </article>
         </div>
       </div>

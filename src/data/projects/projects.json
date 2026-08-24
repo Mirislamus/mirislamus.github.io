@@ -6,206 +6,206 @@
       {
         "id": "dafna",
         "name": "Dafna",
-        "text": "Online store for one of the leading furniture brands in Uzbekistan.",
+        "text": "Online store for one of Uzbekistan’s leading furniture brands.",
         "link": "https://dafna.uz",
         "color": "#009FE2",
-        "stack": ["react", "next.js", "redux", "css modules"]
+        "stack": ["React", "Next.js", "Redux", "CSS Modules"]
       },
       {
         "id": "prowatt",
         "name": "Prowatt",
-        "text": "Website for providing various electrical installation services in Tashkent",
+        "text": "Website offering electrical installation services across Tashkent.",
         "link": "https://prowatt.uz",
         "color": "#FFD700",
-        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+        "stack": ["Astro", "Nanostores", "Lucide", "CSS Modules"]
       },
       {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",
-        "text": "Pomotomo is your personal pomodoro focus timer to increase productivity. Ideal for focusing and completing tasks.",
+        "text": "Personal Pomodoro focus timer designed to support concentration and task completion.",
         "link": "https://mirislamus.github.io/pomodoro",
         "color": "#ED4455",
-        "stack": ["react", "vite", "chakra.ui", "zustand"]
+        "stack": ["React", "Vite", "Chakra UI", "Zustand"]
       },
       {
         "id": "humandone",
         "name": "Humandone",
-        "text": "Website for companies developing websites, web applications and design for the crypt and beyond.",
+        "text": "Corporate website for a studio building websites, web applications, and Web3 products.",
         "link": "https://humandone.com",
         "color": "#E13916",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "caldera",
         "name": "Caldera",
-        "text": "Landing page with scrolling animations and a variety of interactive content",
+        "text": "Landing page with scroll-driven animations and interactive content.",
         "link": "https://caldera.humandone.com",
         "color": "#FF2021",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "oceanverse",
         "name": "Oceanverse",
-        "text": "Landing page for an NFT project with interactive 3D graphics and scrolling animations",
+        "text": "NFT project landing page with interactive 3D graphics and scroll animations.",
         "link": "https://oceanverse.humandone.com",
         "color": "#BEF0BF",
-        "stack": ["nunjucks", "js", "gulp", "gsap"]
+        "stack": ["Nunjucks", "JavaScript", "Gulp", "GSAP"]
       },
       {
         "id": "age-computers",
         "name": "Age Computers",
-        "text": "Online store for computers, accessories, peripherals, and more. There is a constructor for building a PC.",
+        "text": "Online store for computers, components, and peripherals with a PC configurator.",
         "link": "https://age.uz",
         "color": "#1D42CD",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       },
       {
         "id": "easy-english",
         "name": "Easy English School",
-        "text": "A convenient educational platform for learning different languages. It's mostly English and Chinese.",
+        "text": "Educational platform for learning languages, primarily English and Chinese.",
         "link": "https://easyenglish.best",
         "color": "#9453FF",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       }
     ]
   },
   "ru": {
     "title": "Недавние |проекты|",
-    "loadMore": "Загрузить больше",
+    "loadMore": "Показать ещё",
     "items": [
       {
         "id": "dafna",
         "name": "Dafna",
-        "text": "Интернет магазин одного из ведущих мебельных брендов Узбекистана",
+        "text": "Интернет-магазин одного из ведущих мебельных брендов Узбекистана.",
         "link": "https://dafna.uz",
         "color": "#009FE2",
-        "stack": ["react", "next.js", "redux", "css modules"]
+        "stack": ["React", "Next.js", "Redux", "CSS Modules"]
       },
       {
         "id": "prowatt",
         "name": "Prowatt",
-        "text": "Сайт по оказанию разнообразных  электромонтажных услуг по Ташкенту",
+        "text": "Сайт электромонтажных услуг по Ташкенту.",
         "link": "https://prowatt.uz",
         "color": "#FFD700",
-        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+        "stack": ["Astro", "Nanostores", "Lucide", "CSS Modules"]
       },
       {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",
-        "text": "Pomotomo — это персональный таймер Pomodoro для повышения продуктивности. Подходит для концентрации и выполнения задач.",
+        "text": "Персональный Pomodoro-таймер для концентрации и выполнения задач.",
         "link": "https://mirislamus.github.io/pomodoro",
         "color": "#ED4455",
-        "stack": ["react", "vite", "chakra.ui", "zustand"]
+        "stack": ["React", "Vite", "Chakra UI", "Zustand"]
       },
       {
         "id": "humandone",
         "name": "Humandone",
-        "text": "Сайт для компаний, занимающихся разработкой веб-сайтов, веб-приложений и дизайна в сфере крипто и не только.",
+        "text": "Корпоративный сайт студии, которая создаёт сайты, веб-приложения и Web3-продукты.",
         "link": "https://humandone.com",
         "color": "#E13916",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "caldera",
         "name": "Caldera",
-        "text": "Лендинг c анимациями при скролле и разнообразным интерактивом",
+        "text": "Лендинг с анимациями при прокрутке и интерактивным контентом.",
         "link": "https://caldera.humandone.com",
         "color": "#FF2021",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "oceanverse",
         "name": "Oceanverse",
-        "text": "Лендинг для NFT-проекта с интерактивной 3D-графикой, анимациями при скролле",
+        "text": "Лендинг NFT-проекта с интерактивной 3D-графикой и анимациями при прокрутке.",
         "link": "https://oceanverse.humandone.com",
         "color": "#BEF0BF",
-        "stack": ["nunjucks", "js", "gulp", "gsap"]
+        "stack": ["Nunjucks", "JavaScript", "Gulp", "GSAP"]
       },
       {
         "id": "age-computers",
         "name": "Age Computers",
-        "text": "Интернет-магазин компьютеров, комплектующих, периферии и другого оборудования. Есть конструктор для сборки ПК.",
+        "text": "Интернет-магазин компьютеров, комплектующих и периферии с конфигуратором ПК.",
         "link": "https://age.uz",
         "color": "#1D42CD",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       },
       {
         "id": "easy-english",
         "name": "Easy English School",
-        "text": "Удобная образовательная платформа для изучения языков. В основном английский и китайский.",
+        "text": "Образовательная платформа для изучения языков, прежде всего английского и китайского.",
         "link": "https://easyenglish.best",
         "color": "#9453FF",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       }
     ]
   },
   "uz": {
     "title": "Oxirgi |loyihalar|",
-    "loadMore": "Ko'proq yuklash",
+    "loadMore": "Ko‘proq ko‘rsatish",
     "items": [
       {
         "id": "dafna",
         "name": "Dafna",
-        "text": "O‘zbekistondagi yetakchi mebel brendlaridan birining internet do‘koni",
+        "text": "O‘zbekistondagi yetakchi mebel brendlaridan birining internet-do‘koni.",
         "link": "https://dafna.uz",
         "color": "#009FE2",
-        "stack": ["react", "next.js", "redux", "css modules"]
+        "stack": ["React", "Next.js", "Redux", "CSS Modules"]
       },
       {
         "id": "prowatt",
         "name": "Prowatt",
-        "text": "Toshkent shahri bo‘ylab turli xil elektr montaj xizmatlarini ko‘rsatuvchi sayt",
+        "text": "Toshkent bo‘ylab elektr montaj xizmatlarini taklif qiluvchi sayt.",
         "link": "https://prowatt.uz",
         "color": "#FFD700",
-        "stack": ["astro", "nanostores", "lucide", "ccs modules"]
+        "stack": ["Astro", "Nanostores", "Lucide", "CSS Modules"]
       },
       {
         "id": "pomotomo",
         "name": "Pomotomo Focus Timer",
-        "text": "Pomotomo — bu samaradorlikni oshirish uchun shaxsiy Pomodoro fokus taymeri. Diqqatni jamlash va vazifalarni bajarish uchun qulay.",
+        "text": "Diqqatni jamlash va vazifalarni bajarish uchun shaxsiy Pomodoro taymeri.",
         "link": "https://mirislamus.github.io/pomodoro",
         "color": "#ED4455",
-        "stack": ["react", "vite", "chakra.ui", "zustand"]
+        "stack": ["React", "Vite", "Chakra UI", "Zustand"]
       },
       {
         "id": "humandone",
         "name": "Humandone",
-        "text": "Veb-saytlar, veb-ilovalar va kripto sohasida hamda undan tashqarida dizayn ishlab chiqadigan kompaniyalar uchun sayt.",
+        "text": "Saytlar, veb-ilovalar va Web3 mahsulotlarini yaratuvchi studiyaning korporativ sayti.",
         "link": "https://humandone.com",
         "color": "#E13916",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "caldera",
         "name": "Caldera",
-        "text": "Skroll va turli interaktivlar bilan animatsiyalarga ega landing",
+        "text": "Skroll animatsiyalari va interaktiv kontentga ega landing sahifa.",
         "link": "https://caldera.humandone.com",
         "color": "#FF2021",
-        "stack": ["react", "gatsby", "chakra.ui", "gsap"]
+        "stack": ["React", "Gatsby", "Chakra UI", "GSAP"]
       },
       {
         "id": "oceanverse",
         "name": "Oceanverse",
-        "text": "Interaktiv 3D-grafika va skroll animatsiyalarga ega NFT-loyihasi uchun landing",
+        "text": "Interaktiv 3D-grafika va skroll animatsiyalariga ega NFT loyihasi uchun landing sahifa.",
         "link": "https://oceanverse.humandone.com",
         "color": "#BEF0BF",
-        "stack": ["nunjucks", "js", "gulp", "gsap"]
+        "stack": ["Nunjucks", "JavaScript", "Gulp", "GSAP"]
       },
       {
         "id": "age-computers",
         "name": "Age Computers",
-        "text": "Kompyuterlar, aksessuarlar, periferik qurilmalar va boshqa mahsulotlar uchun onlayn do‘kon. Shaxsiy kompyuter yig‘ish uchun konstruktor mavjud.",
+        "text": "Kompyuterlar, qismlar va periferiya uchun internet-do‘kon, shuningdek PC konfiguratori.",
         "link": "https://age.uz",
         "color": "#1D42CD",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       },
       {
         "id": "easy-english",
         "name": "Easy English School",
-        "text": "Chet tillarini o‘rganish uchun qulay ta’lim platformasi. Asosan ingliz va xitoy tillari.",
+        "text": "Asosan ingliz va xitoy tillarini o‘rganish uchun ta’lim platformasi.",
         "link": "https://easyenglish.best",
         "color": "#9453FF",
-        "stack": ["nunjucks", "scss", "js", "gulp"]
+        "stack": ["Nunjucks", "Sass", "JavaScript", "Gulp"]
       }
     ]
   }

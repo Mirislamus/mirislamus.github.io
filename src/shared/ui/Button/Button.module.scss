@@ -21,7 +21,7 @@
 }
 
 .fill {
-  color: var(--text-reverse);
+  color: var(--accent-contrast);
   border: 1px solid var(--accent);
   background-color: var(--accent);
   &:hover {
@@ -38,11 +38,11 @@
   border: 1px solid var(--tertiary);
   &:hover {
     border-color: var(--grey-5);
-    color: var(--accent);
+    color: var(--accent-text);
   }
   &:focus {
     border-color: var(--grey-6);
-    color: var(--accent);
+    color: var(--accent-text);
   }
 }
 

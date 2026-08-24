@@ -4,7 +4,8 @@ import s from './Career.module.scss';
 import cx from 'clsx';
 import careerDataRaw from '@data/career/career.json';
 import type { CareerData } from '@typings/data';
-import { ArrowControls, Tag } from '@shared/ui';
+import { ArrowControls } from '@shared/ui/ArrowControls/ArrowControls';
+import { Tag } from '@shared/ui/Tag/Tag';
 
 const careerData = careerDataRaw as Record<string, CareerData>;
 import { useRef, useState } from 'react';
@@ -12,17 +13,18 @@ import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
-import { useTextHighlight } from '@shared/hooks';
+import { useTextHighlight } from '@hooks/useTextHighlight';
 import { parseLinks } from '@utils/text';
+import a11yData from '@data/a11y/a11y.json';
 
 export const Career = () => {
   const locale = useStore(localeAtom);
   const data = careerData[locale];
+  const a11y = a11yData[locale];
   const title = useTextHighlight(data.title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
-
 
   const handleSlideChange = (swiper: SwiperType) => {
     setIsPrevDisabled(swiper.isBeginning);
@@ -39,6 +41,8 @@ export const Career = () => {
             onNext={() => swiperRef.current?.slideNext()}
             isPrevDisabled={isPrevDisabled}
             isNextDisabled={isNextDisabled}
+            prevLabel={a11y.previousSlide}
+            nextLabel={a11y.nextSlide}
           />
         </div>
         <Swiper
@@ -48,6 +52,10 @@ export const Career = () => {
           spaceBetween={0}
           slidesPerView="auto"
           freeMode
+          a11y={{
+            prevSlideMessage: a11y.previousSlide,
+            nextSlideMessage: a11y.nextSlide,
+          }}
           onSwiper={swiper => {
             swiperRef.current = swiper;
             handleSlideChange(swiper);

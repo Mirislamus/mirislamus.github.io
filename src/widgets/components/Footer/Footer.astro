@@ -1,0 +1,45 @@
+---
+import footerData from '@data/footer/footer.json';
+import { info } from '@data/global';
+import { Button } from '@shared/ui/Button/Button';
+import type { Locale } from '@typings/global';
+import s from './Footer.module.scss';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const { ready, text } = footerData[locale];
+---
+
+<footer id="contacts" class={s.footer}>
+  <div class="container">
+    <div class={s.wrapper}>
+      <div class={s.content}>
+        <h2 class="text-xxl">
+          <strong>{ready}</strong>
+          <span class:list={[s.footerText, 'accent']}>{text}</span>
+        </h2>
+        <div class={s.buttons}>
+          <Button variant="outline" isFluid tag="a" href={`mailto:${info.email}`} isExternal>
+            {info.email}
+          </Button>
+          <Button variant="outline" isFluid tag="a" href={info.telegram} isExternal>
+            {info.telegram.replace('https://', '')}
+          </Button>
+        </div>
+      </div>
+      <div class={s.bottom}>
+        <span>&copy; {new Date().getFullYear()} mirislamus.github.io</span>
+        <ul class="list-reset">
+          <li>
+            <a href={info.telegram} target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+          </li>
+          <li>
+            <a href={info.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </li>
+          <li>
+            <a href={info.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

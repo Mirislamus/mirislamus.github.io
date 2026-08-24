@@ -26,10 +26,10 @@
     display: block;
     font-size: vh(24);
     margin-bottom: vh(22);
-    color: var(--accent);
+    color: var(--accent-text);
   }
   .text {
-    color: var(--grey-4);
+    color: var(--text-muted);
     font-size: vh(18);
     width: min(vh(540), 100%);
     margin-inline: auto;
@@ -42,7 +42,7 @@
   margin-top: vh(22);
   button,
   a {
-    width: vh(170);
+    width: vh(200);
     font-size: vh(18);
     height: vh(48);
     border-radius: vh(100);

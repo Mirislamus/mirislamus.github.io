@@ -1,4 +1,4 @@
 import type { SVGProps } from 'react';
-export interface Icon extends SVGProps<SVGSVGElement> {}
+export type Icon = SVGProps<SVGSVGElement>;
 
 export * from '@icons/Logo';

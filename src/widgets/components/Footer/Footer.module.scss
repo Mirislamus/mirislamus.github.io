@@ -8,6 +8,11 @@
   }
 }
 
+.footerText {
+  display: block;
+  animation: footer-text-enter 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -35,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--grey-4);
+  color: var(--text-muted);
 
   ul,
   a {
@@ -52,6 +57,19 @@
     &:hover {
       color: var(--text);
     }
+  }
+}
+
+@keyframes footer-text-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerText {
+    animation: none;
   }
 }
 

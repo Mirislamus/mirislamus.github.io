@@ -1,0 +1,46 @@
+---
+import skillsData from '@data/skills/skills.json';
+import type { Locale } from '@typings/global';
+import s from './Skills.module.scss';
+
+const locale = (Astro.currentLocale ?? 'en') as Locale;
+const data = skillsData.data[locale];
+const titleParts = data.title.split('|');
+---
+
+<section class:list={[s.skills, 'section']} id="skills">
+  <div class="container">
+    <h2 class="title">{titleParts[0]}<span class="accent">{titleParts[1]}</span>{titleParts[2]}</h2>
+    <div class={s.grid}>
+      {
+        skillsData.items.map(skill => (
+          <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
+            {skill.hasTheme ? (
+              <>
+                <img
+                  class={s.lightIcon}
+                  src={`/images/skills/${skill.id}-light.svg`}
+                  width="72"
+                  height="72"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <img
+                  class={s.darkIcon}
+                  src={`/images/skills/${skill.id}-dark.svg`}
+                  width="72"
+                  height="72"
+                  alt=""
+                  aria-hidden="true"
+                />
+              </>
+            ) : (
+              <img src={`/images/skills/${skill.id}.svg`} width="72" height="72" alt="" aria-hidden="true" />
+            )}
+            <span>{skill.name}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
