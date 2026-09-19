@@ -29,7 +29,7 @@ export default defineConfig([
     ...pluginReact.configs.flat.recommended,
     settings: {
       react: {
-        version: 'detect',
+        version: '19.0',
       },
     },
   },
