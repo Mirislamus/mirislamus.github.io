@@ -6,6 +6,11 @@ import s from './Skills.module.scss';
 
 const locale = getLocale(Astro);
 const { skills } = getSiteData(locale);
+
+// Columns for a group so that its rows are as even as possible and none is left half empty:
+// 9 tiles at most 5 across make 5 + 4, 6 tiles make 3 + 3, 5 tiles make 3 + 2 (never a single row, so the
+// groups side by side have the same height). The tiles of a row stretch to fill it.
+const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Math.ceil(count / max)));
 ---
 
 <section class:list={[s.skills, 'section']} id="skills">
@@ -19,7 +24,10 @@ const { skills } = getSiteData(locale);
           <h3 id={`skills-${group.id}`} class="text-lg medium">
             {group.title}
           </h3>
-          <div class={s.grid}>
+          <div
+            class={s.grid}
+            style={`--cols: ${columns(group.items.length, 5)}; --cols-sm: ${columns(group.items.length, 3)}`}
+          >
             {group.items.map(skill => (
               <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
                 {skill.hasTheme ? (

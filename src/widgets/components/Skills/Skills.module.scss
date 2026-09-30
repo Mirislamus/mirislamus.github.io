@@ -21,10 +21,14 @@
   }
 }
 
+// Rows are filled edge to edge: the tiles of the last row stretch instead of leaving a gap.
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-  gap: var(--gap-12);
+  --gap: var(--gap-12);
+  --columns: var(--cols);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
 }
 
 .skill {
@@ -37,7 +41,10 @@
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-16);
   padding: 15px;
-  aspect-ratio: 1;
+  height: 110px;
+  // The 0.5px keeps rounding from pushing the last tile of a row onto the next one.
+  flex: 1 1 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns) - 0.5px);
+  min-width: 0;
   transition: var(--transition-ease);
   position: relative;
 
@@ -108,14 +115,18 @@
 
 @media (width <= 767px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-    gap: var(--gap-10);
+    --gap: var(--gap-10);
+    --columns: var(--cols-sm);
+  }
+
+  .skill {
+    height: 96px;
   }
 }
 
 @media (width <= 575px) {
   .grid {
-    gap: var(--gap-8);
+    --gap: var(--gap-8);
   }
 
   .skill {

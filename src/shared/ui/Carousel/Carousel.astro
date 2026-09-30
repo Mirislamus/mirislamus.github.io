@@ -42,6 +42,8 @@ const { a11y, labelledby, options = {}, class: className } = Astro.props;
 
     [data-embla-container] {
       display: flex;
+      /* Horizontal swipes belong to the carousel; without this a touch screen scrolls the page instead. */
+      touch-action: pan-y pinch-zoom;
     }
 
     [data-embla-slide] {
