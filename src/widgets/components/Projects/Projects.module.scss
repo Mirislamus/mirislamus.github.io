@@ -80,6 +80,12 @@
     img {
       transform: scale(1.12);
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      img {
+        transform: none;
+      }
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {

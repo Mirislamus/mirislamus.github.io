@@ -10,7 +10,13 @@
 
 .footerText {
   display: block;
-  animation: footer-text-enter 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  // Plays as the footer scrolls into view (it used to run at page load, off screen, so nobody saw it).
+  @supports (animation-timeline: view()) {
+    animation: footer-text-enter linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
 }
 
 .wrapper {

@@ -62,5 +62,9 @@
 
   *:focus-visible {
     box-shadow: 0 0 0 3px var(--accent-alpha);
+    // Invisible normally, but forced-colors (Windows high contrast) repaints it in a system color,
+    // so the focus ring never disappears there.
+    outline: 2px solid transparent;
+    outline-offset: 2px;
   }
 }
