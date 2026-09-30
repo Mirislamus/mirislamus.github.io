@@ -51,6 +51,8 @@ export const footerSchema = z.strictObject({ ready: text, text });
 // Only used by the printable CV page; none of this appears on the site itself.
 export const cvSchema = z.strictObject({
   contacts: text,
+  // The profile text of the CV (only there): `{{years}}` is the years of experience.
+  summary: z.strictObject({ title: text, paragraphs: z.array(text).min(1) }),
   education: z.strictObject({
     title: text,
     items: z.array(z.strictObject({ institution: text, program: text, year: text })).min(1),

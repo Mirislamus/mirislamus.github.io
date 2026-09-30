@@ -11,7 +11,7 @@ test.describe('CV pages and PDF files', () => {
 
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
       await expect(page.locator('h1')).toBeVisible();
-      await expect(page.locator('h2')).toHaveCount(5);
+      await expect(page.locator('h2')).toHaveCount(6);
       await expect(page.locator('article a[href^="mailto:"]')).toHaveCount(1);
 
       const text = await page.locator('article').innerText();

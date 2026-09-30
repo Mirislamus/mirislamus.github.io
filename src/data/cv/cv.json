@@ -1,6 +1,18 @@
 {
   "en": {
     "contacts": "Contacts",
+    "summary": {
+      "title": "Profile",
+      "paragraphs": [
+        "Frontend Developer with {{years}}+ years of commercial experience. For the last several years I have specialized in building web applications with React, TypeScript and Next.js.",
+        "I actively use AI tools and agents to speed up development, refactoring and routine automation.",
+        "Extensive experience with SSR, SSG, ISR, state management, CI/CD, performance optimization, Storybook and unit testing. I have built projects from scratch, refactored existing applications, supported production systems and coordinated a small team.",
+        "I can break tasks down on my own, work with designers and backend developers, run code reviews and take a product through to release.",
+        "I understand that development is a tool for solving business problems. I choose an approach flexibly depending on the situation and look for the balance between development speed and the quality of the solution.",
+        "I adapt easily to new processes, pick up tools quickly and dive into the business logic of a project. I can explain complex technical decisions in plain language and work effectively with the team.",
+        "I pay particular attention to performance, quality of implementation and usability of interfaces. I do not just close a task: I try to make the product convenient and pleasant to use."
+      ]
+    },
     "education": {
       "title": "Education",
       "items": [
@@ -19,13 +31,31 @@
     "languages": {
       "title": "Languages",
       "items": [
-        { "name": "Russian", "level": "Native" },
-        { "name": "English", "level": "B1" }
+        {
+          "name": "Russian",
+          "level": "Native"
+        },
+        {
+          "name": "English",
+          "level": "B1"
+        }
       ]
     }
   },
   "ru": {
     "contacts": "Контакты",
+    "summary": {
+      "title": "О себе",
+      "paragraphs": [
+        "Frontend Developer с {{years}}+ годами коммерческого опыта. Последние несколько лет специализируюсь на разработке веб-приложений на React, TypeScript и Next.js.",
+        "Активно использую AI-инструменты и агентов для буста разработки, рефакторинга и автоматизации рутинных задач.",
+        "Много опыта с SSR, SSG, ISR, управлением состоянием, CI/CD, оптимизацией производительности, Storybook и модульным тестированием. Есть опыт разработки проектов с нуля, рефакторинга существующих приложений, поддержки production-систем и координации небольшой команды.",
+        "Умею самостоятельно декомпозировать задачи, взаимодействовать с дизайнерами и backend-разработчиками, проводить код-ревью и доводить продукт до релиза.",
+        "Понимаю, что разработка — это инструмент для решения задач бизнеса. Умею гибко выбирать подход в зависимости от ситуации и находить баланс между скоростью разработки и качеством решения.",
+        "Легко адаптируюсь к новым процессам, быстро осваиваю инструменты и погружаюсь в бизнес-логику проекта. Могу объяснять сложные технические решения понятным языком и эффективно взаимодействовать с командой.",
+        "Особое внимание уделяю производительности, качеству реализации и удобству интерфейсов. Я не просто закрываю задачу, а стараюсь сделать так, чтобы продуктом было удобно и приятно пользоваться."
+      ]
+    },
     "education": {
       "title": "Образование",
       "items": [
@@ -44,13 +74,31 @@
     "languages": {
       "title": "Языки",
       "items": [
-        { "name": "Русский", "level": "Родной" },
-        { "name": "Английский", "level": "B1" }
+        {
+          "name": "Русский",
+          "level": "Родной"
+        },
+        {
+          "name": "Английский",
+          "level": "B1"
+        }
       ]
     }
   },
   "uz": {
     "contacts": "Aloqa",
+    "summary": {
+      "title": "Men haqimda",
+      "paragraphs": [
+        "{{years}}+ yillik tijoriy tajribaga ega Frontend Developer. So‘nggi yillarda React, TypeScript va Next.js yordamida veb-ilovalar yaratishga ixtisoslashganman.",
+        "Ishlab chiqishni tezlashtirish, refaktoring va muntazam vazifalarni avtomatlashtirish uchun AI vositalari va agentlardan faol foydalanaman.",
+        "SSR, SSG, ISR, holat boshqaruvi, CI/CD, unumdorlikni optimallashtirish, Storybook va modul testlash bo‘yicha katta tajribam bor. Loyihalarni noldan yaratganman, mavjud ilovalarni refaktoring qilganman, production tizimlarni qo‘llab-quvvatlaganman va kichik jamoani muvofiqlashtirganman.",
+        "Vazifalarni mustaqil dekompozitsiya qila olaman, dizaynerlar va backend-dasturchilar bilan hamkorlik qilaman, kod-revyu o‘tkazaman va mahsulotni relizgacha olib boraman.",
+        "Dasturlash biznes vazifalarini hal qilish vositasi ekanini tushunaman. Vaziyatga qarab yondashuvni moslashuvchan tanlayman va ishlab chiqish tezligi bilan yechim sifati o‘rtasida muvozanat topaman.",
+        "Yangi jarayonlarga oson moslashaman, vositalarni tez o‘zlashtiraman va loyihaning biznes-mantig‘iga chuqur kirib boraman. Murakkab texnik qarorlarni oddiy tilda tushuntira olaman va jamoa bilan samarali hamkorlik qilaman.",
+        "Unumdorlik, amalga oshirish sifati va interfeyslarning qulayligiga alohida e’tibor beraman. Men vazifani shunchaki yopmayman: mahsulotdan foydalanish qulay va yoqimli bo‘lishi uchun harakat qilaman."
+      ]
+    },
     "education": {
       "title": "Ta’lim",
       "items": [
@@ -69,8 +117,14 @@
     "languages": {
       "title": "Tillar",
       "items": [
-        { "name": "Rus tili", "level": "Ona tili" },
-        { "name": "Ingliz tili", "level": "B1" }
+        {
+          "name": "Rus tili",
+          "level": "Ona tili"
+        },
+        {
+          "name": "Ingliz tili",
+          "level": "B1"
+        }
       ]
     }
   }

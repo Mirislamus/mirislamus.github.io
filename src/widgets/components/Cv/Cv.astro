@@ -18,6 +18,8 @@ const strip = (value: string) => value.replace(/^https?:\/\//, '').replace(/\/$/
 const contacts = [info.email, strip(site.href), strip(info.github), strip(info.linkedin), strip(info.telegram)];
 const hrefs = [`mailto:${info.email}`, site.href, info.github, info.linkedin, info.telegram];
 
+const years = getExperienceYears();
+
 // The most recent job comes first, the way a CV is read.
 const jobs = [...career.items].reverse();
 ---
@@ -26,7 +28,6 @@ const jobs = [...career.items].reverse();
   <header class={s.header}>
     <h1>{hero.title}</h1>
     <p class={s.role}>{hero.role}</p>
-    <p class={s.intro}>{toPlainText(hero.text, { years: getExperienceYears() })}</p>
     <ul class={s.contacts} aria-label={cv.contacts}>
       {contacts.map((label, index) => (
         <li>
@@ -35,6 +36,13 @@ const jobs = [...career.items].reverse();
       ))}
     </ul>
   </header>
+
+  <section class={s.summary}>
+    <h2>{cv.summary.title}</h2>
+    {cv.summary.paragraphs.map(paragraph => (
+      <p>{toPlainText(paragraph, { years })}</p>
+    ))}
+  </section>
 
   <section>
     <h2>{toPlainText(career.title)}</h2>

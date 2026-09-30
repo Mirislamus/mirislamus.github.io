@@ -54,11 +54,6 @@
   font-weight: 500;
 }
 
-.intro {
-  margin-top: 8pt;
-  color: #333;
-}
-
 .contacts {
   display: flex;
   flex-wrap: wrap;
@@ -67,6 +62,14 @@
   padding: 0;
   list-style: none;
   font-size: 9pt;
+}
+
+.summary {
+  color: #222;
+
+  p {
+    margin-top: 4pt;
+  }
 }
 
 .item {
