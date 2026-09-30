@@ -6,12 +6,32 @@
   }
 }
 
-.reviews .slide {
-  height: auto;
+.wrapper {
+  position: relative;
+}
+
+// The gutter between cards is the left padding of each slide, cancelled out here.
+.track {
+  margin-left: calc(-1 * var(--gap-16));
+}
+
+.slide {
+  display: flex;
+  flex-basis: 100%;
+  padding-left: var(--gap-16);
+
+  @media (width >= 768px) {
+    flex-basis: 50%;
+  }
+
+  @media (width >= 1024px) {
+    flex-basis: calc(100% / 3);
+  }
 }
 
 .review {
   display: flex;
+  flex: 1;
   flex-direction: column;
   padding: 24px;
   gap: 12px;
@@ -19,7 +39,6 @@
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
   line-height: 1.5;
-  height: 100%;
   p {
     color: var(--text-muted);
   }
@@ -35,47 +54,39 @@
   gap: var(--gap-20);
 }
 
-.wrapper {
-  position: relative;
-}
-
 .pagination {
-  --swiper-pagination-color: var(--secondary-alpha);
-  --swiper-pagination-bullet-size: 25px;
-  --swiper-pagination-bullet-border-radius: 50%;
-  --swiper-pagination-bullet-inactive-color: var(--secondary-alpha);
-  --swiper-pagination-bullet-inactive-opacity: 1;
-  transform: none !important;
-  position: static;
-  > * {
-    transition: var(--transition-ease) !important;
-    background-color: var(--secondary-alpha);
-    transform: none !important;
-    border: 1px solid var(--tertiary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-8);
+
+  &:empty {
+    display: none;
+  }
+
+  button {
+    position: relative;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
+    background-color: var(--secondary-alpha);
+    border: 1px solid var(--tertiary);
+    transition: var(--transition-ease);
+
     &::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       width: 15px;
       height: 15px;
-      background-color: var(--accent);
-      border-radius: var(--swiper-pagination-bullet-border-radius);
       margin: auto;
-      scale: 0 0;
+      border-radius: 50%;
+      background-color: var(--accent);
+      scale: 0;
       transition: var(--transition-ease);
     }
 
-    &:global(.swiper-pagination-bullet-active) {
-      &::after {
-        scale: 1;
-      }
+    &[aria-current='true']::after {
+      scale: 1;
     }
   }
 }
@@ -84,11 +95,11 @@
   .wrapper {
     padding-bottom: 48px;
   }
+
   .pagination {
-    --swiper-pagination-bottom: 0;
-    --swiper-pagination-top: auto;
     position: absolute;
     bottom: 0;
-    transform: translateX(-50%) !important;
+    left: 50%;
+    translate: -50% 0;
   }
 }

@@ -109,9 +109,20 @@
 | RF-09 | Header                                   | ✅     | e550134 |
 | RF-10 | Avatar без GSAP                          | ✅     | 8549a96 |
 | RF-11 | Approach, копирование email, уведомления | ✅     | 99eb730 |
-| RF-12 | Карусели Career и Reviews на Embla       | ⬜     |         |
+| RF-12 | Карусели Career и Reviews на Embla       | ✅     | pending |
 | RF-13 | Projects                                 | ⬜     |         |
 | RF-14 | Удаление React-инфраструктуры            | ⬜     |         |
+
+**RF-12**
+
+- [x] Swiper заменён на ванильный `embla-carousel` 8.6.0 без плагинов; общий `Carousel.astro` + custom element `<embla-carousel-root>` (`carousel.ts`), Embla грузится отдельным чанком (7,4 КБ gzip) при приближении карусели к экрану
+- [x] Без JS и до инициализации карусели листаются нативно (`overflow-x: auto` + scroll-snap)
+- [x] Career: `dragFree`, без цикла, кнопки `disabled` на краях; подпись «Технологии» есть у каждой карточки (у всех, кроме первой, визуально скрыта) (закрывает C7)
+- [x] Reviews: цикл сохранён без клонов слайдов (закрывает X7), 1/2/3 карточки по брейкпоинтам, свои точки пагинации без `!important` (закрывает C6)
+- [x] Доступность: `role="region"`, локализованные `aria-roledescription` и «N из M» (новые ключи `carousel`, `slide`, `slideOf`), `inert` у невидимых слайдов, стрелки на клавиатуре, при reduced motion прокрутка мгновенная
+- [x] Удалены Swiper, `lucide-react`, React-`Career`, `Reviews`, `ArrowControls`; `Tag.astro` создан (React-`Tag` живёт до RF-13)
+- [x] Найдена и исправлена регрессия: Prettier добавлял пробелы внутри ссылок `RichText.astro`; компонент теперь собирает HTML строкой
+- [x] e2e `tests/e2e/carousels.spec.ts` (10 тестов); всего 70 сценариев проходят; бандл сразу 76,8 КБ (было 176)
 
 **RF-11**
 

@@ -75,23 +75,29 @@
   }
 }
 
-.swiper {
-  > div {
-    &::before {
-      content: '';
-      display: flex;
-      background-color: var(--secondary);
-      border: 1px solid var(--tertiary);
-      height: 20px;
-      width: 1680px;
-      border-radius: 28px;
-      position: absolute;
-      top: 94px;
-      left: 0;
-      z-index: 0;
-      @media (width <= 767px) {
-        top: 88px;
-      }
+// Cards bleed to the page edge; the section itself clips them.
+:global(embla-carousel-root[data-ready]) .viewport {
+  overflow: visible;
+}
+
+.track {
+  position: relative;
+
+  // The timeline pill behind the cards.
+  &::before {
+    content: '';
+    display: flex;
+    background-color: var(--secondary);
+    border: 1px solid var(--tertiary);
+    height: 20px;
+    width: 1680px;
+    border-radius: 28px;
+    position: absolute;
+    top: 94px;
+    left: 0;
+    z-index: 0;
+    @media (width <= 767px) {
+      top: 88px;
     }
   }
 }

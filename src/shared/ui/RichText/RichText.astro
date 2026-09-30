@@ -7,17 +7,21 @@ interface Props {
 }
 
 const { text, vars } = Astro.props;
-const tokens = parseRichText(text, vars);
+
+const escape = (value: string) =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Built as a string on purpose: whitespace around inline elements is significant, and a formatter
+// must not be able to add any.
+const html = parseRichText(text, vars)
+  .map(token => {
+    if (token.type === 'highlight') return `<span class="accent">${escape(token.value)}</span>`;
+    if (token.type === 'link') {
+      return `<a href="${escape(token.href)}" target="_blank" rel="noopener noreferrer">${escape(token.label)}</a>`;
+    }
+    return escape(token.value);
+  })
+  .join('');
 ---
 
-{tokens.map(token =>
-  token.type === 'highlight' ? (
-    <span class="accent">{token.value}</span>
-  ) : token.type === 'link' ? (
-    <a href={token.href} target="_blank" rel="noopener noreferrer">
-      {token.label}
-    </a>
-  ) : (
-    token.value
-  )
-)}
+<Fragment set:html={html} />

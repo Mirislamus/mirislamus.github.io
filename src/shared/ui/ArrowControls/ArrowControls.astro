@@ -1,0 +1,23 @@
+---
+import ArrowLeft from '@lucide/astro/icons/arrow-left';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import s from './ArrowControls.module.scss';
+
+interface Props {
+  prevLabel: string;
+  nextLabel: string;
+}
+
+const { prevLabel, nextLabel } = Astro.props;
+---
+
+<!-- Buttons are wired up by <embla-carousel-root>; until then they are inert decoration. -->
+<div class={s.arrowControls}>
+  <button type="button" data-embla-prev data-ripple class:list={[s.button, s.prev]} aria-label={prevLabel}>
+    <ArrowLeft size={24} aria-hidden="true" />
+  </button>
+  <span class={s.line} aria-hidden="true"></span>
+  <button type="button" data-embla-next data-ripple class:list={[s.button, s.next]} aria-label={nextLabel}>
+    <ArrowRight size={24} aria-hidden="true" />
+  </button>
+</div>

@@ -1,0 +1,70 @@
+---
+import type { SiteData } from '@data/site';
+import ArrowControls from '@shared/ui/ArrowControls/ArrowControls.astro';
+import Carousel from '@shared/ui/Carousel/Carousel.astro';
+import RichText from '@shared/ui/RichText/RichText.astro';
+import Tag from '@shared/ui/Tag/Tag.astro';
+import s from './Career.module.scss';
+
+interface Props {
+  data: SiteData['career'];
+  a11y: SiteData['a11y'];
+}
+
+const { data, a11y } = Astro.props;
+const total = data.items.length;
+const slideLabel = (index: number) =>
+  a11y.slideOf.replace('{{index}}', String(index + 1)).replace('{{total}}', String(total));
+---
+
+<section id="career" class:list={[s.career, 'section']}>
+  <div class="container">
+    <Carousel
+      a11y={a11y}
+      labelledby="career-title"
+      options={{ align: 'start', dragFree: true, containScroll: 'trimSnaps' }}
+    >
+      <div class:list={[s.careerTop, 'title']}>
+        <h2 id="career-title">
+          <RichText text={data.title} />
+        </h2>
+        <ArrowControls prevLabel={a11y.previousSlide} nextLabel={a11y.nextSlide} />
+      </div>
+      <div class={s.viewport} data-embla-viewport>
+        <div class={s.track} data-embla-container>
+          {data.items.map((item, index) => (
+            <div
+              class={s.careerItem}
+              data-embla-slide
+              role="group"
+              aria-roledescription={a11y.slide}
+              aria-label={slideLabel(index)}
+            >
+              <article>
+                <h3 class="text-md medium">{item.company}</h3>
+                <strong class="text-sm regular">
+                  <span>{item.position}</span>
+                  <span>{item.year}</span>
+                </strong>
+                <span class={s.circle}></span>
+                <div class={s.content}>
+                  <p class="text-sm">
+                    <RichText text={item.description} />
+                  </p>
+                  <div class={s.technologies}>
+                    <span class:list={['text-sm', { 'visually-hidden': index > 0 }]}>{data.technologies}:</span>
+                    <div class={s.stack}>
+                      {item.stack.map(stack => (
+                        <Tag>{stack}</Tag>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Carousel>
+  </div>
+</section>

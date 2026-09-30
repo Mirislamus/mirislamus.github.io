@@ -1,0 +1,13 @@
+---
+import s from './Tag.module.scss';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span class:list={[s.tag, 'text-sm', className]}>
+  <slot />
+</span>

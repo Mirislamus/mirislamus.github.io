@@ -1,0 +1,58 @@
+---
+import type { EmblaOptionsType } from 'embla-carousel';
+import type { SiteData } from '@data/site';
+
+interface Props {
+  a11y: SiteData['a11y'];
+  // id of the heading that names the carousel
+  labelledby: string;
+  options?: EmblaOptionsType;
+  class?: string;
+}
+
+const { a11y, labelledby, options = {}, class: className } = Astro.props;
+---
+
+<embla-carousel-root
+  role="region"
+  aria-roledescription={a11y.carousel}
+  aria-labelledby={labelledby}
+  data-options={JSON.stringify(options)}
+  class={className}
+>
+  <slot />
+</embla-carousel-root>
+
+<script>
+  import '@shared/scripts/carousel';
+</script>
+
+<style is:global>
+  @layer components {
+    embla-carousel-root {
+      display: block;
+    }
+
+    /* Before (or without) JavaScript: a native scroll-snap scroller. */
+    [data-embla-viewport] {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    [data-embla-container] {
+      display: flex;
+    }
+
+    [data-embla-slide] {
+      flex: 0 0 auto;
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+
+    embla-carousel-root[data-ready] [data-embla-viewport] {
+      overflow: hidden;
+      scroll-snap-type: none;
+    }
+  }
+</style>

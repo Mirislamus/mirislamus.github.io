@@ -1,0 +1,48 @@
+---
+import type { SiteData } from '@data/site';
+import ArrowControls from '@shared/ui/ArrowControls/ArrowControls.astro';
+import Carousel from '@shared/ui/Carousel/Carousel.astro';
+import s from './Reviews.module.scss';
+
+interface Props {
+  data: SiteData['reviews'];
+  a11y: SiteData['a11y'];
+}
+
+const { data, a11y } = Astro.props;
+const total = data.items.length;
+const slideLabel = (index: number) =>
+  a11y.slideOf.replace('{{index}}', String(index + 1)).replace('{{total}}', String(total));
+---
+
+<section id="reviews" class:list={[s.reviews, 'section']}>
+  <div class="container">
+    <Carousel a11y={a11y} labelledby="reviews-title" options={{ align: 'start', loop: true }} class={s.wrapper}>
+      <div class:list={[s.reviewsTop, 'title']}>
+        <h2 id="reviews-title">{data.title}</h2>
+        <div class={s.reviewsControls}>
+          <div class={s.pagination} data-embla-dots data-dot-label={a11y.goToReview}></div>
+          <ArrowControls prevLabel={a11y.previousReview} nextLabel={a11y.nextReview} />
+        </div>
+      </div>
+      <div class={s.viewport} data-embla-viewport>
+        <div class={s.track} data-embla-container>
+          {data.items.map((review, index) => (
+            <div
+              class={s.slide}
+              data-embla-slide
+              role="group"
+              aria-roledescription={a11y.slide}
+              aria-label={slideLabel(index)}
+            >
+              <article class={s.review}>
+                <p>{review.text}</p>
+                <cite class="text-xl bold">{review.author}</cite>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Carousel>
+  </div>
+</section>

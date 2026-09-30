@@ -13,7 +13,10 @@
     "nextReview": "Next review",
     "previousSlide": "Previous slide",
     "nextSlide": "Next slide",
-    "goToReview": "Go to review {{index}}"
+    "goToReview": "Go to review {{index}}",
+    "carousel": "carousel",
+    "slide": "slide",
+    "slideOf": "{{index}} of {{total}}"
   },
   "ru": {
     "skipToContent": "Перейти к содержимому",
@@ -29,7 +32,10 @@
     "nextReview": "Следующий отзыв",
     "previousSlide": "Предыдущий слайд",
     "nextSlide": "Следующий слайд",
-    "goToReview": "Перейти к отзыву {{index}}"
+    "goToReview": "Перейти к отзыву {{index}}",
+    "carousel": "карусель",
+    "slide": "слайд",
+    "slideOf": "{{index}} из {{total}}"
   },
   "uz": {
     "skipToContent": "Kontentga o‘tish",
@@ -45,6 +51,9 @@
     "nextReview": "Keyingi sharh",
     "previousSlide": "Oldingi slayd",
     "nextSlide": "Keyingi slayd",
-    "goToReview": "{{index}}-sharhga o‘tish"
+    "goToReview": "{{index}}-sharhga o‘tish",
+    "carousel": "karusel",
+    "slide": "slayd",
+    "slideOf": "{{total}} tadan {{index}}"
   }
 }
