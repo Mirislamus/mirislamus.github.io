@@ -11,7 +11,7 @@ test.describe('copy email', () => {
     await button.focus();
     await button.press('Enter');
 
-    const region = page.getByRole('status');
+    const region = page.locator('#toast-region');
     await expect(region).toContainText('Email copied');
     expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(EMAIL);
     await expect(button).toBeFocused();
@@ -35,7 +35,7 @@ test.describe('copy email', () => {
     await button.focus();
     await button.press('Enter');
 
-    await expect(page.getByRole('status')).toContainText('Email copied');
+    await expect(page.locator('#toast-region')).toContainText('Email copied');
     expect(await page.evaluate(() => (window as unknown as { copied: string }).copied)).toBe(EMAIL);
     await expect(button).toBeFocused();
   });
@@ -47,7 +47,7 @@ test.describe('copy email', () => {
     });
     await page.goto('/');
     await page.getByRole('button', { name: 'Copy email address' }).click();
-    await expect(page.getByRole('status')).toContainText("Couldn't copy the email");
+    await expect(page.locator('#toast-region')).toContainText("Couldn't copy the email");
   });
 
   test('shows one toast at a time', async ({ page, context }) => {
