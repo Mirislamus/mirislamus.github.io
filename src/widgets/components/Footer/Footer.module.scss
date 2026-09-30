@@ -13,7 +13,11 @@
 
   // Plays as the footer scrolls into view (it used to run at page load, off screen, so nobody saw it).
   @supports (animation-timeline: view()) {
-    animation: footer-text-enter linear both;
+    // Longhands on purpose: the CSS minifier would fold `animation` + `animation-timeline` into one shorthand,
+    // which not every browser understands.
+    animation-name: footer-text-enter;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
     animation-timeline: view();
     animation-range: entry 0% entry 70%;
   }

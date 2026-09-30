@@ -28,6 +28,7 @@ class SiteHeader extends HTMLElement {
     const one = <T extends HTMLElement>(selector: string) => this.querySelector<T>(selector)!;
     const all = <T extends HTMLElement>(selector: string) => [...this.querySelectorAll<T>(selector)];
 
+    const bar = one('header');
     const wrap = one('[data-wrap]');
     const nav = one('[data-nav]');
     const overlay = one('[data-overlay]');
@@ -68,6 +69,7 @@ class SiteHeader extends HTMLElement {
 
     const setLangs = (open: boolean, target?: 'active' | 'first' | 'last') => {
       langsOpen = open;
+      if (open) bar.removeAttribute('data-hidden');
       langsList.hidden = !open;
       langsButton.setAttribute('aria-expanded', String(open));
       if (!open) return;
@@ -133,6 +135,7 @@ class SiteHeader extends HTMLElement {
     function setMenu(open: boolean) {
       if (open === menuOpen) return;
       menuOpen = open;
+      if (open) bar.removeAttribute('data-hidden');
 
       for (const element of [wrap, nav, overlay, menuButton]) element.toggleAttribute('data-open', open);
       menuButton.setAttribute('aria-expanded', String(open));
@@ -206,8 +209,8 @@ class SiteHeader extends HTMLElement {
     const moveLine = () => {
       const active = links.find(link => link.hash === `#${activeId}`);
       if (!active) return;
-      line.style.setProperty('--width', `${active.offsetWidth + 16}px`);
-      line.style.setProperty('--offset', `${active.offsetLeft - 8}px`);
+      line.style.setProperty('--width', String(active.offsetWidth + 16));
+      line.style.setProperty('--offset', String(active.offsetLeft - 8));
     };
 
     const setActive = (id: string) => {
@@ -264,7 +267,46 @@ class SiteHeader extends HTMLElement {
     const resize = new ResizeObserver(moveLine);
     resize.observe(nav);
     this.#cleanup.push(() => resize.disconnect());
-    void document.fonts.ready.then(moveLine);
+    // Until the fonts have settled the first measure may be off; show the pill (without sliding) after that.
+    void document.fonts.ready.then(() => {
+      moveLine();
+      requestAnimationFrame(() => line.toggleAttribute('data-ready', true));
+    });
+
+    // --- Smart hide: the bar leaves while scrolling down and returns on any upward scroll ------------
+    const SHOW_ABOVE = 120; // px from the top: always shown
+    const HIDE_AFTER = 8; // px of downward scrolling
+    const SHOW_AFTER = 2; // px of upward scrolling
+    // Landing on a deep link, or an anchor jump, is not the reader scrolling down: keep the bar.
+    const settleUntil = performance.now() + 800;
+    let anchorY = window.scrollY;
+    let hideFrame = 0;
+
+    const keepVisible = () => menuOpen || langsOpen || this.matches(':focus-within');
+
+    const updateBar = () => {
+      hideFrame = 0;
+      const y = window.scrollY;
+
+      const jumped = Math.abs(y - anchorY) > window.innerHeight;
+
+      if (y < SHOW_ABOVE || keepVisible() || jumped || performance.now() < settleUntil) {
+        bar.removeAttribute('data-hidden');
+        anchorY = y;
+      } else if (y - anchorY > HIDE_AFTER) {
+        bar.setAttribute('data-hidden', '');
+        anchorY = y;
+      } else if (anchorY - y > SHOW_AFTER) {
+        bar.removeAttribute('data-hidden');
+        anchorY = y;
+      }
+    };
+
+    window.addEventListener('scroll', () => (hideFrame ||= requestAnimationFrame(updateBar)), {
+      passive: true,
+      signal,
+    });
+    this.addEventListener('focusin', () => bar.removeAttribute('data-hidden'), { signal });
   }
 
   disconnectedCallback() {

@@ -16,7 +16,8 @@
     "goToReview": "Go to review {{index}}",
     "carousel": "carousel",
     "slide": "slide",
-    "slideOf": "{{index}} of {{total}}"
+    "slideOf": "{{index}} of {{total}}",
+    "backToTop": "Back to top"
   },
   "ru": {
     "skipToContent": "Перейти к содержимому",
@@ -35,7 +36,8 @@
     "goToReview": "Перейти к отзыву {{index}}",
     "carousel": "карусель",
     "slide": "слайд",
-    "slideOf": "{{index}} из {{total}}"
+    "slideOf": "{{index}} из {{total}}",
+    "backToTop": "Наверх"
   },
   "uz": {
     "skipToContent": "Kontentga o‘tish",
@@ -54,6 +56,7 @@
     "goToReview": "{{index}}-sharhga o‘tish",
     "carousel": "karusel",
     "slide": "slayd",
-    "slideOf": "{{total}} tadan {{index}}"
+    "slideOf": "{{total}} tadan {{index}}",
+    "backToTop": "Yuqoriga"
   }
 }

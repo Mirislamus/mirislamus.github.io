@@ -42,3 +42,20 @@ test('the hero and the collapsed projects are not part of the reveal', async ({ 
   await expect(page.locator('#projects article[data-extra][data-reveal]')).toHaveCount(0);
   await expect(page.locator('#projects article[data-reveal]')).toHaveCount(4);
 });
+
+test.describe('scroll-driven animations survive minification', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('the footer text and the scroll-linked header line and ring really have an animation', async ({ page }) => {
+    await page.goto('/');
+    const supported = await page.evaluate(() => CSS.supports('animation-timeline: view()'));
+    test.skip(!supported, 'scroll-driven animations are not supported in this browser');
+
+    const names = await page.evaluate(() =>
+      ['#contacts h2 span.accent', '[data-progress]', 'back-to-top circle:last-child'].map(
+        selector => getComputedStyle(document.querySelector(selector)!).animationName
+      )
+    );
+    for (const name of names) expect(name).not.toBe('none');
+  });
+});

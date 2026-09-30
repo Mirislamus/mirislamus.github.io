@@ -27,6 +27,12 @@
     margin-top: auto;
   }
 
+  // The header element is a custom element wrapper. It must not create its own box: the sticky bar
+  // inside sticks relative to the page only if its parent is not an inline box.
+  site-header {
+    display: contents;
+  }
+
   ::selection {
     background-color: var(--accent);
     color: var(--accent-contrast);

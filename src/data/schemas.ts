@@ -21,6 +21,7 @@ export const a11ySchema = z.strictObject({
   previousSlide: text,
   nextSlide: text,
   goToReview: text,
+  backToTop: text,
   carousel: text,
   slide: text,
   slideOf: text,

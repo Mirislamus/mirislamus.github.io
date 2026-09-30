@@ -131,7 +131,8 @@ test.describe('mobile menu', () => {
     await expect(page.locator('#main-navigation')).toBeHidden();
 
     await button.click();
-    await page.mouse.click(195, 700);
+    // The drawer covers the right part of the screen; the blurred page is what is left of it.
+    await page.mouse.click(15, 700);
     await expect(page.locator('#main-navigation')).toBeHidden();
   });
 
@@ -157,4 +158,23 @@ test.describe('mobile menu', () => {
     await expect(page.locator('main')).toHaveJSProperty('inert', false);
     expect(await page.evaluate(() => document.body.style.overflow)).toBe('');
   });
+});
+
+test('the bar stays at the top of the window while the page scrolls', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => document.getElementById('projects')?.scrollIntoView());
+  await page.mouse.wheel(0, -40);
+  await expect
+    .poll(() =>
+      page
+        .locator('header')
+        .first()
+        .evaluate(element => Math.round(element.getBoundingClientRect().top))
+    )
+    .toBeGreaterThanOrEqual(0);
+  const top = await page
+    .locator('header')
+    .first()
+    .evaluate(element => element.getBoundingClientRect().top);
+  expect(top).toBeLessThan(40);
 });

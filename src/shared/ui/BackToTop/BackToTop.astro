@@ -1,0 +1,46 @@
+---
+import ArrowUp from '@lucide/astro/icons/arrow-up';
+import s from './BackToTop.module.scss';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<back-to-top>
+  <button type="button" class={s.button} aria-label={label} data-ripple>
+    <svg class={s.ring} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle class={s.track} cx="24" cy="24" r="22.5" pathLength="1"></circle>
+      <circle class={s.progress} cx="24" cy="24" r="22.5" pathLength="1"></circle>
+    </svg>
+    <ArrowUp size={20} aria-hidden="true" />
+  </button>
+</back-to-top>
+
+<script>
+  class BackToTop extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector<HTMLButtonElement>('button');
+      const hero = document.getElementById('about');
+      if (!button) return;
+
+      // Shown once the first screen has scrolled out of view.
+      const observer = new IntersectionObserver(([entry]) =>
+        this.toggleAttribute('data-visible', !entry.isIntersecting)
+      );
+      if (hero) observer.observe(hero);
+      else this.setAttribute('data-visible', '');
+
+      button.addEventListener('click', () => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
+        // Continue from the top of the page for keyboard users.
+        document.querySelector<HTMLElement>('[data-logo]')?.focus({ preventScroll: true });
+      });
+    }
+  }
+
+  if (!customElements.get('back-to-top')) customElements.define('back-to-top', BackToTop);
+</script>

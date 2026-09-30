@@ -4,16 +4,77 @@
   margin-top: 20px;
   z-index: var(--z-overlay);
   view-transition-name: site-header;
+  transition: translate var(--dur-slow) var(--ease-out);
+
+  // Scrolling down hides the bar, scrolling up brings it back (see header.ts).
+  &[data-hidden] {
+    translate: 0 calc(-100% - 40px);
+  }
 }
 
+// The glass (background, border, blur) lives on a pseudo-element: a backdrop-filter on .wrap itself
+// would make it the containing block of the fixed mobile drawer.
 .wrap {
-  background-color: var(--secondary-alpha);
-  border: 1px solid var(--tertiary);
-  backdrop-filter: blur(5px);
+  position: relative;
+  isolation: isolate;
+  border: 1px solid transparent;
   border-radius: var(--radius-100);
   padding: 10px 20px;
   display: flex;
   align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: calc(var(--z-base) * -1);
+    border-radius: inherit;
+    background-color: var(--secondary-alpha);
+    border: 1px solid var(--tertiary);
+    backdrop-filter: blur(5px);
+  }
+}
+
+// Reading progress: a thin line along the bottom edge, clipped by the rounded bar.
+.progress {
+  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.progressBar {
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background-color: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@keyframes pageProgress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .progress {
+      display: block;
+    }
+
+    .progressBar {
+      // Longhands on purpose: the CSS minifier would fold `animation` + `animation-timeline` into one shorthand,
+      // which not every browser understands.
+      animation-name: pageProgress;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: scroll(root);
+    }
+  }
 }
 
 .nav {
@@ -22,6 +83,8 @@
   letter-spacing: var(--letter-spacing);
   line-height: 1.35;
   ul {
+    position: relative;
+    z-index: var(--z-base);
     display: flex;
     gap: 40px;
   }
@@ -37,17 +100,51 @@
   }
 }
 
+// The active-section pill slides behind the links. It is one 100px-wide rectangle that is moved and
+// stretched with transforms only; the round ends are pseudo-elements that are scaled back, so they
+// stay circles. header.ts sets --width (link width + 16) and --offset (link left - 8) as plain numbers.
 .line {
+  --height: 36;
+  --scale: calc((var(--width, 100) - var(--height)) / 100);
+
   position: absolute;
   left: 0;
-  bottom: -21px;
-  height: 4px;
-  width: var(--width);
-  transform: translateX(var(--offset));
-  background-color: var(--accent);
-  transition: var(--transition);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  top: calc(50% - var(--height) * 0.5px);
+  width: 100px;
+  height: calc(var(--height) * 1px);
+  // Opaque on purpose: the round ends overlap the middle, which would show as seams with any alpha.
+  background-color: color-mix(in srgb, var(--accent) 22%, var(--secondary));
+  transform: translateX(calc(var(--offset, 0) * 1px + var(--height) * 0.5px)) scaleX(var(--scale));
+  transform-origin: left;
+  opacity: 0;
+  z-index: 0;
+
+  &[data-ready] {
+    opacity: 1;
+    transition:
+      transform var(--dur-base) var(--ease-in-out),
+      opacity var(--dur-fast) linear;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: calc(var(--height) * 1px);
+    height: 100%;
+    border-radius: 50%;
+    background-color: inherit;
+    transform: scaleX(calc(1 / var(--scale)));
+  }
+
+  &::before {
+    left: calc(var(--height) * -0.5px);
+  }
+
+  &::after {
+    right: calc(var(--height) * -0.5px);
+  }
 }
 
 .end {
@@ -94,52 +191,44 @@
   }
 
   .wrap {
-    position: relative;
     padding: 10px 14px;
-    &[data-open] {
-      background-color: var(--secondary);
-    }
   }
 
-  .background {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-12);
-  }
-
+  // The drawer slides in from the right over a blurred page.
   .nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(360px, 85vw);
+    margin-left: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-12);
-    position: absolute;
-    top: 72px;
-    left: 0;
-    right: 0;
-    margin-left: 0;
+    gap: var(--gap-24);
+    padding: 96px var(--gap-24) max(var(--gap-24), env(safe-area-inset-bottom));
+    background-color: var(--secondary);
+    border-left: 1px solid var(--tertiary);
+    border-radius: var(--radius-24) 0 0 var(--radius-24);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     visibility: hidden;
-    opacity: 0;
-    // Visible right away when opening (so focus can move in), hidden only after the fade when closing.
-    transition:
-      opacity var(--dur-base) ease,
-      visibility 0s linear var(--dur-base);
+    translate: 100% 0;
     z-index: var(--z-dropdown);
+    // Visible right away when opening (so focus can move in), hidden only after it has slid out.
+    transition:
+      translate var(--dur-slow) var(--ease-out),
+      visibility 0s linear var(--dur-slow);
 
     &[data-open] {
       visibility: visible;
-      opacity: 1;
+      translate: 0 0;
       transition-delay: 0s;
     }
 
     ul {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--gap-24);
-      font-size: 20px;
-      padding: var(--gap-20);
-      background-color: var(--secondary);
-      border: 1px solid var(--tertiary);
-      border-radius: var(--radius-24);
+      font-size: 24px;
     }
 
     a {
@@ -149,13 +238,13 @@
       &::after {
         content: '';
         position: absolute;
-        width: calc(100% + 10px);
+        width: 100%;
         height: 2px;
-        left: 50%;
-        translate: -50% 0;
+        left: 0;
         bottom: -4px;
         background-color: currentColor;
         transform: scaleX(0);
+        transform-origin: left;
         transition: var(--transition);
       }
       &[aria-current='true'] {
@@ -170,12 +259,12 @@
     position: fixed;
     inset: 0;
     background-color: var(--black-1-alpha-2);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity var(--dur-base) ease,
-      visibility 0s linear var(--dur-base);
+      opacity var(--dur-slow) var(--ease-out),
+      visibility 0s linear var(--dur-slow);
     z-index: var(--z-overlay);
     &[data-open] {
       opacity: 1;
@@ -188,10 +277,21 @@
     display: none;
   }
 
+  .end {
+    // The hamburger doubles as the close button, so it stays above the drawer.
+    position: relative;
+    z-index: calc(var(--z-dropdown) + 1);
+  }
+
+  // With the drawer open only the close button is available at the top right.
+  .wrap[data-open] .end > :not(.hamburger) {
+    visibility: hidden;
+  }
+
   .header {
     .mobileSwitcher {
       display: flex;
-      margin-inline: auto;
+      margin: auto auto 0;
       background-color: var(--secondary);
     }
 
