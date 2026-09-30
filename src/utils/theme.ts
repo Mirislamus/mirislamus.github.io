@@ -48,11 +48,71 @@ export const subscribeTheme = (listener: () => void) => {
   };
 };
 
-export const setThemeMode = (mode: ThemeMode) => {
+export interface ThemeOrigin {
+  x: number;
+  y: number;
+}
+
+const commit = (mode: ThemeMode) => {
   currentMode = mode;
   writeStoredMode(mode);
   apply();
   notify();
+};
+
+// Reads a duration token such as "400ms" from CSS, so the wave uses the same timing as the rest of the site.
+const readTokenMs = (name: string, fallback: number) => {
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const match = /^(\d*\.?\d+)(ms|s)$/.exec(value);
+  return match ? Number(match[1]) * (match[2] === 's' ? 1000 : 1) : fallback;
+};
+
+let transitionId = 0;
+
+// Switches the theme. With an origin (the clicked button) the new theme spreads from that point as a
+// circle, using the View Transitions API; without support, without an origin, when motion is reduced
+// or when the theme would not visibly change, it switches at once.
+export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
+  const root = document.documentElement;
+  const willChange = resolve(mode) !== root.getAttribute('data-theme');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!origin || !willChange || reduceMotion || typeof document.startViewTransition !== 'function') {
+    commit(mode);
+    return;
+  }
+
+  // The header and the content have their own transition names for language changes; during the
+  // wave they must be part of the one root snapshot, or they would not be clipped by the circle.
+  const id = ++transitionId;
+  root.classList.add('theme-transition');
+
+  const transition = document.startViewTransition(() => commit(mode));
+
+  transition.ready
+    .then(() => {
+      const radius = Math.hypot(Math.max(origin.x, innerWidth - origin.x), Math.max(origin.y, innerHeight - origin.y));
+      root.animate(
+        {
+          clipPath: [
+            `circle(0px at ${origin.x}px ${origin.y}px)`,
+            `circle(${radius}px at ${origin.x}px ${origin.y}px)`,
+          ],
+        },
+        {
+          duration: readTokenMs('--dur-slow', 400),
+          easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim() || 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    })
+    .catch(() => {
+      // The transition was skipped (for example by a newer one): the theme is already applied.
+    });
+
+  void transition.finished.finally(() => {
+    if (id === transitionId) root.classList.remove('theme-transition');
+  });
 };
 
 // Called once per page load from Layout.astro.

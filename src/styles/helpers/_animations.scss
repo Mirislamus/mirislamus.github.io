@@ -8,6 +8,11 @@
   mix-blend-mode: normal;
 }
 
+// Theme wave: header and content join the root snapshot so the circle clips everything.
+:root.theme-transition body * {
+  view-transition-name: none;
+}
+
 ::view-transition-old(locale-content),
 ::view-transition-new(locale-content),
 ::view-transition-old(site-header),

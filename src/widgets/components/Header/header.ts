@@ -47,7 +47,18 @@ class SiteHeader extends HTMLElement {
       modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeMode === mode)));
     };
     modeButtons.forEach(button =>
-      button.addEventListener('click', () => setThemeMode(button.dataset.themeMode as ThemeMode), { signal })
+      button.addEventListener(
+        'click',
+        () => {
+          // The wave starts at the middle of the clicked button.
+          const rect = button.getBoundingClientRect();
+          setThemeMode(button.dataset.themeMode as ThemeMode, {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+          });
+        },
+        { signal }
+      )
     );
     this.#cleanup.push(subscribeTheme(syncModes));
     syncModes();
