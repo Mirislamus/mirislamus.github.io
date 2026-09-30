@@ -9,7 +9,8 @@ describe('getSiteData', () => {
     expect(site.projects.items).toHaveLength(8);
     expect(site.career.items).toHaveLength(5);
     expect(site.reviews.items).toHaveLength(8);
-    expect(site.skills.items).toHaveLength(26);
+    expect(site.skills.groups.map(group => group.id)).toEqual(['core', 'data', 'ui', 'tooling']);
+    expect(site.skills.groups.flatMap(group => group.items)).toHaveLength(26);
     expect(site.menu.length).toBeGreaterThan(0);
   });
 

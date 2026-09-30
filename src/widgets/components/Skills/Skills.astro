@@ -13,45 +13,54 @@ const { skills } = getSiteData(locale);
     <h2 class="title" data-reveal>
       <RichText text={skills.title} />
     </h2>
-    <div class={s.grid} data-reveal>
-      {skills.items.map(skill => (
-        <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
-          {skill.hasTheme ? (
-            <>
-              <img
-                class={s.lightIcon}
-                src={`/images/skills/${skill.id}-light.svg`}
-                width="72"
-                height="72"
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-              />
-              <img
-                class={s.darkIcon}
-                src={`/images/skills/${skill.id}-dark.svg`}
-                width="72"
-                height="72"
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-              />
-            </>
-          ) : (
-            <img
-              src={`/images/skills/${skill.id}.${skill.format ?? 'svg'}`}
-              width="72"
-              height="72"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-            />
-          )}
-          <span>{skill.name}</span>
-        </a>
+    <div class={s.groups}>
+      {skills.groups.map((group, index) => (
+        <section class={s.group} aria-labelledby={`skills-${group.id}`} data-reveal style={`--i: ${index}`}>
+          <h3 id={`skills-${group.id}`} class="text-lg medium">
+            {group.title}
+          </h3>
+          <div class={s.grid}>
+            {group.items.map(skill => (
+              <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
+                {skill.hasTheme ? (
+                  <>
+                    <img
+                      class={s.lightIcon}
+                      src={`/images/skills/${skill.id}-light.svg`}
+                      width="72"
+                      height="72"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <img
+                      class={s.darkIcon}
+                      src={`/images/skills/${skill.id}-dark.svg`}
+                      width="72"
+                      height="72"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </>
+                ) : (
+                  <img
+                    src={`/images/skills/${skill.id}.${skill.format ?? 'svg'}`}
+                    width="72"
+                    height="72"
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <span>{skill.name}</span>
+              </a>
+            ))}
+          </div>
+        </section>
       ))}
     </div>
   </div>

@@ -6,6 +6,24 @@
     "group": "core"
   },
   {
+    "id": "javascript",
+    "name": "JavaScript",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    "group": "core"
+  },
+  {
+    "id": "html",
+    "name": "HTML",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    "group": "core"
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    "group": "core"
+  },
+  {
     "id": "react",
     "name": "React",
     "link": "https://react.dev",
@@ -26,40 +44,23 @@
     "hasTheme": true
   },
   {
-    "id": "javascript",
-    "name": "JavaScript",
-    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    "id": "gatsby",
+    "name": "Gatsby",
+    "link": "https://www.gatsbyjs.com",
     "group": "core"
   },
   {
-    "id": "html",
-    "name": "HTML",
-    "link": "https://developer.mozilla.org/en-US/docs/Web/HTML",
-    "group": "core"
-  },
-  {
-    "id": "css",
-    "name": "CSS",
-    "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
-    "group": "core"
+    "id": "reactrouter",
+    "name": "React Router",
+    "link": "https://reactrouter.com",
+    "group": "core",
+    "hasTheme": true
   },
   {
     "id": "tanstackquery",
     "name": "TanStack Query",
     "link": "https://tanstack.com/query/latest",
     "group": "data"
-  },
-  {
-    "id": "git",
-    "name": "Git",
-    "link": "https://github.com/git/git",
-    "group": "tooling"
-  },
-  {
-    "id": "sass",
-    "name": "Sass",
-    "link": "https://sass-lang.com",
-    "group": "ui"
   },
   {
     "id": "redux",
@@ -75,23 +76,22 @@
     "format": "webp"
   },
   {
-    "id": "reactrouter",
-    "name": "React Router",
-    "link": "https://reactrouter.com",
-    "group": "core",
-    "hasTheme": true
-  },
-  {
-    "id": "vite",
-    "name": "Vite",
-    "link": "https://vitejs.dev",
-    "group": "tooling"
-  },
-  {
     "id": "vitest",
     "name": "Vitest",
     "link": "https://vitest.dev",
     "group": "data"
+  },
+  {
+    "id": "storybook",
+    "name": "Storybook",
+    "link": "https://storybook.js.org",
+    "group": "data"
+  },
+  {
+    "id": "sass",
+    "name": "Sass",
+    "link": "https://sass-lang.com",
+    "group": "ui"
   },
   {
     "id": "tailwindcss",
@@ -106,18 +106,6 @@
     "group": "ui"
   },
   {
-    "id": "storybook",
-    "name": "Storybook",
-    "link": "https://storybook.js.org",
-    "group": "data"
-  },
-  {
-    "id": "gatsby",
-    "name": "Gatsby",
-    "link": "https://www.gatsbyjs.com",
-    "group": "core"
-  },
-  {
     "id": "gsap",
     "name": "GSAP",
     "link": "https://gsap.com",
@@ -130,16 +118,27 @@
     "group": "ui"
   },
   {
-    "id": "pwa",
-    "name": "PWA",
-    "link": "https://web.dev/learn/pwa",
-    "group": "tooling",
-    "hasTheme": true
+    "id": "figma",
+    "name": "Figma",
+    "link": "https://figma.com",
+    "group": "ui"
+  },
+  {
+    "id": "vite",
+    "name": "Vite",
+    "link": "https://vitejs.dev",
+    "group": "tooling"
   },
   {
     "id": "bun",
     "name": "Bun",
     "link": "https://bun.sh",
+    "group": "tooling"
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "link": "https://github.com/git/git",
     "group": "tooling"
   },
   {
@@ -155,9 +154,10 @@
     "group": "tooling"
   },
   {
-    "id": "figma",
-    "name": "Figma",
-    "link": "https://figma.com",
-    "group": "ui"
+    "id": "pwa",
+    "name": "PWA",
+    "link": "https://web.dev/learn/pwa",
+    "group": "tooling",
+    "hasTheme": true
   }
 ]

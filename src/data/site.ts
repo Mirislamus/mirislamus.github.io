@@ -39,6 +39,7 @@ import {
   reviewBaseSchema,
   reviewsSchema,
   skillBaseSchema,
+  SKILL_GROUPS,
   skillsSchema,
   statusBaseSchema,
   statusSchema,
@@ -142,7 +143,15 @@ const load = () => {
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },
     meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },
-    skills: { title: skillsText[locale].title, items: skills },
+    skills: {
+      title: skillsText[locale].title,
+      // Groups keep the fixed order of SKILL_GROUPS; skills keep the order of the file inside a group.
+      groups: SKILL_GROUPS.map(group => ({
+        id: group,
+        title: skillsText[locale].groups[group],
+        items: skills.filter(skill => skill.group === group),
+      })),
+    },
     projects: {
       title: projectsText[locale].title,
       loadMore: projectsText[locale].loadMore,

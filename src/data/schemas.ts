@@ -56,16 +56,21 @@ export const metaSchema = z.strictObject({
   imageAlt: text,
 });
 
+export const SKILL_GROUPS = ['core', 'data', 'ui', 'tooling'] as const;
+
 export const skillBaseSchema = z.strictObject({
   id,
   name: text,
   link: url,
-  group: z.enum(['core', 'data', 'ui', 'tooling']),
+  group: z.enum(SKILL_GROUPS),
   hasTheme: z.boolean().optional(),
   format: z.enum(['svg', 'webp']).optional(),
 });
 
-export const skillsSchema = z.strictObject({ title: text });
+export const skillsSchema = z.strictObject({
+  title: text,
+  groups: z.strictObject({ core: text, data: text, ui: text, tooling: text }),
+});
 
 export const projectBaseSchema = z.strictObject({
   id,

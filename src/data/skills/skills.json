@@ -1,11 +1,29 @@
 {
   "en": {
-    "title": "Skills, tools and |technologies|"
+    "title": "Skills, tools and |technologies|",
+    "groups": {
+      "core": "Core",
+      "data": "Data & Quality",
+      "ui": "UI & Motion",
+      "tooling": "Tooling"
+    }
   },
   "ru": {
-    "title": "Навыки, инструменты и |технологии|"
+    "title": "Навыки, инструменты и |технологии|",
+    "groups": {
+      "core": "Основа",
+      "data": "Данные и качество",
+      "ui": "Интерфейсы и анимации",
+      "tooling": "Инструменты"
+    }
   },
   "uz": {
-    "title": "Ko‘nikmalar, vositalar va |texnologiyalar|"
+    "title": "Ko‘nikmalar, vositalar va |texnologiyalar|",
+    "groups": {
+      "core": "Asosiy",
+      "data": "Ma’lumotlar va sifat",
+      "ui": "Interfeys va animatsiya",
+      "tooling": "Vositalar"
+    }
   }
 }
