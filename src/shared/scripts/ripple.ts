@@ -16,3 +16,5 @@ document.addEventListener('click', event => {
   element.append(ripple);
   ripple.addEventListener('animationend', () => ripple.remove());
 });
+
+export {};

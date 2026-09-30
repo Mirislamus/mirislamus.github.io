@@ -19,10 +19,8 @@
   overflow: hidden;
 
   &Image,
-  h3,
   p,
-  span {
-    pointer-events: none;
+  .bottom {
     position: relative;
     z-index: var(--z-base);
   }
@@ -62,6 +60,19 @@
     overflow: hidden;
   }
 
+  // The whole card is clickable through the title link (a "stretched link"), so a screen reader
+  // announces the project name once instead of the image, title, text and every tag.
+  .link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: calc(var(--z-base) + 1);
+  }
+
+  &:has(.link:focus-visible) {
+    box-shadow: 0 0 0 3px var(--accent-alpha);
+  }
+
   &:hover {
     .tag {
       border-color: var(--grey-4);
@@ -69,6 +80,44 @@
     img {
       transform: scale(1.12);
     }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &[data-revealed] {
+      animation: reveal 400ms var(--ease-out, ease) both;
+      animation-delay: calc(var(--i, 0) * 60ms);
+    }
+  }
+}
+
+// Cursor-following highlight; --mouse-x/--mouse-y are set by shared/scripts/spotlight.ts.
+.spotlight {
+  --mouse-x: 25%;
+  --mouse-y: 25%;
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+    opacity: 0;
+    transition: var(--transition-ease);
+  }
+
+  .project:hover &::before,
+  .project:focus-within &::before {
+    opacity: 0.2;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
 }
 
@@ -86,6 +135,11 @@
 
 .actions {
   display: flex;
+
+  &[hidden] {
+    display: none;
+  }
+
   justify-content: center;
   margin-top: var(--gap-30);
 }

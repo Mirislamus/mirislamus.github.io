@@ -1,0 +1,116 @@
+---
+import type { SiteData } from '@data/site';
+import { getProjectImages } from '@utils/images';
+import Button from '@shared/ui/Button/Button.astro';
+import RichText from '@shared/ui/RichText/RichText.astro';
+import Tag from '@shared/ui/Tag/Tag.astro';
+import s from './Projects.module.scss';
+
+interface Props {
+  data: SiteData['projects'];
+}
+
+const { data } = Astro.props;
+const images = await getProjectImages();
+const INITIAL_COUNT = 4;
+const hasMore = data.items.length > INITIAL_COUNT;
+---
+
+<section id="projects" class:list={[s.projects, 'section']}>
+  <div class="container">
+    <h2 class="title">
+      <RichText text={data.title} />
+    </h2>
+    <projects-list>
+      <div class={s.grid}>
+        {data.items.map((project, index) => {
+          const image = images[project.id];
+          const isExtra = index >= INITIAL_COUNT;
+
+          return (
+            <article
+              class={s.project}
+              data-spotlight
+              data-extra={isExtra ? '' : undefined}
+              hidden={isExtra}
+              style={`--spotlight-color: ${project.color}`}
+            >
+              <div class={s.spotlight} aria-hidden="true" />
+              <div class={s.projectImage}>
+                <picture>
+                  <source type="image/avif" srcset={image.avif} />
+                  <source type="image/webp" srcset={image.webp} />
+                  <img
+                    src={image.src}
+                    alt=""
+                    width={image.width}
+                    height={image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <h3>
+                <a class={s.link} href={project.link} target="_blank" rel="noopener noreferrer">
+                  {project.name}
+                </a>
+              </h3>
+              <p class="text-lg">{project.text}</p>
+              <div class={s.bottom}>
+                <div class={s.stack}>
+                  {project.stack.map(stack => (
+                    <Tag class={s.tag}>{stack}</Tag>
+                  ))}
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      {hasMore && (
+        <div class={s.actions} data-more-wrap>
+          <Button variant="outline" data-more>
+            {data.loadMore}
+          </Button>
+        </div>
+      )}
+    </projects-list>
+
+    {/* Without JavaScript there is no button: show everything. */}
+    <noscript>
+      <style>
+        #projects [data-extra] {
+          display: block;
+        }
+        #projects [data-more-wrap] {
+          display: none;
+        }
+      </style>
+    </noscript>
+  </div>
+</section>
+
+<script>
+  class ProjectsList extends HTMLElement {
+    connectedCallback() {
+      const more = this.querySelector<HTMLElement>('[data-more]');
+      const wrap = this.querySelector<HTMLElement>('[data-more-wrap]');
+      const extras = [...this.querySelectorAll<HTMLElement>('[data-extra]')];
+
+      more?.addEventListener('click', () => {
+        extras.forEach((card, index) => {
+          card.style.setProperty('--i', String(index));
+          card.toggleAttribute('data-revealed', true);
+          card.hidden = false;
+        });
+
+        // The button disappears, so keyboard users continue from the first new card.
+        if (wrap) wrap.hidden = true;
+        extras[0]?.querySelector<HTMLElement>('a')?.focus();
+      });
+    }
+  }
+
+  if (!customElements.get('projects-list')) customElements.define('projects-list', ProjectsList);
+</script>
