@@ -6,6 +6,7 @@ import { getCodeImages } from '@utils/images';
 import Button from '@shared/ui/Button/Button.astro';
 import CopyButton from '@shared/ui/CopyButton/CopyButton.astro';
 import RichText from '@shared/ui/RichText/RichText.astro';
+import Spotlight from '@shared/ui/Spotlight/Spotlight.astro';
 import StarBorder from '@shared/ui/StarBorder/StarBorder.astro';
 import s from './Approach.module.scss';
 
@@ -23,7 +24,8 @@ const codeImages = await getCodeImages();
       <RichText text={data.title} />
     </h2>
     <div class={s.grid}>
-      <article class:list={[s.item, s.item_1]} data-reveal style="--i: 0">
+      <article class:list={[s.item, s.item_1]} data-reveal data-spotlight data-tilt style="--i: 0">
+        <Spotlight />
         <img
           width="480"
           height="480"
@@ -35,7 +37,8 @@ const codeImages = await getCodeImages();
         />
         <h3>{data.cooperation}</h3>
       </article>
-      <article class:list={[s.item, s.item_2]} data-reveal style="--i: 1">
+      <article class:list={[s.item, s.item_2]} data-reveal data-spotlight data-tilt style="--i: 1">
+        <Spotlight />
         <img
           width="340"
           height="353"
@@ -48,7 +51,8 @@ const codeImages = await getCodeImages();
         <span class="text-sm">{data.approach}</span>
         <h3>{data.flexibility}</h3>
       </article>
-      <article class:list={[s.item, s.item_3]} data-reveal style="--i: 2">
+      <article class:list={[s.item, s.item_3]} data-reveal data-spotlight style="--i: 2">
+        <Spotlight />
         <h3 class="text-xl">{data.ui}</h3>
         <ui-sandbox class={s.sandbox} style="--value: 65">
           <div class={s.row}>
@@ -84,7 +88,8 @@ const codeImages = await getCodeImages();
           </CopyButton>
         </div>
       </StarBorder>
-      <article class:list={[s.item, s.item_5]} data-reveal style="--i: 4">
+      <article class:list={[s.item, s.item_5]} data-reveal data-spotlight data-tilt style="--i: 4">
+        <Spotlight />
         <div class={s.item_text}>
           <span>{data.pomotomo}</span>
           <h3>{data.developing}</h3>

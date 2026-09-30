@@ -63,7 +63,10 @@ test('the highlight follows the mouse', async ({ page }) => {
 
   await page.mouse.move(box.x + 100, box.y + 80);
   await page.mouse.move(box.x + 120, box.y + 90);
-  await expect.poll(() => card.evaluate(element => element.style.getPropertyValue('--mouse-x'))).toBe('120px');
+  // The card leans a little, which shifts its bounding box by a fraction of a pixel.
+  await expect
+    .poll(() => card.evaluate(element => parseFloat(element.style.getPropertyValue('--mouse-x'))))
+    .toBeCloseTo(120, 0);
 });
 
 test.describe('without JavaScript', () => {

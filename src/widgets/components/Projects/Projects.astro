@@ -3,6 +3,7 @@ import type { SiteData } from '@data/site';
 import { getProjectImages } from '@utils/images';
 import Button from '@shared/ui/Button/Button.astro';
 import RichText from '@shared/ui/RichText/RichText.astro';
+import Spotlight from '@shared/ui/Spotlight/Spotlight.astro';
 import Tag from '@shared/ui/Tag/Tag.astro';
 import s from './Projects.module.scss';
 
@@ -31,13 +32,13 @@ const hasMore = data.items.length > INITIAL_COUNT;
             <article
               class={s.project}
               data-spotlight
+              data-tilt
               data-extra={isExtra ? '' : undefined}
               data-reveal={isExtra ? undefined : ''}
               style={`--i: ${index % 2}; --spotlight-color: ${project.color}`}
               hidden={isExtra}
-              style={`--spotlight-color: ${project.color}`}
             >
-              <div class={s.spotlight} aria-hidden="true" />
+              <Spotlight />
               <div class={s.projectImage}>
                 <picture>
                   <source type="image/avif" srcset={image.avif} />
