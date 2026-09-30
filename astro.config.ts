@@ -4,6 +4,7 @@ import { chromium, type Browser } from '@playwright/test';
 import { fileURLToPath } from 'node:url';
 import { buildCvPdfs, pdfName, printPdf } from './scripts/cv-pdf.mjs';
 import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
+import { getLastModified } from './src/seo/last-modified';
 
 // The downloadable CV: printed to PDF after every build, and made on request by the dev server.
 const cvPdf = (): AstroIntegration => {
@@ -43,6 +44,8 @@ const cvPdf = (): AstroIntegration => {
   };
 };
 
+const lastModified = getLastModified();
+
 const config = {
   site: 'https://mirislamus.github.io',
   output: 'static',
@@ -52,6 +55,14 @@ const config = {
     sitemap({
       // The CV pages only exist to be printed to PDF.
       filter: page => !page.includes('/cv/'),
+      lastmod: lastModified,
+      serialize: item => {
+        // x-default points every language version to the default one.
+        const links = item.links ?? [];
+        const fallback = links.find(link => link.lang === DEFAULT_LOCALE);
+        if (fallback) item.links = [...links, { url: fallback.url, lang: 'x-default' }];
+        return item;
+      },
       i18n: {
         defaultLocale: DEFAULT_LOCALE,
         locales: Object.fromEntries(LOCALES.map(code => [code, code])),

@@ -390,3 +390,11 @@
 | SEO-07 | OG-картинки по языкам и OG-теги        | ⬜     |        |
 | SEO-08 | Автотесты SEO и Lighthouse в CI        | ⬜     |        |
 | SEO-09 | После деплоя: валидаторы и вебмастерки | ⏸      |        |
+
+**SEO-01**
+
+- [x] `src/pages/robots.txt.ts`: `User-agent: *`, `Allow: /`, `Sitemap` из `site` (адрес не захардкожен); `/cv/` не закрыт, страницы CV сами отдают `noindex`
+- [x] `src/seo/last-modified.ts`: дата последнего коммита (запасной вариант — время сборки), один источник для sitemap и будущего JSON-LD
+- [x] Sitemap: `lastmod` у каждого URL и `x-default` среди альтернатив (по 4 `xhtml:link` на URL); `/cv/` и 404 по-прежнему вне sitemap
+- [x] `<meta name="robots" content="max-image-preview:large">` на основных страницах; CV и 404 остаются `noindex`
+- Проверено сборкой: `dist/robots.txt`, `sitemap-0.xml`, meta во всех трёх типах страниц. Тесты этих проверок — в SEO-08
