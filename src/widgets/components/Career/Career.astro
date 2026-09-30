@@ -30,7 +30,9 @@ const slideLabel = (index: number) =>
         </h2>
         <ArrowControls prevLabel={a11y.previousSlide} nextLabel={a11y.nextSlide} />
       </div>
-      <div class={s.viewport} data-embla-viewport>
+      {/* A scrollable region must be reachable by keyboard until Embla takes over (it removes tabindex). */}
+      {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
+      <div class={s.viewport} data-embla-viewport tabindex="0" role="group" aria-labelledby="career-title">
         <div class={s.track} data-embla-container>
           {data.items.map((item, index) => (
             <div

@@ -74,3 +74,24 @@ test('the heading outline has no skipped levels', async ({ page }) => {
   expect(levels[0]).toBe(1);
   levels.slice(1).forEach((level, index) => expect(level - levels[index]).toBeLessThanOrEqual(1));
 });
+
+test('carousels stay keyboard-reachable before Embla loads, and drop the extra tab stop after', async ({ page }) => {
+  await page.route('**/embla-carousel*.js', route => route.abort());
+  await page.goto('/');
+  await page.evaluate(() => document.getElementById('reviews')?.scrollIntoView());
+  await page.waitForTimeout(500);
+
+  const viewport = page.locator('#reviews [data-embla-viewport]');
+  await expect(viewport).toHaveAttribute('tabindex', '0');
+  const results = await new AxeBuilder({ page })
+    .include('#reviews')
+    .withRules(['scrollable-region-focusable'])
+    .analyze();
+  expect(results.violations).toEqual([]);
+
+  await page.unroute('**/embla-carousel*.js');
+  await page.reload();
+  await page.evaluate(() => document.getElementById('reviews')?.scrollIntoView());
+  await expect(page.locator('#reviews embla-carousel-root[data-ready]')).toHaveCount(1);
+  await expect(page.locator('#reviews [data-embla-viewport]')).not.toHaveAttribute('tabindex', /.*/);
+});

@@ -34,6 +34,11 @@ class EmblaCarouselRoot extends HTMLElement {
     const options: EmblaOptionsType = JSON.parse(this.dataset.options ?? '{}');
     if (reduceMotion) Object.assign(options, { dragFree: false, duration: 0 });
 
+    // The native scroller was focusable so keyboard users could scroll it; Embla has buttons and arrow keys.
+    viewport.removeAttribute('tabindex');
+    viewport.removeAttribute('role');
+    viewport.removeAttribute('aria-labelledby');
+
     const embla = EmblaCarousel(viewport, options);
     this.#embla = embla;
 
