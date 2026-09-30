@@ -398,3 +398,9 @@
 - [x] Sitemap: `lastmod` у каждого URL и `x-default` среди альтернатив (по 4 `xhtml:link` на URL); `/cv/` и 404 по-прежнему вне sitemap
 - [x] `<meta name="robots" content="max-image-preview:large">` на основных страницах; CV и 404 остаются `noindex`
 - Проверено сборкой: `dist/robots.txt`, `sitemap-0.xml`, meta во всех трёх типах страниц. Тесты этих проверок — в SEO-08
+
+**SEO-02**
+
+- [x] `scripts/icons.mjs` (`bun run build:icons`): из `favicon-dark.svg` делает `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` (логотип в безопасной зоне) и `favicon.ico` (16, 32, 48, PNG внутри ICO); результат закоммичен в `public/`
+- [x] `manifest.webmanifest`: имя, иконки (включая maskable), цвета из `THEME_COLORS`, `display: "browser"` (сервис-воркера нет)
+- [x] `Head.astro`: `favicon.ico` первым, затем SVG с `media` для браузеров, `apple-touch-icon`, `manifest`
