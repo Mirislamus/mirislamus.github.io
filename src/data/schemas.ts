@@ -59,6 +59,7 @@ export const skillBaseSchema = z.strictObject({
   id,
   name: text,
   link: url,
+  group: z.enum(['core', 'data', 'ui', 'tooling']),
   hasTheme: z.boolean().optional(),
   format: z.enum(['svg', 'webp']).optional(),
 });

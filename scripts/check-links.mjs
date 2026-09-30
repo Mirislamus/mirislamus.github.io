@@ -7,8 +7,6 @@ const SOURCE_EXTENSIONS = new Set(['.astro', '.js', '.json', '.jsx', '.ts', '.ts
 const REQUEST_TIMEOUT_MS = 12_000;
 const CONCURRENCY = 6;
 const NON_NAVIGATIONAL_ORIGINS = new Set(['https://fonts.googleapis.com', 'https://fonts.gstatic.com']);
-// The portfolio intentionally links to this work in progress even while its public DNS is unavailable.
-const ALLOWED_UNAVAILABLE_URLS = new Set(['https://hit-proxy.net']);
 
 const collectFiles = async directory => {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -48,8 +46,6 @@ const request = async (url, method) =>
   });
 
 const checkUrl = async url => {
-  if (ALLOWED_UNAVAILABLE_URLS.has(url)) return { ok: true, skipped: true, url };
-
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
       let response = await request(url, 'HEAD');
@@ -77,17 +73,14 @@ for (let index = 0; index < urls.length; index += CONCURRENCY) {
 }
 
 const failures = results.filter(result => !result.ok);
-const skippedCount = results.filter(result => result.skipped).length;
 
 for (const result of results) {
-  const label = result.skipped ? 'SKIP' : result.ok ? 'OK' : 'FAIL';
-  const detail = result.skipped ? 'allowed unavailable URL' : (result.status ?? result.error);
-  console.log(`${label} ${detail} ${result.url}`);
+  console.log(`${result.ok ? 'OK' : 'FAIL'} ${result.status ?? result.error} ${result.url}`);
 }
 
 if (failures.length > 0) {
   console.error(`\n${failures.length} of ${results.length} external links failed.`);
   process.exitCode = 1;
 } else {
-  console.log(`\n${results.length - skippedCount} external links passed; ${skippedCount} intentionally skipped.`);
+  console.log(`\n${results.length} external links passed.`);
 }
