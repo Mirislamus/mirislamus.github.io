@@ -2,7 +2,7 @@
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
 import Footer from '@widgets/components/Footer/Footer.astro';
-import { Header } from '@widgets/components/Header/Header';
+import Header from '@widgets/components/Header/Header.astro';
 import { ToastProvider } from '@shared/ui/ToastProvider/ToastProvider';
 import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
 import { getSiteData } from '@data/site';
@@ -23,14 +23,7 @@ const { a11y, meta, menu } = getSiteData(locale);
       import { initTheme } from '@utils/theme';
       initTheme();
     </script>
-    <Header
-      client:visible
-      locale={locale}
-      homeHref={localeUrl(locale)}
-      languages={getLanguageLinks(locale)}
-      menu={menu}
-      a11y={a11y}
-    />
+    <Header locale={locale} homeHref={localeUrl(locale)} languages={getLanguageLinks(locale)} menu={menu} a11y={a11y} />
     <main id="main-content" class="locale-content" tabindex="-1">
       <slot />
     </main>

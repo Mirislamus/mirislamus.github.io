@@ -55,7 +55,7 @@
     transition: inherit;
   }
 
-  &:not(.active) {
+  &:not([aria-pressed='true'], [aria-current='page']) {
     &:hover {
       svg {
         color: var(--accent-text);
@@ -63,7 +63,8 @@
     }
   }
 
-  &.active {
+  &[aria-pressed='true'],
+  &[aria-current='page'] {
     color: var(--white);
     background-color: var(--black-3);
   }

@@ -1,0 +1,128 @@
+---
+import Menu from '@lucide/astro/icons/menu';
+import Monitor from '@lucide/astro/icons/monitor';
+import Moon from '@lucide/astro/icons/moon';
+import Sun from '@lucide/astro/icons/sun';
+import X from '@lucide/astro/icons/x';
+import type { SiteData } from '@data/site';
+import type { Locale } from '@i18n/locales';
+import type { LanguageLink } from '@i18n/utils';
+import Logo from '@icons/Logo.astro';
+import ActionButton from '@shared/ui/ActionButton/ActionButton.astro';
+import Switcher from '@shared/ui/Switcher/Switcher.astro';
+import switcher from '@shared/ui/Switcher/Switcher.module.scss';
+import s from './Header.module.scss';
+
+interface Props {
+  locale: Locale;
+  homeHref: string;
+  languages: LanguageLink[];
+  menu: SiteData['menu'];
+  a11y: SiteData['a11y'];
+}
+
+const { locale, homeHref, languages, menu, a11y } = Astro.props;
+
+const themes = [
+  { mode: 'light', label: a11y.lightTheme, Icon: Sun },
+  { mode: 'system', label: a11y.systemTheme, Icon: Monitor },
+  { mode: 'dark', label: a11y.darkTheme, Icon: Moon },
+] as const;
+---
+
+<site-header>
+  <div class={s.overlay} data-overlay aria-hidden="true"></div>
+  <header class={s.header}>
+    <div class="container">
+      <div class={s.wrap} data-wrap>
+        <a href={homeHref} aria-label={a11y.home} data-logo>
+          <Logo />
+        </a>
+        <nav id="main-navigation" class={s.nav} data-nav aria-label={a11y.navigation}>
+          <ul>
+            {menu.map(item => (
+              <li>
+                <a href={`#${item.url}`} class={s.link} data-link>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class={s.line} data-line></div>
+          <Switcher class={s.mobileSwitcher} radius>
+            {themes.map(({ mode, label, Icon }) => (
+              <button
+                type="button"
+                class={switcher.button}
+                data-theme-mode={mode}
+                aria-label={label}
+                aria-pressed={mode === 'system' ? 'true' : 'false'}
+              >
+                <Icon aria-hidden="true" />
+              </button>
+            ))}
+          </Switcher>
+        </nav>
+
+        <div class={s.end}>
+          <Switcher class={s.themesSwitcher}>
+            {themes.map(({ mode, label, Icon }) => (
+              <button
+                type="button"
+                class={switcher.button}
+                data-theme-mode={mode}
+                aria-label={label}
+                aria-pressed={mode === 'system' ? 'true' : 'false'}
+              >
+                <Icon aria-hidden="true" />
+              </button>
+            ))}
+          </Switcher>
+          <div class={s.langsSwitcher} data-langs>
+            <ActionButton
+              class={s.languageButton}
+              data-langs-button
+              aria-label={a11y.languageSelector}
+              aria-expanded="false"
+              aria-controls="language-options"
+            >
+              {locale}
+            </ActionButton>
+            <div id="language-options" class={s.langsList} data-langs-list hidden>
+              <Switcher variant="column">
+                {languages.map(language => (
+                  <a
+                    href={language.href}
+                    class={switcher.button}
+                    data-lang-link
+                    data-base-href={language.href}
+                    aria-label={language.name}
+                    aria-current={language.code === locale ? 'page' : undefined}
+                  >
+                    {language.label}
+                  </a>
+                ))}
+              </Switcher>
+            </div>
+          </div>
+          <ActionButton
+            class={s.hamburger}
+            data-menu-button
+            data-open-label={a11y.menu}
+            data-close-label={a11y.closeMenu}
+            aria-label={a11y.menu}
+            aria-expanded="false"
+            aria-controls="main-navigation"
+          >
+            <Menu aria-hidden="true" />
+            <X aria-hidden="true" />
+          </ActionButton>
+        </div>
+      </div>
+    </div>
+  </header>
+</site-header>
+
+<script>
+  import './header';
+</script>

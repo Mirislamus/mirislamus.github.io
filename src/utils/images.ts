@@ -23,7 +23,7 @@ const codeFiles = {
 };
 
 const PROJECT_WIDTH = 600;
-const QUALITY = 75;
+const QUALITY = 90;
 
 const srcSet = async (image: ImageMetadata, format: 'avif' | 'webp') => {
   const [x1, x2] = await Promise.all(
@@ -59,11 +59,11 @@ export const getProjectImages = async (): Promise<Record<string, ResponsiveImage
 };
 
 export const getAvatarSrc = async (): Promise<string> =>
-  (await getImage({ src: avatarFile, format: 'webp', quality: 85 })).src;
+  (await getImage({ src: avatarFile, format: 'webp', quality: 98 })).src;
 
 export const getCodeImages = async (): Promise<CodeImages> => {
   const [light, dark] = await Promise.all(
-    [codeFiles.light, codeFiles.dark].map(src => getImage({ src, format: 'webp', quality: 90 }))
+    [codeFiles.light, codeFiles.dark].map(src => getImage({ src, format: 'webp', quality: 100 }))
   );
 
   return { light: light.src, dark: dark.src };

@@ -2,9 +2,8 @@ import { expect, test, type Page } from '@playwright/test';
 
 const background = (page: Page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
-// The header is a React island: clicks before it hydrates would do nothing.
-const headerReady = (page: Page) =>
-  expect(page.locator('astro-island[component-export="Header"]:not([ssr])')).toHaveCount(1);
+// The header behavior is a custom element: clicks before it is defined would do nothing.
+const headerReady = (page: Page) => page.waitForFunction(() => customElements.get('site-header') !== undefined);
 
 const LIGHT = 'rgb(255, 255, 255)';
 const DARK = 'rgb(18, 18, 18)';

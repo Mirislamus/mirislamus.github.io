@@ -1,0 +1,15 @@
+---
+import s from './Switcher.module.scss';
+
+interface Props {
+  variant?: 'row' | 'column';
+  radius?: boolean;
+  class?: string;
+}
+
+const { variant = 'row', radius, class: className } = Astro.props;
+---
+
+<div class:list={[s.switcher, s[variant], { [s.radius]: radius }, className]}>
+  <slot />
+</div>
