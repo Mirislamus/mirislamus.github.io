@@ -44,6 +44,7 @@
     --dur-intro: 800ms;
     --dur-ripple: 600ms;
     --stagger: 60ms;
+    --intro-step: 100ms; // unit of the Hero intro choreography
 
     --transition: var(--dur-base) ease-in;
     --transition-ease: var(--dur-base) ease;
@@ -129,6 +130,7 @@
       --dur-intro: 0ms;
       --dur-ripple: 0ms;
       --stagger: 0ms;
+      --intro-step: 0ms;
     }
   }
 }

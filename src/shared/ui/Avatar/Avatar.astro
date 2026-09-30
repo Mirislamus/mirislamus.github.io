@@ -44,7 +44,9 @@ const shapeB = 'M130 0C180 0 250 60 250 130C250 200 180 260 130 260C80 260 10 20
 
   <g mask="url(#avatar-mask)">
     <rect fill="url(#avatar-gradient)" width="260" height="260"></rect>
-    <image href={src} width="260" height="260" preserveAspectRatio="xMidYMid" transform="translate(20 35)" />
+    <g data-photo>
+      <image href={src} width="260" height="260" preserveAspectRatio="xMidYMid" transform="translate(20 35)" />
+    </g>
   </g>
 </svg>
 
@@ -64,5 +66,59 @@ const shapeB = 'M130 0C180 0 250 60 250 130C250 200 180 260 130 260C80 260 10 20
     }).observe(avatar);
     reduceMotion.addEventListener('change', update);
     update();
+
+    // Cursor parallax: the photo drifts inside the mask and the whole avatar tilts a little.
+    const photo = avatar.querySelector<SVGGElement>('[data-photo]');
+    const hero = avatar.closest<HTMLElement>('#about');
+    const fineMouse = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const MAX_SHIFT = 6; // px
+    const MAX_TILT = 3; // deg
+    const LERP = 0.12;
+
+    if (photo && hero) {
+      let targetX = 0;
+      let targetY = 0;
+      let x = 0;
+      let y = 0;
+      let frame = 0;
+      let heroVisible = true;
+
+      const render = () => {
+        x += (targetX - x) * LERP;
+        y += (targetY - y) * LERP;
+        photo.style.transform = `translate(${(x * MAX_SHIFT).toFixed(2)}px, ${(y * MAX_SHIFT).toFixed(2)}px)`;
+        avatar.style.transform = `perspective(800px) rotateY(${(x * MAX_TILT).toFixed(2)}deg) rotateX(${(-y * MAX_TILT).toFixed(2)}deg)`;
+
+        // Keep going until the values have settled, then stop: there is no idle animation loop.
+        frame = Math.abs(targetX - x) + Math.abs(targetY - y) > 0.002 ? requestAnimationFrame(render) : 0;
+      };
+
+      const aim = (nextX: number, nextY: number) => {
+        targetX = nextX;
+        targetY = nextY;
+        if (!frame) frame = requestAnimationFrame(render);
+      };
+
+      const clamp = (value: number) => Math.max(-1, Math.min(1, value));
+
+      hero.addEventListener(
+        'pointermove',
+        event => {
+          if (!heroVisible || event.pointerType !== 'mouse' || !fineMouse.matches || reduceMotion.matches) return;
+          const rect = hero.getBoundingClientRect();
+          aim(
+            clamp(((event.clientX - rect.left) / rect.width) * 2 - 1),
+            clamp(((event.clientY - rect.top) / rect.height) * 2 - 1)
+          );
+        },
+        { passive: true }
+      );
+      hero.addEventListener('pointerleave', () => aim(0, 0));
+
+      new IntersectionObserver(([entry]) => {
+        heroVisible = entry.isIntersecting;
+        if (!heroVisible) aim(0, 0);
+      }).observe(hero);
+    }
   }
 </script>

@@ -3,6 +3,7 @@ import type { SiteData } from '@data/site';
 import { info } from '@data/global';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@i18n/locales';
 import { absoluteLocaleUrl } from '@i18n/utils';
+import { INTRO_STORAGE_KEY, bootstrapIntro } from '@utils/intro-bootstrap';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
 
 interface Props {
@@ -17,6 +18,7 @@ const canonical = absoluteLocaleUrl(locale);
 const defaultUrl = absoluteLocaleUrl(DEFAULT_LOCALE);
 const profileUrl = defaultUrl;
 const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, ${JSON.stringify(THEME_COLORS)})`;
+const introScript = `(${bootstrapIntro})(${JSON.stringify(INTRO_STORAGE_KEY)})`;
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -78,4 +80,5 @@ const structuredData = {
   <meta name="yandex-verification" content="f95a00340036f6fa" />
 
   <script is:inline set:html={themeScript}></script>
+  <script is:inline set:html={introScript}></script>
 </head>

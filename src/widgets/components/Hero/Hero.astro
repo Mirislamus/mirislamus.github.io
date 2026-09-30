@@ -11,13 +11,23 @@ import s from './Hero.module.scss';
 const locale = getLocale(Astro);
 const { hero: data } = getSiteData(locale);
 const avatarSrc = await getAvatarSrc();
+
+// Words are wrapped for the intro; the heading text stays exactly the same string.
+const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const titleHtml = data.title
+  .split(' ')
+  .map(
+    (word, index) =>
+      `<span class="${s.word}"><span class="${s.wordInner}" style="--i: ${index}">${escape(word)}</span></span>`
+  )
+  .join(' ');
 ---
 
 <section class={s.hero} id="about">
   <div class="container">
     <div class={s.content}>
       <Avatar class={s.avatar} src={avatarSrc} />
-      <h1>{data.title}</h1>
+      <h1 set:html={titleHtml} />
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
       <p class:list={[s.text, 'text-md', 'regular']}>
         <RichText text={data.text} vars={{ years: getExperienceYears() }} />
