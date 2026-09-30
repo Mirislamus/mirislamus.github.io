@@ -1,2 +1,2 @@
-export { localeAtom, setLocale } from './locale';
+export { localeAtom } from './locale';
 export { modeAtom, themeAtom } from './theme';

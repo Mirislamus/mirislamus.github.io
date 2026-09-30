@@ -20,5 +20,3 @@ export const ProjectSkeleton = () => {
     </div>
   );
 };
-
-export default ProjectSkeleton;

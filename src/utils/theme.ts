@@ -5,12 +5,12 @@ export type ThemeMode = Theme | 'system';
 
 const STORAGE_KEY = 'theme';
 
-export const getSystemTheme = (): Theme => {
+const getSystemTheme = (): Theme => {
   if (typeof window === 'undefined') return 'light';
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
-export const getStoredThemeMode = (): ThemeMode | null => {
+const getStoredThemeMode = (): ThemeMode | null => {
   if (typeof localStorage === 'undefined') return null;
 
   const value = localStorage.getItem(STORAGE_KEY);
@@ -21,29 +21,17 @@ export const getStoredThemeMode = (): ThemeMode | null => {
   return null;
 };
 
-export const resolveTheme = (mode: ThemeMode | null): Theme => {
+const resolveTheme = (mode: ThemeMode | null): Theme => {
   if (mode === 'light' || mode === 'dark') return mode;
   return getSystemTheme();
 };
 
-export const applyTheme = (theme: Theme) => {
+const applyTheme = (theme: Theme) => {
   if (typeof document === 'undefined') return;
 
   document.documentElement.setAttribute('data-theme', theme);
 
   document.getElementById('theme-color')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
-};
-
-export const initTheme = () => {
-  const mode = getStoredThemeMode();
-
-  if (!mode || mode === 'system') {
-    const systemTheme = getSystemTheme();
-    applyTheme(systemTheme);
-    return;
-  }
-
-  applyTheme(mode);
 };
 
 export const setThemeMode = (mode: ThemeMode) => {

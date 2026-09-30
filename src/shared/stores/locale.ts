@@ -11,7 +11,3 @@ const getInitialLocale = (): Locale => {
 };
 
 export const localeAtom = atom<Locale>(getInitialLocale());
-
-export const setLocale = (locale: Locale): void => {
-  localeAtom.set(locale);
-};

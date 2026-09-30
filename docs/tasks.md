@@ -35,10 +35,10 @@
 - [x] `check:links` — отдельный workflow `links.yml` раз в неделю, не блокирует деплой
 - [x] Репозиторий отформатирован Prettier (10 файлов), `format:check` зелёный
 - Юнит-тесты и e2e добавятся в `verify` в RF-18 **RF-02**
-
-- [ ] Удалить barrel-файлы, `LazyMotionWrapper`, `RotatingText`, `initTheme`, `setLocale`, лишние default-экспорты, неиспользуемые ключи JSON
-- [ ] Удалить `motion`, `@gsap/react`
-- [ ] Проверка `knip`
+- [x] Удалены barrel-файлы (`shared/ui`, `shared/hooks`, `widgets/components`), `LazyMotionWrapper`, `RotatingText`, `initTheme`, `setLocale`, лишние default-экспорты, параметр `duration` у `useRipple`, ключи `footer.talk` и `meta.link`
+- [x] Удалены зависимости `motion` и `@gsap/react`
+- [x] `knip` (файлы, экспорты, зависимости) подключён: скрипт `knip`, шаг в CI `verify`, `knip.json`
+- Размер бандла не изменился (134,6 КБ): удалённое в сборку и так не попадало
 
 **RF-03**
 

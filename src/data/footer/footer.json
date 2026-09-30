@@ -1,17 +1,14 @@
 {
   "en": {
     "ready": "Ready?",
-    "talk": "Let's talk",
     "text": "Write me"
   },
   "ru": {
     "ready": "Готовы?",
-    "talk": "Поговорим?",
     "text": "Пишите мне"
   },
   "uz": {
     "ready": "Tayyor?",
-    "talk": "Gaplashamiz?",
     "text": "Menga yozing"
   }
 }
