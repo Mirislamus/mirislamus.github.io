@@ -1,7 +1,7 @@
 @use '@styles/helpers/functions' as *;
 
 .hero {
-  padding-block: vh(66);
+  padding-block: fluid(66);
   min-height: 100vh;
   margin-top: -62px;
   display: flex;
@@ -9,29 +9,29 @@
 }
 
 .avatar {
-  margin-bottom: vh(24);
-  width: vh(260);
-  height: vh(260);
+  margin-bottom: fluid(24);
+  width: fluid(260);
+  height: fluid(260);
 }
 
 .content {
-  width: min(vh(620), 100%);
+  width: min(fluid(620), 100%);
   text-align: center;
   margin-inline: auto;
   h1 {
-    margin-bottom: vh(12);
-    font-size: vh(56);
+    margin-bottom: fluid(12);
+    font-size: fluid(56);
   }
   .role {
     display: block;
-    font-size: vh(24);
-    margin-bottom: vh(22);
+    font-size: fluid(24);
+    margin-bottom: fluid(22);
     color: var(--accent-text);
   }
   .text {
     color: var(--text-muted);
-    font-size: vh(18);
-    width: min(vh(540), 100%);
+    font-size: fluid(18);
+    width: min(fluid(540), 100%);
     margin-inline: auto;
   }
 }
@@ -39,13 +39,13 @@
 .btns {
   display: flex;
   justify-content: center;
-  margin-top: vh(22);
+  margin-top: fluid(22);
   button,
   a {
-    width: vh(200);
-    font-size: vh(18);
-    height: vh(48);
-    border-radius: vh(100);
+    width: fluid(200);
+    font-size: fluid(18);
+    height: fluid(48);
+    border-radius: fluid(100);
   }
 }
 

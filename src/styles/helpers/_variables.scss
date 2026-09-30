@@ -1,5 +1,3 @@
-@use '@styles/helpers/mixins' as *;
-
 @mixin light-tokens {
   --background: var(--white);
   --text: var(--black);
