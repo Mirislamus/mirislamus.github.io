@@ -8,6 +8,8 @@ const config = {
   trailingSlash: 'always',
   integrations: [
     sitemap({
+      // The CV pages only exist to be printed to PDF.
+      filter: page => !page.includes('/cv/'),
       i18n: {
         defaultLocale: DEFAULT_LOCALE,
         locales: Object.fromEntries(LOCALES.map(code => [code, code])),

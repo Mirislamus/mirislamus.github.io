@@ -87,11 +87,14 @@
 
 .btns {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: fluid(12);
   margin-top: fluid(22);
   button,
   a {
-    width: fluid(200);
+    min-width: fluid(200);
+    white-space: nowrap;
     font-size: fluid(18);
     height: fluid(48);
     border-radius: fluid(100);
@@ -126,7 +129,9 @@
 
     .btns {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 12px;
       margin-top: 26px;
       button,
       a {

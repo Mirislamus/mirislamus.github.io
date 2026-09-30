@@ -1,0 +1,77 @@
+{
+  "en": {
+    "contacts": "Contacts",
+    "education": {
+      "title": "Education",
+      "items": [
+        {
+          "institution": "Bonch-Bruevich Saint Petersburg State University of Telecommunications",
+          "program": "Information Systems and Technologies",
+          "year": "2023"
+        },
+        {
+          "institution": "MUPKI",
+          "program": "Computer Engineering",
+          "year": "2018"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Languages",
+      "items": [
+        { "name": "Russian", "level": "Native" },
+        { "name": "English", "level": "B1" }
+      ]
+    }
+  },
+  "ru": {
+    "contacts": "Контакты",
+    "education": {
+      "title": "Образование",
+      "items": [
+        {
+          "institution": "СПбГУТ им. проф. М. А. Бонч-Бруевича",
+          "program": "Информационные системы и технологии",
+          "year": "2023"
+        },
+        {
+          "institution": "МУПКИ",
+          "program": "Техника компьютерного инжиниринга",
+          "year": "2018"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Языки",
+      "items": [
+        { "name": "Русский", "level": "Родной" },
+        { "name": "Английский", "level": "B1" }
+      ]
+    }
+  },
+  "uz": {
+    "contacts": "Aloqa",
+    "education": {
+      "title": "Ta’lim",
+      "items": [
+        {
+          "institution": "Bonch-Bruevich nomidagi Sankt-Peterburg davlat telekommunikatsiyalar universiteti",
+          "program": "Axborot tizimlari va texnologiyalari",
+          "year": "2023"
+        },
+        {
+          "institution": "MUPKI",
+          "program": "Kompyuter injiniringi texnikasi",
+          "year": "2018"
+        }
+      ]
+    },
+    "languages": {
+      "title": "Tillar",
+      "items": [
+        { "name": "Rus tili", "level": "Ona tili" },
+        { "name": "Ingliz tili", "level": "B1" }
+      ]
+    }
+  }
+}

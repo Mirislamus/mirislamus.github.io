@@ -1,0 +1,46 @@
+---
+import Cv from '@widgets/components/Cv/Cv.astro';
+import { getSiteData } from '@data/site';
+import { LOCALES, isLocale } from '@i18n/locales';
+
+// The source of the downloadable PDFs (see scripts/build-cv.mjs). The page itself is not part of the site:
+// it is out of the sitemap and hidden from search engines.
+export const getStaticPaths = () => LOCALES.map(lang => ({ params: { lang } }));
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) throw new Error(`Unsupported CV locale "${lang}"`);
+
+const data = getSiteData(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="light" />
+    <title>{data.hero.title} — {data.hero.role}</title>
+  </head>
+  <body>
+    <Cv data={data} site={Astro.site as URL} />
+  </body>
+</html>
+
+<style is:global>
+  @page {
+    size: A4;
+    margin: 12mm 15mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  body {
+    background: #fff;
+  }
+</style>

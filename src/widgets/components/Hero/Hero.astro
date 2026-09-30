@@ -40,6 +40,9 @@ const titleHtml = data.title
       </p>
       <div class={s.btns}>
         <Button href="#contacts">{data.button}</Button>
+        <Button variant="outline" href={`/cv/mirislam-usmanov-${locale}.pdf`} download>
+          {data.cv}
+        </Button>
       </div>
     </div>
   </div>

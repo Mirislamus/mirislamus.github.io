@@ -25,11 +25,13 @@ describe('data schemas', () => {
 
   it('rejects a missing key (a translation that lost a field)', () => {
     expect(heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text' }).success).toBe(false);
-    expect(heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text', button: 'Go' }).success).toBe(true);
+    expect(
+      heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text', button: 'Go', cv: 'CV' }).success
+    ).toBe(true);
   });
 
   it('rejects empty strings', () => {
-    expect(heroSchema.safeParse({ role: '', title: 'Name', text: 'Text', button: 'Go' }).success).toBe(false);
+    expect(heroSchema.safeParse({ role: '', title: 'Name', text: 'Text', button: 'Go', cv: 'CV' }).success).toBe(false);
   });
 
   it('requires a valid skill group', () => {

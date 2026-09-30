@@ -44,9 +44,22 @@ export const approachSchema = z.strictObject({
   sandboxStatus: text,
 });
 
-export const heroSchema = z.strictObject({ role: text, title: text, text, button: text });
+export const heroSchema = z.strictObject({ role: text, title: text, text, button: text, cv: text });
 
 export const footerSchema = z.strictObject({ ready: text, text });
+
+// Only used by the printable CV page; none of this appears on the site itself.
+export const cvSchema = z.strictObject({
+  contacts: text,
+  education: z.strictObject({
+    title: text,
+    items: z.array(z.strictObject({ institution: text, program: text, year: text })).min(1),
+  }),
+  languages: z.strictObject({
+    title: text,
+    items: z.array(z.strictObject({ name: text, level: text })).min(1),
+  }),
+});
 
 export const menuSchema = z.strictObject({
   items: z.array(z.strictObject({ label: text, url: id })).min(1),

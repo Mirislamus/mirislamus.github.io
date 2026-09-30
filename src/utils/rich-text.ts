@@ -53,3 +53,9 @@ export const interpolate = (input: string, vars: RichTextVars): string =>
   parseRichText(input, vars)
     .map(token => (token.type === 'text' ? token.value : ''))
     .join('');
+
+// The text without any markup (highlights and links keep their visible words), for documents such as the CV.
+export const toPlainText = (input: string, vars: RichTextVars = {}): string =>
+  parseRichText(input, vars)
+    .map(token => (token.type === 'link' ? token.label : token.value))
+    .join('');

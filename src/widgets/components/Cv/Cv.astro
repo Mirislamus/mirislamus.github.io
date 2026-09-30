@@ -1,0 +1,104 @@
+---
+import '@styles/base/_fonts.scss';
+import { info } from '@data/global';
+import type { SiteData } from '@data/site';
+import { getExperienceYears } from '@utils/experience';
+import { toPlainText } from '@utils/rich-text';
+import s from './Cv.module.scss';
+
+interface Props {
+  data: SiteData;
+  site: URL;
+}
+
+const { data, site } = Astro.props;
+const { hero, career, projects, skills, cv } = data;
+
+const strip = (value: string) => value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+const contacts = [info.email, strip(site.href), strip(info.github), strip(info.linkedin), strip(info.telegram)];
+const hrefs = [`mailto:${info.email}`, site.href, info.github, info.linkedin, info.telegram];
+
+// The most recent job comes first, the way a CV is read.
+const jobs = [...career.items].reverse();
+---
+
+<article class={s.cv}>
+  <header class={s.header}>
+    <h1>{hero.title}</h1>
+    <p class={s.role}>{hero.role}</p>
+    <p class={s.intro}>{toPlainText(hero.text, { years: getExperienceYears() })}</p>
+    <ul class={s.contacts} aria-label={cv.contacts}>
+      {contacts.map((label, index) => (
+        <li>
+          <a href={hrefs[index]}>{label}</a>
+        </li>
+      ))}
+    </ul>
+  </header>
+
+  <section>
+    <h2>{toPlainText(career.title)}</h2>
+    {jobs.map(job => (
+      <div class={s.item}>
+        <h3>
+          {job.position}, {job.company}
+          <span class={s.year}>{job.year}</span>
+        </h3>
+        <p>{toPlainText(job.description)}</p>
+        <p class={s.stack}>{job.stack.join(' · ')}</p>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <h2>{toPlainText(projects.title)}</h2>
+    {projects.items.map(project => (
+      <div class={s.item}>
+        <h3>
+          <a href={project.link}>{project.name}</a>
+          <span class={s.year}>{strip(project.link)}</span>
+        </h3>
+        <p>{project.text}</p>
+        <p class={s.stack}>{project.stack.join(' · ')}</p>
+      </div>
+    ))}
+  </section>
+
+  <section>
+    <h2>{toPlainText(skills.title)}</h2>
+    <dl class={s.skills}>
+      {skills.groups.map(group => (
+        <>
+          <dt>{group.title}</dt>
+          <dd>{group.items.map(skill => skill.name).join(', ')}</dd>
+        </>
+      ))}
+    </dl>
+  </section>
+
+  <div class={s.columns}>
+    <section>
+      <h2>{cv.education.title}</h2>
+      {cv.education.items.map(item => (
+        <div class={s.item}>
+          <h3>
+            {item.program}
+            <span class={s.year}>{item.year}</span>
+          </h3>
+          <p>{item.institution}</p>
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2>{cv.languages.title}</h2>
+      <ul class={s.languages}>
+        {cv.languages.items.map(language => (
+          <li>
+            {language.name} <span class={s.year}>{language.level}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</article>

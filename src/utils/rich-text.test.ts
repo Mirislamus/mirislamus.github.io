@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { interpolate, parseRichText } from './rich-text';
+import { interpolate, parseRichText, toPlainText } from './rich-text';
 
 describe('parseRichText', () => {
   it('returns a single text token for plain text', () => {
@@ -84,5 +84,13 @@ describe('interpolate', () => {
 
   it('throws for an unknown variable', () => {
     expect(() => interpolate('{{nope}}', {})).toThrow();
+  });
+});
+
+describe('toPlainText', () => {
+  it('keeps the visible words of highlights and links and substitutes variables', () => {
+    expect(toPlainText('Recent |projects|, see ||dafna.uz|| for {{years}}+ years', { years: 8 })).toBe(
+      'Recent projects, see dafna.uz for 8+ years'
+    );
   });
 });
