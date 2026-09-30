@@ -8,13 +8,6 @@
 
 Прежние документы (`boost-tz.md`, `tasks.md`, `SITE_AUDIT_TZ.md`) объединены в эти два файла и удалены; они доступны в git-истории.
 
-## Команды проверки
+## Команды
 
-```bash
-bun run lint
-bun run check
-bun run check:links
-bun run build
-```
-
-После выполнения RF-17 и RF-18 из `tz.md` сюда добавятся `lint:styles`, `format:check`, `test`, `test:e2e` и `test:visual`.
+Список команд, структура проекта и как менять контент — в [README](../README.md).
