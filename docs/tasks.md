@@ -63,7 +63,7 @@
 | RF-04 | Единый i18n-слой и политика URL        | ✅     | e01a733 |
 | RF-05 | Content collections и валидация данных | ✅     | e77f16b |
 | RF-06 | Единый rich-text парсер                | ✅     | f17c81a |
-| RF-07 | Надёжная тема                          | ⬜     |         |
+| RF-07 | Надёжная тема                          | ✅     | pending |
 
 **RF-04**
 
@@ -92,6 +92,14 @@
 - [x] Удалены `useTextHighlight`, `parseLinks`, `applyVariable` и ручной `split('|')` в Skills
 - [x] Vitest подключён (`bun run test`, `vitest.config.ts`), 12 тестов парсера, шаг `test` в CI
 - [x] HTML трёх локалей идентичен прежнему (сравнение без учёта пробелов на границах блоков)
+
+**RF-07**
+
+- [x] Токены светлой темы на `:root`, тёмной — в `[data-theme='dark']` и в `prefers-color-scheme: dark` без атрибута (тема без JS); миксины `light-tokens`/`dark-tokens`/`on-dark`
+- [x] Константы и инлайн-скрипт в одном модуле `theme-bootstrap.ts`; `localStorage` везде в `try/catch`
+- [x] `theme.ts` — внешнее хранилище (режим, система, другие вкладки, все `meta[theme-color]`); хуки `useThemeMode`/`useTheme`; nanostores удалены
+- [x] e2e `tests/e2e/theme.spec.ts` (8 тестов): до первой отрисовки, без JS, заблокированное хранилище, смена системной темы, сохранение выбора, meta
+- [x] Все 40 сценариев Playwright проходят
 
 ## Фаза 2. Миграция с React на Astro
 

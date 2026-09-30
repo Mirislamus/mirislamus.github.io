@@ -55,12 +55,14 @@
   display: none;
 }
 
-:global([data-theme='dark']) {
-  .lightIcon {
+.lightIcon {
+  @include on-dark {
     display: none;
   }
+}
 
-  .darkIcon {
+.darkIcon {
+  @include on-dark {
     display: block;
   }
 }

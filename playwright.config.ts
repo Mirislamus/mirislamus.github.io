@@ -29,10 +29,31 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   projects: [
-    { name: 'mobile-390', use: { browserName: 'chromium', viewport: { width: 390, height: 844 }, hasTouch: true } },
-    { name: 'tablet-768', use: { browserName: 'chromium', viewport: { width: 768, height: 1024 } } },
-    { name: 'laptop-1024', use: { browserName: 'chromium', viewport: { width: 1024, height: 768 } } },
-    { name: 'desktop-1440', use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } } },
+    {
+      name: 'mobile-390',
+      testMatch: 'visual/**/*.spec.ts',
+      use: { browserName: 'chromium', viewport: { width: 390, height: 844 }, hasTouch: true },
+    },
+    {
+      name: 'tablet-768',
+      testMatch: 'visual/**/*.spec.ts',
+      use: { browserName: 'chromium', viewport: { width: 768, height: 1024 } },
+    },
+    {
+      name: 'laptop-1024',
+      testMatch: 'visual/**/*.spec.ts',
+      use: { browserName: 'chromium', viewport: { width: 1024, height: 768 } },
+    },
+    {
+      name: 'desktop-1440',
+      testMatch: 'visual/**/*.spec.ts',
+      use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'e2e',
+      testMatch: 'e2e/**/*.spec.ts',
+      use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } },
+    },
   ],
   webServer: {
     command: `bunx astro build && bunx astro preview --ignore-lock --host 127.0.0.1 --port ${PORT}`,

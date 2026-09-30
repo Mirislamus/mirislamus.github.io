@@ -1,6 +1,5 @@
 import type { SiteData } from '@data/site';
-import { useStore } from '@nanostores/react';
-import { themeAtom } from '@shared/stores';
+import { useTheme } from '@hooks/useTheme';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
@@ -19,7 +18,7 @@ interface ApproachProps {
 }
 
 export const Approach = ({ data, codeImages }: ApproachProps) => {
-  const theme = useStore(themeAtom);
+  const theme = useTheme();
   const isHydrated = useIsHydrated();
 
   const [copyToClipboard] = useCopyToClipboard();

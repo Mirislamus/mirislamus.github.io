@@ -1,5 +1,37 @@
 @use '@styles/helpers/mixins' as *;
 
+@mixin light-tokens {
+  --background: var(--white);
+  --text: var(--black);
+  --text-reverse: var(--white);
+  --primary: var(--grey);
+  --secondary: var(--grey-2);
+  --secondary-alpha: var(--grey-2-alpha);
+  --tertiary: var(--grey-3);
+  --accent: var(--orange);
+  --accent-text: #ff6433;
+  --accent-contrast: var(--black);
+  --accent-alpha: var(--orange-alpha);
+  --text-muted: #666666;
+  color-scheme: light;
+}
+
+@mixin dark-tokens {
+  --background: var(--black);
+  --text: var(--white);
+  --text-reverse: var(--black);
+  --primary: var(--black-2);
+  --secondary: var(--black-1);
+  --secondary-alpha: var(--black-1-alpha);
+  --tertiary: var(--black-3);
+  --accent: var(--green);
+  --accent-text: var(--green);
+  --accent-contrast: var(--black);
+  --accent-alpha: var(--green-alpha);
+  --text-muted: var(--grey-4);
+  color-scheme: dark;
+}
+
 @layer base {
   :root {
     --font: 'Inter', sans-serif;
@@ -61,36 +93,17 @@
     --radius-50: 50px;
     --radius-100: 100px;
 
-    &[data-theme='light'] {
-      --background: var(--white);
-      --text: var(--black);
-      --text-reverse: var(--white);
-      --primary: var(--grey);
-      --secondary: var(--grey-2);
-      --secondary-alpha: var(--grey-2-alpha);
-      --tertiary: var(--grey-3);
-      --accent: var(--orange);
-      --accent-text: #ff6433;
-      --accent-contrast: var(--black);
-      --accent-alpha: var(--orange-alpha);
-      --text-muted: #666666;
-      color-scheme: light;
-    }
+    @include light-tokens;
+  }
 
-    &[data-theme='dark'] {
-      --background: var(--black);
-      --text: var(--white);
-      --text-reverse: var(--black);
-      --primary: var(--black-2);
-      --secondary: var(--black-1);
-      --secondary-alpha: var(--black-1-alpha);
-      --tertiary: var(--black-3);
-      --accent: var(--green);
-      --accent-text: var(--green);
-      --accent-contrast: var(--black);
-      --accent-alpha: var(--green-alpha);
-      --text-muted: var(--grey-4);
-      color-scheme: dark;
+  // An explicit choice wins; without JS (no attribute) the system preference decides.
+  :root[data-theme='dark'] {
+    @include dark-tokens;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      @include dark-tokens;
     }
   }
 }

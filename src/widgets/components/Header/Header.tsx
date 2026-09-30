@@ -1,5 +1,3 @@
-import { useStore } from '@nanostores/react';
-import { modeAtom } from '@shared/stores';
 import type { CSSProperties } from 'react';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import s from './Header.module.scss';
@@ -8,7 +6,7 @@ import { Logo } from '@shared/icons';
 import { Moon, Sun, Monitor, X, Menu } from 'lucide-react';
 import { useActiveSection } from '@hooks/useActiveSection';
 import { useClickOutside } from '@hooks/useClickOutside';
-import { useIsHydrated } from '@hooks/useIsHydrated';
+import { useThemeMode } from '@hooks/useTheme';
 import { ActionButton } from '@shared/ui/ActionButton/ActionButton';
 import { Switcher } from '@shared/ui/Switcher/Switcher';
 import { setThemeMode } from '@utils/theme';
@@ -25,8 +23,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ locale, homeHref, languages, menu, a11y }: HeaderProps) => {
-  const mode = useStore(modeAtom);
-  const isHydrated = useIsHydrated();
+  const mode = useThemeMode();
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
@@ -127,19 +124,19 @@ export const Header = ({ locale, homeHref, languages, menu, a11y }: HeaderProps)
     {
       content: <Sun aria-hidden="true" />,
       onClick: () => setThemeMode('light'),
-      isActive: isHydrated ? mode === 'light' : false,
+      isActive: mode === 'light',
       ariaLabel: a11y.lightTheme,
     },
     {
       content: <Monitor aria-hidden="true" />,
       onClick: () => setThemeMode('system'),
-      isActive: isHydrated ? mode === 'system' : true,
+      isActive: mode === 'system',
       ariaLabel: a11y.systemTheme,
     },
     {
       content: <Moon aria-hidden="true" />,
       onClick: () => setThemeMode('dark'),
-      isActive: isHydrated ? mode === 'dark' : false,
+      isActive: mode === 'dark',
       ariaLabel: a11y.darkTheme,
     },
   ];

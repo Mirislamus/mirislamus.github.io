@@ -3,6 +3,7 @@ import type { SiteData } from '@data/site';
 import { info } from '@data/global';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@i18n/locales';
 import { absoluteLocaleUrl } from '@i18n/utils';
+import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
 
 interface Props {
   locale: Locale;
@@ -15,6 +16,7 @@ const toUrl = (path: string) => new URL(path, Astro.site).href;
 const canonical = absoluteLocaleUrl(locale);
 const defaultUrl = absoluteLocaleUrl(DEFAULT_LOCALE);
 const profileUrl = defaultUrl;
+const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, ${JSON.stringify(THEME_COLORS)})`;
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -45,7 +47,8 @@ const structuredData = {
   <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)" />
 
   <meta name="color-scheme" content="light dark" />
-  <meta id="theme-color" name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content={THEME_COLORS.light} media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content={THEME_COLORS.dark} media="(prefers-color-scheme: dark)" />
 
   <meta property="og:title" content={meta.title} />
   <meta property="og:description" content={meta.description} />
@@ -74,15 +77,5 @@ const structuredData = {
   <meta name="google-site-verification" content="Tzn3iaYEQS1a2OgHpkhiLftCIEJTMl_Psub9fGV1c0A" />
   <meta name="yandex-verification" content="f95a00340036f6fa" />
 
-  <script is:inline>
-    (() => {
-      const getSystemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-      const stored = localStorage.getItem('theme');
-      const theme = stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
-
-      document.documentElement.setAttribute('data-theme', theme);
-      document.getElementById('theme-color')?.setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
-    })();
-  </script>
+  <script is:inline set:html={themeScript}></script>
 </head>

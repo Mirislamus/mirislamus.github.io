@@ -115,23 +115,11 @@
   }
 }
 
-[data-theme='dark'] {
-  .item {
-    &_3 {
-      path:not(:first-child) {
-        fill: var(--white);
-      }
-    }
-  }
-}
+.item_3 path:not(:first-child) {
+  fill: var(--black);
 
-[data-theme='light'] {
-  .item {
-    &_3 {
-      path:not(:first-child) {
-        fill: var(--black);
-      }
-    }
+  @include on-dark {
+    fill: var(--white);
   }
 }
 

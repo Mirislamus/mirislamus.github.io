@@ -17,3 +17,17 @@
     @content;
   }
 }
+
+// Styles for the dark theme. Covers both an explicit choice (`data-theme="dark"`) and the no-JS case,
+// where there is no attribute and the system preference decides.
+@mixin on-dark {
+  :root[data-theme='dark'] & {
+    @content;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) & {
+      @content;
+    }
+  }
+}
