@@ -38,13 +38,16 @@ jobs:
       - run: bun run knip
       - run: bun run test
       - run: bun run check
-      # Chromium prints the CV PDFs at the end of the build, so it comes first.
+      # Chromium makes the CV PDFs and the share pictures at the end of the build, so it comes first.
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium
       - run: bun run build
       - run: bun run check:bundle
 
       - run: bun run test:e2e
+
+      # SEO must stay at 100; the other categories are only printed.
+      - run: bun run check:lighthouse
 
       - name: Upload e2e report
         if: ${{ failure() }}

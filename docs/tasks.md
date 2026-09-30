@@ -429,3 +429,10 @@
 - [x] `Head.astro`: `og:image` и `twitter:image` своей локали, `og:image:type`, `og:site_name`, `og:locale:alternate`, `og:type` = `profile` + `profile:first_name`, `profile:last_name`, `profile:username`
 - [x] `public/opengraph.jpg` удалён
 - Не проверено: превью в Telegram (@WebpageBot), LinkedIn Post Inspector, WhatsApp — после деплоя (SEO-09)
+
+**SEO-08**
+
+- [x] e2e `tests/e2e/seo.spec.ts` (17 тестов) для `/`, `/ru/`, `/uz/`: длина title (≤ 70) и description (≤ 160), нет остатков разметки, один `h1` с ролью; canonical, `hreflang` (en, ru, uz, x-default) отвечают 200 без редиректа; `og:*` и `twitter:image` своей локали, `og:locale:alternate`, картинка — JPEG 1200×630 ≤ 300 КБ; JSON-LD: `WebSite`, `ProfilePage`, `Person` с одинаковым `@id` во всех языках, число проектов совпадает с DOM, тексты отзывов есть на странице; `robots.txt`, sitemap (адреса = canonical, `lastmod`, `x-default`, нет `/cv/` и `/og/`), иконки и manifest; `noindex` у CV, OG и 404. Проверено вручную: подмена canonical в `dist` роняет тест
+- [x] `scripts/lighthouse.mjs` (`bun run check:lighthouse`, `lighthouse` 13.5.0 — точная версия): мобильный прогон трёх языков на собранном сайте, Chromium из Playwright; публичный адрес подменяется локальным, чтобы canonical и hreflang оценивались как на настоящем домене. SEO должен быть 100, остальное печатается. Сейчас: SEO 100 / Best Practices 100 / Accessibility 96 (контраст акцента `#ff6433` — принятое исключение) / Performance 94–96
+- [x] CI: шаг `check:lighthouse` после e2e; `render.mjs` отдаёт `withSite` для обоих скриптов
+- Всего e2e теперь 154, все проходят
