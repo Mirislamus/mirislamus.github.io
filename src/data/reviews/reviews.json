@@ -1,6 +1,7 @@
 {
   "en": {
     "title": "Reviews",
+    "source": "Habr Freelance",
     "reviews": [
       {
         "id": "2",
@@ -38,6 +39,7 @@
   },
   "ru": {
     "title": "Отзывы",
+    "source": "Хабр Фриланс",
     "reviews": [
       {
         "id": "2",
@@ -75,6 +77,7 @@
   },
   "uz": {
     "title": "Sharhlar",
+    "source": "Habr Freelance",
     "reviews": [
       {
         "id": "2",

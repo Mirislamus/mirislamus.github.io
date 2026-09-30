@@ -404,3 +404,14 @@
 - [x] `scripts/icons.mjs` (`bun run build:icons`): из `favicon-dark.svg` делает `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png` (логотип в безопасной зоне) и `favicon.ico` (16, 32, 48, PNG внутри ICO); результат закоммичен в `public/`
 - [x] `manifest.webmanifest`: имя, иконки (включая maskable), цвета из `THEME_COLORS`, `display: "browser"` (сервис-воркера нет)
 - [x] `Head.astro`: `favicon.ico` первым, затем SVG с `media` для браузеров, `apple-touch-icon`, `manifest`
+
+**SEO-03, SEO-04, SEO-05** (сделаны вместе: это один граф JSON-LD)
+
+- [x] `src/seo/structured-data.ts` — чистая функция `buildStructuredData`, типы из `schema-dts` (devDependency); `Head.astro` только вызывает её. Единый `@graph` со стабильными `@id` (одинаковыми во всех языках): `WebSite`, `ProfilePage` (`dateCreated` 2025-03-26 — первый коммит, `dateModified` — дата последнего коммита), `Person`, `ItemList` проектов, `Review`
+- [x] `Person`: имя на языке страницы, `alternateName` (имена на других языках и `mirislamus`), должность, описание со стажем, фото (`ImageObject`), email, город (`Ташкент`, `UZ`), навыки из `skills.base.json` (26, без захардкоженного списка), языки и учебные заведения из `cv.json`, `sameAs`; телефон, дата рождения и гражданство не выводятся
+- [x] Карьера: в `career.base.json` появились `start`, `end` (`null` у текущего места) и `url` компании (у Humandone и Dafna); в `career.json` `year` заменён одним словом `present` на язык. Подпись на странице и в PDF собирается из этих полей и не изменилась. В разметке — `EmployeeRole` (новое сверху). Годы окончания: год начала следующего места — **проверить владельцем**
+- [x] Проекты: `ItemList` → `ListItem` → `WebSite` (название, ссылка, описание на языке страницы, скриншот, стек, автор)
+- [x] Отзывы: `Review` с текстом на языке страницы, автором, `publisher` — «Habr Freelance» / «Хабр Фриланс» (ключ `source` в `reviews.json`); без рейтингов
+- [x] `cv.json → languages`: поле `code` (`ru`, `en`); при сборке проверяется, что во всех локалях одни и те же языки
+- [x] Псевдоним `@seo` (`tsconfig`, Vite, Vitest); 16 unit-тестов (`structured-data.test.ts`): нет остатков разметки, одинаковые `@id`, все ссылки `@id` ведут на узлы графа, данные из `SiteData`, нет приватных полей, порядок карьеры, проекты и отзывы как на странице
+- Не проверено: validator.schema.org и Rich Results Test (нужен интернет и ручная вставка) — в SEO-09

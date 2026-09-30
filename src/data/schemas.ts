@@ -59,7 +59,8 @@ export const cvSchema = z.strictObject({
   }),
   languages: z.strictObject({
     title: text,
-    items: z.array(z.strictObject({ name: text, level: text })).min(1),
+    // `code` is the BCP 47 language tag used by the structured data.
+    items: z.array(z.strictObject({ code: z.string().regex(/^[a-z]{2,3}$/), name: text, level: text })).min(1),
   }),
 });
 
@@ -121,19 +122,27 @@ export const careerBaseSchema = z.strictObject({
   id,
   company: text,
   position: text,
+  // Years only: the visible label and the structured data are both made from them.
+  start: z.number().int().min(1990),
+  end: z.number().int().min(1990).nullable(),
+  url: url.optional(),
   stack: z.array(id).min(1),
 });
 
 export const careerSchema = z.strictObject({
   title: text,
   technologies: text,
-  items: z.array(z.strictObject({ id, year: text, description: text })).min(1),
+  // The word after the dash for the current place: "2024 — Present".
+  present: text,
+  items: z.array(z.strictObject({ id, description: text })).min(1),
 });
 
 export const reviewBaseSchema = z.strictObject({ id, author: text });
 
 export const reviewsSchema = z.strictObject({
   title: text,
+  // Where the reviews come from; only used by the structured data.
+  source: text,
   reviews: z.array(z.strictObject({ id, text })).min(1),
 });
 

@@ -3,6 +3,10 @@ import type { SiteData } from '@data/site';
 import { info } from '@data/global';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@i18n/locales';
 import { absoluteLocaleUrl } from '@i18n/utils';
+import { getSiteData } from '@data/site';
+import { getLastModified } from '@seo/last-modified';
+import { buildStructuredData } from '@seo/structured-data';
+import { getAvatarImage, getProjectImages } from '@utils/images';
 import { INTRO_STORAGE_KEY, bootstrapIntro } from '@utils/intro-bootstrap';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
 
@@ -16,28 +20,22 @@ const { locale, meta } = Astro.props;
 const toUrl = (path: string) => new URL(path, Astro.site).href;
 const canonical = absoluteLocaleUrl(locale);
 const defaultUrl = absoluteLocaleUrl(DEFAULT_LOCALE);
-const profileUrl = defaultUrl;
 const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, ${JSON.stringify(THEME_COLORS)})`;
 const introScript = `(${bootstrapIntro})(${JSON.stringify(INTRO_STORAGE_KEY)})`;
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': `${canonical}#profile-page`,
-  url: canonical,
-  name: meta.title,
-  description: meta.description,
-  inLanguage: locale,
-  mainEntity: {
-    '@type': 'Person',
-    '@id': `${profileUrl}#person`,
-    name: meta.name,
-    jobTitle: 'Frontend Engineer',
-    url: profileUrl,
-    image: toUrl('/opengraph.jpg'),
-    sameAs: [info.telegram, info.github, info.linkedin],
-    knowsAbout: ['TypeScript', 'React', 'Next.js', 'Astro', 'JavaScript', 'HTML', 'CSS', 'Sass'],
-  },
-};
+const site = getSiteData(locale);
+const projectImages = await getProjectImages();
+const avatar = await getAvatarImage();
+const structuredData = buildStructuredData({
+  locale,
+  site,
+  names: Object.fromEntries(LOCALES.map(code => [code, getSiteData(code).meta.name])) as Record<Locale, string>,
+  origin: toUrl('/'),
+  canonical,
+  avatar: { url: toUrl(avatar.src), width: avatar.width, height: avatar.height },
+  projectImages: Object.fromEntries(Object.entries(projectImages).map(([id, image]) => [id, toUrl(image.src)])),
+  modified: getLastModified(),
+  contacts: info,
+});
 ---
 
 <head>

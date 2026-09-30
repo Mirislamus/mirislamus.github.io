@@ -88,6 +88,7 @@ const config = {
         '@data': '/src/data',
         '@assets': '/src/assets',
         '@i18n': '/src/i18n',
+        '@seo': '/src/seo',
       },
     },
     build: {

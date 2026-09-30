@@ -32,10 +32,12 @@
       "title": "Languages",
       "items": [
         {
+          "code": "ru",
           "name": "Russian",
           "level": "Native"
         },
         {
+          "code": "en",
           "name": "English",
           "level": "B1"
         }
@@ -75,10 +77,12 @@
       "title": "Языки",
       "items": [
         {
+          "code": "ru",
           "name": "Русский",
           "level": "Родной"
         },
         {
+          "code": "en",
           "name": "Английский",
           "level": "B1"
         }
@@ -118,10 +122,12 @@
       "title": "Tillar",
       "items": [
         {
+          "code": "ru",
           "name": "Rus tili",
           "level": "Ona tili"
         },
         {
+          "code": "en",
           "name": "Ingliz tili",
           "level": "B1"
         }

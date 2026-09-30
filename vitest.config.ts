@@ -8,6 +8,7 @@ export default defineConfig({
     // Same aliases as astro.config.ts and tsconfig.json.
     alias: {
       '@i18n': src('i18n'),
+      '@seo': src('seo'),
       '@utils': src('utils'),
       '@data': src('data'),
       '@shared': src('shared'),

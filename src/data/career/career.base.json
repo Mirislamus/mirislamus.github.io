@@ -3,30 +3,42 @@
     "id": "web-pult",
     "company": "Web Pult",
     "position": "HTML/CSS Engineer",
+    "start": 2018,
+    "end": 2019,
     "stack": ["html", "css", "scss", "javascript", "jquery", "gulp"]
   },
   {
     "id": "one-web",
     "company": "One Web",
     "position": "Web Engineer",
+    "start": 2019,
+    "end": 2020,
     "stack": ["html", "scss", "javascript", "jquery", "gulp", "nunjucks", "php", "wordpress"]
   },
   {
     "id": "margin-digital-studio",
     "company": "Margin Digital Studio",
     "position": "Technical Lead & Frontend Engineer",
+    "start": 2020,
+    "end": 2022,
     "stack": ["html", "scss", "javascript", "gulp", "nunjucks", "php", "wordpress"]
   },
   {
     "id": "humandone",
     "company": "Humandone",
     "position": "Frontend Engineer",
+    "start": 2022,
+    "end": 2024,
+    "url": "https://humandone.com",
     "stack": ["react", "typescript", "gatsby", "nextjs", "scss", "tailwindcss", "chakra-ui", "axios"]
   },
   {
     "id": "dafna",
     "company": "Dafna",
     "position": "Frontend Engineer",
+    "start": 2024,
+    "end": null,
+    "url": "https://dafna.uz",
     "stack": ["react", "typescript", "javascript", "nextjs", "scss", "axios", "redux", "zustand"]
   }
 ]

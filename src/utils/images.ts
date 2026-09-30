@@ -58,8 +58,12 @@ export const getProjectImages = async (): Promise<Record<string, ResponsiveImage
   return Object.fromEntries(entries);
 };
 
-export const getAvatarSrc = async (): Promise<string> =>
-  (await getImage({ src: avatarFile, format: 'webp', quality: 98 })).src;
+export const getAvatarImage = async (): Promise<{ src: string; width: number; height: number }> => {
+  const { src, options } = await getImage({ src: avatarFile, format: 'webp', quality: 98 });
+  return { src, width: Number(options.width ?? avatarFile.width), height: Number(options.height ?? avatarFile.height) };
+};
+
+export const getAvatarSrc = async (): Promise<string> => (await getAvatarImage()).src;
 
 export const getCodeImages = async (): Promise<CodeImages> => {
   const [light, dark] = await Promise.all(

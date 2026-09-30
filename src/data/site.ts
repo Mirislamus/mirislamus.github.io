@@ -138,6 +138,16 @@ const load = () => {
     );
   }
 
+  // Every locale describes the same languages.
+  const languageCodes = (locale: Locale) => cv[locale].languages.items.map(item => item.code).join();
+  for (const locale of LOCALES) {
+    if (languageCodes(locale) !== languageCodes(DEFAULT_LOCALE)) {
+      fail(
+        `cv.json → ${locale} lists languages [${languageCodes(locale)}] but ${DEFAULT_LOCALE} lists [${languageCodes(DEFAULT_LOCALE)}]`
+      );
+    }
+  }
+
   const filterChips = (list: typeof projectBase) => {
     const counts = new Map<string, number>();
     for (const project of list) for (const id of project.stack) counts.set(id, (counts.get(id) ?? 0) + 1);
@@ -185,12 +195,14 @@ const load = () => {
       items: careerBase.map((item, index) => ({
         ...item,
         stack: stackNames(`career item "${item.id}"`, item.stack),
-        year: careerText[locale].items[index].year,
+        // The past places show their first year only; the current one shows "2024 — Present".
+        year: item.end === null ? `${item.start} — ${careerText[locale].present}` : String(item.start),
         description: careerText[locale].items[index].description,
       })),
     },
     reviews: {
       title: reviewsText[locale].title,
+      source: reviewsText[locale].source,
       items: reviewBase.map((review, index) => ({ ...review, text: reviewsText[locale].reviews[index].text })),
     },
   });
