@@ -46,6 +46,24 @@ export const approachSchema = z.strictObject({
 
 export const heroSchema = z.strictObject({ role: text, title: text, text, button: text, cv: text });
 
+export const paletteSchema = z.strictObject({
+  label: text,
+  placeholder: text,
+  empty: text,
+  recent: text,
+  open: text,
+  hints: z.strictObject({ navigate: text, select: text, close: text }),
+  groups: z.strictObject({
+    navigation: text,
+    actions: text,
+    theme: text,
+    language: text,
+    links: text,
+    projects: text,
+  }),
+  actions: z.strictObject({ copyEmail: text, downloadCv: text, top: text }),
+});
+
 export const footerSchema = z.strictObject({ ready: text, text });
 
 // Only used by the printable CV page; none of this appears on the site itself.

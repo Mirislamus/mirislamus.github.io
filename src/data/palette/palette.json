@@ -1,0 +1,77 @@
+{
+  "en": {
+    "label": "Command palette",
+    "placeholder": "Type a command or search…",
+    "empty": "Nothing found",
+    "recent": "Recent",
+    "open": "Open command palette",
+    "hints": {
+      "navigate": "navigate",
+      "select": "select",
+      "close": "close"
+    },
+    "groups": {
+      "navigation": "Go to",
+      "actions": "Actions",
+      "theme": "Theme",
+      "language": "Language",
+      "links": "Links",
+      "projects": "Projects"
+    },
+    "actions": {
+      "copyEmail": "Copy email",
+      "downloadCv": "Download CV (PDF)",
+      "top": "Back to top"
+    }
+  },
+  "ru": {
+    "label": "Палитра команд",
+    "placeholder": "Введите команду или поиск…",
+    "empty": "Ничего не найдено",
+    "recent": "Недавние",
+    "open": "Открыть палитру команд",
+    "hints": {
+      "navigate": "выбор",
+      "select": "открыть",
+      "close": "закрыть"
+    },
+    "groups": {
+      "navigation": "Перейти",
+      "actions": "Действия",
+      "theme": "Тема",
+      "language": "Язык",
+      "links": "Ссылки",
+      "projects": "Проекты"
+    },
+    "actions": {
+      "copyEmail": "Скопировать email",
+      "downloadCv": "Скачать резюме (PDF)",
+      "top": "Наверх"
+    }
+  },
+  "uz": {
+    "label": "Buyruqlar paneli",
+    "placeholder": "Buyruq yozing yoki qidiring…",
+    "empty": "Hech narsa topilmadi",
+    "recent": "Oxirgilar",
+    "open": "Buyruqlar panelini ochish",
+    "hints": {
+      "navigate": "tanlash",
+      "select": "ochish",
+      "close": "yopish"
+    },
+    "groups": {
+      "navigation": "O‘tish",
+      "actions": "Amallar",
+      "theme": "Mavzu",
+      "language": "Til",
+      "links": "Havolalar",
+      "projects": "Loyihalar"
+    },
+    "actions": {
+      "copyEmail": "Emailni nusxalash",
+      "downloadCv": "CV yuklab olish (PDF)",
+      "top": "Yuqoriga"
+    }
+  }
+}

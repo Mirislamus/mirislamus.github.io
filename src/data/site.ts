@@ -17,6 +17,7 @@ import footerJson from './footer/footer.json';
 import heroJson from './hero/hero.json';
 import menuJson from './menu/menu.json';
 import metaJson from './meta/meta.json';
+import paletteJson from './palette/palette.json';
 import projectsBaseJson from './projects/projects.base.json';
 import projectsJson from './projects/projects.json';
 import reviewsBaseJson from './reviews/reviews.base.json';
@@ -36,6 +37,7 @@ import {
   heroSchema,
   menuSchema,
   metaSchema,
+  paletteSchema,
   projectBaseSchema,
   projectsSchema,
   reviewBaseSchema,
@@ -106,6 +108,7 @@ const load = () => {
   const hero = parseLocalized('hero.json', heroSchema, heroJson);
   const footer = parseLocalized('footer.json', footerSchema, footerJson);
   const cv = parseLocalized('cv.json', cvSchema, cvJson);
+  const palette = parseLocalized('palette.json', paletteSchema, paletteJson);
   const menu = parseLocalized('menu.json', menuSchema, menuJson);
   const meta = parseLocalized('meta.json', metaSchema, metaJson);
   const skillsText = parseLocalized('skills.json', skillsSchema, skillsJson);
@@ -154,6 +157,7 @@ const load = () => {
     hero: hero[locale],
     footer: footer[locale],
     cv: cv[locale],
+    palette: palette[locale],
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },
     meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },

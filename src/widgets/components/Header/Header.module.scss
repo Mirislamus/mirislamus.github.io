@@ -153,6 +153,41 @@
   gap: var(--gap-4);
 }
 
+// Shortcut hint: only where the bar has room, the drawer has its own entry on smaller screens.
+.paletteButton {
+  display: none;
+  align-items: center;
+  gap: var(--gap-8);
+  height: 42px;
+  padding-inline: var(--gap-12);
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-10);
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+
+  kbd {
+    font: inherit;
+  }
+
+  &:hover {
+    border-color: var(--grey-5);
+    color: var(--text);
+  }
+}
+
+.mobilePalette {
+  display: none;
+}
+
+@media (width >= 1100px) {
+  .paletteButton {
+    display: flex;
+  }
+}
+
 .langsSwitcher {
   position: relative;
 
@@ -275,6 +310,14 @@
 
   .line {
     display: none;
+  }
+
+  .mobilePalette {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-12);
+    font-size: 18px;
+    color: var(--text-muted);
   }
 
   .end {

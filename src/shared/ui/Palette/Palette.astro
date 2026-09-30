@@ -1,0 +1,52 @@
+---
+import type { SiteData } from '@data/site';
+import type { Command } from '@shared/scripts/commands';
+import s from './Palette.module.scss';
+
+interface Props {
+  palette: SiteData['palette'];
+  commands: Command[];
+}
+
+const { palette, commands } = Astro.props;
+
+// `<` is escaped so the data can never close the script element.
+const json = JSON.stringify({ commands, groups: palette.groups, recent: palette.recent }).replaceAll('<', '\\u003c');
+---
+
+<dialog id="command-palette" class={s.palette} aria-label={palette.label}>
+  <div class={s.box}>
+    <input
+      class={s.input}
+      type="text"
+      role="combobox"
+      aria-expanded="true"
+      aria-controls="palette-list"
+      aria-autocomplete="list"
+      aria-label={palette.label}
+      placeholder={palette.placeholder}
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+    />
+    {/* A <ul> with role=listbox is valid ARIA; the rule does not know the list is only a container for the options. */}
+    {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-element-to-interactive-role */}
+    <ul id="palette-list" class={s.list} role="listbox" aria-label={palette.label}></ul>
+    <p class={s.empty} data-empty hidden role="status">
+      {palette.empty}
+    </p>
+    <p class={s.hints} aria-hidden="true">
+      <span>
+        <kbd>↑</kbd>
+        <kbd>↓</kbd> {palette.hints.navigate}
+      </span>
+      <span>
+        <kbd>↵</kbd> {palette.hints.select}
+      </span>
+      <span>
+        <kbd>Esc</kbd> {palette.hints.close}
+      </span>
+    </p>
+  </div>
+  <script is:inline type="application/json" id="palette-data" set:html={json}></script>
+</dialog>
