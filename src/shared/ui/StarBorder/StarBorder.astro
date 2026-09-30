@@ -1,0 +1,21 @@
+---
+import s from './StarBorder.module.scss';
+
+interface Props {
+  tag?: string;
+  color?: string;
+  speed?: string;
+  thickness?: number;
+  class?: string | string[];
+}
+
+const { tag = 'div', color = 'white', speed = '6s', thickness = 1, class: className, ...rest } = Astro.props;
+const Tag = tag as 'div';
+const glow = `background:radial-gradient(circle, ${color}, transparent 10%);animation-duration:${speed}`;
+---
+
+<Tag class:list={[s.container, className]} style={`padding:${thickness}px 0`} {...rest}>
+  <div class={s.gradientBottom} style={glow}></div>
+  <div class={s.gradientTop} style={glow}></div>
+  <slot />
+</Tag>

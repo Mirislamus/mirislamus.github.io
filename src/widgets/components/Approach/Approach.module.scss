@@ -205,3 +205,19 @@
     }
   }
 }
+
+.codeDark {
+  display: none;
+}
+
+.codeLight {
+  @include on-dark {
+    display: none;
+  }
+}
+
+.codeDark {
+  @include on-dark {
+    display: block;
+  }
+}

@@ -1,12 +1,12 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { Approach } from '@widgets/components/Approach/Approach';
+import Approach from '@widgets/components/Approach/Approach.astro';
 import { Career } from '@widgets/components/Career/Career';
 import Hero from '@widgets/components/Hero/Hero.astro';
 import { Projects } from '@widgets/components/Projects/Projects';
 import { Reviews } from '@widgets/components/Reviews/Reviews';
 import Skills from '@widgets/components/Skills/Skills.astro';
-import { getCodeImages, getProjectImages } from '@utils/images';
+import { getProjectImages } from '@utils/images';
 import { getSiteData } from '@data/site';
 import { getLocale, staticLocalePaths } from '@i18n/utils';
 
@@ -14,12 +14,12 @@ export const getStaticPaths = staticLocalePaths;
 
 const locale = getLocale(Astro);
 const site = getSiteData(locale);
-const [codeImages, projectImages] = await Promise.all([getCodeImages(), getProjectImages()]);
+const projectImages = await getProjectImages();
 ---
 
 <Layout>
   <Hero />
-  <Approach client:visible data={site.approach} codeImages={codeImages} />
+  <Approach data={site.approach} />
   <Career client:visible data={site.career} a11y={site.a11y} />
   <Projects client:visible data={site.projects} images={projectImages} />
   <Skills />

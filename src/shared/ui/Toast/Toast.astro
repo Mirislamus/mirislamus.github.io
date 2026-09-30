@@ -1,0 +1,19 @@
+---
+import Check from '@lucide/astro/icons/check';
+import CircleAlert from '@lucide/astro/icons/circle-alert';
+---
+
+<div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>
+
+<template data-toast="success">
+  <div class="toast">
+    <Check size={16} aria-hidden="true" />
+    <span data-toast-text></span>
+  </div>
+</template>
+<template data-toast="error">
+  <div class="toast">
+    <CircleAlert size={16} aria-hidden="true" />
+    <span data-toast-text></span>
+  </div>
+</template>

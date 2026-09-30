@@ -1,4 +1,17 @@
 @layer components {
+  .toast-region {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: var(--z-tooltip);
+    pointer-events: none;
+
+    @media (width <= 767px) {
+      left: 12px;
+      bottom: 12px;
+    }
+  }
+
   .toast {
     font-size: 14px;
     line-height: 1.2;
@@ -11,8 +24,37 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    pointer-events: auto;
+    animation: toast-in 250ms ease both;
+
     svg {
-      fill: var(--accent);
+      flex-shrink: 0;
+      color: var(--accent-text);
+    }
+
+    &[data-leaving] {
+      animation: toast-out 250ms ease both;
+    }
+  }
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes toast-out {
+    to {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toast,
+    .toast[data-leaving] {
+      animation: none;
     }
   }
 }

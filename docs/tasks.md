@@ -108,10 +108,18 @@
 | RF-08 | UI-примитивы и иконки                    | ✅     | cc865f7 |
 | RF-09 | Header                                   | ✅     | e550134 |
 | RF-10 | Avatar без GSAP                          | ✅     | 8549a96 |
-| RF-11 | Approach, копирование email, уведомления | ⬜     |         |
+| RF-11 | Approach, копирование email, уведомления | ✅     | pending |
 | RF-12 | Карусели Career и Reviews на Embla       | ⬜     |         |
 | RF-13 | Projects                                 | ⬜     |         |
 | RF-14 | Удаление React-инфраструктуры            | ⬜     |         |
+
+**RF-11**
+
+- [x] `Approach.astro`: чистый Astro, без гидратации; картинка кода — две `<img>` (светлая и тёмная), переключаются CSS, есть в исходном HTML и работают без JS (закрывает D6)
+- [x] `<copy-button>` (`CopyButton.astro`): сначала Clipboard API, при отказе копирование через выделение с возвратом фокуса на кнопку (закрывает D7)
+- [x] Уведомления: `Toast.astro` (live-region `role="status"`), `toast.ts`; один тост за раз, 5 с, анимация отключается при reduced motion; Sonner удалён
+- [x] `StarBorder.astro`: бегущий блик отключается при reduced motion (закрывает X4); `ToastProvider`, `StarBorder.tsx`, `useCopyToClipboard`, `useIsHydrated`, `useTheme`, `getTheme` удалены
+- [x] e2e `tests/e2e/approach.spec.ts` (6 тестов): копирование, отказ API, полная неудача, один тост, картинка кода с JS и без
 
 **RF-10**
 

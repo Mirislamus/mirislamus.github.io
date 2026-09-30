@@ -41,8 +41,6 @@ const notify = () => listeners.forEach(listener => listener());
 
 export const getThemeMode = (): ThemeMode => (currentMode ??= readStoredMode());
 
-export const getTheme = (): Theme => resolve(getThemeMode());
-
 export const subscribeTheme = (listener: () => void) => {
   listeners.add(listener);
   return () => {

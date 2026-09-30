@@ -1,0 +1,31 @@
+---
+interface Props {
+  text: string;
+  success: string;
+  error: string;
+}
+
+const { text, success, error } = Astro.props;
+---
+
+<copy-button data-text={text} data-success={success} data-error={error}>
+  <slot />
+</copy-button>
+
+<script>
+  import { copyText } from '@shared/scripts/clipboard';
+  import { showToast } from '@shared/scripts/toast';
+
+  class CopyButton extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener('click', async event => {
+        if (!(event.target as Element).closest('button')) return;
+
+        const copied = await copyText(this.dataset.text ?? '');
+        showToast((copied ? this.dataset.success : this.dataset.error) ?? '', copied ? 'success' : 'error');
+      });
+    }
+  }
+
+  if (!customElements.get('copy-button')) customElements.define('copy-button', CopyButton);
+</script>

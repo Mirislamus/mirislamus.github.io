@@ -3,7 +3,7 @@ import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
 import Footer from '@widgets/components/Footer/Footer.astro';
 import Header from '@widgets/components/Header/Header.astro';
-import { ToastProvider } from '@shared/ui/ToastProvider/ToastProvider';
+import Toast from '@shared/ui/Toast/Toast.astro';
 import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
 import { getSiteData } from '@data/site';
 
@@ -27,7 +27,7 @@ const { a11y, meta, menu } = getSiteData(locale);
     <main id="main-content" class="locale-content" tabindex="-1">
       <slot />
     </main>
-    <ToastProvider client:load />
+    <Toast />
     <Footer />
   </body>
 </html>

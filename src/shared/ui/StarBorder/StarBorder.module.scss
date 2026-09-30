@@ -48,3 +48,12 @@
     opacity: 0;
   }
 }
+
+// The endless glow is decorative: reduced motion gets a still border instead.
+@media (prefers-reduced-motion: reduce) {
+  .gradientBottom,
+  .gradientTop {
+    animation: none;
+    opacity: 0;
+  }
+}
