@@ -11,6 +11,7 @@ export default defineConfig([
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginAstro.configs.recommended,
+  ...pluginAstro.configs['jsx-a11y-strict'],
   {
     files: ['src/**/*.{js,ts,astro}'],
     languageOptions: {
