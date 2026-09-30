@@ -1,0 +1,113 @@
+{
+  "en": {
+    "label": "Terminal",
+    "welcome": "Type \"help\" to see the commands. Esc closes the terminal.",
+    "helpTitle": "Available commands:",
+    "unknown": "command not found: {{name}}",
+    "didYouMean": "Did you mean \"{{command}}\"?",
+    "usage": {
+      "theme": "usage: theme <light|dark|system>",
+      "lang": "usage: lang <{{options}}>",
+      "goto": "usage: goto <{{options}}>"
+    },
+    "help": {
+      "help": "list the commands",
+      "whoami": "who I am",
+      "about": "same as whoami",
+      "experience": "where I have worked",
+      "projects": "recent projects with links",
+      "skills": "skills by group",
+      "contact": "how to reach me",
+      "cv": "download the CV (PDF)",
+      "theme": "change the theme",
+      "lang": "change the language",
+      "goto": "scroll to a section",
+      "date": "the time in Tashkent",
+      "clear": "clear the screen",
+      "exit": "close the terminal",
+      "history": "commands you ran",
+      "sudo": "try \"sudo hire-me\""
+    },
+    "historyEmpty": "no commands yet",
+    "downloading": "downloading the CV…",
+    "themeSet": "theme: {{mode}}",
+    "langSet": "switching to {{code}}…",
+    "going": "going to {{section}}",
+    "hireMe": "Permission granted. Email copied to the clipboard, now use it.",
+    "denied": "sudo: only \"sudo hire-me\" is allowed here"
+  },
+  "ru": {
+    "label": "Терминал",
+    "welcome": "Введите \"help\", чтобы увидеть команды. Esc закрывает терминал.",
+    "helpTitle": "Доступные команды:",
+    "unknown": "команда не найдена: {{name}}",
+    "didYouMean": "Возможно, вы имели в виду \"{{command}}\"?",
+    "usage": {
+      "theme": "использование: theme <light|dark|system>",
+      "lang": "использование: lang <{{options}}>",
+      "goto": "использование: goto <{{options}}>"
+    },
+    "help": {
+      "help": "список команд",
+      "whoami": "кто я",
+      "about": "то же, что whoami",
+      "experience": "где я работал",
+      "projects": "недавние проекты со ссылками",
+      "skills": "навыки по группам",
+      "contact": "как со мной связаться",
+      "cv": "скачать резюме (PDF)",
+      "theme": "сменить тему",
+      "lang": "сменить язык",
+      "goto": "прокрутить к разделу",
+      "date": "время в Ташкенте",
+      "clear": "очистить экран",
+      "exit": "закрыть терминал",
+      "history": "выполненные команды",
+      "sudo": "попробуйте \"sudo hire-me\""
+    },
+    "historyEmpty": "команд пока нет",
+    "downloading": "скачиваю резюме…",
+    "themeSet": "тема: {{mode}}",
+    "langSet": "перехожу на {{code}}…",
+    "going": "перехожу к разделу {{section}}",
+    "hireMe": "Доступ разрешён. Email скопирован в буфер обмена, пользуйтесь.",
+    "denied": "sudo: здесь разрешено только \"sudo hire-me\""
+  },
+  "uz": {
+    "label": "Terminal",
+    "welcome": "Buyruqlarni ko‘rish uchun \"help\" yozing. Esc terminalni yopadi.",
+    "helpTitle": "Mavjud buyruqlar:",
+    "unknown": "buyruq topilmadi: {{name}}",
+    "didYouMean": "\"{{command}}\" demoqchimisiz?",
+    "usage": {
+      "theme": "ishlatilishi: theme <light|dark|system>",
+      "lang": "ishlatilishi: lang <{{options}}>",
+      "goto": "ishlatilishi: goto <{{options}}>"
+    },
+    "help": {
+      "help": "buyruqlar ro‘yxati",
+      "whoami": "men kimman",
+      "about": "whoami bilan bir xil",
+      "experience": "qayerlarda ishlaganman",
+      "projects": "so‘nggi loyihalar va havolalar",
+      "skills": "ko‘nikmalar guruhlar bo‘yicha",
+      "contact": "men bilan aloqa",
+      "cv": "CV yuklab olish (PDF)",
+      "theme": "mavzuni almashtirish",
+      "lang": "tilni almashtirish",
+      "goto": "bo‘limga o‘tish",
+      "date": "Toshkent vaqti",
+      "clear": "ekranni tozalash",
+      "exit": "terminalni yopish",
+      "history": "bajarilgan buyruqlar",
+      "sudo": "\"sudo hire-me\" ni sinab ko‘ring"
+    },
+    "historyEmpty": "hozircha buyruq yo‘q",
+    "downloading": "CV yuklab olinmoqda…",
+    "themeSet": "mavzu: {{mode}}",
+    "langSet": "{{code}} tiliga o‘tilmoqda…",
+    "going": "{{section}} bo‘limiga o‘tilmoqda",
+    "hireMe": "Ruxsat berildi. Email nusxalandi, foydalaning.",
+    "denied": "sudo: bu yerda faqat \"sudo hire-me\" mumkin"
+  }
+}
