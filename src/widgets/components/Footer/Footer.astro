@@ -1,7 +1,7 @@
 ---
 import { getSiteData } from '@data/site';
 import { info } from '@data/global';
-import { Button } from '@shared/ui/Button/Button';
+import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
 
@@ -20,10 +20,10 @@ const {
           <span class:list={[s.footerText, 'accent']}>{text}</span>
         </h2>
         <div class={s.buttons}>
-          <Button variant="outline" isFluid tag="a" href={`mailto:${info.email}`} isExternal>
+          <Button variant="outline" fluid href={`mailto:${info.email}`}>
             {info.email}
           </Button>
-          <Button variant="outline" isFluid tag="a" href={info.telegram} isExternal>
+          <Button variant="outline" fluid href={info.telegram}>
             {info.telegram.replace('https://', '')}
           </Button>
         </div>

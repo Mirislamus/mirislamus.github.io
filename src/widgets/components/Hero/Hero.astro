@@ -1,7 +1,7 @@
 ---
 import { getSiteData } from '@data/site';
 import { Avatar } from '@shared/ui/Avatar/Avatar';
-import { Button } from '@shared/ui/Button/Button';
+import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import { getAvatarSrc } from '@utils/images';
@@ -24,9 +24,7 @@ const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
         <RichText text={data.text} vars={{ years: workingYears }} />
       </p>
       <div class={s.btns}>
-        <Button tag="a" href="#contacts">
-          {data.button}
-        </Button>
+        <Button href="#contacts">{data.button}</Button>
       </div>
     </div>
   </div>
