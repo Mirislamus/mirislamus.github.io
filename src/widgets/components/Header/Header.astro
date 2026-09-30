@@ -1,7 +1,6 @@
 ---
 import Menu from '@lucide/astro/icons/menu';
 import Monitor from '@lucide/astro/icons/monitor';
-import Search from '@lucide/astro/icons/search';
 import Moon from '@lucide/astro/icons/moon';
 import Sun from '@lucide/astro/icons/sun';
 import X from '@lucide/astro/icons/x';
@@ -20,10 +19,9 @@ interface Props {
   languages: LanguageLink[];
   menu: SiteData['menu'];
   a11y: SiteData['a11y'];
-  paletteLabel: string;
 }
 
-const { locale, homeHref, languages, menu, a11y, paletteLabel } = Astro.props;
+const { locale, homeHref, languages, menu, a11y } = Astro.props;
 
 const themes = [
   { mode: 'light', label: a11y.lightTheme, Icon: Sun },
@@ -51,10 +49,6 @@ const themes = [
             ))}
           </ul>
           <div class={s.line} data-line></div>
-          <button type="button" class={s.mobilePalette} data-palette-open>
-            <Search aria-hidden="true" size={20} />
-            {paletteLabel}
-          </button>
           <Switcher class={s.mobileSwitcher} radius>
             {themes.map(({ mode, label, Icon }) => (
               <button
@@ -71,10 +65,6 @@ const themes = [
         </nav>
 
         <div class={s.end}>
-          <button type="button" class={s.paletteButton} data-palette-open aria-label={paletteLabel} data-ripple>
-            <Search aria-hidden="true" size={16} />
-            <kbd data-palette-key>Ctrl K</kbd>
-          </button>
           <Switcher class={s.themesSwitcher}>
             {themes.map(({ mode, label, Icon }) => (
               <button

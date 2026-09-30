@@ -4,16 +4,12 @@ import Head from '@layouts/Head.astro';
 import Footer from '@widgets/components/Footer/Footer.astro';
 import Header from '@widgets/components/Header/Header.astro';
 import BackToTop from '@shared/ui/BackToTop/BackToTop.astro';
-import Palette from '@shared/ui/Palette/Palette.astro';
 import Toast from '@shared/ui/Toast/Toast.astro';
 import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
 import { getSiteData } from '@data/site';
-import { buildCommands } from '@utils/palette-commands';
 
 const locale = getLocale(Astro);
-const site = getSiteData(locale);
-const { a11y, meta, menu, palette } = site;
-const languages = getLanguageLinks(locale);
+const { a11y, meta, menu } = getSiteData(locale);
 ---
 
 <!doctype html>
@@ -25,25 +21,16 @@ const languages = getLanguageLinks(locale);
     </a>
     <script>
       import '@shared/scripts/intro';
-      import '@shared/scripts/palette-trigger';
       import '@shared/scripts/ripple';
       import '@shared/scripts/spotlight';
       import { initTheme } from '@utils/theme';
       initTheme();
     </script>
-    <Header
-      locale={locale}
-      homeHref={localeUrl(locale)}
-      languages={languages}
-      menu={menu}
-      a11y={a11y}
-      paletteLabel={palette.open}
-    />
+    <Header locale={locale} homeHref={localeUrl(locale)} languages={getLanguageLinks(locale)} menu={menu} a11y={a11y} />
     <main id="main-content" class="locale-content" tabindex="-1">
       <slot />
     </main>
     <Toast />
-    <Palette palette={palette} commands={buildCommands(site, locale, languages)} />
     <BackToTop label={a11y.backToTop} />
     <Footer />
   </body>
