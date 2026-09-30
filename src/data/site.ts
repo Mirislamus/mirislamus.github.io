@@ -166,7 +166,11 @@ const load = () => {
     cv: cv[locale],
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },
-    meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },
+    meta: {
+      ...meta[locale],
+      description: interpolate(meta[locale].description, { years: getExperienceYears() }),
+      imageLine: interpolate(meta[locale].imageLine, { years: getExperienceYears() }),
+    },
     skills: {
       title: skillsText[locale].title,
       // Groups keep the fixed order of SKILL_GROUPS; skills keep the order of the file inside a group.

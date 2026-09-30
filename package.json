@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "build:cv": "node scripts/build-cv.mjs",
+    "build:media": "node scripts/build-media.mjs",
     "build:icons": "node scripts/icons.mjs",
     "check": "astro check",
     "check:links": "bun scripts/check-links.mjs",

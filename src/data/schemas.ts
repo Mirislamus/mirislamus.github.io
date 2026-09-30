@@ -73,6 +73,8 @@ export const metaSchema = z.strictObject({
   title: text,
   description: text,
   imageAlt: text,
+  // The line under the role on the share picture; `{{years}}` is the years of experience.
+  imageLine: text,
 });
 
 export const SKILL_GROUPS = ['core', 'data', 'ui', 'tooling'] as const;

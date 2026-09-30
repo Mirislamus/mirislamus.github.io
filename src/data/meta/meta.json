@@ -3,18 +3,21 @@
     "name": "Mirislam Usmanov",
     "title": "Mirislam Usmanov — Frontend Engineer | React, Next.js, TypeScript",
     "description": "Frontend Engineer in Tashkent with {{years}}+ years of experience building fast, accessible websites and web apps with React, Next.js and TypeScript.",
-    "imageAlt": "Mirislam Usmanov — Frontend Engineer"
+    "imageAlt": "Mirislam Usmanov — Frontend Engineer",
+    "imageLine": "{{years}}+ years of experience · Tashkent"
   },
   "ru": {
     "name": "Мирислам Усманов",
     "title": "Мирислам Усманов — Frontend-разработчик в Ташкенте | React, Next.js",
     "description": "Frontend-разработчик в Ташкенте, опыт более {{years}} лет: быстрые и доступные сайты и веб-приложения на React, Next.js и TypeScript. Проекты, отзывы, контакты.",
-    "imageAlt": "Мирислам Усманов — Frontend Engineer"
+    "imageAlt": "Мирислам Усманов — Frontend Engineer",
+    "imageLine": "Опыт более {{years}} лет · Ташкент"
   },
   "uz": {
     "name": "Mirislam Usmonov",
     "title": "Mirislam Usmonov — Frontend dasturchi, Toshkent | React, Next.js",
     "description": "Toshkentdagi Frontend dasturchi, {{years}}+ yillik tajriba: React, Next.js va TypeScript’da tezkor va qulay veb-saytlar hamda ilovalar. Loyihalar, fikrlar, aloqa.",
-    "imageAlt": "Mirislam Usmonov — Frontend Engineer"
+    "imageAlt": "Mirislam Usmonov — Frontend Engineer",
+    "imageLine": "{{years}}+ yillik tajriba · Toshkent"
   }
 }

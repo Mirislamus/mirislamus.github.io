@@ -130,7 +130,7 @@
 ### SEO-07. OG-картинки по языкам и OG-теги
 
 - **Приоритет:** P2 (закрывает S6). **Оценка:** 4 ч.
-- **Файлы:** `src/pages/og/[lang].astro`, `src/widgets/components/OgImage/*`, `scripts/cv-pdf.mjs` (общий механизм рендера), `astro.config.ts`, `Head.astro`, `public/opengraph.jpg` (удалить).
+- **Файлы:** `src/pages/og/[lang].astro`, `scripts/render.mjs` (общий механизм рендера CV и OG), `scripts/build-media.mjs`, `astro.config.ts`, `Head.astro`, `public/opengraph.jpg` (удалить).
 - **Что сделать:**
   1. Страница-шаблон `/og/{en,ru,uz}/` (`noindex`, вне sitemap, как CV): 1200×630, тёмная тема сайта, логотип, фото из `avatar.png`, имя на языке страницы, роль `Frontend Engineer` акцентом `#ff6433`, строка «{{years}}+ лет опыта · Ташкент» на языке страницы, адрес сайта. Шрифт Inter из сайта. Важное держать в центральной зоне (≈ 630×630): Telegram и WhatsApp обрезают картинку до квадрата.
   2. Рендер при сборке тем же механизмом, что PDF резюме (Playwright, `astro:build:done`; в dev — middleware): скриншот в `dist/og/mirislam-usmanov-{lang}.jpg`, JPEG, ≤ 300 КБ (ограничение WhatsApp). Общий код CV и OG вынести, а не копировать. Ежемесячная пересборка из RF-19 обновляет стаж на картинке.

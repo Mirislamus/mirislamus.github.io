@@ -2,28 +2,35 @@ import sitemap from '@astrojs/sitemap';
 import type { AstroIntegration, AstroUserConfig } from 'astro';
 import { chromium, type Browser } from '@playwright/test';
 import { fileURLToPath } from 'node:url';
-import { buildCvPdfs, pdfName, printPdf } from './scripts/cv-pdf.mjs';
+import { buildMedia, ogName, pdfName, printPdf, screenshotOg } from './scripts/render.mjs';
 import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
 import { getLastModified } from './src/seo/last-modified';
 
-// The downloadable CV: printed to PDF after every build, and made on request by the dev server.
-const cvPdf = (): AstroIntegration => {
+// The downloadable CV and the share pictures: made after every build, and on request by the dev server.
+const media = (): AstroIntegration => {
   let browser: Browser | undefined;
 
   return {
-    name: 'cv-pdf',
+    name: 'media',
     hooks: {
       'astro:server:setup': ({ server }) => {
         server.middlewares.use(async (request, response, next) => {
           const path = request.url?.split('?')[0] ?? '';
-          const locale = LOCALES.find(code => path === `/cv/${pdfName(code)}`);
           const address = server.httpServer?.address();
-          if (!locale || !address || typeof address === 'string') return next();
+          const pdf = LOCALES.find(code => path === `/cv/${pdfName(code)}`);
+          const image = LOCALES.find(code => path === `/og/${ogName(code)}`);
+          if (!(pdf || image) || !address || typeof address === 'string') return next();
 
           try {
             browser ??= await chromium.launch();
-            const pdf = await printPdf(browser, `http://localhost:${address.port}/cv/${locale}/`);
-            response.writeHead(200, { 'content-type': 'application/pdf' }).end(pdf);
+            const origin = `http://localhost:${address.port}`;
+            if (pdf) {
+              const bytes = await printPdf(browser, `${origin}/cv/${pdf}/`);
+              response.writeHead(200, { 'content-type': 'application/pdf' }).end(bytes);
+            } else {
+              const bytes = await screenshotOg(browser, `${origin}/og/${image}/`);
+              response.writeHead(200, { 'content-type': 'image/jpeg' }).end(bytes);
+            }
           } catch {
             next();
           }
@@ -35,9 +42,11 @@ const cvPdf = (): AstroIntegration => {
       },
       'astro:build:done': async ({ dir, logger }) => {
         try {
-          await buildCvPdfs(fileURLToPath(dir), message => logger.info(message));
+          await buildMedia(fileURLToPath(dir), message => logger.info(message));
         } catch (error) {
-          logger.warn(`CV PDF was not created (is Chromium installed? bunx playwright install chromium): ${error}`);
+          logger.warn(
+            `CV PDFs and share pictures were not created (is Chromium installed? bunx playwright install chromium): ${error}`
+          );
         }
       },
     },
@@ -51,10 +60,10 @@ const config = {
   output: 'static',
   trailingSlash: 'always',
   integrations: [
-    cvPdf(),
+    media(),
     sitemap({
-      // The CV pages only exist to be printed to PDF.
-      filter: page => !page.includes('/cv/'),
+      // The CV and OG pages only exist to be turned into a PDF and a picture.
+      filter: page => !page.includes('/cv/') && !page.includes('/og/'),
       lastmod: lastModified,
       serialize: item => {
         // x-default points every language version to the default one.

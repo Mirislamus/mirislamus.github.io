@@ -421,3 +421,11 @@
 - [x] Title и description по решению владельца: роль + стек + город. EN «Mirislam Usmanov — Frontend Engineer | React, Next.js, TypeScript» (65 симв.), RU «… — Frontend-разработчик в Ташкенте | React, Next.js» (67), UZ «… — Frontend dasturchi, Toshkent | React, Next.js» (64); description 141–154 символа со стажем через `{{years}}`. Формулировки по черновику из `seo.md` — **владельцу утвердить, UZ показать носителю**
 - [x] Роль перенесена внутрь `h1` (`<h1>имя <span>роль</span></h1>`): заголовок страницы — «Mirislam Usmanov Frontend Engineer»; внешний вид, отступы и анимация интро те же (проверено скриншотом 1440 px; эталоны визуальной регрессии сравниваются только в CI)
 - [x] e2e `avatar` и `intro` обновлены под новый текст заголовка; все 137 e2e проходят
+
+**SEO-07**
+
+- [x] Страница-шаблон `src/pages/og/[lang].astro` (1200×630, тёмная, `noindex`, вне sitemap): логотип, фото в фирменной форме с градиентом, имя, роль акцентом `#ff6433`, строка «{{years}}+ лет опыта · Ташкент» на языке страницы (ключ `meta.imageLine`), адрес сайта; Inter из сайта; всё важное в центральном квадрате
+- [x] Рендер при сборке тем же механизмом, что и PDF резюме: `scripts/cv-pdf.mjs` → `scripts/render.mjs` (общий статический сервер и браузер, `printPdf`, `screenshotOg`, `buildMedia`), `build:cv` → `build:media`; интеграция `cvPdf` → `media`. Картинки `dist/og/mirislam-usmanov-{en,ru,uz}.jpg` по 44–47 КБ (лимит 300 КБ для WhatsApp, качество подбирается автоматически); в dev-сервере отдаются по тем же адресам
+- [x] `Head.astro`: `og:image` и `twitter:image` своей локали, `og:image:type`, `og:site_name`, `og:locale:alternate`, `og:type` = `profile` + `profile:first_name`, `profile:last_name`, `profile:username`
+- [x] `public/opengraph.jpg` удалён
+- Не проверено: превью в Telegram (@WebpageBot), LinkedIn Post Inspector, WhatsApp — после деплоя (SEO-09)

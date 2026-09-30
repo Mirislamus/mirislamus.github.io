@@ -1,0 +1,121 @@
+---
+import '@styles/base/_fonts.scss';
+import Logo from '@icons/Logo.astro';
+import { getSiteData } from '@data/site';
+import { LOCALES, isLocale } from '@i18n/locales';
+import { getAvatarSrc } from '@utils/images';
+
+// The source of the share pictures (see scripts/render.mjs): a 1200×630 card per language, made into a JPEG
+// after every build. The page itself is not part of the site: out of the sitemap and hidden from search engines.
+export const getStaticPaths = () => LOCALES.map(lang => ({ params: { lang } }));
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) throw new Error(`Unsupported OG locale "${lang}"`);
+
+const { hero, meta } = getSiteData(lang);
+const avatar = await getAvatarSrc();
+const host = (Astro.site as URL).host;
+
+// The same outline as the avatar on the site (Avatar.astro), standing still.
+const shape = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 170 20 100C30 30 70 20 130 10Z';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1200" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{meta.title}</title>
+  </head>
+  <body>
+    <main>
+      <Logo class="logo" width="56" height="56" />
+      <!-- The important part stays in the central square: messengers crop the card to it. -->
+      <svg class="avatar" width="240" height="240" viewBox="0 0 260 260" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="gradient" x1="20" y1="128" x2="240" y2="130" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ff8660"></stop>
+            <stop offset="1" stop-color="#ad5aff"></stop>
+          </linearGradient>
+          <mask id="mask">
+            <path d={shape} fill="white"></path>
+          </mask>
+        </defs>
+        <g mask="url(#mask)">
+          <rect fill="url(#gradient)" width="260" height="260"></rect>
+          <image href={avatar} width="260" height="260" transform="translate(20 35)" />
+        </g>
+      </svg>
+      <h1>{hero.title}</h1>
+      <p class="role">{hero.role}</p>
+      <p class="line">{meta.imageLine}</p>
+      <p class="host">{host}</p>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #121212;
+    color: #fff;
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  main {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 44px;
+    text-align: center;
+  }
+
+  .logo {
+    position: absolute;
+    top: 40px;
+    left: 44px;
+  }
+
+  .avatar {
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .role {
+    margin-top: 6px;
+    font-size: 40px;
+    font-weight: 500;
+    color: #ff6433;
+  }
+
+  .line {
+    margin-top: 14px;
+    font-size: 28px;
+    color: #b3b3b3;
+  }
+
+  .host {
+    position: absolute;
+    bottom: 26px;
+    font-size: 22px;
+    color: #808080;
+  }
+</style>
