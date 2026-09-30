@@ -1,6 +1,5 @@
+import type { Locale } from '@i18n/locales';
 import { useState } from 'react';
-import { useStore } from '@nanostores/react';
-import { localeAtom } from '@shared/stores';
 import projectDataRaw from '@data/projects/projects.json';
 import type { ProjectData } from '@typings/data';
 import s from './Projects.module.scss';
@@ -18,11 +17,11 @@ const INITIAL_COUNT = 4;
 const LOAD_STEP = 4;
 
 interface ProjectsProps {
+  locale: Locale;
   images: Record<string, ResponsiveImage>;
 }
 
-export const Projects = ({ images }: ProjectsProps) => {
-  const locale = useStore(localeAtom);
+export const Projects = ({ locale, images }: ProjectsProps) => {
   const data = projectData[locale];
   const projects = data.items;
   const title = useTextHighlight(data.title);

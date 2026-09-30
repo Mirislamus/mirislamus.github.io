@@ -1,7 +1,8 @@
 ---
 import metaData from '@data/meta/meta.json';
 import { info } from '@data/global';
-import type { Locale } from '@typings/global';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@i18n/locales';
+import { absoluteLocaleUrl } from '@i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -10,13 +11,10 @@ interface Props {
 const { locale } = Astro.props;
 const meta = metaData[locale];
 
-const site = Astro.site;
-const localePaths: Record<Locale, string> = { en: '/', ru: '/ru', uz: '/uz' };
-const ogLocales: Record<Locale, string> = { en: 'en_US', ru: 'ru_RU', uz: 'uz_UZ' };
-
-const toUrl = (path: string) => new URL(path, site).href;
-const canonical = toUrl(localePaths[locale]);
-const profileUrl = toUrl('/');
+const toUrl = (path: string) => new URL(path, Astro.site).href;
+const canonical = absoluteLocaleUrl(locale);
+const defaultUrl = absoluteLocaleUrl(DEFAULT_LOCALE);
+const profileUrl = defaultUrl;
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -57,7 +55,7 @@ const structuredData = {
   <meta property="og:image:alt" content={meta.imageAlt} />
   <meta property="og:url" content={canonical} />
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content={ogLocales[locale]} />
+  <meta property="og:locale" content={LOCALE_META[locale].ogLocale} />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={meta.title} />
@@ -66,10 +64,10 @@ const structuredData = {
   <meta name="twitter:image:alt" content={meta.imageAlt} />
 
   <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="en" href={toUrl(localePaths.en)} />
-  <link rel="alternate" hreflang="ru" href={toUrl(localePaths.ru)} />
-  <link rel="alternate" hreflang="uz" href={toUrl(localePaths.uz)} />
-  <link rel="alternate" hreflang="x-default" href={toUrl(localePaths.en)} />
+  {LOCALES.map(code => (
+    <link rel="alternate" hreflang={code} href={absoluteLocaleUrl(code)} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={defaultUrl} />
 
   <title>{meta.title}</title>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>

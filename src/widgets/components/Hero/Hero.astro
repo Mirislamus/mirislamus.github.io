@@ -2,12 +2,12 @@
 import heroData from '@data/hero/hero.json';
 import { Avatar } from '@shared/ui/Avatar/Avatar';
 import { Button } from '@shared/ui/Button/Button';
-import type { Locale } from '@typings/global';
+import { getLocale } from '@i18n/utils';
 import { applyVariable } from '@utils/text';
 import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
-const locale = (Astro.currentLocale ?? 'en') as Locale;
+const locale = getLocale(Astro);
 const data = heroData[locale];
 const now = new Date();
 const avatarSrc = await getAvatarSrc();

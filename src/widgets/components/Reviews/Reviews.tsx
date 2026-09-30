@@ -1,5 +1,4 @@
-import { useStore } from '@nanostores/react';
-import { localeAtom } from '@shared/stores';
+import type { Locale } from '@i18n/locales';
 import type { Swiper as SwiperType } from 'swiper';
 import reviewsData from '@data/reviews/reviews.json';
 import s from './Reviews.module.scss';
@@ -12,8 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import a11yData from '@data/a11y/a11y.json';
 
-export const Reviews = () => {
-  const locale = useStore(localeAtom);
+export const Reviews = ({ locale }: { locale: Locale }) => {
   const data = reviewsData[locale];
   const a11y = a11yData[locale];
 

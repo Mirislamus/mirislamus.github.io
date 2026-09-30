@@ -2,10 +2,10 @@
 import footerData from '@data/footer/footer.json';
 import { info } from '@data/global';
 import { Button } from '@shared/ui/Button/Button';
-import type { Locale } from '@typings/global';
+import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
 
-const locale = (Astro.currentLocale ?? 'en') as Locale;
+const locale = getLocale(Astro);
 const { ready, text } = footerData[locale];
 ---
 

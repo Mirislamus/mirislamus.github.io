@@ -1,9 +1,9 @@
 ---
 import skillsData from '@data/skills/skills.json';
-import type { Locale } from '@typings/global';
+import { getLocale } from '@i18n/utils';
 import s from './Skills.module.scss';
 
-const locale = (Astro.currentLocale ?? 'en') as Locale;
+const locale = getLocale(Astro);
 const data = skillsData.data[locale];
 const titleParts = data.title.split('|');
 ---

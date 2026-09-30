@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/react';
-import { localeAtom, modeAtom } from '@shared/stores';
+import { modeAtom } from '@shared/stores';
 import type { CSSProperties } from 'react';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import s from './Header.module.scss';
@@ -14,18 +14,23 @@ import { Switcher } from '@shared/ui/Switcher/Switcher';
 import { setThemeMode } from '@utils/theme';
 import menuDataRaw from '@data/menu/menu.json';
 import type { MenuItem } from '@typings/data';
+import type { Locale } from '@i18n/locales';
+import type { LanguageLink } from '@i18n/utils';
 import a11yData from '@data/a11y/a11y.json';
 
 const menuData = menuDataRaw as Record<string, MenuItem[]>;
 
-export const Header = () => {
-  const locale = useStore(localeAtom);
+interface HeaderProps {
+  locale: Locale;
+  homeHref: string;
+  languages: LanguageLink[];
+}
+
+export const Header = ({ locale, homeHref, languages }: HeaderProps) => {
   const mode = useStore(modeAtom);
   const isHydrated = useIsHydrated();
   const menuItems = menuData[locale];
   const a11y = a11yData[locale];
-
-  const currentHref = locale === 'en' ? '/' : `/${locale}`;
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
@@ -143,26 +148,15 @@ export const Header = () => {
     },
   ];
 
-  const langsData = [
-    {
-      href: '/',
-      content: 'EN',
-      isActive: locale === 'en',
-      ariaLabel: a11y.englishLanguage,
-    },
-    {
-      href: '/ru',
-      content: 'RU',
-      isActive: locale === 'ru',
-      ariaLabel: a11y.russianLanguage,
-    },
-    {
-      href: '/uz',
-      content: 'UZ',
-      isActive: locale === 'uz',
-      ariaLabel: a11y.uzbekLanguage,
-    },
-  ];
+  // Keep the current section when switching language; the first section is the top of the page.
+  const withSection = (href: string) => (activeId && activeId !== 'about' ? `${href}#${activeId}` : href);
+
+  const langsData = languages.map(language => ({
+    href: withSection(language.href),
+    content: language.label,
+    isActive: language.code === locale,
+    ariaLabel: language.name,
+  }));
 
   const onLangClick = () => {
     const nextIsOpen = !langsIsOpen;
@@ -186,7 +180,7 @@ export const Header = () => {
       <header className={s.header}>
         <div className="container">
           <div className={cx(s.wrap, { [s.active]: menuIsOpen })}>
-            <a href={currentHref} aria-label={a11y.home}>
+            <a href={homeHref} aria-label={a11y.home}>
               <Logo />
             </a>
             <nav

@@ -1,5 +1,4 @@
-import { useStore } from '@nanostores/react';
-import { localeAtom } from '@shared/stores';
+import type { Locale } from '@i18n/locales';
 import s from './Career.module.scss';
 import cx from 'clsx';
 import careerDataRaw from '@data/career/career.json';
@@ -17,8 +16,7 @@ import { useTextHighlight } from '@hooks/useTextHighlight';
 import { parseLinks } from '@utils/text';
 import a11yData from '@data/a11y/a11y.json';
 
-export const Career = () => {
-  const locale = useStore(localeAtom);
+export const Career = ({ locale }: { locale: Locale }) => {
   const data = careerData[locale];
   const a11y = a11yData[locale];
   const title = useTextHighlight(data.title);

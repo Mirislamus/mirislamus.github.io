@@ -1,5 +1,6 @@
+import type { Locale } from '@i18n/locales';
 import { useStore } from '@nanostores/react';
-import { localeAtom, themeAtom } from '@shared/stores';
+import { themeAtom } from '@shared/stores';
 import { info } from '@data/global';
 import s from './Approach.module.scss';
 import cx from 'clsx';
@@ -14,11 +15,11 @@ import type { CodeImages } from '@utils/images';
 import { toast } from 'sonner';
 
 interface ApproachProps {
+  locale: Locale;
   codeImages: CodeImages;
 }
 
-export const Approach = ({ codeImages }: ApproachProps) => {
-  const locale = useStore(localeAtom);
+export const Approach = ({ locale, codeImages }: ApproachProps) => {
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
   const theme = useStore(themeAtom);

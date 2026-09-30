@@ -1,5 +1,6 @@
 import { createRequire } from 'node:module';
 import type { AstroUserConfig } from 'astro';
+import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
 
 // WHY: Astro 7/Vite 8 currently evaluates transitive CommonJS while loading
 // ESM config imports, which throws `require is not defined`. Remove this
@@ -11,7 +12,16 @@ const sitemap = require('@astrojs/sitemap').default;
 const config = {
   site: 'https://mirislamus.github.io',
   output: 'static',
-  integrations: [react(), sitemap()],
+  trailingSlash: 'always',
+  integrations: [
+    react(),
+    sitemap({
+      i18n: {
+        defaultLocale: DEFAULT_LOCALE,
+        locales: Object.fromEntries(LOCALES.map(code => [code, code])),
+      },
+    }),
+  ],
   server: {
     port: 3000,
     host: true,
@@ -30,6 +40,7 @@ const config = {
         '@layouts': '/src/layouts',
         '@data': '/src/data',
         '@assets': '/src/assets',
+        '@i18n': '/src/i18n',
       },
     },
     build: {
@@ -48,8 +59,8 @@ const config = {
     },
   },
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'ru', 'uz'],
+    defaultLocale: DEFAULT_LOCALE,
+    locales: [...LOCALES],
   },
   prefetch: true,
   compressHTML: true,

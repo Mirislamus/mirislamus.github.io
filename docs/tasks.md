@@ -58,12 +58,22 @@
 
 ## Фаза 1. Инфраструктура
 
-| #     | Задача                                 | Статус | Коммит |
-| ----- | -------------------------------------- | ------ | ------ |
-| RF-04 | Единый i18n-слой и политика URL        | ⬜     |        |
-| RF-05 | Content collections и валидация данных | ⬜     |        |
-| RF-06 | Единый rich-text парсер                | ⬜     |        |
-| RF-07 | Надёжная тема                          | ⬜     |        |
+| #     | Задача                                 | Статус | Коммит  |
+| ----- | -------------------------------------- | ------ | ------- |
+| RF-04 | Единый i18n-слой и политика URL        | ✅     | pending |
+| RF-05 | Content collections и валидация данных | ⬜     |         |
+| RF-06 | Единый rich-text парсер                | ⬜     |         |
+| RF-07 | Надёжная тема                          | ⬜     |         |
+
+**RF-04**
+
+- [x] `src/i18n/locales.ts` — единственный список локалей (`LOCALES`, `LOCALE_META`, `DEFAULT_LOCALE`, тип `Locale`); `src/i18n/utils.ts` — `getLocale`, ссылки и пути; алиас `@i18n`
+- [x] `astro.config.ts` берёт локали из `locales.ts`; `trailingSlash: 'always'`; sitemap с `i18n` (alternates `en`/`ru`/`uz`)
+- [x] Canonical, `hreflang`, `og:url` и ссылки строятся через `astro:i18n`; все со слэшем (`/ru/`), без редиректа на GitHub Pages
+- [x] `getStaticPaths` генерируется из списка локалей
+- [x] Локаль передаётся явно: пропс `locale` в Header, Approach, Career, Projects, Reviews; глобальный `localeAtom` и `typings/global.ts` удалены
+- [x] Переключатель языка сохраняет текущий раздел (`/ru/#projects`), проверено в браузере
+- [x] Названия языков для `aria-label` берутся из `Intl.DisplayNames` (например, «English» вместо «English language»); три ключа удалены из `a11y.json`
 
 ## Фаза 2. Миграция с React на Astro
 

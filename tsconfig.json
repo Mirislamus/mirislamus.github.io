@@ -21,7 +21,8 @@
       "@styles/*": ["./src/styles/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@data/*": ["./src/data/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@i18n/*": ["./src/i18n/*"]
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

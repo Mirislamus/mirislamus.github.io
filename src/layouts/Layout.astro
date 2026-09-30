@@ -1,17 +1,14 @@
 ---
-import type { Locale } from '@typings/global';
 import '@styles/global.scss';
 import Head from '@layouts/Head.astro';
 import Footer from '@widgets/components/Footer/Footer.astro';
 import { Header } from '@widgets/components/Header/Header';
 import { ToastProvider } from '@shared/ui/ToastProvider/ToastProvider';
-import { localeAtom } from '@shared/stores';
+import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
 import a11yData from '@data/a11y/a11y.json';
 
-const locale = (Astro.currentLocale ?? 'en') as Locale;
+const locale = getLocale(Astro);
 const a11y = a11yData[locale];
-
-localeAtom.set(locale);
 ---
 
 <!doctype html>
@@ -25,7 +22,7 @@ localeAtom.set(locale);
       import { initThemeStore } from '@utils/theme';
       initThemeStore();
     </script>
-    <Header client:visible />
+    <Header client:visible locale={locale} homeHref={localeUrl(locale)} languages={getLanguageLinks(locale)} />
     <main id="main-content" class="locale-content" tabindex="-1">
       <slot />
     </main>
