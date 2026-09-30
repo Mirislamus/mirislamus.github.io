@@ -79,7 +79,7 @@ for (const theme of THEMES) {
 
       await openPage(page, '/', theme);
       const projects = page.locator('#projects');
-      await projects.getByRole('button').click();
+      await projects.locator('[data-more]').click();
       await expect(projects.getByRole('link')).toHaveCount(8);
       await page.waitForFunction(visibleImagesLoaded);
       await expect(projects).toHaveScreenshot(`state-projects-expanded-${theme}.png`);

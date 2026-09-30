@@ -86,6 +86,19 @@ export const projectBaseSchema = z.strictObject({
 export const projectsSchema = z.strictObject({
   title: text,
   loadMore: text,
+  filter: z.strictObject({
+    label: text,
+    all: text,
+    // Plural forms for "N projects": which ones are needed depends on the language (Intl.PluralRules).
+    count: z.strictObject({
+      zero: text.optional(),
+      one: text.optional(),
+      two: text.optional(),
+      few: text.optional(),
+      many: text.optional(),
+      other: text,
+    }),
+  }),
   items: z.array(z.strictObject({ id, text })).min(1),
 });
 

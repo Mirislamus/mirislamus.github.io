@@ -35,7 +35,15 @@
         "id": "easy-english",
         "text": "Educational platform for learning languages, primarily English and Chinese."
       }
-    ]
+    ],
+    "filter": {
+      "label": "Filter projects by technology",
+      "all": "All",
+      "count": {
+        "one": "{{count}} project",
+        "other": "{{count}} projects"
+      }
+    }
   },
   "ru": {
     "title": "Недавние |проекты|",
@@ -73,7 +81,17 @@
         "id": "easy-english",
         "text": "Образовательная платформа для изучения языков, прежде всего английского и китайского."
       }
-    ]
+    ],
+    "filter": {
+      "label": "Фильтр проектов по технологии",
+      "all": "Все",
+      "count": {
+        "one": "{{count}} проект",
+        "few": "{{count}} проекта",
+        "many": "{{count}} проектов",
+        "other": "{{count}} проекта"
+      }
+    }
   },
   "uz": {
     "title": "Oxirgi |loyihalar|",
@@ -111,6 +129,13 @@
         "id": "easy-english",
         "text": "Asosan ingliz va xitoy tillarini o‘rganish uchun ta’lim platformasi."
       }
-    ]
+    ],
+    "filter": {
+      "label": "Loyihalarni texnologiya bo‘yicha saralash",
+      "all": "Hammasi",
+      "count": {
+        "other": "{{count}} ta loyiha"
+      }
+    }
   }
 }

@@ -23,6 +23,18 @@ const hasMore = data.items.length > INITIAL_COUNT;
       <RichText text={data.title} />
     </h2>
     <projects-list>
+      <div class={s.filters} data-filters role="group" aria-label={data.filter.label}>
+        <button type="button" class={s.chip} data-filter="" aria-pressed="true">
+          {data.filter.all}
+        </button>
+        {data.filters.map(filter => (
+          <button type="button" class={s.chip} data-filter={filter.id} aria-pressed="false">
+            {filter.name}
+          </button>
+        ))}
+        <p class={s.count} role="status" data-count data-forms={JSON.stringify(data.filter.count)}></p>
+      </div>
+
       <div class={s.grid}>
         {data.items.map((project, index) => {
           const image = images[project.id];
@@ -33,6 +45,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
               class={s.project}
               data-spotlight
               data-tilt
+              data-stack={project.stackIds.join(' ')}
               data-extra={isExtra ? '' : undefined}
               data-reveal={isExtra ? undefined : ''}
               style={`--i: ${index % 2}; --spotlight-color: ${project.color}`}
@@ -80,13 +93,14 @@ const hasMore = data.items.length > INITIAL_COUNT;
       )}
     </projects-list>
 
-    {/* Without JavaScript there is no button: show everything. */}
+    {/* Without JavaScript there is nothing to filter or expand: show every project, no controls. */}
     <noscript>
       <style>
         #projects [data-extra] {
           display: block;
         }
-        #projects [data-more-wrap] {
+        #projects [data-more-wrap],
+        #projects [data-filters] {
           display: none;
         }
       </style>
@@ -97,20 +111,68 @@ const hasMore = data.items.length > INITIAL_COUNT;
 <script>
   class ProjectsList extends HTMLElement {
     connectedCallback() {
+      const cards = [...this.querySelectorAll<HTMLElement>('article')];
+      const chips = [...this.querySelectorAll<HTMLButtonElement>('[data-filter]')];
       const more = this.querySelector<HTMLElement>('[data-more]');
       const wrap = this.querySelector<HTMLElement>('[data-more-wrap]');
-      const extras = [...this.querySelectorAll<HTMLElement>('[data-extra]')];
+      const count = this.querySelector<HTMLElement>('[data-count]');
+      const forms = JSON.parse(count?.dataset.forms ?? '{}') as Record<string, string>;
+      const plural = new Intl.PluralRules(document.documentElement.lang);
 
-      more?.addEventListener('click', () => {
-        extras.forEach((card, index) => {
+      let expanded = false;
+      let filter = '';
+
+      // Cards that appear now fade in one after another; toggling the attribute off and on replays it.
+      const reveal = (shown: HTMLElement[]) =>
+        shown.forEach((card, index) => {
           card.style.setProperty('--i', String(index));
+          card.toggleAttribute('data-revealed', false);
+          void card.offsetWidth;
           card.toggleAttribute('data-revealed', true);
-          card.hidden = false;
         });
 
+      const apply = () => {
+        const filtering = filter !== '';
+        const appeared: HTMLElement[] = [];
+
+        for (const card of cards) {
+          const matches = !filtering || (card.dataset.stack ?? '').split(' ').includes(filter);
+          const shown = filtering ? matches : !card.hasAttribute('data-extra') || expanded;
+          if (shown && card.hidden) appeared.push(card);
+          card.hidden = !shown;
+        }
+        reveal(appeared);
+
+        // "Show more" has nothing to do while filtering (a filter shows every match).
+        if (wrap) wrap.hidden = filtering || expanded;
+
+        chips.forEach(chip => chip.setAttribute('aria-pressed', String((chip.dataset.filter ?? '') === filter)));
+
+        if (count) {
+          const total = cards.filter(card => !card.hidden).length;
+          count.textContent = filtering
+            ? (forms[plural.select(total)] ?? forms.other ?? '').replace('{{count}}', String(total))
+            : '';
+        }
+      };
+
+      for (const chip of chips) {
+        // Choosing the active chip again clears the filter.
+        chip.addEventListener('click', () => {
+          const next = chip.dataset.filter ?? '';
+          filter = next === filter ? '' : next;
+          apply();
+        });
+      }
+
+      more?.addEventListener('click', () => {
+        expanded = true;
+        apply();
         // The button disappears, so keyboard users continue from the first new card.
-        if (wrap) wrap.hidden = true;
-        extras[0]?.querySelector<HTMLElement>('a')?.focus();
+        cards
+          .find(card => card.hasAttribute('data-extra'))
+          ?.querySelector<HTMLElement>('a')
+          ?.focus();
       });
     }
   }

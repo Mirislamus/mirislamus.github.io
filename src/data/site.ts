@@ -135,6 +135,16 @@ const load = () => {
     );
   }
 
+  const filterChips = (list: typeof projectBase) => {
+    const counts = new Map<string, number>();
+    for (const project of list) for (const id of project.stack) counts.set(id, (counts.get(id) ?? 0) + 1);
+
+    return [...counts]
+      .filter(([, count]) => count >= 2)
+      .sort((a, b) => b[1] - a[1])
+      .map(([id]) => ({ id, name: technologyNames.get(id) ?? id }));
+  };
+
   const build = (locale: Locale) => ({
     a11y: a11y[locale],
     approach: approach[locale],
@@ -155,8 +165,12 @@ const load = () => {
     projects: {
       title: projectsText[locale].title,
       loadMore: projectsText[locale].loadMore,
+      filter: projectsText[locale].filter,
+      // Chips for the technologies used by at least two projects, most used first.
+      filters: filterChips(projectBase),
       items: projectBase.map((project, index) => ({
         ...project,
+        stackIds: project.stack,
         stack: stackNames(`project "${project.id}"`, project.stack),
         text: projectsText[locale].items[index].text,
       })),
