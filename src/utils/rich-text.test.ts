@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseRichText } from './rich-text';
+import { interpolate, parseRichText } from './rich-text';
 
 describe('parseRichText', () => {
   it('returns a single text token for plain text', () => {
@@ -74,5 +74,15 @@ describe('parseRichText', () => {
       { type: 'highlight', value: 'not a link' },
       { type: 'text', value: '|' },
     ]);
+  });
+});
+
+describe('interpolate', () => {
+  it('substitutes variables in a plain string', () => {
+    expect(interpolate('{{years}}+ years', { years: 8 })).toBe('8+ years');
+  });
+
+  it('throws for an unknown variable', () => {
+    expect(() => interpolate('{{nope}}', {})).toThrow();
   });
 });

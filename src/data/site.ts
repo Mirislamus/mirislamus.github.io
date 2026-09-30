@@ -6,6 +6,8 @@
 // Everything is validated when it is first read, so a bad file fails `astro build` with a clear message.
 import type { z } from 'astro/zod';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@i18n/locales';
+import { getExperienceYears } from '@utils/experience';
+import { interpolate } from '@utils/rich-text';
 import a11yJson from './a11y/a11y.json';
 import approachJson from './approach/approach.json';
 import careerBaseJson from './career/career.base.json';
@@ -131,7 +133,7 @@ const load = () => {
     hero: hero[locale],
     footer: footer[locale],
     menu: menu[locale].items,
-    meta: meta[locale],
+    meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },
     skills: { title: skillsText[locale].title, items: skills },
     projects: {
       title: projectsText[locale].title,

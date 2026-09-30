@@ -4,14 +4,13 @@ import Avatar from '@shared/ui/Avatar/Avatar.astro';
 import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
 import RichText from '@shared/ui/RichText/RichText.astro';
+import { getExperienceYears } from '@utils/experience';
 import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
 const { hero: data } = getSiteData(locale);
-const now = new Date();
 const avatarSrc = await getAvatarSrc();
-const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
 ---
 
 <section class={s.hero} id="about">
@@ -21,7 +20,7 @@ const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
       <h1>{data.title}</h1>
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
       <p class:list={[s.text, 'text-md', 'regular']}>
-        <RichText text={data.text} vars={{ years: workingYears }} />
+        <RichText text={data.text} vars={{ years: getExperienceYears() }} />
       </p>
       <div class={s.btns}>
         <Button href="#contacts">{data.button}</Button>

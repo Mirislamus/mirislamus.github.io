@@ -47,3 +47,9 @@ export const parseRichText = (input: string, vars: RichTextVars = {}): RichTextT
   pushText(input.slice(lastIndex));
   return tokens;
 };
+
+// For plain strings (for example a <meta> description) that only use {{variables}}.
+export const interpolate = (input: string, vars: RichTextVars): string =>
+  parseRichText(input, vars)
+    .map(token => (token.type === 'text' ? token.value : ''))
+    .join('');
