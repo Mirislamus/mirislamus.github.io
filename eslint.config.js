@@ -1,7 +1,6 @@
 import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
 import globals from 'globals';
-import pluginReact from 'eslint-plugin-react';
 import pluginAstro from 'eslint-plugin-astro';
 import tseslint from 'typescript-eslint';
 
@@ -13,7 +12,7 @@ export default defineConfig([
   ...tseslint.configs.recommended,
   ...pluginAstro.configs.recommended,
   {
-    files: ['src/**/*.{js,jsx,ts,tsx,astro}'],
+    files: ['src/**/*.{js,ts,astro}'],
     languageOptions: {
       globals: globals.browser,
     },
@@ -23,18 +22,5 @@ export default defineConfig([
     languageOptions: {
       globals: globals.node,
     },
-  },
-  {
-    files: ['**/*.{jsx,tsx}'],
-    ...pluginReact.configs.flat.recommended,
-    settings: {
-      react: {
-        version: '19.0',
-      },
-    },
-  },
-  {
-    files: ['**/*.{jsx,tsx}'],
-    ...pluginReact.configs.flat['jsx-runtime'],
   },
 ]);

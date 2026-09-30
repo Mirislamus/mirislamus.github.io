@@ -1,20 +1,12 @@
-import { createRequire } from 'node:module';
+import sitemap from '@astrojs/sitemap';
 import type { AstroUserConfig } from 'astro';
 import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
-
-// WHY: Astro 7/Vite 8 currently evaluates transitive CommonJS while loading
-// ESM config imports, which throws `require is not defined`. Remove this
-// workaround once Astro's config ModuleRunner handles these imports normally.
-const require = createRequire(import.meta.url);
-const react = require('@astrojs/react').default;
-const sitemap = require('@astrojs/sitemap').default;
 
 const config = {
   site: 'https://mirislamus.github.io',
   output: 'static',
   trailingSlash: 'always',
   integrations: [
-    react(),
     sitemap({
       i18n: {
         defaultLocale: DEFAULT_LOCALE,

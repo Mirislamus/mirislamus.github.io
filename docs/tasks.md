@@ -111,7 +111,14 @@
 | RF-11 | Approach, копирование email, уведомления | ✅     | 99eb730 |
 | RF-12 | Карусели Career и Reviews на Embla       | ✅     | d2eddd6 |
 | RF-13 | Projects                                 | ✅     | 29ab72c |
-| RF-14 | Удаление React-инфраструктуры            | ⬜     |         |
+| RF-14 | Удаление React-инфраструктуры            | ✅     | pending |
+
+**RF-14**
+
+- [x] Удалены `@astrojs/react`, `react`, `react-dom`, `@types/react*`, `eslint-plugin-react`; из `tsconfig.json` и `eslint.config.js` убраны настройки JSX и React; скрипт `lint` — просто `eslint .`
+- [x] Обходной путь `createRequire` в `astro.config.ts` больше не нужен (обычный импорт `@astrojs/sitemap` работает)
+- [x] `check-bundle.mjs` работает по финальным бюджетам (15 КБ сразу, 10 КБ на чанк): стартовый JS **6,6 КБ gzip** (было ≈176), Embla 7,4 КБ отложенно
+- [x] В `dependencies` осталось 3: `astro`, `@astrojs/sitemap`, `@lucide/astro` (+ `embla-carousel`); все 77 сценариев Playwright проходят
 
 **RF-13**
 
