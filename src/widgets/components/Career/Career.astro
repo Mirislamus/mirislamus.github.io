@@ -24,7 +24,7 @@ const slideLabel = (index: number) =>
       labelledby="career-title"
       options={{ align: 'start', dragFree: true, containScroll: 'trimSnaps' }}
     >
-      <div class:list={[s.careerTop, 'title']}>
+      <div class:list={[s.careerTop, 'title']} data-reveal>
         <h2 id="career-title">
           <RichText text={data.title} />
         </h2>

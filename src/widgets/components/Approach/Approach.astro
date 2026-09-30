@@ -19,11 +19,11 @@ const codeImages = await getCodeImages();
 
 <section class:list={[s.approach, 'section']} id="approach">
   <div class="container">
-    <h2 class="title">
+    <h2 class="title" data-reveal>
       <RichText text={data.title} />
     </h2>
     <div class={s.grid}>
-      <article class:list={[s.item, s.item_1]}>
+      <article class:list={[s.item, s.item_1]} data-reveal style="--i: 0">
         <img
           width="480"
           height="480"
@@ -35,7 +35,7 @@ const codeImages = await getCodeImages();
         />
         <h3>{data.cooperation}</h3>
       </article>
-      <article class:list={[s.item, s.item_2]}>
+      <article class:list={[s.item, s.item_2]} data-reveal style="--i: 1">
         <img
           width="340"
           height="353"
@@ -48,7 +48,7 @@ const codeImages = await getCodeImages();
         <span class="text-sm">{data.approach}</span>
         <h3>{data.flexibility}</h3>
       </article>
-      <article class:list={[s.item, s.item_3]}>
+      <article class:list={[s.item, s.item_3]} data-reveal style="--i: 2">
         <h3 class="text-xl">{data.ui}</h3>
         <svg aria-hidden="true" focusable="false" width="178" height="83" viewBox="0 0 178 83" fill="none">
           <path
@@ -83,7 +83,7 @@ const codeImages = await getCodeImages();
           ></path>
         </svg>
       </article>
-      <StarBorder tag="article" color="var(--accent)" class={[s.item, s.item_4]}>
+      <StarBorder tag="article" color="var(--accent)" class={[s.item, s.item_4]} data-reveal style="--i: 3">
         <div class={s.itemInner}>
           <h3>{data.together}</h3>
           <CopyButton text={info.email} success={data.success} error={data.error}>
@@ -94,7 +94,7 @@ const codeImages = await getCodeImages();
           </CopyButton>
         </div>
       </StarBorder>
-      <article class:list={[s.item, s.item_5]}>
+      <article class:list={[s.item, s.item_5]} data-reveal style="--i: 4">
         <div class={s.item_text}>
           <span>{data.pomotomo}</span>
           <h3>{data.developing}</h3>

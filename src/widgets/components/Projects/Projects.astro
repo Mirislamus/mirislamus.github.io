@@ -18,7 +18,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
 
 <section id="projects" class:list={[s.projects, 'section']}>
   <div class="container">
-    <h2 class="title">
+    <h2 class="title" data-reveal>
       <RichText text={data.title} />
     </h2>
     <projects-list>
@@ -32,6 +32,8 @@ const hasMore = data.items.length > INITIAL_COUNT;
               class={s.project}
               data-spotlight
               data-extra={isExtra ? '' : undefined}
+              data-reveal={isExtra ? undefined : ''}
+              style={`--i: ${index % 2}; --spotlight-color: ${project.color}`}
               hidden={isExtra}
               style={`--spotlight-color: ${project.color}`}
             >

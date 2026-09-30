@@ -10,10 +10,10 @@ const { skills } = getSiteData(locale);
 
 <section class:list={[s.skills, 'section']} id="skills">
   <div class="container">
-    <h2 class="title">
+    <h2 class="title" data-reveal>
       <RichText text={skills.title} />
     </h2>
-    <div class={s.grid}>
+    <div class={s.grid} data-reveal>
       {skills.items.map(skill => (
         <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
           {skill.hasTheme ? (
