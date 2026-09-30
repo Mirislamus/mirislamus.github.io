@@ -90,8 +90,8 @@
 
   @media (prefers-reduced-motion: no-preference) {
     &[data-revealed] {
-      animation: reveal 400ms var(--ease-out, ease) both;
-      animation-delay: calc(var(--i, 0) * 60ms);
+      animation: reveal var(--dur-slow) var(--ease-out) both;
+      animation-delay: calc(var(--i, 0) * var(--stagger));
     }
   }
 }

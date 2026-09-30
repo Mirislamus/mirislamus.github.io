@@ -1,11 +1,25 @@
 export default {
   extends: ['stylelint-config-standard-scss'],
-  overrides: [{ files: ['**/*.astro'], customSyntax: 'postcss-html' }],
+  overrides: [
+    { files: ['**/*.astro'], customSyntax: 'postcss-html' },
+    {
+      // The tokens themselves and the page-transition choreography use literal values.
+      files: ['src/styles/helpers/_variables.scss', 'src/styles/helpers/_animations.scss'],
+      rules: { 'declaration-property-value-disallowed-list': { 'z-index': ['/^-?[1-9]\\d*$/'] } },
+    },
+  ],
   rules: {
     // Project rules
     'declaration-no-important': true,
     // Stacking order comes from the --z-* tokens; only 0 and calc() on a token are allowed.
-    'declaration-property-value-disallowed-list': { 'z-index': ['/^-?[1-9]\\d*$/'] },
+    'declaration-property-value-disallowed-list': {
+      'z-index': ['/^-?[1-9]\\d*$/'],
+      // Timing comes from the motion tokens in _variables.scss.
+      '/^(transition|animation)(-duration|-delay|-timing-function)?$/': [
+        '/cubic-bezier\\(/',
+        '/(^|[^\\w.-])(?!0m?s\\b)\\d*\\.?\\d+m?s\\b/',
+      ],
+    },
     'selector-class-pattern': [
       '^[a-z][a-zA-Z0-9_-]*$',
       { message: 'Use lowercase class names: camelCase in CSS modules, kebab-case for global utilities' },

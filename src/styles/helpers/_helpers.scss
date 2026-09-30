@@ -25,7 +25,7 @@
     background: var(--text);
     opacity: 0.15;
     transform: scale(0);
-    animation: ripple 600ms ease-out;
+    animation: ripple var(--dur-ripple) ease-out;
   }
 
   @keyframes ripple {

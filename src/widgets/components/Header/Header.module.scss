@@ -62,7 +62,7 @@
   .languageButton,
   a {
     transition-property: scale, color, background-color, border-color;
-    transition-duration: 150ms, 250ms, 250ms, 250ms;
+    transition-duration: var(--dur-fast), var(--dur-base), var(--dur-base), var(--dur-base);
     transition-timing-function: ease-out, ease, ease, ease-in;
 
     &:active {
@@ -120,8 +120,8 @@
     opacity: 0;
     // Visible right away when opening (so focus can move in), hidden only after the fade when closing.
     transition:
-      opacity 0.25s ease,
-      visibility 0s linear 0.25s;
+      opacity var(--dur-base) ease,
+      visibility 0s linear var(--dur-base);
     z-index: var(--z-dropdown);
 
     &[data-open] {
@@ -174,8 +174,8 @@
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity 0.25s ease,
-      visibility 0s linear 0.25s;
+      opacity var(--dur-base) ease,
+      visibility 0s linear var(--dur-base);
     z-index: var(--z-overlay);
     &[data-open] {
       opacity: 1;
