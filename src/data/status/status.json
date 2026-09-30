@@ -1,0 +1,20 @@
+{
+  "en": {
+    "badge": "Open to new projects",
+    "city": "Tashkent",
+    "online": "Online now",
+    "offline": "Will reply during working hours"
+  },
+  "ru": {
+    "badge": "Открыт к предложениям",
+    "city": "Ташкент",
+    "online": "На связи",
+    "offline": "Отвечу в рабочее время"
+  },
+  "uz": {
+    "badge": "Yangi loyihalarga ochiqman",
+    "city": "Toshkent",
+    "online": "Aloqadaman",
+    "offline": "Ish vaqtida javob beraman"
+  }
+}

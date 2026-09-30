@@ -2,12 +2,14 @@
 import { getSiteData } from '@data/site';
 import { info } from '@data/global';
 import Button from '@shared/ui/Button/Button.astro';
+import LocalTime from '@shared/ui/LocalTime/LocalTime.astro';
 import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
 
 const locale = getLocale(Astro);
 const {
   footer: { ready, text },
+  status,
 } = getSiteData(locale);
 ---
 
@@ -26,6 +28,9 @@ const {
           <Button variant="outline" fluid href={info.telegram}>
             {info.telegram.replace('https://', '')}
           </Button>
+        </div>
+        <div class={s.local}>
+          <LocalTime status={status} locale={locale} />
         </div>
       </div>
       <div class={s.bottom}>

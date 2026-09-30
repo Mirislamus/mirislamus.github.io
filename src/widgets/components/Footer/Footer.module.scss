@@ -44,6 +44,11 @@
   margin-inline: auto;
 }
 
+.local {
+  margin-top: var(--gap-30);
+  text-align: center;
+}
+
 .bottom {
   width: 100%;
   padding-block: 32px;

@@ -1,0 +1,88 @@
+---
+import type { SiteData } from '@data/site';
+import s from './LocalTime.module.scss';
+
+interface Props {
+  status: SiteData['status'];
+  locale: string;
+}
+
+const { status, locale } = Astro.props;
+---
+
+<!-- The time itself is computed in the browser (the page is built once); without JavaScript only the city shows. -->
+<local-time
+  class={s.widget}
+  data-timezone={status.timezone}
+  data-locale={locale}
+  data-open={status.open ? '' : undefined}
+  data-work-hours={JSON.stringify(status.workHours)}
+  data-online={status.text.online}
+  data-offline={status.text.offline}
+>
+  <span>{status.text.city}</span>
+  <time data-time hidden></time>
+  {status.open && (
+    <span class={s.status} data-status hidden>
+      <span class={s.dot} aria-hidden="true" />
+      <span data-status-text />
+    </span>
+  )}
+</local-time>
+
+<script>
+  import { isWithinWorkHours, type WorkHours } from '@utils/work-hours';
+
+  class LocalTime extends HTMLElement {
+    #timer = 0;
+
+    connectedCallback() {
+      this.#update();
+    }
+
+    disconnectedCallback() {
+      window.clearTimeout(this.#timer);
+    }
+
+    #update = () => {
+      const timezone = this.dataset.timezone ?? 'UTC';
+      const locale = this.dataset.locale ?? 'en';
+      const now = new Date();
+
+      const time = this.querySelector<HTMLTimeElement>('[data-time]');
+      if (time) {
+        const format = (options: Intl.DateTimeFormatOptions) =>
+          new Intl.DateTimeFormat(locale, { timeZone: timezone, ...options });
+        const offset = format({ timeZoneName: 'shortOffset' })
+          .formatToParts(now)
+          .find(part => part.type === 'timeZoneName')
+          ?.value.replace('GMT', 'UTC');
+        const clock = new Intl.DateTimeFormat('en-GB', {
+          timeZone: timezone,
+          hour: '2-digit',
+          minute: '2-digit',
+          hourCycle: 'h23',
+        }).format(now);
+
+        time.textContent = `${format({ hour: 'numeric', minute: '2-digit' }).format(now)}${offset ? ` (${offset})` : ''}`;
+        time.dateTime = clock;
+        time.hidden = false;
+      }
+
+      const status = this.querySelector<HTMLElement>('[data-status]');
+      if (status && this.hasAttribute('data-open')) {
+        const hours = { timezone, ...JSON.parse(this.dataset.workHours ?? '{}') } as WorkHours;
+        const online = isWithinWorkHours(now, hours);
+        status.querySelector('[data-status-text]')!.textContent =
+          (online ? this.dataset.online : this.dataset.offline) ?? '';
+        status.toggleAttribute('data-online', online);
+        status.hidden = false;
+      }
+
+      // Update on the next minute boundary, then keep that rhythm: no idle ticking in between.
+      this.#timer = window.setTimeout(this.#update, 60_000 - (now.getSeconds() * 1000 + now.getMilliseconds()) + 50);
+    };
+  }
+
+  if (!customElements.get('local-time')) customElements.define('local-time', LocalTime);
+</script>

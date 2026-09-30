@@ -100,3 +100,26 @@ export const reviewsSchema = z.strictObject({
   title: text,
   reviews: z.array(z.strictObject({ id, text })).min(1),
 });
+
+const timezone = text.refine(value => {
+  try {
+    new Intl.DateTimeFormat('en', { timeZone: value });
+    return true;
+  } catch {
+    return false;
+  }
+}, 'must be a valid IANA time zone, for example Asia/Tashkent');
+const clock = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'must look like 10:00');
+
+export const statusBaseSchema = z.strictObject({
+  // The one switch for the "open to new projects" badge and the "online now" status.
+  open: z.boolean(),
+  timezone,
+  workHours: z.strictObject({
+    days: z.array(z.number().int().min(1).max(7)).min(1),
+    from: clock,
+    to: clock,
+  }),
+});
+
+export const statusSchema = z.strictObject({ badge: text, city: text, online: text, offline: text });

@@ -9,7 +9,7 @@ import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
-const { hero: data } = getSiteData(locale);
+const { hero: data, status } = getSiteData(locale);
 const avatarSrc = await getAvatarSrc();
 
 // Words are wrapped for the intro; the heading text stays exactly the same string.
@@ -27,6 +27,12 @@ const titleHtml = data.title
   <div class="container">
     <div class={s.content}>
       <Avatar class={s.avatar} src={avatarSrc} />
+      {status.open && (
+        <p class={s.badge}>
+          <span class={s.dot} aria-hidden="true" />
+          {status.text.badge}
+        </p>
+      )}
       <h1 set:html={titleHtml} />
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
       <p class:list={[s.text, 'text-md', 'regular']}>

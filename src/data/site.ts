@@ -21,6 +21,8 @@ import projectsJson from './projects/projects.json';
 import reviewsBaseJson from './reviews/reviews.base.json';
 import reviewsJson from './reviews/reviews.json';
 import skillsBaseJson from './skills/skills.base.json';
+import statusBaseJson from './status/status.base.json';
+import statusJson from './status/status.json';
 import skillsJson from './skills/skills.json';
 import technologiesJson from './technologies.json';
 import {
@@ -38,6 +40,8 @@ import {
   reviewsSchema,
   skillBaseSchema,
   skillsSchema,
+  statusBaseSchema,
+  statusSchema,
   technologySchema,
 } from './schemas';
 
@@ -86,6 +90,9 @@ const load = () => {
     return ids.map(id => technologyNames.get(id) as string);
   };
 
+  const statusBase = parse('status.base.json', statusBaseSchema, statusBaseJson);
+  const statusText = parseLocalized('status.json', statusSchema, statusJson);
+
   const skills = parseList('skills.base.json', skillBaseSchema, skillsBaseJson);
   const projectBase = parseList('projects.base.json', projectBaseSchema, projectsBaseJson);
   const careerBase = parseList('career.base.json', careerBaseSchema, careerBaseJson);
@@ -133,6 +140,7 @@ const load = () => {
     hero: hero[locale],
     footer: footer[locale],
     menu: menu[locale].items,
+    status: { ...statusBase, text: statusText[locale] },
     meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },
     skills: { title: skillsText[locale].title, items: skills },
     projects: {

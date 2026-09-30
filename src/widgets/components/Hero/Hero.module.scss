@@ -8,6 +8,55 @@
   align-items: center;
 }
 
+// "Open to new projects": a small capsule with a pulsing dot (three pulses, then still).
+.badge {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--gap-8);
+  margin: 0 auto fluid(16);
+  padding: 6px 14px;
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-100);
+  background-color: var(--secondary-alpha);
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--green);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--green);
+    opacity: 0;
+    animation-name: pulse;
+    animation-duration: calc(var(--dur-slow) * 4);
+    animation-timing-function: var(--ease-out);
+    animation-iteration-count: 3;
+    animation-delay: calc(var(--dur-slow) * 3);
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.6;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 3;
+  }
+}
+
 .avatar {
   margin-bottom: fluid(24);
   width: fluid(260);
@@ -139,6 +188,11 @@
     display: inline-block;
     animation: introWord var(--dur-slow) var(--ease-out) both;
     animation-delay: calc(var(--intro-step) * 1.5 + var(--i, 0) * var(--stagger));
+  }
+
+  .badge {
+    animation: introFade var(--dur-slow) var(--ease-out) both;
+    animation-delay: var(--intro-step);
   }
 
   .role {
