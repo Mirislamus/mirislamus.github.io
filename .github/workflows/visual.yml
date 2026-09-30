@@ -1,0 +1,58 @@
+name: Visual regression
+
+on:
+  pull_request:
+  push:
+    branches-ignore: ['master']
+  workflow_dispatch:
+    inputs:
+      update:
+        description: 'Regenerate baseline screenshots and commit them to this branch'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  visual:
+    name: Visual tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 'latest'
+
+      - run: bun install --frozen-lockfile
+
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Update baseline
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.update }}
+        run: bunx playwright test --update-snapshots
+
+      - name: Compare with baseline
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.update) }}
+        run: bunx playwright test
+
+      - name: Commit baseline
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.update }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tests/visual/__screenshots__
+          git diff --cached --quiet || git commit -m "test: update visual baseline"
+          git push
+
+      - name: Upload report
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
