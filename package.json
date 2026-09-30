@@ -25,7 +25,6 @@
     "@astrojs/sitemap": "^3.7.4",
     "@lucide/astro": "^1.49.0",
     "astro": "7.3.3",
-    "gsap": "^3.15.0",
     "lucide-react": "^1.47.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

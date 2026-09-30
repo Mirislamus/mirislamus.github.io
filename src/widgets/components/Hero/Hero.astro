@@ -1,6 +1,6 @@
 ---
 import { getSiteData } from '@data/site';
-import { Avatar } from '@shared/ui/Avatar/Avatar';
+import Avatar from '@shared/ui/Avatar/Avatar.astro';
 import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
 import RichText from '@shared/ui/RichText/RichText.astro';
@@ -17,7 +17,7 @@ const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
 <section class={s.hero} id="about">
   <div class="container">
     <div class={s.content}>
-      <Avatar client:load className={s.avatar} src={avatarSrc} />
+      <Avatar class={s.avatar} src={avatarSrc} />
       <h1>{data.title}</h1>
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
       <p class:list={[s.text, 'text-md', 'regular']}>
