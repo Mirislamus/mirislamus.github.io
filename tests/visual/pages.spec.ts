@@ -9,6 +9,12 @@ const LOCALES = [
 const THEMES = ['light', 'dark'] as const;
 type Theme = (typeof THEMES)[number];
 
+// Hidden images (the other theme variant of a skill icon) are lazy and are never fetched.
+const visibleImagesLoaded = () =>
+  Array.from(document.images)
+    .filter(image => image.getClientRects().length > 0)
+    .every(image => image.complete);
+
 const openPage = async (page: Page, path: string, theme: Theme) => {
   await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
   await page.addInitScript(value => window.localStorage.setItem('theme', value), theme);
@@ -30,7 +36,7 @@ const settle = async (page: Page) => {
   });
 
   await page.waitForFunction(() => !document.querySelector('astro-island[ssr]'));
-  await page.waitForFunction(() => Array.from(document.images).every(image => image.complete));
+  await page.waitForFunction(visibleImagesLoaded);
 
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(300);
@@ -75,7 +81,7 @@ for (const theme of THEMES) {
       const projects = page.locator('#projects');
       await projects.getByRole('button').click();
       await expect(projects.getByRole('link')).toHaveCount(8);
-      await page.waitForFunction(() => Array.from(document.images).every(image => image.complete));
+      await page.waitForFunction(visibleImagesLoaded);
       await expect(projects).toHaveScreenshot(`state-projects-expanded-${theme}.png`);
     });
 

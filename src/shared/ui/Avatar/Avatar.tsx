@@ -1,10 +1,11 @@
 import { useEffect, useId } from 'react';
 
 interface AvatarProps {
+  src: string;
   className?: string;
 }
 
-export const Avatar = ({ className }: AvatarProps) => {
+export const Avatar = ({ className, src }: AvatarProps) => {
   const idPrefix = useId().replace(/:/g, '');
   const shape1Id = `shape_1_${idPrefix}`;
   const shape2Id = `shape_2_${idPrefix}`;
@@ -77,13 +78,7 @@ export const Avatar = ({ className }: AvatarProps) => {
 
       <g mask={`url(#${maskId})`}>
         <rect fill={`url(#${gradientId})`} width="260" height="260" />
-        <image
-          href="/images/avatar.png"
-          width="260"
-          height="260"
-          preserveAspectRatio="xMidYMid"
-          transform="translate(20 35)"
-        />
+        <image href={src} width="260" height="260" preserveAspectRatio="xMidYMid" transform="translate(20 35)" />
       </g>
     </svg>
   );

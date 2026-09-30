@@ -6,17 +6,20 @@ import Hero from '@widgets/components/Hero/Hero.astro';
 import { Projects } from '@widgets/components/Projects/Projects';
 import { Reviews } from '@widgets/components/Reviews/Reviews';
 import Skills from '@widgets/components/Skills/Skills.astro';
+import { getCodeImages, getProjectImages } from '@utils/images';
 
 export function getStaticPaths() {
   return [{ params: { lang: undefined } }, { params: { lang: 'uz' } }, { params: { lang: 'ru' } }];
 }
+
+const [codeImages, projectImages] = await Promise.all([getCodeImages(), getProjectImages()]);
 ---
 
 <Layout>
   <Hero />
-  <Approach client:visible />
+  <Approach client:visible codeImages={codeImages} />
   <Career client:visible />
-  <Projects client:visible />
+  <Projects client:visible images={projectImages} />
   <Skills />
   <Reviews client:visible />
 </Layout>

@@ -4,18 +4,20 @@ import { Avatar } from '@shared/ui/Avatar/Avatar';
 import { Button } from '@shared/ui/Button/Button';
 import type { Locale } from '@typings/global';
 import { applyVariable } from '@utils/text';
+import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = (Astro.currentLocale ?? 'en') as Locale;
 const data = heroData[locale];
 const now = new Date();
+const avatarSrc = await getAvatarSrc();
 const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
 ---
 
 <section class={s.hero} id="about">
   <div class="container">
     <div class={s.content}>
-      <Avatar client:load className={s.avatar} />
+      <Avatar client:load className={s.avatar} src={avatarSrc} />
       <h1>{data.title}</h1>
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
       <p class:list={[s.text, 'text-md', 'regular']}>{applyVariable(data.text, 'years', workingYears)}</p>

@@ -22,7 +22,7 @@
     { "id": "git", "name": "Git", "link": "https://github.com/git/git" },
     { "id": "sass", "name": "Sass", "link": "https://sass-lang.com" },
     { "id": "redux", "name": "Redux", "link": "https://redux-toolkit.js.org" },
-    { "id": "zustand", "name": "Zustand", "link": "https://zustand-demo.pmnd.rs" },
+    { "id": "zustand", "format": "webp", "name": "Zustand", "link": "https://zustand-demo.pmnd.rs" },
     { "id": "reactrouter", "name": "React Router", "link": "https://reactrouter.com", "hasTheme": true },
     { "id": "vite", "name": "Vite", "link": "https://vitejs.dev" },
     { "id": "tailwindcss", "name": "Tailwind CSS", "link": "https://tailwindcss.com" },

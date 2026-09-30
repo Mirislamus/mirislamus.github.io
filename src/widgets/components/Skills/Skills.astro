@@ -27,6 +27,8 @@ const titleParts = data.title.split('|');
                 height="72"
                 alt=""
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
               />
               <img
                 class={s.darkIcon}
@@ -35,10 +37,20 @@ const titleParts = data.title.split('|');
                 height="72"
                 alt=""
                 aria-hidden="true"
+                loading="lazy"
+                decoding="async"
               />
             </>
           ) : (
-            <img src={`/images/skills/${skill.id}.svg`} width="72" height="72" alt="" aria-hidden="true" />
+            <img
+              src={`/images/skills/${skill.id}.${skill.format ?? 'svg'}`}
+              width="72"
+              height="72"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
           )}
           <span>{skill.name}</span>
         </a>

@@ -10,9 +10,14 @@ import { useTextHighlight } from '@hooks/useTextHighlight';
 import { Button } from '@shared/ui/Button/Button';
 import { StarBorder } from '@shared/ui/animations/StarBorder/StarBorder';
 import { Copy } from 'lucide-react';
+import type { CodeImages } from '@utils/images';
 import { toast } from 'sonner';
 
-export const Approach = () => {
+interface ApproachProps {
+  codeImages: CodeImages;
+}
+
+export const Approach = ({ codeImages }: ApproachProps) => {
   const locale = useStore(localeAtom);
   const data = approachData[locale];
   const title = useTextHighlight(data.title);
@@ -37,11 +42,27 @@ export const Approach = () => {
         <h2 className="title">{title}</h2>
         <div className={s.grid}>
           <article className={cx(s.item, s.item_1)}>
-            <img width="480" height="480" src="/images/cooperation.svg" alt="" aria-hidden="true" />
+            <img
+              width="480"
+              height="480"
+              src="/images/cooperation.svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
             <h3>{data.cooperation}</h3>
           </article>
           <article className={cx(s.item, s.item_2)}>
-            <img width="340" height="353" src="/images/flexibility.svg" alt="" aria-hidden="true" />
+            <img
+              width="340"
+              height="353"
+              src="/images/flexibility.svg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
             <span className="text-sm">{data.approach}</span>
             <h3>{data.flexibility}</h3>
           </article>
@@ -95,7 +116,7 @@ export const Approach = () => {
               <span>{data.pomotomo}</span>
               <h3>{data.developing}</h3>
             </div>
-            {isHydrated && <img width="510" height="292" src={`/images/code-${theme}.png`} alt="" aria-hidden="true" />}
+            {isHydrated && <img width="510" height="292" src={codeImages[theme]} alt="" aria-hidden="true" />}
           </article>
         </div>
       </div>

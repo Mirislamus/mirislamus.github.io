@@ -29,6 +29,7 @@ const config = {
         '@styles': '/src/styles',
         '@layouts': '/src/layouts',
         '@data': '/src/data',
+        '@assets': '/src/assets',
       },
     },
     build: {

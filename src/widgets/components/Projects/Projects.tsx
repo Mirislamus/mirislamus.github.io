@@ -8,6 +8,7 @@ import cx from 'clsx';
 import { useTextHighlight } from '@hooks/useTextHighlight';
 import { Button } from '@shared/ui/Button/Button';
 import { Tag } from '@shared/ui/Tag/Tag';
+import type { ResponsiveImage } from '@utils/images';
 import { Spotlight } from '@shared/ui/animations/Spotlight/Spotlight';
 
 import { ProjectSkeleton } from './ProjectSkeleton';
@@ -16,7 +17,11 @@ const projectData = projectDataRaw as Record<string, ProjectData>;
 const INITIAL_COUNT = 4;
 const LOAD_STEP = 4;
 
-export const Projects = () => {
+interface ProjectsProps {
+  images: Record<string, ResponsiveImage>;
+}
+
+export const Projects = ({ images }: ProjectsProps) => {
   const locale = useStore(localeAtom);
   const data = projectData[locale];
   const projects = data.items;
@@ -48,16 +53,15 @@ export const Projects = () => {
               <Spotlight className={s.spotlight} spotlightColor={project.color} />
               <div className={s.projectImage}>
                 <picture>
-                  <source
-                    type="image/webp"
-                    srcSet={`/images/projects/${project.id}.webp 1x, /images/projects/${project.id}@2x.webp 2x`}
-                  />
+                  <source type="image/avif" srcSet={images[project.id].avif} />
+                  <source type="image/webp" srcSet={images[project.id].webp} />
                   <img
-                    src={`/images/projects/${project.id}.jpg`}
+                    src={images[project.id].src}
                     alt={project.name}
-                    width="1200"
-                    height="630"
+                    width={images[project.id].width}
+                    height={images[project.id].height}
                     loading="lazy"
+                    decoding="async"
                   />
                 </picture>
               </div>

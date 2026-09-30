@@ -4,10 +4,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "convert:projects": "bun convert.mjs",
-    "predev": "bun run convert:projects",
     "dev": "astro dev",
-    "prebuild": "bun run convert:projects",
     "build": "astro build",
     "check": "astro check",
     "check:links": "bun scripts/check-links.mjs",

@@ -15,7 +15,7 @@
 | RF-00 | Эталонные скриншоты до рефакторинга                  | ⏸      | f949830 |
 | RF-01 | Воспроизводимая сборка и quality gates в CI          | ✅     | 9c8a761 |
 | RF-02 | Удаление мёртвого кода и неиспользуемых зависимостей | ✅     | 4cc72cc |
-| RF-03 | Ассеты и конвейер изображений                        | ⬜     |         |
+| RF-03 | Ассеты и конвейер изображений                        | ✅     | pending |
 
 **RF-00** (код готов, baseline ждёт запуска в CI)
 
@@ -48,11 +48,13 @@
 
 **RF-03**
 
-- [ ] Удалить SF Pro, `ui*.svg`, `icons/logo.svg` (после проверки)
-- [ ] Перенести исходники изображений в `src/assets`, вывод через `astro:assets` (AVIF + WebP)
-- [ ] Удалить `convert.mjs`, скрипты `convert:projects`/`predev`/`prebuild`, закоммиченные `*.webp`
-- [ ] SVGO для иконок, `zustand.svg` < 5 КБ
-- [ ] Skills: одна `<img>` на навык, `loading="lazy"`
+- [x] Удалены SF Pro, `ui*.svg`, `icons/logo.svg` (ссылок в коде не было)
+- [x] Исходники растров перенесены в `src/assets` (проекты, аватар, код), вывод через `astro:assets`: AVIF + WebP, 1x/2x; хелпер `src/utils/images.ts`, алиас `@assets`
+- [x] Удалены `convert.mjs`, скрипты `convert:projects`/`predev`/`prebuild` и закоммиченные `*.webp`; JPG-fallback не генерируется
+- [x] SVGO для остальных SVG; `zustand.svg` (137 КБ) заменён на `zustand.webp` (8 КБ)
+- [x] Skills и Approach: `loading="lazy"` и `decoding="async"`; скрытый вариант темы иконки больше не скачивается
+- [x] `dist/` 9,7 МБ → 1,9 МБ
+- Готовые URL картинок передаются в React-острова пропсами; временное решение до RF-10/11/13
 
 ## Фаза 1. Инфраструктура
 

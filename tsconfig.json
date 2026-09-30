@@ -20,7 +20,8 @@
       "@utils/*": ["./src/utils/*"],
       "@styles/*": ["./src/styles/*"],
       "@layouts/*": ["./src/layouts/*"],
-      "@data/*": ["./src/data/*"]
+      "@data/*": ["./src/data/*"],
+      "@assets/*": ["./src/assets/*"]
     },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
