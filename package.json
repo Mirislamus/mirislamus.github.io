@@ -1,5 +1,6 @@
 {
   "name": "mirislamus.github.io",
+  "packageManager": "bun@1.4.2",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -13,6 +14,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
+    "check:bundle": "node scripts/check-bundle.mjs",
     "lint": "bunx eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots"

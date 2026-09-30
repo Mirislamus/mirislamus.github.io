@@ -28,14 +28,13 @@
 - [x] Workflow `visual.yml`: сравнение на PR/ветках и ручное обновление baseline с коммитом в ветку
 - [x] Локальный прогон: 32 сценария проходят (без сравнения, оно только в CI)
 - [ ] ⏸ Пуш ветки и запуск workflow «Update baseline» — с разрешения владельца **RF-01**
-
-- [ ] Удалить `package-lock.json`, зафиксировать `packageManager`
-- [ ] `bun install --frozen-lockfile` в CI
-- [ ] Workflow: `verify` (format, lint, check, unit, build, bundle, e2e) и `deploy` только из `master`
-- [ ] `scripts/check-bundle.mjs` с бюджетами (сразу / отложенно)
-- [ ] `check:links` — отдельный workflow по расписанию
-
-**RF-02**
+- [x] Удалить `package-lock.json`, зафиксировать `packageManager: bun@1.4.2`
+- [x] `bun install --frozen-lockfile` в CI, версия Bun берётся из `packageManager`
+- [x] Workflow `deploy.yml`: `verify` (format:check, lint, check, build, check:bundle; на PR и push) и `deploy` только из `master`; ежемесячный запуск по расписанию (RF-19)
+- [x] `scripts/check-bundle.mjs`: текущий потолок 140 КБ gzip (сейчас 134,6), финальные бюджеты 15/10 КБ включаются флагом `--strict` после RF-14
+- [x] `check:links` — отдельный workflow `links.yml` раз в неделю, не блокирует деплой
+- [x] Репозиторий отформатирован Prettier (10 файлов), `format:check` зелёный
+- Юнит-тесты и e2e добавятся в `verify` в RF-18 **RF-02**
 
 - [ ] Удалить barrel-файлы, `LazyMotionWrapper`, `RotatingText`, `initTheme`, `setLocale`, лишние default-экспорты, неиспользуемые ключи JSON
 - [ ] Удалить `motion`, `@gsap/react`

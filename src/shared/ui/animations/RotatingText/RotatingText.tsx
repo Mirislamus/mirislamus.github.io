@@ -1,11 +1,4 @@
-import {
-  type ComponentPropsWithoutRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
+import { type ComponentPropsWithoutRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import {
   type Transition,
   type VariantLabels,
@@ -25,8 +18,10 @@ export interface RotatingTextRef {
   reset: () => void;
 }
 
-export interface RotatingTextProps
-  extends Omit<ComponentPropsWithoutRef<typeof m.span>, 'children' | 'transition' | 'initial' | 'animate' | 'exit'> {
+export interface RotatingTextProps extends Omit<
+  ComponentPropsWithoutRef<typeof m.span>,
+  'children' | 'transition' | 'initial' | 'animate' | 'exit'
+> {
   texts: string[];
   transition?: Transition;
   initial?: boolean | Target | VariantLabels;
@@ -71,7 +66,8 @@ export const RotatingText = (props: RotatingTextProps & { ref?: React.Ref<Rotati
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
-const segmenter = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter('en', { granularity: 'grapheme' }) : null;
+  const segmenter =
+    typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter('en', { granularity: 'grapheme' }) : null;
 
   const splitIntoCharacters = (text: string): string[] => {
     if (segmenter) {
@@ -183,12 +179,7 @@ const segmenter = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segme
       <span className={s.srOnly}>{texts[currentTextIndex]}</span>
 
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-        <m.span
-          key={currentTextIndex}
-          layout
-          aria-hidden
-          className={clsx(splitBy === 'lines' ? s.lines : s.container)}
-        >
+        <m.span key={currentTextIndex} layout aria-hidden className={clsx(splitBy === 'lines' ? s.lines : s.container)}>
           {elements.map((word, wordIndex, arr) => {
             const prevCount = arr.slice(0, wordIndex).reduce((sum, w) => sum + w.characters.length, 0);
 

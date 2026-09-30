@@ -42,17 +42,14 @@ async function convertProjectsImages() {
         const height1x = Math.round((metadata.height || 0) / 2);
 
         // Generate 2x WebP
-        await sharp(srcPath)
-          .webp({ quality: 80 })
-          .toFile(dest2xPath);
+        await sharp(srcPath).webp({ quality: 80 }).toFile(dest2xPath);
 
         // Generate 1x WebP
-        await sharp(srcPath)
-          .resize(width1x, height1x)
-          .webp({ quality: 80 })
-          .toFile(dest1xPath);
+        await sharp(srcPath).resize(width1x, height1x).webp({ quality: 80 }).toFile(dest1xPath);
 
-        console.log(`[projects-convert] ${file} -> ${baseName}.webp (${width1x}x${height1x}) & ${baseName}@2x.webp (${metadata.width}x${metadata.height})`);
+        console.log(
+          `[projects-convert] ${file} -> ${baseName}.webp (${width1x}x${height1x}) & ${baseName}@2x.webp (${metadata.width}x${metadata.height})`
+        );
       }
     }
   } catch (error) {

@@ -18,7 +18,9 @@ localeAtom.set(locale);
 <html lang={locale}>
   <Head locale={locale} />
   <body>
-    <a class="skip-link" href="#main-content">{a11y.skipToContent}</a>
+    <a class="skip-link" href="#main-content">
+      {a11y.skipToContent}
+    </a>
     <script>
       import { initThemeStore } from '@utils/theme';
       initThemeStore();
