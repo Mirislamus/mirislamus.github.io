@@ -3,7 +3,7 @@ import { getSiteData } from '@data/site';
 import { Avatar } from '@shared/ui/Avatar/Avatar';
 import { Button } from '@shared/ui/Button/Button';
 import { getLocale } from '@i18n/utils';
-import { applyVariable } from '@utils/text';
+import RichText from '@shared/ui/RichText/RichText.astro';
 import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
@@ -20,7 +20,9 @@ const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);
       <Avatar client:load className={s.avatar} src={avatarSrc} />
       <h1>{data.title}</h1>
       <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
-      <p class:list={[s.text, 'text-md', 'regular']}>{applyVariable(data.text, 'years', workingYears)}</p>
+      <p class:list={[s.text, 'text-md', 'regular']}>
+        <RichText text={data.text} vars={{ years: workingYears }} />
+      </p>
       <div class={s.btns}>
         <Button tag="a" href="#contacts">
           {data.button}

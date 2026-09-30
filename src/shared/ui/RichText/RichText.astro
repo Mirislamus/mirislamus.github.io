@@ -1,0 +1,23 @@
+---
+import { parseRichText, type RichTextVars } from '@utils/rich-text';
+
+interface Props {
+  text: string;
+  vars?: RichTextVars;
+}
+
+const { text, vars } = Astro.props;
+const tokens = parseRichText(text, vars);
+---
+
+{tokens.map(token =>
+  token.type === 'highlight' ? (
+    <span class="accent">{token.value}</span>
+  ) : token.type === 'link' ? (
+    <a href={token.href} target="_blank" rel="noopener noreferrer">
+      {token.label}
+    </a>
+  ) : (
+    token.value
+  )
+)}

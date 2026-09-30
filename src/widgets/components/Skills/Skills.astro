@@ -1,19 +1,17 @@
 ---
 import { getSiteData } from '@data/site';
 import { getLocale } from '@i18n/utils';
+import RichText from '@shared/ui/RichText/RichText.astro';
 import s from './Skills.module.scss';
 
 const locale = getLocale(Astro);
 const { skills } = getSiteData(locale);
-const titleParts = skills.title.split('|');
 ---
 
 <section class:list={[s.skills, 'section']} id="skills">
   <div class="container">
     <h2 class="title">
-      {titleParts[0]}
-      <span class="accent">{titleParts[1]}</span>
-      {titleParts[2]}
+      <RichText text={skills.title} />
     </h2>
     <div class={s.grid}>
       {skills.items.map(skill => (

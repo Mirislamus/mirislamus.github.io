@@ -2,7 +2,7 @@ import type { SiteData } from '@data/site';
 import { useState } from 'react';
 import s from './Projects.module.scss';
 import cx from 'clsx';
-import { useTextHighlight } from '@hooks/useTextHighlight';
+import { RichText } from '@shared/ui/RichText/RichText';
 import { Button } from '@shared/ui/Button/Button';
 import { Tag } from '@shared/ui/Tag/Tag';
 import type { ResponsiveImage } from '@utils/images';
@@ -20,7 +20,6 @@ interface ProjectsProps {
 
 export const Projects = ({ data, images }: ProjectsProps) => {
   const projects = data.items;
-  const title = useTextHighlight(data.title);
 
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +40,9 @@ export const Projects = ({ data, images }: ProjectsProps) => {
   return (
     <section id="projects" className={cx(s.projects, 'section')}>
       <div className="container">
-        <h2 className="title">{title}</h2>
+        <h2 className="title">
+          <RichText text={data.title} />
+        </h2>
         <div className={s.grid}>
           {visibleProjects.map(project => (
             <a href={project.link} target="_blank" rel="noopener noreferrer" key={project.id} className={s.project}>

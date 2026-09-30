@@ -6,7 +6,7 @@ import s from './Approach.module.scss';
 import cx from 'clsx';
 import { useCopyToClipboard } from '@hooks/useCopyToClipboard';
 import { useIsHydrated } from '@hooks/useIsHydrated';
-import { useTextHighlight } from '@hooks/useTextHighlight';
+import { RichText } from '@shared/ui/RichText/RichText';
 import { Button } from '@shared/ui/Button/Button';
 import { StarBorder } from '@shared/ui/animations/StarBorder/StarBorder';
 import { Copy } from 'lucide-react';
@@ -19,7 +19,6 @@ interface ApproachProps {
 }
 
 export const Approach = ({ data, codeImages }: ApproachProps) => {
-  const title = useTextHighlight(data.title);
   const theme = useStore(themeAtom);
   const isHydrated = useIsHydrated();
 
@@ -38,7 +37,9 @@ export const Approach = ({ data, codeImages }: ApproachProps) => {
   return (
     <section className={cx(s.approach, 'section')} id="approach">
       <div className="container">
-        <h2 className="title">{title}</h2>
+        <h2 className="title">
+          <RichText text={data.title} />
+        </h2>
         <div className={s.grid}>
           <article className={cx(s.item, s.item_1)}>
             <img

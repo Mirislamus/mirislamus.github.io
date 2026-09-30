@@ -35,6 +35,7 @@ jobs:
       - run: bun run format:check
       - run: bun run lint
       - run: bun run knip
+      - run: bun run test
       - run: bun run check
       - run: bun run build
       - run: bun run check:bundle

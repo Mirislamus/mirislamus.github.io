@@ -9,8 +9,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
-import { useTextHighlight } from '@hooks/useTextHighlight';
-import { parseLinks } from '@utils/text';
+import { RichText } from '@shared/ui/RichText/RichText';
 
 interface CareerProps {
   data: SiteData['career'];
@@ -18,7 +17,6 @@ interface CareerProps {
 }
 
 export const Career = ({ data, a11y }: CareerProps) => {
-  const title = useTextHighlight(data.title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
@@ -32,7 +30,9 @@ export const Career = ({ data, a11y }: CareerProps) => {
     <section id="career" className={cx(s.career, 'section')}>
       <div className="container">
         <div className={cx(s.careerTop, 'title')}>
-          <h2>{title}</h2>
+          <h2>
+            <RichText text={data.title} />
+          </h2>
           <ArrowControls
             onPrev={() => swiperRef.current?.slidePrev()}
             onNext={() => swiperRef.current?.slideNext()}
@@ -72,7 +72,9 @@ export const Career = ({ data, a11y }: CareerProps) => {
                 </strong>
                 <span className={s.circle} />
                 <div className={s.content}>
-                  <p className="text-sm">{parseLinks(item.description)}</p>
+                  <p className="text-sm">
+                    <RichText text={item.description} />
+                  </p>
                   <div className={s.technologies}>
                     {index === 0 && <span className="text-sm">{data.technologies}:</span>}
                     <div className={s.stack}>
