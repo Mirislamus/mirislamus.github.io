@@ -109,7 +109,7 @@
 | RF-09 | Header                                   | ✅     | e550134 |
 | RF-10 | Avatar без GSAP                          | ✅     | 8549a96 |
 | RF-11 | Approach, копирование email, уведомления | ✅     | 99eb730 |
-| RF-12 | Карусели Career и Reviews на Embla       | ✅     | pending |
+| RF-12 | Карусели Career и Reviews на Embla       | ✅     | d2eddd6 |
 | RF-13 | Projects                                 | ⬜     |         |
 | RF-14 | Удаление React-инфраструктуры            | ⬜     |         |
 
