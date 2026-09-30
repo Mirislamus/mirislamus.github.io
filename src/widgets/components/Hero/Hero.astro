@@ -33,8 +33,10 @@ const titleHtml = data.title
           {status.text.badge}
         </p>
       )}
-      <h1 set:html={titleHtml} />
-      <strong class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</strong>
+      {/* The role sits inside the heading: the page's main heading is "name + role". */}
+      <h1>
+        <Fragment set:html={titleHtml} /> <span class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</span>
+      </h1>
       <p class:list={[s.text, 'text-md', 'regular']}>
         <RichText text={data.text} vars={{ years: getExperienceYears() }} />
       </p>

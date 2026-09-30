@@ -1,20 +1,20 @@
 {
   "en": {
     "name": "Mirislam Usmanov",
-    "title": "Mirislam Usmanov — Frontend Engineer",
-    "description": "Frontend Engineer with {{years}}+ years of experience building fast, accessible websites and web applications. Selected work, skills, and contact details.",
+    "title": "Mirislam Usmanov — Frontend Engineer | React, Next.js, TypeScript",
+    "description": "Frontend Engineer in Tashkent with {{years}}+ years of experience building fast, accessible websites and web apps with React, Next.js and TypeScript.",
     "imageAlt": "Mirislam Usmanov — Frontend Engineer"
   },
   "ru": {
     "name": "Мирислам Усманов",
-    "title": "Мирислам Усманов — Frontend Engineer",
-    "description": "Frontend Engineer с опытом более {{years}} лет: быстрые и доступные сайты и веб-приложения. Проекты, опыт, навыки и контакты.",
+    "title": "Мирислам Усманов — Frontend-разработчик в Ташкенте | React, Next.js",
+    "description": "Frontend-разработчик в Ташкенте, опыт более {{years}} лет: быстрые и доступные сайты и веб-приложения на React, Next.js и TypeScript. Проекты, отзывы, контакты.",
     "imageAlt": "Мирислам Усманов — Frontend Engineer"
   },
   "uz": {
     "name": "Mirislam Usmonov",
-    "title": "Mirislam Usmonov — Frontend Engineer",
-    "description": "Frontend Engineer sifatida {{years}}+ yillik tajriba: tezkor va qulay veb-saytlar hamda ilovalar. Loyihalar, tajriba, ko‘nikmalar va aloqa.",
+    "title": "Mirislam Usmonov — Frontend dasturchi, Toshkent | React, Next.js",
+    "description": "Toshkentdagi Frontend dasturchi, {{years}}+ yillik tajriba: React, Next.js va TypeScript’da tezkor va qulay veb-saytlar hamda ilovalar. Loyihalar, fikrlar, aloqa.",
     "imageAlt": "Mirislam Usmonov — Frontend Engineer"
   }
 }

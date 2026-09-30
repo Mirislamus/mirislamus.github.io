@@ -415,3 +415,9 @@
 - [x] `cv.json → languages`: поле `code` (`ru`, `en`); при сборке проверяется, что во всех локалях одни и те же языки
 - [x] Псевдоним `@seo` (`tsconfig`, Vite, Vitest); 16 unit-тестов (`structured-data.test.ts`): нет остатков разметки, одинаковые `@id`, все ссылки `@id` ведут на узлы графа, данные из `SiteData`, нет приватных полей, порядок карьеры, проекты и отзывы как на странице
 - Не проверено: validator.schema.org и Rich Results Test (нужен интернет и ручная вставка) — в SEO-09
+
+**SEO-06**
+
+- [x] Title и description по решению владельца: роль + стек + город. EN «Mirislam Usmanov — Frontend Engineer | React, Next.js, TypeScript» (65 симв.), RU «… — Frontend-разработчик в Ташкенте | React, Next.js» (67), UZ «… — Frontend dasturchi, Toshkent | React, Next.js» (64); description 141–154 символа со стажем через `{{years}}`. Формулировки по черновику из `seo.md` — **владельцу утвердить, UZ показать носителю**
+- [x] Роль перенесена внутрь `h1` (`<h1>имя <span>роль</span></h1>`): заголовок страницы — «Mirislam Usmanov Frontend Engineer»; внешний вид, отступы и анимация интро те же (проверено скриншотом 1440 px; эталоны визуальной регрессии сравниваются только в CI)
+- [x] e2e `avatar` и `intro` обновлены под новый текст заголовка; все 137 e2e проходят

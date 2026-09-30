@@ -103,6 +103,6 @@ test.describe('when motion is reduced', () => {
 test('the heading is split into words but keeps its text and accessible name', async ({ page }) => {
   await page.goto('/');
   const heading = page.getByRole('heading', { level: 1 });
-  await expect(heading).toHaveText('Mirislam Usmanov');
+  await expect(heading).toHaveText('Mirislam Usmanov Frontend Engineer');
   await expect(heading.locator('span > span')).toHaveCount(2);
 });

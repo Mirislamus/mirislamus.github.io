@@ -33,8 +33,8 @@ test('the avatar is paused while it is off screen and resumes when visible', asy
   expect(await time(page)).toBeGreaterThan(paused);
 });
 
-test('the avatar is decorative and the heading carries the name', async ({ page }) => {
+test('the avatar is decorative and the heading carries the name and the role', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('[data-avatar]')).toHaveAttribute('aria-hidden', 'true');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov Frontend Engineer');
 });
