@@ -9,7 +9,7 @@ interface Props {
 const { text, vars } = Astro.props;
 
 const escape = (value: string) =>
-  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
 // Built as a string on purpose: whitespace around inline elements is significant, and a formatter
 // must not be able to add any.
