@@ -38,13 +38,12 @@ jobs:
       - run: bun run knip
       - run: bun run test
       - run: bun run check
+      # Chromium prints the CV PDFs at the end of the build, so it comes first.
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
       - run: bun run build
       - run: bun run check:bundle
 
-      - name: Install Chromium
-        run: bunx playwright install --with-deps chromium
-      # The CV PDFs are printed from the built pages and end up in the deployed artifact.
-      - run: bun run build:cv
       - run: bun run test:e2e
 
       - name: Upload e2e report

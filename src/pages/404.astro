@@ -1,17 +1,21 @@
 ---
 import '@styles/global.scss';
-import { LOCALES } from '@i18n/locales';
+import { DEFAULT_LOCALE, LOCALES } from '@i18n/locales';
 import { localeUrl } from '@i18n/utils';
 import Button from '@shared/ui/Button/Button.astro';
+import { pickLanguage } from '@utils/language-bootstrap';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
 
-// One static page for every path that does not exist, so it is shown in all three languages.
+// One static page serves every path that does not exist (GitHub Pages has a single 404.html), so all three
+// texts are in it and a tiny script shows the one that fits: the language in the URL (/ru/nope/), else the
+// browser language, else English. Without JavaScript it is English.
 const messages = {
   en: { title: 'Page not found', text: 'This page does not exist or has moved.', home: 'Go to the home page' },
   ru: { title: 'Страница не найдена', text: 'Такой страницы нет или она переехала.', home: 'На главную' },
   uz: { title: 'Sahifa topilmadi', text: 'Bunday sahifa yo‘q yoki ko‘chirilgan.', home: 'Bosh sahifaga' },
 } as const;
 
+const languageScript = `(${pickLanguage})(${JSON.stringify(LOCALES)}, ${JSON.stringify(DEFAULT_LOCALE)})`;
 const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, ${JSON.stringify(THEME_COLORS)})`;
 ---
 
@@ -34,16 +38,15 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
       <p class="code accent" aria-hidden="true">
         404
       </p>
-      {LOCALES.map((locale, index) => (
-        <section lang={locale}>
-          {index === 0 ? <h1>{messages[locale].title}</h1> : <h2>{messages[locale].title}</h2>}
+      {LOCALES.map(locale => (
+        <section lang={locale} hidden={locale !== DEFAULT_LOCALE}>
+          <h1>{messages[locale].title}</h1>
           <p>{messages[locale].text}</p>
-          <Button href={localeUrl(locale)} variant={index === 0 ? 'fill' : 'outline'} size="sm">
-            {messages[locale].home}
-          </Button>
+          <Button href={localeUrl(locale)}>{messages[locale].home}</Button>
         </section>
       ))}
     </main>
+    <script is:inline set:html={languageScript}></script>
     <script>
       import '@shared/scripts/ripple';
       import { initTheme } from '@utils/theme';
@@ -65,9 +68,13 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
   }
 
   .code {
-    font-size: 120px;
+    font-size: clamp(96px, 22vw, 180px);
     font-weight: 700;
     line-height: 1;
+  }
+
+  section[hidden] {
+    display: none;
   }
 
   section {
@@ -79,12 +86,6 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
 
   h1 {
     font-size: 32px;
-  }
-
-  h2 {
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: var(--gap-12);
   }
 
   p:not(.code) {

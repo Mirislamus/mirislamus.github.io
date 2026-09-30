@@ -56,7 +56,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `bunx astro build && node scripts/build-cv.mjs && bunx astro preview --ignore-lock --host 127.0.0.1 --port ${PORT}`,
+    command: `bunx astro build && bunx astro preview --ignore-lock --host 127.0.0.1 --port ${PORT}`,
     url: `http://127.0.0.1:${PORT}/`,
     reuseExistingServer: !isCI,
     timeout: 240_000,

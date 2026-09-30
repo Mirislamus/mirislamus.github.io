@@ -8,10 +8,9 @@ test('an unknown URL shows the site 404 page with a 404 status', async ({ page }
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Page not found');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
 
-  const links = await page.locator('main a').evaluateAll(anchors => anchors.map(anchor => anchor.getAttribute('href')));
-  expect(links).toEqual(['/', '/ru/', '/uz/']);
-  await expect(page.locator('section[lang="ru"] h2')).toHaveText('Страница не найдена');
-  await expect(page.locator('section[lang="uz"] h2')).toHaveText('Sahifa topilmadi');
+  // Exactly one language is visible: English for a browser in English.
+  await expect(page.locator('main section:not([hidden])')).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Go to the home page' })).toHaveAttribute('href', '/');
 });
 
 test('the 404 page follows the theme and has no accessibility violations', async ({ page }) => {
@@ -26,4 +25,25 @@ test('the 404 page follows the theme and has no accessibility violations', async
 test('the 404 page is not in the sitemap', async ({ request }) => {
   const sitemap = await (await request.get('/sitemap-0.xml')).text();
   expect(sitemap).not.toContain('404');
+});
+
+test.describe('the language of the 404 page', () => {
+  test('follows the language in the URL', async ({ page }) => {
+    await page.goto('/ru/nope/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Страница не найдена');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'ru');
+    await expect(page.getByRole('link', { name: 'На главную' })).toHaveAttribute('href', '/ru/');
+
+    await page.goto('/uz/nope/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sahifa topilmadi');
+    await expect(page.getByRole('link', { name: 'Bosh sahifaga' })).toHaveAttribute('href', '/uz/');
+  });
+
+  test('falls back to the browser language', async ({ browser }) => {
+    const context = await browser.newContext({ locale: 'ru-RU' });
+    const page = await context.newPage();
+    await page.goto('/nope/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Страница не найдена');
+    await context.close();
+  });
 });
