@@ -53,14 +53,6 @@
   }
   &_3 {
     grid-column: span 3;
-    path {
-      transition: var(--transition);
-    }
-    svg {
-      position: absolute;
-      bottom: 0;
-      right: 24px;
-    }
     h3 {
       max-width: 340px;
     }
@@ -111,14 +103,6 @@
     h3 {
       max-width: 340px;
     }
-  }
-}
-
-.item_3 path:not(:first-child) {
-  fill: var(--black);
-
-  @include on-dark {
-    fill: var(--white);
   }
 }
 
@@ -218,5 +202,133 @@
 .codeDark {
   @include on-dark {
     display: block;
+  }
+}
+
+// The "UI" card: a small live stand made of native controls. It sits in the bottom right corner and
+// is cut off by the card like the picture it replaced.
+.sandbox {
+  position: absolute;
+  right: var(--gap-24);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-8);
+  width: 178px;
+  padding: 10px 10px 12px;
+  border-radius: var(--radius-10) var(--radius-10) 0 0;
+  background-color: color-mix(in srgb, var(--text) 8%, transparent);
+  transition: box-shadow var(--dur-base) ease;
+
+  &:has(.switch:checked) {
+    box-shadow:
+      0 0 0 1px var(--accent),
+      0 0 24px var(--accent-alpha);
+  }
+
+  @media (width <= 1023px) {
+    right: 12px;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-8);
+  min-height: 20px;
+}
+
+.switchLabel {
+  position: relative;
+  display: inline-flex;
+}
+
+.switch {
+  appearance: none;
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: var(--radius-100);
+  background-color: color-mix(in srgb, var(--text) 28%, transparent);
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease;
+
+  // A larger hit area than the visible switch.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--white);
+    transition: translate var(--dur-fast) var(--ease-spring);
+  }
+
+  &:checked {
+    background-color: var(--accent);
+
+    &::after {
+      translate: 14px 0;
+    }
+  }
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--green);
+}
+
+.range {
+  flex: 1;
+  min-width: 0;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.value {
+  min-width: 3ch;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-muted);
+}
+
+.bar {
+  height: 4px;
+  border-radius: var(--radius-100);
+  background-color: var(--tertiary);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background-color: var(--accent);
+    transform-origin: left;
+    transform: scaleX(calc(var(--value, 0) / 100));
+    transition: transform var(--dur-fast) linear;
   }
 }

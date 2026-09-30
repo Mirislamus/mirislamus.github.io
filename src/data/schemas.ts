@@ -39,6 +39,9 @@ export const approachSchema = z.strictObject({
   error: text,
   developing: text,
   pomotomo: text,
+  sandboxToggle: text,
+  sandboxSlider: text,
+  sandboxStatus: text,
 });
 
 export const heroSchema = z.strictObject({ role: text, title: text, text, button: text });

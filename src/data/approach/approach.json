@@ -10,7 +10,10 @@
     "success": "Email copied",
     "error": "Couldn't copy the email. Please try again",
     "developing": "Currently developing a Focus Timer",
-    "pomotomo": "Pomotomo"
+    "pomotomo": "Pomotomo",
+    "sandboxToggle": "Highlight",
+    "sandboxSlider": "Progress",
+    "sandboxStatus": "Build · passing"
   },
   "ru": {
     "title": "Подход и |принципы|",
@@ -23,7 +26,10 @@
     "success": "Email скопирован",
     "error": "Не удалось скопировать email. Попробуйте ещё раз",
     "developing": "В настоящее время разрабатываю Focus Timer",
-    "pomotomo": "Pomotomo"
+    "pomotomo": "Pomotomo",
+    "sandboxToggle": "Подсветка",
+    "sandboxSlider": "Прогресс",
+    "sandboxStatus": "Сборка · ок"
   },
   "uz": {
     "title": "Yondashuv va |tamoyillar|",
@@ -36,6 +42,9 @@
     "success": "Email nusxalandi",
     "error": "Emailni nusxalab bo‘lmadi. Qayta urinib ko‘ring",
     "developing": "Hozir Focus Timer ustida ishlayapman",
-    "pomotomo": "Pomotomo"
+    "pomotomo": "Pomotomo",
+    "sandboxToggle": "Yoritish",
+    "sandboxSlider": "Jarayon",
+    "sandboxStatus": "Build · o‘tdi"
   }
 }
