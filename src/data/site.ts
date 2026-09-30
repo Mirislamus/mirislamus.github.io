@@ -24,7 +24,6 @@ import reviewsBaseJson from './reviews/reviews.base.json';
 import reviewsJson from './reviews/reviews.json';
 import skillsBaseJson from './skills/skills.base.json';
 import statusBaseJson from './status/status.base.json';
-import terminalJson from './terminal/terminal.json';
 import statusJson from './status/status.json';
 import skillsJson from './skills/skills.json';
 import technologiesJson from './technologies.json';
@@ -48,7 +47,6 @@ import {
   skillsSchema,
   statusBaseSchema,
   statusSchema,
-  terminalSchema,
   technologySchema,
 } from './schemas';
 
@@ -111,7 +109,6 @@ const load = () => {
   const footer = parseLocalized('footer.json', footerSchema, footerJson);
   const cv = parseLocalized('cv.json', cvSchema, cvJson);
   const palette = parseLocalized('palette.json', paletteSchema, paletteJson);
-  const terminal = parseLocalized('terminal.json', terminalSchema, terminalJson);
   const menu = parseLocalized('menu.json', menuSchema, menuJson);
   const meta = parseLocalized('meta.json', metaSchema, metaJson);
   const skillsText = parseLocalized('skills.json', skillsSchema, skillsJson);
@@ -161,7 +158,6 @@ const load = () => {
     footer: footer[locale],
     cv: cv[locale],
     palette: palette[locale],
-    terminal: terminal[locale],
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },
     meta: { ...meta[locale], description: interpolate(meta[locale].description, { years: getExperienceYears() }) },

@@ -5,12 +5,10 @@ import Footer from '@widgets/components/Footer/Footer.astro';
 import Header from '@widgets/components/Header/Header.astro';
 import BackToTop from '@shared/ui/BackToTop/BackToTop.astro';
 import Palette from '@shared/ui/Palette/Palette.astro';
-import Terminal from '@shared/ui/Terminal/Terminal.astro';
 import Toast from '@shared/ui/Toast/Toast.astro';
 import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
 import { getSiteData } from '@data/site';
 import { buildCommands } from '@utils/palette-commands';
-import { buildTerminalData } from '@utils/terminal-data';
 
 const locale = getLocale(Astro);
 const site = getSiteData(locale);
@@ -45,7 +43,6 @@ const languages = getLanguageLinks(locale);
       <slot />
     </main>
     <Toast />
-    <Terminal data={buildTerminalData(site, locale, languages)} />
     <Palette palette={palette} commands={buildCommands(site, locale, languages)} />
     <BackToTop label={a11y.backToTop} />
     <Footer />

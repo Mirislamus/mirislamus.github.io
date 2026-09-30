@@ -21,8 +21,7 @@
     "actions": {
       "copyEmail": "Copy email",
       "downloadCv": "Download CV (PDF)",
-      "top": "Back to top",
-      "openTerminal": "Open terminal"
+      "top": "Back to top"
     }
   },
   "ru": {
@@ -47,8 +46,7 @@
     "actions": {
       "copyEmail": "Скопировать email",
       "downloadCv": "Скачать резюме (PDF)",
-      "top": "Наверх",
-      "openTerminal": "Открыть терминал"
+      "top": "Наверх"
     }
   },
   "uz": {
@@ -73,8 +71,7 @@
     "actions": {
       "copyEmail": "Emailni nusxalash",
       "downloadCv": "CV yuklab olish (PDF)",
-      "top": "Yuqoriga",
-      "openTerminal": "Terminalni ochish"
+      "top": "Yuqoriga"
     }
   }
 }

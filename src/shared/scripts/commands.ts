@@ -11,8 +11,7 @@ export type CommandAction =
   | { type: 'download'; href: string }
   | { type: 'theme'; mode: ThemeMode }
   | { type: 'language'; href: string }
-  | { type: 'top' }
-  | { type: 'terminal' };
+  | { type: 'top' };
 
 export type CommandGroup = 'navigation' | 'actions' | 'theme' | 'language' | 'links' | 'projects';
 
@@ -30,11 +29,6 @@ export const runAction = async (action: CommandAction) => {
     case 'go': {
       document.getElementById(action.id)?.scrollIntoView();
       history.replaceState(null, '', `#${action.id}`);
-      break;
-    }
-    case 'terminal': {
-      const { openTerminal } = await import('./terminal');
-      openTerminal();
       break;
     }
     case 'top':

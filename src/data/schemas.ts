@@ -61,45 +61,7 @@ export const paletteSchema = z.strictObject({
     links: text,
     projects: text,
   }),
-  actions: z.strictObject({ copyEmail: text, downloadCv: text, openTerminal: text, top: text }),
-});
-
-const helpKeys = [
-  'help',
-  'whoami',
-  'about',
-  'experience',
-  'projects',
-  'skills',
-  'contact',
-  'cv',
-  'theme',
-  'lang',
-  'goto',
-  'date',
-  'clear',
-  'exit',
-  'history',
-  'sudo',
-] as const;
-
-export const terminalSchema = z.strictObject({
-  label: text,
-  welcome: text,
-  helpTitle: text,
-  unknown: text,
-  didYouMean: text,
-  usage: z.strictObject({ theme: text, lang: text, goto: text }),
-  help: z.strictObject(
-    Object.fromEntries(helpKeys.map(key => [key, text])) as Record<(typeof helpKeys)[number], typeof text>
-  ),
-  historyEmpty: text,
-  downloading: text,
-  themeSet: text,
-  langSet: text,
-  going: text,
-  hireMe: text,
-  denied: text,
+  actions: z.strictObject({ copyEmail: text, downloadCv: text, top: text }),
 });
 
 export const footerSchema = z.strictObject({ ready: text, text });

@@ -30,13 +30,6 @@ export const buildCommands = (data: SiteData, locale: Locale, languages: Languag
       keywords: 'cv resume pdf download',
       action: { type: 'download', href: `/cv/mirislam-usmanov-${locale}.pdf` },
     },
-    {
-      id: 'terminal',
-      group: 'actions',
-      title: palette.actions.openTerminal,
-      keywords: 'terminal console shell cli',
-      action: { type: 'terminal' },
-    },
     { id: 'top', group: 'actions', title: palette.actions.top, keywords: 'top up scroll', action: { type: 'top' } },
     {
       id: 'theme-light',

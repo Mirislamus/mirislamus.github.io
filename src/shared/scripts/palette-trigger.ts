@@ -7,24 +7,10 @@ const show = () => {
   void loading.then(palette => palette.openPalette());
 };
 
-let terminal: Promise<typeof import('./terminal')> | undefined;
-
-const showTerminal = () => {
-  terminal ??= import('./terminal');
-  void terminal.then(module => module.openTerminal());
-};
-
 const isTyping = (target: EventTarget | null) =>
   target instanceof HTMLElement && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
 
 document.addEventListener('keydown', event => {
-  // The backquote key (whatever the layout puts on it) opens the terminal.
-  if (event.code === 'Backquote' && !(event.metaKey || event.ctrlKey || event.altKey) && !isTyping(event.target)) {
-    event.preventDefault();
-    showTerminal();
-    return;
-  }
-
   if (!(event.metaKey || event.ctrlKey) || event.altKey || event.shiftKey || event.key.toLowerCase() !== 'k') return;
   if (isTyping(event.target)) return;
 
