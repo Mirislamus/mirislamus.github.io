@@ -1,5 +1,5 @@
 ---
-import heroData from '@data/hero/hero.json';
+import { getSiteData } from '@data/site';
 import { Avatar } from '@shared/ui/Avatar/Avatar';
 import { Button } from '@shared/ui/Button/Button';
 import { getLocale } from '@i18n/utils';
@@ -8,7 +8,7 @@ import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
-const data = heroData[locale];
+const { hero: data } = getSiteData(locale);
 const now = new Date();
 const avatarSrc = await getAvatarSrc();
 const workingYears = now.getFullYear() - 2018 - (now.getMonth() < 5 ? 1 : 0);

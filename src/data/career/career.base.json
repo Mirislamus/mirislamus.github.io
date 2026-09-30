@@ -1,0 +1,32 @@
+[
+  {
+    "id": "web-pult",
+    "company": "Web Pult",
+    "position": "HTML/CSS Engineer",
+    "stack": ["html", "css", "scss", "javascript", "jquery", "gulp"]
+  },
+  {
+    "id": "one-web",
+    "company": "One Web",
+    "position": "Web Engineer",
+    "stack": ["html", "scss", "javascript", "jquery", "gulp", "nunjucks", "php", "wordpress"]
+  },
+  {
+    "id": "margin-digital-studio",
+    "company": "Margin Digital Studio",
+    "position": "Technical Lead & Frontend Engineer",
+    "stack": ["html", "scss", "javascript", "gulp", "nunjucks", "php", "wordpress"]
+  },
+  {
+    "id": "humandone",
+    "company": "Humandone",
+    "position": "Frontend Engineer",
+    "stack": ["react", "typescript", "gatsby", "nextjs", "scss", "tailwindcss", "chakra-ui", "axios"]
+  },
+  {
+    "id": "dafna",
+    "company": "Dafna",
+    "position": "Frontend Engineer",
+    "stack": ["react", "typescript", "javascript", "nextjs", "scss", "axios", "redux", "zustand"]
+  }
+]

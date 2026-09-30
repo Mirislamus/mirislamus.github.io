@@ -3,43 +3,35 @@
     "title": "Reviews",
     "reviews": [
       {
-        "id": 2,
-        "author": "Bryan Finch",
+        "id": "2",
         "text": "Excellent work on the landing page built with React and Next.js. Thank you!"
       },
       {
-        "id": 7,
-        "author": "Illarion Panovsky",
+        "id": "7",
         "text": "Completed the CSS fixes in the shortest possible time. Very satisfied with the cooperation."
       },
       {
-        "id": 8,
-        "author": "Egor Burkaba",
+        "id": "8",
         "text": "Excellent communication and great code. Highly recommend."
       },
       {
-        "id": 15,
-        "author": "Ilya Usanov",
+        "id": "15",
         "text": "Handled the layout perfectly. Polite, punctual, and highly recommended."
       },
       {
-        "id": 21,
-        "author": "dcpr",
+        "id": "21",
         "text": "Reliable and conscientious. Completed 10 pages exactly according to the technical requirements."
       },
       {
-        "id": 22,
-        "author": "Alexey Kopievsky",
+        "id": "22",
         "text": "Pleasant to work with. Mirislam understands tasks without issues and provides high-quality work."
       },
       {
-        "id": 23,
-        "author": "Ren Ren",
+        "id": "23",
         "text": "Clean and readable code. Handled the complex form layout quickly. Recommended!"
       },
       {
-        "id": 24,
-        "author": "Andrey Petrov",
+        "id": "24",
         "text": "High-quality site development. All minor edits were fixed immediately. I advise everyone to work with him."
       }
     ]
@@ -48,43 +40,35 @@
     "title": "Отзывы",
     "reviews": [
       {
-        "id": 2,
-        "author": "Bryan Finch",
+        "id": "2",
         "text": "Отличная работа над лендингом на React и Next.js. Спасибо!"
       },
       {
-        "id": 7,
-        "author": "Illarion Panovsky",
+        "id": "7",
         "text": "В кратчайшие сроки сделал правки по CSS. Сотрудничеством доволен."
       },
       {
-        "id": 8,
-        "author": "Egor Burkaba",
+        "id": "8",
         "text": "Отличная коммуникация и качественный код. Рекомендую."
       },
       {
-        "id": 15,
-        "author": "Ilya Usanov",
+        "id": "15",
         "text": "Вовремя и качественно справился с вёрсткой. Вежливый и пунктуальный, рекомендую."
       },
       {
-        "id": 21,
-        "author": "dcpr",
+        "id": "21",
         "text": "Надёжный и добросовестный. Сверстал 10 страниц точно по ТЗ и вовремя."
       },
       {
-        "id": 22,
-        "author": "Alexey Kopievsky",
+        "id": "22",
         "text": "Приятно сотрудничать. Мирислам без проблем понимает задачи и качественно выполняет работу."
       },
       {
-        "id": 23,
-        "author": "Ren Ren",
+        "id": "23",
         "text": "Чистый и понятный код. Быстро справился с вёрсткой сложной формы. Рекомендую!"
       },
       {
-        "id": 24,
-        "author": "Andrey Petrov",
+        "id": "24",
         "text": "Качественно разработал сайт и оперативно вносил все небольшие правки. Рекомендую к сотрудничеству."
       }
     ]
@@ -93,43 +77,35 @@
     "title": "Sharhlar",
     "reviews": [
       {
-        "id": 2,
-        "author": "Bryan Finch",
+        "id": "2",
         "text": "React va Next.js asosidagi landing sahifa bo‘yicha a’lo ish. Rahmat!"
       },
       {
-        "id": 7,
-        "author": "Illarion Panovsky",
+        "id": "7",
         "text": "CSS tuzatishlarini juda qisqa vaqtda bajardi. Hamkorlikdan mamnunman."
       },
       {
-        "id": 8,
-        "author": "Egor Burkaba",
+        "id": "8",
         "text": "A’lo muloqot va sifatli kod. Tavsiya qilaman."
       },
       {
-        "id": 15,
-        "author": "Ilya Usanov",
+        "id": "15",
         "text": "Sahifani o‘z vaqtida va sifatli tayyorladi. Xushmuomala va tartibli, tavsiya qilaman."
       },
       {
-        "id": 21,
-        "author": "dcpr",
+        "id": "21",
         "text": "Ishonchli va vijdonli. 10 ta sahifani texnik topshiriqqa aniq mos ravishda va vaqtida tayyorladi."
       },
       {
-        "id": 22,
-        "author": "Alexey Kopievsky",
+        "id": "22",
         "text": "Hamkorlik qilish yoqimli. Mirislam vazifalarni tez tushunadi va ishni sifatli bajaradi."
       },
       {
-        "id": 23,
-        "author": "Ren Ren",
+        "id": "23",
         "text": "Kod toza va tushunarli. Murakkab forma sahifasini tez tayyorladi. Tavsiya qilaman!"
       },
       {
-        "id": 24,
-        "author": "Andrey Petrov",
+        "id": "24",
         "text": "Saytni sifatli ishlab chiqdi va barcha kichik tuzatishlarni tez kiritdi. Hamkorlikni tavsiya qilaman."
       }
     ]

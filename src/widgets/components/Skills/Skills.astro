@@ -1,11 +1,11 @@
 ---
-import skillsData from '@data/skills/skills.json';
+import { getSiteData } from '@data/site';
 import { getLocale } from '@i18n/utils';
 import s from './Skills.module.scss';
 
 const locale = getLocale(Astro);
-const data = skillsData.data[locale];
-const titleParts = data.title.split('|');
+const { skills } = getSiteData(locale);
+const titleParts = skills.title.split('|');
 ---
 
 <section class:list={[s.skills, 'section']} id="skills">
@@ -16,7 +16,7 @@ const titleParts = data.title.split('|');
       {titleParts[2]}
     </h2>
     <div class={s.grid}>
-      {skillsData.items.map(skill => (
+      {skills.items.map(skill => (
         <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
           {skill.hasTheme ? (
             <>

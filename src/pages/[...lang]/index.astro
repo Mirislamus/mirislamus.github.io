@@ -7,19 +7,21 @@ import { Projects } from '@widgets/components/Projects/Projects';
 import { Reviews } from '@widgets/components/Reviews/Reviews';
 import Skills from '@widgets/components/Skills/Skills.astro';
 import { getCodeImages, getProjectImages } from '@utils/images';
+import { getSiteData } from '@data/site';
 import { getLocale, staticLocalePaths } from '@i18n/utils';
 
 export const getStaticPaths = staticLocalePaths;
 
 const locale = getLocale(Astro);
+const site = getSiteData(locale);
 const [codeImages, projectImages] = await Promise.all([getCodeImages(), getProjectImages()]);
 ---
 
 <Layout>
   <Hero />
-  <Approach client:visible locale={locale} codeImages={codeImages} />
-  <Career client:visible locale={locale} />
-  <Projects client:visible locale={locale} images={projectImages} />
+  <Approach client:visible data={site.approach} codeImages={codeImages} />
+  <Career client:visible data={site.career} a11y={site.a11y} />
+  <Projects client:visible data={site.projects} images={projectImages} />
   <Skills />
-  <Reviews client:visible locale={locale} />
+  <Reviews client:visible data={site.reviews} a11y={site.a11y} />
 </Layout>

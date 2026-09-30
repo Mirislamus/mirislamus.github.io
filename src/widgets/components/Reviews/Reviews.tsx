@@ -1,6 +1,5 @@
-import type { Locale } from '@i18n/locales';
+import type { SiteData } from '@data/site';
 import type { Swiper as SwiperType } from 'swiper';
-import reviewsData from '@data/reviews/reviews.json';
 import s from './Reviews.module.scss';
 import cx from 'clsx';
 import { useRef } from 'react';
@@ -9,12 +8,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import a11yData from '@data/a11y/a11y.json';
 
-export const Reviews = ({ locale }: { locale: Locale }) => {
-  const data = reviewsData[locale];
-  const a11y = a11yData[locale];
+interface ReviewsProps {
+  data: SiteData['reviews'];
+  a11y: SiteData['a11y'];
+}
 
+export const Reviews = ({ data, a11y }: ReviewsProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
   const paginationRef = useRef<HTMLDivElement | null>(null);
 
@@ -62,7 +62,7 @@ export const Reviews = ({ locale }: { locale: Locale }) => {
             }}
             onSwiper={swiper => (swiperRef.current = swiper)}
           >
-            {data.reviews.map(review => (
+            {data.items.map(review => (
               <SwiperSlide className={s.slide} key={review.id}>
                 <article className={s.review}>
                   <p>{review.text}</p>

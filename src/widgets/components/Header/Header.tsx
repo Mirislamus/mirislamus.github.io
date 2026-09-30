@@ -12,25 +12,21 @@ import { useIsHydrated } from '@hooks/useIsHydrated';
 import { ActionButton } from '@shared/ui/ActionButton/ActionButton';
 import { Switcher } from '@shared/ui/Switcher/Switcher';
 import { setThemeMode } from '@utils/theme';
-import menuDataRaw from '@data/menu/menu.json';
-import type { MenuItem } from '@typings/data';
+import type { SiteData } from '@data/site';
 import type { Locale } from '@i18n/locales';
 import type { LanguageLink } from '@i18n/utils';
-import a11yData from '@data/a11y/a11y.json';
-
-const menuData = menuDataRaw as Record<string, MenuItem[]>;
 
 interface HeaderProps {
   locale: Locale;
   homeHref: string;
   languages: LanguageLink[];
+  menu: SiteData['menu'];
+  a11y: SiteData['a11y'];
 }
 
-export const Header = ({ locale, homeHref, languages }: HeaderProps) => {
+export const Header = ({ locale, homeHref, languages, menu, a11y }: HeaderProps) => {
   const mode = useStore(modeAtom);
   const isHydrated = useIsHydrated();
-  const menuItems = menuData[locale];
-  const a11y = a11yData[locale];
 
   const lineRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLAnchorElement[]>([]);
@@ -190,7 +186,7 @@ export const Header = ({ locale, homeHref, languages }: HeaderProps) => {
               aria-label={a11y.navigation}
             >
               <ul>
-                {menuItems.map((item, index: number) => (
+                {menu.map((item, index: number) => (
                   <li key={item.url}>
                     <a
                       href={`#${item.url}`}

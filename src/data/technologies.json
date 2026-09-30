@@ -1,0 +1,102 @@
+[
+  {
+    "id": "html",
+    "name": "HTML"
+  },
+  {
+    "id": "css",
+    "name": "CSS"
+  },
+  {
+    "id": "scss",
+    "name": "SCSS"
+  },
+  {
+    "id": "sass",
+    "name": "Sass"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript"
+  },
+  {
+    "id": "jquery",
+    "name": "jQuery"
+  },
+  {
+    "id": "gulp",
+    "name": "Gulp"
+  },
+  {
+    "id": "nunjucks",
+    "name": "Nunjucks"
+  },
+  {
+    "id": "php",
+    "name": "PHP"
+  },
+  {
+    "id": "wordpress",
+    "name": "WordPress"
+  },
+  {
+    "id": "react",
+    "name": "React"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js"
+  },
+  {
+    "id": "gatsby",
+    "name": "Gatsby"
+  },
+  {
+    "id": "astro",
+    "name": "Astro"
+  },
+  {
+    "id": "vite",
+    "name": "Vite"
+  },
+  {
+    "id": "tailwindcss",
+    "name": "Tailwind CSS"
+  },
+  {
+    "id": "chakra-ui",
+    "name": "Chakra UI"
+  },
+  {
+    "id": "css-modules",
+    "name": "CSS Modules"
+  },
+  {
+    "id": "axios",
+    "name": "Axios"
+  },
+  {
+    "id": "redux",
+    "name": "Redux"
+  },
+  {
+    "id": "zustand",
+    "name": "Zustand"
+  },
+  {
+    "id": "nanostores",
+    "name": "Nanostores"
+  },
+  {
+    "id": "lucide",
+    "name": "Lucide"
+  },
+  {
+    "id": "gsap",
+    "name": "GSAP"
+  }
+]

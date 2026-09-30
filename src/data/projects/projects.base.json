@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dafna",
+    "name": "Dafna",
+    "link": "https://dafna.uz",
+    "color": "#009FE2",
+    "stack": ["react", "nextjs", "redux", "css-modules"]
+  },
+  {
+    "id": "prowatt",
+    "name": "Prowatt",
+    "link": "https://prowatt.uz",
+    "color": "#FFD700",
+    "stack": ["astro", "nanostores", "lucide", "css-modules"]
+  },
+  {
+    "id": "pomotomo",
+    "name": "Pomotomo Focus Timer",
+    "link": "https://mirislamus.github.io/pomodoro",
+    "color": "#ED4455",
+    "stack": ["react", "vite", "chakra-ui", "zustand"]
+  },
+  {
+    "id": "humandone",
+    "name": "Humandone",
+    "link": "https://humandone.com",
+    "color": "#E13916",
+    "stack": ["react", "gatsby", "chakra-ui", "gsap"]
+  },
+  {
+    "id": "caldera",
+    "name": "Caldera",
+    "link": "https://caldera.humandone.com",
+    "color": "#FF2021",
+    "stack": ["react", "gatsby", "chakra-ui", "gsap"]
+  },
+  {
+    "id": "oceanverse",
+    "name": "Oceanverse",
+    "link": "https://oceanverse.humandone.com",
+    "color": "#BEF0BF",
+    "stack": ["nunjucks", "javascript", "gulp", "gsap"]
+  },
+  {
+    "id": "age-computers",
+    "name": "Age Computers",
+    "link": "https://age.uz",
+    "color": "#1D42CD",
+    "stack": ["nunjucks", "sass", "javascript", "gulp"]
+  },
+  {
+    "id": "easy-english",
+    "name": "Easy English School",
+    "link": "https://easyenglish.best",
+    "color": "#9453FF",
+    "stack": ["nunjucks", "sass", "javascript", "gulp"]
+  }
+]

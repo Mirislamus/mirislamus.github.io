@@ -1,15 +1,15 @@
 ---
-import metaData from '@data/meta/meta.json';
+import type { SiteData } from '@data/site';
 import { info } from '@data/global';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@i18n/locales';
 import { absoluteLocaleUrl } from '@i18n/utils';
 
 interface Props {
   locale: Locale;
+  meta: SiteData['meta'];
 }
 
-const { locale } = Astro.props;
-const meta = metaData[locale];
+const { locale, meta } = Astro.props;
 
 const toUrl = (path: string) => new URL(path, Astro.site).href;
 const canonical = absoluteLocaleUrl(locale);

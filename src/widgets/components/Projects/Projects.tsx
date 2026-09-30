@@ -1,7 +1,5 @@
-import type { Locale } from '@i18n/locales';
+import type { SiteData } from '@data/site';
 import { useState } from 'react';
-import projectDataRaw from '@data/projects/projects.json';
-import type { ProjectData } from '@typings/data';
 import s from './Projects.module.scss';
 import cx from 'clsx';
 import { useTextHighlight } from '@hooks/useTextHighlight';
@@ -12,17 +10,15 @@ import { Spotlight } from '@shared/ui/animations/Spotlight/Spotlight';
 
 import { ProjectSkeleton } from './ProjectSkeleton';
 
-const projectData = projectDataRaw as Record<string, ProjectData>;
 const INITIAL_COUNT = 4;
 const LOAD_STEP = 4;
 
 interface ProjectsProps {
-  locale: Locale;
+  data: SiteData['projects'];
   images: Record<string, ResponsiveImage>;
 }
 
-export const Projects = ({ locale, images }: ProjectsProps) => {
-  const data = projectData[locale];
+export const Projects = ({ data, images }: ProjectsProps) => {
   const projects = data.items;
   const title = useTextHighlight(data.title);
 

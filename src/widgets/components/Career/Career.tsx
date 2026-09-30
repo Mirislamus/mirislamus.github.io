@@ -1,12 +1,9 @@
-import type { Locale } from '@i18n/locales';
+import type { SiteData } from '@data/site';
 import s from './Career.module.scss';
 import cx from 'clsx';
-import careerDataRaw from '@data/career/career.json';
-import type { CareerData } from '@typings/data';
 import { ArrowControls } from '@shared/ui/ArrowControls/ArrowControls';
 import { Tag } from '@shared/ui/Tag/Tag';
 
-const careerData = careerDataRaw as Record<string, CareerData>;
 import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,11 +11,13 @@ import { FreeMode, A11y } from 'swiper/modules';
 import 'swiper/css';
 import { useTextHighlight } from '@hooks/useTextHighlight';
 import { parseLinks } from '@utils/text';
-import a11yData from '@data/a11y/a11y.json';
 
-export const Career = ({ locale }: { locale: Locale }) => {
-  const data = careerData[locale];
-  const a11y = a11yData[locale];
+interface CareerProps {
+  data: SiteData['career'];
+  a11y: SiteData['a11y'];
+}
+
+export const Career = ({ data, a11y }: CareerProps) => {
   const title = useTextHighlight(data.title);
   const swiperRef = useRef<SwiperType | null>(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);

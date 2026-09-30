@@ -1,12 +1,14 @@
 ---
-import footerData from '@data/footer/footer.json';
+import { getSiteData } from '@data/site';
 import { info } from '@data/global';
 import { Button } from '@shared/ui/Button/Button';
 import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
 
 const locale = getLocale(Astro);
-const { ready, text } = footerData[locale];
+const {
+  footer: { ready, text },
+} = getSiteData(locale);
 ---
 
 <footer id="contacts" class={s.footer}>

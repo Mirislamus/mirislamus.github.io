@@ -4,39 +4,29 @@
     "technologies": "Technologies",
     "items": [
       {
-        "company": "Web Pult",
-        "position": "HTML/CSS Engineer",
+        "id": "web-pult",
         "year": "2018",
-        "description": "Built landing pages, online stores, and other interfaces of varying complexity using preprocessors and build tools. Also completed freelance projects to broaden my practical experience.",
-        "stack": ["html", "css", "scss", "js", "jquery", "gulp"]
+        "description": "Built landing pages, online stores, and other interfaces of varying complexity using preprocessors and build tools. Also completed freelance projects to broaden my practical experience."
       },
       {
-        "company": "One Web",
-        "position": "Web Engineer",
+        "id": "one-web",
         "year": "2019",
-        "description": "Built layouts and animations of varying complexity using template engines, preprocessors, and build tools. Integrated completed interfaces into WordPress.",
-        "stack": ["html", "scss", "js", "jquery", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Built layouts and animations of varying complexity using template engines, preprocessors, and build tools. Integrated completed interfaces into WordPress."
       },
       {
-        "company": "Margin Digital Studio",
-        "position": "Technical Lead & Frontend Engineer",
+        "id": "margin-digital-studio",
         "year": "2020",
-        "description": "Led the technical development department while building turnkey websites as a Frontend Engineer. Created interactive quizzes and contributed to projects including ||age.uz|| and ||rebus.uz||.",
-        "stack": ["html", "scss", "js", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Led the technical development department while building turnkey websites as a Frontend Engineer. Created interactive quizzes and contributed to projects including ||age.uz|| and ||rebus.uz||."
       },
       {
-        "company": "Humandone",
-        "position": "Frontend Engineer",
+        "id": "humandone",
         "year": "2022",
-        "description": "Built React and Web3 websites and applications, including ||humandone.com||, ||caldera.humandone.com||, and ||crypto.humandone.com||. Contributed to the Perspecta AI assistant platform and developed a personal Pomodoro timer at ||mirislamus.github.io/pomodoro||.",
-        "stack": ["react", "ts", "gatsby", "next.js", "scss", "tailwind", "chakra.ui", "axios"]
+        "description": "Built React and Web3 websites and applications, including ||humandone.com||, ||caldera.humandone.com||, and ||crypto.humandone.com||. Contributed to the Perspecta AI assistant platform and developed a personal Pomodoro timer at ||mirislamus.github.io/pomodoro||."
       },
       {
-        "company": "Dafna",
-        "position": "Frontend Engineer",
+        "id": "dafna",
         "year": "2024 — Present",
-        "description": "Redesigned and continue to support the client side of ||dafna.uz||, including refactoring, performance work, new pages, and feature improvements. Designed and built ||mirislamus.github.io||, developed a Telegram mini app for product suppliers, and work on the ||hit-proxy.net|| frontend.",
-        "stack": ["react", "ts", "js", "next.js", "scss", "axios", "redux", "zustand"]
+        "description": "Redesigned and continue to support the client side of ||dafna.uz||, including refactoring, performance work, new pages, and feature improvements. Designed and built ||mirislamus.github.io||, developed a Telegram mini app for product suppliers, and work on the ||hit-proxy.net|| frontend."
       }
     ]
   },
@@ -45,39 +35,29 @@
     "technologies": "Технологии",
     "items": [
       {
-        "company": "Web Pult",
-        "position": "HTML/CSS Engineer",
+        "id": "web-pult",
         "year": "2018",
-        "description": "Верстал лендинги, интернет-магазины и другие интерфейсы разной сложности с использованием препроцессоров и сборщиков. Параллельно выполнял фриланс-проекты, расширяя практический опыт.",
-        "stack": ["html", "css", "scss", "js", "jquery", "gulp"]
+        "description": "Верстал лендинги, интернет-магазины и другие интерфейсы разной сложности с использованием препроцессоров и сборщиков. Параллельно выполнял фриланс-проекты, расширяя практический опыт."
       },
       {
-        "company": "One Web",
-        "position": "Web Engineer",
+        "id": "one-web",
         "year": "2019",
-        "description": "Создавал вёрстку и анимации разной сложности с использованием шаблонизаторов, препроцессоров и сборщиков. Интегрировал готовые интерфейсы в WordPress.",
-        "stack": ["html", "scss", "js", "jquery", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Создавал вёрстку и анимации разной сложности с использованием шаблонизаторов, препроцессоров и сборщиков. Интегрировал готовые интерфейсы в WordPress."
       },
       {
-        "company": "Margin Digital Studio",
-        "position": "Technical Lead & Frontend Engineer",
+        "id": "margin-digital-studio",
         "year": "2020",
-        "description": "Руководил техническим отделом и параллельно создавал сайты под ключ как Frontend Engineer. Разрабатывал интерактивные квизы и участвовал в проектах ||age.uz|| и ||rebus.uz||.",
-        "stack": ["html", "scss", "js", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Руководил техническим отделом и параллельно создавал сайты под ключ как Frontend Engineer. Разрабатывал интерактивные квизы и участвовал в проектах ||age.uz|| и ||rebus.uz||."
       },
       {
-        "company": "Humandone",
-        "position": "Frontend Engineer",
+        "id": "humandone",
         "year": "2022",
-        "description": "Разрабатывал сайты и приложения на React и Web3, включая ||humandone.com||, ||caldera.humandone.com|| и ||crypto.humandone.com||. Участвовал в создании AI-ассистента Perspecta и разработал собственный Pomodoro-таймер ||mirislamus.github.io/pomodoro||.",
-        "stack": ["react", "ts", "gatsby", "next.js", "scss", "tailwind", "chakra.ui", "axios"]
+        "description": "Разрабатывал сайты и приложения на React и Web3, включая ||humandone.com||, ||caldera.humandone.com|| и ||crypto.humandone.com||. Участвовал в создании AI-ассистента Perspecta и разработал собственный Pomodoro-таймер ||mirislamus.github.io/pomodoro||."
       },
       {
-        "company": "Dafna",
-        "position": "Frontend Engineer",
+        "id": "dafna",
         "year": "2024 — настоящее время",
-        "description": "Переработал и продолжаю поддерживать клиентскую часть ||dafna.uz||: рефакторинг, оптимизация, новые страницы и развитие функциональности. Спроектировал и разработал ||mirislamus.github.io||, Telegram mini-app для поставщиков и фронтенд ||hit-proxy.net||.",
-        "stack": ["react", "ts", "js", "next.js", "scss", "axios", "redux", "zustand"]
+        "description": "Переработал и продолжаю поддерживать клиентскую часть ||dafna.uz||: рефакторинг, оптимизация, новые страницы и развитие функциональности. Спроектировал и разработал ||mirislamus.github.io||, Telegram mini-app для поставщиков и фронтенд ||hit-proxy.net||."
       }
     ]
   },
@@ -86,39 +66,29 @@
     "technologies": "Texnologiyalar",
     "items": [
       {
-        "company": "Web Pult",
-        "position": "HTML/CSS Engineer",
+        "id": "web-pult",
         "year": "2018",
-        "description": "Preprocessor va build tool’lardan foydalanib, turli murakkablikdagi landing sahifalar, internet-do‘konlar va boshqa interfeyslarni yaratdim. Amaliy tajribamni kengaytirish uchun frilans loyihalarini ham bajardim.",
-        "stack": ["html", "css", "scss", "js", "jquery", "gulp"]
+        "description": "Preprocessor va build tool’lardan foydalanib, turli murakkablikdagi landing sahifalar, internet-do‘konlar va boshqa interfeyslarni yaratdim. Amaliy tajribamni kengaytirish uchun frilans loyihalarini ham bajardim."
       },
       {
-        "company": "One Web",
-        "position": "Web Engineer",
+        "id": "one-web",
         "year": "2019",
-        "description": "Template engine, preprocessor va build tool’lar yordamida turli murakkablikdagi sahifalar va animatsiyalar yaratdim. Tayyor interfeyslarni WordPress’ga integratsiya qildim.",
-        "stack": ["html", "scss", "js", "jquery", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Template engine, preprocessor va build tool’lar yordamida turli murakkablikdagi sahifalar va animatsiyalar yaratdim. Tayyor interfeyslarni WordPress’ga integratsiya qildim."
       },
       {
-        "company": "Margin Digital Studio",
-        "position": "Technical Lead & Frontend Engineer",
+        "id": "margin-digital-studio",
         "year": "2020",
-        "description": "Texnik rivojlanish bo‘limiga rahbarlik qildim va Frontend Engineer sifatida tayyor saytlar yaratdim. Interaktiv testlar ishlab chiqdim hamda ||age.uz|| va ||rebus.uz|| loyihalarida qatnashdim.",
-        "stack": ["html", "scss", "js", "gulp", "nunjucks", "php", "wordpress"]
+        "description": "Texnik rivojlanish bo‘limiga rahbarlik qildim va Frontend Engineer sifatida tayyor saytlar yaratdim. Interaktiv testlar ishlab chiqdim hamda ||age.uz|| va ||rebus.uz|| loyihalarida qatnashdim."
       },
       {
-        "company": "Humandone",
-        "position": "Frontend Engineer",
+        "id": "humandone",
         "year": "2022",
-        "description": "React va Web3 asosidagi sayt va ilovalarni, jumladan ||humandone.com||, ||caldera.humandone.com|| va ||crypto.humandone.com|| loyihalarini ishlab chiqdim. Perspecta AI assistentiga hissa qo‘shdim va ||mirislamus.github.io/pomodoro|| Pomodoro taymerini yaratdim.",
-        "stack": ["react", "ts", "gatsby", "next.js", "scss", "tailwind", "chakra.ui", "axios"]
+        "description": "React va Web3 asosidagi sayt va ilovalarni, jumladan ||humandone.com||, ||caldera.humandone.com|| va ||crypto.humandone.com|| loyihalarini ishlab chiqdim. Perspecta AI assistentiga hissa qo‘shdim va ||mirislamus.github.io/pomodoro|| Pomodoro taymerini yaratdim."
       },
       {
-        "company": "Dafna",
-        "position": "Frontend Engineer",
+        "id": "dafna",
         "year": "2024 — hozir",
-        "description": "||dafna.uz|| saytining mijoz qismini qayta ishlab, uni qo‘llab-quvvatlashda davom etyapman: refaktoring, optimallashtirish, yangi sahifalar va funksiyalar. ||mirislamus.github.io|| saytini loyihalab yaratdim, yetkazib beruvchilar uchun Telegram mini-app va ||hit-proxy.net|| frontendini ishlab chiqdim.",
-        "stack": ["react", "ts", "js", "next.js", "scss", "axios", "redux", "zustand"]
+        "description": "||dafna.uz|| saytining mijoz qismini qayta ishlab, uni qo‘llab-quvvatlashda davom etyapman: refaktoring, optimallashtirish, yangi sahifalar va funksiyalar. ||mirislamus.github.io|| saytini loyihalab yaratdim, yetkazib beruvchilar uchun Telegram mini-app va ||hit-proxy.net|| frontendini ishlab chiqdim."
       }
     ]
   }
