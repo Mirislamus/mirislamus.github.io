@@ -19,7 +19,7 @@ const THRESHOLDS = [0.12, 0.35, 0.6, 0.82]; // coverage that starts level 1, 2, 
 const TARGETS = {
   mirislamus: {
     desktop: { lines: ['MIRISLAMUS'], cols: 180 },
-    mobile: { lines: ['MIRIS', 'LAMUS'], cols: 72 },
+    mobile: { lines: ['MIRISLAMUS'], cols: 100 },
   },
   404: {
     desktop: { lines: ['404'], cols: 64 },

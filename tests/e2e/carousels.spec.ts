@@ -161,3 +161,18 @@ test.describe('reviews carousel', () => {
     }
   });
 });
+
+test.describe('review dots', () => {
+  for (const width of [1440, 390]) {
+    test(`sit below the cards, centered, at ${width} px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/#reviews');
+      const reviews = page.locator('#reviews');
+      await expect(reviews.locator('[data-embla-dots] button')).toHaveCount(8);
+      const cards = (await reviews.locator('[data-embla-viewport]').boundingBox())!;
+      const dots = (await reviews.locator('[data-embla-dots]').boundingBox())!;
+      expect(dots.y).toBeGreaterThanOrEqual(cards.y + cards.height);
+      expect(Math.abs(dots.x + dots.width / 2 - (cards.x + cards.width / 2))).toBeLessThan(6);
+    });
+  }
+});

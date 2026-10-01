@@ -57,7 +57,9 @@
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--gap-8);
+  margin-top: var(--gap-24); // below the cards on every screen
 
   &:empty {
     display: none;
@@ -88,18 +90,5 @@
     &[aria-current='true']::after {
       scale: 1;
     }
-  }
-}
-
-@media (width <= 767px) {
-  .wrapper {
-    padding-bottom: 48px;
-  }
-
-  .pagination {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    translate: -50% 0;
   }
 }

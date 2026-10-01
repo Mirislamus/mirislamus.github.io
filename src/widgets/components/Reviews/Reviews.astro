@@ -21,7 +21,6 @@ const slideLabel = (index: number) =>
       <div class:list={[s.reviewsTop, 'title']} data-reveal>
         <h2 id="reviews-title">{data.title}</h2>
         <div class={s.reviewsControls}>
-          <div class={s.pagination} data-embla-dots data-dot-label={a11y.goToReview}></div>
           <ArrowControls prevLabel={a11y.previousReview} nextLabel={a11y.nextReview} />
         </div>
       </div>
@@ -45,6 +44,7 @@ const slideLabel = (index: number) =>
           ))}
         </div>
       </div>
+      <div class={s.pagination} data-embla-dots data-dot-label={a11y.goToReview}></div>
     </Carousel>
   </div>
 </section>

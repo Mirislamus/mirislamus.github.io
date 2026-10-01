@@ -59,12 +59,14 @@ test.describe('when motion is allowed', () => {
 test.describe('on a phone', () => {
   test.use({ reducedMotion: 'no-preference', viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
 
-  test('uses the two-line version and fits the screen', async ({ page }) => {
+  test('uses the narrower version, still in one row, and fits the screen', async ({ page }) => {
     await toFooter(page);
     await expect(root(page).locator('pre[data-variant="mobile"]')).toHaveCSS('display', 'block');
     await expect(root(page).locator('pre[data-variant="desktop"]')).toHaveCSS('display', 'none');
     await expect.poll(() => painted(page)).toBe(true);
     const box = (await canvas(page).boundingBox())!;
+    // One row of letters: about 7 rows of glyphs, not two lines of words.
+    expect(box.height).toBeLessThan(110);
     expect(box.x).toBeGreaterThanOrEqual(0);
     expect(box.x + box.width).toBeLessThanOrEqual(390);
   });
