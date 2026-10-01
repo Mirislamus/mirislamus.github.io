@@ -17,7 +17,7 @@ const slideLabel = (index: number) =>
   a11y.slideOf.replace('{{index}}', String(index + 1)).replace('{{total}}', String(total));
 ---
 
-<section id="career" class:list={[s.career, 'section']}>
+<section id="career" class:list={[s.career, 'section']} data-career>
   <div class="container">
     <Carousel
       a11y={a11y}
@@ -42,20 +42,26 @@ const slideLabel = (index: number) =>
               aria-roledescription={a11y.slide}
               aria-label={slideLabel(index)}
             >
-              <article>
-                <h3 class="text-md medium">{item.company}</h3>
-                <strong class="text-sm regular">
+              <article data-career-item data-current={item.end === null ? '' : undefined}>
+                <h3 class="text-md medium">
+                  <span class={s.name} data-career-name>
+                    {item.company}
+                  </span>
+                </h3>
+                <strong class="text-sm regular" data-career-meta>
                   <span>{item.position}</span>
                   <span>{item.year}</span>
                 </strong>
-                <span class={s.circle}></span>
-                <div class={s.content}>
-                  <p class="text-sm">
+                <span class={s.circle} data-career-circle>
+                  <span class={s.ping} data-career-ping />
+                </span>
+                <div class={s.content} data-career-content>
+                  <p class="text-sm" data-career-text>
                     <RichText text={item.description} />
                   </p>
-                  <div class={s.technologies}>
+                  <div class={s.technologies} data-career-tech>
                     <span class:list={['text-sm', { 'visually-hidden': index > 0 }]}>{data.technologies}:</span>
-                    <div class={s.stack}>
+                    <div class={s.stack} data-career-stack>
                       {item.stack.map(stack => (
                         <Tag>{stack}</Tag>
                       ))}
@@ -70,3 +76,19 @@ const slideLabel = (index: number) =>
     </Carousel>
   </div>
 </section>
+
+<script>
+  // The reveal is a separate chunk, loaded when the section is about to be seen.
+  const section = document.querySelector<HTMLElement>('[data-career]');
+
+  if (section) {
+    new IntersectionObserver(
+      ([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        void import('@shared/scripts/career-reveal').then(({ initCareerReveal }) => initCareerReveal(section));
+      },
+      { rootMargin: '400px' }
+    ).observe(section);
+  }
+</script>

@@ -40,7 +40,7 @@ test.describe('when motion is allowed', () => {
     const box = (await page.locator('[data-avatar]').boundingBox())!;
     const y = box.y + box.height / 2;
     await page.mouse.move(box.x + box.width + 15, y, { steps: 6 });
-    // At rest the right edge is at 250 (viewBox units); breathing moves it by about ±13.
+    // At rest the right edge is at 250 (viewBox units); breathing moves it by about ±9.
     await expect.poll(async () => (await extent(page)).maxX).toBeGreaterThan(285);
 
     await page.mouse.move(8, 880, { steps: 6 });
@@ -106,7 +106,7 @@ test.describe('with a touch screen', () => {
         })
     );
     await page.touchscreen.tap(box.x + box.width - 6, box.y + box.height / 2);
-    expect(await rightmost).toBeLessThan(236);
+    expect(await rightmost).toBeLessThan(238);
   });
 });
 

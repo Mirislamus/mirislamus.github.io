@@ -8,9 +8,9 @@ const RADIUS = 120;
 const STIFFNESS = 180;
 const DAMPING = 9;
 const REACH_PX = 120; // the cursor starts to pull when it is closer than this to the edge
-const PULL = 0.87; // × RADIUS at the edge
-const DENT = 0.09; // × RADIUS with the cursor inside
-const TAP_IMPULSE = 6; // × RADIUS per second
+const PULL = 0.5; // × RADIUS at the edge
+const DENT = 0.06; // × RADIUS with the cursor inside
+const TAP_IMPULSE = 5; // × RADIUS per second
 const PHOTO_SHIFT_PX = 6;
 // The photo ends at y = 295 (and drifts by a few px): the outline must never go lower than this, or the cut
 // bottom edge of the photo would show. Below the center the edge may only move as far as this allows.
@@ -68,7 +68,7 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
 
       for (let i = 0; i < LIQUID_POINTS; i++) {
         const angle = (i / LIQUID_POINTS) * Math.PI * 2;
-        let target = RADIUS * (0.065 * Math.sin(1.6 * time + 1.3 * i) + 0.043 * Math.sin(0.9 * time - 2.1 * i)); // breathing
+        let target = RADIUS * (0.045 * Math.sin(1.6 * time + 1.3 * i) + 0.03 * Math.sin(0.9 * time - 2.1 * i)); // breathing
 
         if (pointer) {
           if (edge > 0 && edge < REACH_PX) target += PULL * RADIUS * (1 - edge / REACH_PX) * weight(angle, aimAngle);
