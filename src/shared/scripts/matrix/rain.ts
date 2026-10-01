@@ -13,6 +13,8 @@ export interface RainOptions {
   maxDpr: number;
   /** Radius of the cursor flashlight in px; 0 turns it off. */
   flashlight: number;
+  /** The lowest share of the canvas where the rain dissolves instead of being cut off; 0 turns it off. */
+  evaporate: number;
 }
 
 export const DESKTOP_RAIN: RainOptions = {
@@ -23,6 +25,7 @@ export const DESKTOP_RAIN: RainOptions = {
   seed: 42,
   maxDpr: 2,
   flashlight: 110,
+  evaporate: 0.3,
 };
 
 export const TOUCH_RAIN: RainOptions = { ...DESKTOP_RAIN, density: 0.45, flashlight: 0 };
@@ -74,8 +77,6 @@ const FLASH_STEP = 0.12; // seconds between glyph flips under the flashlight
 const MUTATIONS_PER_GLYPH_PER_SECOND = 0.9;
 const BURST_SPEED = 3.2; // times the normal speed at the start of the downpour
 const BURST_SECONDS = 0.9;
-
-const EVAPORATE_ZONE = 0.3; // the lowest share of the canvas where the rain dissolves instead of being cut off
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
@@ -200,7 +201,8 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
         if (y < -size || y > height) continue;
 
         // Near the bottom the glyphs evaporate: they thin out, drift up and fade, so the rain never ends in a cut.
-        const evaporation = clamp01((y - height * (1 - EVAPORATE_ZONE)) / (height * EVAPORATE_ZONE));
+        const evaporation =
+          options.evaporate > 0 ? clamp01((y - height * (1 - options.evaporate)) / (height * options.evaporate)) : 0;
         if (evaporation > 0) {
           const chance = noise(column.x, k);
           if (chance < evaporation * 0.85) continue;

@@ -2,7 +2,10 @@
 import '@styles/global.scss';
 import { DEFAULT_LOCALE, LOCALES } from '@i18n/locales';
 import { localeUrl } from '@i18n/utils';
+import { getSiteData } from '@data/site';
 import Button from '@shared/ui/Button/Button.astro';
+import MotionToggle from '@shared/ui/MotionToggle/MotionToggle.astro';
+import Wordmark from '@shared/ui/Wordmark/Wordmark.astro';
 import { pickLanguage } from '@utils/language-bootstrap';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
 
@@ -34,15 +37,24 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
     <script is:inline set:html={themeScript}></script>
   </head>
   <body>
-    <main class="not-found">
-      <p class="code accent" aria-hidden="true">
-        404
+    <canvas class="rain" data-backdrop aria-hidden="true"></canvas>
+    <main class="not-found" data-content>
+      <div class="code">
+        <Wordmark name="404" eager />
+      </div>
+      <p class="spoon" lang="en">
+        There is no spoon.
       </p>
       {LOCALES.map(locale => (
         <section lang={locale} hidden={locale !== DEFAULT_LOCALE}>
           <h1>{messages[locale].title}</h1>
           <p>{messages[locale].text}</p>
           <Button href={localeUrl(locale)}>{messages[locale].home}</Button>
+          <MotionToggle
+            fixed
+            pauseLabel={getSiteData(locale).a11y.motionPause}
+            playLabel={getSiteData(locale).a11y.motionPlay}
+          />
         </section>
       ))}
     </main>
@@ -51,6 +63,13 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
       import '@shared/scripts/ripple';
       import { initTheme } from '@utils/theme';
       initTheme();
+
+      // The rain is decorative and comes after everything else.
+      const canvas = document.querySelector<HTMLCanvasElement>('canvas[data-backdrop]');
+      if (canvas) {
+        const content = document.querySelector<HTMLElement>('[data-content]');
+        void import('@shared/scripts/matrix/backdrop-fx').then(({ initBackdrop }) => initBackdrop(canvas, content));
+      }
     </script>
   </body>
 </html>
@@ -67,10 +86,29 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
     text-align: center;
   }
 
+  /* Rain behind the page: fixed, never in the way of clicks. */
+  .rain {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .not-found {
+    position: relative;
+    z-index: var(--z-base);
+  }
+
   .code {
-    font-size: clamp(96px, 22vw, 180px);
-    font-weight: 700;
-    line-height: 1;
+    width: min(560px, 100%);
+  }
+
+  .spoon {
+    color: var(--accent-text);
+    font-size: 18px;
+    margin-top: calc(var(--gap-12) * -1);
   }
 
   section[hidden] {
@@ -88,7 +126,7 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
     font-size: 32px;
   }
 
-  p:not(.code) {
+  section p {
     color: var(--text-muted);
   }
 </style>

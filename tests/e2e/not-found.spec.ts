@@ -47,3 +47,55 @@ test.describe('the language of the 404 page', () => {
     await context.close();
   });
 });
+
+test.describe('the Matrix 404', () => {
+  const rain = (page: import('@playwright/test').Page) => page.locator('canvas[data-backdrop]');
+
+  test.describe('when motion is allowed', () => {
+    test.use({ reducedMotion: 'no-preference', locale: 'en-US' });
+
+    test('rain behind the page, 404 made of glyphs, the quote, and the page stays usable', async ({ page }) => {
+      await page.goto('/nope/');
+      await expect(rain(page)).toHaveAttribute('data-state', 'running');
+      await expect(rain(page)).toHaveAttribute('aria-hidden', 'true');
+      await expect(page.locator('glyph-wordmark')).toHaveAttribute('data-ready', '');
+      await expect(page.getByText('There is no spoon.')).toBeVisible();
+
+      // The rain covers the screen and never takes a click.
+      const box = (await rain(page).boundingBox())!;
+      const view = await page.evaluate(() => ({
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
+      }));
+      expect(box.width).toBeCloseTo(view.width, 0);
+      expect(box.height).toBeCloseTo(view.height, 0);
+      await page.getByRole('link', { name: 'Go to the home page' }).click();
+      await expect(page).toHaveURL(/\/$/);
+    });
+
+    test('the pause button stops the rain and is named in the page language', async ({ page }) => {
+      await page.goto('/nope/');
+      const toggle = page.locator('section:not([hidden]) motion-toggle button');
+      await expect(toggle).toHaveAccessibleName('Pause animation');
+      await toggle.click();
+      await expect(rain(page)).toHaveAttribute('data-state', 'static');
+      await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+
+      await page.goto('/ru/nope/');
+      await expect(page.locator('section:not([hidden]) motion-toggle button')).toHaveAttribute('aria-pressed', 'true');
+      await expect(page.locator('section:not([hidden]) motion-toggle button')).toHaveAccessibleName(
+        'Запустить анимацию'
+      );
+    });
+  });
+
+  test.describe('when motion is reduced', () => {
+    test.use({ reducedMotion: 'reduce' });
+
+    test('one still frame of rain and no pause button', async ({ page }) => {
+      await page.goto('/nope/');
+      await expect(rain(page)).toHaveAttribute('data-state', 'static');
+      await expect(page.locator('motion-toggle:visible')).toHaveCount(0);
+    });
+  });
+});

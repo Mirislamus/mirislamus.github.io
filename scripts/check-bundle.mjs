@@ -18,19 +18,36 @@ const limits = BUDGETS;
 const kb = bytes => bytes / 1024;
 const chunkSize = async file => gzipSync(await readFile(join(ASTRO_DIR, file)), { level: 9 }).length;
 
-// Chunks that are only pulled in by dynamic import() are "deferred"; everything else is loaded up front.
-const dynamicImports = source => [...source.matchAll(/import\(\s*["']\.\/([^"']+\.js)["']\s*\)/g)].map(m => m[1]);
+// A chunk is "deferred" when it is loaded by import() or when everything that imports it is deferred itself
+// (a module shared by two lazy chunks gets a chunk of its own, but it is still not part of the first load).
+const importsOf = (source, pattern) => [...source.matchAll(pattern)].map(m => m[1]);
+const dynamicImports = source => importsOf(source, /import\(\s*["']\.\/([^"']+\.js)["']\s*\)/g);
+const staticImports = source => importsOf(source, /(?:from|import)\s*["']\.\/([^"']+\.js)["']/g);
 
 const files = (await readdir(ASTRO_DIR)).filter(file => file.endsWith('.js'));
 const sources = new Map(
   await Promise.all(files.map(async file => [file, await readFile(join(ASTRO_DIR, file), 'utf8')]))
 );
 
-const dynamicTargets = new Set([...sources.values()].flatMap(dynamicImports));
+const deferredSet = new Set([...sources.values()].flatMap(dynamicImports));
+const importers = new Map(files.map(file => [file, []]));
+for (const [file, source] of sources) {
+  for (const target of staticImports(source)) importers.get(target)?.push(file);
+}
+for (let changed = true; changed;) {
+  changed = false;
+  for (const file of files) {
+    const from = importers.get(file);
+    if (!deferredSet.has(file) && from.length > 0 && from.every(importer => deferredSet.has(importer))) {
+      deferredSet.add(file);
+      changed = true;
+    }
+  }
+}
 
 const sizes = new Map(await Promise.all(files.map(async file => [file, await chunkSize(file)])));
-const initial = files.filter(file => !dynamicTargets.has(file));
-const deferred = files.filter(file => dynamicTargets.has(file));
+const initial = files.filter(file => !deferredSet.has(file));
+const deferred = files.filter(file => deferredSet.has(file));
 
 const initialTotal = kb(initial.reduce((sum, file) => sum + sizes.get(file), 0));
 const failures = [];
