@@ -67,7 +67,7 @@ test.describe('the Matrix 404', () => {
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight,
       }));
-      expect(box.width).toBeCloseTo(view.width, 0);
+      expect(Math.abs(box.width - view.width)).toBeLessThan(20); // a scrollbar may take some
       expect(box.height).toBeCloseTo(view.height, 0);
       await page.getByRole('link', { name: 'Go to the home page' }).click();
       await expect(page).toHaveURL(/\/$/);
