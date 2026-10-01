@@ -214,3 +214,42 @@ test.describe('back to top', () => {
     });
   });
 });
+
+test.describe('mobile menu items', () => {
+  test.use({ reducedMotion: 'no-preference', viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+
+  test('pop out one after another when the drawer opens, the theme switcher last', async ({ page }) => {
+    await page.goto('/#about');
+    const delays = await page.evaluate(() =>
+      [...document.querySelectorAll('[data-nav] li'), document.querySelector('[data-nav] > div:last-child')].map(
+        element => element && Number.parseFloat(getComputedStyle(element).getPropertyValue('--i'))
+      )
+    );
+    // positions 0..6 for the links, the switcher after them
+    expect(delays.slice(0, -1)).toEqual([0, 1, 2, 3, 4, 5, 6]);
+
+    await page.locator('[data-menu-button]').tap();
+    const delayOf = (index: number) =>
+      page
+        .locator('[data-nav] li')
+        .nth(index)
+        .evaluate(element => getComputedStyle(element).transitionDelay);
+    const first = Number.parseFloat(await delayOf(0));
+    const last = Number.parseFloat(await delayOf(6));
+    expect(last).toBeGreaterThan(first);
+    expect(last).toBeLessThan(0.8); // seconds: lively, not slow
+    await expect(page.locator('[data-nav] li').nth(6)).toHaveCSS('opacity', '1');
+  });
+
+  test('closing the drawer takes the items back at once', async ({ page }) => {
+    await page.goto('/#about');
+    await page.locator('[data-menu-button]').tap();
+    await expect(page.locator('[data-nav] li').nth(6)).toHaveCSS('opacity', '1');
+    await page.locator('[data-menu-button]').tap();
+    const delay = await page
+      .locator('[data-nav] li')
+      .nth(6)
+      .evaluate(element => getComputedStyle(element).transitionDelay);
+    expect(Number.parseFloat(delay)).toBe(0);
+  });
+});

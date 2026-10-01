@@ -223,6 +223,31 @@
       transition-delay: 0s;
     }
 
+    // The items pop out one after another once the drawer has started to slide in (a closing drawer takes
+    // them back at once). --i is the position of an item, the theme switcher comes last.
+    li,
+    .mobileSwitcher {
+      opacity: 0;
+      translate: var(--gap-24) 0;
+      transition:
+        opacity var(--dur-fast) var(--ease-out),
+        translate var(--dur-fast) var(--ease-out);
+    }
+
+    .mobileSwitcher {
+      --i: var(--count);
+    }
+
+    &[data-open] li,
+    &[data-open] .mobileSwitcher {
+      opacity: 1;
+      translate: 0 0;
+      transition:
+        opacity var(--dur-slow) var(--ease-out),
+        translate var(--dur-slow) var(--ease-out);
+      transition-delay: calc(var(--dur-base) * 0.5 + var(--stagger) * 0.75 * var(--i));
+    }
+
     ul {
       display: flex;
       flex-direction: column;

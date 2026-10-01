@@ -38,10 +38,10 @@ const themes = [
         <a href={homeHref} aria-label={a11y.home} data-logo>
           <Logo />
         </a>
-        <nav id="main-navigation" class={s.nav} data-nav aria-label={a11y.navigation}>
+        <nav id="main-navigation" class={s.nav} data-nav aria-label={a11y.navigation} style={`--count: ${menu.length}`}>
           <ul>
-            {menu.map(item => (
-              <li>
+            {menu.map((item, index) => (
+              <li style={`--i: ${index}`}>
                 <a href={`#${item.url}`} class={s.link} data-link>
                   {item.label}
                 </a>
