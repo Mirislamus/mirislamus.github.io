@@ -35,7 +35,10 @@ const codeImages = await getCodeImages();
           loading="lazy"
           decoding="async"
         />
-        <h3>{data.cooperation}</h3>
+        <div class={s.copy}>
+          <h3>{data.cooperation.title}</h3>
+          <p class={s.fact}>{data.cooperation.fact}</p>
+        </div>
       </article>
       <article class:list={[s.item, s.item_2]} data-reveal data-spotlight data-tilt style="--i: 1">
         <Spotlight />
@@ -48,26 +51,28 @@ const codeImages = await getCodeImages();
           loading="lazy"
           decoding="async"
         />
-        <span class="text-sm">{data.approach}</span>
-        <h3>{data.flexibility}</h3>
+        <span class="text-sm">{data.flexibility.eyebrow}</span>
+        <h3>{data.flexibility.title}</h3>
+        <p class={s.fact}>{data.flexibility.fact}</p>
       </article>
       <article class:list={[s.item, s.item_3]} data-reveal data-spotlight style="--i: 2">
         <Spotlight />
-        <h3 class="text-xl">{data.ui}</h3>
+        <h3 class="text-xl">{data.ui.title}</h3>
+        <p class={s.fact}>{data.ui.fact}</p>
         <ui-sandbox class={s.sandbox} style="--value: 65">
           <div class={s.row}>
             <label class={s.switchLabel}>
-              <span class="visually-hidden">{data.sandboxToggle}</span>
+              <span class="visually-hidden">{data.ui.sandbox.toggle}</span>
               <input type="checkbox" role="switch" class={s.switch} />
             </label>
             <span class={s.status}>
               <span class={s.statusDot} aria-hidden="true" />
-              {data.sandboxStatus}
+              {data.ui.sandbox.status}
             </span>
           </div>
           <div class={s.row}>
             <label class="visually-hidden" for="sandbox-range">
-              {data.sandboxSlider}
+              {data.ui.sandbox.slider}
             </label>
             <input id="sandbox-range" type="range" min="0" max="100" value="65" class={s.range} />
             <output for="sandbox-range" class={s.value}>
@@ -79,11 +84,11 @@ const codeImages = await getCodeImages();
       </article>
       <StarBorder tag="article" color="var(--accent)" class={[s.item, s.item_4]} data-reveal style="--i: 3">
         <div class={s.itemInner}>
-          <h3>{data.together}</h3>
-          <CopyButton text={info.email} success={data.success} error={data.error}>
+          <h3>{data.together.title}</h3>
+          <CopyButton text={info.email} success={data.together.success} error={data.together.error}>
             <Button size="sm">
               <Copy size={14} aria-hidden="true" />
-              {data.email}
+              {data.together.email}
             </Button>
           </CopyButton>
         </div>

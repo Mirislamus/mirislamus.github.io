@@ -1,50 +1,89 @@
 {
   "en": {
     "title": "Approach and |Principles|",
-    "cooperation": "I work closely with clients and communicate decisions openly.",
-    "flexibility": "I adapt the process and implementation to each project.",
-    "approach": "My approach to work",
-    "ui": "I build clear, fast, and enjoyable interfaces.",
-    "together": "Have a project? Let’s discuss it.",
-    "email": "Copy email address",
-    "success": "Email copied",
-    "error": "Couldn't copy the email. Please try again",
+    "cooperation": {
+      "title": "You always know where the project stands",
+      "fact": "A preview after every step and decisions explained in plain words."
+    },
+    "flexibility": {
+      "eyebrow": "My approach to work",
+      "title": "I pick the solution for the task, not the task for the solution",
+      "fact": "Landing pages, stores, services, Web3 and Telegram Mini Apps · 5 companies, team lead experience"
+    },
+    "ui": {
+      "title": "I love building interfaces that are a pleasure to use",
+      "fact": "Fast, accessible and polished to the details, like this site: Lighthouse 94+.",
+      "sandbox": {
+        "toggle": "Highlight",
+        "slider": "Progress",
+        "status": "Build · passing"
+      }
+    },
+    "together": {
+      "title": "Have a project? Let’s discuss it.",
+      "email": "Copy email address",
+      "success": "Email copied",
+      "error": "Couldn't copy the email. Please try again"
+    },
     "developing": "Currently developing a Focus Timer",
-    "pomotomo": "Pomotomo",
-    "sandboxToggle": "Highlight",
-    "sandboxSlider": "Progress",
-    "sandboxStatus": "Build · passing"
+    "pomotomo": "Pomotomo"
   },
   "ru": {
     "title": "Подход и |принципы|",
-    "cooperation": "Работаю в тесном контакте с клиентом и открыто обсуждаю решения.",
-    "flexibility": "Адаптирую процесс и решения под задачи каждого проекта.",
-    "approach": "Мой подход к работе",
-    "ui": "Создаю понятные, быстрые и приятные интерфейсы.",
-    "together": "Есть проект? Давайте обсудим.",
-    "email": "Скопировать email",
-    "success": "Email скопирован",
-    "error": "Не удалось скопировать email. Попробуйте ещё раз",
+    "cooperation": {
+      "title": "Вы всегда знаете, что происходит с проектом",
+      "fact": "Превью после каждого этапа и решения, объяснённые простым языком."
+    },
+    "flexibility": {
+      "eyebrow": "Мой подход к работе",
+      "title": "Подбираю решение под задачу, а не задачу под решение",
+      "fact": "Лендинги, магазины, сервисы, Web3 и Telegram Mini Apps · 5 компаний, опыт тимлида"
+    },
+    "ui": {
+      "title": "Люблю делать интерфейсы, которыми приятно пользоваться",
+      "fact": "Быстрые, доступные и продуманные до мелочей, как этот сайт: Lighthouse 94+.",
+      "sandbox": {
+        "toggle": "Подсветка",
+        "slider": "Прогресс",
+        "status": "Сборка · ок"
+      }
+    },
+    "together": {
+      "title": "Есть проект? Давайте обсудим.",
+      "email": "Скопировать email",
+      "success": "Email скопирован",
+      "error": "Не удалось скопировать email. Попробуйте ещё раз"
+    },
     "developing": "В настоящее время разрабатываю Focus Timer",
-    "pomotomo": "Pomotomo",
-    "sandboxToggle": "Подсветка",
-    "sandboxSlider": "Прогресс",
-    "sandboxStatus": "Сборка · ок"
+    "pomotomo": "Pomotomo"
   },
   "uz": {
     "title": "Yondashuv va |tamoyillar|",
-    "cooperation": "Mijoz bilan yaqin hamkorlik qilaman va qarorlarni ochiq muhokama qilaman.",
-    "flexibility": "Jarayon va yechimlarni har bir loyiha vazifalariga moslashtiraman.",
-    "approach": "Ishga yondashuvim",
-    "ui": "Tushunarli, tezkor va yoqimli interfeyslar yarataman.",
-    "together": "Loyihangiz bormi? Keling, muhokama qilamiz.",
-    "email": "Email manzilini nusxalash",
-    "success": "Email nusxalandi",
-    "error": "Emailni nusxalab bo‘lmadi. Qayta urinib ko‘ring",
+    "cooperation": {
+      "title": "Loyiha qay holatda ekanini doim bilasiz",
+      "fact": "Har bir bosqichdan keyin ko‘rib chiqish havolasi va qarorlar oddiy tilda tushuntiriladi."
+    },
+    "flexibility": {
+      "eyebrow": "Ishga yondashuvim",
+      "title": "Vazifaga yechim tanlayman, yechimga vazifa emas",
+      "fact": "Lendinglar, do‘konlar, servislar, Web3 va Telegram Mini Apps · 5 ta kompaniya, jamoa yetakchisi tajribasi"
+    },
+    "ui": {
+      "title": "Foydalanish yoqimli bo‘lgan interfeyslar yaratishni yaxshi ko‘raman",
+      "fact": "Tez, qulay va mayda detallarigacha puxta, xuddi shu sayt kabi: Lighthouse 94+.",
+      "sandbox": {
+        "toggle": "Yoritish",
+        "slider": "Jarayon",
+        "status": "Build · o‘tdi"
+      }
+    },
+    "together": {
+      "title": "Loyihangiz bormi? Keling, muhokama qilamiz.",
+      "email": "Email manzilini nusxalash",
+      "success": "Email nusxalandi",
+      "error": "Emailni nusxalab bo‘lmadi. Qayta urinib ko‘ring"
+    },
     "developing": "Hozir Focus Timer ustida ishlayapman",
-    "pomotomo": "Pomotomo",
-    "sandboxToggle": "Yoritish",
-    "sandboxSlider": "Jarayon",
-    "sandboxStatus": "Build · o‘tdi"
+    "pomotomo": "Pomotomo"
   }
 }

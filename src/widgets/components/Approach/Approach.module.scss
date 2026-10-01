@@ -23,6 +23,12 @@
   h3 {
     line-height: 1.2;
   }
+  .fact {
+    margin-top: var(--gap-8);
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
   &_1 {
     grid-column: span 6;
 
@@ -31,7 +37,7 @@
       top: 0;
       right: 24px;
     }
-    h3 {
+    .copy {
       margin-top: auto;
       max-width: 348px;
     }
@@ -45,6 +51,8 @@
       position: absolute;
       bottom: 24px;
       right: 24px;
+      width: 280px;
+      height: auto;
     }
     h3 {
       max-width: 355px;
@@ -55,6 +63,12 @@
     grid-column: span 3;
     h3 {
       max-width: 340px;
+    }
+    // The stand sits under the text and is cut off by the bottom edge of the card.
+    .sandbox {
+      position: static;
+      align-self: flex-end;
+      margin: var(--gap-16) 0 calc(var(--gap-24) * -1);
     }
   }
   &_4 {
@@ -112,11 +126,12 @@
   }
 
   .item {
-    &_2 {
-      img {
-        width: 320px;
-        height: 332px;
-      }
+    &_1 img {
+      width: 400px;
+      height: 400px;
+    }
+    &_2 img {
+      width: 250px;
     }
     &_3,
     &_4 {
@@ -132,7 +147,7 @@
 @media (width <= 1023px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: minmax(340px, auto) minmax(140px, auto) minmax(360px, auto);
+    grid-template-rows: minmax(400px, auto) minmax(140px, auto) minmax(360px, auto);
     gap: var(--gap-16);
   }
   .item {
@@ -160,6 +175,9 @@
     &_4 {
       grid-column: span 1;
     }
+    &_3 .sandbox {
+      margin-bottom: -12px;
+    }
     &_5 {
       justify-content: flex-start;
       img {
@@ -173,7 +191,7 @@
 @media (width <= 767px) {
   .grid {
     grid-template-columns: 100%;
-    grid-template-rows: repeat(2, minmax(315px, auto)) repeat(2, minmax(150px, auto)) minmax(305px, auto);
+    grid-template-rows: repeat(2, minmax(400px, auto)) minmax(150px, auto) minmax(150px, auto) minmax(305px, auto);
   }
   .item {
     grid-column: auto;

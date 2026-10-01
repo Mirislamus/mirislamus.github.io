@@ -29,21 +29,20 @@ export const a11ySchema = z.strictObject({
   slideOf: text,
 });
 
+// Each card of the Approach section: a statement and a line of facts under it.
+const cardText = { title: text, fact: text };
+
 export const approachSchema = z.strictObject({
   title: text,
-  cooperation: text,
-  flexibility: text,
-  approach: text,
-  ui: text,
-  together: text,
-  email: text,
-  success: text,
-  error: text,
+  cooperation: z.strictObject(cardText),
+  flexibility: z.strictObject({ eyebrow: text, ...cardText }),
+  ui: z.strictObject({
+    ...cardText,
+    sandbox: z.strictObject({ toggle: text, slider: text, status: text }),
+  }),
+  together: z.strictObject({ title: text, email: text, success: text, error: text }),
   developing: text,
   pomotomo: text,
-  sandboxToggle: text,
-  sandboxSlider: text,
-  sandboxStatus: text,
 });
 
 export const heroSchema = z.strictObject({ role: text, title: text, text, button: text, cv: text });

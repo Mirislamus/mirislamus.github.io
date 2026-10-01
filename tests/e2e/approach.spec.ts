@@ -90,3 +90,22 @@ test.describe('code preview', () => {
     await context.close();
   });
 });
+
+test.describe('card texts', () => {
+  test('the first three cards have a statement and a line of facts under it', async ({ page }) => {
+    await page.goto('/');
+    const cards = page.locator('#approach article');
+    for (const index of [0, 1, 2]) {
+      const card = cards.nth(index);
+      await expect(card.locator('h3')).not.toBeEmpty();
+      await expect(card.locator('h3 + p')).not.toBeEmpty();
+    }
+  });
+
+  test('is translated and does not mention reviews', async ({ page }) => {
+    await page.goto('/ru/');
+    const section = page.locator('#approach');
+    await expect(section).toContainText('Вы всегда знаете, что происходит с проектом');
+    await expect(section).not.toContainText(/отзыв|review/i);
+  });
+});
