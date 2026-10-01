@@ -47,6 +47,20 @@ test.describe('when motion is allowed', () => {
     await expect.poll(async () => (await extent(page)).maxX, { timeout: 4000 }).toBeLessThan(275);
   });
 
+  test('the edge never goes lower than the photo, so its cut bottom does not show', async ({ page }) => {
+    await page.goto('/#about');
+    await expect(page.locator('canvas[data-rain]')).toHaveAttribute('data-state', 'running');
+    const box = (await page.locator('[data-avatar]').boundingBox())!;
+    // The cursor right below the avatar pulls the bottom edge as far as it will go.
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height + 20, { steps: 6 });
+    await page.waitForTimeout(900);
+    const lowest = await page.locator('[data-avatar-shape]').evaluate(path => {
+      const rect = (path as unknown as SVGGraphicsElement).getBBox();
+      return rect.y + rect.height;
+    });
+    expect(lowest).toBeLessThan(295);
+  });
+
   test('the photo drifts with the cursor and nothing tilts', async ({ page }) => {
     await page.goto('/#about');
     await expect(page.locator('canvas[data-rain]')).toHaveAttribute('data-state', 'running');

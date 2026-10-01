@@ -8,6 +8,7 @@
     "build": "astro build",
     "build:media": "node scripts/build-media.mjs",
     "build:icons": "node scripts/icons.mjs",
+    "build:wordmark": "node scripts/build-wordmark.mjs",
     "check": "astro check",
     "check:links": "bun scripts/check-links.mjs",
     "check:lighthouse": "node scripts/lighthouse.mjs",

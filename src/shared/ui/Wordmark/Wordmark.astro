@@ -1,0 +1,57 @@
+---
+import { wordmarks, type WordmarkName } from '@data/matrix/wordmark';
+import { levelsToText } from '@utils/wordmark';
+import s from './Wordmark.module.scss';
+
+interface Props {
+  name: WordmarkName;
+  /** Load the effects at once instead of when the wordmark is close to the screen (the 404 page). */
+  eager?: boolean;
+}
+
+const { name, eager = false } = Astro.props;
+const { desktop, mobile } = wordmarks[name];
+const variants = [
+  { id: 'desktop', grid: desktop, class: s.desktop },
+  { id: 'mobile', grid: mobile, class: s.mobile },
+];
+---
+
+<!-- Decorative: the same word is in the heading or the page text, so the whole thing is hidden from assistive tech. -->
+<glyph-wordmark class={s.wordmark} data-eager={eager ? '' : undefined} aria-hidden="true">
+  <div class={s.art}>
+    {variants.map(variant => <pre
+      class:list={[s.text, variant.class]}
+      data-variant={variant.id}
+      style={`--cols: ${variant.grid.cols}`}
+      set:text={levelsToText(variant.grid.levels, 11)}
+    ></pre>)}
+    <canvas class={s.canvas} data-wordmark-canvas></canvas>
+  </div>
+</glyph-wordmark>
+
+<script>
+  // The effects are a separate chunk, loaded when the wordmark is about to be seen.
+  class GlyphWordmark extends HTMLElement {
+    connectedCallback() {
+      const load = () =>
+        void import('@shared/scripts/matrix/wordmark-fx').then(({ initWordmark }) => initWordmark(this));
+
+      if (this.hasAttribute('data-eager')) {
+        load();
+        return;
+      }
+
+      new IntersectionObserver(
+        ([entry], observer) => {
+          if (!entry.isIntersecting) return;
+          observer.disconnect();
+          load();
+        },
+        { rootMargin: '400px' }
+      ).observe(this);
+    }
+  }
+
+  customElements.define('glyph-wordmark', GlyphWordmark);
+</script>

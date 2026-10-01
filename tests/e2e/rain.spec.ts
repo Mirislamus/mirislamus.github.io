@@ -12,8 +12,9 @@ test.describe('when motion is allowed', () => {
 
     const box = await rain(page).boundingBox();
     const hero = await page.locator('#about').boundingBox();
+    // The canvas also covers the strip above the Hero (up to the top edge of the page).
     expect(box?.width).toBeCloseTo(hero!.width, 0);
-    expect(box?.height).toBeCloseTo(hero!.height, 0);
+    expect(box!.y + box!.height).toBeCloseTo(hero!.y + hero!.height, 0);
 
     // The canvas actually has painted glyphs.
     const painted = await rain(page).evaluate(canvas => {
@@ -22,6 +23,13 @@ test.describe('when motion is allowed', () => {
       return data.some((value, index) => index % 4 === 3 && value > 0);
     });
     expect(painted).toBe(true);
+  });
+
+  test('the rain reaches the very top edge of the page, behind the header', async ({ page }) => {
+    await page.goto('/#');
+    await expect(rain(page)).toHaveAttribute('data-state', 'running');
+    const box = (await rain(page).boundingBox())!;
+    expect(Math.round(box.y)).toBe(0);
   });
 
   test('goes idle when the Hero is off screen and resumes when it is back', async ({ page }) => {

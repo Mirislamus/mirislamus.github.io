@@ -3,6 +3,7 @@ import { getSiteData } from '@data/site';
 import { info } from '@data/global';
 import Button from '@shared/ui/Button/Button.astro';
 import LocalTime from '@shared/ui/LocalTime/LocalTime.astro';
+import Wordmark from '@shared/ui/Wordmark/Wordmark.astro';
 import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
 
@@ -33,6 +34,7 @@ const {
           <LocalTime status={status} locale={locale} />
         </div>
       </div>
+      <Wordmark name="mirislamus" />
       <div class={s.bottom}>
         <span>&copy; {new Date().getFullYear()} mirislamus.github.io</span>
         <ul class="list-reset">

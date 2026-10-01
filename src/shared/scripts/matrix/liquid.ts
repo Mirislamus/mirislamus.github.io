@@ -12,6 +12,9 @@ const PULL = 0.87; // × RADIUS at the edge
 const DENT = 0.09; // × RADIUS with the cursor inside
 const TAP_IMPULSE = 6; // × RADIUS per second
 const PHOTO_SHIFT_PX = 6;
+// The photo ends at y = 295 (and drifts by a few px): the outline must never go lower than this, or the cut
+// bottom edge of the photo would show. Below the center the edge may only move as far as this allows.
+const LOWEST_EDGE = 285;
 const PHOTO_LERP = 0.12; // per frame at 60 fps
 
 export interface Liquid {
@@ -42,6 +45,12 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
 
   const weight = (pointAngle: number, aimAngle: number) => Math.max(0, Math.cos(pointAngle - aimAngle)) ** 6;
 
+  // How far each point may move outwards: only the points that face down are limited.
+  const reach = Array.from({ length: LIQUID_POINTS }, (_, i) => {
+    const down = Math.sin((i / LIQUID_POINTS) * Math.PI * 2);
+    return down > 0.05 ? (LOWEST_EDGE - CENTER) / down - RADIUS : Infinity;
+  });
+
   return {
     tick(dt) {
       time += dt;
@@ -66,8 +75,14 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
           else if (edge <= 0) target -= DENT * RADIUS * weight(angle, aimAngle);
         }
 
+        target = Math.min(target, reach[i]);
+
         velocities[i] += (STIFFNESS * (target - offsets[i]) - DAMPING * velocities[i]) * dt;
         offsets[i] += velocities[i] * dt;
+        if (offsets[i] > reach[i]) {
+          offsets[i] = reach[i];
+          velocities[i] = Math.min(velocities[i], 0);
+        }
       }
       shape.setAttribute('d', blobPath(offsets, RADIUS, CENTER, CENTER));
 

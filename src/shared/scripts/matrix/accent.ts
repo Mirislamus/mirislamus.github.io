@@ -22,9 +22,11 @@ export const mix = (a: Rgb, b: Rgb, amount: number): Rgb =>
 export interface MatrixColors {
   accent: Rgb;
   head: Rgb;
+  /** The page background, for glyphs drawn on an accent fill. */
+  background: Rgb;
 }
 
-const FALLBACK: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230] };
+const FALLBACK: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230], background: [18, 18, 18] };
 
 // The accent of the current theme and the brighter color of a column head (accent mixed 55/45 with the text color).
 const readColors = (root: HTMLElement = document.documentElement): MatrixColors => {
@@ -32,7 +34,8 @@ const readColors = (root: HTMLElement = document.documentElement): MatrixColors 
   const accent = parseColor(style.getPropertyValue('--accent-text'));
   const text = parseColor(style.getPropertyValue('--text'));
   if (!accent) return FALLBACK;
-  return { accent, head: text ? mix(accent, text, 0.45) : accent };
+  const background = parseColor(style.getPropertyValue('--background')) ?? FALLBACK.background;
+  return { accent, head: text ? mix(accent, text, 0.45) : accent, background };
 };
 
 // Calls `listener` with fresh colors now and after every theme change.

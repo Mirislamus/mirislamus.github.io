@@ -39,6 +39,11 @@ export const initHeroFx = (section: HTMLElement) => {
   };
 
   const measure = () => {
+    // The Hero starts below the top of the page (the header sits there); the rain reaches the very top edge.
+    section.style.setProperty(
+      '--rain-bleed',
+      `${Math.max(0, Math.round(section.getBoundingClientRect().top + window.scrollY))}px`
+    );
     rain.resize();
     if (!content) return;
     const area = canvas.getBoundingClientRect();

@@ -75,7 +75,15 @@ const MUTATIONS_PER_GLYPH_PER_SECOND = 0.9;
 const BURST_SPEED = 3.2; // times the normal speed at the start of the downpour
 const BURST_SECONDS = 0.9;
 
+const EVAPORATE_ZONE = 0.3; // the lowest share of the canvas where the rain dissolves instead of being cut off
+
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
+
+// A stable pseudo-random number in [0, 1) for a pair of numbers.
+const noise = (a: number, b: number) => {
+  const value = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453;
+  return value - Math.floor(value);
+};
 
 export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rain => {
   const context = canvas.getContext('2d');
@@ -87,7 +95,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
   let height = 0;
   let columns: Column[] = [];
   let words: readonly string[] = [];
-  let colors: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230] };
+  let colors: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230], background: [18, 18, 18] };
   let tailStyles: string[] = [];
   let headStyles: string[] = [];
   let zone: SafeZone | null = null;
@@ -141,14 +149,14 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     field = columns.map(() => Array.from({ length: rows() }, () => pickGlyph(rng)));
   };
 
-  // 0.08 inside the safe zone, growing to 1 at its edge; the bottom 15 % of the canvas fades out.
+  // 0.08 inside the safe zone, growing to 1 at its edge.
   const mask = (x: number, y: number) => {
     let factor = 1;
     if (zone) {
       const r = Math.hypot((x - zone.cx) / zone.rx, (y - zone.cy) / zone.ry);
       factor = Math.min(1, Math.max(0.08, (r - 0.35) / 0.75));
     }
-    return factor * clamp01((height - y) / (height * 0.15));
+    return factor;
   };
 
   // Under the flashlight the empty cells show a faint field of glyphs, so the cursor "reveals" the code.
@@ -187,9 +195,17 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
       if (!column.active) continue;
 
       for (let k = 0; k <= column.len; k++) {
-        const y = (column.y - k) * size;
+        let y = (column.y - k) * size;
         const t = k / column.len;
         if (y < -size || y > height) continue;
+
+        // Near the bottom the glyphs evaporate: they thin out, drift up and fade, so the rain never ends in a cut.
+        const evaporation = clamp01((y - height * (1 - EVAPORATE_ZONE)) / (height * EVAPORATE_ZONE));
+        if (evaporation > 0) {
+          const chance = noise(column.x, k);
+          if (chance < evaporation * 0.85) continue;
+          y -= evaporation * evaporation * size * 4 * (0.5 + noise(k, column.x));
+        }
 
         let glyph = column.chars[k % column.chars.length];
         let isWord = false;
@@ -207,7 +223,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
           if (light > 0.35 && flipNow && !isWord && rng() < 0.3) column.chars[k % column.chars.length] = pickGlyph(rng);
         }
 
-        let alpha = (1 - t) ** 1.6 * options.brightness * mask(column.x, y) + light * 0.65;
+        let alpha = ((1 - t) ** 1.6 * options.brightness * mask(column.x, y) + light * 0.65) * (1 - evaporation) ** 1.5;
         if (isWord) alpha = alpha * 1.8 + 0.15;
 
         ctx.fillStyle = k === 0 ? headStyles[step(alpha * 1.6 + 0.1)] : tailStyles[step(alpha)];
