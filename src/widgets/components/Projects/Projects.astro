@@ -48,7 +48,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
               data-stack={project.stackIds.join(' ')}
               data-extra={isExtra ? '' : undefined}
               data-reveal={isExtra ? undefined : ''}
-              style={`--i: ${index % 2}; --spotlight-color: ${project.color}`}
+              style={`--i: ${index % 2}`}
               hidden={isExtra}
             >
               <Spotlight />
