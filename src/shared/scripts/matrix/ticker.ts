@@ -70,7 +70,6 @@ export const createTicker = (env: TickerEnv, initialMaxFps = 60): Ticker => {
 
 let shared: Ticker | undefined;
 
-/** @public */
 export const getTicker = (): Ticker =>
   (shared ??= (() => {
     const coarse = window.matchMedia('(pointer: coarse)').matches;

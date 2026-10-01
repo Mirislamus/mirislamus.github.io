@@ -27,8 +27,7 @@ export interface MatrixColors {
 const FALLBACK: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230] };
 
 // The accent of the current theme and the brighter color of a column head (accent mixed 55/45 with the text color).
-/** @public */
-export const readColors = (root: HTMLElement = document.documentElement): MatrixColors => {
+const readColors = (root: HTMLElement = document.documentElement): MatrixColors => {
   const style = getComputedStyle(root);
   const accent = parseColor(style.getPropertyValue('--accent-text'));
   const text = parseColor(style.getPropertyValue('--text'));
@@ -37,7 +36,6 @@ export const readColors = (root: HTMLElement = document.documentElement): Matrix
 };
 
 // Calls `listener` with fresh colors now and after every theme change.
-/** @public */
 export const watchColors = (listener: (colors: MatrixColors) => void) => {
   listener(readColors());
   return subscribeTheme(() => listener(readColors()));

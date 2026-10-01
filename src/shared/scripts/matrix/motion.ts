@@ -2,8 +2,7 @@
 // visitor pressed the pause button (remembered in localStorage). Changes are announced as a
 // `motionchange` event on the document.
 export const MOTION_STORAGE_KEY = 'motion-paused';
-/** @public */
-export const MOTION_EVENT = 'motionchange';
+const MOTION_EVENT = 'motionchange';
 
 export interface MotionEnv {
   storage: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> | null;
@@ -56,7 +55,6 @@ export const createMotion = (env: MotionEnv): Motion => {
 
 let shared: Motion | undefined;
 
-/** @public */
 export const getMotion = (): Motion =>
   (shared ??= (() => {
     let storage: MotionEnv['storage'] = null;
@@ -72,7 +70,6 @@ export const getMotion = (): Motion =>
     });
   })());
 
-/** @public */
 export const onMotionChange = (listener: () => void) => {
   document.addEventListener(MOTION_EVENT, listener);
   return () => document.removeEventListener(MOTION_EVENT, listener);

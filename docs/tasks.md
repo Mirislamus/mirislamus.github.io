@@ -442,3 +442,14 @@
 - [x] `scripts/lighthouse.mjs` (`bun run check:lighthouse`, `lighthouse` 13.5.0 — точная версия): мобильный прогон трёх языков на собранном сайте, Chromium из Playwright; публичный адрес подменяется локальным, чтобы canonical и hreflang оценивались как на настоящем домене. SEO должен быть 100, остальное печатается. Сейчас: SEO 100 / Best Practices 100 / Accessibility 96 (контраст акцента `#ff6433` — принятое исключение) / Performance 94–96
 - [x] CI: шаг `check:lighthouse` после e2e; `render.mjs` отдаёт `withSite` для обоих скриптов
 - Всего e2e теперь 154, все проходят
+
+**M-00, M-01**
+
+- [x] `src/shared/scripts/matrix/`: `glyphs.ts` (набор: катакана ×2, символы кода, цифры; PRNG mulberry32), `ticker.ts` (один общий `requestAnimationFrame`, потолок fps 60/30 и `dt` 50 мс, остановка при скрытой вкладке и без подписчиков), `motion.ts` (reduced motion ИЛИ пауза в `localStorage['motion-paused']`, событие `motionchange`, устойчив к заблокированному хранилищу), `accent.ts` (цвет акцента темы и цвет «головы» колонки)
+- [x] Дождь в Hero: `canvas[data-rain]` под контентом (`Hero.astro`), движок `rain.ts` (плавный режим, 18 px, плотность 90 % / 45 % на касании, 9 клеток/с, яркость 30 %, хвост 10–26, смена глифов ≈ 0,9/с), маска читаемости вокруг блока контента и затухание нижних 15 %, «фонарик» 110 px (только мышь), скрытые слова (6 % колонок), статичный кадр при reduced motion и паузе
+- [x] Слова собирает `buildRainWords` (`HIRE ME`, `OPEN TO WORK` только при `status.open`, плюс навыки группы Core заглавными); передаются через `data-words`
+- [x] Чанк `hero-fx` грузится через `import()` после `load` (`requestIdleCallback`), 3,3 КБ gzip при бюджете 6; начальный JS 10,6 КБ из 15
+- [x] `data-state` на canvas: `running` / `idle` (Hero вне экрана или вкладка скрыта) / `static`; смена темы перекрашивает без перезапуска
+- [x] Юнит-тесты: PRNG, тикер, motion, accent, словарь (20); e2e `tests/e2e/rain.spec.ts` (8)
+- Цвет — `--accent-text` (в светлой теме `#ff6433`), не `--accent`: тот светлее и хуже читается
+- Эталонные скриншоты visual regression изменились (в кадре появился дождь) — обновить в CI вместе с пушем

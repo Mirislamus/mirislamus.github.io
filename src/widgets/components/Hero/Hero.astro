@@ -5,12 +5,15 @@ import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import { getExperienceYears } from '@utils/experience';
+import { buildRainWords } from '@utils/rain-words';
 import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
-const { hero: data, status } = getSiteData(locale);
+const { hero: data, status, skills } = getSiteData(locale);
 const avatarSrc = await getAvatarSrc();
+const coreSkills = skills.groups.find(group => group.id === 'core')?.items.map(skill => skill.name) ?? [];
+const rainWords = JSON.stringify(buildRainWords(status.open, coreSkills));
 
 // Words are wrapped for the intro; the heading text stays exactly the same string.
 const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
@@ -24,8 +27,9 @@ const titleHtml = data.title
 ---
 
 <section class={s.hero} id="about">
+  <canvas class={s.rain} data-rain data-words={rainWords} aria-hidden="true"></canvas>
   <div class="container">
-    <div class={s.content}>
+    <div class={s.content} data-hero-content>
       <Avatar class={s.avatar} src={avatarSrc} />
       {status.open && (
         <p class={s.badge}>
@@ -49,3 +53,17 @@ const titleHtml = data.title
     </div>
   </div>
 </section>
+
+<script>
+  // The rain lives in its own chunk, loaded once the page has settled so it never competes with the first paint.
+  const section = document.querySelector<HTMLElement>('#about');
+
+  if (section) {
+    const load = () => void import('@shared/scripts/matrix/hero-fx').then(({ initHeroFx }) => initHeroFx(section));
+    const whenIdle = () =>
+      'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 200);
+
+    if (document.readyState === 'complete') whenIdle();
+    else window.addEventListener('load', whenIdle, { once: true });
+  }
+</script>
