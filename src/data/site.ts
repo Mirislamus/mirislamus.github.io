@@ -13,6 +13,7 @@ import approachJson from './approach/approach.json';
 import careerBaseJson from './career/career.base.json';
 import careerJson from './career/career.json';
 import cvJson from './cv/cv.json';
+import easterJson from './easter/easter.json';
 import footerJson from './footer/footer.json';
 import heroJson from './hero/hero.json';
 import menuJson from './menu/menu.json';
@@ -32,6 +33,7 @@ import {
   careerBaseSchema,
   careerSchema,
   cvSchema,
+  easterSchema,
   footerSchema,
   heroSchema,
   menuSchema,
@@ -105,6 +107,7 @@ const load = () => {
   const approach = parseLocalized('approach.json', approachSchema, approachJson);
   const hero = parseLocalized('hero.json', heroSchema, heroJson);
   const footer = parseLocalized('footer.json', footerSchema, footerJson);
+  const easter = parseLocalized('easter.json', easterSchema, easterJson);
   const cv = parseLocalized('cv.json', cvSchema, cvJson);
   const menu = parseLocalized('menu.json', menuSchema, menuJson);
   const meta = parseLocalized('meta.json', metaSchema, metaJson);
@@ -163,6 +166,7 @@ const load = () => {
     approach: approach[locale],
     hero: hero[locale],
     footer: footer[locale],
+    easter: easter[locale],
     cv: cv[locale],
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },

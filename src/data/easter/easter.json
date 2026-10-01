@@ -1,0 +1,35 @@
+{
+  "en": {
+    "rabbit": "Follow the white rabbit",
+    "title": "Last chance",
+    "text": "After this there is no turning back.",
+    "hint": "Choose a pill",
+    "blue": "Blue pill",
+    "red": "Red pill",
+    "blueEnd": "The story ends. You wake up in your bed.",
+    "redEnd": "Welcome to the real world.",
+    "close": "Close"
+  },
+  "ru": {
+    "rabbit": "Следуй за белым кроликом",
+    "title": "Последний шанс",
+    "text": "Дальше пути назад не будет.",
+    "hint": "Выбери таблетку",
+    "blue": "Синяя таблетка",
+    "red": "Красная таблетка",
+    "blueEnd": "История окончена. Ты просыпаешься в своей постели.",
+    "redEnd": "Добро пожаловать в реальный мир.",
+    "close": "Закрыть"
+  },
+  "uz": {
+    "rabbit": "Oq quyon ortidan bor",
+    "title": "Oxirgi imkoniyat",
+    "text": "Bundan keyin ortga yo‘l yo‘q.",
+    "hint": "Tabletkani tanla",
+    "blue": "Ko‘k tabletka",
+    "red": "Qizil tabletka",
+    "blueEnd": "Hikoya tugadi. Sen o‘z to‘shagingda uyg‘onasan.",
+    "redEnd": "Haqiqiy dunyoga xush kelibsiz.",
+    "close": "Yopish"
+  }
+}

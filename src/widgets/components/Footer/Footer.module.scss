@@ -49,6 +49,37 @@
   text-align: center;
 }
 
+.copyright {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-8);
+}
+
+// The white rabbit: easy to miss, and a small nod when it is noticed.
+.rabbit {
+  display: inline-flex;
+  padding: 4px;
+  color: currentColor;
+  opacity: 0.35;
+  transition: opacity var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  .ear {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    transition: rotate var(--dur-base) var(--ease-spring);
+  }
+
+  &:hover .ear:last-of-type,
+  &:focus-visible .ear:last-of-type {
+    rotate: 14deg;
+  }
+}
+
 .bottom {
   width: 100%;
   padding-block: 32px;

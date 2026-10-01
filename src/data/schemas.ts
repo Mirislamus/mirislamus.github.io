@@ -50,6 +50,19 @@ export const heroSchema = z.strictObject({ role: text, title: text, text, button
 
 export const footerSchema = z.strictObject({ ready: text, text });
 
+// The Matrix easter egg: the white rabbit in the footer and the choice of a pill.
+export const easterSchema = z.strictObject({
+  rabbit: text,
+  title: text,
+  text,
+  hint: text,
+  blue: text,
+  red: text,
+  blueEnd: text,
+  redEnd: text,
+  close: text,
+});
+
 // Only used by the printable CV page; none of this appears on the site itself.
 export const cvSchema = z.strictObject({
   contacts: text,
