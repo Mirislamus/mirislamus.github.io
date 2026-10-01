@@ -17,7 +17,9 @@
     "carousel": "carousel",
     "slide": "slide",
     "slideOf": "{{index}} of {{total}}",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "motionPause": "Pause animation",
+    "motionPlay": "Play animation"
   },
   "ru": {
     "skipToContent": "Перейти к содержимому",
@@ -37,7 +39,9 @@
     "carousel": "карусель",
     "slide": "слайд",
     "slideOf": "{{index}} из {{total}}",
-    "backToTop": "Наверх"
+    "backToTop": "Наверх",
+    "motionPause": "Остановить анимацию",
+    "motionPlay": "Запустить анимацию"
   },
   "uz": {
     "skipToContent": "Kontentga o‘tish",
@@ -57,6 +61,8 @@
     "carousel": "karusel",
     "slide": "slayd",
     "slideOf": "{{total}} tadan {{index}}",
-    "backToTop": "Yuqoriga"
+    "backToTop": "Yuqoriga",
+    "motionPause": "Animatsiyani to‘xtatish",
+    "motionPlay": "Animatsiyani ishga tushirish"
   }
 }

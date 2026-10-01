@@ -1,0 +1,58 @@
+// Bottom right corner of the Hero (the back-to-top button takes the same corner once the Hero is gone).
+.button {
+  position: absolute;
+  right: max(var(--gap-24), env(safe-area-inset-right));
+  bottom: max(var(--gap-24), env(safe-area-inset-bottom));
+  z-index: var(--z-dropdown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--secondary-alpha);
+  color: var(--text);
+  opacity: 0.6;
+  transition: opacity var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  // The name appears next to the icon on hover and on keyboard focus.
+  &::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + var(--gap-8));
+    padding: 4px 10px;
+    border-radius: var(--radius-100);
+    background-color: var(--secondary);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.3;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+  }
+
+  .play,
+  &[aria-pressed='true'] .pause {
+    display: none;
+  }
+
+  &[aria-pressed='true'] .play {
+    display: block;
+  }
+}
+
+.fixed {
+  position: fixed;
+}

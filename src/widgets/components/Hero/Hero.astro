@@ -3,6 +3,7 @@ import { getSiteData } from '@data/site';
 import Avatar from '@shared/ui/Avatar/Avatar.astro';
 import Button from '@shared/ui/Button/Button.astro';
 import { getLocale } from '@i18n/utils';
+import MotionToggle from '@shared/ui/MotionToggle/MotionToggle.astro';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import { getExperienceYears } from '@utils/experience';
 import { buildRainWords } from '@utils/rain-words';
@@ -10,7 +11,7 @@ import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
-const { hero: data, status, skills } = getSiteData(locale);
+const { hero: data, status, skills, a11y } = getSiteData(locale);
 const avatarSrc = await getAvatarSrc();
 const coreSkills = skills.groups.find(group => group.id === 'core')?.items.map(skill => skill.name) ?? [];
 const rainWords = JSON.stringify(buildRainWords(status.open, coreSkills));
@@ -52,6 +53,7 @@ const titleHtml = data.title
       </div>
     </div>
   </div>
+  <MotionToggle pauseLabel={a11y.motionPause} playLabel={a11y.motionPlay} />
 </section>
 
 <script>
