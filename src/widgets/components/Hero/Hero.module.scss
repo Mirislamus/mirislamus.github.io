@@ -83,6 +83,7 @@
 }
 
 .avatar {
+  overflow: visible; // a stretched drop reaches beyond the box
   margin-bottom: fluid(24);
   width: fluid(260);
   height: fluid(260);

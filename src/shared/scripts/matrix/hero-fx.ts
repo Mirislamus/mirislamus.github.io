@@ -1,11 +1,12 @@
 import { watchColors } from './accent';
+import { createLiquid } from './liquid';
 import { getMotion, onMotionChange } from './motion';
 import { DESKTOP_RAIN, TOUCH_RAIN, createRain } from './rain';
 import { getTicker } from './ticker';
 
 const INTRO_BURST_DEADLINE_MS = 600;
 
-// The Hero effects chunk: the digital rain (M-01). Loaded with import() after the page is interactive,
+// The Hero effects chunk: the digital rain (M-01) and the liquid avatar (M-03). Loaded with import() after the page is interactive,
 // so none of it is in the main bundle. `data-state` on the canvas says what it is doing:
 // running (animating), idle (not on screen or the tab is hidden) or static (one still frame).
 export const initHeroFx = (section: HTMLElement) => {
@@ -18,6 +19,8 @@ export const initHeroFx = (section: HTMLElement) => {
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   const fineMouse = window.matchMedia('(hover: hover) and (pointer: fine)');
   const rain = createRain(canvas, coarse ? TOUCH_RAIN : DESKTOP_RAIN);
+  const avatar = section.querySelector<SVGSVGElement>('[data-avatar]');
+  const liquid = avatar ? createLiquid(avatar) : null;
 
   try {
     rain.setWords(JSON.parse(canvas.dataset.words ?? '[]') as string[]);
@@ -54,10 +57,12 @@ export const initHeroFx = (section: HTMLElement) => {
 
     if (!motion.allowed) {
       rain.still();
+      liquid?.still();
       setState('static');
     } else if (visible && !document.hidden) {
       stop = ticker.subscribe(dt => {
         rain.tick(dt);
+        liquid?.tick(dt);
         if (canvas.hasAttribute('data-burst') && !rain.bursting) canvas.removeAttribute('data-burst');
       });
       setState('running');
@@ -83,7 +88,10 @@ export const initHeroFx = (section: HTMLElement) => {
 
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    if (!visible) rain.setPointer(null);
+    if (!visible) {
+      rain.setPointer(null);
+      liquid?.aim(null);
+    }
     sync();
   }).observe(section);
 
@@ -96,10 +104,19 @@ export const initHeroFx = (section: HTMLElement) => {
       if (event.pointerType !== 'mouse' || !fineMouse.matches || !motion.allowed) return;
       const area = canvas.getBoundingClientRect();
       rain.setPointer(event.clientX - area.left, event.clientY - area.top);
+      liquid?.aim({ x: event.clientX, y: event.clientY }, section.getBoundingClientRect());
     },
     { passive: true }
   );
-  section.addEventListener('pointerleave', () => rain.setPointer(null));
+  section.addEventListener('pointerleave', () => {
+    rain.setPointer(null);
+    liquid?.aim(null);
+  });
+
+  // Touch screens have no cursor: a tap on the avatar makes the drop wobble.
+  avatar?.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' && motion.allowed) liquid?.tap(event.clientX, event.clientY);
+  });
 
   sync();
 };

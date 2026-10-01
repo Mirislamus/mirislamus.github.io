@@ -1,0 +1,110 @@
+import { LIQUID_POINTS, blobPath } from './liquid-path';
+
+// The liquid avatar (M-03): the outline is a ring of springs. At rest it slowly "breathes"; the edge
+// nearest to the cursor stretches towards it like a drop and springs back with a wobble when the
+// cursor leaves; a tap on touch screens dents the edge. The photo also drifts a few pixels with the cursor.
+const CENTER = 130; // viewBox is 260 × 260
+const RADIUS = 120;
+const STIFFNESS = 180;
+const DAMPING = 9;
+const REACH_PX = 120; // the cursor starts to pull when it is closer than this to the edge
+const PULL = 0.87; // × RADIUS at the edge
+const DENT = 0.09; // × RADIUS with the cursor inside
+const TAP_IMPULSE = 6; // × RADIUS per second
+const PHOTO_SHIFT_PX = 6;
+const PHOTO_LERP = 0.12; // per frame at 60 fps
+
+export interface Liquid {
+  tick: (dt: number) => void;
+  /** Back to the static outline and a still photo. */
+  still: () => void;
+  /** Cursor in client px with the Hero rect for the photo drift; null when it is gone. */
+  aim: (pointer: { x: number; y: number } | null, hero?: DOMRect) => void;
+  tap: (clientX: number, clientY: number) => void;
+}
+
+const clamp = (value: number) => Math.max(-1, Math.min(1, value));
+
+export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
+  const shape = svg.querySelector<SVGPathElement>('[data-avatar-shape]');
+  const photo = svg.querySelector<SVGGElement>('[data-photo]');
+  if (!shape) return null;
+  const staticShape = shape.dataset.shapeA ?? shape.getAttribute('d') ?? '';
+
+  const offsets = new Array<number>(LIQUID_POINTS).fill(0);
+  const velocities = new Array<number>(LIQUID_POINTS).fill(0);
+  let time = 0;
+  let pointer: { x: number; y: number } | null = null;
+  let photoX = 0;
+  let photoY = 0;
+  let photoTargetX = 0;
+  let photoTargetY = 0;
+
+  const weight = (pointAngle: number, aimAngle: number) => Math.max(0, Math.cos(pointAngle - aimAngle)) ** 6;
+
+  return {
+    tick(dt) {
+      time += dt;
+      const rect = svg.getBoundingClientRect();
+      const scale = rect.width / (CENTER * 2);
+
+      let aimAngle = 0;
+      let edge = Infinity;
+      if (pointer) {
+        const dx = pointer.x - (rect.left + rect.width / 2);
+        const dy = pointer.y - (rect.top + rect.height / 2);
+        aimAngle = Math.atan2(dy, dx);
+        edge = Math.hypot(dx, dy) - RADIUS * scale;
+      }
+
+      for (let i = 0; i < LIQUID_POINTS; i++) {
+        const angle = (i / LIQUID_POINTS) * Math.PI * 2;
+        let target = RADIUS * (0.065 * Math.sin(1.6 * time + 1.3 * i) + 0.043 * Math.sin(0.9 * time - 2.1 * i)); // breathing
+
+        if (pointer) {
+          if (edge > 0 && edge < REACH_PX) target += PULL * RADIUS * (1 - edge / REACH_PX) * weight(angle, aimAngle);
+          else if (edge <= 0) target -= DENT * RADIUS * weight(angle, aimAngle);
+        }
+
+        velocities[i] += (STIFFNESS * (target - offsets[i]) - DAMPING * velocities[i]) * dt;
+        offsets[i] += velocities[i] * dt;
+      }
+      shape.setAttribute('d', blobPath(offsets, RADIUS, CENTER, CENTER));
+
+      if (photo) {
+        const follow = 1 - (1 - PHOTO_LERP) ** (dt * 60);
+        photoX += (photoTargetX - photoX) * follow;
+        photoY += (photoTargetY - photoY) * follow;
+        photo.style.transform = `translate(${(photoX * PHOTO_SHIFT_PX).toFixed(2)}px, ${(photoY * PHOTO_SHIFT_PX).toFixed(2)}px)`;
+      }
+    },
+
+    still() {
+      offsets.fill(0);
+      velocities.fill(0);
+      photoX = photoY = photoTargetX = photoTargetY = 0;
+      pointer = null;
+      shape.setAttribute('d', staticShape);
+      if (photo) photo.style.transform = '';
+    },
+
+    aim(next, hero) {
+      pointer = next;
+      if (next && hero) {
+        photoTargetX = clamp(((next.x - hero.left) / hero.width) * 2 - 1);
+        photoTargetY = clamp(((next.y - hero.top) / hero.height) * 2 - 1);
+      } else {
+        photoTargetX = 0;
+        photoTargetY = 0;
+      }
+    },
+
+    tap(clientX, clientY) {
+      const rect = svg.getBoundingClientRect();
+      const aimAngle = Math.atan2(clientY - (rect.top + rect.height / 2), clientX - (rect.left + rect.width / 2));
+      for (let i = 0; i < LIQUID_POINTS; i++) {
+        velocities[i] -= TAP_IMPULSE * RADIUS * weight((i / LIQUID_POINTS) * Math.PI * 2, aimAngle);
+      }
+    },
+  };
+};

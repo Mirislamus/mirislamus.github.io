@@ -62,16 +62,15 @@ test.describe('when motion is allowed', () => {
     expect(opacity).toBe('1');
   });
 
-  test('the avatar tilts and the photo drifts with the cursor, then settles back', async ({ page }) => {
+  test('the photo drifts with the cursor, then settles back', async ({ page }) => {
     await page.goto('/#about');
-    const svg = page.locator('[data-avatar]');
+    await expect(page.locator('canvas[data-rain]')).toHaveAttribute('data-state', 'running');
     const photo = page.locator('[data-photo]');
 
     await page.mouse.move(2, 200);
     await expect
       .poll(() => photo.evaluate(element => (element as HTMLElement).style.transform))
       .toMatch(/translate\(-[1-9]/);
-    expect(await svg.evaluate(element => (element as unknown as HTMLElement).style.transform)).toContain('rotateY(-');
 
     const viewport = page.viewportSize()!;
     await page.mouse.move(viewport.width / 2, viewport.height / 2);
