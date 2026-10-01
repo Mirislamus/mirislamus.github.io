@@ -1,5 +1,26 @@
 .career {
   overflow: hidden;
+
+  // The cards bleed to the edge of the screen and the section clips them: instead of a hard cut through the
+  // text, the side that still has cards behind it fades out (the arrow that is still active says which one).
+  --fade-start: 0px;
+  --fade-end: 0px;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-start),
+    #000 calc(100% - var(--fade-end)),
+    transparent 100%
+  );
+
+  &:has(:global(embla-carousel-root[data-ready]) [data-embla-prev]:not(:disabled)) {
+    --fade-start: 96px;
+  }
+
+  &:has(:global(embla-carousel-root[data-ready]) [data-embla-next]:not(:disabled)) {
+    --fade-end: 96px;
+  }
+
   &Top {
     display: flex;
     align-items: center;
