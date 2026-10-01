@@ -47,6 +47,9 @@ export interface Rain {
   /** Cursor position in canvas px, or null when there is no cursor. */
   setPointer: (x: number | null, y?: number) => void;
   setSafeZone: (zone: SafeZone | null) => void;
+  /** The intro downpour: every column starts above the screen and falls fast, then calms down to normal. */
+  burst: () => void;
+  readonly bursting: boolean;
   readonly drawn: boolean;
 }
 
@@ -69,6 +72,8 @@ const WORD_SKIP = 2; // glyphs between the head and the last letter of a word
 const ALPHA_STEPS = 32;
 const FLASH_STEP = 0.12; // seconds between glyph flips under the flashlight
 const MUTATIONS_PER_GLYPH_PER_SECOND = 0.9;
+const BURST_SPEED = 3.2; // times the normal speed at the start of the downpour
+const BURST_SECONDS = 0.9;
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
@@ -92,6 +97,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
   let flipNow = false;
   let isStill = false;
   let drawn = false;
+  let burstLeft = 0; // seconds of the downpour that are left
   let field: string[][] = []; // static glyphs that show up under the flashlight, [column][row]
 
   const rows = () => Math.ceil(height / options.fontSize) + 2;
@@ -235,8 +241,11 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     if (isStill) draw();
   };
 
+  // Falls linearly from BURST_SPEED to 1 during the downpour.
+  const boost = () => 1 + (BURST_SPEED - 1) * (burstLeft / BURST_SECONDS);
+
   const advance = (column: Column, dt: number) => {
-    column.y += column.speed * options.speed * dt;
+    column.y += column.speed * options.speed * boost() * dt;
     if (column.active) {
       // Every glyph of the tail changes about once a second.
       let budget = MUTATIONS_PER_GLYPH_PER_SECOND * column.len * dt;
@@ -258,6 +267,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
       flipNow = flashTimer >= FLASH_STEP;
       if (flipNow) flashTimer = 0;
       for (const column of columns) advance(column, dt);
+      burstLeft = Math.max(0, burstLeft - dt);
       draw();
     },
     still() {
@@ -281,6 +291,17 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     setSafeZone(next) {
       zone = next;
       if (isStill) draw();
+    },
+    burst() {
+      burstLeft = BURST_SECONDS;
+      for (const column of columns) {
+        restart(column, false);
+        // Everyone joins the downpour; the columns the density leaves out fade as they fall out below.
+        column.active = true;
+      }
+    },
+    get bursting() {
+      return burstLeft > 0;
     },
     get drawn() {
       return drawn;

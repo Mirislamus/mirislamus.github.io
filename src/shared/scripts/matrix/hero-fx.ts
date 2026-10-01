@@ -3,6 +3,8 @@ import { getMotion, onMotionChange } from './motion';
 import { DESKTOP_RAIN, TOUCH_RAIN, createRain } from './rain';
 import { getTicker } from './ticker';
 
+const INTRO_BURST_DEADLINE_MS = 600;
+
 // The Hero effects chunk: the digital rain (M-01). Loaded with import() after the page is interactive,
 // so none of it is in the main bundle. `data-state` on the canvas says what it is doing:
 // running (animating), idle (not on screen or the tab is hidden) or static (one still frame).
@@ -54,7 +56,10 @@ export const initHeroFx = (section: HTMLElement) => {
       rain.still();
       setState('static');
     } else if (visible && !document.hidden) {
-      stop = ticker.subscribe(dt => rain.tick(dt));
+      stop = ticker.subscribe(dt => {
+        rain.tick(dt);
+        if (canvas.hasAttribute('data-burst') && !rain.bursting) canvas.removeAttribute('data-burst');
+      });
       setState('running');
     } else {
       setState('idle');
@@ -62,6 +67,15 @@ export const initHeroFx = (section: HTMLElement) => {
   };
 
   measure();
+
+  // The intro downpour only makes sense if the rain is up soon after navigation started; on a slow
+  // connection it would arrive after the choreography and look random, so the rain just fades in then.
+  const introPlaying = document.documentElement.hasAttribute('data-intro');
+  if (introPlaying && motion.allowed && performance.now() < INTRO_BURST_DEADLINE_MS) {
+    rain.burst();
+    canvas.setAttribute('data-burst', '');
+  }
+
   watchColors(colors => rain.setColors(colors));
 
   new ResizeObserver(measure).observe(section);

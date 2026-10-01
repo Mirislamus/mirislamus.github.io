@@ -73,6 +73,43 @@ test.describe('when motion is allowed', () => {
   });
 });
 
+test.describe('intro downpour', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('the rain joins the intro with a downpour that calms down', async ({ page }) => {
+    // The downpour is skipped when the rain is late (600 ms after navigation), which depends on how busy the
+    // machine is. Freeze the page clock so the test checks the behavior, not the load.
+    // The same goes for the intro itself, which ends 1.6 s after load: keep it on while the machine is busy.
+    await page.addInitScript(() => {
+      performance.now = () => 0;
+      const setTimeoutNative = window.setTimeout.bind(window);
+      window.setTimeout = ((handler: TimerHandler, ms?: number, ...args: unknown[]) =>
+        setTimeoutNative(handler, ms === 1600 ? 20000 : ms, ...args)) as typeof window.setTimeout;
+    });
+    await page.addInitScript(() => {
+      document.addEventListener('DOMContentLoaded', () => {
+        const watch = () => {
+          const canvas = document.querySelector('canvas[data-rain]');
+          if (canvas?.hasAttribute('data-burst')) (window as unknown as { sawBurst: boolean }).sawBurst = true;
+          else requestAnimationFrame(watch);
+        };
+        watch();
+      });
+    });
+    await page.goto('/');
+
+    await expect.poll(() => page.evaluate(() => (window as unknown as { sawBurst?: boolean }).sawBurst)).toBe(true);
+    await expect(rain(page)).not.toHaveAttribute('data-burst', /.*/, { timeout: 3000 });
+    await expect(rain(page)).toHaveAttribute('data-state', 'running');
+  });
+
+  test('there is no downpour without the intro', async ({ page }) => {
+    await page.goto('/#about'); // a deep link skips the intro
+    await expect(rain(page)).toHaveAttribute('data-state', 'running');
+    await expect(rain(page)).not.toHaveAttribute('data-burst', /.*/);
+  });
+});
+
 test.describe('when motion is reduced', () => {
   test.use({ reducedMotion: 'reduce' });
 

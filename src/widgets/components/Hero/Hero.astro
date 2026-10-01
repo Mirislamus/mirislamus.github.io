@@ -63,7 +63,9 @@ const titleHtml = data.title
     const whenIdle = () =>
       'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 200);
 
-    if (document.readyState === 'complete') whenIdle();
+    // During the intro the rain is part of the choreography, so it is loaded right away.
+    if (document.documentElement.hasAttribute('data-intro')) load();
+    else if (document.readyState === 'complete') whenIdle();
     else window.addEventListener('load', whenIdle, { once: true });
   }
 </script>
