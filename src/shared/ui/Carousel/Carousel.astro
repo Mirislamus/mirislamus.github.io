@@ -7,10 +7,15 @@ interface Props {
   // id of the heading that names the carousel
   labelledby: string;
   options?: EmblaOptionsType;
+  /**
+   * For a row that does not fit on the screen: an arrow moves by a whole screenful of cards, so the card that was
+   * cut by the edge becomes fully visible; when everything fits on the screen, the arrows go away.
+   */
+  pageScroll?: boolean;
   class?: string;
 }
 
-const { a11y, labelledby, options = {}, class: className } = Astro.props;
+const { a11y, labelledby, options = {}, pageScroll = false, class: className } = Astro.props;
 ---
 
 <embla-carousel-root
@@ -18,6 +23,7 @@ const { a11y, labelledby, options = {}, class: className } = Astro.props;
   aria-roledescription={a11y.carousel}
   aria-labelledby={labelledby}
   data-options={JSON.stringify(options)}
+  data-page-scroll={pageScroll ? '' : undefined}
   class={className}
 >
   <slot />

@@ -23,12 +23,15 @@ const slideLabel = (index: number) =>
       a11y={a11y}
       labelledby="career-title"
       options={{ align: 'start', dragFree: true, containScroll: 'trimSnaps' }}
+      pageScroll
     >
       <div class:list={[s.careerTop, 'title']} data-reveal>
         <h2 id="career-title">
           <RichText text={data.title} />
         </h2>
-        <ArrowControls prevLabel={a11y.previousSlide} nextLabel={a11y.nextSlide} />
+        <div class={s.controls}>
+          <ArrowControls prevLabel={a11y.previousSlide} nextLabel={a11y.nextSlide} />
+        </div>
       </div>
       {/* A scrollable region must be reachable by keyboard until Embla takes over (it removes tabindex). */}
       {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}

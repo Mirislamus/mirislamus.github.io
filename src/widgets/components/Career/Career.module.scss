@@ -13,11 +13,11 @@
     transparent 100%
   );
 
-  &:has(:global(embla-carousel-root[data-ready]) [data-embla-prev]:not(:disabled)) {
+  &:has(:global(embla-carousel-root[data-ready]:not([data-static])) [data-embla-prev]:not(:disabled)) {
     --fade-start: 96px;
   }
 
-  &:has(:global(embla-carousel-root[data-ready]) [data-embla-next]:not(:disabled)) {
+  &:has(:global(embla-carousel-root[data-ready]:not([data-static])) [data-embla-next]:not(:disabled)) {
     --fade-end: 96px;
   }
 
@@ -186,4 +186,11 @@
   flex-wrap: wrap;
   gap: var(--gap-4);
   margin-top: var(--gap-8);
+}
+
+// Everything fits on the screen: nothing to scroll, so no arrows.
+.controls {
+  :global(embla-carousel-root[data-static]) & {
+    display: none;
+  }
 }

@@ -176,3 +176,39 @@ test.describe('review dots', () => {
     });
   }
 });
+
+test.describe('career carousel, how far the arrows go', () => {
+  test('one click on next brings the last card fully into view', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/#career');
+    const next = page.locator('#career [data-embla-next]');
+    await expect(next).toBeEnabled();
+    await next.click();
+    await expect(next).toBeDisabled();
+    await expect
+      .poll(() =>
+        page.evaluate(() => {
+          const slides = [...document.querySelectorAll('#career [data-embla-slide]')];
+          return slides[slides.length - 1].getBoundingClientRect().right <= innerWidth;
+        })
+      )
+      .toBe(true);
+    await page.locator('#career [data-embla-prev]').click();
+    await expect(page.locator('#career [data-embla-prev]')).toBeDisabled();
+  });
+
+  test('when every card fits on the screen there are no arrows and no scrolling', async ({ page }) => {
+    await page.setViewportSize({ width: 2400, height: 900 });
+    await page.goto('/#career');
+    await expect(page.locator('#career embla-carousel-root')).toHaveAttribute('data-static', '');
+    await expect(page.locator('#career [data-embla-next]')).toBeHidden();
+    const slides = page.locator('#career [data-embla-slide]');
+    const last = (await slides.last().boundingBox())!;
+    expect(last.x + last.width).toBeLessThanOrEqual(2400);
+
+    // Back to a narrow window: the arrows are back.
+    await page.setViewportSize({ width: 1200, height: 900 });
+    await expect(page.locator('#career [data-embla-next]')).toBeVisible();
+    await expect(page.locator('#career embla-carousel-root')).not.toHaveAttribute('data-static', /.*/);
+  });
+});
