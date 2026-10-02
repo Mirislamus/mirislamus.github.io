@@ -1,5 +1,6 @@
 import { watchColors } from './accent';
 import { getMotion } from './motion';
+import { createHands } from './hands-fx';
 import { DESKTOP_RAIN, createRain, type RainOptions } from './rain';
 import { getTicker } from './ticker';
 
@@ -21,6 +22,7 @@ const setup = (root: HTMLDialogElement) => {
   const canvas = root.querySelector<HTMLCanvasElement>('[data-pills-rain]')!;
   const result = root.querySelector<HTMLElement>('[data-pills-result]')!;
   const options = { ...CALM };
+  const hands = createHands(root.querySelector<HTMLElement>('[data-pills-hands]')!);
   const rain = createRain(canvas, options);
   const timers: number[] = [];
   let stop: (() => void) | undefined;
@@ -39,8 +41,13 @@ const setup = (root: HTMLDialogElement) => {
 
   const run = () => {
     rain.resize();
-    if (motion.allowed) stop = ticker.subscribe(dt => rain.tick(dt));
-    else rain.still();
+    hands?.open();
+    if (motion.allowed) {
+      stop = ticker.subscribe((dt, now) => {
+        rain.tick(dt);
+        hands?.tick(dt, now);
+      });
+    } else rain.still();
   };
 
   const close = () => {
@@ -51,6 +58,7 @@ const setup = (root: HTMLDialogElement) => {
       stop = undefined;
       unwatch?.();
       unwatch = undefined;
+      hands?.close();
       reset();
       root.close();
     };
@@ -93,7 +101,12 @@ const setup = (root: HTMLDialogElement) => {
   root.addEventListener('click', event => {
     if (event.target === root) close();
   });
-  window.addEventListener('resize', () => root.open && rain.resize());
+  root.addEventListener('pointermove', event => hands?.pointer(event), { passive: true });
+  window.addEventListener('resize', () => {
+    if (!root.open) return;
+    rain.resize();
+    hands?.resize();
+  });
 
   return () => {
     reset();

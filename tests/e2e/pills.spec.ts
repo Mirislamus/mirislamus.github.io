@@ -98,3 +98,102 @@ test('the rabbit is a quiet button with a name, and without JavaScript it simply
   await expect(dialog(page)).not.toHaveAttribute('open', /.*/);
   await context.close();
 });
+
+// The glyph hands (A-06) are on a canvas: the tests read its pixels.
+const tintAround = (page: Page, button: 'Blue pill' | 'Red pill') =>
+  page.evaluate(name => {
+    const root = document.querySelector<HTMLElement>('dialog[data-pills] [data-pills-hands]')!;
+    const canvas = root.querySelector('canvas')!;
+    const target = [...root.querySelectorAll('button')].find(item => item.getAttribute('aria-label') === name)!;
+    const box = canvas.getBoundingClientRect();
+    const spot = target.getBoundingClientRect();
+    const scale = canvas.width / box.width;
+    const size = Math.round(spot.width * 0.5 * scale);
+    const data = canvas
+      .getContext('2d')!
+      .getImageData(
+        Math.round((spot.left + spot.width / 2 - box.left) * scale - size / 2),
+        Math.round((spot.top + spot.height / 2 - box.top) * scale - size / 2),
+        size,
+        size
+      ).data;
+    let blue = 0;
+    let red = 0;
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 40) continue;
+      if (data[i + 2] > data[i] + 30) blue++;
+      if (data[i] > data[i + 2] + 30) red++;
+    }
+    return { blue, red };
+  }, button);
+
+test.describe('glyph hands', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  test('are drawn at once, and every button lies over a capsule of its colour', async ({ page }) => {
+    await openScene(page);
+    // As in the film: the red pill on the left hand, the blue one on the right.
+    const left = await tintAround(page, 'Red pill');
+    const right = await tintAround(page, 'Blue pill');
+    expect(left.red).toBeGreaterThan(40);
+    expect(left.blue).toBeLessThan(left.red / 4);
+    expect(right.blue).toBeGreaterThan(40);
+    expect(right.red).toBeLessThan(right.blue / 4);
+  });
+
+  test('stand still: no lean with the mouse', async ({ page }) => {
+    await openScene(page);
+    await page.mouse.move(20, 20);
+    await page.waitForTimeout(400);
+    expect(
+      await dialog(page)
+        .locator('[data-pills-hands]')
+        .evaluate(element => element.style.transform)
+    ).toBe('');
+  });
+
+  test('stay readable on a phone', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openScene(page);
+    const left = await tintAround(page, 'Red pill');
+    expect(left.red).toBeGreaterThan(15);
+    const box = await dialog(page).locator('[data-pills-hands]').boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+  });
+});
+
+test.describe('glyph hands in motion', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('assemble out of falling glyphs, then lean after the mouse', async ({ page }) => {
+    await openScene(page);
+    const painted = () =>
+      dialog(page)
+        .locator('[data-pills-hands] canvas')
+        .evaluate(canvas => {
+          const { data } = (canvas as HTMLCanvasElement)
+            .getContext('2d')!
+            .getImageData(0, 0, (canvas as HTMLCanvasElement).width, (canvas as HTMLCanvasElement).height);
+          let count = 0;
+          for (let i = 3; i < data.length; i += 4) if (data[i] > 40) count++;
+          return count;
+        });
+
+    const early = await painted();
+    await expect.poll(painted, { timeout: 5000 }).toBeGreaterThan(early * 1.5);
+
+    await page.mouse.move(10, 10);
+    await expect
+      .poll(
+        () =>
+          dialog(page)
+            .locator('[data-pills-hands]')
+            .evaluate(element => element.style.transform),
+        {
+          timeout: 2000,
+        }
+      )
+      .toContain('rotateY(');
+  });
+});

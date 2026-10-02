@@ -80,83 +80,27 @@ $blue: #3e7bfa;
   color: rgb(255 255 255 / 70%);
 }
 
+// The two glyph hands are drawn on the canvas; the capsules of the picture are where the buttons are.
 .hands {
   position: relative;
-  width: 100%;
-  aspect-ratio: 600 / 260;
+  // As wide as the screen allows, but never taller than what is left under the heading.
+  width: min(100%, calc((100dvh - 230px) * var(--ratio)));
+  aspect-ratio: var(--ratio);
   margin-top: var(--gap-16);
+  transform-origin: center;
 }
 
-.drawing {
+.canvas {
   display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
 }
 
-.line {
-  stroke: #fff;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-// The hands are drawn stroke by stroke when the scene opens.
-.draw {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
-
-  .dialog[open] & {
-    animation: pills-draw var(--dur-intro) var(--ease-out) both;
-  }
-}
-
-@keyframes pills-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-}
-
-.capsule {
-  transform-box: fill-box;
-  transform-origin: center;
-
-  rect {
-    fill: currentColor;
-  }
-
-  &[data-pill-shape='red'] {
-    color: $red;
-  }
-
-  &[data-pill-shape='blue'] {
-    color: $blue;
-  }
-
-  .dialog[open] & {
-    animation: pills-pop var(--dur-slow) var(--ease-spring) both;
-    animation-delay: var(--dur-intro);
-  }
-}
-
-@keyframes pills-pop {
-  from {
-    opacity: 0;
-    scale: 0.4;
-  }
-}
-
-.shine {
-  stroke: rgb(255 255 255 / 55%);
-  stroke-width: 3;
-  stroke-linecap: round;
-}
-
-// The buttons sit over the pills; a pill is where the viewBox puts it.
+// The buttons sit over the capsules.
 .pill {
   position: absolute;
-  top: calc(100% * (90 + 52) / 260);
-  width: 16%;
+  top: var(--pill-y);
+  width: 17%;
   aspect-ratio: 1;
   translate: -50% -50%;
   border-radius: 50%;
@@ -166,7 +110,7 @@ $blue: #3e7bfa;
 
   &:hover,
   &:focus-visible {
-    scale: 1.12;
+    scale: 1.08;
   }
 
   &:focus-visible {
@@ -175,20 +119,20 @@ $blue: #3e7bfa;
   }
 
   &.blue {
-    left: calc(100% * 170 / 600);
+    left: var(--blue-x);
 
     &:hover,
     &:focus-visible {
-      background-color: rgb(62 123 250 / 28%);
+      background-color: rgb(62 123 250 / 22%);
     }
   }
 
   &.red {
-    left: calc(100% * 430 / 600);
+    left: var(--red-x);
 
     &:hover,
     &:focus-visible {
-      background-color: rgb(229 72 77 / 28%);
+      background-color: rgb(229 72 77 / 22%);
     }
   }
 }

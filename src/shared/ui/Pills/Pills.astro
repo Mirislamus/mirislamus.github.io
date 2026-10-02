@@ -1,5 +1,7 @@
 ---
+import { hands } from '@data/matrix/hands';
 import type { SiteData } from '@data/site';
+import { handsGap } from '@shared/scripts/matrix/hands-layout';
 import s from './Pills.module.scss';
 
 interface Props {
@@ -8,19 +10,17 @@ interface Props {
 
 const { texts } = Astro.props;
 
-// One hand, drawn with lines: four fingers, a palm without a top edge, a thumb and a forearm that fades out.
-// Fingers are U-shaped strokes that start on the palm line, so nothing crosses inside the hand.
-const fingers = [
-  { x: -36, length: 58 },
-  { x: -12, length: 74 },
-  { x: 12, length: 68 },
-  { x: 36, length: 52 },
-];
-const finger = ({ x, length }: { x: number; length: number }) =>
-  `M${x - 11} 0V${-(length - 11)}A11 11 0 0 1 ${x + 11} ${-(length - 11)}V0`;
-const palm = 'M-47 0V62Q-47 92 -17 92H17Q47 92 47 62V0';
-const thumb = 'M-10 0V-45A10 10 0 0 1 10 -45V0';
-const forearms = ['M-30 92V150', 'M30 92V150'];
+// The hands are glyphs on a canvas (shared/scripts/matrix/hands-fx.ts); the page only knows where the two capsules
+// are, to put the real buttons over them. Both sizes of the grid have the same proportions, so one set is enough.
+const grid = hands.desktop;
+const gap = handsGap(grid.cols);
+const total = grid.cols * 2 + gap;
+const where = {
+  '--ratio': (total * 0.6) / grid.rows,
+  '--red-x': `${(grid.pill.x / total) * 100}%`,
+  '--blue-x': `${((grid.cols + gap + (grid.cols - grid.pill.x)) / total) * 100}%`,
+  '--pill-y': `${(grid.pill.y / grid.rows) * 100}%`,
+};
 ---
 
 <dialog
@@ -41,41 +41,8 @@ const forearms = ['M-30 92V150', 'M30 92V150'];
       {texts.text}
     </p>
 
-    <div class={s.hands} role="group" aria-label={texts.hint}>
-      <svg class={s.drawing} viewBox="0 0 600 260" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="hand-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0.55" stop-color="#fff"></stop>
-            <stop offset="1" stop-color="#000"></stop>
-          </linearGradient>
-          <mask id="hand-mask" maskUnits="userSpaceOnUse" x="-100" y="-100" width="200" height="280">
-            <rect x="-100" y="-100" width="200" height="280" fill="url(#hand-fade)"></rect>
-          </mask>
-        </defs>
-
-        {[
-          { id: 'left', x: 170, mirror: false, pill: 'blue' },
-          { id: 'right', x: 430, mirror: true, pill: 'red' },
-        ].map(hand => (
-          <g transform={`translate(${hand.x} 90) ${hand.mirror ? 'scale(-1 1)' : ''}`}>
-            <g mask="url(#hand-mask)" class={s.line}>
-              {fingers.map(item => (
-                <path d={finger(item)} pathLength="1" class={s.draw} />
-              ))}
-              <path d={palm} pathLength="1" class={s.draw} />
-              <path d={thumb} transform="translate(-44 44) rotate(-52)" pathLength="1" class={s.draw} />
-              {forearms.map(d => (
-                <path d={d} pathLength="1" class={s.draw} />
-              ))}
-            </g>
-            <g transform="translate(0 52) rotate(-18)" class={s.capsule} data-pill-shape={hand.pill}>
-              <rect x="-24" y="-10" width="48" height="20" rx="10"></rect>
-              <path d="M-14 -4H8" class={s.shine}></path>
-            </g>
-          </g>
-        ))}
-      </svg>
-
+    <div class={s.hands} role="group" aria-label={texts.hint} style={where} data-pills-hands>
+      <canvas class={s.canvas} aria-hidden="true"></canvas>
       <button type="button" class:list={[s.pill, s.blue]} data-pill="blue" aria-label={texts.blue}></button>
       <button type="button" class:list={[s.pill, s.red]} data-pill="red" aria-label={texts.red}></button>
     </div>
