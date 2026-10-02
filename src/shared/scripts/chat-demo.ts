@@ -1,4 +1,4 @@
-import { getMotion, onMotionChange } from './matrix/motion';
+import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
 // The conversation in the first Approach card (A-03) plays once per load, when the card is half on screen:
 // before every message "typing…" shows for a moment, then the bubble rises into place.
@@ -11,11 +11,6 @@ const STEP = 1000; // ms between the starts of two messages
 const token = (name: string, fallback: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
 
-const duration = (name: string, fallback: number) => {
-  const value = parseFloat(token(name, `${fallback}ms`));
-  return Number.isFinite(value) ? value : fallback;
-};
-
 export const initChatDemo = (root: HTMLElement) => {
   const motion = getMotion();
   const messages = [...root.querySelectorAll<HTMLElement>('li')];
@@ -23,7 +18,7 @@ export const initChatDemo = (root: HTMLElement) => {
   if (!motion.allowed || window.location.hash === '#approach') return;
 
   const easeOut = token('--ease-out', 'cubic-bezier(0.16, 1, 0.3, 1)');
-  const rise = duration('--dur-slow', 400);
+  const rise = cssDuration('--dur-slow', 400);
   const animations: Animation[] = [];
 
   const animate = (element: Element, keyframes: Keyframe[], options: KeyframeAnimationOptions) => {

@@ -168,6 +168,13 @@ const load = () => {
     a11y: a11y[locale],
     approach: {
       ...approach[locale],
+      secret: {
+        ...approach[locale].secret,
+        rows: approachBase.secret.map(row => ({
+          ...row,
+          label: interpolate(approach[locale].secret.row, { code: row.code, progress: row.progress }),
+        })),
+      },
       flexibility: {
         ...approach[locale].flexibility,
         // The order comes from the base file; the texts of a type are found by its id.

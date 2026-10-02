@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MOTION_STORAGE_KEY, createMotion, type MotionEnv } from './motion';
+import { MOTION_STORAGE_KEY, createMotion, type MotionEnv, parseDuration } from './motion';
 
 const memoryStorage = (initial: Record<string, string> = {}) => {
   const data = { ...initial };
@@ -69,5 +69,18 @@ describe('motion', () => {
     const none = createMotion({ storage: null, reducedQuery: reduced(false), emit: () => {} });
     none.setPaused(true);
     expect(none.paused).toBe(true);
+  });
+});
+
+describe('parseDuration', () => {
+  it('reads milliseconds and the seconds the minifier writes', () => {
+    expect(parseDuration('450ms', 1)).toBe(450);
+    expect(parseDuration(' .4s', 1)).toBe(400);
+    expect(parseDuration('0ms', 1)).toBe(0);
+  });
+
+  it('falls back on anything else', () => {
+    expect(parseDuration('', 7)).toBe(7);
+    expect(parseDuration('fast', 7)).toBe(7);
   });
 });

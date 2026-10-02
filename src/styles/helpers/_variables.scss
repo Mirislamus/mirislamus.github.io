@@ -43,6 +43,7 @@
     --dur-slow: 400ms;
     --dur-intro: 800ms;
     --dur-ripple: 600ms;
+    --dur-glitch: 450ms;
     --stagger: 60ms;
     --intro-step: 100ms; // unit of the Hero intro choreography
 
@@ -129,6 +130,7 @@
       --dur-slow: 0ms;
       --dur-intro: 0ms;
       --dur-ripple: 0ms;
+      --dur-glitch: 0ms;
       --stagger: 0ms;
       --intro-step: 0ms;
     }

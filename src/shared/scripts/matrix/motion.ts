@@ -74,3 +74,13 @@ export const onMotionChange = (listener: () => void) => {
   document.addEventListener(MOTION_EVENT, listener);
   return () => document.removeEventListener(MOTION_EVENT, listener);
 };
+
+// A CSS time token in milliseconds. The build minifies "400ms" to ".4s", so both units must be read.
+export const parseDuration = (value: string, fallback: number): number => {
+  const match = /^\s*(-?\d*\.?\d+)(ms|s)\s*$/.exec(value);
+  if (!match) return fallback;
+  return Number(match[1]) * (match[2] === 's' ? 1000 : 1);
+};
+
+export const cssDuration = (name: string, fallback: number): number =>
+  parseDuration(getComputedStyle(document.documentElement).getPropertyValue(name), fallback);

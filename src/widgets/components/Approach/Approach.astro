@@ -2,7 +2,6 @@
 import Copy from '@lucide/astro/icons/copy';
 import { info } from '@data/global';
 import type { SiteData } from '@data/site';
-import { getCodeImages } from '@utils/images';
 import Button from '@shared/ui/Button/Button.astro';
 import CopyButton from '@shared/ui/CopyButton/CopyButton.astro';
 import RichText from '@shared/ui/RichText/RichText.astro';
@@ -16,8 +15,9 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const codeImages = await getCodeImages();
 const chat = data.cooperation.chat;
+const secret = data.secret;
+const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.text)}`;
 ---
 
 <section class:list={[s.approach, 'section']} id="approach">
@@ -169,32 +169,75 @@ const chat = data.cooperation.chat;
           </CopyButton>
         </div>
       </StarBorder>
-      <article class:list={[s.item, s.item_5]} data-reveal data-spotlight data-tilt style="--i: 4">
+      <article class:list={[s.item, s.item_5]} data-reveal data-spotlight style="--i: 4">
         <Spotlight />
-        <div class={s.item_text}>
-          <span>{data.pomotomo}</span>
-          <h3>{data.developing}</h3>
-        </div>
-        <img
-          class={s.codeLight}
-          width="510"
-          height="292"
-          src={codeImages.light}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
-        <img
-          class={s.codeDark}
-          width="510"
-          height="292"
-          src={codeImages.dark}
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
+        <secret-card class={s.secret}>
+          <div class={s.intro}>
+            <span class={s.stamp}>{secret.stamp}</span>
+            <h3>{secret.title}</h3>
+            <p class={s.fact}>{secret.line}</p>
+          </div>
+          <ul class={s.files}>
+            {secret.rows.map(row => (
+              <li>
+                {/* A bar decrypts on keyboard focus too; the group is named by its sentence. */}
+                {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
+                <div class={s.file} role="group" tabindex="0" aria-label={row.label} data-file>
+                  <div class={s.fileHead} aria-hidden="true">
+                    <span>{row.code}</span>
+                    <span>{row.progress}%</span>
+                  </div>
+                  <div class={s.redacted} aria-hidden="true">
+                    {row.mask.map(length => (
+                      <span class={s.word}>
+                        {Array.from({ length }, () => (
+                          <span class={s.ch} data-ch>
+                            █
+                          </span>
+                        ))}
+                      </span>
+                    ))}
+                  </div>
+                  <div class={s.meter} aria-hidden="true">
+                    <i style={`--p: ${row.progress / 100}`} data-meter />
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <form
+            class={s.invite}
+            action="#approach"
+            novalidate
+            data-invite
+            data-empty={secret.form.empty}
+            data-denied={secret.form.denied}
+          >
+            <label class={s.inviteLabel} for="invite-code">
+              {secret.form.heading}
+            </label>
+            <div class={s.inviteRow}>
+              <input
+                id="invite-code"
+                type="text"
+                class={s.input}
+                placeholder={secret.form.label}
+                aria-label={secret.form.label}
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                maxlength="64"
+              />
+              <Button type="submit" size="sm">
+                {secret.form.submit}
+              </Button>
+              <Button href={inviteHref} size="sm" variant="outline">
+                {secret.invite.button}
+              </Button>
+            </div>
+            <p class={s.status} role="status" data-invite-status></p>
+          </form>
+        </secret-card>
       </article>
     </div>
   </div>
@@ -214,18 +257,29 @@ const chat = data.cooperation.chat;
     }
   }
 
-  // The conversation of the first card plays once, when the card is seen: a separate chunk, loaded in advance.
-  const chat = document.querySelector<HTMLElement>('#approach chat-demo');
-
-  if (chat) {
+  // The chat scene and the classified card live in separate chunks, loaded a little before they are seen.
+  const whenNear = (element: Element | null, load: () => void) => {
+    if (!element) return;
     new IntersectionObserver(
       ([entry], observer) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        void import('@shared/scripts/chat-demo').then(({ initChatDemo }) => initChatDemo(chat));
+        load();
       },
       { rootMargin: '400px' }
-    ).observe(chat);
+    ).observe(element);
+  };
+
+  const chat = document.querySelector<HTMLElement>('#approach chat-demo');
+  if (chat)
+    whenNear(chat, () => void import('@shared/scripts/chat-demo').then(({ initChatDemo }) => initChatDemo(chat)));
+
+  const secret = document.querySelector<HTMLElement>('#approach secret-card');
+  if (secret) {
+    whenNear(
+      secret,
+      () => void import('@shared/scripts/secret-card').then(({ initSecretCard }) => initSecretCard(secret))
+    );
   }
 
   if (!customElements.get('ui-sandbox')) customElements.define('ui-sandbox', UiSandbox);

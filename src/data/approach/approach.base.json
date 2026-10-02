@@ -1,7 +1,30 @@
 {
   "types": [
-    { "id": "landing", "stack": ["Astro", "TypeScript", "Sass"] },
-    { "id": "store", "stack": ["Next.js", "React", "TypeScript"] },
-    { "id": "service", "stack": ["React", "TanStack Query", "Zustand", "Vitest"] }
+    {
+      "id": "landing",
+      "stack": ["Astro", "TypeScript", "Sass"]
+    },
+    {
+      "id": "store",
+      "stack": ["Next.js", "React", "TypeScript"]
+    },
+    {
+      "id": "service",
+      "stack": ["React", "TanStack Query", "Zustand", "Vitest"]
+    }
+  ],
+  "secret": [
+    {
+      "id": "ks",
+      "code": "PROJECT KS",
+      "mask": [6, 7],
+      "progress": 70
+    },
+    {
+      "id": "ie",
+      "code": "PROJECT IE",
+      "mask": [7, 4, 5],
+      "progress": 45
+    }
   ]
 }

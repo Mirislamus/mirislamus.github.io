@@ -36,7 +36,7 @@ bun run dev        # http://localhost:3000
 
 ```text
 src/
-  assets/            исходники картинок (проекты, аватар, превью кода) → astro:assets
+  assets/            исходники картинок (проекты, аватар) → astro:assets
   data/              весь контент в JSON + схемы (schemas.ts) и сборка данных (site.ts)
   i18n/              единственный список локалей и хелперы ссылок
   layouts/           Layout.astro, Head.astro

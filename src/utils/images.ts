@@ -10,17 +10,8 @@ export interface ResponsiveImage {
   height: number;
 }
 
-export interface CodeImages {
-  light: string;
-  dark: string;
-}
-
 const projectFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/projects/*.jpg', { eager: true });
 const avatarFile = (await import('@assets/avatar.png')).default;
-const codeFiles = {
-  light: (await import('@assets/code/light.png')).default,
-  dark: (await import('@assets/code/dark.png')).default,
-};
 
 const PROJECT_WIDTH = 600;
 const QUALITY = 90;
@@ -64,11 +55,3 @@ export const getAvatarImage = async (): Promise<{ src: string; width: number; he
 };
 
 export const getAvatarSrc = async (): Promise<string> => (await getAvatarImage()).src;
-
-export const getCodeImages = async (): Promise<CodeImages> => {
-  const [light, dark] = await Promise.all(
-    [codeFiles.light, codeFiles.dark].map(src => getImage({ src, format: 'webp', quality: 100 }))
-  );
-
-  return { light: light.src, dark: dark.src };
-};

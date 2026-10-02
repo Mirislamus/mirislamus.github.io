@@ -4,6 +4,7 @@ import s from './Button.module.scss';
 
 interface Props extends Omit<HTMLAttributes<'a'>, 'class' | 'type'> {
   href?: string;
+  type?: 'button' | 'submit';
   variant?: 'fill' | 'outline';
   size?: 'sm' | 'lg';
   fluid?: boolean;
@@ -11,7 +12,16 @@ interface Props extends Omit<HTMLAttributes<'a'>, 'class' | 'type'> {
   class?: string;
 }
 
-const { href, variant = 'fill', size = 'lg', fluid, disabled, class: className, ...rest } = Astro.props;
+const {
+  href,
+  type = 'button',
+  variant = 'fill',
+  size = 'lg',
+  fluid,
+  disabled,
+  class: className,
+  ...rest
+} = Astro.props;
 
 // Only real web links open in a new tab; mailto:, tel: and in-page anchors do not.
 const isExternal = href !== undefined && /^https?:\/\//.test(href);
@@ -22,7 +32,7 @@ const Tag = href === undefined ? 'button' : 'a';
   href={href}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noopener noreferrer' : undefined}
-  type={href === undefined ? ('button' as const) : undefined}
+  type={href === undefined ? type : undefined}
   disabled={href === undefined ? disabled : undefined}
   data-ripple
   class:list={[s.button, s[variant], s[size], { [s.fluid]: fluid, [s.disabled]: disabled }, className]}

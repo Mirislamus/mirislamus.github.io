@@ -59,10 +59,26 @@ describe('data schemas', () => {
       { id: 'store', stack: ['React'] },
       { id: 'service', stack: ['Vitest'] },
     ];
-    expect(approachBaseSchema.safeParse({ types }).success).toBe(true);
-    expect(approachBaseSchema.safeParse({ types: types.slice(0, 2) }).success).toBe(false);
-    expect(approachBaseSchema.safeParse({ types: [{ ...types[0], stack: [] }, ...types.slice(1)] }).success).toBe(
-      false
-    );
+    const secret = [{ id: 'ks', code: 'PROJECT KS', mask: [6, 7], progress: 70 }];
+    expect(approachBaseSchema.safeParse({ types, secret }).success).toBe(true);
+    expect(approachBaseSchema.safeParse({ types: types.slice(0, 2), secret }).success).toBe(false);
+    expect(
+      approachBaseSchema.safeParse({ types: [{ ...types[0], stack: [] }, ...types.slice(1)], secret }).success
+    ).toBe(false);
+  });
+
+  it('keeps the classified projects classified: only a code name, bar lengths and readiness', () => {
+    const types = [
+      { id: 'landing', stack: ['Astro'] },
+      { id: 'store', stack: ['React'] },
+      { id: 'service', stack: ['Vitest'] },
+    ];
+    const row = { id: 'ks', code: 'PROJECT KS', mask: [6, 7], progress: 70 };
+    const parse = (secret: unknown) => approachBaseSchema.safeParse({ types, secret }).success;
+    expect(parse([row])).toBe(true);
+    expect(parse([{ ...row, code: 'Real Name' }])).toBe(false); // a code name is capital letters only
+    expect(parse([{ ...row, description: 'text' }])).toBe(false); // no room for a description
+    expect(parse([{ ...row, progress: 101 }])).toBe(false);
+    expect(parse([])).toBe(false);
   });
 });

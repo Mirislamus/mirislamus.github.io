@@ -41,6 +41,18 @@ export const approachBaseSchema = z.strictObject({
     .refine(types => types.map(type => type.id).join() === PROJECT_TYPES.join(), {
       message: `types must list ${PROJECT_TYPES.join(', ')} in this order`,
     }),
+  // The classified projects: only a code name, the length of the black bars and the readiness. Real names
+  // and descriptions must never get into the data, so they cannot get into the page.
+  secret: z
+    .array(
+      z.strictObject({
+        id,
+        code: z.string().regex(/^[A-Z]+(?: [A-Z]+)*$/, 'a code name is capital letters only'),
+        mask: z.array(z.int().min(1).max(12)).min(1).max(4),
+        progress: z.int().min(0).max(100),
+      })
+    )
+    .min(1),
 });
 
 // Each card of the Approach section: a statement and a line of facts under it.
@@ -79,8 +91,14 @@ export const approachSchema = z.strictObject({
     sandbox: z.strictObject({ toggle: text, slider: text, status: text }),
   }),
   together: z.strictObject({ title: text, email: text, success: text, error: text }),
-  developing: text,
-  pomotomo: text,
+  secret: z.strictObject({
+    stamp: text,
+    title: text,
+    line: text,
+    row: text, // "{{code}}: classified, {{progress}}% ready", read by screen readers instead of the bar
+    form: z.strictObject({ heading: text, label: text, submit: text, empty: text, denied: text }),
+    invite: z.strictObject({ button: text, text }),
+  }),
 });
 
 export const heroSchema = z.strictObject({ role: text, title: text, text, button: text, cv: text });

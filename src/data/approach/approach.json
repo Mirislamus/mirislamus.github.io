@@ -52,8 +52,23 @@
       "success": "Email copied",
       "error": "Couldn't copy the email. Please try again"
     },
-    "developing": "Currently developing a Focus Timer",
-    "pomotomo": "Pomotomo"
+    "secret": {
+      "stamp": "Top secret",
+      "title": "Currently in development",
+      "line": "Two projects under NDA. Details soon.",
+      "row": "{{code}}: classified, {{progress}}% ready",
+      "form": {
+        "heading": "Got an invite?",
+        "label": "Invite code",
+        "submit": "Enter",
+        "empty": "Enter a code",
+        "denied": "Access denied. Invites coming soon."
+      },
+      "invite": {
+        "button": "I want an invite",
+        "text": "Hi! I want an invite to your new service."
+      }
+    }
   },
   "ru": {
     "title": "Подход и |принципы|",
@@ -108,8 +123,23 @@
       "success": "Email скопирован",
       "error": "Не удалось скопировать email. Попробуйте ещё раз"
     },
-    "developing": "В настоящее время разрабатываю Focus Timer",
-    "pomotomo": "Pomotomo"
+    "secret": {
+      "stamp": "Совершенно секретно",
+      "title": "Сейчас в разработке",
+      "line": "Два проекта под NDA. Подробности скоро.",
+      "row": "{{code}}: засекречено, готово на {{progress}} %",
+      "form": {
+        "heading": "Есть инвайт?",
+        "label": "Код приглашения",
+        "submit": "Войти",
+        "empty": "Введите код",
+        "denied": "Доступ запрещён. Инвайты скоро."
+      },
+      "invite": {
+        "button": "Хочу инвайт",
+        "text": "Привет! Хочу инвайт в твой новый сервис."
+      }
+    }
   },
   "uz": {
     "title": "Yondashuv va |tamoyillar|",
@@ -164,7 +194,22 @@
       "success": "Email nusxalandi",
       "error": "Emailni nusxalab bo‘lmadi. Qayta urinib ko‘ring"
     },
-    "developing": "Hozir Focus Timer ustida ishlayapman",
-    "pomotomo": "Pomotomo"
+    "secret": {
+      "stamp": "Mutlaqo maxfiy",
+      "title": "Hozir ishlab chiqilmoqda",
+      "line": "NDA ostidagi ikkita loyiha. Tafsilotlar tez orada.",
+      "row": "{{code}}: maxfiy, tayyorligi {{progress}} %",
+      "form": {
+        "heading": "Taklif kodingiz bormi?",
+        "label": "Taklif kodi",
+        "submit": "Kirish",
+        "empty": "Kodni kiriting",
+        "denied": "Kirish rad etildi. Takliflar tez orada."
+      },
+      "invite": {
+        "button": "Taklif so‘rayman",
+        "text": "Salom! Yangi servisingizga taklif kodi so‘rayman."
+      }
+    }
   }
 }
