@@ -16,6 +16,7 @@ interface Props {
 
 const { data } = Astro.props;
 const codeImages = await getCodeImages();
+const chat = data.cooperation.chat;
 ---
 
 <section class:list={[s.approach, 'section']} id="approach">
@@ -26,15 +27,58 @@ const codeImages = await getCodeImages();
     <div class={s.grid}>
       <article class:list={[s.item, s.item_1]} data-reveal data-spotlight data-tilt style="--i: 0">
         <Spotlight />
-        <img
-          width="480"
-          height="480"
-          src="/images/cooperation.svg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
+        <chat-demo class={s.chat}>
+          <ol class={s.messages} aria-label={data.cooperation.chat.label}>
+            <li class={s.message}>
+              <span class={s.avatar} aria-hidden="true">
+                {chat.client[0]}
+              </span>
+              <div class={s.body}>
+                <span class={s.sender}>{chat.client}</span>
+                <p class={s.bubble}>{chat.ask}</p>
+              </div>
+              <span class={s.typing} data-chat-typing aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+                {chat.typing}
+              </span>
+            </li>
+            <li class:list={[s.message, s.mine]}>
+              <span class={s.avatar} aria-hidden="true">
+                {chat.me[0]}
+              </span>
+              <div class={s.body}>
+                <span class={s.sender}>{chat.me}</span>
+                <p class={s.bubble}>
+                  {chat.reply}
+                  <span class={s.link}>{chat.link}</span>
+                </p>
+              </div>
+              <span class={s.typing} data-chat-typing aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+                {chat.typing}
+              </span>
+            </li>
+            <li class={s.message}>
+              <span class={s.avatar} aria-hidden="true">
+                {chat.client[0]}
+              </span>
+              <div class={s.body}>
+                <span class={s.sender}>{chat.client}</span>
+                <p class={s.bubble}>{chat.approve}</p>
+              </div>
+              <span class={s.typing} data-chat-typing aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+                {chat.typing}
+              </span>
+            </li>
+          </ol>
+        </chat-demo>
         <div class={s.copy}>
           <h3>{data.cooperation.title}</h3>
           <p class={s.fact}>{data.cooperation.fact}</p>
@@ -136,6 +180,20 @@ const codeImages = await getCodeImages();
         output.value = `${range.value}%`;
       });
     }
+  }
+
+  // The conversation of the first card plays once, when the card is seen: a separate chunk, loaded in advance.
+  const chat = document.querySelector<HTMLElement>('#approach chat-demo');
+
+  if (chat) {
+    new IntersectionObserver(
+      ([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        void import('@shared/scripts/chat-demo').then(({ initChatDemo }) => initChatDemo(chat));
+      },
+      { rootMargin: '400px' }
+    ).observe(chat);
   }
 
   if (!customElements.get('ui-sandbox')) customElements.define('ui-sandbox', UiSandbox);

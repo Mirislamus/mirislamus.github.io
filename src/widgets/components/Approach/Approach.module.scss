@@ -32,11 +32,6 @@
   &_1 {
     grid-column: span 6;
 
-    img {
-      position: absolute;
-      top: 0;
-      right: 24px;
-    }
     .copy {
       margin-top: auto;
       max-width: 348px;
@@ -126,10 +121,6 @@
   }
 
   .item {
-    &_1 img {
-      width: 400px;
-      height: 400px;
-    }
     &_2 img {
       width: 250px;
     }
@@ -156,13 +147,6 @@
     padding: 12px;
     &_5 {
       grid-column: span 2;
-    }
-    &_1 {
-      img {
-        width: 240px;
-        height: 240px;
-        right: 12px;
-      }
     }
     &_2 {
       img {
@@ -349,4 +333,128 @@
     transform: scaleX(calc(var(--value, 0) / 100));
     transition: transform var(--dur-fast) linear;
   }
+}
+
+// The conversation of the first card. All three messages are always in the layout, so nothing moves when
+// the scene plays; before it plays they are only hidden by the animation (see chat-demo.ts).
+.chat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: var(--gap-24);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-16);
+  width: min(100%, 420px);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.message {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-8);
+  max-width: 85%;
+}
+
+.mine {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  text-align: right;
+
+  .body {
+    align-items: flex-end;
+  }
+
+  .bubble {
+    border-end-end-radius: 4px;
+    color: var(--accent-contrast);
+    background-color: var(--accent);
+  }
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--tertiary);
+}
+
+.mine .avatar {
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.sender {
+  font-size: 11px;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+.bubble {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-16);
+  border-end-start-radius: 4px;
+  font-size: 14px;
+  line-height: 1.35;
+  background-color: var(--tertiary);
+}
+
+.link {
+  margin-inline-start: 4px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+// "typing…" sits where the bubble will be and is only ever shown by the animation.
+.typing {
+  position: absolute;
+  inset-inline-start: 36px;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  border-radius: var(--radius-16);
+  border-end-start-radius: 4px;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text-muted);
+  background-color: var(--tertiary);
+  opacity: 0;
+  pointer-events: none;
+
+  i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: currentcolor;
+  }
+}
+
+.mine .typing {
+  inset-inline: auto 36px;
+  border-end-start-radius: var(--radius-16);
+  border-end-end-radius: 4px;
 }

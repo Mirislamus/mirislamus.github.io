@@ -3,7 +3,17 @@
     "title": "Approach and |Principles|",
     "cooperation": {
       "title": "You always know where the project stands",
-      "fact": "A preview after every step and decisions explained in plain words."
+      "fact": "A preview after every step and decisions explained in plain words.",
+      "chat": {
+        "label": "Example of a conversation",
+        "client": "Client",
+        "me": "Mirislam",
+        "typing": "typing…",
+        "ask": "Can we move the form to the first screen?",
+        "reply": "Done.",
+        "link": "Here’s the preview ↗",
+        "approve": "Great, approved ✅"
+      }
     },
     "flexibility": {
       "eyebrow": "My approach to work",
@@ -32,7 +42,17 @@
     "title": "Подход и |принципы|",
     "cooperation": {
       "title": "Вы всегда знаете, что происходит с проектом",
-      "fact": "Превью после каждого этапа и решения, объяснённые простым языком."
+      "fact": "Превью после каждого этапа и решения, объяснённые простым языком.",
+      "chat": {
+        "label": "Пример переписки",
+        "client": "Клиент",
+        "me": "Мирислам",
+        "typing": "печатает…",
+        "ask": "Можно поднять форму на первый экран?",
+        "reply": "Готово.",
+        "link": "Вот превью ↗",
+        "approve": "Отлично, согласовано ✅"
+      }
     },
     "flexibility": {
       "eyebrow": "Мой подход к работе",
@@ -61,7 +81,17 @@
     "title": "Yondashuv va |tamoyillar|",
     "cooperation": {
       "title": "Loyiha qay holatda ekanini doim bilasiz",
-      "fact": "Har bir bosqichdan keyin ko‘rib chiqish havolasi va qarorlar oddiy tilda tushuntiriladi."
+      "fact": "Har bir bosqichdan keyin ko‘rib chiqish havolasi va qarorlar oddiy tilda tushuntiriladi.",
+      "chat": {
+        "label": "Yozishma namunasi",
+        "client": "Mijoz",
+        "me": "Mirislam",
+        "typing": "yozmoqda…",
+        "ask": "Formani birinchi ekranga ko‘tarsak bo‘ladimi?",
+        "reply": "Tayyor.",
+        "link": "Mana ko‘rib chiqish ↗",
+        "approve": "Ajoyib, kelishildi ✅"
+      }
     },
     "flexibility": {
       "eyebrow": "Ishga yondashuvim",

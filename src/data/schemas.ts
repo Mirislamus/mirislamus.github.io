@@ -34,7 +34,19 @@ const cardText = { title: text, fact: text };
 
 export const approachSchema = z.strictObject({
   title: text,
-  cooperation: z.strictObject(cardText),
+  cooperation: z.strictObject({
+    ...cardText,
+    chat: z.strictObject({
+      label: text,
+      client: text,
+      me: text,
+      typing: text,
+      ask: text,
+      reply: text,
+      link: text,
+      approve: text,
+    }),
+  }),
   flexibility: z.strictObject({ eyebrow: text, ...cardText }),
   ui: z.strictObject({
     ...cardText,
