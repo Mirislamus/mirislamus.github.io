@@ -50,10 +50,10 @@ const cone = (p, a, b, r1, r2) => {
 // Fingers: base x, length, fan (degrees away from the middle), and how much each joint bends towards the viewer.
 const FINGERS = [
   // x and y: where the finger starts (the knuckles lie on an arc, the middle finger is the highest)
-  { x: -3.1, y: 2.7, length: 6.0, fan: 13, bend: [18, 34, 28] }, // little finger
-  { x: -1.05, y: 3.5, length: 7.4, fan: 5, bend: [15, 32, 26] }, // ring
-  { x: 1.0, y: 3.8, length: 8.2, fan: -1, bend: [12, 30, 24] }, // middle
-  { x: 3.0, y: 3.6, length: 7.4, fan: -9, bend: [10, 28, 22] }, // index, next to the thumb
+  { x: -3.1, y: 2.7, length: 6.0, fan: 13, bend: [22, 40, 32] }, // little finger
+  { x: -1.05, y: 3.5, length: 7.4, fan: 5, bend: [19, 38, 30] }, // ring
+  { x: 1.0, y: 3.8, length: 8.2, fan: -1, bend: [16, 36, 28] }, // middle
+  { x: 3.0, y: 3.6, length: 7.4, fan: -9, bend: [14, 34, 26] }, // index, next to the thumb
 ];
 const SEGMENT_SHARE = [0.44, 0.31, 0.25];
 
@@ -79,9 +79,9 @@ const fingers = FINGERS.flatMap(finger =>
 );
 // The thumb: three bones, starting low on the palm, with the muscle at its base (the thenar) in handDistance.
 const thumb = [
-  { from: [2.9, -4.2, 0.5], to: [4.7, -2.0, 1.0], r1: 1.3, r2: 1.1 },
-  { from: [4.7, -2.0, 1.0], to: [5.9, -0.3, 1.5], r1: 1.1, r2: 0.95 },
-  { from: [5.9, -0.3, 1.5], to: [6.5, 1.2, 1.9], r1: 0.95, r2: 0.78 },
+  { from: [2.9, -4.2, 0.5], to: [5.2, -2.3, 1.0], r1: 1.35, r2: 1.15 },
+  { from: [5.2, -2.3, 1.0], to: [6.9, -0.9, 1.6], r1: 1.15, r2: 1.0 },
+  { from: [6.9, -0.9, 1.6], to: [7.9, 0.3, 2.0], r1: 1.0, r2: 0.82 },
 ];
 
 const pill = { from: [-1.6, -0.4, 2.2], to: [1.6, 0.6, 2.2], r: 0.95 };
@@ -90,9 +90,9 @@ const pill = { from: [-1.6, -0.4, 2.2], to: [1.6, 0.6, 2.2], r: 0.95 };
 // Palms up, held out to the viewer, like Morpheus in the film: the hand is turned so that the fingers point at the viewer
 // and the palm looks up, and the camera is above and in front, so the palm is seen at a slant. Each hand also turns
 // a little towards the middle of the scene.
-const CAMERA = rad(-64); // how far above the hands the camera is
+const CAMERA = rad(-52); // how far above the hands the camera is
 const YAW = rad(0);
-const ROLL = rad(-14); // the hand is turned in the picture plane: the fingers point down and to the middle
+const ROLL = rad(17); // the hand is turned in the picture plane: the fingers point down and to the middle
 const toLocal = p => rotY(rotX(rotY(rotX(rotZ(p, ROLL), CAMERA), YAW), -rad(90)), -rad(180));
 
 const handDistance = q => {
