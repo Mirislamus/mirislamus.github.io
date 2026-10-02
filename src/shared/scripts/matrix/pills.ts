@@ -2,6 +2,7 @@ import { watchColors } from './accent';
 import { getMotion } from './motion';
 import { createHands } from './hands-fx';
 import { DESKTOP_RAIN, createRain, type RainOptions } from './rain';
+import type { Effects } from './sound-fx';
 import type { Sound } from './sound';
 import { getTicker } from './ticker';
 
@@ -27,6 +28,7 @@ const setup = (root: HTMLDialogElement) => {
   const rain = createRain(canvas, options);
   const timers: number[] = [];
   let sound: Sound | undefined;
+  let effects: Effects | undefined;
   let light = false;
   let stop: (() => void) | undefined;
   let unwatch: (() => void) | undefined;
@@ -37,10 +39,12 @@ const setup = (root: HTMLDialogElement) => {
   // The sound is a separate chunk, loaded when the scene opens; it plays only if nothing is asked to stand still.
   const startSound = () => {
     if (!motion.allowed) return;
-    void import('./sound').then(({ createSound }) => {
+    void Promise.all([import('./sound'), import('./sound-fx')]).then(([{ createSound }, { createEffects }]) => {
       if (!root.open) return;
       sound ??= createSound();
+      effects ??= createEffects(sound);
       sound.start(light);
+      effects.open();
     });
   };
 
@@ -87,6 +91,7 @@ const setup = (root: HTMLDialogElement) => {
   const choose = (pill: 'blue' | 'red') => {
     if (root.hasAttribute('data-chosen')) return;
     root.setAttribute('data-chosen', '');
+    effects?.choose(pill); // the red riser is timed to the glitch below (3.1 s)
     result.textContent = root.dataset[pill === 'blue' ? 'endBlue' : 'endRed'] ?? '';
     result.hidden = false;
 
@@ -109,6 +114,12 @@ const setup = (root: HTMLDialogElement) => {
     .querySelectorAll<HTMLButtonElement>('[data-pill]')
     .forEach(button => button.addEventListener('click', () => choose(button.dataset.pill === 'red' ? 'red' : 'blue')));
   root.querySelector('[data-pills-close]')?.addEventListener('click', close);
+  // A soft tick under a pill, for the mouse and for the keyboard focus.
+  root.querySelectorAll<HTMLButtonElement>('[data-pill]').forEach(button => {
+    const pill = button.dataset.pill === 'red' ? 'red' : 'blue';
+    button.addEventListener('pointerenter', event => event.pointerType === 'mouse' && effects?.blip(pill));
+    button.addEventListener('focus', () => button.matches(':focus-visible') && effects?.blip(pill));
+  });
   // Escape: fade out like every other way of leaving.
   root.addEventListener('cancel', event => {
     event.preventDefault();

@@ -3,11 +3,21 @@ import { expect, test, type Page } from '@playwright/test';
 // A stand-in for AudioContext that only counts what is done with it: the tests listen to the code, not to the sound.
 export const installFakeAudio = (page: Page) =>
   page.addInitScript(() => {
-    const log = { contexts: 0, oscillators: 0, closed: 0, resumed: 0 };
+    const log = {
+      contexts: 0,
+      oscillators: 0,
+      closed: 0,
+      resumed: 0,
+      tones: [] as { type: string; freq: number }[],
+      ramps: [] as number[],
+    };
     const param = () => ({
       value: 0,
-      setValueAtTime() {},
-      linearRampToValueAtTime() {},
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      setValueAtTime(_value?: number) {},
+      linearRampToValueAtTime(value: number) {
+        log.ramps.push(value);
+      },
       exponentialRampToValueAtTime() {},
       cancelScheduledValues() {},
     });
@@ -35,7 +45,16 @@ export const installFakeAudio = (page: Page) =>
       createGain = () => node({ gain: param() });
       createOscillator = () => {
         log.oscillators++;
-        return node({ frequency: param(), detune: param(), type: 'sine' });
+        const osc: Record<string, unknown> = { type: 'sine' };
+        const frequency = param();
+        let first = true;
+        frequency.setValueAtTime = (value: number) => {
+          if (first) log.tones.push({ type: String(osc.type), freq: value });
+          first = false;
+        };
+        const self = node({ frequency, detune: param() });
+        Object.defineProperty(self, 'type', { get: () => osc.type, set: (value: string) => (osc.type = value) });
+        return self;
       };
       createBiquadFilter = () => node({ frequency: param(), Q: param(), type: 'lowpass' });
       createBufferSource = () => node({ buffer: null });
@@ -161,4 +180,81 @@ test.describe('with a real audio context', () => {
       .toBe('closed');
     expect(errors).toEqual([]);
   });
+});
+
+test.describe('the effects of the scene', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  const tones = (page: Page) =>
+    page.evaluate(
+      () => (window as unknown as { audioLog: { tones: { type: string; freq: number }[] } }).audioLog.tones
+    );
+  const ramps = (page: Page) =>
+    page.evaluate(() => (window as unknown as { audioLog: { ramps: number[] } }).audioLog.ramps);
+
+  const openAndWait = async (page: Page) => {
+    await installFakeAudio(page);
+    await openScene(page);
+    await expect.poll(async () => (await audioLog(page)).oscillators, { timeout: 5000 }).toBeGreaterThan(4);
+  };
+
+  test('opening plays the boom of the whoosh: a very low sine', async ({ page }) => {
+    await openAndWait(page);
+    expect((await tones(page)).some(tone => tone.type === 'sine' && tone.freq > 60 && tone.freq < 90)).toBe(true);
+  });
+
+  test('a mouse over a pill ticks: the blue one higher than the red one', async ({ page }) => {
+    await openAndWait(page);
+    const before = (await tones(page)).length;
+    await page.getByRole('button', { name: 'Blue pill' }).hover();
+    await expect.poll(async () => (await tones(page)).some(tone => Math.abs(tone.freq - 659.26) < 1)).toBe(true);
+    await page.waitForTimeout(250);
+    await page.getByRole('button', { name: 'Red pill' }).hover();
+    await expect.poll(async () => (await tones(page)).some(tone => Math.abs(tone.freq - 440) < 1)).toBe(true);
+    expect((await tones(page)).length).toBeGreaterThan(before);
+  });
+
+  test('the keyboard focus ticks too', async ({ page }) => {
+    await openAndWait(page);
+    await page.keyboard.press('Tab');
+    await expect
+      .poll(async () =>
+        (await tones(page)).some(tone => Math.abs(tone.freq - 659.26) < 1 || Math.abs(tone.freq - 440) < 1)
+      )
+      .toBe(true);
+  });
+
+  test('the blue pill plays a falling chord and the music goes quiet', async ({ page }) => {
+    await openAndWait(page);
+    await page.getByRole('button', { name: 'Blue pill' }).click();
+    // E4, B3 and G3.
+    await expect
+      .poll(async () => {
+        const list = await tones(page);
+        return [329.63, 246.94, 196].every(freq => list.some(tone => Math.abs(tone.freq - freq) < 1));
+      })
+      .toBe(true);
+    expect(await ramps(page)).toContain(0);
+  });
+
+  test('the red pill plays a riser and then three glitches', async ({ page }) => {
+    await openAndWait(page);
+    await page.getByRole('button', { name: 'Red pill' }).click();
+    await expect
+      .poll(async () => (await tones(page)).some(tone => tone.type === 'sawtooth' && tone.freq === 80))
+      .toBe(true);
+    // The glitches are put on the audio clock ahead: they are made at once and start at 3.1 s.
+    await expect.poll(async () => (await tones(page)).filter(tone => tone.type === 'square').length).toBe(3);
+  });
+});
+
+test('with reduced motion the effects stay silent too', async ({ browser }) => {
+  const context = await browser.newContext({ reducedMotion: 'reduce' });
+  const page = await context.newPage();
+  await installFakeAudio(page);
+  await openScene(page);
+  await page.getByRole('button', { name: 'Blue pill' }).hover();
+  await page.waitForTimeout(400);
+  expect((await audioLog(page)).oscillators).toBe(0);
+  await context.close();
 });

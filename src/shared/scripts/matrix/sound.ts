@@ -24,6 +24,8 @@ export interface Sound {
   start: (light: boolean) => void;
   /** Fades out over `seconds` and then closes the context. */
   stop: (seconds: number) => void;
+  /** Moves the volume of everything to `ratio` of the normal level over `seconds`, after `delay` seconds. */
+  ramp: (ratio: number, seconds: number, delay?: number) => void;
   /** Moves the music to the mood of another theme. */
   setTheme: (light: boolean) => void;
   readonly playing: boolean;
@@ -244,6 +246,17 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
       master.gain.linearRampToValueAtTime(0, now + seconds);
       clearTimeout(closing);
       closing = setTimeout(release, seconds * 1000 + 100);
+    },
+
+    ramp(ratio, seconds, delay = 0) {
+      if (!ctx || !master) return;
+      const now = ctx.currentTime;
+      // A first ramp starts from where the volume is; one that follows another continues after its end.
+      if (delay === 0) {
+        master.gain.cancelScheduledValues(now);
+        master.gain.setValueAtTime(master.gain.value, now);
+      }
+      master.gain.linearRampToValueAtTime(level() * ratio, now + delay + seconds);
     },
 
     setTheme(light) {
