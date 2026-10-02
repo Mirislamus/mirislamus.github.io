@@ -69,8 +69,8 @@ test.describe('motion', () => {
     const stages = panel(page, 'store').locator('ol li');
     const first = () => stages.first().evaluate(item => Number(getComputedStyle(item).opacity));
     const last = () => stages.last().evaluate(item => Number(getComputedStyle(item).opacity));
-    await expect.poll(first, { timeout: 2000 }).toBe(1);
-    await expect.poll(last, { timeout: 2000 }).toBe(1);
+    await expect.poll(first, { timeout: 5000 }).toBe(1);
+    await expect.poll(last, { timeout: 5000 }).toBe(1);
   });
 });
 

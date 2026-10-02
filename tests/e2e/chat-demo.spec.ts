@@ -33,7 +33,7 @@ test.describe('when motion is allowed', () => {
     await expect.poll(async () => (await opacities(page))[0], { timeout: 3000 }).toBeGreaterThan(0.5);
     expect((await opacities(page))[4]).toBe(0);
 
-    await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 10000 });
+    await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 20000 });
     expect(await opacities(page)).toEqual([1, 1, 1, 1, 1]);
 
     // Back and forth: it does not play again.
@@ -52,7 +52,7 @@ test.describe('when motion is allowed', () => {
         .evaluate(card => card.getBoundingClientRect().height);
     const before = await height();
     await page.evaluate(y => scrollTo(0, y - 100), top);
-    await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 10000 });
+    await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 20000 });
     expect(await height()).toBe(before);
   });
 });

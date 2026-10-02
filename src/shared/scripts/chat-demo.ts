@@ -7,10 +7,10 @@ import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 //
 // Everything is Web Animations. Without this chunk (no JS, reduced motion, a deep link, pause) all the
 // messages are simply there: the natural styles are the final state, and the place is reserved from the start.
-const TYPING = 700; // ms of "typing…" before a message
-const STEP = 1250; // ms between the starts of two messages
-const SCROLL = 350; // ms the list takes to move up for a new message
-const WORD = 45; // ms between the words of a message
+const TYPING = 1200; // ms of "typing…" before a message
+const STEP = 2000; // ms between the starts of two messages
+const SCROLL = 550; // ms the list takes to move up for a new message
+const WORD = 80; // ms between the words of a message
 
 const token = (name: string, fallback: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
@@ -24,7 +24,7 @@ export const initChatDemo = (root: HTMLElement) => {
 
   const easeOut = token('--ease-out', 'cubic-bezier(0.16, 1, 0.3, 1)');
   const spring = token('--ease-spring', 'cubic-bezier(0.34, 1.56, 0.64, 1)');
-  const pop = cssDuration('--dur-slow', 400) + 100;
+  const pop = cssDuration('--dur-slow', 400) + 300;
   const animations: Animation[] = [];
 
   const animate = (element: Element | null, keyframes: Keyframe[], options: KeyframeAnimationOptions) => {
@@ -70,9 +70,9 @@ export const initChatDemo = (root: HTMLElement) => {
         dot,
         [{ transform: 'translateY(0)' }, { transform: 'translateY(-4px)' }, { transform: 'translateY(0)' }],
         {
-          duration: 500,
-          delay: start + SCROLL / 2 + k * 110,
-          iterations: 1.4,
+          duration: 700,
+          delay: start + SCROLL / 2 + k * 150,
+          iterations: 1.5,
           easing: 'ease-in-out',
         }
       )
@@ -96,7 +96,7 @@ export const initChatDemo = (root: HTMLElement) => {
           { opacity: 0, transform: 'translateY(5px)' },
           { opacity: 1, transform: 'translateY(0)' },
         ],
-        { duration: 260, delay: shown + 120 + k * WORD, easing: easeOut }
+        { duration: 320, delay: shown + 160 + k * WORD, easing: easeOut }
       )
     );
 
@@ -107,7 +107,7 @@ export const initChatDemo = (root: HTMLElement) => {
         { opacity: 0, transform: 'scale(0.5)' },
         { opacity: 1, transform: 'scale(1)' },
       ],
-      { duration: 300, delay: shown + 1000, easing: spring }
+      { duration: 400, delay: shown + 1400, easing: spring }
     );
 
     // A reaction splashes.
@@ -118,7 +118,7 @@ export const initChatDemo = (root: HTMLElement) => {
         { opacity: 1, transform: 'scale(1.35)', offset: 0.6 },
         { opacity: 1, transform: 'scale(1)' },
       ],
-      { duration: 500, delay: shown + 700, easing: easeOut }
+      { duration: 600, delay: shown + 1000, easing: easeOut }
     );
   });
 

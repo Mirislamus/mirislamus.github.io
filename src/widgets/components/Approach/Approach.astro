@@ -1,5 +1,8 @@
 ---
 import Copy from '@lucide/astro/icons/copy';
+import LayoutTemplate from '@lucide/astro/icons/layout-template';
+import Server from '@lucide/astro/icons/server';
+import ShoppingCart from '@lucide/astro/icons/shopping-cart';
 import { info } from '@data/global';
 import type { SiteData } from '@data/site';
 import Button from '@shared/ui/Button/Button.astro';
@@ -15,6 +18,7 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const typeIcons = { landing: LayoutTemplate, store: ShoppingCart, service: Server };
 const chat = data.cooperation.chat;
 // The conversation: who writes what and when (the times are the same in every language).
 const messages = [
@@ -154,7 +158,13 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
                   class="visually-hidden"
                   checked={index === 0}
                 />
-                <label for={`type-${type.id}`}>{type.label}</label>
+                <label for={`type-${type.id}`}>
+                  {(() => {
+                    const Icon = typeIcons[type.id];
+                    return <Icon size={22} aria-hidden="true" />;
+                  })()}
+                  {type.label}
+                </label>
               </>
             ))}
           </div>
@@ -165,7 +175,7 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
                 <ul class={s.stack}>
                   {type.stack.map((name, index) => (
                     <li style={`--k: ${index}`}>
-                      <Tag>{name}</Tag>
+                      <Tag class={s.chip}>{name}</Tag>
                     </li>
                   ))}
                 </ul>
@@ -280,10 +290,8 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
                 spellcheck="false"
                 maxlength="64"
               />
-              <Button type="submit" size="sm">
-                {secret.form.submit}
-              </Button>
-              <Button href={inviteHref} size="sm" variant="outline">
+              <Button type="submit">{secret.form.submit}</Button>
+              <Button href={inviteHref} variant="outline">
                 {secret.invite.button}
               </Button>
             </div>

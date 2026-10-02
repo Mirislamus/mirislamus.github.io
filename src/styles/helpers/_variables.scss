@@ -44,6 +44,8 @@
     --dur-intro: 800ms;
     --dur-ripple: 600ms;
     --dur-glitch: 450ms;
+    --dur-line: 1200ms; // a line drawn between the steps of a card
+    --stagger-slow: 140ms;
     --stagger: 60ms;
     --intro-step: 100ms; // unit of the Hero intro choreography
 
@@ -131,6 +133,8 @@
       --dur-intro: 0ms;
       --dur-ripple: 0ms;
       --dur-glitch: 0ms;
+      --dur-line: 0ms;
+      --stagger-slow: 0ms;
       --stagger: 0ms;
       --intro-step: 0ms;
     }
