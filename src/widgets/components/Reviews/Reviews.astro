@@ -36,7 +36,10 @@ const slideLabel = (index: number) =>
               aria-roledescription={a11y.slide}
               aria-label={slideLabel(index)}
             >
-              <article class={s.review}>
+              <article class={s.review} style={`--k: ${index % 3}`}>
+                <span class={s.quote} data-quote aria-hidden="true">
+                  “
+                </span>
                 <p>{review.text}</p>
                 <cite class="text-xl bold">{review.author}</cite>
               </article>
@@ -48,3 +51,19 @@ const slideLabel = (index: number) =>
     </Carousel>
   </div>
 </section>
+
+<script>
+  // The big quotation mark of the first card that is seen "decrypts" once: a separate, tiny chunk, loaded in advance.
+  const section = document.querySelector<HTMLElement>('#reviews');
+
+  if (section) {
+    new IntersectionObserver(
+      ([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        void import('@shared/scripts/quote-decode').then(({ initQuoteDecode }) => initQuoteDecode(section));
+      },
+      { rootMargin: '400px' }
+    ).observe(section);
+  }
+</script>

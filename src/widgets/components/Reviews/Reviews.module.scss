@@ -30,6 +30,8 @@
 }
 
 .review {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -40,6 +42,7 @@
   border-radius: var(--radius-24);
   line-height: 1.5;
   p {
+    padding-right: 36px; // clear of the quotation mark in the corner
     color: var(--text-muted);
   }
   cite {
@@ -90,5 +93,46 @@
     &[aria-current='true']::after {
       scale: 1;
     }
+  }
+}
+
+// A big decorative quotation mark in the corner of a card (the glyphs of the Matrix get into it once, see quote-decode.ts).
+.quote {
+  position: absolute;
+  top: -6px;
+  right: 14px;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--accent-text) 15%, transparent);
+  user-select: none;
+  pointer-events: none;
+}
+
+.review > :not(.quote) {
+  position: relative;
+}
+
+// The cards come in one after another as the section comes into view: scroll-driven, no JavaScript. The timeline is
+// the one of the viewport (the cards themselves move sideways with the carousel), the step is --k. Without support
+// the cards are simply there.
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .viewport {
+      view-timeline: --reviews block;
+    }
+
+    .review {
+      animation: reviews-in var(--scroll-ease, linear) both;
+      animation-timeline: --reviews;
+      animation-range: entry calc(var(--k, 0) * 7%) entry calc(50% + var(--k, 0) * 7%);
+    }
+  }
+}
+
+@keyframes reviews-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
 }
