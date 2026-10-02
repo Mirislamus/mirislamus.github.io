@@ -197,3 +197,41 @@ test.describe('glyph hands in motion', () => {
       .toContain('rotateY(');
   });
 });
+
+test.describe('the scene follows the theme', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  const inkOf = (page: Page) =>
+    page.evaluate(() => {
+      const root = document.querySelector<HTMLElement>('dialog[data-pills]')!;
+      const canvas = root.querySelector<HTMLCanvasElement>('[data-pills-hands] canvas')!;
+      const { data } = canvas.getContext('2d')!.getImageData(0, 0, canvas.width, canvas.height);
+      let sum = 0;
+      let count = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        // The glyphs without the coloured capsules: grey ones (the channels are close).
+        if (data[i + 3] > 60 && Math.abs(data[i] - data[i + 2]) < 20) {
+          sum += (data[i] + data[i + 1] + data[i + 2]) / 3;
+          count++;
+        }
+      }
+      return { brightness: count ? sum / count : -1, background: getComputedStyle(root).backgroundColor };
+    });
+
+  test('on a light page: a light scene with dark hands', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await openScene(page);
+    const { brightness, background } = await inkOf(page);
+    expect(background).toBe('rgb(255, 255, 255)');
+    expect(brightness).toBeGreaterThanOrEqual(0);
+    expect(brightness).toBeLessThan(90);
+  });
+
+  test('on a dark page: a dark scene with light hands', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await openScene(page);
+    const { brightness, background } = await inkOf(page);
+    expect(background).not.toBe('rgb(255, 255, 255)');
+    expect(brightness).toBeGreaterThan(160);
+  });
+});

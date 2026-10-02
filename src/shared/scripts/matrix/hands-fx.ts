@@ -1,4 +1,5 @@
 import handsJson from '@data/matrix/hands.json';
+import { parseColor, type Rgb } from './accent';
 import { GLYPHS, createRng } from './glyphs';
 import { handsGap } from './hands-layout';
 import { getMotion } from './motion';
@@ -9,9 +10,11 @@ import { getMotion } from './motion';
 //   - when the scene opens the hands assemble out of falling glyphs, like the wordmark in the footer;
 //   - now and then a single glyph flickers;
 //   - the whole scene leans a little after the cursor (a mouse only).
+// The hands take the colour of the text of the page, so on a light page they are dark on white.
 // With reduced motion or pause the hands are a still picture: no assembly, no flicker, no lean.
 const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
 const ALPHA = [0, 0.32, 0.55, 0.78, 1];
+const ALPHA_ON_LIGHT = [0, 0.42, 0.66, 0.86, 1]; // dark glyphs on white need a little more
 const PILL = { blue: [62, 123, 250], red: [229, 72, 77] } as const;
 const FONT = 'ui-monospace, Consolas, monospace';
 
@@ -45,7 +48,9 @@ const hash = (x: number, y: number, salt: number) => {
   return value - Math.floor(value);
 };
 
-const lighter = (rgb: readonly number[]) => rgb.map(value => Math.round(value + (255 - value) * 0.35));
+// The pill glyphs are lighter than the capsule on a dark page and darker on a light one.
+const toward = (rgb: readonly number[], target: number, amount: number) =>
+  rgb.map(value => Math.round(value + (target - value) * amount));
 
 export const createHands = (root: HTMLElement) => {
   const canvas = root.querySelector('canvas');
@@ -56,6 +61,8 @@ export const createHands = (root: HTMLElement) => {
   const motion = getMotion();
   const base = document.createElement('canvas');
   const baseCtx = base.getContext('2d')!;
+  let ink: Rgb = [255, 255, 255]; // the colour of the hands: the text colour of the page, so they follow the theme
+  let light = false; // a light page
   let cells: Cell[] = [];
   let rows = 0;
   let cols = 0;
@@ -92,9 +99,9 @@ export const createHands = (root: HTMLElement) => {
       const color = PILL[cell.side];
       target.fillStyle = `rgba(${color.join(',')},${0.2 + cell.level * 0.07})`;
       target.fillRect(px, py, cellW, cellH);
-      target.fillStyle = `rgba(${lighter(color).join(',')},${alpha})`;
+      target.fillStyle = `rgba(${toward(color, light ? 0 : 255, light ? 0.3 : 0.35).join(',')},${alpha})`;
     } else {
-      target.fillStyle = `rgba(255,255,255,${ALPHA[cell.level] * alpha})`;
+      target.fillStyle = `rgba(${ink.join(',')},${(light ? ALPHA_ON_LIGHT : ALPHA)[cell.level] * alpha})`;
     }
     target.fillText(glyph, px + cellW / 2, py + cellH / 2);
   };
@@ -120,7 +127,15 @@ export const createHands = (root: HTMLElement) => {
     ctx.restore();
   };
 
+  const readTheme = () => {
+    const style = getComputedStyle(root);
+    ink = parseColor(style.getPropertyValue('--text')) ?? [255, 255, 255];
+    const background = parseColor(style.getPropertyValue('--background')) ?? [0, 0, 0];
+    light = (background[0] + background[1] + background[2]) / 3 > 128;
+  };
+
   const layout = () => {
+    readTheme();
     const rect = canvas.getBoundingClientRect();
     if (!rect.width) return false;
     const grid = (rect.width < 520 ? handsJson.mobile : handsJson.desktop) as Grid;
@@ -203,6 +218,13 @@ export const createHands = (root: HTMLElement) => {
       flickers = [];
       if (motion.allowed) assembleStart = performance.now();
       else present();
+    },
+    // The theme was switched while the scene is open: the same hands in the colours of the new theme.
+    retheme() {
+      if (cells.length === 0) return;
+      readTheme();
+      drawBase();
+      if (assembleStart < 0) present();
     },
     resize() {
       const playing = assembleStart >= 0;

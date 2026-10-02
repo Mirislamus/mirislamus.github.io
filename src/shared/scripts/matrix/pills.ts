@@ -111,7 +111,10 @@ const setup = (root: HTMLDialogElement) => {
   return () => {
     reset();
     root.showModal();
-    unwatch = watchColors(colors => rain.setColors(colors));
+    unwatch = watchColors(colors => {
+      rain.setColors(colors);
+      hands?.retheme();
+    });
     run();
   };
 };
