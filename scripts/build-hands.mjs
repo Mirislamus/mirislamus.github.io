@@ -50,10 +50,10 @@ const cone = (p, a, b, r1, r2) => {
 // Fingers: base x, length, fan (degrees away from the middle), and how much each joint bends towards the viewer.
 const FINGERS = [
   // x and y: where the finger starts (the knuckles lie on an arc, the middle finger is the highest)
-  { x: -3.1, y: 2.7, length: 7.6, fan: 13, bend: [16, 30, 24] }, // little finger
-  { x: -1.05, y: 3.5, length: 9.3, fan: 5, bend: [14, 28, 22] }, // ring
-  { x: 1.0, y: 3.8, length: 10.2, fan: -1, bend: [12, 26, 20] }, // middle
-  { x: 3.0, y: 3.6, length: 9.2, fan: -9, bend: [10, 24, 18] }, // index, next to the thumb
+  { x: -3.1, y: 2.7, length: 6.8, fan: 13, bend: [16, 30, 24] }, // little finger
+  { x: -1.05, y: 3.5, length: 8.5, fan: 5, bend: [14, 28, 22] }, // ring
+  { x: 1.0, y: 3.8, length: 9.3, fan: -1, bend: [12, 26, 20] }, // middle
+  { x: 3.0, y: 3.6, length: 8.4, fan: -9, bend: [10, 24, 18] }, // index, next to the thumb
 ];
 const SEGMENT_SHARE = [0.44, 0.31, 0.25];
 
@@ -75,16 +75,14 @@ const chain = (base, length, fan, bends, r1, r2) => {
 };
 
 const fingers = FINGERS.flatMap(finger =>
-  chain([finger.x, finger.y, 0], finger.length, finger.fan, finger.bend, 0.92, 0.62)
+  chain([finger.x, finger.y, 0], finger.length, finger.fan, finger.bend, 0.76, 0.54)
 );
 // The thumb: three bones, starting low on the palm, with the muscle at its base (the thenar) in handDistance.
 const thumb = [
-  { from: [2.9, -4.2, 0.5], to: [5.2, -2.3, 1.0], r1: 1.35, r2: 1.15 },
-  { from: [5.2, -2.3, 1.0], to: [6.9, -0.9, 1.6], r1: 1.15, r2: 1.0 },
-  { from: [6.9, -0.9, 1.6], to: [7.9, 0.3, 2.0], r1: 1.0, r2: 0.82 },
+  { from: [2.9, -4.2, 0.5], to: [5.2, -2.3, 1.0], r1: 1.1, r2: 0.95 },
+  { from: [5.2, -2.3, 1.0], to: [6.9, -0.9, 1.6], r1: 0.95, r2: 0.84 },
+  { from: [6.9, -0.9, 1.6], to: [7.9, 0.3, 2.0], r1: 0.84, r2: 0.7 },
 ];
-
-const pill = { from: [-1.6, -0.4, 2.2], to: [1.6, 0.6, 2.2], r: 0.95 };
 
 // The world is the hand turned a little: the palm looks a bit towards the middle of the scene and the top leans back.
 // Palms up, held out to the viewer, like Morpheus in the film: the hand is turned so that the fingers point at the viewer
@@ -94,14 +92,17 @@ const CAMERA = rad(-52); // how far above the hands the camera is
 const YAW = rad(0);
 const ROLL = rad(17); // the hand is turned in the picture plane: the fingers point down and to the middle
 const toLocal = p => rotY(rotX(rotY(rotX(rotZ(p, ROLL), CAMERA), YAW), -rad(90)), -rad(180));
+const pillAxis = norm(toLocal([1, 0, 0]));
+const pillCentre = [0, -0.6, 1.9];
+const pill = { from: sub(pillCentre, mul(pillAxis, 1.25)), to: add(pillCentre, mul(pillAxis, 1.25)), r: 0.72 };
 
 const handDistance = q => {
   // The palm is narrower at the wrist than at the knuckles.
   const taper = 0.8 + 0.2 * Math.min(1, Math.max(0, (q[1] + 5) / 9));
-  const palm = roundBox([q[0] / taper, q[1], q[2]], [0, -1.0, 0], [3.5, 4.0, 0.4], 0.9) * taper;
-  const thenar = cone(q, [2.7, -1.2, 0.7], [2.2, -4.4, 0.6], 1.6, 1.3);
+  const palm = roundBox([q[0] / taper, q[1], q[2]], [0, -1.0, 0], [3.05, 4.0, 0.35], 0.8) * taper;
+  const thenar = cone(q, [2.4, -1.2, 0.6], [2.0, -4.4, 0.5], 1.3, 1.1);
   const wristP = [q[0], q[1], q[2] * 1.45];
-  const wrist = cone(wristP, [0, -5.5, 0], [0, -17, -1.2], 2.9, 2.5);
+  const wrist = cone(wristP, [0, -5.5, 0], [0, -17, -1.2], 2.4, 2.1);
   let fingerDistance = Infinity;
   for (const segment of fingers)
     fingerDistance = Math.min(fingerDistance, cone(q, segment.from, segment.to, segment.r1, segment.r2));
