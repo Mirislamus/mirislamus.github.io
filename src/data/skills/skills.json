@@ -5,7 +5,7 @@
       "core": "Core",
       "data": "Data & Quality",
       "ui": "UI & Motion",
-      "tooling": "Tooling"
+      "tooling": "Tooling & AI"
     }
   },
   "ru": {
@@ -14,7 +14,7 @@
       "core": "Основа",
       "data": "Данные и качество",
       "ui": "Интерфейсы и анимации",
-      "tooling": "Инструменты"
+      "tooling": "Инструменты и AI"
     }
   },
   "uz": {
@@ -23,7 +23,7 @@
       "core": "Asosiy",
       "data": "Ma’lumotlar va sifat",
       "ui": "Interfeys va animatsiya",
-      "tooling": "Vositalar"
+      "tooling": "Vositalar va AI"
     }
   }
 }

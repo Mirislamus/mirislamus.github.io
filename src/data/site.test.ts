@@ -10,7 +10,7 @@ describe('getSiteData', () => {
     expect(site.career.items).toHaveLength(5);
     expect(site.reviews.items).toHaveLength(8);
     expect(site.skills.groups.map(group => group.id)).toEqual(['core', 'data', 'ui', 'tooling']);
-    expect(site.skills.groups.flatMap(group => group.items)).toHaveLength(26);
+    expect(site.skills.groups.flatMap(group => group.items)).toHaveLength(32);
     expect(site.menu.length).toBeGreaterThan(0);
   });
 
@@ -21,6 +21,15 @@ describe('getSiteData', () => {
       for (const type of types) {
         expect(type.stack.length).toBeGreaterThan(0);
         expect(type.stages).toHaveLength(4);
+      }
+    }
+  });
+
+  it('has exactly eight skills in every group and an icon or a monogram for each', () => {
+    for (const locale of LOCALES) {
+      for (const group of getSiteData(locale).skills.groups) {
+        expect(group.items).toHaveLength(8);
+        for (const skill of group.items) expect(skill.icon === null || skill.icon.length > 0).toBe(true);
       }
     }
   });

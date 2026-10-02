@@ -1,6 +1,7 @@
 ---
 import { getSiteData } from '@data/site';
 import { getLocale } from '@i18n/utils';
+import { getSkillIcon, monogramOf } from '@utils/skill-icons';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import s from './Skills.module.scss';
 
@@ -28,45 +29,47 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
             class={s.grid}
             style={`--cols: ${columns(group.items.length, 5)}; --cols-sm: ${columns(group.items.length, 3)}`}
           >
-            {group.items.map(skill => (
-              <a aria-label={skill.name} href={skill.link} class={s.skill} target="_blank" rel="noreferrer noopener">
-                {skill.hasTheme ? (
-                  <>
-                    <img
-                      class={s.lightIcon}
-                      src={`/images/skills/${skill.id}-light.svg`}
-                      width="72"
-                      height="72"
-                      alt=""
-                      aria-hidden="true"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <img
-                      class={s.darkIcon}
-                      src={`/images/skills/${skill.id}-dark.svg`}
-                      width="72"
-                      height="72"
-                      alt=""
-                      aria-hidden="true"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </>
-                ) : (
-                  <img
-                    src={`/images/skills/${skill.id}.${skill.format ?? 'svg'}`}
-                    width="72"
-                    height="72"
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )}
-                <span>{skill.name}</span>
-              </a>
-            ))}
+            {group.items.map(skill => {
+              const icon = skill.icon ? getSkillIcon(skill.icon) : null;
+              // At rest the icon is the colour of the text; under the cursor it takes the colour of the brand (the accent
+              // when the brand colour would be lost on the page).
+              const brand = icon
+                ? `--brand: ${icon.brandLight ?? 'var(--accent-text)'}; --brand-dark: ${icon.brandDark ?? 'var(--accent-text)'}`
+                : undefined;
+
+              return (
+                <a
+                  aria-label={skill.name}
+                  href={skill.link}
+                  class={s.skill}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  style={brand}
+                >
+                  {icon ? (
+                    <svg class={s.icon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d={icon.path} />
+                    </svg>
+                  ) : (
+                    <svg class:list={[s.icon, s.monogram]} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect x="1.5" y="1.5" width="21" height="21" rx="5.5" stroke="currentColor" stroke-width="1.6" />
+                      <text
+                        x="12"
+                        y="12.2"
+                        text-anchor="middle"
+                        dominant-baseline="central"
+                        font-size="9.5"
+                        font-weight="700"
+                        fill="currentColor"
+                      >
+                        {monogramOf(skill.name)}
+                      </text>
+                    </svg>
+                  )}
+                  <span>{skill.name}</span>
+                </a>
+              );
+            })}
           </div>
         </section>
       ))}

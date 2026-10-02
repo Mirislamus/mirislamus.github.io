@@ -537,11 +537,19 @@
 | A-05 | Карточка 5: «Совершенно секретно»                  | ✅     | 80e495d |
 | A-06 | Руки в пасхалке: объёмные, из глифов               | ✅     | 6ee1b5d |
 | A-07 | Проекты: без фильтра, шторка, расшифровка названия | ✅     | 9b4bd8d |
-| A-08 | Skills: состав по 8, иконки Simple Icons           | ⬜     |         |
+| A-08 | Skills: состав по 8, иконки Simple Icons           | ✅     | HASH    |
 | A-09 | Skills: подсказка «где использую»                  | ⬜     |         |
 | A-10 | Reviews: кавычка из глифов и каскад                | ⬜     |         |
 | A-11 | Footer: магнитные кнопки                           | ⬜     |         |
 | A-12 | Header: глитч логотипа                             | ⬜     |         |
+
+**A-08** (✅ HASH)
+
+- [x] Состав 32 навыка по 8 в четырёх группах (убраны Redux и Gatsby; новые Zod, Axios, React Hook Form, Playwright, Lottie, Embla Carousel, Claude Code, Codex); схема/сборка проверяют ровно 8 в группе; названия групп EN/RU/UZ обновлены («Tooling & AI», «Инструменты и AI», «Vositalar va AI»), UZ — на вычитку
+- [x] Иконки Simple Icons: пакет `simple-icons` **16.33.0** (devDependencies, точная версия) встраивается инлайн-SVG при сборке (`src/utils/skill-icons.ts`); в покое цвет текста, при наведении/фокусе цвет марки, а если контраст с фоном темы < 3:1 — `--accent-text`; Zustand, Playwright, Motion, Embla Carousel и Codex нет в Simple Icons — монограмма в той же сетке 24×24 (`icon: null`)
+- [x] Удалены `public/images/skills/*` и поля `hasTheme`/`format`; README обновлён; JSON-LD и PDF берут состав автоматически
+- [x] Тесты: 32 навыка, 8 в группе, ни одного запроса к `/images/skills/`, монограммы, цвет марки при наведении, замена цвета; юнит-тесты `skill-icons`
+- [x] Пакеты обновлены до последних версий (astro 7.3.5, prettier 3.9.9, prettier-plugin-astro 1.1.0, sass 1.105.1, stylelint 17.16.0, vitest 5.0.3, knip 6.39.0 и др.), все проверки зелёные
 
 **A-06c** (✅ c51869d) — сцена с таблетками следует теме страницы (по просьбе владельца, 2 октября 2026)
 

@@ -29,7 +29,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "@lucide/astro": "^1.49.0",
-    "astro": "7.3.3",
+    "astro": "7.3.5",
     "embla-carousel": "^8.6.0"
   },
   "devDependencies": {
@@ -41,21 +41,22 @@
     "eslint": "^10.11.0",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "globals": "^17.12.0",
-    "knip": "^6.38.0",
+    "globals": "^17.13.0",
+    "knip": "^6.39.0",
     "lighthouse": "13.5.0",
     "postcss": "^8.5.28",
     "postcss-html": "^2.0.0",
-    "postcss-preset-env": "^11.5.3",
-    "prettier": "3.9.8",
-    "prettier-plugin-astro": "1.0.1",
-    "sass": "^1.104.1",
+    "postcss-preset-env": "^11.5.5",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "sass": "^1.105.1",
     "schema-dts": "^2.0.0",
-    "sharp": "^0.35.4",
-    "stylelint": "^17.15.0",
+    "sharp": "^0.35.5",
+    "simple-icons": "16.33.0",
+    "stylelint": "^17.16.0",
     "stylelint-config-standard-scss": "^17.0.0",
-    "typescript-eslint": "^8.70.0",
-    "vitest": "^5.0.2"
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
   },
   "browserslist": [
     "> 0.5%",

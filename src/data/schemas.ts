@@ -158,8 +158,8 @@ export const skillBaseSchema = z.strictObject({
   name: text,
   link: url,
   group: z.enum(SKILL_GROUPS),
-  hasTheme: z.boolean().optional(),
-  format: z.enum(['svg', 'webp']).optional(),
+  // The slug of the icon in Simple Icons, or null when the brand is not there: then the tile gets a monogram.
+  icon: text.nullable(),
 });
 
 export const skillsSchema = z.strictObject({

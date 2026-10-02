@@ -42,7 +42,7 @@ describe('data schemas', () => {
   });
 
   it('requires a valid skill group', () => {
-    const skill = { id: 'react', name: 'React', link: 'https://react.dev', group: 'core' };
+    const skill = { id: 'react', name: 'React', link: 'https://react.dev', group: 'core', icon: 'react' };
     expect(skillBaseSchema.safeParse(skill).success).toBe(true);
     expect(skillBaseSchema.safeParse({ ...skill, group: 'other' }).success).toBe(false);
     expect(skillBaseSchema.safeParse({ ...skill, group: undefined }).success).toBe(false);

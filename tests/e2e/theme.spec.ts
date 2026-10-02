@@ -37,16 +37,27 @@ test.describe('without JavaScript', () => {
     expect(await background(page)).toBe(LIGHT);
   });
 
-  test('shows only the icons of the active theme in Skills', async ({ page }) => {
+  test('the icons in Skills take the text colour of the active theme', async ({ page }) => {
+    const iconColor = () =>
+      page
+        .locator('#skills a svg')
+        .first()
+        .evaluate(svg => getComputedStyle(svg).color);
+
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('/');
-    const visible = await page
-      .locator('#skills img[src*="next-"]')
-      .evaluateAll(images =>
-        images.filter(image => image.getClientRects().length > 0).map(image => image.getAttribute('src'))
-      );
-    expect(visible).toHaveLength(1);
-    expect(visible[0]).toContain('next-dark');
+    const dark = await iconColor();
+    await page.emulateMedia({ colorScheme: 'light' });
+    const light = await iconColor();
+
+    expect(dark).not.toBe(light);
+    // Light icons on a dark page, dark icons on a light one.
+    const brightness = (value: string) =>
+      value
+        .match(/[0-9]+/g)!
+        .slice(0, 3)
+        .reduce((sum, part) => sum + Number(part), 0);
+    expect(brightness(dark)).toBeGreaterThan(brightness(light));
   });
 });
 

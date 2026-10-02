@@ -3,161 +3,224 @@
     "id": "typescript",
     "name": "TypeScript",
     "link": "https://typescriptlang.org",
-    "group": "core"
+    "group": "core",
+    "icon": "typescript"
   },
   {
     "id": "javascript",
     "name": "JavaScript",
     "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    "group": "core"
+    "group": "core",
+    "icon": "javascript"
   },
   {
     "id": "html",
     "name": "HTML",
     "link": "https://developer.mozilla.org/en-US/docs/Web/HTML",
-    "group": "core"
+    "group": "core",
+    "icon": "html5"
   },
   {
     "id": "css",
     "name": "CSS",
     "link": "https://developer.mozilla.org/en-US/docs/Web/CSS",
-    "group": "core"
+    "group": "core",
+    "icon": "css"
   },
   {
     "id": "react",
     "name": "React",
     "link": "https://react.dev",
-    "group": "core"
+    "group": "core",
+    "icon": "react"
   },
   {
     "id": "next",
     "name": "Next.js",
     "link": "https://nextjs.org",
     "group": "core",
-    "hasTheme": true
+    "icon": "nextdotjs"
   },
   {
     "id": "astro",
     "name": "Astro",
     "link": "https://astro.build",
     "group": "core",
-    "hasTheme": true
-  },
-  {
-    "id": "gatsby",
-    "name": "Gatsby",
-    "link": "https://www.gatsbyjs.com",
-    "group": "core"
+    "icon": "astro"
   },
   {
     "id": "reactrouter",
     "name": "React Router",
     "link": "https://reactrouter.com",
     "group": "core",
-    "hasTheme": true
+    "icon": "reactrouter"
   },
   {
     "id": "tanstackquery",
     "name": "TanStack Query",
     "link": "https://tanstack.com/query/latest",
-    "group": "data"
-  },
-  {
-    "id": "redux",
-    "name": "Redux",
-    "link": "https://redux-toolkit.js.org",
-    "group": "data"
+    "group": "data",
+    "icon": "reactquery"
   },
   {
     "id": "zustand",
     "name": "Zustand",
     "link": "https://zustand-demo.pmnd.rs",
     "group": "data",
-    "format": "webp"
+    "icon": null
+  },
+  {
+    "id": "zod",
+    "name": "Zod",
+    "link": "https://zod.dev",
+    "group": "data",
+    "icon": "zod"
+  },
+  {
+    "id": "axios",
+    "name": "Axios",
+    "link": "https://axios-http.com",
+    "group": "data",
+    "icon": "axios"
+  },
+  {
+    "id": "reacthookform",
+    "name": "React Hook Form",
+    "link": "https://react-hook-form.com",
+    "group": "data",
+    "icon": "reacthookform"
   },
   {
     "id": "vitest",
     "name": "Vitest",
     "link": "https://vitest.dev",
-    "group": "data"
+    "group": "data",
+    "icon": "vitest"
+  },
+  {
+    "id": "playwright",
+    "name": "Playwright",
+    "link": "https://playwright.dev",
+    "group": "data",
+    "icon": null
   },
   {
     "id": "storybook",
     "name": "Storybook",
     "link": "https://storybook.js.org",
-    "group": "data"
+    "group": "data",
+    "icon": "storybook"
   },
   {
     "id": "sass",
     "name": "Sass",
     "link": "https://sass-lang.com",
-    "group": "ui"
+    "group": "ui",
+    "icon": "sass"
   },
   {
     "id": "tailwindcss",
     "name": "Tailwind CSS",
     "link": "https://tailwindcss.com",
-    "group": "ui"
+    "group": "ui",
+    "icon": "tailwindcss"
   },
   {
     "id": "chakra-ui",
     "name": "Chakra UI",
     "link": "https://chakra-ui.com",
-    "group": "ui"
+    "group": "ui",
+    "icon": "chakraui"
   },
   {
     "id": "gsap",
     "name": "GSAP",
     "link": "https://gsap.com",
-    "group": "ui"
+    "group": "ui",
+    "icon": "gsap"
   },
   {
     "id": "motion",
     "name": "Motion",
     "link": "https://motion.dev",
-    "group": "ui"
+    "group": "ui",
+    "icon": null
+  },
+  {
+    "id": "lottie",
+    "name": "Lottie",
+    "link": "https://lottiefiles.com",
+    "group": "ui",
+    "icon": "lottiefiles"
+  },
+  {
+    "id": "embla",
+    "name": "Embla Carousel",
+    "link": "https://www.embla-carousel.com",
+    "group": "ui",
+    "icon": null
   },
   {
     "id": "figma",
     "name": "Figma",
     "link": "https://figma.com",
-    "group": "ui"
+    "group": "ui",
+    "icon": "figma"
   },
   {
     "id": "vite",
     "name": "Vite",
     "link": "https://vitejs.dev",
-    "group": "tooling"
+    "group": "tooling",
+    "icon": "vite"
   },
   {
     "id": "bun",
     "name": "Bun",
     "link": "https://bun.sh",
-    "group": "tooling"
+    "group": "tooling",
+    "icon": "bun"
   },
   {
     "id": "git",
     "name": "Git",
     "link": "https://github.com/git/git",
-    "group": "tooling"
+    "group": "tooling",
+    "icon": "git"
   },
   {
     "id": "eslint",
     "name": "ESLint",
     "link": "https://eslint.org",
-    "group": "tooling"
+    "group": "tooling",
+    "icon": "eslint"
   },
   {
     "id": "prettier",
     "name": "Prettier",
     "link": "https://prettier.io",
-    "group": "tooling"
+    "group": "tooling",
+    "icon": "prettier"
   },
   {
     "id": "pwa",
     "name": "PWA",
     "link": "https://web.dev/learn/pwa",
     "group": "tooling",
-    "hasTheme": true
+    "icon": "pwa"
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "link": "https://claude.com/product/claude-code",
+    "group": "tooling",
+    "icon": "claude"
+  },
+  {
+    "id": "codex",
+    "name": "Codex",
+    "link": "https://openai.com/codex",
+    "group": "tooling",
+    "icon": null
   }
 ]

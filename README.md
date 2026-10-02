@@ -4,7 +4,7 @@
 
 ## Стек
 
-- **Astro 7**, TypeScript (strict), SCSS‑модули, `@lucide/astro` (иконки), `embla-carousel` (карусели).
+- **Astro 7**, TypeScript (strict), SCSS‑модули, `@lucide/astro` (иконки интерфейса), `simple-icons` (иконки технологий, только при сборке), `embla-carousel` (карусели).
 - **Проверки:** ESLint (`jsx-a11y-strict`), Stylelint, Prettier, `astro check`, Knip, Vitest, Playwright (e2e, axe, visual).
 - **Деплой:** GitHub Pages из ветки `master` (GitHub Actions).
 
@@ -75,8 +75,7 @@ docs/                ТЗ, план фич, чеклист задач
 
 ### Добавить навык
 
-1. Иконка `public/images/skills/<id>.svg` (для тёмной/светлой темы — `<id>-light.svg` и `<id>-dark.svg` и `"hasTheme": true`).
-2. Запись в `src/data/skills/skills.base.json` с полем `group` (`core`, `data`, `ui`, `tooling`).
+Запись в `src/data/skills/skills.base.json`: `id`, `name`, `link`, `group` (`core`, `data`, `ui`, `tooling`) и `icon` — slug в [Simple Icons](https://simpleicons.org) или `null`, если марки там нет (тогда плитка получит монограмму). В каждой группе ровно 8 навыков: сборка роняется, если это не так (число меняется осознанно в `SKILLS_PER_GROUP`, `src/data/site.ts`). Иконка встраивается в страницу инлайн-SVG при сборке, файлы иконок не нужны.
 
 ### Добавить отзыв
 

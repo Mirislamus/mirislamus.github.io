@@ -52,6 +52,8 @@ import {
   technologySchema,
 } from './schemas';
 
+const SKILLS_PER_GROUP = 8;
+
 const fail = (message: string): never => {
   throw new Error(`[site data] ${message}`);
 };
@@ -101,6 +103,12 @@ const load = () => {
   const statusText = parseLocalized('status.json', statusSchema, statusJson);
 
   const skills = parseList('skills.base.json', skillBaseSchema, skillsBaseJson);
+  // A group is a block of the same size on the page: change this number on purpose, together with the data.
+  for (const group of SKILL_GROUPS) {
+    const count = skills.filter(skill => skill.group === group).length;
+    if (count !== SKILLS_PER_GROUP)
+      fail(`skills.base.json: group "${group}" has ${count} skills, expected ${SKILLS_PER_GROUP}`);
+  }
   const projectBase = parseList('projects.base.json', projectBaseSchema, projectsBaseJson);
   const careerBase = parseList('career.base.json', careerBaseSchema, careerBaseJson);
   const reviewBase = parseList('reviews.base.json', reviewBaseSchema, reviewsBaseJson);
