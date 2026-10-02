@@ -10,6 +10,8 @@
   --accent-text: #ff6433;
   --accent-contrast: var(--black);
   --accent-alpha: var(--orange-alpha);
+  --blob-from: #2f6df5;
+  --blob-to: #d93a41;
   --text-muted: #666666;
   color-scheme: light;
 }
@@ -26,6 +28,8 @@
   --accent-text: var(--green);
   --accent-contrast: var(--black);
   --accent-alpha: var(--green-alpha);
+  --blob-from: var(--pill-blue);
+  --blob-to: var(--pill-red);
   --text-muted: var(--grey-4);
   color-scheme: dark;
 }
@@ -78,6 +82,9 @@
     --orange-alpha: rgb(255 134 96 / 35%);
     --blue: #157ce1;
     --purple: #ad5aff;
+    // The pills of the easter egg (Morpheus): the same two colours paint the avatar blob and the hands.
+    --pill-blue: #3e7bfa;
+    --pill-red: #e5484d;
 
     --gradient: linear-gradient(180deg, var(--orange) 0%, var(--purple) 100%);
 

@@ -16,6 +16,9 @@ const PHOTO_SHIFT_PX = 6;
 // bottom edge of the photo would show. Below the center the edge may only move as far as this allows.
 const LOWEST_EDGE = 285;
 const PHOTO_LERP = 0.12; // per frame at 60 fps
+const SWAY = 0.6; // rad: how far the gradient turns each way (blue and red slowly trade places)
+const SWAY_SPEED = 0.35; // rad per second of the phase
+const GRADIENT_REACH = 110;
 
 export interface Liquid {
   tick: (dt: number) => void;
@@ -33,6 +36,8 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
   const photo = svg.querySelector<SVGGElement>('[data-photo]');
   if (!shape) return null;
   const staticShape = shape.dataset.shapeA ?? shape.getAttribute('d') ?? '';
+  const gradient = svg.querySelector<SVGLinearGradientElement>('#avatar-gradient');
+  const gradientAttrs = ['x1', 'y1', 'x2', 'y2'].map(name => [name, gradient?.getAttribute(name) ?? ''] as const);
 
   const offsets = new Array<number>(LIQUID_POINTS).fill(0);
   const velocities = new Array<number>(LIQUID_POINTS).fill(0);
@@ -86,6 +91,16 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
       }
       shape.setAttribute('d', blobPath(offsets, RADIUS, CENTER, CENTER));
 
+      if (gradient) {
+        const turn = SWAY * Math.sin(SWAY_SPEED * time);
+        const dx = GRADIENT_REACH * Math.cos(turn);
+        const dy = GRADIENT_REACH * Math.sin(turn);
+        gradient.setAttribute('x1', (CENTER - dx).toFixed(1));
+        gradient.setAttribute('y1', (CENTER - dy).toFixed(1));
+        gradient.setAttribute('x2', (CENTER + dx).toFixed(1));
+        gradient.setAttribute('y2', (CENTER + dy).toFixed(1));
+      }
+
       if (photo) {
         const follow = 1 - (1 - PHOTO_LERP) ** (dt * 60);
         photoX += (photoTargetX - photoX) * follow;
@@ -100,6 +115,7 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
       photoX = photoY = photoTargetX = photoTargetY = 0;
       pointer = null;
       shape.setAttribute('d', staticShape);
+      for (const [name, value] of gradientAttrs) gradient?.setAttribute(name, value);
       if (photo) photo.style.transform = '';
     },
 

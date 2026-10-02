@@ -15,7 +15,7 @@ import { getMotion } from './motion';
 const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
 const ALPHA = [0, 0.32, 0.55, 0.78, 1];
 const ALPHA_ON_LIGHT = [0, 0.42, 0.66, 0.86, 1]; // dark glyphs on white need a little more
-const PILL = { blue: [62, 123, 250], red: [229, 72, 77] } as const;
+const PILL: Record<'blue' | 'red', Rgb> = { blue: [62, 123, 250], red: [229, 72, 77] }; // until the tokens are read
 const FONT = 'ui-monospace, Consolas, monospace';
 
 const ASSEMBLE_COLUMN_DELAY = 700; // ms, by column
@@ -132,6 +132,8 @@ export const createHands = (root: HTMLElement) => {
     ink = parseColor(style.getPropertyValue('--text')) ?? [255, 255, 255];
     const background = parseColor(style.getPropertyValue('--background')) ?? [0, 0, 0];
     light = (background[0] + background[1] + background[2]) / 3 > 128;
+    PILL.blue = parseColor(style.getPropertyValue('--pill-blue')) ?? PILL.blue;
+    PILL.red = parseColor(style.getPropertyValue('--pill-red')) ?? PILL.red;
   };
 
   const layout = () => {

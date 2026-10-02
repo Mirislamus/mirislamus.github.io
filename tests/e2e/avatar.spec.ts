@@ -127,3 +127,41 @@ test('the avatar is decorative and the heading carries the name and the role', a
   await expect(page.locator('[data-avatar]')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov Frontend Engineer');
 });
+
+test.describe('the colours of the blob', () => {
+  const stops = (page: Page) =>
+    page.locator('#avatar-gradient stop').evaluateAll(all => all.map(stop => getComputedStyle(stop).stopColor));
+
+  test('are blue and red, the colours of the pills, and deeper on a light page', async ({ page }) => {
+    await page.emulateMedia({ colorScheme: 'light' });
+    await page.goto('/');
+    expect(await stops(page)).toEqual(['rgb(47, 109, 245)', 'rgb(217, 58, 65)']);
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await expect.poll(() => stops(page)).toEqual(['rgb(62, 123, 250)', 'rgb(229, 72, 77)']);
+  });
+
+  test('there is no orange and no purple left in the avatar', async ({ page }) => {
+    await page.goto('/');
+    const markup = await page.locator('[data-avatar]').evaluate(svg => svg.outerHTML);
+    expect(markup).not.toMatch(/orange|purple|ff8660|ad5aff/i);
+  });
+
+  test('the gradient sways slowly with the outline, and stands still when motion is off', async ({ browser }) => {
+    const sway = async (page: Page) => page.locator('#avatar-gradient').evaluate(node => node.getAttribute('y1'));
+
+    const moving = await browser.newContext({ reducedMotion: 'no-preference' });
+    const page = await moving.newPage();
+    await page.goto('/#about');
+    const first = await sway(page);
+    await expect.poll(async () => (await sway(page)) !== first, { timeout: 5000 }).toBe(true);
+    await moving.close();
+
+    const still = await browser.newContext({ reducedMotion: 'reduce' });
+    const calm = await still.newPage();
+    await calm.goto('/#about');
+    const before = await sway(calm);
+    await calm.waitForTimeout(600);
+    expect(await sway(calm)).toBe(before);
+    await still.close();
+  });
+});
