@@ -39,7 +39,7 @@ test('arrow keys move inside the group', async ({ page }) => {
 
 test('the card does not change its height when switching', async ({ page }) => {
   await page.goto('/');
-  const height = () => card(page).evaluate(element => element.getBoundingClientRect().height);
+  const height = () => card(page).evaluate(element => (element as HTMLElement).offsetHeight);
   const before = await height();
   for (const name of ['Store', 'Service', 'Landing']) {
     await group(page).getByText(name).click();

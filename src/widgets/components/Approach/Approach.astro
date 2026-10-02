@@ -231,7 +231,7 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
           </CopyButton>
         </div>
       </StarBorder>
-      <article class:list={[s.item, s.item_5]} data-reveal data-spotlight style="--i: 4">
+      <article class:list={[s.item, s.item_5]} data-reveal data-spotlight data-tilt style="--i: 4">
         <Spotlight />
         <secret-card class={s.secret}>
           <div class={s.intro}>
@@ -245,23 +245,45 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
                 {/* A bar decrypts on keyboard focus too; the group is named by its sentence. */}
                 {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
                 <div class={s.file} role="group" tabindex="0" aria-label={row.label} data-file>
-                  <div class={s.fileHead} aria-hidden="true">
-                    <span>{row.code}</span>
-                    <span>{row.progress}%</span>
-                  </div>
-                  <div class={s.redacted} aria-hidden="true">
-                    {row.mask.map(length => (
-                      <span class={s.word}>
-                        {Array.from({ length }, () => (
-                          <span class={s.ch} data-ch>
-                            █
+                  <div class={s.fileBody} aria-hidden="true">
+                    <div class={s.ring}>
+                      <svg viewBox="0 0 100 100" class={s.ringSvg}>
+                        <circle class={s.ringTicks} cx="50" cy="50" r="47" />
+                        <circle class={s.ringTrack} cx="50" cy="50" r="40" />
+                        <circle
+                          class={s.ringArc}
+                          cx="50"
+                          cy="50"
+                          r="40"
+                          pathLength="100"
+                          transform="rotate(-90 50 50)"
+                          style={`--p: ${row.progress / 100}`}
+                          data-ring
+                        />
+                        <g class={s.ringTip} style={`--p: ${row.progress / 100}`} data-tip>
+                          <circle cx="50" cy="10" r="4.5" />
+                        </g>
+                      </svg>
+                      <span class={s.ringValue} data-count={row.progress}>
+                        {row.progress}%
+                      </span>
+                    </div>
+                    <div class={s.fileInfo}>
+                      <span class={s.code} data-code>
+                        {row.code}
+                      </span>
+                      <div class={s.redacted} data-redacted>
+                        {row.mask.map(length => (
+                          <span class={s.word}>
+                            {Array.from({ length }, () => (
+                              <span class={s.ch} data-ch>
+                                █
+                              </span>
+                            ))}
                           </span>
                         ))}
-                      </span>
-                    ))}
-                  </div>
-                  <div class={s.meter} aria-hidden="true">
-                    <i style={`--p: ${row.progress / 100}`} data-meter />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>

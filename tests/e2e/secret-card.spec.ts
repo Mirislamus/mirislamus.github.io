@@ -4,11 +4,12 @@ const card = (page: Page) => page.locator('#approach article').nth(4);
 const files = (page: Page) => card(page).locator('[data-file]');
 const status = (page: Page) => card(page).getByRole('status');
 const stored = (page: Page) => page.evaluate(() => JSON.stringify([{ ...localStorage }, { ...sessionStorage }]));
+// How much of the ring is drawn, 0..1 (the arc is 100 long and its offset is what is not drawn yet).
 const meterScale = (page: Page, index = 0) =>
   card(page)
-    .locator('[data-meter]')
+    .locator('[data-ring]')
     .nth(index)
-    .evaluate(element => new DOMMatrix(getComputedStyle(element).transform).a);
+    .evaluate(element => 1 - parseFloat(getComputedStyle(element).strokeDashoffset) / 100);
 
 // The play lives in a chunk that loads when the card is near: bring it into view and wait for the listeners.
 const open = async (page: Page, path = '/') => {
@@ -21,12 +22,14 @@ test.describe('what is on the page', () => {
   test('the bars are only blocks: no project names or descriptions at all', async ({ page }) => {
     await page.goto('/');
     await expect(files(page)).toHaveCount(2);
-    const redacted = await card(page).locator('[data-file] > div:nth-child(2)').allTextContents();
+    const redacted = await card(page).locator('[data-redacted]').allTextContents();
     for (const text of redacted) expect(text.replace(/\s/g, '')).toMatch(/^█+$/);
 
     // Apart from the bars there is only the code name and the percent of each file.
-    const headers = await card(page).locator('[data-file] > div:first-child').allTextContents();
-    expect(headers.map(text => text.replace(/\s+/g, ' ').trim())).toEqual(['PROJECT KS 70%', 'PROJECT IE 45%']);
+    const codes = await card(page).locator('[data-code]').allTextContents();
+    const counts = await card(page).locator('[data-count]').allTextContents();
+    expect(codes.map(text => text.trim())).toEqual(['PROJECT KS', 'PROJECT IE']);
+    expect(counts.map(text => text.trim())).toEqual(['70%', '45%']);
   });
 
   test('a screen reader gets one sentence per file', async ({ page }) => {

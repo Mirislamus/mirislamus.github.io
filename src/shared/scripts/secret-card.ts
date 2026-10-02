@@ -3,7 +3,7 @@ import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
 // The "Top secret" card (A-05). The names and descriptions of the two projects are not on the page at all:
 // the black bars are only `█`, and the lengths come from the data. This chunk adds the play:
-//  - the readiness bars fill once when the card is half on screen;
+//  - the readiness rings are drawn and counted once when the card is half on screen;
 //  - a bar "decrypts" under the cursor or focus: the blocks turn into random glyphs left to right and grow
 //    over again. The glyphs never make up any text;
 //  - a code in the invite field is always refused, nothing is sent or stored anywhere.
@@ -22,32 +22,64 @@ export const initSecretCard = (root: HTMLElement) => {
   const running = new WeakSet<HTMLElement>();
   root.setAttribute('data-secret', 'ready'); // the listeners below are in place
 
-  // The readiness bars, once.
-  const meters = [...root.querySelectorAll<HTMLElement>('[data-meter]')];
-  if (meters.length > 0 && motion.allowed && window.location.hash !== '#approach') {
-    const animations = meters.map(meter => {
-      const value = Number(meter.style.getPropertyValue('--p'));
-      const animation = meter.animate([{ transform: 'scaleX(0)' }, { transform: `scaleX(${value})` }], {
-        duration: cssDuration('--dur-intro', 800),
-        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  // The readiness rings, once: each ring is drawn round, its bright head runs ahead of it and the number counts up.
+  const rings = [...root.querySelectorAll<SVGElement>('[data-ring]')];
+  if (rings.length > 0 && motion.allowed && window.location.hash !== '#approach') {
+    const duration = cssDuration('--dur-intro', 800) * 1.6;
+    const easing = 'cubic-bezier(0.16, 1, 0.3, 1)';
+    const animations: Animation[] = [];
+    const counters: { element: HTMLElement; value: number }[] = [];
+
+    for (const ring of rings) {
+      const value = Number(ring.style.getPropertyValue('--p'));
+      const holder = ring.closest('[data-file]');
+      const tip = holder?.querySelector('[data-tip]');
+      const count = holder?.querySelector<HTMLElement>('[data-count]');
+      const draw = ring.animate([{ strokeDashoffset: 100 }, { strokeDashoffset: 100 - value * 100 }], {
+        duration,
+        easing,
         fill: 'both',
       });
-      animation.pause(); // the first frame (empty) now, the fill when the card is seen
-      return animation;
-    });
+      draw.pause(); // the first frame (an empty ring) now, the drawing when the card is seen
+      animations.push(draw);
+      if (tip) {
+        const run = tip.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${value * 360}deg)` }], {
+          duration,
+          easing,
+          fill: 'both',
+        });
+        run.pause();
+        animations.push(run);
+      }
+      if (count) {
+        counters.push({ element: count, value: Number(count.dataset.count) });
+        count.textContent = '0%';
+      }
+    }
+
+    let frame = 0;
     const settle = () => {
+      cancelAnimationFrame(frame);
       for (const animation of animations) animation.cancel(); // the natural style is the final state
+      for (const { element, value } of counters) element.textContent = `${value}%`;
       observer.disconnect();
       stopMotion();
     };
     const stopMotion = onMotionChange(() => {
       if (!motion.allowed) settle();
     });
+    const count = (start: number) => {
+      const progress = Math.min(1, (performance.now() - start) / duration);
+      const eased = 1 - (1 - progress) ** 4;
+      for (const { element, value } of counters) element.textContent = `${Math.round(value * eased)}%`;
+      frame = progress < 1 ? requestAnimationFrame(() => count(start)) : 0;
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
         for (const animation of animations) animation.play();
+        count(performance.now());
         void Promise.all(animations.map(animation => animation.finished)).then(settle, settle);
       },
       { threshold: 0.5 }

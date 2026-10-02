@@ -49,7 +49,7 @@ test.describe('when motion is allowed', () => {
       page
         .locator('#approach article')
         .first()
-        .evaluate(card => card.getBoundingClientRect().height);
+        .evaluate(card => (card as HTMLElement).offsetHeight);
     const before = await height();
     await page.evaluate(y => scrollTo(0, y - 100), top);
     await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 20000 });
