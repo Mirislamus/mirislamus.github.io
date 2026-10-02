@@ -46,6 +46,7 @@
     --dur-glitch: 450ms;
     --dur-line: 700ms; // a line drawn between the steps of a card
     --stagger-slow: 140ms;
+    --dur-logo-glitch: 300ms; // the glitch of the logo on hover
     --dur-run: 3200ms; // one round of the light along the border of a hovered card
     --stagger: 60ms;
     --intro-step: 100ms; // unit of the Hero intro choreography
@@ -137,6 +138,7 @@
       --dur-line: 0ms;
       --stagger-slow: 0ms;
       --dur-run: 0ms;
+      --dur-logo-glitch: 0ms;
       --stagger: 0ms;
       --intro-step: 0ms;
     }

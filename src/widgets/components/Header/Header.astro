@@ -35,8 +35,11 @@ const themes = [
   <header class={s.header}>
     <div class="container">
       <div class={s.wrap} data-wrap>
-        <a href={homeHref} aria-label={a11y.home} data-logo>
+        <a href={homeHref} aria-label={a11y.home} class={s.logo} data-logo>
           <Logo />
+          {/* Two copies for the glitch on hover: red and cyan, hidden from assistive technology like the logo itself. */}
+          <Logo class:list={[s.ghost, s.red]} data-logo-ghost />
+          <Logo class:list={[s.ghost, s.cyan]} data-logo-ghost />
         </a>
         <nav id="main-navigation" class={s.nav} data-nav aria-label={a11y.navigation} style={`--count: ${menu.length}`}>
           <ul>

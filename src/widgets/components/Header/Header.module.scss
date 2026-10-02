@@ -381,3 +381,73 @@
   animation: introHeader var(--dur-base) var(--ease-out) both;
   animation-delay: calc(var(--intro-step) * 8);
 }
+
+// The logo glitches once when the mouse comes in or the keyboard focus arrives (A-12): two copies, red and cyan, shift by
+// 2 px in opposite directions and show a few stripes of the logo that jump about. CSS only; with reduced motion the
+// duration is 0 and nothing shows. The copies never take part in the layout or the clicks.
+.logo {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.ghost {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  &.red {
+    --dir: -1;
+    color: #ff2e63;
+  }
+
+  &.cyan {
+    --dir: 1;
+    color: #00e5d1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo:focus-visible .ghost {
+    animation: logo-glitch var(--dur-logo-glitch) steps(1, end) 1 both;
+  }
+
+  @media (hover: hover) {
+    .logo:hover .ghost {
+      animation: logo-glitch var(--dur-logo-glitch) steps(1, end) 1 both;
+    }
+  }
+}
+
+@keyframes logo-glitch {
+  0% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * 2px) 0;
+    clip-path: inset(8% 0 62% 0);
+  }
+
+  25% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * -2px) calc(var(--dir) * 1px);
+    clip-path: inset(56% 0 12% 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * 2px) 0;
+    clip-path: inset(30% 0 40% 0);
+  }
+
+  75% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * -1px) calc(var(--dir) * -1px);
+    clip-path: inset(72% 0 4% 0);
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 0;
+    clip-path: inset(0);
+  }
+}
