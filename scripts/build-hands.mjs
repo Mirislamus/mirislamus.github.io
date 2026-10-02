@@ -50,10 +50,10 @@ const cone = (p, a, b, r1, r2) => {
 // Fingers: base x, length, fan (degrees away from the middle), and how much each joint bends towards the viewer.
 const FINGERS = [
   // x and y: where the finger starts (the knuckles lie on an arc, the middle finger is the highest)
-  { x: -3.1, y: 2.7, length: 6.0, fan: 13, bend: [22, 40, 32] }, // little finger
-  { x: -1.05, y: 3.5, length: 7.4, fan: 5, bend: [19, 38, 30] }, // ring
-  { x: 1.0, y: 3.8, length: 8.2, fan: -1, bend: [16, 36, 28] }, // middle
-  { x: 3.0, y: 3.6, length: 7.4, fan: -9, bend: [14, 34, 26] }, // index, next to the thumb
+  { x: -3.1, y: 2.7, length: 7.6, fan: 13, bend: [16, 30, 24] }, // little finger
+  { x: -1.05, y: 3.5, length: 9.3, fan: 5, bend: [14, 28, 22] }, // ring
+  { x: 1.0, y: 3.8, length: 10.2, fan: -1, bend: [12, 26, 20] }, // middle
+  { x: 3.0, y: 3.6, length: 9.2, fan: -9, bend: [10, 24, 18] }, // index, next to the thumb
 ];
 const SEGMENT_SHARE = [0.44, 0.31, 0.25];
 
