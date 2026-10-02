@@ -2,11 +2,13 @@
 import { getSiteData } from '@data/site';
 import { getLocale } from '@i18n/utils';
 import { getSkillIcon, monogramOf } from '@utils/skill-icons';
+import { formatUsage, projectsUsing } from '@utils/skill-usage';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import s from './Skills.module.scss';
 
 const locale = getLocale(Astro);
-const { skills } = getSiteData(locale);
+const site = getSiteData(locale);
+const { skills } = site;
 
 // Columns for a group so that its rows are as even as possible and none is left half empty:
 // 9 tiles at most 5 across make 5 + 4, 6 tiles make 3 + 3, 5 tiles make 3 + 2 (never a single row, so the
@@ -37,6 +39,10 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
                 ? `--brand: ${icon.brandLight ?? 'var(--accent-text)'}; --brand-dark: ${icon.brandDark ?? 'var(--accent-text)'}`
                 : undefined;
 
+              const names = projectsUsing(skill.tech ?? skill.id, site.projects.items);
+              const tip = formatUsage(names, skills.usage, locale);
+              const tipId = `tip-${skill.id}`;
+
               return (
                 <a
                   aria-label={skill.name}
@@ -45,6 +51,8 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
                   target="_blank"
                   rel="noreferrer noopener"
                   style={brand}
+                  aria-describedby={tip ? tipId : undefined}
+                  data-tip={tip ? '' : undefined}
                 >
                   {icon ? (
                     <svg class={s.icon} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -66,7 +74,12 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
                       </text>
                     </svg>
                   )}
-                  <span>{skill.name}</span>
+                  <span class={s.label}>{skill.name}</span>
+                  {tip && (
+                    <span id={tipId} role="tooltip" class={s.tip}>
+                      {tip}
+                    </span>
+                  )}
                 </a>
               );
             })}
@@ -76,3 +89,27 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
     </div>
   </div>
 </section>
+
+<script>
+  // On a touch screen there is no hover: the first tap on a tile that has a tooltip shows it, the second one opens the
+  // link. A tap anywhere else closes it. A mouse never gets here.
+  const section = document.querySelector<HTMLElement>('#skills');
+
+  if (section) {
+    const touch = window.matchMedia('(hover: none)');
+    let armed: HTMLElement | null = null;
+
+    document.addEventListener('click', event => {
+      const tile = (event.target as Element).closest<HTMLElement>('#skills a[data-tip]');
+      if (tile && touch.matches && tile !== armed) {
+        event.preventDefault();
+        armed?.removeAttribute('data-open');
+        armed = tile;
+        tile.setAttribute('data-open', '');
+      } else if (!tile && armed) {
+        armed.removeAttribute('data-open');
+        armed = null;
+      }
+    });
+  }
+</script>

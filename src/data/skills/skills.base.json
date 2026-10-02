@@ -39,7 +39,8 @@
     "name": "Next.js",
     "link": "https://nextjs.org",
     "group": "core",
-    "icon": "nextdotjs"
+    "icon": "nextdotjs",
+    "tech": "nextjs"
   },
   {
     "id": "astro",

@@ -6,6 +6,10 @@
       "data": "Data & Quality",
       "ui": "UI & Motion",
       "tooling": "Tooling & AI"
+    },
+    "usage": {
+      "one": "In {{count}} project: {{names}}",
+      "other": "In {{count}} projects: {{names}}"
     }
   },
   "ru": {
@@ -15,6 +19,12 @@
       "data": "Данные и качество",
       "ui": "Интерфейсы и анимации",
       "tooling": "Инструменты и AI"
+    },
+    "usage": {
+      "one": "В {{count}} проекте: {{names}}",
+      "few": "В {{count}} проектах: {{names}}",
+      "many": "В {{count}} проектах: {{names}}",
+      "other": "В {{count}} проектах: {{names}}"
     }
   },
   "uz": {
@@ -24,6 +34,10 @@
       "data": "Ma’lumotlar va sifat",
       "ui": "Interfeys va animatsiya",
       "tooling": "Vositalar va AI"
+    },
+    "usage": {
+      "one": "{{count}} ta loyihada: {{names}}",
+      "other": "{{count}} ta loyihada: {{names}}"
     }
   }
 }

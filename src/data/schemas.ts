@@ -160,11 +160,22 @@ export const skillBaseSchema = z.strictObject({
   group: z.enum(SKILL_GROUPS),
   // The slug of the icon in Simple Icons, or null when the brand is not there: then the tile gets a monogram.
   icon: text.nullable(),
+  // The id in technologies.json when it is not the same as the id of the skill (the projects are matched by it).
+  tech: id.optional(),
 });
 
 export const skillsSchema = z.strictObject({
   title: text,
   groups: z.strictObject({ core: text, data: text, ui: text, tooling: text }),
+  // "In N projects: A, B, +2": the plural forms depend on the language (Intl.PluralRules).
+  usage: z.strictObject({
+    zero: text.optional(),
+    one: text.optional(),
+    two: text.optional(),
+    few: text.optional(),
+    many: text.optional(),
+    other: text,
+  }),
 });
 
 export const projectBaseSchema = z.strictObject({

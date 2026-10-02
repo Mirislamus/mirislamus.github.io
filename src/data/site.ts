@@ -103,6 +103,10 @@ const load = () => {
   const statusText = parseLocalized('status.json', statusSchema, statusJson);
 
   const skills = parseList('skills.base.json', skillBaseSchema, skillsBaseJson);
+  for (const skill of skills) {
+    if (skill.tech && !technologyNames.has(skill.tech))
+      fail(`skills.base.json: skill "${skill.id}" names an unknown technology "${skill.tech}"`);
+  }
   // A group is a block of the same size on the page: change this number on purpose, together with the data.
   for (const group of SKILL_GROUPS) {
     const count = skills.filter(skill => skill.group === group).length;
@@ -196,6 +200,7 @@ const load = () => {
     },
     skills: {
       title: skillsText[locale].title,
+      usage: skillsText[locale].usage,
       // Groups keep the fixed order of SKILL_GROUPS; skills keep the order of the file inside a group.
       groups: SKILL_GROUPS.map(group => ({
         id: group,
