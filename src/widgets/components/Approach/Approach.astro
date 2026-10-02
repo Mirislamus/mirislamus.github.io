@@ -16,6 +16,14 @@ interface Props {
 
 const { data } = Astro.props;
 const chat = data.cooperation.chat;
+// The conversation: who writes what and when (the times are the same in every language).
+const messages = [
+  { text: chat.ask, time: '10:24', mine: false },
+  { text: chat.reply, link: chat.link, time: '10:25', mine: true },
+  { text: chat.tweak, time: '10:27', mine: false },
+  { text: chat.update, time: '10:28', mine: true, reaction: '👍' },
+  { text: chat.approve, time: '10:30', mine: false },
+];
 const secret = data.secret;
 const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.text)}`;
 ---
@@ -29,56 +37,100 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
       <article class:list={[s.item, s.item_1]} data-reveal data-spotlight data-tilt style="--i: 0">
         <Spotlight />
         <chat-demo class={s.chat}>
-          <ol class={s.messages} aria-label={data.cooperation.chat.label}>
-            <li class={s.message}>
-              <span class={s.avatar} aria-hidden="true">
-                {chat.client[0]}
+          <div class={s.window}>
+            <div class={s.head} aria-hidden="true">
+              <span class={s.avatar}>{chat.client[0]}</span>
+              <span class={s.who}>
+                <b>{chat.client}</b>
+                <span class={s.state}>
+                  <span class={s.online} data-chat-online>
+                    {chat.status}
+                  </span>
+                  <span class={s.writing} data-chat-writing>
+                    {chat.typing}
+                  </span>
+                </span>
               </span>
-              <div class={s.body}>
-                <span class={s.sender}>{chat.client}</span>
-                <p class={s.bubble}>{chat.ask}</p>
-              </div>
-              <span class={s.typing} data-chat-typing aria-hidden="true">
-                <i></i>
-                <i></i>
-                <i></i>
-                {chat.typing}
+            </div>
+            <div class={s.scroll}>
+              <ol class={s.messages} aria-label={chat.label} data-chat-list>
+                {messages.map(message => (
+                  <li class:list={[s.message, message.mine && s.mine]}>
+                    <p class={s.bubble}>
+                      <span class="visually-hidden">{message.mine ? chat.me : chat.client}: </span>
+                      {message.text.split(' ').map(word => (
+                        <>
+                          <span class={s.w} data-chat-word>
+                            {word}
+                          </span>{' '}
+                        </>
+                      ))}
+                      {message.link && <span class={s.link}>{message.link}</span>}
+                      <span class={s.meta} aria-hidden="true">
+                        <span class={s.time}>{message.time}</span>
+                        {message.mine && (
+                          <span class={s.ticks}>
+                            <svg
+                              viewBox="0 0 16 16"
+                              width="14"
+                              height="14"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path d="M2.5 8.5l3 3 6-6.5" />
+                            </svg>
+                            <svg
+                              data-chat-read
+                              viewBox="0 0 16 16"
+                              width="14"
+                              height="14"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path d="M6.5 11.5l.8.8 6-6.5" />
+                            </svg>
+                          </span>
+                        )}
+                      </span>
+                    </p>
+                    {message.reaction && (
+                      <span class={s.reaction} data-chat-reaction aria-hidden="true">
+                        {message.reaction}
+                      </span>
+                    )}
+                    <span class={s.typing} data-chat-typing aria-hidden="true">
+                      <i />
+                      <i />
+                      <i />
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div class={s.field} aria-hidden="true">
+              <span>{chat.input}</span>
+              <span class={s.send}>
+                <svg
+                  viewBox="0 0 16 16"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" />
+                </svg>
               </span>
-            </li>
-            <li class:list={[s.message, s.mine]}>
-              <span class={s.avatar} aria-hidden="true">
-                {chat.me[0]}
-              </span>
-              <div class={s.body}>
-                <span class={s.sender}>{chat.me}</span>
-                <p class={s.bubble}>
-                  {chat.reply}
-                  <span class={s.link}>{chat.link}</span>
-                </p>
-              </div>
-              <span class={s.typing} data-chat-typing aria-hidden="true">
-                <i></i>
-                <i></i>
-                <i></i>
-                {chat.typing}
-              </span>
-            </li>
-            <li class={s.message}>
-              <span class={s.avatar} aria-hidden="true">
-                {chat.client[0]}
-              </span>
-              <div class={s.body}>
-                <span class={s.sender}>{chat.client}</span>
-                <p class={s.bubble}>{chat.approve}</p>
-              </div>
-              <span class={s.typing} data-chat-typing aria-hidden="true">
-                <i></i>
-                <i></i>
-                <i></i>
-                {chat.typing}
-              </span>
-            </li>
-          </ol>
+            </div>
+          </div>
         </chat-demo>
         <div class={s.copy}>
           <h3>{data.cooperation.title}</h3>

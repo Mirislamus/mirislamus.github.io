@@ -270,22 +270,100 @@
   }
 }
 
-// The conversation of the first card. All three messages are always in the layout, so nothing moves when
-// the scene plays; before it plays they are only hidden by the animation (see chat-demo.ts).
+// The conversation of the first card: a messenger window. All the messages are always in the layout, so
+// nothing moves when the scene plays; before it plays they are only hidden by the animation (chat-demo.ts).
 .chat {
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: var(--gap-24);
+  padding-bottom: var(--gap-12);
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 440px);
+  margin: 0 auto;
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-20);
+  background-color: var(--background);
+  box-shadow: 0 16px 40px -16px color-mix(in srgb, var(--text) 28%, transparent);
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-10);
+  padding: 8px var(--gap-16);
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  line-height: 1;
+
+  b {
+    font-weight: 600;
+  }
+}
+
+// "online" and "typing…" lie in one cell; the scene only swaps their opacity.
+.state {
+  display: grid;
+  font-size: 11px;
+  color: var(--text-muted);
+
+  > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.online::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-inline-end: 5px;
+  border-radius: 50%;
+  background-color: var(--green);
+}
+
+.writing {
+  opacity: 0;
+  color: var(--accent-text);
+}
+
+// The window of the messages: the list inside is moved up as new messages arrive, and the old ones fade out
+// at the top.
+.scroll {
+  padding: var(--gap-12) var(--gap-12) var(--gap-8);
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent, #000 14px);
 }
 
 .messages {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-16);
-  width: min(100%, 420px);
-  margin: 0 auto;
+  gap: 6px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -293,61 +371,22 @@
 .message {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  gap: var(--gap-8);
-  max-width: 85%;
+  max-width: 82%;
+  transform-origin: bottom left;
+}
+
+.message:has(.reaction) {
+  margin-bottom: var(--gap-8);
 }
 
 .mine {
-  flex-direction: row-reverse;
   align-self: flex-end;
-  text-align: right;
-
-  .body {
-    align-items: flex-end;
-  }
-
-  .bubble {
-    border-end-end-radius: 4px;
-    color: var(--accent-contrast);
-    background-color: var(--accent);
-  }
-}
-
-.avatar {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 600;
-  background-color: var(--tertiary);
-}
-
-.mine .avatar {
-  color: var(--accent-contrast);
-  background-color: var(--accent);
-}
-
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  min-width: 0;
-}
-
-.sender {
-  font-size: 11px;
-  line-height: 1;
-  color: var(--text-muted);
+  transform-origin: bottom right;
 }
 
 .bubble {
   margin: 0;
-  padding: 10px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-16);
   border-end-start-radius: 4px;
   font-size: 14px;
@@ -355,43 +394,107 @@
   background-color: var(--tertiary);
 }
 
+.mine .bubble {
+  border-end-start-radius: var(--radius-16);
+  border-end-end-radius: 4px;
+  color: var(--accent-contrast);
+  background-color: var(--accent);
+}
+
+.w {
+  display: inline-block;
+}
+
 .link {
-  margin-inline-start: 4px;
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-inline-start: 8px;
+  font-size: 10px;
+  line-height: 1;
+  vertical-align: -2px;
+  opacity: 0.6;
+}
+
+.ticks {
+  display: inline-flex;
+
+  svg + svg {
+    margin-inline-start: -9px;
+  }
+}
+
+.reaction {
+  position: absolute;
+  inset-inline-end: 8px;
+  bottom: -11px;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-100);
+  font-size: 12px;
+  line-height: 1;
+  background-color: var(--background);
 }
 
 // "typing…" sits where the bubble will be and is only ever shown by the animation.
 .typing {
   position: absolute;
-  inset-inline-start: 36px;
-  bottom: 0;
+  inset-block-end: 0;
+  inset-inline-start: 0;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   border-radius: var(--radius-16);
   border-end-start-radius: 4px;
-  font-size: 12px;
-  line-height: 1;
-  white-space: nowrap;
-  color: var(--text-muted);
   background-color: var(--tertiary);
   opacity: 0;
   pointer-events: none;
 
   i {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: currentcolor;
+    background-color: var(--text-muted);
   }
 }
 
 .mine .typing {
-  inset-inline: auto 36px;
+  inset-inline: auto 0;
   border-end-start-radius: var(--radius-16);
   border-end-end-radius: 4px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-8);
+  margin: 0 var(--gap-12) var(--gap-10);
+  padding: 3px 3px 3px var(--gap-16);
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-100);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: var(--accent-contrast);
+  background-color: var(--accent);
 }
 
 // The "project type" card (A-04): a switcher of three native radio buttons and the panel of the chosen

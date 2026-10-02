@@ -8,10 +8,14 @@
         "label": "Example of a conversation",
         "client": "Client",
         "me": "Mirislam",
+        "status": "online",
         "typing": "typing…",
+        "input": "Message",
         "ask": "Can we move the form to the first screen?",
         "reply": "Done.",
         "link": "Here’s the preview ↗",
+        "tweak": "Nice! Can the button be a bit bigger?",
+        "update": "Made it bigger, take a look.",
         "approve": "Great, approved ✅"
       }
     },
@@ -79,10 +83,14 @@
         "label": "Пример переписки",
         "client": "Клиент",
         "me": "Мирислам",
+        "status": "в сети",
         "typing": "печатает…",
+        "input": "Сообщение",
         "ask": "Можно поднять форму на первый экран?",
         "reply": "Готово.",
         "link": "Вот превью ↗",
+        "tweak": "Круто! А кнопку можно чуть больше?",
+        "update": "Увеличил, посмотрите.",
         "approve": "Отлично, согласовано ✅"
       }
     },
@@ -150,10 +158,14 @@
         "label": "Yozishma namunasi",
         "client": "Mijoz",
         "me": "Mirislam",
+        "status": "onlayn",
         "typing": "yozmoqda…",
+        "input": "Xabar",
         "ask": "Formani birinchi ekranga ko‘tarsak bo‘ladimi?",
         "reply": "Tayyor.",
         "link": "Mana ko‘rib chiqish ↗",
+        "tweak": "Zo‘r! Tugmani biroz kattaroq qilsak bo‘ladimi?",
+        "update": "Kattalashtirdim, ko‘rib chiqing.",
         "approve": "Ajoyib, kelishildi ✅"
       }
     },

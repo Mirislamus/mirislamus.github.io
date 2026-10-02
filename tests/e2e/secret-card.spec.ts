@@ -64,10 +64,17 @@ test.describe('the invite field', () => {
     const requests: string[] = [];
     page.on('request', request => requests.push(request.url()));
 
+    await page.evaluate(() => {
+      const target = document.querySelectorAll('#approach article')[4];
+      new MutationObserver(() => {
+        if (target.hasAttribute('data-glitch')) (window as unknown as { glitched: boolean }).glitched = true;
+      }).observe(target, { attributes: true, attributeFilter: ['data-glitch'] });
+    });
     await card(page).getByRole('textbox', { name: 'Invite code' }).fill('LET-ME-IN');
     await card(page).getByRole('button', { name: 'Enter' }).click();
 
-    await expect(card(page)).toHaveAttribute('data-glitch', /.*/);
+    // The glitch is short: it is recorded, not polled.
+    await expect.poll(() => page.evaluate(() => (window as unknown as { glitched: boolean }).glitched)).toBe(true);
     await expect(status(page)).toHaveText('Access denied. Invites coming soon.');
     await expect(card(page)).not.toHaveAttribute('data-glitch', '', { timeout: 2000 });
     expect(requests, requests.join(', ')).toEqual([]);
