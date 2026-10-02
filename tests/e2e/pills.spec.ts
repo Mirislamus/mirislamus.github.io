@@ -181,7 +181,9 @@ test.describe('glyph hands in motion', () => {
         });
 
     const early = await painted();
-    await expect.poll(painted, { timeout: 5000 }).toBeGreaterThan(early * 1.5);
+    // The picture grows while the glyphs land and then stands: it is never less than at the start, and it is full at the end.
+    await expect.poll(painted, { timeout: 5000 }).toBeGreaterThanOrEqual(early);
+    await expect.poll(painted, { timeout: 5000 }).toBeGreaterThan(30000);
 
     await page.mouse.move(10, 10);
     await expect

@@ -2,6 +2,7 @@ import { watchColors } from './accent';
 import { getMotion } from './motion';
 import { createHands } from './hands-fx';
 import { DESKTOP_RAIN, createRain, type RainOptions } from './rain';
+import type { Sound } from './sound';
 import { getTicker } from './ticker';
 
 // The pill scene (easter egg), loaded when the white rabbit in the footer is clicked. A native modal <dialog>
@@ -25,8 +26,23 @@ const setup = (root: HTMLDialogElement) => {
   const hands = createHands(root.querySelector<HTMLElement>('[data-pills-hands]')!);
   const rain = createRain(canvas, options);
   const timers: number[] = [];
+  let sound: Sound | undefined;
+  let light = false;
   let stop: (() => void) | undefined;
   let unwatch: (() => void) | undefined;
+
+  const isLight = (colors: { background: number[] }) =>
+    (colors.background[0] + colors.background[1] + colors.background[2]) / 3 > 128;
+
+  // The sound is a separate chunk, loaded when the scene opens; it plays only if nothing is asked to stand still.
+  const startSound = () => {
+    if (!motion.allowed) return;
+    void import('./sound').then(({ createSound }) => {
+      if (!root.open) return;
+      sound ??= createSound();
+      sound.start(light);
+    });
+  };
 
   const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
 
@@ -53,6 +69,7 @@ const setup = (root: HTMLDialogElement) => {
   const close = () => {
     if (!root.open || root.hasAttribute('data-closing')) return;
     root.setAttribute('data-closing', '');
+    sound?.stop(0.4);
     const done = () => {
       stop?.();
       stop = undefined;
@@ -114,8 +131,11 @@ const setup = (root: HTMLDialogElement) => {
     unwatch = watchColors(colors => {
       rain.setColors(colors);
       hands?.retheme();
+      light = isLight(colors);
+      sound?.setTheme(light);
     });
     run();
+    startSound();
   };
 };
 
