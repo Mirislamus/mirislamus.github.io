@@ -24,12 +24,16 @@ const {
           <strong>{ready}</strong>
           <span class:list={[s.footerText, 'accent']}>{text}</span>
         </h2>
-        <div class={s.buttons}>
-          <Button variant="outline" fluid href={`mailto:${info.email}`}>
-            {info.email}
+        <div class={s.buttons} data-magnetic>
+          <Button variant="outline" fluid href={`mailto:${info.email}`} class={s.magnet} data-magnet>
+            <span class={s.magnetText} data-magnet-text>
+              {info.email}
+            </span>
           </Button>
-          <Button variant="outline" fluid href={info.telegram}>
-            {info.telegram.replace('https://', '')}
+          <Button variant="outline" fluid href={info.telegram} class={s.magnet} data-magnet>
+            <span class={s.magnetText} data-magnet-text>
+              {info.telegram.replace('https://', '')}
+            </span>
           </Button>
         </div>
         <div class={s.local}>
@@ -80,4 +84,18 @@ const {
   document.querySelector('[data-rabbit]')?.addEventListener('click', () => {
     void import('@shared/scripts/matrix/pills').then(({ openPills }) => openPills());
   });
+
+  // The buttons that lean towards the cursor (A-11) are a small chunk, loaded when the footer is about to be seen.
+  const magnetic = document.querySelector<HTMLElement>('[data-magnetic]');
+
+  if (magnetic) {
+    new IntersectionObserver(
+      ([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        void import('@shared/scripts/magnetic').then(({ initMagnetic }) => initMagnetic(magnetic));
+      },
+      { rootMargin: '400px' }
+    ).observe(magnetic);
+  }
 </script>

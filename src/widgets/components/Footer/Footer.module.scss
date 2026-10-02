@@ -151,3 +151,25 @@
     gap: var(--gap-12);
   }
 }
+
+// The buttons lean towards the cursor (magnetic.ts): at rest there is no transform at all, and when the cursor goes away
+// the button springs back.
+.magnet {
+  // The colours keep their hover transition; only the lean springs.
+  transition:
+    var(--transition-ease),
+    translate var(--dur-base) var(--ease-spring);
+
+  &[data-follow] {
+    transition: var(--transition-ease);
+  }
+}
+
+.magnetText {
+  display: inline-block;
+  transition: translate var(--dur-base) var(--ease-spring);
+
+  [data-follow] > & {
+    transition: none;
+  }
+}

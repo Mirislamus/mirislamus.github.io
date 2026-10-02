@@ -38,32 +38,45 @@ test('the screenshot is drawn open by a curtain as the card comes into view', as
 test.describe('the name decrypts', () => {
   test.use({ reducedMotion: 'no-preference' });
 
+  // The effect is short: what the name looked like is recorded in the page, not polled.
+  const record = (page: Page) =>
+    name(page).evaluate(element => {
+      const seen: { text: string; width: number }[] = [];
+      new MutationObserver(() =>
+        seen.push({ text: (element.textContent ?? '').trim(), width: (element as HTMLElement).offsetWidth })
+      ).observe(element, { childList: true, characterData: true, subtree: true });
+      (window as unknown as { seen: typeof seen }).seen = seen;
+    });
+  const recorded = (page: Page) =>
+    page.evaluate(() => (window as unknown as { seen: { text: string; width: number }[] }).seen);
+
   test('under the mouse: other characters for a moment, then the same name, the width never changes', async ({
     page,
   }) => {
     await open(page);
     const link = card(page).getByRole('link');
-    const before = await name(page).evaluate(element => element.getBoundingClientRect().width);
+    const before = await name(page).evaluate(element => (element as HTMLElement).offsetWidth);
+    await record(page);
 
     await card(page).hover();
-    await expect.poll(async () => (await name(page).textContent())?.trim() !== 'Dafna', { timeout: 1000 }).toBe(true);
-    const during = await name(page).evaluate(element => element.getBoundingClientRect().width);
-    expect(Math.abs(during - before)).toBeLessThan(1);
+    await expect.poll(async () => (await recorded(page)).at(-1)?.text, { timeout: 4000 }).toBe('Dafna');
+    const seen = await recorded(page);
+    expect(seen.some(step => step.text !== 'Dafna')).toBe(true);
+    for (const step of seen) expect(Math.abs(step.width - before)).toBeLessThan(1);
     // The name of the link is the real one all the time.
     await expect(link).toHaveAccessibleName('Dafna');
-
-    await expect.poll(async () => (await name(page).textContent())?.trim(), { timeout: 2000 }).toBe('Dafna');
     expect(await name(page).evaluate(element => element.style.inlineSize)).toBe('');
   });
 
   test('also on keyboard focus', async ({ page }) => {
     await open(page);
+    await record(page);
     await page.keyboard.press('Tab'); // some earlier link; walk to the card by focusing it
     await card(page).getByRole('link').focus();
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Tab');
-    await expect.poll(async () => (await name(page).textContent())?.trim() !== 'Dafna', { timeout: 1000 }).toBe(true);
-    await expect.poll(async () => (await name(page).textContent())?.trim(), { timeout: 2000 }).toBe('Dafna');
+    await expect.poll(async () => (await recorded(page)).length, { timeout: 4000 }).toBeGreaterThan(2);
+    await expect.poll(async () => (await recorded(page)).at(-1)?.text, { timeout: 4000 }).toBe('Dafna');
   });
 
   test('the letters are hidden from assistive technology', async ({ page }) => {
