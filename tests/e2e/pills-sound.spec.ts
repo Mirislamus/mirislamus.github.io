@@ -258,3 +258,93 @@ test('with reduced motion the effects stay silent too', async ({ browser }) => {
   expect((await audioLog(page)).oscillators).toBe(0);
   await context.close();
 });
+
+test.describe('the button of the sound', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  const button = (page: Page, name: string | RegExp) => dialog(page).getByRole('button', { name });
+
+  test('is next to the close button, named by what it does, and pressed while the sound is on', async ({ page }) => {
+    await installFakeAudio(page);
+    await openScene(page);
+    await expect(button(page, 'Turn sound off')).toBeVisible();
+    await expect(button(page, 'Turn sound off')).toHaveAttribute('aria-pressed', 'true');
+    const sound = (await button(page, 'Turn sound off').boundingBox())!;
+    const close = (await button(page, 'Close').boundingBox())!;
+    expect(sound.x + sound.width).toBeLessThanOrEqual(close.x);
+    expect(sound.width).toBeGreaterThanOrEqual(44);
+    expect(sound.height).toBeGreaterThanOrEqual(44);
+  });
+
+  test('switching it off fades the sound and closes the context; switching on starts it again', async ({ page }) => {
+    await installFakeAudio(page);
+    await openScene(page);
+    await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(1);
+
+    await button(page, 'Turn sound off').click();
+    await expect(button(page, 'Turn sound on')).toHaveAttribute('aria-pressed', 'false');
+    await expect.poll(async () => (await audioLog(page)).closed, { timeout: 3000 }).toBe(1);
+
+    await button(page, 'Turn sound on').click();
+    await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(2);
+    await expect(button(page, 'Turn sound off')).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('the choice is remembered: after a reload the scene opens silent', async ({ page }) => {
+    await installFakeAudio(page);
+    await openScene(page);
+    await button(page, 'Turn sound off').click();
+    expect(await page.evaluate(() => localStorage.getItem('pills-sound'))).toBe('0');
+
+    await page.reload();
+    await page.locator('#contacts').scrollIntoViewIfNeeded();
+    await page.locator('[data-rabbit]').click();
+    await expect(dialog(page)).toHaveAttribute('open', '');
+    await expect(button(page, 'Turn sound on')).toHaveAttribute('aria-pressed', 'false');
+    await page.waitForTimeout(800);
+    expect((await audioLog(page)).contexts).toBe(0);
+  });
+
+  test('works when the storage is blocked', async ({ page }) => {
+    await installFakeAudio(page);
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        get() {
+          throw new DOMException('blocked', 'SecurityError');
+        },
+      });
+    });
+    const errors: string[] = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await openScene(page);
+    await button(page, 'Turn sound off').click();
+    await expect(button(page, 'Turn sound on')).toBeVisible();
+    expect(errors).toEqual([]);
+  });
+
+  test('the texts follow the language', async ({ page }) => {
+    await installFakeAudio(page);
+    await page.goto('/ru/');
+    await page.locator('#contacts').scrollIntoViewIfNeeded();
+    await page.locator('[data-rabbit]').click();
+    await expect(button(page, 'Выключить звук')).toBeVisible();
+    await page.goto('/uz/');
+    await page.locator('#contacts').scrollIntoViewIfNeeded();
+    await page.locator('[data-rabbit]').click();
+    await expect(button(page, 'Ovozni o‘chirish')).toBeVisible();
+  });
+});
+
+test.describe('with reduced motion', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  test('the sound is off, but the visitor can turn it on', async ({ page }) => {
+    await installFakeAudio(page);
+    await openScene(page);
+    await expect(dialog(page).getByRole('button', { name: 'Turn sound on' })).toHaveAttribute('aria-pressed', 'false');
+    expect((await audioLog(page)).contexts).toBe(0);
+
+    await dialog(page).getByRole('button', { name: 'Turn sound on' }).click();
+    await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(1);
+  });
+});

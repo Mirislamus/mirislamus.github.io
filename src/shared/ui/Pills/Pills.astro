@@ -50,6 +50,34 @@ const where = {
 
   <p class={s.result} data-pills-result hidden></p>
 
+  {/* Named by what it does: the label changes with the state (data-on / data-off hold both texts). */}
+  <button
+    type="button"
+    class={s.sound}
+    data-pills-sound
+    data-on={texts.soundOn}
+    data-off={texts.soundOff}
+    aria-label={texts.soundOn}
+    aria-pressed="false"
+    hidden
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4Z"></path>
+      <path class={s.waves} d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11"></path>
+      <path class={s.muted} d="M16 9.5l5 5M21 9.5l-5 5"></path>
+    </svg>
+  </button>
+
   <button type="button" class={s.close} data-pills-close aria-label={texts.close}>
     <svg
       viewBox="0 0 24 24"

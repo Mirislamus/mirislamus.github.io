@@ -120,6 +120,8 @@ export const easterSchema = z.strictObject({
   blueEnd: text,
   redEnd: text,
   close: text,
+  soundOn: text,
+  soundOff: text,
 });
 
 // Only used by the printable CV page; none of this appears on the site itself.

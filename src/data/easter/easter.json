@@ -8,7 +8,9 @@
     "red": "Red pill",
     "blueEnd": "The story ends. You wake up in your bed.",
     "redEnd": "Welcome to the real world.",
-    "close": "Close"
+    "close": "Close",
+    "soundOn": "Turn sound on",
+    "soundOff": "Turn sound off"
   },
   "ru": {
     "rabbit": "Следуй за белым кроликом",
@@ -19,7 +21,9 @@
     "red": "Красная таблетка",
     "blueEnd": "История окончена. Ты просыпаешься в своей постели.",
     "redEnd": "Добро пожаловать в реальный мир.",
-    "close": "Закрыть"
+    "close": "Закрыть",
+    "soundOn": "Включить звук",
+    "soundOff": "Выключить звук"
   },
   "uz": {
     "rabbit": "Oq quyon ortidan bor",
@@ -30,6 +34,8 @@
     "red": "Qizil tabletka",
     "blueEnd": "Hikoya tugadi. Sen o‘z to‘shagingda uyg‘onasan.",
     "redEnd": "Haqiqiy dunyoga xush kelibsiz.",
-    "close": "Yopish"
+    "close": "Yopish",
+    "soundOn": "Ovozni yoqish",
+    "soundOff": "Ovozni o‘chirish"
   }
 }

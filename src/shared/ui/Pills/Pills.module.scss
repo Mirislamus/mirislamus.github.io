@@ -202,3 +202,38 @@
     filter: none;
   }
 }
+
+// The button of the sound sits next to the close button and looks like it; the icon shows the state: waves when the sound
+// is on, a cross when it is off.
+.sound {
+  position: absolute;
+  top: max(var(--gap-16), env(safe-area-inset-top));
+  right: calc(max(var(--gap-16), env(safe-area-inset-right)) + 52px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: color var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  &[aria-pressed='true'] .muted,
+  &[aria-pressed='false'] .waves {
+    display: none;
+  }
+}

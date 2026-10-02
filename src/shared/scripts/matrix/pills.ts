@@ -14,6 +14,8 @@ import { getTicker } from './ticker';
 const CALM: RainOptions = { ...DESKTOP_RAIN, flashlight: 0, evaporate: 0, density: 0.55, brightness: 0.2, speed: 8 };
 const END_MS = { blue: 2600, red: 3800 };
 const GLITCH_MS = 1300;
+const SOUND_KEY = 'pills-sound'; // '1' on, '0' off: what the visitor chose last time
+const SOUND_FADE = 0.3; // seconds for the sound to go when it is switched off
 const GLITCH_BEFORE_END_MS = 700; // the page breaks up while the scene fades out, so it can be seen
 
 let dialog: HTMLDialogElement | undefined;
@@ -37,8 +39,27 @@ const setup = (root: HTMLDialogElement) => {
     (colors.background[0] + colors.background[1] + colors.background[2]) / 3 > 128;
 
   // The sound is a separate chunk, loaded when the scene opens; it plays only if nothing is asked to stand still.
+  // On by default; off by default when something is asked to stand still. A choice of the visitor beats the default.
+  const soundButton = root.querySelector<HTMLButtonElement>('[data-pills-sound]');
+  const stored = () => {
+    try {
+      return localStorage.getItem(SOUND_KEY);
+    } catch {
+      return null; // blocked: the choice only lives while the page does
+    }
+  };
+  let chosen: boolean | undefined;
+  const soundWanted = () => chosen ?? (stored() === null ? motion.allowed : stored() === '1');
+
+  const showSoundState = () => {
+    if (!soundButton) return;
+    const on = soundWanted();
+    soundButton.setAttribute('aria-pressed', String(on));
+    soundButton.setAttribute('aria-label', (on ? soundButton.dataset.off : soundButton.dataset.on) ?? '');
+  };
+
   const startSound = () => {
-    if (!motion.allowed) return;
+    if (!soundWanted()) return;
     void Promise.all([import('./sound'), import('./sound-fx')]).then(([{ createSound }, { createEffects }]) => {
       if (!root.open) return;
       sound ??= createSound();
@@ -114,6 +135,21 @@ const setup = (root: HTMLDialogElement) => {
     .querySelectorAll<HTMLButtonElement>('[data-pill]')
     .forEach(button => button.addEventListener('click', () => choose(button.dataset.pill === 'red' ? 'red' : 'blue')));
   root.querySelector('[data-pills-close]')?.addEventListener('click', close);
+  if (soundButton && typeof AudioContext !== 'undefined') {
+    soundButton.hidden = false;
+    soundButton.addEventListener('click', () => {
+      chosen = !soundWanted();
+      try {
+        localStorage.setItem(SOUND_KEY, chosen ? '1' : '0');
+      } catch {
+        // Not remembered, but applied now.
+      }
+      showSoundState();
+      if (chosen)
+        startSound(); // a click: the browser lets the sound start
+      else sound?.stop(SOUND_FADE);
+    });
+  }
   // A soft tick under a pill, for the mouse and for the keyboard focus.
   root.querySelectorAll<HTMLButtonElement>('[data-pill]').forEach(button => {
     const pill = button.dataset.pill === 'red' ? 'red' : 'blue';
@@ -138,6 +174,8 @@ const setup = (root: HTMLDialogElement) => {
 
   return () => {
     reset();
+    chosen = undefined; // the memory is read again every time the scene opens
+    showSoundState();
     root.showModal();
     unwatch = watchColors(colors => {
       rain.setColors(colors);
