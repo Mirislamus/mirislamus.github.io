@@ -59,7 +59,10 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
             <div class={s.scroll}>
               <ol class={s.messages} aria-label={chat.label} data-chat-list>
                 {messages.map(message => (
-                  <li class:list={[s.message, message.mine && s.mine]}>
+                  <li
+                    class:list={[s.message, message.mine && s.mine]}
+                    data-typed={message.mine ? `${message.text}${message.link ? ` ${message.link}` : ''}` : undefined}
+                  >
                     <p class={s.bubble}>
                       <span class="visually-hidden">{message.mine ? chat.me : chat.client}: </span>
                       {message.text.split(' ').map(word => (
@@ -118,8 +121,10 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
               </ol>
             </div>
             <div class={s.field} aria-hidden="true">
-              <span>{chat.input}</span>
-              <span class={s.send}>
+              <span class={s.fieldText} data-chat-input>
+                {chat.input}
+              </span>
+              <span class={s.send} data-chat-send>
                 <svg
                   viewBox="0 0 16 16"
                   width="14"

@@ -100,3 +100,46 @@ test('the bubbles stay inside the card on a phone', async ({ page }) => {
   });
   expect(fits).toBe(true);
 });
+
+test.describe('my answers are typed into the field and sent', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('the field shows my text letter by letter, then it is empty again and the bubble comes', async ({ page }) => {
+    await page.goto('/');
+    const top = await page.evaluate(
+      () => document.querySelector('#approach article')!.getBoundingClientRect().top + scrollY
+    );
+    await page.evaluate(y => scrollTo(0, y - innerHeight - 300), top);
+    await expect(chat(page)).toHaveAttribute('data-chat', 'pending');
+    await page.evaluate(() => {
+      const field = document.querySelector('#approach [data-chat-input]')!;
+      const seen: string[] = [];
+      new MutationObserver(() => seen.push(field.textContent ?? '')).observe(field, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+      (window as unknown as { typedSeen: string[] }).typedSeen = seen;
+    });
+    await page.evaluate(y => scrollTo(0, y - 100), top);
+    await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 25000 });
+
+    const seen = await page.evaluate(() => (window as unknown as { typedSeen: string[] }).typedSeen);
+    // It starts empty, grows letter by letter to the whole answer and goes back to the placeholder.
+    expect(seen).toContain('D');
+    expect(seen).toContain('Done.');
+    expect(seen.some(text => text.startsWith('Done. Here’s the preview'))).toBe(true);
+    expect(seen.some(text => text.startsWith('Made it bigger'))).toBe(true);
+    expect(seen.at(-1)).toBe('Message');
+    await expect(page.locator('#approach [data-chat-input]')).toHaveText('Message');
+    await expect(page.locator('#approach [data-chat-input]')).not.toHaveAttribute('data-typing', /.*/);
+  });
+
+  test('the field keeps its placeholder with reduced motion', async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: 'reduce' });
+    const page = await context.newPage();
+    await page.goto('/');
+    await expect(page.locator('#approach [data-chat-input]')).toHaveText('Message');
+    await context.close();
+  });
+});

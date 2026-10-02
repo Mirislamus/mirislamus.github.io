@@ -1037,3 +1037,33 @@
     filter: blur(14px);
   }
 }
+
+// When "I" answer, the text is typed into the field and sent (chat-demo.ts): the typed text is the colour of the text
+// and has a caret; at rest the field shows its placeholder.
+.fieldText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &[data-typing] {
+    color: var(--text);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 1em;
+      margin-inline-start: 1px;
+      vertical-align: text-bottom;
+      background-color: var(--accent);
+      animation: caret var(--dur-intro) steps(1, end) infinite;
+    }
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}

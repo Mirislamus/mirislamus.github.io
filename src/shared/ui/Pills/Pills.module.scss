@@ -59,7 +59,7 @@ $blue: #3e7bfa;
   flex-direction: column;
   align-items: center;
   gap: var(--gap-12);
-  width: min(780px, 100%);
+  width: min(980px, 100%);
   padding: var(--gap-24);
   text-align: center;
   transition: opacity var(--dur-slow) var(--ease-out);
@@ -84,7 +84,7 @@ $blue: #3e7bfa;
 .hands {
   position: relative;
   // As wide as the screen allows, but never taller than what is left under the heading.
-  width: min(100%, calc((100dvh - 230px) * var(--ratio)));
+  width: min(100%, calc((100dvh - 210px) * var(--ratio)));
   aspect-ratio: var(--ratio);
   margin-top: var(--gap-16);
   transform-origin: center;
