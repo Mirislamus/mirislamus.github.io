@@ -18,7 +18,24 @@
     "flexibility": {
       "eyebrow": "My approach to work",
       "title": "I pick the solution for the task, not the task for the solution",
-      "fact": "Landing pages, stores, services, Web3 and Telegram Mini Apps · 5 companies, team lead experience"
+      "fact": "Landing pages, stores, services, Web3 and Telegram Mini Apps · 5 companies, team lead experience",
+      "switcher": "Project type",
+      "stack": "Stack",
+      "stages": "Stages",
+      "types": {
+        "landing": {
+          "label": "Landing",
+          "stages": ["Design", "Layout", "SEO", "Launch"]
+        },
+        "store": {
+          "label": "Store",
+          "stages": ["Catalog", "Cart", "Payment", "Analytics"]
+        },
+        "service": {
+          "label": "Service",
+          "stages": ["Auth", "Dashboard", "API", "Tests"]
+        }
+      }
     },
     "ui": {
       "title": "I love building interfaces that are a pleasure to use",
@@ -57,7 +74,24 @@
     "flexibility": {
       "eyebrow": "Мой подход к работе",
       "title": "Подбираю решение под задачу, а не задачу под решение",
-      "fact": "Лендинги, магазины, сервисы, Web3 и Telegram Mini Apps · 5 компаний, опыт тимлида"
+      "fact": "Лендинги, магазины, сервисы, Web3 и Telegram Mini Apps · 5 компаний, опыт тимлида",
+      "switcher": "Тип проекта",
+      "stack": "Стек",
+      "stages": "Этапы",
+      "types": {
+        "landing": {
+          "label": "Лендинг",
+          "stages": ["Дизайн", "Вёрстка", "SEO", "Запуск"]
+        },
+        "store": {
+          "label": "Магазин",
+          "stages": ["Каталог", "Корзина", "Оплата", "Аналитика"]
+        },
+        "service": {
+          "label": "Сервис",
+          "stages": ["Авторизация", "Кабинет", "API", "Тесты"]
+        }
+      }
     },
     "ui": {
       "title": "Люблю делать интерфейсы, которыми приятно пользоваться",
@@ -96,7 +130,24 @@
     "flexibility": {
       "eyebrow": "Ishga yondashuvim",
       "title": "Vazifaga yechim tanlayman, yechimga vazifa emas",
-      "fact": "Lendinglar, do‘konlar, servislar, Web3 va Telegram Mini Apps · 5 ta kompaniya, jamoa yetakchisi tajribasi"
+      "fact": "Lendinglar, do‘konlar, servislar, Web3 va Telegram Mini Apps · 5 ta kompaniya, jamoa yetakchisi tajribasi",
+      "switcher": "Loyiha turi",
+      "stack": "Stek",
+      "stages": "Bosqichlar",
+      "types": {
+        "landing": {
+          "label": "Lending",
+          "stages": ["Dizayn", "Maket", "SEO", "Ishga tushirish"]
+        },
+        "store": {
+          "label": "Do‘kon",
+          "stages": ["Katalog", "Savat", "To‘lov", "Analitika"]
+        },
+        "service": {
+          "label": "Servis",
+          "stages": ["Avtorizatsiya", "Kabinet", "API", "Testlar"]
+        }
+      }
     },
     "ui": {
       "title": "Foydalanish yoqimli bo‘lgan interfeyslar yaratishni yaxshi ko‘raman",

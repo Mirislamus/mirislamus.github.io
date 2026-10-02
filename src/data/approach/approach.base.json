@@ -1,0 +1,7 @@
+{
+  "types": [
+    { "id": "landing", "stack": ["Astro", "TypeScript", "Sass"] },
+    { "id": "store", "stack": ["Next.js", "React", "TypeScript"] },
+    { "id": "service", "stack": ["React", "TanStack Query", "Zustand", "Vitest"] }
+  ]
+}

@@ -14,6 +14,17 @@ describe('getSiteData', () => {
     expect(site.menu.length).toBeGreaterThan(0);
   });
 
+  it('gives every project type of the Approach card a stack and four stages in every locale', () => {
+    for (const locale of LOCALES) {
+      const { types } = getSiteData(locale).approach.flexibility;
+      expect(types.map(type => type.id)).toEqual(['landing', 'store', 'service']);
+      for (const type of types) {
+        expect(type.stack.length).toBeGreaterThan(0);
+        expect(type.stages).toHaveLength(4);
+      }
+    }
+  });
+
   it('turns technology ids into display names', () => {
     const dafna = getSiteData('en').projects.items.find(project => project.id === 'dafna');
     expect(dafna?.stack).toEqual(['React', 'Next.js', 'Redux', 'CSS Modules']);

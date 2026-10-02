@@ -42,13 +42,6 @@
     span {
       color: var(--text-muted);
     }
-    img {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      width: 280px;
-      height: auto;
-    }
     h3 {
       max-width: 355px;
       margin-top: 10px;
@@ -121,9 +114,6 @@
   }
 
   .item {
-    &_2 img {
-      width: 250px;
-    }
     &_3,
     &_4 {
       grid-row: 4 / 5;
@@ -147,13 +137,6 @@
     padding: 12px;
     &_5 {
       grid-column: span 2;
-    }
-    &_2 {
-      img {
-        width: 190px;
-        height: 197px;
-        right: 12px;
-      }
     }
     &_3,
     &_4 {
@@ -457,4 +440,142 @@
   inset-inline: auto 36px;
   border-end-start-radius: var(--radius-16);
   border-end-end-radius: 4px;
+}
+
+// The "project type" card (A-04): a switcher of three native radio buttons and the panel of the chosen
+// type. It works without JS: the panel is picked with :has(). The panels lie in one grid cell, so the card
+// is as tall as the biggest one and never changes its height.
+.types {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-16);
+  margin-top: auto;
+  padding-top: var(--gap-20);
+}
+
+.switcher {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px;
+  border-radius: var(--radius-100);
+  background-color: color-mix(in srgb, var(--text) 8%, transparent);
+
+  label {
+    padding: 6px 14px;
+    border-radius: var(--radius-100);
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+      background-color var(--dur-fast) ease,
+      color var(--dur-fast) ease;
+  }
+
+  input:checked + label {
+    color: var(--accent-contrast);
+    background-color: var(--accent);
+  }
+
+  input:focus-visible + label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.panels {
+  display: grid;
+}
+
+.panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.label {
+  margin: 0 0 var(--gap-8);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-8);
+  margin: 0 0 var(--gap-16);
+  padding: 0;
+  list-style: none;
+}
+
+.stages {
+  position: relative;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  // The line between the first and the last node; it is drawn when the panel is picked.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    inset-inline: 12.5%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  li {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
+.node {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background-color: var(--secondary);
+}
+
+// What the chosen panel shows: chips and nodes rise one after another, the line is drawn.
+.stack li,
+.stages li {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@each $type in landing, store, service {
+  .types:has(input[value='#{$type}']:checked) .panel[data-type='#{$type}'] {
+    visibility: visible;
+
+    .stack li,
+    .stages li {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity var(--dur-base) var(--ease-out) calc(var(--k) * var(--stagger)),
+        transform var(--dur-base) var(--ease-out) calc(var(--k) * var(--stagger));
+    }
+
+    .stages::before {
+      transform: scaleX(1);
+      transition: transform var(--dur-slow) var(--ease-out);
+    }
+  }
 }

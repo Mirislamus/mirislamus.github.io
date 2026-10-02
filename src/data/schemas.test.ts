@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { heroSchema, menuSchema, projectBaseSchema, reviewsSchema, skillBaseSchema } from './schemas';
+import {
+  approachBaseSchema,
+  heroSchema,
+  menuSchema,
+  projectBaseSchema,
+  reviewsSchema,
+  skillBaseSchema,
+} from './schemas';
 
 const project = { id: 'dafna', name: 'Dafna', link: 'https://dafna.uz', color: '#009FE2', stack: ['react', 'nextjs'] };
 
@@ -44,5 +51,18 @@ describe('data schemas', () => {
   it('requires at least one menu item and review', () => {
     expect(menuSchema.safeParse({ items: [] }).success).toBe(false);
     expect(reviewsSchema.safeParse({ title: 'Reviews', reviews: [] }).success).toBe(false);
+  });
+
+  it('requires the project types of the Approach card in a fixed order with a stack', () => {
+    const types = [
+      { id: 'landing', stack: ['Astro'] },
+      { id: 'store', stack: ['React'] },
+      { id: 'service', stack: ['Vitest'] },
+    ];
+    expect(approachBaseSchema.safeParse({ types }).success).toBe(true);
+    expect(approachBaseSchema.safeParse({ types: types.slice(0, 2) }).success).toBe(false);
+    expect(approachBaseSchema.safeParse({ types: [{ ...types[0], stack: [] }, ...types.slice(1)] }).success).toBe(
+      false
+    );
   });
 });

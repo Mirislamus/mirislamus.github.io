@@ -29,6 +29,20 @@ export const a11ySchema = z.strictObject({
   slideOf: text,
 });
 
+// The project types of the second Approach card: the switcher, the stack and four stages of each one.
+const PROJECT_TYPES = ['landing', 'store', 'service'] as const;
+export type ProjectType = (typeof PROJECT_TYPES)[number];
+
+const projectTypeText = z.strictObject({ label: text, stages: z.tuple([text, text, text, text]) });
+
+export const approachBaseSchema = z.strictObject({
+  types: z
+    .array(z.strictObject({ id: z.enum(PROJECT_TYPES), stack: z.array(text).min(1) }))
+    .refine(types => types.map(type => type.id).join() === PROJECT_TYPES.join(), {
+      message: `types must list ${PROJECT_TYPES.join(', ')} in this order`,
+    }),
+});
+
 // Each card of the Approach section: a statement and a line of facts under it.
 const cardText = { title: text, fact: text };
 
@@ -47,7 +61,19 @@ export const approachSchema = z.strictObject({
       approve: text,
     }),
   }),
-  flexibility: z.strictObject({ eyebrow: text, ...cardText }),
+  flexibility: z.strictObject({
+    eyebrow: text,
+    ...cardText,
+    switcher: text,
+    stack: text,
+    stages: text,
+    types: z.strictObject(
+      Object.fromEntries(PROJECT_TYPES.map(type => [type, projectTypeText])) as Record<
+        ProjectType,
+        typeof projectTypeText
+      >
+    ),
+  }),
   ui: z.strictObject({
     ...cardText,
     sandbox: z.strictObject({ toggle: text, slider: text, status: text }),

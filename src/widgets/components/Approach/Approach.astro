@@ -8,6 +8,7 @@ import CopyButton from '@shared/ui/CopyButton/CopyButton.astro';
 import RichText from '@shared/ui/RichText/RichText.astro';
 import Spotlight from '@shared/ui/Spotlight/Spotlight.astro';
 import StarBorder from '@shared/ui/StarBorder/StarBorder.astro';
+import Tag from '@shared/ui/Tag/Tag.astro';
 import s from './Approach.module.scss';
 
 interface Props {
@@ -86,18 +87,49 @@ const chat = data.cooperation.chat;
       </article>
       <article class:list={[s.item, s.item_2]} data-reveal data-spotlight data-tilt style="--i: 1">
         <Spotlight />
-        <img
-          width="340"
-          height="353"
-          src="/images/flexibility.svg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
         <span class="text-sm">{data.flexibility.eyebrow}</span>
         <h3>{data.flexibility.title}</h3>
         <p class={s.fact}>{data.flexibility.fact}</p>
+        <div class={s.types}>
+          <div class={s.switcher} role="radiogroup" aria-label={data.flexibility.switcher}>
+            {data.flexibility.types.map((type, index) => (
+              <>
+                <input
+                  type="radio"
+                  name="project-type"
+                  id={`type-${type.id}`}
+                  value={type.id}
+                  class="visually-hidden"
+                  checked={index === 0}
+                />
+                <label for={`type-${type.id}`}>{type.label}</label>
+              </>
+            ))}
+          </div>
+          <div class={s.panels}>
+            {data.flexibility.types.map(type => (
+              <div class={s.panel} data-type={type.id}>
+                <p class={s.label}>{data.flexibility.stack}</p>
+                <ul class={s.stack}>
+                  {type.stack.map((name, index) => (
+                    <li style={`--k: ${index}`}>
+                      <Tag>{name}</Tag>
+                    </li>
+                  ))}
+                </ul>
+                <p class={s.label}>{data.flexibility.stages}</p>
+                <ol class={s.stages}>
+                  {type.stages.map((stage, index) => (
+                    <li style={`--k: ${index}`}>
+                      <span class={s.node} aria-hidden="true" />
+                      {stage}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
       </article>
       <article class:list={[s.item, s.item_3]} data-reveal data-spotlight style="--i: 2">
         <Spotlight />

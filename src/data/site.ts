@@ -9,6 +9,7 @@ import { DEFAULT_LOCALE, LOCALES, type Locale } from '@i18n/locales';
 import { getExperienceYears } from '@utils/experience';
 import { interpolate } from '@utils/rich-text';
 import a11yJson from './a11y/a11y.json';
+import approachBaseJson from './approach/approach.base.json';
 import approachJson from './approach/approach.json';
 import careerBaseJson from './career/career.base.json';
 import careerJson from './career/career.json';
@@ -29,6 +30,7 @@ import skillsJson from './skills/skills.json';
 import technologiesJson from './technologies.json';
 import {
   a11ySchema,
+  approachBaseSchema,
   approachSchema,
   careerBaseSchema,
   careerSchema,
@@ -105,6 +107,7 @@ const load = () => {
 
   const a11y = parseLocalized('a11y.json', a11ySchema, a11yJson);
   const approach = parseLocalized('approach.json', approachSchema, approachJson);
+  const approachBase = parse('approach.base.json', approachBaseSchema, approachBaseJson);
   const hero = parseLocalized('hero.json', heroSchema, heroJson);
   const footer = parseLocalized('footer.json', footerSchema, footerJson);
   const easter = parseLocalized('easter.json', easterSchema, easterJson);
@@ -163,7 +166,18 @@ const load = () => {
 
   const build = (locale: Locale) => ({
     a11y: a11y[locale],
-    approach: approach[locale],
+    approach: {
+      ...approach[locale],
+      flexibility: {
+        ...approach[locale].flexibility,
+        // The order comes from the base file; the texts of a type are found by its id.
+        types: approachBase.types.map(type => ({
+          id: type.id,
+          stack: type.stack,
+          ...approach[locale].flexibility.types[type.id],
+        })),
+      },
+    },
     hero: hero[locale],
     footer: footer[locale],
     easter: easter[locale],
