@@ -5,7 +5,7 @@ import type { RelicSound } from './sound-relic';
 
 // The music of the takeover (J-05) as the rest of the code sees it: a few calls that do nothing if the sound is off or
 // not loaded yet. The engine itself (sound-relic.ts, a chunk of its own) is loaded the first time the music is wanted.
-//   scene opens: music fades in → a riser before the end of the scene → the hit when Johnny takes the site over →
+//   scene opens: music fades in → a riser before the end of the scene → the hit when the netrunner takes the site over →
 //   a crunch for every glitch of the page → on leaving the music collapses and fades out.
 const SOUND_KEY = 'relic-sound'; // '1' on, '0' off: what the visitor chose last time
 

@@ -32,11 +32,11 @@ test.describe('when motion is allowed', () => {
     ).toBe('#d4123f');
   });
 
-  test('the logo becomes SAMURAI and keeps its name for assistive technology', async ({ page }) => {
+  test('the logo becomes NETRUNNER and keeps its name for assistive technology', async ({ page }) => {
     await takeOver(page);
     const logo = page.locator('[data-logo]');
     await expect(logo).toHaveAccessibleName('Home');
-    await expect(logo.getByText('SAMURAI')).toBeVisible();
+    await expect(logo.getByText('NETRUNNER')).toBeVisible();
     await expect(logo.locator('svg:not([data-logo-ghost])')).toBeHidden();
   });
 
@@ -44,12 +44,12 @@ test.describe('when motion is allowed', () => {
     await takeOver(page);
     await page.evaluate(() => scrollTo(0, 0));
     const heading = page.getByRole('heading', { level: 1 });
-    await expect(heading).toContainText('Rockerboy');
+    await expect(heading).toContainText('Netrunner');
     // The accessible name still has the real role, and the replaced text is hidden from assistive technology.
     await expect(heading).toHaveAccessibleName(/Frontend Engineer/);
-    await expect(heading).not.toHaveAccessibleName(/Rockerboy/);
+    await expect(heading).not.toHaveAccessibleName(/Netrunner/);
     await expect(page.getByRole('link', { name: 'Discuss a project' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Discuss a project' })).toContainText('Burn the city together');
+    await expect(page.getByRole('link', { name: 'Discuss a project' })).toContainText('Hack the city together');
   });
 
   test('the page glitches every 10 to 15 seconds, and not when the tab is hidden', async ({ page }) => {
@@ -105,8 +105,8 @@ test.describe('when motion is allowed', () => {
   test('the Russian page gets Russian replacements', async ({ page }) => {
     await takeOver(page, '/ru/');
     await page.evaluate(() => scrollTo(0, 0));
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Рокербой');
-    await expect(page.getByRole('link', { name: 'Обсудить проект' })).toContainText('Сожжём город вместе');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Нетраннер');
+    await expect(page.getByRole('link', { name: 'Обсудить проект' })).toContainText('Взломаем город вместе');
   });
 });
 
@@ -119,7 +119,7 @@ test.describe('with reduced motion', () => {
       document.addEventListener('relic:glitch', () => (window as unknown as { glitches: number }).glitches++);
     });
     await takeOver(page);
-    await expect(page.locator('[data-logo]').getByText('SAMURAI')).toBeVisible();
+    await expect(page.locator('[data-logo]').getByText('NETRUNNER')).toBeVisible();
     expect(await page.evaluate(() => (window as unknown as { glitches: number }).glitches)).toBe(0);
     await expect(html(page)).not.toHaveAttribute('data-relic-glitch', '');
   });

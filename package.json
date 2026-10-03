@@ -10,6 +10,7 @@
     "build:icons": "node scripts/icons.mjs",
     "build:wordmark": "node scripts/build-wordmark.mjs",
     "build:hands": "node scripts/build-hands.mjs",
+    "build:mask": "node scripts/build-mask.mjs",
     "check": "astro check",
     "check:links": "bun scripts/check-links.mjs",
     "check:lighthouse": "node scripts/lighthouse.mjs",

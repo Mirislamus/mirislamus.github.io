@@ -1,6 +1,6 @@
 import { getMotion } from '../matrix/motion';
 
-// What Johnny says about the section that comes into view (J-04), while he is in the site.
+// What the netrunner says about the section that comes into view (J-04), while he is in the site.
 //   - one remark per section for one takeover; never more often than one in 8 s (the next one waits its turn);
 //   - the text is typed in about a second, stays for 6 s and leaves with a short glitch; while the mouse is over it or
 //     the focus is in it, it stays (WCAG 2.2.1);
@@ -99,7 +99,6 @@ function pump() {
 export const startRemarks = () => {
   box = document.querySelector<HTMLElement>('[data-relic-remark]') ?? undefined;
   if (!box || observer) return;
-  box.querySelector('[data-johnny]')?.setAttribute('data-drawn', ''); // the small figure is there at once
   spoken = new Set();
   queue = [];
   visible = new Set();

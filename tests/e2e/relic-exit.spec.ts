@@ -23,7 +23,9 @@ const takeOver = async (page: Page, path = '/') => {
 test.describe('when motion is allowed', () => {
   test.use({ reducedMotion: 'no-preference' });
 
-  test('the plate is not there before Johnny, and the focus goes to the button when he arrives', async ({ page }) => {
+  test('the plate is not there before the netrunner, and the focus goes to the button when he arrives', async ({
+    page,
+  }) => {
     await page.goto('/');
     await expect(plate(page)).toBeHidden();
     await takeOver(page);
@@ -61,11 +63,11 @@ test.describe('when motion is allowed', () => {
   }) => {
     await takeOver(page);
     await page.evaluate(() => scrollTo(0, 0));
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Rockerboy');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Netrunner');
     await eject(page).click();
     await expect(html(page)).not.toHaveAttribute('data-relic', '', { timeout: 3000 });
     await expect(plate(page)).toBeHidden();
-    await expect(page.locator('[data-logo]').getByText('SAMURAI')).toBeHidden();
+    await expect(page.locator('[data-logo]').getByText('NETRUNNER')).toBeHidden();
     await expect(page.locator('[data-logo] svg:not([data-logo-ghost])')).toBeVisible();
     // The texts are exactly as before: nothing of the replacement is left in the page.
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov Frontend Engineer');
@@ -107,7 +109,7 @@ test.describe('when motion is allowed', () => {
     await expect(html(page)).not.toHaveAttribute('data-relic', '', { timeout: 3000 });
   });
 
-  test('Escape in another dialog only closes that dialog: Johnny stays', async ({ page }) => {
+  test('Escape in another dialog only closes that dialog: the netrunner stays', async ({ page }) => {
     await takeOver(page);
     await page.locator('[data-rabbit]').click();
     await expect(page.locator('dialog[data-pills]')).toHaveAttribute('open', '');
@@ -117,7 +119,7 @@ test.describe('when motion is allowed', () => {
     await expect(plate(page)).toBeVisible();
   });
 
-  test('after a reload the site is the usual one, and Johnny can come again', async ({ page }) => {
+  test('after a reload the site is the usual one, and he can come again', async ({ page }) => {
     await takeOver(page);
     await page.reload();
     await expect(html(page)).not.toHaveAttribute('data-relic', '');
@@ -127,7 +129,7 @@ test.describe('when motion is allowed', () => {
     await expect(html(page)).toHaveAttribute('data-relic', '', { timeout: 10_000 });
   });
 
-  test('while Johnny is in, the chip does not start another scene', async ({ page }) => {
+  test('while the netrunner is in, the chip does not start another scene', async ({ page }) => {
     await takeOver(page);
     await chip(page).click();
     await page.waitForTimeout(500);

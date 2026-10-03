@@ -1,6 +1,6 @@
 ---
 import type { SiteData } from '@data/site';
-import Johnny from './Johnny.astro';
+import { mask } from '@data/matrix/mask';
 import s from './Relic.module.scss';
 
 interface Props {
@@ -10,10 +10,10 @@ interface Props {
 const { texts } = Astro.props;
 ---
 
-{/* The scene of the Relic chip (J-02): a modal dialog like the one with the pills, always dark. */}
+{/* The scene of the Relic chip (J-02): a modal dialog like the one with the pills, always dark. The mask is glyphs on a canvas (J-07). */}
 <dialog class={s.dialog} data-relic-scene aria-label={texts.title}>
-  <div class={s.stage}>
-    <Johnny class={s.figure} />
+  <div class={s.stage} style={`--ratio:${mask.ratio}`}>
+    <canvas class={s.figure} data-relic-mask aria-hidden="true"></canvas>
     <div class={s.scan} aria-hidden="true"></div>
   </div>
 
@@ -46,7 +46,7 @@ const { texts } = Astro.props;
   </button>
 </dialog>
 
-{/* What Johnny says about the section that comes into view (J-04): a live region, filled only during the takeover. */}
+{/* What the netrunner says about the section that comes into view (J-04): a live region, filled only during the takeover. */}
 <div
   class={s.remark}
   data-relic-remark
@@ -55,11 +55,13 @@ const { texts } = Astro.props;
   aria-live="polite"
   hidden
 >
-  <Johnny class={s.mini} />
+  <span class={s.prompt} aria-hidden="true">
+    &gt;_
+  </span>
   <p class={s.remarkText} lang={Astro.currentLocale} data-relic-remark-text></p>
 </div>
 
-{/* The plate that stays while Johnny is in the site (J-06): the way out, and the sound. */}
+{/* The plate that stays while the netrunner is in the site (J-06): the way out, and the sound. */}
 <div class={s.plate} data-relic-plate hidden>
   <button type="button" class={s.eject} data-relic-eject>
     {texts.eject}

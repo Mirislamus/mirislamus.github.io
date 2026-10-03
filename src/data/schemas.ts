@@ -124,13 +124,13 @@ export const easterSchema = z.strictObject({
   soundOff: text,
 });
 
-// The Cyberpunk easter egg: the Relic chip in the footer, Johnny Silverhand and his takeover of the site.
+// The Cyberpunk easter egg: the Relic chip in the footer, the netrunner and his takeover of the site.
 export const relicSchema = z.strictObject({
   chip: text,
   // The name of the scene for assistive technology.
   title: text,
   close: text,
-  // The plate that stays while Johnny is in the site: the button that takes the chip out and the one for the sound.
+  // The plate that stays while the netrunner is in the site: the button that takes the chip out and the one for the sound.
   eject: text,
   soundOn: text,
   soundOff: text,
@@ -138,7 +138,7 @@ export const relicSchema = z.strictObject({
   subtitle: text.optional(),
   // Texts of the page that the takeover replaces by others (visually only, see the Swap component).
   swaps: z.strictObject({ role: text, button: text }),
-  // What Johnny says when a section comes into view; the keys are the ids of the sections.
+  // What the netrunner says when a section comes into view; the keys are the ids of the sections.
   remarks: z.strictObject({
     about: text,
     approach: text,

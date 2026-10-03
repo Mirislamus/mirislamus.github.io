@@ -10,11 +10,11 @@ const showFooter = async (page: Page, path = '/') => {
 
 test('the chip is named on every language', async ({ page }) => {
   await showFooter(page);
-  await expect(chip(page)).toHaveAccessibleName('Insert the Relic chip');
+  await expect(chip(page)).toHaveAccessibleName('Insert the chip');
   await showFooter(page, '/ru/');
-  await expect(chip(page)).toHaveAccessibleName('Вставить чип «Реликт»');
+  await expect(chip(page)).toHaveAccessibleName('Вставить чип');
   await showFooter(page, '/uz/');
-  await expect(chip(page)).toHaveAccessibleName('«Relikt» chipini kiritish');
+  await expect(chip(page)).toHaveAccessibleName('Chipni kiritish');
 });
 
 test('the touch target is at least 24 px and the glitch copies stay out of the way', async ({ page }) => {
@@ -79,6 +79,19 @@ test('axe finds no violations on the chip', async ({ page }) => {
 
 const scene = (page: Page) => page.locator('dialog[data-relic-scene]');
 
+// How many pixels of the glyph mask are painted.
+const painted = (page: Page) =>
+  scene(page)
+    .locator('[data-relic-mask]')
+    .evaluate(canvas => {
+      const { data } = (canvas as HTMLCanvasElement)
+        .getContext('2d')!
+        .getImageData(0, 0, (canvas as HTMLCanvasElement).width, (canvas as HTMLCanvasElement).height);
+      let count = 0;
+      for (let i = 3; i < data.length; i += 4) if (data[i] > 0) count++;
+      return count;
+    });
+
 const openScene = async (page: Page, path = '/') => {
   await showFooter(page, path);
   await chip(page).click();
@@ -88,9 +101,9 @@ const openScene = async (page: Page, path = '/') => {
 test.describe('the scene, when motion is allowed', () => {
   test.use({ reducedMotion: 'no-preference' });
 
-  test('opens as a modal dialog named after Johnny, with the quote for a screen reader', async ({ page }) => {
+  test('opens as a modal dialog named after the netrunner, with the quote for a screen reader', async ({ page }) => {
     await openScene(page);
-    await expect(page.getByRole('dialog', { name: 'Johnny Silverhand' })).toBeVisible();
+    await expect(page.getByRole('dialog', { name: 'Netrunner' })).toBeVisible();
     await expect(scene(page).getByText('Wake up, Samurai. We have a city to burn.')).toBeAttached();
     expect(await page.evaluate(() => document.querySelector('dialog[open]')!.contains(document.activeElement))).toBe(
       true
@@ -109,9 +122,10 @@ test.describe('the scene, when motion is allowed', () => {
     });
   });
 
-  test('the figure is drawn', async ({ page }) => {
+  test('the mask is drawn with glyphs and is hidden from assistive technology', async ({ page }) => {
     await openScene(page);
-    await expect(scene(page).locator('[data-johnny]')).toHaveAttribute('data-drawn', '', { timeout: 2000 });
+    await expect(scene(page).locator('[data-relic-mask]')).toHaveAttribute('aria-hidden', 'true');
+    await expect.poll(() => painted(page), { timeout: 4000 }).toBeGreaterThan(500);
   });
 
   test('Escape leaves without the takeover and the focus goes back to the chip', async ({ page }) => {
@@ -165,7 +179,7 @@ test('the subtitle is in the language of the page and the quote stays English', 
   await expect(scene(page).locator('[data-relic-subtitle]')).toHaveText(
     'Проснись, самурай. У нас есть город, который надо сжечь.'
   );
-  await expect(page.getByRole('dialog', { name: 'Джонни Сильверхенд' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Нетраннер' })).toBeVisible();
   await expect(scene(page).locator('[data-relic-line="2"]')).toHaveText('We have a city to burn.');
 });
 
@@ -177,7 +191,7 @@ test('the English page has no subtitle', async ({ page }) => {
 test('with reduced motion everything is there at once and still closes by itself', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openScene(page);
-  await expect(scene(page).locator('[data-johnny]')).toHaveAttribute('data-drawn', '');
+  expect(await painted(page)).toBeGreaterThan(500);
   await expect(scene(page).locator('[data-relic-line="1"]')).toHaveText(/^Wake the f[▓▒░█▌▐]{3} up, Samurai\.$/);
   await expect(scene(page).locator('[data-relic-line="2"]')).toHaveText('We have a city to burn.');
   await expect(scene(page)).not.toHaveAttribute('open', '', { timeout: 8000 });

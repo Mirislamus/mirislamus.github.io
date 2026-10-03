@@ -1,6 +1,6 @@
 import { setSoundWanted, soundWanted, startMusic, stopMusic } from './audio';
 
-// The plate that stays on the page while Johnny is in the site (J-06): "Eject the chip" and the button of the sound.
+// The plate that stays on the page while the netrunner is in the site (J-06): "Eject the chip" and the button of the sound.
 // The markup is in Relic.astro; it is shown by the takeover and hidden when the chip is out.
 const SOUND_FADE = 0.3; // seconds for the music to go when it is switched off
 

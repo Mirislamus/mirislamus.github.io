@@ -5,8 +5,8 @@ import { GLITCH_EVENT } from './events';
 import { hidePlate, showPlate } from './plate';
 import { startRemarks, stopRemarks } from './remarks';
 
-// The takeover of the site by Johnny Silverhand (J-03). `data-relic` on the root turns on everything that is CSS:
-// the red palette (_variables.scss), the word SAMURAI instead of the logo (Header) and the replaced texts (data-swap, see swapTexts).
+// The takeover of the site by the netrunner (J-03). `data-relic` on the root turns on everything that is CSS:
+// the red palette (_variables.scss), the word NETRUNNER instead of the logo (Header) and the replaced texts (data-swap, see swapTexts).
 // This module adds the glitches: now and then the page breaks up for a moment, and one heading with it.
 //   - 150–300 ms each, every 10–15 s, in a fixed order (seeded), never in a way that needs a loop of frames;
 //   - not while the visitor types, while a dialog is open, while the tab is hidden, or when motion is not allowed.

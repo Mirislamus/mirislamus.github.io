@@ -39,7 +39,7 @@ const readColors = (root: HTMLElement = document.documentElement): MatrixColors 
 };
 
 // Calls `listener` with fresh colors now and after every theme change.
-// The takeover of Johnny Silverhand (`data-relic` on the root, J-03) repaints the accent as well, so it counts as a change.
+// The takeover of the netrunner (`data-relic` on the root, J-03) repaints the accent as well, so it counts as a change.
 export const watchColors = (listener: (colors: MatrixColors) => void) => {
   const update = () => listener(readColors());
   update();

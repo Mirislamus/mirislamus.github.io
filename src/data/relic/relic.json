@@ -1,64 +1,64 @@
 {
   "en": {
-    "chip": "Insert the Relic chip",
-    "title": "Johnny Silverhand",
+    "chip": "Insert the chip",
+    "title": "Netrunner",
     "close": "Close",
     "swaps": {
-      "role": "Rockerboy",
-      "button": "Burn the city together"
+      "role": "Netrunner",
+      "button": "Hack the city together"
     },
     "remarks": {
-      "about": "Frontend Engineer. Sounds like a job title in a megacorp. Fine, I’m listening.",
-      "approach": "Process, approach... I just grabbed a guitar and walked on stage.",
-      "projects": "Not bad. For a corpo mercenary, even pretty good.",
-      "skills": "Thirty-two tools and not a single guitar.",
-      "career": "A track record. I had one too, until 2023.",
-      "reviews": "They praise him. Suspicious. But I believe it.",
-      "contacts": "Write, samurai. The city won’t burn itself."
+      "about": "Frontend Engineer. Clean interface, thin ICE. I’m in.",
+      "approach": "Process and approach. Every protocol has a pattern.",
+      "projects": "Plenty of projects and not a single hole. Respect.",
+      "skills": "Thirty-two tools. Enough to crack any firewall.",
+      "career": "A long log. Not one error in the last lines.",
+      "reviews": "Good feedback. Signature verified.",
+      "contacts": "Channel open. Write, the line is secure."
     },
     "eject": "Eject the chip",
     "soundOn": "Turn sound on",
     "soundOff": "Turn sound off"
   },
   "ru": {
-    "chip": "Вставить чип «Реликт»",
-    "title": "Джонни Сильверхенд",
+    "chip": "Вставить чип",
+    "title": "Нетраннер",
     "close": "Закрыть",
     "subtitle": "Проснись, самурай. У нас есть город, который надо сжечь.",
     "swaps": {
-      "role": "Рокербой",
-      "button": "Сожжём город вместе"
+      "role": "Нетраннер",
+      "button": "Взломаем город вместе"
     },
     "remarks": {
-      "about": "Фронтенд-инженер. Звучит как должность в мегакорпорации. Ладно, послушаем.",
-      "approach": "Подход, процессы… Я просто брал гитару и шёл на сцену.",
-      "projects": "Неплохо. Для корпо-наёмника — даже очень.",
-      "skills": "Тридцать два инструмента, и ни одной гитары.",
-      "career": "Послужной список. У меня тоже был — до 2023-го.",
-      "reviews": "Хвалят. Подозрительно. Но верю.",
-      "contacts": "Пиши, самурай. Город сам себя не сожжёт."
+      "about": "Фронтенд-инженер. Аккуратный интерфейс, защита тонкая. Я внутри.",
+      "approach": "Подход и процессы. У каждого протокола есть свой узор.",
+      "projects": "Проектов много, и ни одной дыры. Уважаю.",
+      "skills": "Тридцать два инструмента. Хватит, чтобы вскрыть любой файрвол.",
+      "career": "Длинный лог. В последних строках ни одной ошибки.",
+      "reviews": "Отзывы хорошие. Подпись проверена.",
+      "contacts": "Канал открыт. Пиши, линия защищена."
     },
     "eject": "Вынуть чип",
     "soundOn": "Включить звук",
     "soundOff": "Выключить звук"
   },
   "uz": {
-    "chip": "«Relikt» chipini kiritish",
-    "title": "Jonni Silverhend",
+    "chip": "Chipni kiritish",
+    "title": "Netranner",
     "close": "Yopish",
     "subtitle": "Uyg‘on, samuray. Bizda yoqib yuboradigan shahar bor.",
     "swaps": {
-      "role": "Rockerboy",
-      "button": "Shaharni birga yoqamiz"
+      "role": "Netrunner",
+      "button": "Shaharni birga hack qilamiz"
     },
     "remarks": {
-      "about": "Frontend Engineer. Megakorporatsiyadagi lavozimga o‘xshaydi. Mayli, tinglab ko‘ramiz.",
-      "approach": "Jarayonlar, yondashuv… Men shunchaki gitara olib sahnaga chiqardim.",
-      "projects": "Yomon emas. Korporativ yollanma uchun hatto juda yaxshi.",
-      "skills": "O‘ttiz ikkita asbob, lekin bitta ham gitara yo‘q.",
-      "career": "Ish tarixi. Menda ham bor edi — 2023-yilgacha.",
-      "reviews": "Maqtashyapti. Shubhali. Lekin ishonaman.",
-      "contacts": "Yoz, samuray. Shahar o‘zi yonib ketmaydi."
+      "about": "Frontend Engineer. Toza interfeys, ICE yupqa. Men ichkaridaman.",
+      "approach": "Yondashuv va jarayonlar. Har bir protokolning o‘z naqshi bor.",
+      "projects": "Loyihalar ko‘p, birorta ham teshik yo‘q. Hurmat.",
+      "skills": "O‘ttiz ikkita vosita. Har qanday fayrvolni buzishga yetadi.",
+      "career": "Uzun jurnal. Oxirgi qatorlarda birorta ham xato yo‘q.",
+      "reviews": "Fikrlar yaxshi. Imzo tekshirildi.",
+      "contacts": "Kanal ochiq. Yoz, aloqa himoyalangan."
     },
     "eject": "Chipni chiqarish",
     "soundOn": "Ovozni yoqish",

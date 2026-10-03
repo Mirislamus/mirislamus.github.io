@@ -6,8 +6,8 @@ test.setTimeout(90_000);
 const box = (page: Page) => page.locator('[data-relic-remark]');
 const text = (page: Page) => page.locator('[data-relic-remark-text]');
 
-const ABOUT = 'Frontend Engineer. Sounds like a job title in a megacorp. Fine, I’m listening.';
-const APPROACH = 'Process, approach... I just grabbed a guitar and walked on stage.';
+const ABOUT = 'Frontend Engineer. Clean interface, thin ICE. I’m in.';
+const APPROACH = 'Process and approach. Every protocol has a pattern.';
 
 // Starts the takeover on a page whose timers are under the test's control.
 const takeOver = async (page: Page, path = '/') => {
@@ -32,7 +32,7 @@ const goTo = async (page: Page, id: string) => {
 test.describe('when motion is allowed', () => {
   test.use({ reducedMotion: 'no-preference' });
 
-  test('Johnny stays quiet until he is in the site', async ({ page }) => {
+  test('the netrunner stays quiet until he is in the site', async ({ page }) => {
     await page.goto('/');
     await expect(box(page)).toBeHidden();
     await expect(box(page)).toHaveAttribute('role', 'status');
@@ -99,7 +99,7 @@ test.describe('when motion is allowed', () => {
     await takeOver(page, '/ru/');
     await goTo(page, 'about');
     await page.clock.runFor(3000);
-    await expect(text(page)).toHaveText('Фронтенд-инженер. Звучит как должность в мегакорпорации. Ладно, послушаем.');
+    await expect(text(page)).toHaveText('Фронтенд-инженер. Аккуратный интерфейс, защита тонкая. Я внутри.');
     await expect(text(page)).toHaveAttribute('lang', 'ru');
   });
 

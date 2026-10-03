@@ -1,12 +1,14 @@
 import { getMotion } from '../matrix/motion';
+import { getTicker } from '../matrix/ticker';
 import { hit, riser, startMusic, stopMusic } from './audio';
 import { TAKEOVER_EVENT } from './events';
+import { createMask } from './mask-fx';
 import { isTakenOver, startTakeover } from './takeover';
 
-// The Johnny Silverhand scene (wave 9, J-02), loaded when the Relic chip in the footer is clicked. A native modal
+// The scene of the netrunner (wave 9, J-02; the mask is glyphs since J-07), loaded when the Relic chip in the footer is clicked. A native modal
 // <dialog> (focus trapped, page behind inert, Escape closes and the focus goes back to the chip), always dark.
 //   0 s     the relic glitches (the dialog opens with a red and cyan split)
-//   0.4 s   the figure of Johnny is drawn, line by line
+//   0.4 s   the mask assembles out of falling glyphs
 //   1.4 s   "Wake the f▓▒░ up, Samurai." is typed; the profanity is eaten by noise and never shows
 //   3 s     "We have a city to burn.", then the subtitle in the language of the page
 //   5.6 s   the scene closes by itself and the takeover begins (takeover.ts; also a `relic:takeover` event).
@@ -25,7 +27,9 @@ let dialog: HTMLDialogElement | undefined;
 
 const setup = (root: HTMLDialogElement) => {
   const motion = getMotion();
-  const figure = root.querySelector<SVGElement>('[data-johnny]')!;
+  const mask = createMask(root.querySelector<HTMLCanvasElement>('[data-relic-mask]')!);
+  const ticker = getTicker();
+  let stopTicker: (() => void) | undefined;
   const lines = LINES.map((_, index) => root.querySelector<HTMLElement>(`[data-relic-line="${index + 1}"]`)!);
   const subtitle = root.querySelector<HTMLElement>('[data-relic-subtitle]');
   const timers: number[] = [];
@@ -49,7 +53,9 @@ const setup = (root: HTMLDialogElement) => {
     timers.splice(0).forEach(window.clearTimeout);
     window.clearInterval(noise);
     noise = undefined;
-    figure.removeAttribute('data-drawn');
+    stopTicker?.();
+    stopTicker = undefined;
+    mask?.close();
     lines.forEach(line => (line.textContent = ''));
     if (subtitle) subtitle.hidden = true;
     root.removeAttribute('data-closing');
@@ -75,14 +81,17 @@ const setup = (root: HTMLDialogElement) => {
   const run = () => {
     startMusic();
     if (!motion.allowed) {
-      // Everything at once, no strokes and no typing; the visitor has time to read it.
-      figure.setAttribute('data-drawn', '');
+      // Everything at once, no assembling and no typing; the visitor has time to read it.
+      mask?.open();
       lines.forEach((_, index) => show(index, LINES[index].length));
       if (subtitle) subtitle.hidden = false;
       later(() => close(true), READ_MS);
       return;
     }
-    later(() => figure.setAttribute('data-drawn', ''), START_MS.figure);
+    later(() => {
+      mask?.open();
+      stopTicker = ticker.subscribe((dt, now) => mask?.tick(dt, now));
+    }, START_MS.figure);
     type(0, START_MS.line1);
     type(1, START_MS.line2);
     // The blocks keep changing while the first line is on the screen.
@@ -97,6 +106,7 @@ const setup = (root: HTMLDialogElement) => {
     later(() => close(true), START_MS.end);
   };
 
+  window.addEventListener('resize', () => root.open && mask?.resize());
   root.querySelector('[data-relic-close]')?.addEventListener('click', () => close(false));
   root.addEventListener('cancel', event => {
     event.preventDefault();
