@@ -6,6 +6,15 @@
     "swaps": {
       "role": "Rockerboy",
       "button": "Burn the city together"
+    },
+    "remarks": {
+      "about": "Frontend Engineer. Sounds like a job title in a megacorp. Fine, I’m listening.",
+      "approach": "Process, approach... I just grabbed a guitar and walked on stage.",
+      "projects": "Not bad. For a corpo mercenary, even pretty good.",
+      "skills": "Thirty-two tools and not a single guitar.",
+      "career": "A track record. I had one too, until 2023.",
+      "reviews": "They praise him. Suspicious. But I believe it.",
+      "contacts": "Write, samurai. The city won’t burn itself."
     }
   },
   "ru": {
@@ -16,6 +25,15 @@
     "swaps": {
       "role": "Рокербой",
       "button": "Сожжём город вместе"
+    },
+    "remarks": {
+      "about": "Фронтенд-инженер. Звучит как должность в мегакорпорации. Ладно, послушаем.",
+      "approach": "Подход, процессы… Я просто брал гитару и шёл на сцену.",
+      "projects": "Неплохо. Для корпо-наёмника — даже очень.",
+      "skills": "Тридцать два инструмента, и ни одной гитары.",
+      "career": "Послужной список. У меня тоже был — до 2023-го.",
+      "reviews": "Хвалят. Подозрительно. Но верю.",
+      "contacts": "Пиши, самурай. Город сам себя не сожжёт."
     }
   },
   "uz": {
@@ -26,6 +44,15 @@
     "swaps": {
       "role": "Rockerboy",
       "button": "Shaharni birga yoqamiz"
+    },
+    "remarks": {
+      "about": "Frontend Engineer. Megakorporatsiyadagi lavozimga o‘xshaydi. Mayli, tinglab ko‘ramiz.",
+      "approach": "Jarayonlar, yondashuv… Men shunchaki gitara olib sahnaga chiqardim.",
+      "projects": "Yomon emas. Korporativ yollanma uchun hatto juda yaxshi.",
+      "skills": "O‘ttiz ikkita asbob, lekin bitta ham gitara yo‘q.",
+      "career": "Ish tarixi. Menda ham bor edi — 2023-yilgacha.",
+      "reviews": "Maqtashyapti. Shubhali. Lekin ishonaman.",
+      "contacts": "Yoz, samuray. Shahar o‘zi yonib ketmaydi."
     }
   }
 }

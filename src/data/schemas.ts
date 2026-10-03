@@ -134,6 +134,16 @@ export const relicSchema = z.strictObject({
   subtitle: text.optional(),
   // Texts of the page that the takeover replaces by others (visually only, see the Swap component).
   swaps: z.strictObject({ role: text, button: text }),
+  // What Johnny says when a section comes into view; the keys are the ids of the sections.
+  remarks: z.strictObject({
+    about: text,
+    approach: text,
+    projects: text,
+    skills: text,
+    career: text,
+    reviews: text,
+    contacts: text,
+  }),
 });
 
 // Only used by the printable CV page; none of this appears on the site itself.

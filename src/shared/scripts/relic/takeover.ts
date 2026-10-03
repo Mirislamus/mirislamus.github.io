@@ -1,5 +1,6 @@
 import { createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
+import { startRemarks, stopRemarks } from './remarks';
 
 // The takeover of the site by Johnny Silverhand (J-03). `data-relic` on the root turns on everything that is CSS:
 // the red palette (_variables.scss), the word SAMURAI instead of the logo (Header) and the replaced texts (data-swap, see swapTexts).
@@ -100,12 +101,14 @@ export const startTakeover = () => {
     root().setAttribute(ATTRIBUTE, '');
   }
   schedule();
+  startRemarks();
 };
 
 // Everything is back as it was (J-06 uses it for the exit).
 export const stopTakeover = () => {
   window.clearTimeout(timer);
   pending.splice(0).forEach(window.clearTimeout);
+  stopRemarks();
   unswapTexts();
   [GLITCH, SWAPPING, ATTRIBUTE].forEach(name => root().removeAttribute(name));
   document.querySelectorAll(`[${HIT}]`).forEach(element => element.removeAttribute(HIT));

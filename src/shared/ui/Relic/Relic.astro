@@ -45,3 +45,16 @@ const { texts } = Astro.props;
     </svg>
   </button>
 </dialog>
+
+{/* What Johnny says about the section that comes into view (J-04): a live region, filled only during the takeover. */}
+<div
+  class={s.remark}
+  data-relic-remark
+  data-remarks={JSON.stringify(texts.remarks)}
+  role="status"
+  aria-live="polite"
+  hidden
+>
+  <Johnny class={s.mini} />
+  <p class={s.remarkText} lang={Astro.currentLocale} data-relic-remark-text></p>
+</div>
