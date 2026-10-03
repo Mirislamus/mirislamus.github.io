@@ -4,6 +4,7 @@ import { info } from '@data/global';
 import Button from '@shared/ui/Button/Button.astro';
 import LocalTime from '@shared/ui/LocalTime/LocalTime.astro';
 import Pills from '@shared/ui/Pills/Pills.astro';
+import Relic from '@shared/ui/Relic/Relic.astro';
 import Wordmark from '@shared/ui/Wordmark/Wordmark.astro';
 import { getLocale } from '@i18n/utils';
 import s from './Footer.module.scss';
@@ -110,6 +111,7 @@ const {
 </footer>
 
 <Pills texts={easter} />
+<Relic texts={relic} />
 
 <script>
   // The scene is a separate chunk, loaded only when the rabbit is clicked.

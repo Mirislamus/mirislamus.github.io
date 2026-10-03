@@ -1,0 +1,48 @@
+---
+// Johnny Silverhand as a silhouette of lines (J-02), in the manner of the hands of the pill scene: shaggy hair, aviators,
+// a cigarette, the leather jacket and the silver left arm. No face is drawn, so it is a figure, not a likeness of anyone.
+// The strokes are drawn one after another when `data-drawn` appears on the figure (see Johnny.module.scss).
+import s from './Johnny.module.scss';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// [path, step in the order of drawing, silver arm?]
+const strokes: [string, number, boolean?][] = [
+  ['M64 84C54 52 76 22 110 22C146 22 164 52 154 86C150 72 140 62 128 58C112 68 90 68 74 60C68 68 66 76 64 84Z', 0],
+  ['M84 24C78 34 76 44 78 54M100 22C96 32 96 42 98 52M120 24C124 34 126 44 124 54M138 30C144 40 146 52 144 62', 1],
+  ['M68 86C68 120 82 144 106 154C130 144 144 120 146 86', 2],
+  ['M76 94H98C98 110 91 116 85 116C79 116 76 106 76 94ZM116 94H138C138 106 135 116 129 116C123 116 116 110 116 94Z', 3],
+  ['M98 96C104 93 110 93 116 96M76 96L68 92M138 96L146 92', 3],
+  ['M107 102L103 126H111M92 138C100 142 112 142 120 136', 4],
+  ['M121 139L152 134M152 134L156 133', 4],
+  ['M88 150L84 172C60 180 36 190 24 236M126 150L130 172C154 180 176 190 188 236', 5],
+  ['M84 172L106 194L130 172M106 194V236', 5],
+  [
+    'M156 204L162 178L176 182L174 208ZM162 178L164 170M168 180L170 172M174 182L177 174M174 208L158 214L156 204',
+    6,
+    true,
+  ],
+  ['M158 214L152 236M174 208L180 236', 6, true],
+];
+---
+
+<svg
+  class:list={[s.johnny, className]}
+  viewBox="0 0 210 240"
+  fill="none"
+  stroke-width="2.2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  data-johnny
+>
+  {strokes.map(([d, step, silver]) => (
+    <path d={d} pathLength="1" class:list={[silver && s.silver]} style={`--step:${step}`} />
+  ))}
+  <circle class={s.ember} cx="157" cy="133" r="2.4"></circle>
+</svg>

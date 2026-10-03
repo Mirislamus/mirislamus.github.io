@@ -1,0 +1,47 @@
+---
+import type { SiteData } from '@data/site';
+import Johnny from './Johnny.astro';
+import s from './Relic.module.scss';
+
+interface Props {
+  texts: SiteData['relic'];
+}
+
+const { texts } = Astro.props;
+---
+
+{/* The scene of the Relic chip (J-02): a modal dialog like the one with the pills, always dark. */}
+<dialog class={s.dialog} data-relic-scene aria-label={texts.title}>
+  <div class={s.stage}>
+    <Johnny class={s.figure} />
+    <div class={s.scan} aria-hidden="true"></div>
+  </div>
+
+  <div class={s.words}>
+    {/* The shown line is noise to a screen reader, so it gets the whole quote in one clean piece. */}
+    <p class="visually-hidden" lang="en">
+      Wake up, Samurai. We have a city to burn.
+    </p>
+    <p class={s.line} lang="en" aria-hidden="true" data-relic-line="1"></p>
+    <p class={s.line} lang="en" aria-hidden="true" data-relic-line="2"></p>
+    {texts.subtitle && (
+      <p class={s.subtitle} data-relic-subtitle hidden>
+        {texts.subtitle}
+      </p>
+    )}
+  </div>
+
+  <button type="button" class={s.close} data-relic-close aria-label={texts.close}>
+    <svg
+      viewBox="0 0 24 24"
+      width="22"
+      height="22"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path>
+    </svg>
+  </button>
+</dialog>

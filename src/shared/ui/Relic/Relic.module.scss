@@ -1,0 +1,169 @@
+// The scene of the Relic chip: always dark, red and cyan like the glitch of the logo.
+.dialog {
+  --relic-red: #ff2e63;
+  --relic-cyan: #00e5d1;
+
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: #0a060c;
+  color: #f4eef2;
+  overflow: hidden;
+  z-index: var(--z-modal);
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-24);
+    animation: relic-in var(--dur-glitch) steps(3, end) both;
+  }
+
+  &[data-closing] {
+    animation: relic-out var(--dur-slow) var(--ease-out) both;
+  }
+
+  &::backdrop {
+    background-color: #0a060c;
+  }
+}
+
+// The scene opens with a split into red and cyan that settles in three steps.
+@keyframes relic-in {
+  0% {
+    opacity: 0;
+    filter: drop-shadow(-6px 0 #ff2e63) drop-shadow(6px 0 #00e5d1);
+    translate: -8px 0;
+  }
+
+  40% {
+    opacity: 1;
+    filter: drop-shadow(5px 0 #ff2e63) drop-shadow(-5px 0 #00e5d1);
+    translate: 6px 0;
+  }
+
+  70% {
+    filter: drop-shadow(-3px 0 #ff2e63) drop-shadow(3px 0 #00e5d1);
+    translate: -3px 0;
+  }
+
+  100% {
+    filter: none;
+    translate: 0 0;
+  }
+}
+
+@keyframes relic-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.stage {
+  position: relative;
+  width: min(280px, 56vw, 42dvh);
+  aspect-ratio: 210 / 240;
+}
+
+// The figure flickers like a hologram while it is being drawn: a few steps of opacity, three rounds.
+.figure {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  &[data-drawn] {
+    animation: relic-flicker var(--dur-intro) steps(1, end) 3 both;
+  }
+}
+
+@keyframes relic-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0.55;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+}
+
+// The lines of the scan lie over the figure; the layer does not take part in clicks.
+.scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(to bottom, rgb(255 46 99 / 0%) 0 3px, rgb(255 46 99 / 14%) 3px 4px);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-8);
+  min-height: 7.5em;
+  padding-inline: var(--gap-24);
+  text-align: center;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.line {
+  min-height: 1.3em;
+  font-size: clamp(22px, 5vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--relic-red);
+  text-shadow:
+    -2px 0 rgb(0 229 209 / 55%),
+    2px 0 rgb(255 46 99 / 35%);
+}
+
+.subtitle {
+  margin-top: var(--gap-8);
+  font-size: clamp(14px, 2.4vw, 18px);
+  color: #b9aeb6;
+  animation: relic-out var(--dur-slow) var(--ease-out) reverse both;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.close {
+  position: absolute;
+  top: max(var(--gap-16), env(safe-area-inset-top));
+  right: max(var(--gap-16), env(safe-area-inset-right));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #b9aeb6;
+  transition: color var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
