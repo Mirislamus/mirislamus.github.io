@@ -10,6 +10,11 @@
     stroke-dashoffset: 1;
   }
 
+  // The lenses are dark glass: a filled shape, drawn together with its outline.
+  .lens {
+    fill: rgb(255 46 99 / 28%);
+  }
+
   .silver {
     stroke: var(--relic-cyan, #00e5d1);
   }

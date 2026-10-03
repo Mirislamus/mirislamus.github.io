@@ -2,18 +2,30 @@
   "en": {
     "chip": "Insert the Relic chip",
     "title": "Johnny Silverhand",
-    "close": "Close"
+    "close": "Close",
+    "swaps": {
+      "role": "Rockerboy",
+      "button": "Burn the city together"
+    }
   },
   "ru": {
     "chip": "Вставить чип «Реликт»",
     "title": "Джонни Сильверхенд",
     "close": "Закрыть",
-    "subtitle": "Проснись, самурай. У нас есть город, который надо сжечь."
+    "subtitle": "Проснись, самурай. У нас есть город, который надо сжечь.",
+    "swaps": {
+      "role": "Рокербой",
+      "button": "Сожжём город вместе"
+    }
   },
   "uz": {
     "chip": "«Relikt» chipini kiritish",
     "title": "Jonni Silverhend",
     "close": "Yopish",
-    "subtitle": "Uyg‘on, samuray. Bizda yoqib yuboradigan shahar bor."
+    "subtitle": "Uyg‘on, samuray. Bizda yoqib yuboradigan shahar bor.",
+    "swaps": {
+      "role": "Rockerboy",
+      "button": "Shaharni birga yoqamiz"
+    }
   }
 }

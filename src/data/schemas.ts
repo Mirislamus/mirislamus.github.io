@@ -132,6 +132,8 @@ export const relicSchema = z.strictObject({
   close: text,
   // The quote is always in English; the subtitle is its translation (none on the English page).
   subtitle: text.optional(),
+  // Texts of the page that the takeover replaces by others (visually only, see the Swap component).
+  swaps: z.strictObject({ role: text, button: text }),
 });
 
 // Only used by the printable CV page; none of this appears on the site itself.

@@ -11,7 +11,7 @@ import { getAvatarSrc } from '@utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
-const { hero: data, status, skills, a11y } = getSiteData(locale);
+const { hero: data, status, skills, a11y, relic } = getSiteData(locale);
 const avatarSrc = await getAvatarSrc();
 const coreSkills = skills.groups.find(group => group.id === 'core')?.items.map(skill => skill.name) ?? [];
 const rainWords = JSON.stringify(buildRainWords(status.open, coreSkills));
@@ -40,13 +40,18 @@ const titleHtml = data.title
       )}
       {/* The role sits inside the heading: the page's main heading is "name + role". */}
       <h1>
-        <Fragment set:html={titleHtml} /> <span class:list={[s.role, 'text-xl', 'medium', 'accent']}>{data.role}</span>
+        <Fragment set:html={titleHtml} />{' '}
+        <span class:list={[s.role, 'text-xl', 'medium', 'accent']} data-swap={relic.swaps.role}>
+          {data.role}
+        </span>
       </h1>
       <p class:list={[s.text, 'text-md', 'regular']}>
         <RichText text={data.text} vars={{ years: getExperienceYears() }} />
       </p>
       <div class={s.btns}>
-        <Button href="#contacts">{data.button}</Button>
+        <Button href="#contacts" data-swap={relic.swaps.button}>
+          {data.button}
+        </Button>
         <Button variant="outline" href={`/cv/mirislam-usmanov-${locale}.pdf`} download>
           {data.cv}
         </Button>

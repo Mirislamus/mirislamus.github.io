@@ -1,4 +1,5 @@
 import { getMotion } from '../matrix/motion';
+import { isTakenOver, startTakeover } from './takeover';
 
 // The Johnny Silverhand scene (wave 9, J-02), loaded when the Relic chip in the footer is clicked. A native modal
 // <dialog> (focus trapped, page behind inert, Escape closes and the focus goes back to the chip), always dark.
@@ -6,7 +7,7 @@ import { getMotion } from '../matrix/motion';
 //   0.4 s   the figure of Johnny is drawn, line by line
 //   1.4 s   "Wake the f▓▒░ up, Samurai." is typed; the profanity is eaten by noise and never shows
 //   3 s     "We have a city to burn.", then the subtitle in the language of the page
-//   5.6 s   the scene closes by itself and the takeover begins (a `relic:takeover` event, see J-03).
+//   5.6 s   the scene closes by itself and the takeover begins (takeover.ts; also a `relic:takeover` event).
 // Escape, the close button and a click on the dark area leave the scene without the takeover.
 export const TAKEOVER_EVENT = 'relic:takeover';
 
@@ -59,7 +60,10 @@ const setup = (root: HTMLDialogElement) => {
     later(() => {
       reset();
       root.close();
-      if (takeover) document.dispatchEvent(new Event(TAKEOVER_EVENT));
+      if (takeover) {
+        startTakeover();
+        document.dispatchEvent(new Event(TAKEOVER_EVENT));
+      }
     }, fade);
   };
 
@@ -106,7 +110,7 @@ let open: (() => void) | undefined;
 
 export const openRelic = (): void => {
   dialog ??= document.querySelector<HTMLDialogElement>('[data-relic-scene]') ?? undefined;
-  if (!dialog || dialog.open) return;
+  if (!dialog || dialog.open || isTakenOver()) return;
   open ??= setup(dialog);
   open();
 };

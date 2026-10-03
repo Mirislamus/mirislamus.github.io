@@ -1,7 +1,8 @@
 ---
-// Johnny Silverhand as a silhouette of lines (J-02), in the manner of the hands of the pill scene: shaggy hair, aviators,
-// a cigarette, the leather jacket and the silver left arm. No face is drawn, so it is a figure, not a likeness of anyone.
-// The strokes are drawn one after another when `data-drawn` appears on the figure (see Johnny.module.scss).
+// Johnny Silverhand as a figure of lines (J-02), in the manner of the hands of the pill scene. It is a drawing of the
+// character from his marks, not a trace of any picture or of an actor: long swept-back hair, big aviators, stubble, a
+// cigarette, the jacket with a high collar and the silver left arm. The strokes are drawn one after another when
+// `data-drawn` appears on the figure (see Johnny.module.scss).
 import s from './Johnny.module.scss';
 
 interface Props {
@@ -10,29 +11,43 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-// [path, step in the order of drawing, silver arm?]
-const strokes: [string, number, boolean?][] = [
-  ['M64 84C54 52 76 22 110 22C146 22 164 52 154 86C150 72 140 62 128 58C112 68 90 68 74 60C68 68 66 76 64 84Z', 0],
-  ['M84 24C78 34 76 44 78 54M100 22C96 32 96 42 98 52M120 24C124 34 126 44 124 54M138 30C144 40 146 52 144 62', 1],
-  ['M68 86C68 120 82 144 106 154C130 144 144 120 146 86', 2],
-  ['M76 94H98C98 110 91 116 85 116C79 116 76 106 76 94ZM116 94H138C138 106 135 116 129 116C123 116 116 110 116 94Z', 3],
-  ['M98 96C104 93 110 93 116 96M76 96L68 92M138 96L146 92', 3],
-  ['M107 102L103 126H111M92 138C100 142 112 142 120 136', 4],
-  ['M121 139L152 134M152 134L156 133', 4],
-  ['M88 150L84 172C60 180 36 190 24 236M126 150L130 172C154 180 176 190 188 236', 5],
-  ['M84 172L106 194L130 172M106 194V236', 5],
+// [path, step in the order of drawing, kind]: the silver arm is cyan, the lenses are filled.
+type Kind = 'silver' | 'lens' | undefined;
+const strokes: [string, number, Kind?][] = [
+  // hair: the mass on top, the long locks to the shoulders, the strands swept back
+  ['M86 104C74 62 94 24 134 22C176 22 196 62 174 104C172 82 166 66 154 58C138 70 108 70 96 62C90 74 86 88 86 104Z', 0],
+  ['M86 104C82 130 80 152 70 178C84 170 92 158 98 144M174 104C178 130 180 152 190 178C176 170 168 158 162 144', 0],
+  ['M106 38C118 30 138 28 154 34M96 54C114 42 144 40 168 50M112 66C132 56 152 56 162 66M90 90C92 78 96 68 100 62', 1],
+  // face: the jaw, the ears, the nose, the mouth, the stubble
+  ['M94 104L96 142C98 160 112 176 130 180C148 176 162 160 164 142L166 104', 2],
+  ['M92 108C86 108 86 124 94 126M168 108C174 108 174 124 166 126', 2],
+  ['M133 118L128 150C130 155 138 155 142 152M118 164C128 168 142 168 150 162', 3],
+  ['M102 152l6 6M110 160l5 5M120 168l4 4M158 152l-6 6M150 160l-5 5M140 168l-4 4', 4],
+  // aviators
   [
-    'M156 204L162 178L176 182L174 208ZM162 178L164 170M168 180L170 172M174 182L177 174M174 208L158 214L156 204',
-    6,
-    true,
+    'M98 106H128C128 128 118 138 110 138C102 138 96 126 98 106ZM138 106H168C170 126 164 138 156 138C148 138 138 128 138 106Z',
+    5,
+    'lens',
   ],
-  ['M158 214L152 236M174 208L180 236', 6, true],
+  ['M128 110C132 106 134 106 138 110M96 104H170M98 108L90 106M168 108L176 106', 5],
+  // the cigarette, the ember and the smoke
+  ['M148 163L190 174', 6],
+  ['M194 170C202 160 192 152 200 142', 6],
+  // neck, shoulders, collar and the opening of the jacket
+  ['M112 176L108 200M148 176L152 200', 7],
+  ['M108 200C80 208 48 222 32 300M152 200C180 208 212 222 228 300', 7],
+  ['M108 200L90 190L72 214L100 228M152 200L170 190L188 214L160 228', 7],
+  ['M100 228L130 256L160 228M130 256V300', 8],
+  // the silver arm: the shoulder plate, the forearm, the fist with its knuckles
+  ['M196 232L222 238L226 262L204 268Z', 9, 'silver'],
+  ['M204 268L196 300M226 262L240 300', 9, 'silver'],
+  ['M198 244L214 248M200 256L216 260M206 232L208 268M216 236L218 266', 9, 'silver'],
 ];
 ---
 
 <svg
   class:list={[s.johnny, className]}
-  viewBox="0 0 210 240"
+  viewBox="0 0 260 300"
   fill="none"
   stroke-width="2.2"
   stroke-linecap="round"
@@ -41,8 +56,13 @@ const strokes: [string, number, boolean?][] = [
   focusable="false"
   data-johnny
 >
-  {strokes.map(([d, step, silver]) => (
-    <path d={d} pathLength="1" class:list={[silver && s.silver]} style={`--step:${step}`} />
+  {strokes.map(([d, step, kind]) => (
+    <path
+      d={d}
+      pathLength="1"
+      class:list={[kind === 'silver' && s.silver, kind === 'lens' && s.lens]}
+      style={`--step:${step}`}
+    />
   ))}
-  <circle class={s.ember} cx="157" cy="133" r="2.4"></circle>
+  <circle class={s.ember} cx="192" cy="174" r="2.6"></circle>
 </svg>

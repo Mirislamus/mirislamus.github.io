@@ -129,6 +129,22 @@
       @include dark-tokens;
     }
   }
+
+  // The takeover of Johnny Silverhand (J-03): the accent turns neon red, with a cyan beside it. It wins over both themes;
+  // the light one has a darker red, so text on a white page keeps its contrast (AA, 5.3:1).
+  :root[data-relic] {
+    --accent: #ff2e63;
+    --accent-text: #ff2e63;
+    --accent-alpha: rgb(255 46 99 / 35%);
+    --relic-cyan: #00e5d1;
+  }
+
+  :root[data-relic][data-theme='light'] {
+    --accent: #ff5c7c;
+    --accent-text: #d4123f;
+    --accent-alpha: rgb(255 92 124 / 35%);
+    --relic-cyan: #00a8a0;
+  }
 }
 
 // One switch for reduced motion: every token duration becomes 0, so transitions and animations end

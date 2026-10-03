@@ -420,6 +420,36 @@
   }
 }
 
+// The takeover of Johnny Silverhand (J-03): the logo turns into a word, with the same glitch as on hover while it changes.
+.samurai {
+  display: none;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 42px;
+  color: var(--accent-text);
+}
+
+:global(:root[data-relic]) {
+  .mark {
+    display: none;
+  }
+
+  .samurai {
+    display: block;
+  }
+
+  .ghost {
+    display: none;
+  }
+}
+
+:global(:root[data-relic-swapping]) .ghost {
+  display: block;
+  animation: logo-glitch var(--dur-logo-glitch) steps(1, end) 1 both;
+}
+
 @keyframes logo-glitch {
   0% {
     opacity: 0.9;
