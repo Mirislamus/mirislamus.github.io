@@ -507,14 +507,34 @@
 }
 
 .switcher {
+  --pill-gap: 4px;
+
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  padding: 4px;
+  gap: var(--pill-gap);
+  padding: var(--pill-gap);
   border-radius: var(--radius-100);
   background-color: color-mix(in srgb, var(--text) 8%, transparent);
 
+  // The "magic line": one accent pill under the labels that jumps to the chosen type, springs past it and
+  // settles. While it travels it stretches and flattens a little. CSS only: the pill is placed by :has().
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: var(--pill-gap);
+    inset-inline-start: var(--pill-gap);
+    width: calc((100% - 4 * var(--pill-gap)) / 3);
+    border-radius: var(--radius-100);
+    background-color: var(--accent);
+    box-shadow: 0 4px 18px -4px var(--accent-alpha);
+    translate: calc(var(--at, 0) * (100% + var(--pill-gap)));
+    transition: translate var(--dur-slow) var(--ease-spring);
+    pointer-events: none;
+  }
+
   label {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -527,19 +547,47 @@
     line-height: 1.2;
     color: var(--text-muted);
     cursor: pointer;
-    transition:
-      background-color var(--dur-fast) ease,
-      color var(--dur-fast) ease;
+    transition: color var(--dur-base) ease;
   }
 
   input:checked + label {
     color: var(--accent-contrast);
-    background-color: var(--accent);
   }
 
   input:focus-visible + label {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+  }
+
+  // Three columns on a 375 px phone are about 90 px each: the icon goes above the name.
+  @media (width <= 479px) {
+    label {
+      flex-direction: column;
+      gap: var(--gap-4);
+      min-height: 62px;
+      padding: 0 var(--gap-4);
+      font-size: 14px;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+// Where the pill stands; the stretch on the way is played after the first change (data-moved, set by the
+// script), so nothing wiggles when the page loads. Three names, so choosing another type plays it again.
+@each $type, $index in (landing: 0, store: 1, service: 2) {
+  .switcher:has(input[value='#{$type}']:checked) {
+    --at: #{$index};
+
+    &[data-moved]::before {
+      animation: pill-stretch-#{$type} var(--dur-slow) var(--ease-in-out);
+    }
+  }
+
+  @keyframes pill-stretch-#{$type} {
+    40% {
+      scale: 1.22 0.88;
+    }
   }
 }
 

@@ -369,5 +369,9 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
     );
   }
 
+  // The pill of the type switcher stretches on its way; not on load, only once the visitor has chosen a type.
+  const switcher = document.querySelector<HTMLElement>('#approach [role="radiogroup"]');
+  switcher?.addEventListener('change', () => switcher.setAttribute('data-moved', ''), { once: true });
+
   if (!customElements.get('ui-sandbox')) customElements.define('ui-sandbox', UiSandbox);
 </script>

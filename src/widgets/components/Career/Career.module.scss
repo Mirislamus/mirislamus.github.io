@@ -1,24 +1,22 @@
 .career {
   overflow: hidden;
 
-  // The cards bleed to the edge of the screen and the section clips them: instead of a hard cut through the
-  // text, the side that still has cards behind it fades out (the arrow that is still active says which one).
+  // The side that still has cards behind it fades out (the arrow that is still active says which one).
+  // On a phone the fade is short, so it does not eat the text of the card at the edge.
+  --fade-size: 96px;
   --fade-start: 0px;
   --fade-end: 0px;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--fade-start),
-    #000 calc(100% - var(--fade-end)),
-    transparent 100%
-  );
+
+  @media (width <= 767px) {
+    --fade-size: 24px;
+  }
 
   &:has(:global(embla-carousel-root[data-ready]:not([data-static])) [data-embla-prev]:not(:disabled)) {
-    --fade-start: 96px;
+    --fade-start: var(--fade-size);
   }
 
   &:has(:global(embla-carousel-root[data-ready]:not([data-static])) [data-embla-next]:not(:disabled)) {
-    --fade-end: 96px;
+    --fade-end: var(--fade-size);
   }
 
   &Top {
@@ -129,6 +127,22 @@
       }
     }
   }
+}
+
+// The cards bleed to the edge of the screen and the section clips them: instead of a hard cut through the text
+// they fade out. Only the row of cards is masked, so the title and the arrows above it are never covered.
+// The wrapper is as wide as the screen and keeps the viewport where it was; the vertical padding is room for
+// the focus ring of the viewport, which the mask would otherwise cut.
+.bleed {
+  margin: -8px calc(50% - 50vw);
+  padding: 8px calc(50vw - 50%);
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-start),
+    #000 calc(100% - var(--fade-end)),
+    transparent 100%
+  );
 }
 
 // Cards bleed to the page edge; the section itself clips them.

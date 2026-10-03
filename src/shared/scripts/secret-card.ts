@@ -5,7 +5,8 @@ import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 // the black bars are only `█`, and the lengths come from the data. This chunk adds the play:
 //  - the readiness rings are drawn and counted once when the card is half on screen;
 //  - a bar "decrypts" under the cursor or focus: the blocks turn into random glyphs left to right and grow
-//    over again. The glyphs never make up any text;
+//    over again. The glyphs never make up any text. Without a cursor (a touch screen) the bars take turns on
+//    their own, on an interval, while the card is on screen;
 //  - a code in the invite field is always refused, nothing is sent or stored anywhere.
 //
 // Without this chunk (no JS, reduced motion, pause) the bars are in their final state and nothing moves.
@@ -13,6 +14,7 @@ const COVER = '█';
 const DECODE = 900; // ms for the blocks to turn into glyphs
 const COVER_UP = 300; // ms for them to grow over again
 const FLICKER = 60; // ms between two sets of glyphs
+const TURN = 3000; // ms between two bars decrypting by themselves on a touch screen
 
 const randomGlyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
 
@@ -129,6 +131,30 @@ export const initSecretCard = (root: HTMLElement) => {
     };
     frame = requestAnimationFrame(tick);
   };
+
+  // A touch screen has no cursor to hover with, so while the card is on screen the bars take turns on their own.
+  if (window.matchMedia('(hover: none)').matches) {
+    const bars = [...root.querySelectorAll<HTMLElement>('[data-file]')];
+    let next = 0;
+    let timer = 0;
+    const turn = () => {
+      if (!motion.allowed) return;
+      decrypt(bars[next++ % bars.length]);
+    };
+    const stop = () => {
+      clearInterval(timer);
+      timer = 0;
+    };
+    new IntersectionObserver(
+      ([entry]) => {
+        stop();
+        if (!entry.isIntersecting || bars.length === 0) return;
+        timer = window.setInterval(turn, TURN);
+        window.setTimeout(turn, TURN / 3); // the first one soon after the card appears
+      },
+      { threshold: 0.5 }
+    ).observe(card);
+  }
 
   // Only a mouse and the keyboard, not a touch. One listener for both bars.
   const fileOf = (target: EventTarget | null) => (target as HTMLElement | null)?.closest<HTMLElement>('[data-file]');

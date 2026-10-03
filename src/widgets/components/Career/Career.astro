@@ -33,47 +33,49 @@ const slideLabel = (index: number) =>
           <ArrowControls prevLabel={a11y.previousSlide} nextLabel={a11y.nextSlide} />
         </div>
       </div>
-      {/* A scrollable region must be reachable by keyboard until Embla takes over (it removes tabindex). */}
-      {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
-      <div class={s.viewport} data-embla-viewport tabindex="0" role="group" aria-labelledby="career-title">
-        <div class={s.track} data-embla-container>
-          {data.items.map((item, index) => (
-            <div
-              class={s.careerItem}
-              data-embla-slide
-              role="group"
-              aria-roledescription={a11y.slide}
-              aria-label={slideLabel(index)}
-            >
-              <article data-career-item data-current={item.end === null ? '' : undefined}>
-                <h3 class="text-md medium">
-                  <span class={s.name} data-career-name>
-                    {item.company}
+      <div class={s.bleed}>
+        {/* A scrollable region must be reachable by keyboard until Embla takes over (it removes tabindex). */}
+        {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
+        <div class={s.viewport} data-embla-viewport tabindex="0" role="group" aria-labelledby="career-title">
+          <div class={s.track} data-embla-container>
+            {data.items.map((item, index) => (
+              <div
+                class={s.careerItem}
+                data-embla-slide
+                role="group"
+                aria-roledescription={a11y.slide}
+                aria-label={slideLabel(index)}
+              >
+                <article data-career-item data-current={item.end === null ? '' : undefined}>
+                  <h3 class="text-md medium">
+                    <span class={s.name} data-career-name>
+                      {item.company}
+                    </span>
+                  </h3>
+                  <strong class="text-sm regular" data-career-meta>
+                    <span>{item.position}</span>
+                    <span>{item.year}</span>
+                  </strong>
+                  <span class={s.circle} data-career-circle>
+                    <span class={s.ping} data-career-ping />
                   </span>
-                </h3>
-                <strong class="text-sm regular" data-career-meta>
-                  <span>{item.position}</span>
-                  <span>{item.year}</span>
-                </strong>
-                <span class={s.circle} data-career-circle>
-                  <span class={s.ping} data-career-ping />
-                </span>
-                <div class={s.content} data-career-content>
-                  <p class="text-sm" data-career-text>
-                    <RichText text={item.description} />
-                  </p>
-                  <div class={s.technologies} data-career-tech>
-                    <span class:list={['text-sm', { 'visually-hidden': index > 0 }]}>{data.technologies}:</span>
-                    <div class={s.stack} data-career-stack>
-                      {item.stack.map(stack => (
-                        <Tag>{stack}</Tag>
-                      ))}
+                  <div class={s.content} data-career-content>
+                    <p class="text-sm" data-career-text>
+                      <RichText text={item.description} />
+                    </p>
+                    <div class={s.technologies} data-career-tech>
+                      <span class:list={['text-sm', { 'visually-hidden': index > 0 }]}>{data.technologies}:</span>
+                      <div class={s.stack} data-career-stack>
+                        {item.stack.map(stack => (
+                          <Tag>{stack}</Tag>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            </div>
-          ))}
+                </article>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </Carousel>
