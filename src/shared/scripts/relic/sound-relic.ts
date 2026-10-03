@@ -1,9 +1,14 @@
 import type { Sound, SoundEnv } from '../matrix/sound';
 import {
   STEP,
+  arpCutoff,
+  arpNote,
+  arpVelocity,
   bassCutoff,
   bassFrequency,
+  blipAt,
   createScoreRng,
+  duckAt,
   hatAt,
   kickAt,
   leadStep,
@@ -15,10 +20,13 @@ import {
   type RelicMood,
 } from './relic-score';
 
-// The sound of the takeover (J-05): our own darksynth, synthesized with Web Audio, nothing is downloaded.
-//   - a bass of saw waves in sixteenth notes through a low-pass filter and a soft distortion, the filter opens every second bar;
-//   - a kick on every beat (a sine that falls), a snare on 2 and 4 (noise and a short tone), hats between the kicks;
-//   - a gated pad on the chords Em–C–G–D, and in the second half of the loop a rare lead through a dotted echo.
+// The sound of the takeover (J-05, remade as cyberpunk synthwave in J-08): our own music, synthesized with Web Audio,
+// nothing is downloaded.
+//   - a rolling bass in sixteenth notes (saw waves through a low-pass filter and a soft distortion, a sine sub under it);
+//   - a kick on every beat that ducks the synths (the pump), a snare with a long reverb, open and closed hats;
+//   - a running arpeggio through a dotted echo, its filter opening bar by bar;
+//   - a supersaw pad on the chords Cm–Ab–Eb–Bb, and in the second half of the loop a supersaw lead;
+//   - now and then a short high blip, like a terminal answering.
 // Like the sound of the pills it lives only while the takeover does: the context is made by the click on the chip (a
 // gesture, so the browser lets it play), the only code that runs meanwhile is one timer every 25 ms that puts the next
 // notes on the audio clock a little ahead, and the context is closed when the sound stops.
@@ -26,6 +34,8 @@ const LOOKAHEAD = 0.12; // seconds of notes put on the clock in advance
 const TICK = 25; // ms between two looks at the clock
 const MASTER = 0.25; // the ceiling of the volume
 const FADE_IN = 1.5; // seconds
+const DUCK = 0.25; // how far the synths go down on a kick, and the time they take to come back
+const DUCK_BACK = 0.2;
 
 const defaultEnv: SoundEnv = { createContext: () => new AudioContext() };
 
@@ -48,20 +58,34 @@ const distortionCurve = (amount: number) => {
   return curve;
 };
 
+// A synthetic room: noise that dies away.
+const impulse = (ctx: BaseAudioContext, seconds: number) => {
+  const length = Math.floor(ctx.sampleRate * seconds);
+  const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
+  for (let channel = 0; channel < 2; channel++) {
+    const data = buffer.getChannelData(channel);
+    for (let i = 0; i < length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / length) ** 2.2;
+  }
+  return buffer;
+};
+
 export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
   let ctx: AudioContext | null = null;
   let master: GainNode | null = null;
   let bus: GainNode | null = null;
+  let synths: GainNode | null = null; // the pad, the arpeggio and the lead: they duck on a kick
   let bassFilter: BiquadFilterNode | null = null;
+  let arpFilter: BiquadFilterNode | null = null;
   let padFilter: BiquadFilterNode | null = null;
   let leadFilter: BiquadFilterNode | null = null;
+  let reverb: GainNode | null = null; // where the snare and the lead send their sound to the room
   let noiseBuffer: AudioBuffer | null = null;
   let timer: ReturnType<typeof setTimeout> | undefined;
   let closing: ReturnType<typeof setTimeout> | undefined;
   let mood: RelicMood = relicMoodFor(false);
   let nextStep = 0;
   let stepIndex = 0;
-  const rng = createScoreRng(112);
+  const rng = createScoreRng(128);
 
   const visibility = () => {
     if (!ctx) return;
@@ -121,74 +145,106 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     source.stop(time + length + 0.05);
   };
 
+  // A fat sound: three saws, a little out of tune with each other.
+  const supersaw = (
+    frequency: number,
+    time: number,
+    peak: number,
+    attack: number,
+    length: number,
+    target: AudioNode
+  ) => {
+    if (!ctx) return;
+    for (const detune of [-13, 0, 13]) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(frequency, time);
+      osc.detune.value = detune;
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(peak, time + attack);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + length);
+      osc.connect(gain).connect(target);
+      osc.start(time);
+      osc.stop(time + length + 0.05);
+    }
+  };
+
   // ── the notes ──
   const bass = (time: number, step: number) => {
-    if (!ctx || !bassFilter) return;
+    if (!ctx || !bassFilter || !bus) return;
+    const frequency = bassFrequency(step);
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(bassFrequency(step), time);
+    osc.frequency.setValueAtTime(frequency, time);
     gain.gain.setValueAtTime(0.0001, time);
     gain.gain.exponentialRampToValueAtTime(0.9, time + 0.006);
-    gain.gain.exponentialRampToValueAtTime(0.35, time + STEP * 0.7);
+    gain.gain.exponentialRampToValueAtTime(0.4, time + STEP * 0.7);
     gain.gain.exponentialRampToValueAtTime(0.0001, time + STEP * 0.98);
     osc.connect(gain).connect(bassFilter);
     osc.start(time);
     osc.stop(time + STEP);
+    // The sub: a sine an octave below, which carries the weight on small speakers too.
+    tone('sine', frequency / 2, frequency / 2, time, STEP * 0.95, 0.35, bus);
   };
 
   const pad = (time: number, step: number) => {
-    if (!ctx || !padFilter) return;
-    for (const [index, note] of padNotes(step).entries()) {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(noteToFrequency(note), time);
-      osc.detune.value = (index - 1) * 9;
-      gain.gain.setValueAtTime(0.0001, time);
-      gain.gain.exponentialRampToValueAtTime(0.5, time + 0.012);
-      gain.gain.exponentialRampToValueAtTime(0.0001, time + STEP * 1.7);
-      osc.connect(gain).connect(padFilter);
-      osc.start(time);
-      osc.stop(time + STEP * 1.8);
-    }
+    if (!padFilter) return;
+    for (const note of padNotes(step)) supersaw(noteToFrequency(note), time, 0.5, 0.35, STEP * 15, padFilter);
+  };
+
+  const arp = (time: number, step: number) => {
+    if (!ctx || !arpFilter) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(noteToFrequency(arpNote(step)), time);
+    gain.gain.setValueAtTime(0.0001, time);
+    gain.gain.exponentialRampToValueAtTime(0.7 * arpVelocity(step), time + 0.004);
+    gain.gain.exponentialRampToValueAtTime(0.0001, time + STEP * 1.5);
+    osc.connect(gain).connect(arpFilter);
+    osc.start(time);
+    osc.stop(time + STEP * 1.6);
   };
 
   const lead = (time: number, note: string, length: number) => {
-    if (!ctx || !leadFilter) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const long = STEP * length;
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(noteToFrequency(note), time);
-    gain.gain.setValueAtTime(0.0001, time);
-    gain.gain.exponentialRampToValueAtTime(0.6, time + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.0001, time + long + 0.12);
-    osc.connect(gain).connect(leadFilter);
-    osc.start(time);
-    osc.stop(time + long + 0.15);
+    if (!leadFilter) return;
+    supersaw(noteToFrequency(note), time, 0.55, 0.012, STEP * length + 0.12, leadFilter);
   };
 
   const schedule = () => {
-    if (!ctx || !bus) return;
+    if (!ctx || !bus || !synths || !reverb) return;
     const until = ctx.currentTime + LOOKAHEAD;
     while (nextStep < until) {
       const time = nextStep;
       const step = stepIndex;
-      if (step % 16 === 0 && bassFilter) {
-        // The filter opens on every second bar, with a short glide.
-        bassFilter.frequency.setTargetAtTime(bassCutoff(step) * mood.brightness, time, 0.25);
+      if (step % 16 === 0) {
+        // The filters follow the bars: the bass opens on every second one, the arpeggio opens over the loop.
+        bassFilter?.frequency.setTargetAtTime(bassCutoff(step) * mood.brightness, time, 0.25);
+        arpFilter?.frequency.setTargetAtTime(arpCutoff(step) * mood.brightness, time, 0.4);
       }
       bass(time, step);
       if (kickAt(step)) tone('sine', 120, 42, time, 0.32, 1, bus);
+      if (duckAt(step)) {
+        // The pump: the synths go down with the kick and swell back before the next one.
+        synths.gain.setValueAtTime(DUCK, time);
+        synths.gain.linearRampToValueAtTime(1, time + DUCK_BACK);
+      }
       if (snareAt(step)) {
-        burst('bandpass', 1900, 0.8, time, 0.18, 0.4, bus);
+        burst('bandpass', 2100, 0.8, time, 0.2, 0.4, bus);
+        burst('bandpass', 2100, 0.8, time, 0.9, 0.22, reverb);
         tone('triangle', 190, 150, time, 0.1, 0.3, bus);
       }
-      if (hatAt(step)) burst('highpass', 7500, 0.7, time, 0.05, 0.1, bus);
+      const hat = hatAt(step);
+      if (hat === 'open') burst('highpass', 7500, 0.7, time, 0.16, 0.1, bus);
+      else if (hat === 'closed') burst('highpass', 8500, 0.7, time, 0.03, 0.06, bus);
       if (padAt(step)) pad(time, step);
+      arp(time, step);
       const lift = leadStep(step, rng);
       if (lift.note) lead(time, lift.note, lift.length);
+      const blip = blipAt(step, rng);
+      if (blip) tone('square', blip, blip * 0.7, time + STEP * 0.5, 0.05, 0.05, reverb);
       nextStep += STEP;
       stepIndex++;
     }
@@ -207,6 +263,15 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     bus = context.createGain();
     bus.connect(master);
 
+    // The room: a reverb with a little of its own sound level.
+    const room = context.createConvolver();
+    room.buffer = impulse(context, 2.4);
+    reverb = context.createGain();
+    reverb.gain.value = 0.7;
+    const roomOut = context.createGain();
+    roomOut.gain.value = 0.5;
+    reverb.connect(room).connect(roomOut).connect(master);
+
     const length = context.sampleRate;
     noiseBuffer = context.createBuffer(1, length, context.sampleRate);
     const data = noiseBuffer.getChannelData(0);
@@ -223,29 +288,45 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     bassGain.gain.value = 0.32;
     bassFilter.connect(shaper).connect(bassGain).connect(bus);
 
-    // The pad.
+    // The synths all go through one gain that the kick pushes down.
+    synths = context.createGain();
+    synths.connect(bus);
+
     padFilter = context.createBiquadFilter();
     padFilter.type = 'lowpass';
-    padFilter.frequency.value = 1100;
+    padFilter.frequency.value = 1500;
     const padGain = context.createGain();
-    padGain.gain.value = 0.07;
-    padFilter.connect(padGain).connect(bus);
+    padGain.gain.value = 0.06;
+    padFilter.connect(padGain).connect(synths);
 
-    // The lead and its dotted echo.
+    // The arpeggio and the lead share a dotted echo.
+    const delay = context.createDelay(1);
+    delay.delayTime.value = (60 / 128) * 0.75;
+    const feedback = context.createGain();
+    feedback.gain.value = 0.38;
+    delay.connect(feedback).connect(delay);
+    delay.connect(synths);
+    delay.connect(reverb);
+
+    arpFilter = context.createBiquadFilter();
+    arpFilter.type = 'lowpass';
+    arpFilter.frequency.value = arpCutoff(0) * mood.brightness;
+    arpFilter.Q.value = 5;
+    const arpGain = context.createGain();
+    arpGain.gain.value = 0.2;
+    arpFilter.connect(arpGain);
+    arpGain.connect(synths);
+    arpGain.connect(delay);
+
     leadFilter = context.createBiquadFilter();
     leadFilter.type = 'lowpass';
-    leadFilter.frequency.value = 2600;
+    leadFilter.frequency.value = 3200;
     const leadGain = context.createGain();
-    leadGain.gain.value = 0.1;
-    const delay = context.createDelay(1);
-    delay.delayTime.value = (60 / 112) * 0.75;
-    const feedback = context.createGain();
-    feedback.gain.value = 0.3;
-    delay.connect(feedback).connect(delay);
+    leadGain.gain.value = 0.12;
     leadFilter.connect(leadGain);
-    leadGain.connect(bus);
+    leadGain.connect(synths);
     leadGain.connect(delay);
-    delay.connect(bus);
+    leadGain.connect(reverb);
   };
 
   const release = () => {
@@ -254,7 +335,7 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     closing = undefined;
     globalThis.document?.removeEventListener('visibilitychange', visibility);
     const old = ctx;
-    ctx = master = bus = bassFilter = padFilter = leadFilter = null;
+    ctx = master = bus = synths = bassFilter = arpFilter = padFilter = leadFilter = reverb = null;
     noiseBuffer = null;
     if (old) void old.close().catch(() => {});
   };

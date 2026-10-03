@@ -58,6 +58,7 @@ const fakeContext = () => {
     },
     createBuffer: (_channels: number, length: number) => ({ getChannelData: () => new Float32Array(length) }),
     createDelay: () => node({ delayTime: param() }),
+    createConvolver: () => node({ buffer: null }),
     createDynamicsCompressor: () => node({ threshold: param(), ratio: param() }),
     resume: () => {
       log.resumed++;
@@ -103,17 +104,20 @@ describe('the sound of the takeover', () => {
     expect(fake.log.shapers).toBe(1);
   });
 
-  it('plays the bass in sixteenth notes at 112 bpm: the first bar has the kick on every beat and the bass on every step', () => {
+  it('plays the bass in sixteenth notes at 128 bpm: the first bar has the kick on every beat and the bass on every step', () => {
     const fake = fakeContext();
     const sound = createRelicSound({ createContext: () => fake.context });
     sound.start(false);
     play(fake, 2.2); // a bit more than the first bar (4 × 0.536 s)
     const saws = fake.log.oscillators.filter(osc => osc.type === 'sawtooth');
-    // The bass starts on E1 (41.2 Hz) and goes up an octave on the pushes.
-    const bass = saws.map(osc => osc.freq).filter(freq => freq < 100);
-    expect(bass[0]).toBeCloseTo(41.2, 0);
-    expect(bass).toContainEqual(expect.closeTo(82.41, 0));
-    expect(bass.length).toBeGreaterThanOrEqual(15);
+    // The bass starts on C2 (65.4 Hz) and goes up an octave on the pushes, the sub sine is an octave below.
+    expect(saws[0].freq).toBeCloseTo(65.41, 0);
+    expect(saws.map(osc => osc.freq)).toContainEqual(expect.closeTo(130.81, 0));
+    expect(saws.filter(osc => osc.freq < 140).length).toBeGreaterThanOrEqual(15);
+    expect(fake.log.oscillators.some(osc => osc.type === 'sine' && Math.abs(osc.freq - 32.7) < 0.5)).toBe(true);
+    // The arpeggio on C4, D#4 and G4 and the pad on C3 are there too.
+    expect(saws.some(osc => Math.abs(osc.freq - 261.63) < 0.5)).toBe(true);
+    expect(saws.some(osc => Math.abs(osc.freq - 130.81) < 0.5)).toBe(true);
     // The kick: a sine that falls from 120 Hz, four times in the first bar.
     const kicks = fake.log.oscillators.filter(osc => osc.type === 'sine' && Math.round(osc.freq) === 120);
     expect(kicks.length).toBeGreaterThanOrEqual(4);
@@ -138,8 +142,8 @@ describe('the sound of the takeover', () => {
     sound.start(false);
     const first = fake.log.oscillators.length;
     play(fake, 1);
-    // One second of music is some forty oscillators, not hundreds.
-    expect(fake.log.oscillators.length - first).toBeLessThan(120);
+    // One second of music is some fifty oscillators, not hundreds.
+    expect(fake.log.oscillators.length - first).toBeLessThan(160);
   });
 
   it('makes a crunch for a glitch, a hit, and a riser', () => {

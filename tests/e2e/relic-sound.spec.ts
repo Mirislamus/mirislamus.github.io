@@ -21,13 +21,13 @@ test.describe('the music of the takeover', () => {
     expect((await audioLog(page)).contexts).toBe(0);
   });
 
-  test('the click starts it: a bass on E1 in saw waves, a kick that falls from 120 Hz', async ({ page }) => {
+  test('the click starts it: a bass on C2 in saw waves, a kick that falls from 120 Hz', async ({ page }) => {
     await installFakeAudio(page);
     await showChip(page);
     await page.locator('button[data-relic]').click();
     await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(1);
     await expect
-      .poll(async () => (await tones(page)).filter(tone => tone.type === 'sawtooth' && tone.freq < 50).length, {
+      .poll(async () => (await tones(page)).filter(tone => tone.type === 'sawtooth' && tone.freq < 70).length, {
         timeout: 5000,
       })
       .toBeGreaterThan(2);

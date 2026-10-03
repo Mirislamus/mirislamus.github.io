@@ -4,12 +4,17 @@ import {
   BEAT,
   BPM,
   STEP,
+  arpCutoff,
+  arpNote,
+  arpVelocity,
   barOf,
   bassCutoff,
   bassFrequency,
   bassNote,
+  blipAt,
   chordOf,
   createScoreRng,
+  duckAt,
   hatAt,
   kickAt,
   leadStep,
@@ -20,36 +25,22 @@ import {
 } from './relic-score';
 
 const BAR = 16;
+const steps = (test: (step: number) => unknown) =>
+  Array.from({ length: BAR }, (_, step) => step).filter(step => test(step));
 
 describe('the tempo', () => {
-  it('is 112 bpm, sixteenth notes', () => {
-    expect(BPM).toBe(112);
-    expect(BEAT).toBeCloseTo(0.5357, 3);
+  it('is 128 bpm, sixteenth notes', () => {
+    expect(BPM).toBe(128);
+    expect(BEAT).toBeCloseTo(0.46875, 5);
     expect(STEP * 4).toBeCloseTo(BEAT, 10);
   });
 });
 
 describe('the loop', () => {
-  it('is eight bars of Em, C, G, D twice, and then starts again', () => {
-    const roots = Array.from({ length: BARS * 2 }, (_, bar) => chordOf(bar * BAR).root);
-    expect(roots).toEqual([
-      'E1',
-      'C2',
-      'G1',
-      'D2',
-      'E1',
-      'C2',
-      'G1',
-      'D2',
-      'E1',
-      'C2',
-      'G1',
-      'D2',
-      'E1',
-      'C2',
-      'G1',
-      'D2',
-    ]);
+  it('is eight bars of Cm, Ab, Eb, Bb twice, and then starts again', () => {
+    const roots = Array.from({ length: BARS }, (_, bar) => chordOf(bar * BAR).root);
+    expect(roots).toEqual(['C2', 'G#1', 'D#2', 'A#1', 'C2', 'G#1', 'D#2', 'A#1']);
+    expect(chordOf(BARS * BAR).root).toBe('C2');
     expect(barOf(BARS * BAR)).toBe(0);
     expect(barOf(BARS * BAR - 1)).toBe(BARS - 1);
   });
@@ -57,16 +48,19 @@ describe('the loop', () => {
 
 describe('the bass', () => {
   it('plays the root of the chord and goes an octave up on the pushes', () => {
-    expect(bassNote(0)).toBe('E1');
-    expect(bassNote(3)).toBe('E2');
-    expect(bassNote(14)).toBe('E2');
-    expect(bassNote(BAR)).toBe('C2'); // the second bar is C
-    expect(bassNote(BAR + 3)).toBe('C3');
+    expect(bassNote(0)).toBe('C2');
+    expect(bassNote(3)).toBe('C3');
+    expect(bassNote(6)).toBe('C3');
+    expect(bassNote(11)).toBe('C3');
+    expect(bassNote(14)).toBe('C3');
+    expect(bassNote(4)).toBe('C2');
+    expect(bassNote(BAR)).toBe('G#1'); // the second bar is Ab
+    expect(bassNote(BAR + 3)).toBe('G#2');
   });
 
   it('turns notes into frequencies', () => {
-    expect(bassFrequency(0)).toBeCloseTo(41.2, 1); // E1
-    expect(bassFrequency(3)).toBeCloseTo(82.41, 1); // E2
+    expect(bassFrequency(0)).toBeCloseTo(65.41, 1); // C2
+    expect(bassFrequency(3)).toBeCloseTo(130.81, 1); // C3
   });
 
   it('opens the filter every second bar', () => {
@@ -76,28 +70,43 @@ describe('the bass', () => {
 });
 
 describe('the drums', () => {
-  it('has a kick on every beat and a snare on 2 and 4', () => {
-    const kicks = Array.from({ length: BAR }, (_, step) => kickAt(step));
-    expect(kicks.filter(Boolean)).toHaveLength(4);
-    expect([0, 4, 8, 12].every(step => kicks[step])).toBe(true);
-    expect(Array.from({ length: BAR }, (_, step) => snareAt(step)).flatMap((on, step) => (on ? [step] : []))).toEqual([
-      4, 12,
-    ]);
+  it('has a kick on every beat, a snare on 2 and 4, and the synths duck with the kick', () => {
+    expect(steps(kickAt)).toEqual([0, 4, 8, 12]);
+    expect(steps(snareAt)).toEqual([4, 12]);
+    expect(steps(duckAt)).toEqual(steps(kickAt));
   });
 
-  it('puts the hats between the kicks', () => {
-    expect(Array.from({ length: BAR }, (_, step) => hatAt(step)).flatMap((on, step) => (on ? [step] : []))).toEqual([
-      2, 6, 10, 14,
-    ]);
+  it('puts an open hat between the kicks and a closed one on the odd sixteenths', () => {
+    expect(steps(step => hatAt(step) === 'open')).toEqual([2, 6, 10, 14]);
+    expect(steps(step => hatAt(step) === 'closed')).toEqual([1, 3, 5, 7, 9, 11, 13, 15]);
+    expect(hatAt(0)).toBeNull();
   });
 });
 
 describe('the pad', () => {
-  it('pumps on every eighth note with the notes of the chord', () => {
-    expect(padAt(0)).toBe(true);
-    expect(padAt(1)).toBe(false);
-    expect(padNotes(0)).toEqual(['E3', 'G3', 'B3']);
-    expect(padNotes(BAR * 3)).toEqual(['D3', 'F#3', 'A3']);
+  it('strikes once a bar with the notes of the chord', () => {
+    expect(steps(padAt)).toEqual([0]);
+    expect(padNotes(0)).toEqual(['C3', 'D#3', 'G3']);
+    expect(padNotes(BAR * 3)).toEqual(['A#3', 'D3', 'F3']);
+  });
+});
+
+describe('the arpeggio', () => {
+  it('runs over the chord on every sixteenth: root, third, fifth, octave, fifth, third…', () => {
+    const bar = Array.from({ length: 8 }, (_, step) => arpNote(step));
+    expect(bar).toEqual(['C4', 'D#4', 'G4', 'C5', 'G4', 'D#4', 'G4', 'D#4']);
+    expect(arpNote(BAR)).toBe('G#4'); // Ab
+  });
+
+  it('is louder on the beat', () => {
+    expect(arpVelocity(0)).toBeGreaterThan(arpVelocity(2));
+    expect(arpVelocity(2)).toBeGreaterThan(arpVelocity(1));
+  });
+
+  it('opens its filter bar by bar and falls back at the start of the next round', () => {
+    expect(arpCutoff(BAR)).toBeGreaterThan(arpCutoff(0));
+    expect(arpCutoff((BARS - 1) * BAR)).toBeGreaterThan(arpCutoff(BAR));
+    expect(arpCutoff(BARS * BAR)).toBe(arpCutoff(0));
   });
 });
 
@@ -117,7 +126,23 @@ describe('the lead', () => {
     expect(notes.length).toBeGreaterThan(3);
     expect(notes.length).toBeLessThan(BAR * 3);
     expect(notes).toEqual(play());
-    for (const note of notes) expect(['E4', 'G4', 'A4', 'B4', 'D5', 'E5']).toContain(note);
+    for (const note of notes) expect(['C5', 'D#5', 'F5', 'G5', 'A#5', 'C6']).toContain(note);
+  });
+});
+
+describe('the data blips', () => {
+  it('never fall on a beat, are rare, high, and the same for the same seed', () => {
+    const rng = createScoreRng(3);
+    const found = Array.from({ length: BARS * BAR }, (_, step) => [step, blipAt(step, rng)] as const).filter(
+      ([, hz]) => hz !== null
+    );
+    expect(found.length).toBeGreaterThan(0);
+    expect(found.length).toBeLessThan(BARS * BAR * 0.2);
+    for (const [step, hz] of found) {
+      expect(step % 4).not.toBe(0);
+      expect(hz).toBeGreaterThanOrEqual(1200);
+      expect(hz).toBeLessThanOrEqual(3200);
+    }
   });
 });
 
