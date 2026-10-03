@@ -20,19 +20,19 @@ describe('the glyph mask of the netrunner', () => {
     }
   });
 
-  it('has all three layers: the pale mask, the cyan eyes and circuits, the red hood', () => {
+  it('has all three layers: the pale mask, the cyan eyes, the rosy cheeks', () => {
     for (const grid of [mask.desktop, mask.mobile]) {
       const cells = grid.cols * grid.rows;
-      expect(count(grid.levels, char => /[1-4]/.test(char))).toBeGreaterThan(cells * 0.08);
-      expect(count(grid.levels, char => /[6-9]/.test(char))).toBeGreaterThan(cells * 0.03);
-      expect(count(grid.levels, char => /[a-d]/.test(char))).toBeGreaterThan(cells * 0.15);
+      expect(count(grid.levels, char => /[1-4]/.test(char))).toBeGreaterThan(cells * 0.3);
+      expect(count(grid.levels, char => /[6-9]/.test(char))).toBeGreaterThan(cells * 0.005);
+      expect(count(grid.levels, char => /[a-d]/.test(char))).toBeGreaterThan(cells * 0.01);
     }
   });
 
   it('has the eyes in the upper half, side by side, in the middle of the face', () => {
     const { levels, cols, rows } = mask.desktop;
     const cyan = levels.flatMap((row, y) => [...row].flatMap((char, x) => (/[6-9]/.test(char) ? [{ x, y }] : [])));
-    const eyes = cyan.filter(({ x, y }) => y > rows * 0.25 && y < rows * 0.45 && x > cols * 0.3 && x < cols * 0.7);
+    const eyes = cyan.filter(({ x, y }) => y > rows * 0.25 && y < rows * 0.45 && x > cols * 0.15 && x < cols * 0.85);
     expect(eyes.length).toBeGreaterThan(10);
     expect(eyes.some(({ x }) => x < cols / 2)).toBe(true);
     expect(eyes.some(({ x }) => x >= cols / 2)).toBe(true);

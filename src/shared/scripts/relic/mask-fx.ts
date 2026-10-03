@@ -3,7 +3,7 @@ import { GLYPHS, createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 
 // The glyph mask of the netrunner (J-07). A grid made by scripts/build-mask.mjs is drawn with glyphs, like the rain: the
-// density of the glyph and its opacity show the shape. The mask is pale, the eyes and the circuits are cyan, the hood is red.
+// density of the glyph and its opacity show the shape. The mask is pale with rosy cheeks, the eyes are cyan.
 //   - when the scene opens the mask assembles out of falling glyphs, like the hands of the pills and the wordmark;
 //   - now and then a few glyphs flicker, and for a moment a band of rows slips sideways (a glitch);
 //   - with reduced motion or a pause it is a still picture.
@@ -12,10 +12,10 @@ type Layer = 'pale' | 'cyan' | 'red';
 const COLORS: Record<Layer, readonly [number, number, number]> = {
   pale: [244, 238, 242],
   cyan: [0, 229, 209],
-  red: [255, 46, 99],
+  red: [255, 112, 140], // the rosy cheeks
 };
 const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
-// The pale mask is drawn with dense, similar-looking glyphs so that its shape reads; the rain-like mix is for the rest.
+// The mask (with its cheeks) is drawn with dense, similar-looking glyphs so that its shape reads; the eyes get the rain-like mix.
 const PALE_POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+=*x'], [...'#%$&'], [...'@8#%&$']];
 const ALPHA = [0, 0.5, 0.74, 0.9, 1];
 const FONT = 'ui-monospace, Consolas, monospace';
@@ -50,7 +50,7 @@ const hash = (x: number, y: number, salt: number) => {
   return value - Math.floor(value);
 };
 
-const poolOf = (layer: Layer, level: number) => (layer === 'pale' ? PALE_POOLS : POOLS)[level];
+const poolOf = (layer: Layer, level: number) => (layer === 'cyan' ? POOLS : PALE_POOLS)[level];
 
 const decode = (char: string): { level: number; layer: Layer } | null => {
   if (char === '0') return null;
