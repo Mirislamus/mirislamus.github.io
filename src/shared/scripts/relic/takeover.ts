@@ -1,5 +1,7 @@
 import { createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
+import { collapseMusic } from './audio';
+import { GLITCH_EVENT } from './events';
 import { startRemarks, stopRemarks } from './remarks';
 
 // The takeover of the site by Johnny Silverhand (J-03). `data-relic` on the root turns on everything that is CSS:
@@ -7,7 +9,7 @@ import { startRemarks, stopRemarks } from './remarks';
 // This module adds the glitches: now and then the page breaks up for a moment, and one heading with it.
 //   - 150–300 ms each, every 10–15 s, in a fixed order (seeded), never in a way that needs a loop of frames;
 //   - not while the visitor types, while a dialog is open, while the tab is hidden, or when motion is not allowed.
-export const GLITCH_EVENT = 'relic:glitch'; // each time the page glitches (the sound of J-05 listens)
+export { GLITCH_EVENT };
 
 const ATTRIBUTE = 'data-relic';
 const GLITCH = 'data-relic-glitch';
@@ -108,6 +110,7 @@ export const startTakeover = () => {
 export const stopTakeover = () => {
   window.clearTimeout(timer);
   pending.splice(0).forEach(window.clearTimeout);
+  collapseMusic(0.6);
   stopRemarks();
   unswapTexts();
   [GLITCH, SWAPPING, ATTRIBUTE].forEach(name => root().removeAttribute(name));

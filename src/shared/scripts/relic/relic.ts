@@ -1,4 +1,6 @@
 import { getMotion } from '../matrix/motion';
+import { hit, riser, startMusic, stopMusic } from './audio';
+import { TAKEOVER_EVENT } from './events';
 import { isTakenOver, startTakeover } from './takeover';
 
 // The Johnny Silverhand scene (wave 9, J-02), loaded when the Relic chip in the footer is clicked. A native modal
@@ -9,13 +11,14 @@ import { isTakenOver, startTakeover } from './takeover';
 //   3 s     "We have a city to burn.", then the subtitle in the language of the page
 //   5.6 s   the scene closes by itself and the takeover begins (takeover.ts; also a `relic:takeover` event).
 // Escape, the close button and a click on the dark area leave the scene without the takeover.
-export const TAKEOVER_EVENT = 'relic:takeover';
+export { TAKEOVER_EVENT };
 
 const LINES = ['Wake the f▓▒░ up, Samurai.', 'We have a city to burn.'];
 const NOISE = '▓▒░█▌▐';
 const TYPE_MS = 35;
 const START_MS = { figure: 400, line1: 1400, line2: 3000, subtitle: 3900, end: 5600 };
 const NOISE_MS = 90;
+const RISER_MS = 1200; // the rise of the sound ends a little after the scene does, at the moment of the hit
 const READ_MS = 4500; // without motion everything is there at once; this is the time to read it
 
 let dialog: HTMLDialogElement | undefined;
@@ -56,11 +59,13 @@ const setup = (root: HTMLDialogElement) => {
     if (!root.open || root.hasAttribute('data-closing')) return;
     root.setAttribute('data-closing', '');
     window.clearInterval(noise);
+    if (!takeover) stopMusic(0.4);
     const fade = Number.parseFloat(getComputedStyle(root).animationDuration) * 1000 || 0;
     later(() => {
       reset();
       root.close();
       if (takeover) {
+        hit();
         startTakeover();
         document.dispatchEvent(new Event(TAKEOVER_EVENT));
       }
@@ -68,6 +73,7 @@ const setup = (root: HTMLDialogElement) => {
   };
 
   const run = () => {
+    startMusic();
     if (!motion.allowed) {
       // Everything at once, no strokes and no typing; the visitor has time to read it.
       figure.setAttribute('data-drawn', '');
@@ -87,6 +93,7 @@ const setup = (root: HTMLDialogElement) => {
       START_MS.line1 + LINES[0].length * TYPE_MS
     );
     if (subtitle) later(() => (subtitle.hidden = false), START_MS.subtitle);
+    later(() => riser(RISER_MS / 1000), START_MS.end - RISER_MS + 400);
     later(() => close(true), START_MS.end);
   };
 
