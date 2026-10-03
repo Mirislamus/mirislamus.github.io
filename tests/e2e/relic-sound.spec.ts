@@ -24,7 +24,7 @@ test.describe('the music of the takeover', () => {
   test('the click starts it: a bass on E1 in saw waves, a kick that falls from 120 Hz', async ({ page }) => {
     await installFakeAudio(page);
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(1);
     await expect
       .poll(async () => (await tones(page)).filter(tone => tone.type === 'sawtooth' && tone.freq < 50).length, {
@@ -38,7 +38,7 @@ test.describe('the music of the takeover', () => {
   test('leaving the scene with Escape fades the music out and closes the context', async ({ page }) => {
     await installFakeAudio(page);
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(scene(page)).toHaveAttribute('open', '');
     await expect.poll(async () => (await audioLog(page)).contexts).toBe(1);
     await page.keyboard.press('Escape');
@@ -49,7 +49,7 @@ test.describe('the music of the takeover', () => {
     await installFakeAudio(page);
     await page.clock.install();
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(scene(page)).toHaveAttribute('open', '');
     await page.clock.runFor(2000);
     // The riser is not there yet: it comes shortly before the end of the scene (a rising saw from 110 Hz).
@@ -78,7 +78,7 @@ test.describe('the music of the takeover', () => {
     });
     await installFakeAudio(page);
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect.poll(async () => (await audioLog(page)).contexts).toBe(1);
     expect(requests).toEqual([]);
   });
@@ -87,7 +87,7 @@ test.describe('the music of the takeover', () => {
     await installFakeAudio(page);
     await page.addInitScript(() => localStorage.setItem('relic-sound', '0'));
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(scene(page)).toHaveAttribute('open', '');
     await page.waitForTimeout(800);
     expect((await audioLog(page)).contexts).toBe(0);
@@ -100,7 +100,7 @@ test.describe('with reduced motion', () => {
   test('the music does not start by itself', async ({ page }) => {
     await installFakeAudio(page);
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(scene(page)).toHaveAttribute('open', '');
     await page.waitForTimeout(800);
     expect((await audioLog(page)).contexts).toBe(0);
@@ -110,7 +110,7 @@ test.describe('with reduced motion', () => {
     await installFakeAudio(page);
     await page.addInitScript(() => localStorage.setItem('relic-sound', '1'));
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(1);
   });
 });
@@ -134,7 +134,7 @@ test.describe('with a real audio context', () => {
       };
     });
     await showChip(page);
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(page.locator('html')).toHaveAttribute('data-relic', '', { timeout: 10_000 });
     await page.waitForTimeout(1500);
     const state = await page.evaluate(() => {

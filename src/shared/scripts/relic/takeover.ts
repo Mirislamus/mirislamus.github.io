@@ -2,6 +2,7 @@ import { createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 import { collapseMusic } from './audio';
 import { GLITCH_EVENT } from './events';
+import { hidePlate, showPlate } from './plate';
 import { startRemarks, stopRemarks } from './remarks';
 
 // The takeover of the site by Johnny Silverhand (J-03). `data-relic` on the root turns on everything that is CSS:
@@ -19,6 +20,7 @@ const GLITCH_MS: [number, number] = [150, 300];
 const INTERVAL_MS: [number, number] = [10_000, 15_000];
 const SWAP_AT_MS = 120; // the palette and the texts change in the middle of the first glitch, under its cover
 const SWAP_MS = 300;
+const EXIT_MS = 400; // the glitch of the way out; the things change back in the middle of it
 
 const root = () => document.documentElement;
 const rng = createRng(2077);
@@ -104,15 +106,37 @@ export const startTakeover = () => {
   }
   schedule();
   startRemarks();
+  showPlate(exitTakeover);
 };
 
-// Everything is back as it was (J-06 uses it for the exit).
+// Everything is back as it was.
 export const stopTakeover = () => {
   window.clearTimeout(timer);
   pending.splice(0).forEach(window.clearTimeout);
   collapseMusic(0.6);
+  hidePlate();
   stopRemarks();
   unswapTexts();
   [GLITCH, SWAPPING, ATTRIBUTE].forEach(name => root().removeAttribute(name));
   document.querySelectorAll(`[${HIT}]`).forEach(element => element.removeAttribute(HIT));
 };
+
+// The way out (the button "Eject the chip" or Escape, J-06): a glitch that covers the change back, then the palette, the
+// logo, the texts, the remarks and the music are as they were and the focus is on the chip in the footer.
+let leaving = false;
+
+export function exitTakeover() {
+  if (!isTakenOver() || leaving) return;
+  leaving = true;
+  const finish = () => {
+    leaving = false;
+    stopTakeover();
+    document.querySelector<HTMLElement>('button[data-relic]')?.focus();
+  };
+  window.clearTimeout(timer);
+  if (getMotion().allowed) {
+    root().setAttribute(SWAPPING, '');
+    glitch(EXIT_MS);
+    after(finish, EXIT_MS / 2);
+  } else finish();
+}

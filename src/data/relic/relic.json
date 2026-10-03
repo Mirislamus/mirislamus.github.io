@@ -15,7 +15,10 @@
       "career": "A track record. I had one too, until 2023.",
       "reviews": "They praise him. Suspicious. But I believe it.",
       "contacts": "Write, samurai. The city won’t burn itself."
-    }
+    },
+    "eject": "Eject the chip",
+    "soundOn": "Turn sound on",
+    "soundOff": "Turn sound off"
   },
   "ru": {
     "chip": "Вставить чип «Реликт»",
@@ -34,7 +37,10 @@
       "career": "Послужной список. У меня тоже был — до 2023-го.",
       "reviews": "Хвалят. Подозрительно. Но верю.",
       "contacts": "Пиши, самурай. Город сам себя не сожжёт."
-    }
+    },
+    "eject": "Вынуть чип",
+    "soundOn": "Включить звук",
+    "soundOff": "Выключить звук"
   },
   "uz": {
     "chip": "«Relikt» chipini kiritish",
@@ -53,6 +59,9 @@
       "career": "Ish tarixi. Menda ham bor edi — 2023-yilgacha.",
       "reviews": "Maqtashyapti. Shubhali. Lekin ishonaman.",
       "contacts": "Yoz, samuray. Shahar o‘zi yonib ketmaydi."
-    }
+    },
+    "eject": "Chipni chiqarish",
+    "soundOn": "Ovozni yoqish",
+    "soundOff": "Ovozni o‘chirish"
   }
 }

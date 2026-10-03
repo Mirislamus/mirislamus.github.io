@@ -121,7 +121,7 @@ const {
 
   // The Relic chip (J-01) is a chunk of its own as well. It glitches once the first time the footer is seen; hover and
   // focus play the same glitch from CSS.
-  const chip = document.querySelector<HTMLElement>('[data-relic]');
+  const chip = document.querySelector<HTMLElement>('button[data-relic]');
 
   if (chip) {
     chip.addEventListener('click', () => {

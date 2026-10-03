@@ -14,7 +14,7 @@ const takeOver = async (page: Page, path = '/') => {
   await page.clock.install();
   await page.goto(path);
   await page.locator('#contacts').scrollIntoViewIfNeeded();
-  await page.locator('[data-relic]').click();
+  await page.locator('button[data-relic]').click();
   await expect(page.locator('dialog[data-relic-scene]')).toHaveAttribute('open', '');
   await page.clock.runFor(7000);
   await expect(page.locator('html')).toHaveAttribute('data-relic', '');

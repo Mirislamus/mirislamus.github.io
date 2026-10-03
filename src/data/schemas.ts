@@ -130,6 +130,10 @@ export const relicSchema = z.strictObject({
   // The name of the scene for assistive technology.
   title: text,
   close: text,
+  // The plate that stays while Johnny is in the site: the button that takes the chip out and the one for the sound.
+  eject: text,
+  soundOn: text,
+  soundOff: text,
   // The quote is always in English; the subtitle is its translation (none on the English page).
   subtitle: text.optional(),
   // Texts of the page that the takeover replaces by others (visually only, see the Swap component).

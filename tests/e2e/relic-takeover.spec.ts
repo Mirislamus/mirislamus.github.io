@@ -1,13 +1,16 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
+// Some tests move a stepped clock through minutes of the takeover, which takes a while under load.
+test.setTimeout(90_000);
+
 const html = (page: Page) => page.locator('html');
 
 // Opens the scene and waits until it has closed by itself: the takeover has begun.
 const takeOver = async (page: Page, path = '/') => {
   await page.goto(path);
   await page.locator('#contacts').scrollIntoViewIfNeeded();
-  await page.locator('[data-relic]').click();
+  await page.locator('button[data-relic]').click();
   await expect(html(page)).toHaveAttribute('data-relic', '', { timeout: 10_000 });
   await expect(page.locator('dialog[data-relic-scene]')).not.toHaveAttribute('open', '', { timeout: 3000 });
 };
@@ -33,7 +36,7 @@ test.describe('when motion is allowed', () => {
     await takeOver(page);
     const logo = page.locator('[data-logo]');
     await expect(logo).toHaveAccessibleName('Home');
-    await expect(logo).toContainText('SAMURAI');
+    await expect(logo.getByText('SAMURAI')).toBeVisible();
     await expect(logo.locator('svg:not([data-logo-ghost])')).toBeHidden();
   });
 
@@ -57,7 +60,7 @@ test.describe('when motion is allowed', () => {
     });
     await page.goto('/');
     await page.locator('#contacts').scrollIntoViewIfNeeded();
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(page.locator('dialog[data-relic-scene]')).toHaveAttribute('open', '');
     await page.clock.runFor(7000);
     await expect(html(page)).toHaveAttribute('data-relic', '');
@@ -75,7 +78,7 @@ test.describe('when motion is allowed', () => {
     await page.clock.install();
     await page.goto('/');
     await page.locator('#contacts').scrollIntoViewIfNeeded();
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(page.locator('dialog[data-relic-scene]')).toHaveAttribute('open', '');
     await page.clock.runFor(8000);
     await page.clock.runFor(16_000);
@@ -91,7 +94,7 @@ test.describe('when motion is allowed', () => {
     });
     await page.goto('/');
     await page.locator('#contacts').scrollIntoViewIfNeeded();
-    await page.locator('[data-relic]').click();
+    await page.locator('button[data-relic]').click();
     await expect(page.locator('dialog[data-relic-scene]')).toHaveAttribute('open', '');
     await page.clock.runFor(10_000);
     await expect(html(page)).toHaveAttribute('data-relic', '');
@@ -116,7 +119,7 @@ test.describe('with reduced motion', () => {
       document.addEventListener('relic:glitch', () => (window as unknown as { glitches: number }).glitches++);
     });
     await takeOver(page);
-    await expect(page.locator('[data-logo]')).toContainText('SAMURAI');
+    await expect(page.locator('[data-logo]').getByText('SAMURAI')).toBeVisible();
     expect(await page.evaluate(() => (window as unknown as { glitches: number }).glitches)).toBe(0);
     await expect(html(page)).not.toHaveAttribute('data-relic-glitch', '');
   });

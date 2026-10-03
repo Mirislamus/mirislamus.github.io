@@ -23,9 +23,21 @@ const stored = () => {
 };
 
 // On by default; off by default when something is asked to stand still. A choice of the visitor beats the default.
+let chosen: boolean | undefined; // also when the storage is blocked: the choice lives as long as the page
 export const soundWanted = () => {
+  if (chosen !== undefined) return chosen;
   const choice = stored();
   return choice === null ? getMotion().allowed : choice === '1';
+};
+
+// The visitor's choice (the button of the plate): remembered, and applied now.
+export const setSoundWanted = (on: boolean) => {
+  chosen = on;
+  try {
+    localStorage.setItem(SOUND_KEY, on ? '1' : '0');
+  } catch {
+    // Not remembered, but applied now.
+  }
 };
 
 const crunch = () => sound?.crunch();

@@ -1,7 +1,7 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
-const chip = (page: Page) => page.locator('[data-relic]');
+const chip = (page: Page) => page.locator('button[data-relic]');
 
 const showFooter = async (page: Page, path = '/') => {
   await page.goto(path);
@@ -73,7 +73,7 @@ test('with reduced motion nothing glitches', async ({ page }) => {
 
 test('axe finds no violations on the chip', async ({ page }) => {
   await showFooter(page);
-  const results = await new AxeBuilder({ page }).include('[data-relic]').analyze();
+  const results = await new AxeBuilder({ page }).include('button[data-relic]').analyze();
   expect(results.violations).toEqual([]);
 });
 
