@@ -23,19 +23,19 @@ test.describe('when motion is allowed', () => {
     await page.goto('/#about');
     await page.waitForFunction(() => customElements.get('site-header') !== undefined);
 
-    const midWave = await page.evaluate(async () => {
+    const hasClip = () =>
+      document
+        .getAnimations()
+        .some(
+          animation => (animation.effect as KeyframeEffect | null)?.pseudoElement === '::view-transition-new(root)'
+        );
+
+    await page.evaluate(() => {
       document.querySelector<HTMLElement>('[data-theme-mode="dark"]:not([aria-hidden])')?.click();
-      await new Promise(resolve => setTimeout(resolve, 120));
-      return {
-        marked: document.documentElement.classList.contains('theme-transition'),
-        clip: document
-          .getAnimations()
-          .some(
-            animation => (animation.effect as KeyframeEffect | null)?.pseudoElement === '::view-transition-new(root)'
-          ),
-      };
     });
-    expect(midWave).toEqual({ marked: true, clip: true });
+    // The circle starts once the transition is ready, which takes longer on a busy runner.
+    await page.waitForFunction(hasClip);
+    await expect(page.locator('html')).toHaveClass(/theme-transition/);
 
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('html')).not.toHaveClass(/theme-transition/);
