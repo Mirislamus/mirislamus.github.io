@@ -13,6 +13,7 @@ const {
   footer: { ready, text },
   status,
   easter,
+  relic,
 } = getSiteData(locale);
 ---
 
@@ -54,6 +55,37 @@ const {
               <circle cx="19" cy="19.4" r="1.5" />
             </svg>
           </button>
+          {/* The second way in, and a different one: the Relic chip opens Johnny Silverhand. */}
+          <button type="button" class={s.chip} data-relic aria-label={relic.chip}>
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path d="M6 5h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+              <path d="M9 9h6v6H9zM2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5M9 2.5V5M15 2.5V5M9 19v2.5M15 19v2.5" />
+            </svg>
+            {['red', 'cyan'].map(tone => (
+              <svg
+                class:list={[s.ghost, s[tone]]}
+                data-relic-ghost
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <path d="M6 5h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                <path d="M9 9h6v6H9zM2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5M9 2.5V5M15 2.5V5M9 19v2.5M15 19v2.5" />
+              </svg>
+            ))}
+          </button>
         </span>
         <ul class="list-reset">
           <li>
@@ -84,6 +116,25 @@ const {
   document.querySelector('[data-rabbit]')?.addEventListener('click', () => {
     void import('@shared/scripts/matrix/pills').then(({ openPills }) => openPills());
   });
+
+  // The Relic chip (J-01) is a chunk of its own as well. It glitches once the first time the footer is seen; hover and
+  // focus play the same glitch from CSS.
+  const chip = document.querySelector<HTMLElement>('[data-relic]');
+
+  if (chip) {
+    chip.addEventListener('click', () => {
+      void import('@shared/scripts/relic/relic').then(({ openRelic }) => openRelic());
+    });
+    new IntersectionObserver(
+      ([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        chip.setAttribute('data-glitch', '');
+        chip.addEventListener('animationend', () => chip.removeAttribute('data-glitch'), { once: true });
+      },
+      { threshold: 1 }
+    ).observe(chip);
+  }
 
   // The buttons that lean towards the cursor (A-11) are a small chunk, loaded when the footer is about to be seen.
   const magnetic = document.querySelector<HTMLElement>('[data-magnetic]');

@@ -19,6 +19,7 @@ import footerJson from './footer/footer.json';
 import heroJson from './hero/hero.json';
 import menuJson from './menu/menu.json';
 import metaJson from './meta/meta.json';
+import relicJson from './relic/relic.json';
 import projectsBaseJson from './projects/projects.base.json';
 import projectsJson from './projects/projects.json';
 import reviewsBaseJson from './reviews/reviews.base.json';
@@ -42,6 +43,7 @@ import {
   metaSchema,
   projectBaseSchema,
   projectsSchema,
+  relicSchema,
   reviewBaseSchema,
   reviewsSchema,
   skillBaseSchema,
@@ -123,6 +125,7 @@ const load = () => {
   const hero = parseLocalized('hero.json', heroSchema, heroJson);
   const footer = parseLocalized('footer.json', footerSchema, footerJson);
   const easter = parseLocalized('easter.json', easterSchema, easterJson);
+  const relic = parseLocalized('relic.json', relicSchema, relicJson);
   const cv = parseLocalized('cv.json', cvSchema, cvJson);
   const menu = parseLocalized('menu.json', menuSchema, menuJson);
   const meta = parseLocalized('meta.json', metaSchema, metaJson);
@@ -190,6 +193,7 @@ const load = () => {
     hero: hero[locale],
     footer: footer[locale],
     easter: easter[locale],
+    relic: relic[locale],
     cv: cv[locale],
     menu: menu[locale].items,
     status: { ...statusBase, text: statusText[locale] },

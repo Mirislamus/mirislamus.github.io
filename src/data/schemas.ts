@@ -124,6 +124,9 @@ export const easterSchema = z.strictObject({
   soundOff: text,
 });
 
+// The Cyberpunk easter egg: the Relic chip in the footer, Johnny Silverhand and his takeover of the site.
+export const relicSchema = z.strictObject({ chip: text });
+
 // Only used by the printable CV page; none of this appears on the site itself.
 export const cvSchema = z.strictObject({
   contacts: text,

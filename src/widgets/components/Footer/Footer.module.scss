@@ -80,6 +80,90 @@
   }
 }
 
+// The Relic chip (J-01): quiet like the rabbit, with the same red and cyan glitch as the logo. While Johnny is in the
+// site (`data-relic` on the root) the chip burns red.
+.chip {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  color: currentColor;
+  opacity: 0.35;
+  transition: opacity var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  :global(:root[data-relic]) & {
+    opacity: 1;
+    color: var(--pill-red);
+  }
+
+  // The copies take no part in the layout or the clicks.
+  .ghost {
+    position: absolute;
+    inset: 4px;
+    opacity: 0;
+    pointer-events: none;
+
+    &.red {
+      --dir: -1;
+      color: #ff2e63;
+    }
+
+    &.cyan {
+      --dir: 1;
+      color: #00e5d1;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chip:focus-visible .ghost,
+  .chip[data-glitch] .ghost {
+    animation: chip-glitch var(--dur-logo-glitch) steps(1, end) 1 both;
+  }
+
+  @media (hover: hover) {
+    .chip:hover .ghost {
+      animation: chip-glitch var(--dur-logo-glitch) steps(1, end) 1 both;
+    }
+  }
+}
+
+@keyframes chip-glitch {
+  0% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * 2px) 0;
+    clip-path: inset(8% 0 62% 0);
+  }
+
+  25% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * -2px) calc(var(--dir) * 1px);
+    clip-path: inset(56% 0 12% 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * 2px) 0;
+    clip-path: inset(30% 0 40% 0);
+  }
+
+  75% {
+    opacity: 0.9;
+    translate: calc(var(--dir) * -1px) calc(var(--dir) * -1px);
+    clip-path: inset(72% 0 4% 0);
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 0;
+    clip-path: inset(0);
+  }
+}
+
 .bottom {
   width: 100%;
   padding-block: 32px;
