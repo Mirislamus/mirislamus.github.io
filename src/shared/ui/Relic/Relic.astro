@@ -46,20 +46,68 @@ const { texts } = Astro.props;
   </button>
 </dialog>
 
-{/* What the netrunner says about the section that comes into view (J-04): a live region, filled only during the takeover. */}
-<div
-  class={s.remark}
-  data-relic-remark
-  data-remarks={JSON.stringify(texts.remarks)}
-  role="status"
-  aria-live="polite"
+{/* The secure channel (J-10): the fixer and the netrunner talk about the section that comes into view. Shown and filled
+    only during the takeover; the log is a polite live region. The talk itself is in data-chat, the template is a message. */}
+<section
+  class={s.chat}
+  data-relic-chat
+  data-chat={JSON.stringify(texts.chat)}
+  aria-labelledby="relic-chat-title"
+  lang={Astro.currentLocale}
   hidden
 >
-  <span class={s.prompt} aria-hidden="true">
-    &gt;_
-  </span>
-  <p class={s.remarkText} lang={Astro.currentLocale} data-relic-remark-text></p>
-</div>
+  <header class={s.chatHead}>
+    <span class={s.chatDot} aria-hidden="true"></span>
+    <h2 id="relic-chat-title" class={s.chatTitle}>
+      {texts.chat.title}
+    </h2>
+    <button
+      type="button"
+      class={s.chatToggle}
+      data-relic-chat-toggle
+      aria-expanded="true"
+      aria-controls="relic-chat-body"
+      aria-label={texts.chat.close}
+    >
+      <span class={s.badge} data-relic-chat-badge hidden></span>
+      <svg
+        class={s.chevron}
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M6 9l6 6 6-6"></path>
+      </svg>
+    </button>
+  </header>
+  <div id="relic-chat-body" class={s.chatBody} data-relic-chat-body>
+    <div class={s.log} data-relic-chat-log role="log" aria-live="polite" aria-labelledby="relic-chat-title">
+      <ol class={s.list} data-relic-chat-list></ol>
+    </div>
+    <p class={s.typing} data-relic-chat-typing aria-hidden="true" hidden></p>
+  </div>
+  <template data-relic-chat-message>
+    <li class={s.message}>
+      <span class={s.avatar} aria-hidden="true" data-avatar></span>
+      <div class={s.bubble}>
+        <p class={s.meta}>
+          <span class={s.who} data-who></span>
+          <time class={s.time} data-time></time>
+        </p>
+        <p class={s.text} data-text></p>
+        <div class={s.replies} data-replies hidden>
+          <button type="button" class={s.reply} data-reply></button>
+        </div>
+      </div>
+    </li>
+  </template>
+</section>
 
 {/* The plate that stays while the netrunner is in the site (J-06): the way out, and the sound. */}
 <div class={s.plate} data-relic-plate hidden>

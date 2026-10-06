@@ -7,14 +7,135 @@
       "role": "Netrunner",
       "button": "Hack the city together"
     },
-    "remarks": {
-      "about": "Frontend Engineer. Clean interface, thin ICE. I’m in.",
-      "approach": "Process and approach. Every protocol has a pattern.",
-      "projects": "Plenty of projects and not a single hole. Respect.",
-      "skills": "Thirty-two tools. Enough to crack any firewall.",
-      "career": "A long log. Not one error in the last lines.",
-      "reviews": "Good feedback. Signature verified.",
-      "contacts": "Channel open. Write, the line is secure."
+    "chat": {
+      "title": "Secure channel",
+      "open": "Open the chat",
+      "close": "Fold the chat",
+      "unread": "New messages: {{count}}",
+      "typing": "{{name}} is typing…",
+      "you": "You",
+      "people": {
+        "fixer": "Fixer",
+        "runner": "Netrunner"
+      },
+      "beats": {
+        "start": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Got a gig. Check out one frontend dev — the site is right in front of you."
+            },
+            {
+              "from": "runner",
+              "text": "Copy. Jacking into the network."
+            },
+            {
+              "from": "fixer",
+              "text": "Our guest is on the channel too. Let them watch."
+            }
+          ],
+          "reply": {
+            "label": "Show the projects",
+            "answer": {
+              "from": "runner",
+              "text": "On it."
+            },
+            "target": "projects"
+          }
+        },
+        "about": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Profile is clean. Frontend Engineer, tidy interface, thin ICE."
+            },
+            {
+              "from": "fixer",
+              "text": "Don’t relax. Keep going."
+            }
+          ]
+        },
+        "approach": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Found how this one works: the process bends to the task. No templates."
+            },
+            {
+              "from": "fixer",
+              "text": "Flexible. That suits us."
+            }
+          ]
+        },
+        "projects": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Projects. Plenty, and not a single hole."
+            },
+            {
+              "from": "fixer",
+              "text": "Clean work."
+            }
+          ]
+        },
+        "skills": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Thirty-two tools. Enough to crack any firewall."
+            },
+            {
+              "from": "fixer",
+              "text": "The stack makes sense."
+            }
+          ]
+        },
+        "career": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "A long log. Not one error in the last lines."
+            },
+            {
+              "from": "fixer",
+              "text": "The experience checks out."
+            }
+          ]
+        },
+        "reviews": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Good feedback. Signatures verified."
+            },
+            {
+              "from": "fixer",
+              "text": "Settled. We’re hiring."
+            }
+          ],
+          "reply": {
+            "label": "Take the gig",
+            "answer": {
+              "from": "fixer",
+              "text": "Contacts are below. Don’t wait."
+            },
+            "target": "contacts"
+          }
+        },
+        "contacts": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Channel is open. Write directly, the line is secure."
+            },
+            {
+              "from": "runner",
+              "text": "Jacking out. Good luck, choom."
+            }
+          ]
+        }
+      }
     },
     "eject": "Eject the chip",
     "soundOn": "Turn sound on",
@@ -29,14 +150,135 @@
       "role": "Нетраннер",
       "button": "Взломаем город вместе"
     },
-    "remarks": {
-      "about": "Фронтенд-инженер. Аккуратный интерфейс, защита тонкая. Я внутри.",
-      "approach": "Подход и процессы. У каждого протокола есть свой узор.",
-      "projects": "Проектов много, и ни одной дыры. Уважаю.",
-      "skills": "Тридцать два инструмента. Хватит, чтобы вскрыть любой файрвол.",
-      "career": "Длинный лог. В последних строках ни одной ошибки.",
-      "reviews": "Отзывы хорошие. Подпись проверена.",
-      "contacts": "Канал открыт. Пиши, линия защищена."
+    "chat": {
+      "title": "Защищённый канал",
+      "open": "Развернуть чат",
+      "close": "Свернуть чат",
+      "unread": "Новых сообщений: {{count}}",
+      "typing": "{{name}} печатает…",
+      "you": "Ты",
+      "people": {
+        "fixer": "Фиксер",
+        "runner": "Нетраннер"
+      },
+      "beats": {
+        "start": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Есть заказ. Проверь одного фронтендера — его сайт перед тобой."
+            },
+            {
+              "from": "runner",
+              "text": "Принял. Подключаюсь к сети."
+            },
+            {
+              "from": "fixer",
+              "text": "Гость тоже в канале. Пусть смотрит."
+            }
+          ],
+          "reply": {
+            "label": "Покажи проекты",
+            "answer": {
+              "from": "runner",
+              "text": "Веду."
+            },
+            "target": "projects"
+          }
+        },
+        "about": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Профиль чистый. Фронтенд-инженер, аккуратный интерфейс, защита тонкая."
+            },
+            {
+              "from": "fixer",
+              "text": "Не расслабляйся. Дальше."
+            }
+          ]
+        },
+        "approach": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Понял, как тут работают: процесс подстраивается под задачу. Без шаблонов."
+            },
+            {
+              "from": "fixer",
+              "text": "Гибко. Нам подходит."
+            }
+          ]
+        },
+        "projects": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Проекты. Много, и ни одной дыры."
+            },
+            {
+              "from": "fixer",
+              "text": "Чистая работа."
+            }
+          ]
+        },
+        "skills": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Тридцать два инструмента. Хватит, чтобы вскрыть любой файрвол."
+            },
+            {
+              "from": "fixer",
+              "text": "Стек толковый."
+            }
+          ]
+        },
+        "career": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Длинный лог. В последних строках ни одной ошибки."
+            },
+            {
+              "from": "fixer",
+              "text": "Опыт подтверждается."
+            }
+          ]
+        },
+        "reviews": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Отзывы хорошие. Подписи проверены."
+            },
+            {
+              "from": "fixer",
+              "text": "Решено, берём."
+            }
+          ],
+          "reply": {
+            "label": "Взять заказ",
+            "answer": {
+              "from": "fixer",
+              "text": "Контакты ниже. Не тяни."
+            },
+            "target": "contacts"
+          }
+        },
+        "contacts": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Канал открыт. Пиши напрямую, линия защищена."
+            },
+            {
+              "from": "runner",
+              "text": "Отключаюсь. Удачи, чумба."
+            }
+          ]
+        }
+      }
     },
     "eject": "Вынуть чип",
     "soundOn": "Включить звук",
@@ -51,14 +293,135 @@
       "role": "Netrunner",
       "button": "Shaharni birga hack qilamiz"
     },
-    "remarks": {
-      "about": "Frontend Engineer. Toza interfeys, ICE yupqa. Men ichkaridaman.",
-      "approach": "Yondashuv va jarayonlar. Har bir protokolning o‘z naqshi bor.",
-      "projects": "Loyihalar ko‘p, birorta ham teshik yo‘q. Hurmat.",
-      "skills": "O‘ttiz ikkita vosita. Har qanday fayrvolni buzishga yetadi.",
-      "career": "Uzun jurnal. Oxirgi qatorlarda birorta ham xato yo‘q.",
-      "reviews": "Fikrlar yaxshi. Imzo tekshirildi.",
-      "contacts": "Kanal ochiq. Yoz, aloqa himoyalangan."
+    "chat": {
+      "title": "Himoyalangan kanal",
+      "open": "Chatni ochish",
+      "close": "Chatni yig‘ish",
+      "unread": "Yangi xabarlar: {{count}}",
+      "typing": "{{name}} yozmoqda…",
+      "you": "Sen",
+      "people": {
+        "fixer": "Fikser",
+        "runner": "Netranner"
+      },
+      "beats": {
+        "start": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Buyurtma bor. Bitta frontend dasturchini tekshir — sayti ko‘z oldingda."
+            },
+            {
+              "from": "runner",
+              "text": "Qabul qildim. Tarmoqqa ulanyapman."
+            },
+            {
+              "from": "fixer",
+              "text": "Mehmon ham kanalda. Ko‘rib tursin."
+            }
+          ],
+          "reply": {
+            "label": "Loyihalarni ko‘rsat",
+            "answer": {
+              "from": "runner",
+              "text": "Olib boryapman."
+            },
+            "target": "projects"
+          }
+        },
+        "about": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Profil toza. Frontend Engineer, interfeys puxta, himoya yupqa."
+            },
+            {
+              "from": "fixer",
+              "text": "Bo‘shashma. Davom et."
+            }
+          ]
+        },
+        "approach": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Qanday ishlashini tushundim: jarayon vazifaga moslashadi. Shablonsiz."
+            },
+            {
+              "from": "fixer",
+              "text": "Moslashuvchan. Bizga to‘g‘ri keladi."
+            }
+          ]
+        },
+        "projects": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Loyihalar. Ko‘p, birorta ham teshik yo‘q."
+            },
+            {
+              "from": "fixer",
+              "text": "Toza ish."
+            }
+          ]
+        },
+        "skills": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "O‘ttiz ikkita vosita. Har qanday fayrvolni buzishga yetadi."
+            },
+            {
+              "from": "fixer",
+              "text": "Steki puxta."
+            }
+          ]
+        },
+        "career": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Uzun jurnal. Oxirgi qatorlarda birorta ham xato yo‘q."
+            },
+            {
+              "from": "fixer",
+              "text": "Tajribasi tasdiqlandi."
+            }
+          ]
+        },
+        "reviews": {
+          "lines": [
+            {
+              "from": "runner",
+              "text": "Fikrlar yaxshi. Imzolar tekshirildi."
+            },
+            {
+              "from": "fixer",
+              "text": "Hal bo‘ldi, olamiz."
+            }
+          ],
+          "reply": {
+            "label": "Buyurtmani olish",
+            "answer": {
+              "from": "fixer",
+              "text": "Kontaktlar pastda. Cho‘zma."
+            },
+            "target": "contacts"
+          }
+        },
+        "contacts": {
+          "lines": [
+            {
+              "from": "fixer",
+              "text": "Kanal ochiq. To‘g‘ridan-to‘g‘ri yoz, aloqa himoyalangan."
+            },
+            {
+              "from": "runner",
+              "text": "Uzilyapman. Omad, do‘stim."
+            }
+          ]
+        }
+      }
     },
     "eject": "Chipni chiqarish",
     "soundOn": "Ovozni yoqish",

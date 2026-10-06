@@ -3,7 +3,7 @@ import { getMotion } from '../matrix/motion';
 import { collapseMusic } from './audio';
 import { GLITCH_EVENT } from './events';
 import { hidePlate, showPlate } from './plate';
-import { startRemarks, stopRemarks } from './remarks';
+import { startChat, stopChat } from './chat';
 
 // The takeover of the site by the netrunner (J-03). `data-relic` on the root turns on everything that is CSS:
 // the red palette (_variables.scss), the word NETRUNNER instead of the logo (Header) and the replaced texts (data-swap, see swapTexts).
@@ -105,7 +105,7 @@ export const startTakeover = () => {
     root().setAttribute(ATTRIBUTE, '');
   }
   schedule();
-  startRemarks();
+  startChat();
   showPlate(exitTakeover);
 };
 
@@ -115,14 +115,14 @@ export const stopTakeover = () => {
   pending.splice(0).forEach(window.clearTimeout);
   collapseMusic(0.6);
   hidePlate();
-  stopRemarks();
+  stopChat();
   unswapTexts();
   [GLITCH, SWAPPING, ATTRIBUTE].forEach(name => root().removeAttribute(name));
   document.querySelectorAll(`[${HIT}]`).forEach(element => element.removeAttribute(HIT));
 };
 
 // The way out (the button "Eject the chip" or Escape, J-06): a glitch that covers the change back, then the palette, the
-// logo, the texts, the remarks and the music are as they were and the focus is on the chip in the footer.
+// logo, the texts, the chat and the music are as they were and the focus is on the chip in the footer.
 let leaving = false;
 
 export function exitTakeover() {

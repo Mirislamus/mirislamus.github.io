@@ -124,6 +124,20 @@ export const easterSchema = z.strictObject({
   soundOff: text,
 });
 
+// One message of the channel, and one turn of the talk: a few messages and, under the last one, maybe a quick reply that
+// the visitor can send (it scrolls the page to `target`, and someone answers).
+const chatLine = z.strictObject({ from: z.enum(['fixer', 'runner']), text });
+const chatBeat = z.strictObject({
+  lines: z.array(chatLine).min(1),
+  reply: z
+    .strictObject({
+      label: text,
+      answer: chatLine,
+      target: z.enum(['about', 'approach', 'projects', 'skills', 'career', 'reviews', 'contacts']),
+    })
+    .optional(),
+});
+
 // The Cyberpunk easter egg: the Relic chip in the footer, the netrunner and his takeover of the site.
 export const relicSchema = z.strictObject({
   chip: text,
@@ -139,14 +153,27 @@ export const relicSchema = z.strictObject({
   // Texts of the page that the takeover replaces by others (visually only, see the Swap component).
   swaps: z.strictObject({ role: text, button: text }),
   // What the netrunner says when a section comes into view; the keys are the ids of the sections.
-  remarks: z.strictObject({
-    about: text,
-    approach: text,
-    projects: text,
-    skills: text,
-    career: text,
-    reviews: text,
-    contacts: text,
+  // The secure channel on the left (J-10): the fixer and the netrunner talk about the site as the visitor scrolls it.
+  chat: z.strictObject({
+    title: text,
+    open: text,
+    close: text,
+    // `{{count}}`: how many messages came while the chat was folded.
+    unread: text,
+    // `{{name}}`: who is typing.
+    typing: text,
+    you: text,
+    people: z.strictObject({ fixer: text, runner: text }),
+    beats: z.strictObject({
+      start: chatBeat,
+      about: chatBeat,
+      approach: chatBeat,
+      projects: chatBeat,
+      skills: chatBeat,
+      career: chatBeat,
+      reviews: chatBeat,
+      contacts: chatBeat,
+    }),
   }),
 });
 

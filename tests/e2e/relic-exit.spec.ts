@@ -80,7 +80,7 @@ test.describe('when motion is allowed', () => {
     await expect(chip(page)).toBeFocused();
   });
 
-  test('nothing keeps running after the exit: no glitches, no remarks, the context is closed', async ({ page }) => {
+  test('nothing keeps running after the exit: no glitches, no chat, the context is closed', async ({ page }) => {
     await installFakeAudio(page);
     await page.clock.install();
     await page.addInitScript(() => {
@@ -99,7 +99,7 @@ test.describe('when motion is allowed', () => {
     const glitches = await page.evaluate(() => (window as unknown as { glitches: number }).glitches);
     await page.clock.runFor(60_000);
     expect(await page.evaluate(() => (window as unknown as { glitches: number }).glitches)).toBe(glitches);
-    await expect(page.locator('[data-relic-remark]')).toBeHidden();
+    await expect(page.locator('[data-relic-chat]')).toBeHidden();
     expect((await audioLog(page)).closed).toBe(1);
   });
 

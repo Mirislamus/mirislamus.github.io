@@ -213,52 +213,256 @@
   border: 0;
 }
 
-// the netrunner's remark about a section (J-04): bottom left, above the place of the toast and of the button that takes the chip
-// out (J-06). Always dark, like the scene, so its text keeps its contrast on any page.
-.remark {
+// The secure channel (J-10): a messenger panel bottom left, above the plate (J-06); the button to the top is on the other
+// side. Always dark like the scene, so its text keeps its contrast on any page. Folded, only the header is left.
+.chat {
   --relic-red: #ff2e63;
   --relic-cyan: #00e5d1;
 
   position: fixed;
   left: max(var(--gap-16), env(safe-area-inset-left));
-  bottom: calc(max(var(--gap-16), env(safe-area-inset-bottom)) + 76px);
+  bottom: calc(max(var(--gap-16), env(safe-area-inset-bottom)) + 64px);
   z-index: var(--z-overlay);
   display: flex;
-  align-items: flex-end;
-  gap: var(--gap-12);
-  width: min(360px, calc(100vw - 32px));
-  padding: var(--gap-12) var(--gap-16);
+  flex-direction: column;
+  width: min(340px, calc(100vw - 32px));
   border: 1px solid rgb(255 46 99 / 55%);
   border-radius: var(--radius-12);
-  background-color: rgb(10 6 12 / 92%);
+  background-color: rgb(10 6 12 / 94%);
   color: #f4eef2;
+  font-family: ui-monospace, Consolas, monospace;
+  overflow: hidden;
   animation: relic-remark-in var(--dur-base) var(--ease-out) both;
 
   &[hidden] {
     display: none;
   }
+}
 
-  &[data-leaving] {
-    animation: relic-hit var(--dur-logo-glitch) steps(3, end) 1 both reverse;
-    opacity: 0;
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-8);
+  padding: 4px 4px 4px var(--gap-12);
+  border-bottom: 1px solid rgb(255 46 99 / 30%);
+
+  .chat[data-folded] & {
+    border-bottom-color: transparent;
   }
 }
 
-// The prompt in front of a remark, like a terminal line.
-.prompt {
+// A green light: the channel is up.
+.chatDot {
   flex: none;
-  align-self: flex-start;
-  font-family: ui-monospace, Consolas, monospace;
-  font-size: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--relic-cyan);
+  box-shadow: 0 0 6px var(--relic-cyan);
+}
+
+.chatTitle {
+  flex: 1;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--relic-cyan);
 }
 
-.remarkText {
-  min-height: 2.6em;
-  font-family: ui-monospace, Consolas, monospace;
+.chatToggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 44px;
+  padding-inline: var(--gap-8);
+  border-radius: var(--radius-8);
+  color: #b9aeb6;
+  transition: color var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+  }
+}
+
+.chevron {
+  transition: rotate var(--dur-base) var(--ease-out);
+
+  .chat[data-folded] & {
+    rotate: 180deg;
+  }
+}
+
+// How many messages came while the chat was folded.
+.badge {
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: var(--radius-100);
+  background-color: var(--relic-red);
+  color: #0a060c;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.chatBody {
+  display: flex;
+  flex-direction: column;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// The log scrolls; the list inside it holds the messages.
+.log {
+  max-height: min(340px, 46dvh);
+  padding: var(--gap-12);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.message {
+  display: flex;
+  gap: var(--gap-8);
+  animation: relic-remark-in var(--dur-base) var(--ease-out) both;
+
+  // What the visitor sends sits on the right, like in any messenger.
+  &[data-from='you'] {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+}
+
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+
+  .message[data-from='fixer'] & {
+    color: #ff5c7c;
+  }
+
+  .message[data-from='runner'] & {
+    color: var(--relic-cyan);
+  }
+
+  .message[data-from='you'] & {
+    color: #f4eef2;
+  }
+}
+
+.bubble {
+  min-width: 0;
+}
+
+.meta {
+  display: flex;
+  gap: var(--gap-8);
+  font-size: 12px;
+
+  .message[data-from='you'] & {
+    justify-content: flex-end;
+  }
+}
+
+.who {
+  font-weight: 700;
+
+  .message[data-from='fixer'] & {
+    color: #ff5c7c;
+  }
+
+  .message[data-from='runner'] & {
+    color: var(--relic-cyan);
+  }
+}
+
+.time {
+  color: #8f858c;
+}
+
+.text {
+  margin-top: 2px;
   font-size: 14px;
   line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-8);
+  margin-top: var(--gap-8);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// A quick reply: the visitor's line, sent with one press.
+.reply {
+  min-height: 36px;
+  padding: 6px var(--gap-12);
+  border: 1px solid var(--relic-cyan);
+  border-radius: var(--radius-100);
+  color: var(--relic-cyan);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--relic-cyan);
+    color: #0a060c;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+.typing {
+  padding: 0 var(--gap-12) var(--gap-12);
+  font-size: 12px;
+  color: #8f858c;
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 @keyframes relic-remark-in {
@@ -269,7 +473,7 @@
 }
 
 // The plate of the netrunner's takeover (J-06): bottom left, with the way out and the sound. Always dark like the scene, so it
-// reads on any page; the remark (J-04) sits above it, the button to the top is on the other side.
+// reads on any page; the chat (J-10) sits above it, the button to the top is on the other side.
 .plate {
   position: fixed;
   left: max(var(--gap-16), env(safe-area-inset-left));
