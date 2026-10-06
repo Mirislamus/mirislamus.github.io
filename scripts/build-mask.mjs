@@ -1,18 +1,17 @@
-// Draws the mask of the netrunner (J-07) into a grid of "density levels" for glyphs. Run by hand when the drawing changes:
-// `bun run build:mask`. The result is committed (src/data/matrix/mask.json); nothing here runs at build time or in the
-// browser. `bun run build:mask -- --preview` also prints the grid as text.
+// Draws the netrunner of the takeover (J-07, redrawn in J-09) into a grid of "density levels" for glyphs. Run by hand when
+// the drawing changes: `bun run build:mask`. The result is committed (src/data/matrix/mask.json); nothing here runs at
+// build time or in the browser. `bun run build:mask -- --preview` also prints the grid as text.
 //
-// The drawing is ours, a stylised mask in the spirit of the hackers' one, whole, with a margin around it: a broad brow
-// and cheekbones narrowing to a pointed chin, thin high-arched brows, narrow slanted eyes (glowing cyan here), rosy
-// cheeks, a long nose, a thin moustache with ends curled up, a wide smile with its folds and a narrow strip of a beard
-// down to the chin. The face is a bright plane and its features are carved out of it as dark gaps, which reads much
-// better in glyphs than thin lines do. It is rasterised with sharp and every cell takes the share of it that is covered.
+// The drawing is ours, a netrunner as a type, not any character: a head in a close-fitting cowl of the suit with its
+// seams, a glowing visor across the eyes that wraps round the head, a respirator with vents and two filters over the
+// lower face, jacks on the temples, cables running down from the head, and a collar on the shoulders. It is rasterised
+// with sharp and every cell takes the share of it that is covered.
 //
 // Three layers, one character per cell:
 //   0       empty
-//   1 … 4   the mask itself (pale), the density of the glyph grows with the number
-//   6 … 9   the eyes (cyan)
-//   a … d   the rosy cheeks (red)
+//   1 … 4   the suit and the respirator (pale), the density of the glyph grows with the number
+//   6 … 9   the visor and the lights of the jacks (cyan)
+//   a … d   the cables (red)
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -24,7 +23,7 @@ const PREVIEW = process.argv.includes('--preview');
 // stretched, and it is un-stretched when it is shown.
 const GRIDS = { desktop: { cols: 66, rows: 52 }, mobile: { cols: 44, rows: 34 } };
 const SAMPLES = 4; // the raster has this many pixels per cell on a side
-const VIEW = { width: 200, height: 260 }; // the whole mask, with a margin
+const VIEW = { width: 200, height: 260 }; // the whole figure, with a margin
 const LINE = 1.7; // the lines are drawn thicker than they look: a thin line is only a few dots in a grid of glyphs
 
 const svg = body =>
@@ -33,45 +32,64 @@ const svg = body =>
 const path = (d, { w = 3, fill = 'none' } = {}) =>
   `<path d="${d}" stroke-width="${w * LINE}" fill="${fill === 'none' ? 'none' : '#000'}" fill-opacity="${fill === 'none' ? 0 : fill}"/>`;
 
-// A shape and its mirror image across the middle of the mask (x = 100).
+const circle = (x, y, r, fill = 1) =>
+  `<circle cx="${x}" cy="${y}" r="${r}" fill="#000" fill-opacity="${fill}" stroke="none"/>`;
+
+// A shape and its mirror image across the middle of the figure (x = 100).
 const MIDDLE = 100;
 const mirrored = (d, options) =>
   path(d, options) + `<g transform="translate(${MIDDLE * 2} 0) scale(-1 1)">${path(d, options)}</g>`;
+const mirroredCircle = (x, y, r, fill) => circle(x, y, r, fill) + circle(MIDDLE * 2 - x, y, r, fill);
 
-// ── the face (pale) ──
-const FACE =
-  'M100 14C142 14 170 34 176 66C182 94 181 120 172 144C161 180 138 214 100 248C62 214 39 180 28 144C19 120 18 94 24 66C30 34 58 14 100 14Z';
-const face = svg(path(FACE, { fill: 1, w: 2 }));
+// ── the cowl of the suit: a plane of its own, dimmer than the respirator ──
+const COWL = 'M100 18C142 18 164 50 164 96C164 140 152 170 134 188H66C48 170 36 140 36 96C36 50 58 18 100 18Z';
+const suit = svg(path(COWL, { fill: 1, w: 0 }));
 
-// ── what is carved out of it (dark) ──
-const carve = svg(
+// ── the bright parts: the edge of the cowl, its seams, the respirator, the filters, the collar ──
+const RESPIRATOR = 'M68 124C80 117 120 117 132 124L138 150C130 170 70 170 62 150Z';
+const bright = svg(
   [
-    // the brows: thin, high, arched, lower towards the nose
-    mirrored('M88 76C82 62 68 56 54 62C49 65 46 69 44 74', { w: 3.4 }),
-    // the rims of the eyes, so the slits read even where the cyan is thin
-    mirrored('M52 94C61 85 78 85 89 93C78 100 61 100 52 94Z', { w: 2.4 }),
-    // the nose: a long ridge and its tip
-    path('M100 86L95 134C95 140 100 143 106 141', { w: 2.4 }),
-    // the folds of the smile
-    mirrored('M68 142C61 157 62 171 73 182', { w: 2.6 }),
-    // the moustache: thin, with the ends curled up
-    mirrored(
-      'M100 149C90 145 77 147 67 154C59 160 51 158 49 150C48 144 52 139 57 139C54 143 55 149 61 150C71 152 82 149 93 153C97 154 99 155 100 157Z',
-      { fill: 1, w: 1.8 }
-    ),
-    // the smile and the lower lip
-    path('M74 168C88 180 112 180 126 168', { w: 3.2 }),
-    path('M89 182C96 186 104 186 111 182', { w: 2 }),
-    // the narrow strip of a beard down to the chin
-    path('M95 189L105 189L102.5 240L97.5 240Z', { fill: 1, w: 1.2 }),
+    path(COWL, { w: 3 }),
+    path('M100 20V74', { w: 2 }),
+    mirrored('M66 34C56 54 52 74 54 92', { w: 2 }),
+    mirrored('M44 116C50 140 58 160 70 176', { w: 2 }),
+    path(RESPIRATOR, { fill: 1, w: 2.5 }),
+    mirroredCircle(56, 152, 13),
+    path('M78 188C78 202 74 214 64 224M122 188C122 202 126 214 136 224', { w: 2.5 }),
+    path('M60 226C82 216 118 216 140 226', { w: 3 }),
+    mirrored('M60 226C42 234 26 244 14 258', { w: 3 }),
   ].join('')
 );
 
-// ── the rosy cheeks (red) ──
-const cheeks = svg(mirrored('M58 128m-17 0a17 12 0 1 0 34 0a17 12 0 1 0 -34 0', { fill: 0.55, w: 0 }));
+// ── what is carved out of the bright parts: the vents of the respirator and the rings of the filters ──
+const carve = svg(
+  [
+    path('M84 134H116M80 143H120M84 152H116', { w: 2.2 }),
+    mirrored('M56 152m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0', { w: 1.8 }),
+    path('M100 166V178', { w: 1.6 }),
+  ].join('')
+);
 
-// ── the eyes (cyan): narrow slits, slanted up to the temples ──
-const eyes = svg(mirrored('M54 94C62 87 77 87 87 93C77 99 62 99 54 94Z', { fill: 1, w: 1 }));
+// ── the visor (cyan): a band across the eyes that wraps round the head, brighter where the eyes are ──
+const visor = svg(
+  [
+    path('M38 84C60 72 140 72 162 84L160 112C140 103 60 103 40 112Z', { fill: 0.5, w: 2 }),
+    mirrored('M54 92C62 86 80 86 88 92C80 98 62 98 54 92Z', { fill: 1, w: 1 }),
+    // the lights of the jacks on the temples and on the collar
+    mirroredCircle(36, 120, 4.5),
+    mirroredCircle(86, 222, 3.5),
+  ].join('')
+);
+
+// ── the cables (red): from the back of the head down past the shoulders ──
+const cables = svg(
+  [
+    mirrored('M42 128C30 156 22 194 28 256', { w: 3 }),
+    mirrored('M50 150C42 178 40 216 50 256', { w: 2.6 }),
+    mirrored('M36 104C24 118 16 140 12 168', { w: 2.4 }),
+    mirroredCircle(42, 128, 5),
+  ].join('')
+);
 
 // ── from drawing to cells ──
 const coverage = async (image, { cols, rows }) => {
@@ -89,29 +107,24 @@ const coverage = async (image, { cols, rows }) => {
   return cells.map(sum => sum / (SAMPLES * SAMPLES));
 };
 
-// The face is lit from the front: full in the middle, a little less towards its edges, so it has some volume.
-const shade = (x, y, { cols, rows }) => {
-  const dx = (x + 0.5) / cols - 0.5;
-  const dy = (y + 0.5) / rows - 0.42;
-  return Math.max(0.5, 1 - (dx * dx * 2.2 + dy * dy * 1.2));
-};
-
 const level = share => (share < 0.05 ? 0 : share < 0.16 ? 1 : share < 0.34 ? 2 : share < 0.6 ? 3 : 4);
 
+const SUIT = 0.3; // the cowl is a dim plane of sparse glyphs, so the bright parts stand out on it
+
 const render = async grid => {
-  const [faceCover, carveCover, cheekCover, eyeCover] = await Promise.all(
-    [face, carve, cheeks, eyes].map(layer => coverage(layer, grid))
+  const [suitCover, brightCover, carveCover, visorCover, cableCover] = await Promise.all(
+    [suit, bright, carve, visor, cables].map(layer => coverage(layer, grid))
   );
   const levels = [];
   for (let y = 0; y < grid.rows; y++) {
     let line = '';
     for (let x = 0; x < grid.cols; x++) {
       const i = y * grid.cols + x;
-      const cyan = level(eyeCover[i] * 1.3);
-      const pale = level(faceCover[i] * Math.max(0, 1 - carveCover[i] * 1.6) * shade(x, y, grid));
-      const rosy = cheekCover[i] > 0.2 && pale > 0;
+      const cyan = level(visorCover[i] * 1.2);
+      const red = level(cableCover[i] * 1.2);
+      const pale = level(Math.max(suitCover[i] * SUIT, brightCover[i]) * Math.max(0, 1 - carveCover[i] * 1.6));
       if (cyan > 0) line += String(5 + cyan);
-      else if (rosy) line += 'abcd'[pale - 1];
+      else if (red > 0 && red >= pale) line += 'abcd'[red - 1];
       else if (pale > 0) line += String(pale);
       else line += '0';
     }

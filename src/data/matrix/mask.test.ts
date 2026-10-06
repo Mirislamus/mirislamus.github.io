@@ -4,7 +4,7 @@ import { mask, maskSchema } from './mask';
 const count = (levels: string[], test: (char: string) => boolean) =>
   levels.reduce((sum, row) => sum + [...row].filter(test).length, 0);
 
-describe('the glyph mask of the netrunner', () => {
+describe('the glyph netrunner', () => {
   it('passes its schema and has the size it says', () => {
     expect(() => maskSchema.parse(mask)).not.toThrow();
     for (const grid of [mask.desktop, mask.mobile]) {
@@ -20,7 +20,7 @@ describe('the glyph mask of the netrunner', () => {
     }
   });
 
-  it('has all three layers: the pale mask, the cyan eyes, the rosy cheeks', () => {
+  it('has all three layers: the pale suit, the cyan visor, the red cables', () => {
     for (const grid of [mask.desktop, mask.mobile]) {
       const cells = grid.cols * grid.rows;
       expect(count(grid.levels, char => /[1-4]/.test(char))).toBeGreaterThan(cells * 0.3);
@@ -29,7 +29,7 @@ describe('the glyph mask of the netrunner', () => {
     }
   });
 
-  it('has the eyes in the upper half, side by side, in the middle of the face', () => {
+  it('has the visor in the upper half, across both sides of the face', () => {
     const { levels, cols, rows } = mask.desktop;
     const cyan = levels.flatMap((row, y) => [...row].flatMap((char, x) => (/[6-9]/.test(char) ? [{ x, y }] : [])));
     const eyes = cyan.filter(({ x, y }) => y > rows * 0.25 && y < rows * 0.45 && x > cols * 0.15 && x < cols * 0.85);
