@@ -62,7 +62,7 @@ export const arpVelocity = (step: number): number => (step % 4 === 0 ? 1 : step 
 export const arpCutoff = (step: number): number => 700 + (barOf(step) % BARS) * 380;
 
 // The lead plays only in the second half of the loop: a few notes of the C minor pentatonic, picked by the generator.
-export const LEAD_NOTES = ['C5', 'D#5', 'F5', 'G5', 'A#5', 'C6'] as const;
+const LEAD_NOTES = ['C5', 'D#5', 'F5', 'G5', 'A#5', 'C6'] as const;
 
 export interface LeadStep {
   note: string | null;

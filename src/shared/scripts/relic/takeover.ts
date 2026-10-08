@@ -10,7 +10,6 @@ import { startChat, stopChat } from './chat';
 // This module adds the glitches: now and then the page breaks up for a moment, and one heading with it.
 //   - 150–300 ms each, every 10–15 s, in a fixed order (seeded), never in a way that needs a loop of frames;
 //   - not while the visitor types, while a dialog is open, while the tab is hidden, or when motion is not allowed.
-export { GLITCH_EVENT };
 
 const ATTRIBUTE = 'data-relic';
 const GLITCH = 'data-relic-glitch';
@@ -70,7 +69,7 @@ const unswapTexts = () =>
 const after = (callback: () => void, ms: number) => pending.push(window.setTimeout(callback, ms));
 
 // One glitch of the page: a shift with a split into red and cyan, and the same on one heading that is on the screen.
-export const glitch = (ms = between(GLITCH_MS)) => {
+const glitch = (ms = between(GLITCH_MS)) => {
   const headings = visibleHeadings();
   const heading = headings[Math.floor(rng() * headings.length)];
   root().setAttribute(GLITCH, '');
@@ -110,7 +109,7 @@ export const startTakeover = () => {
 };
 
 // Everything is back as it was.
-export const stopTakeover = () => {
+const stopTakeover = () => {
   window.clearTimeout(timer);
   pending.splice(0).forEach(window.clearTimeout);
   collapseMusic(0.6);
@@ -125,7 +124,7 @@ export const stopTakeover = () => {
 // logo, the texts, the chat and the music are as they were and the focus is on the chip in the footer.
 let leaving = false;
 
-export function exitTakeover() {
+function exitTakeover() {
   if (!isTakenOver() || leaving) return;
   leaving = true;
   const finish = () => {
