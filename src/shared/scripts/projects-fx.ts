@@ -23,12 +23,15 @@ export const initProjectNames = (root: HTMLElement) => {
     const original = name.dataset.original ?? (name.dataset.original = (name.textContent ?? '').trim());
     const chars = [...original];
     name.style.inlineSize = `${name.getBoundingClientRect().width}px`;
-    const start = performance.now();
+    // The time counts from the first frame, not from the event: on a busy page that frame can come late, and the
+    // effect would end before it is seen. The first frame already has a glyph in it.
+    let start: number | undefined;
 
     const frame = (now: number) => {
+      start ??= now;
       const q = Math.min(1, (now - start) / DURATION);
       // First the glyphs run to the right end, then the real letters come back from the left.
-      const glyphs = Math.min(chars.length, Math.ceil(q * 2 * chars.length));
+      const glyphs = Math.min(chars.length, Math.max(1, Math.ceil(q * 2 * chars.length)));
       const restored = Math.max(0, Math.floor((q * 2 - 1) * chars.length));
       name.textContent = chars
         .map((char, i) => (char === ' ' || i < restored || i >= glyphs ? char : randomGlyph()))
