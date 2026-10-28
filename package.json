@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:analyze": "ANALYZE=true astro build",
     "build:media": "node scripts/build-media.mjs",
     "build:icons": "node scripts/icons.mjs",
     "build:wordmark": "node scripts/build-wordmark.mjs",
@@ -28,6 +29,7 @@
     "test:visual:update": "playwright test tests/visual --update-snapshots",
     "knip": "knip --include files,exports,dependencies",
     "test": "vitest run",
+    "test:watch": "vitest",
     "test:e2e": "playwright test tests/e2e"
   },
   "dependencies": {
@@ -56,6 +58,7 @@
     "postcss-preset-env": "^11.5.5",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
+    "rollup-plugin-visualizer": "^7.1.1",
     "sass": "^1.105.1",
     "schema-dts": "^2.0.0",
     "sharp": "^0.35.5",
@@ -65,6 +68,10 @@
     "stylelint-order": "^8.1.2",
     "typescript-eslint": "^8.71.0",
     "vitest": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "bun": ">=1.4.2"
   },
   "browserslist": [
     "> 0.5%",
