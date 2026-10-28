@@ -16,7 +16,7 @@ const { pauseLabel, playLabel, fixed = false } = Astro.props;
 <motion-toggle hidden>
   <button
     type="button"
-    class:list={[s.button, { [s.fixed]: fixed }]}
+    class:list={[s.button, fixed && s.fixed]}
     aria-pressed="false"
     aria-label={pauseLabel}
     data-label={pauseLabel}

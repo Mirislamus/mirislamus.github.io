@@ -1,3 +1,5 @@
+import { pick } from '@/utils/list';
+
 const KATAKANA = 'ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
 const CODE = '{}<>/=;()[]$#*+';
 const DIGITS = '0123456789';
@@ -17,4 +19,4 @@ export const createRng = (seed: number): Rng => {
   };
 };
 
-export const pickGlyph = (rng: Rng): string => GLYPHS[Math.floor(rng() * GLYPHS.length)];
+export const pickGlyph = (rng: Rng): string => pick(GLYPHS, rng());

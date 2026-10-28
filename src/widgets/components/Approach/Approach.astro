@@ -347,7 +347,7 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
     if (!element) return;
     new IntersectionObserver(
       ([entry], observer) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         observer.disconnect();
         load();
       },

@@ -17,7 +17,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "resolveJsonModule": true,
-    "noUncheckedIndexedAccess": false,
+    "noUncheckedIndexedAccess": true,
 
     "strict": true,
     "noUnusedLocals": true,

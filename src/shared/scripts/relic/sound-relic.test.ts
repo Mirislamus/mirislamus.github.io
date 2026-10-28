@@ -109,7 +109,7 @@ describe('the sound of the takeover', () => {
     sound.start(false);
     play(fake, 2.2);
     const saws = fake.log.oscillators.filter(osc => osc.type === 'sawtooth');
-    expect(saws[0].freq).toBeCloseTo(65.41, 0);
+    expect(saws[0]!.freq).toBeCloseTo(65.41, 0);
     expect(saws.map(osc => osc.freq)).toContainEqual(expect.closeTo(130.81, 0));
     expect(saws.filter(osc => osc.freq < 140).length).toBeGreaterThanOrEqual(15);
     expect(fake.log.oscillators.some(osc => osc.type === 'sine' && Math.abs(osc.freq - 32.7) < 0.5)).toBe(true);
@@ -179,11 +179,11 @@ describe('the sound of the takeover', () => {
   it('fades out and closes on a plain stop, and starts again at once', () => {
     const contexts = [fakeContext(), fakeContext()];
     let n = 0;
-    const sound = createRelicSound({ createContext: () => contexts[n++].context });
+    const sound = createRelicSound({ createContext: () => contexts[n++]!.context });
     sound.start(false);
     sound.stop(0.4);
     sound.start(true);
-    expect(contexts[0].log.closed).toBe(1);
+    expect(contexts[0]!.log.closed).toBe(1);
     expect(sound.playing).toBe(true);
   });
 

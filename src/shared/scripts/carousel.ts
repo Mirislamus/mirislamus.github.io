@@ -1,5 +1,7 @@
 import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 
+import { at } from '@/utils/list';
+
 class EmblaCarouselRoot extends HTMLElement {
   #embla?: EmblaCarouselType;
   #observer?: IntersectionObserver;
@@ -46,15 +48,17 @@ class EmblaCarouselRoot extends HTMLElement {
     const slides = embla.slideNodes();
 
     const pageScroll = this.hasAttribute('data-page-scroll');
-    const contentWidth = () =>
-      slides.length ? slides[slides.length - 1].offsetLeft + slides[slides.length - 1].offsetWidth : 0;
+    const contentWidth = () => {
+      const last = slides.at(-1);
+      return last ? last.offsetLeft + last.offsetWidth : 0;
+    };
 
     const snapFor = (offset: number) => {
       const maxScroll = Math.max(1, contentWidth() - viewport.clientWidth);
       const px = embla.scrollSnapList().map(progress => progress * maxScroll);
       let best = 0;
       px.forEach((value, index) => {
-        if (Math.abs(value - offset) < Math.abs(px[best] - offset)) best = index;
+        if (Math.abs(value - offset) < Math.abs(at(px, best) - offset)) best = index;
       });
       return best;
     };
@@ -64,13 +68,13 @@ class EmblaCarouselRoot extends HTMLElement {
       const rects = slides.map(slide => slide.getBoundingClientRect());
       if (direction === 1) {
         const first = rects.findIndex(rect => rect.right > edge.right + 1);
-        if (first >= 0) embla.scrollTo(snapFor(slides[first].offsetLeft));
+        if (first >= 0) embla.scrollTo(snapFor(at(slides, first).offsetLeft));
         return;
       }
       const cut = rects.findLastIndex(rect => rect.left < edge.left - 1);
       if (cut < 0) return;
       const whole = rects.filter(rect => rect.left >= edge.left - 1 && rect.right <= edge.right + 1).length;
-      embla.scrollTo(snapFor(slides[Math.max(0, cut - whole + 1)].offsetLeft));
+      embla.scrollTo(snapFor(at(slides, Math.max(0, cut - whole + 1)).offsetLeft));
     };
 
     const goNext = () => (pageScroll ? scrollPage(1) : embla.scrollNext());

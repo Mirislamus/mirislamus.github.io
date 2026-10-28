@@ -33,7 +33,7 @@ const setup = (root: HTMLDialogElement) => {
   let unwatch: (() => void) | undefined;
 
   const isLight = (colors: { background: number[] }) =>
-    (colors.background[0] + colors.background[1] + colors.background[2]) / 3 > 128;
+    colors.background.reduce((sum, channel) => sum + channel, 0) / 3 > 128;
 
   const soundButton = root.querySelector<HTMLButtonElement>('[data-pills-sound]');
   const stored = () => {

@@ -8,7 +8,7 @@ export interface WorkHours {
 const WEEKDAYS: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
 
 const toMinutes = (time: string) => {
-  const [hours, minutes] = time.split(':').map(Number);
+  const [hours = 0, minutes = 0] = time.split(':').map(Number);
   return hours * 60 + minutes;
 };
 
@@ -24,5 +24,5 @@ export const isWithinWorkHours = (now: Date, { timezone, days, from, to }: WorkH
   const value = (type: string) => parts.find(part => part.type === type)?.value ?? '';
   const minutes = Number(value('hour')) * 60 + Number(value('minute'));
 
-  return days.includes(WEEKDAYS[value('weekday')]) && minutes >= toMinutes(from) && minutes < toMinutes(to);
+  return days.includes(WEEKDAYS[value('weekday')] ?? 0) && minutes >= toMinutes(from) && minutes < toMinutes(to);
 };

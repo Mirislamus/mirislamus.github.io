@@ -1,4 +1,5 @@
 import maskJson from '@/data/matrix/mask.json';
+import { at, pick } from '@/utils/list';
 
 import { GLYPHS, createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
@@ -43,7 +44,7 @@ const hash = (x: number, y: number, salt: number) => {
   return value - Math.floor(value);
 };
 
-const poolOf = (layer: Layer, level: number) => (layer === 'pale' ? PALE_POOLS : POOLS)[level];
+const poolOf = (layer: Layer, level: number) => at(layer === 'pale' ? PALE_POOLS : POOLS, level);
 
 const decode = (char: string): { level: number; layer: Layer } | null => {
   if (char === '0') return null;
@@ -85,14 +86,14 @@ export const createMask = (canvas: HTMLCanvasElement) => {
           x,
           y,
           ...cell,
-          glyph: poolOf(cell.layer, cell.level)[Math.floor(rng() * poolOf(cell.layer, cell.level).length)],
+          glyph: pick(poolOf(cell.layer, cell.level), rng()),
         });
       }),
     );
   };
 
   const paint = (target: CanvasRenderingContext2D, cell: Cell, offset = 0, alpha = 1, glyph = cell.glyph) => {
-    target.fillStyle = `rgba(${COLORS[cell.layer].join(',')},${ALPHA[cell.level] * alpha})`;
+    target.fillStyle = `rgba(${COLORS[cell.layer].join(',')},${at(ALPHA, cell.level) * alpha})`;
     target.fillText(glyph, cell.x * cellW + cellW / 2, (cell.y - offset) * cellH + cellH / 2);
   };
 
@@ -156,7 +157,7 @@ export const createMask = (canvas: HTMLCanvasElement) => {
       const offset = (3 + hash(cell.x, cell.y, 5) * 9) * (1 - progress) ** 4;
       const pool = poolOf(cell.layer, cell.level);
       const glyph =
-        progress < 1 ? pool[Math.floor(t / FLIP_MS + hash(cell.x, cell.y, 6) * 10) % pool.length] : cell.glyph;
+        progress < 1 ? at(pool, Math.floor(t / FLIP_MS + hash(cell.x, cell.y, 6) * 10) % pool.length) : cell.glyph;
       paint(ctx, cell, offset, Math.min(1, progress * 3), glyph);
     }
 
@@ -189,9 +190,9 @@ export const createMask = (canvas: HTMLCanvasElement) => {
     if (now - lastFlicker >= FLICKER_EVERY_MS) {
       lastFlicker = now;
       while (flickers.length < FLICKERS) {
-        const cell = cells[Math.floor(Math.random() * cells.length)];
+        const cell = pick(cells, Math.random());
         if (cell.level < 2) continue;
-        flickers.push({ cell, glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)], until: now + FLICKER_MS });
+        flickers.push({ cell, glyph: pick(GLYPHS, Math.random()), until: now + FLICKER_MS });
         changed = true;
       }
     }

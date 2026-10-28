@@ -42,7 +42,7 @@ const variants = [
 
       new IntersectionObserver(
         ([entry], observer) => {
-          if (!entry.isIntersecting) return;
+          if (!entry?.isIntersecting) return;
           observer.disconnect();
           load();
         },

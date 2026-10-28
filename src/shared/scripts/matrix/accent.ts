@@ -1,3 +1,4 @@
+import { at } from '@/utils/list';
 import { subscribeTheme } from '@/utils/theme';
 
 export type Rgb = [number, number, number];
@@ -7,7 +8,8 @@ export const parseColor = (value: string): Rgb | null => {
 
   const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/.exec(text);
   if (hex) {
-    const full = hex[1].length === 3 ? [...hex[1]].map(c => c + c).join('') : hex[1];
+    const digits = at(hex, 1);
+    const full = digits.length === 3 ? [...digits].map(c => c + c).join('') : digits;
     return [0, 2, 4].map(i => parseInt(full.slice(i, i + 2), 16)) as Rgb;
   }
 
@@ -16,7 +18,7 @@ export const parseColor = (value: string): Rgb | null => {
 };
 
 export const mix = (a: Rgb, b: Rgb, amount: number): Rgb =>
-  a.map((channel, i) => Math.round(channel * (1 - amount) + b[i] * amount)) as Rgb;
+  a.map((channel, i) => Math.round(channel * (1 - amount) + at(b, i) * amount)) as Rgb;
 
 export interface MatrixColors {
   accent: Rgb;

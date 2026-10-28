@@ -70,12 +70,8 @@ export default defineConfig([
     },
   },
   {
-    files: ['tests/**/*.ts'],
-    rules: { '@typescript-eslint/no-non-null-assertion': 'off' },
-  },
-  {
-    files: ['**/*.test.ts'],
-    rules: { '@typescript-eslint/no-explicit-any': 'off' },
+    files: ['tests/**/*.ts', '**/*.test.ts'],
+    rules: { '@typescript-eslint/no-non-null-assertion': 'off', '@typescript-eslint/no-explicit-any': 'off' },
   },
   {
     files: ['scripts/**/*.{js,mjs,cjs,ts}'],

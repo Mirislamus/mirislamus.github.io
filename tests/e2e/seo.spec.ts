@@ -76,7 +76,7 @@ for (const { locale, path, canonical, ogLocale, alternates } of PAGES) {
       expect(response.headers()['content-type']).toBe('image/jpeg');
       const bytes = await response.body();
       expect(bytes.length).toBeLessThanOrEqual(300 * 1024);
-      const marker = bytes.findIndex((byte, index) => byte === 0xff && [0xc0, 0xc2].includes(bytes[index + 1]));
+      const marker = bytes.findIndex((byte, index) => byte === 0xff && [0xc0, 0xc2].includes(bytes[index + 1]!));
       expect([bytes.readUInt16BE(marker + 7), bytes.readUInt16BE(marker + 5)]).toEqual([1200, 630]);
     });
 
@@ -88,10 +88,10 @@ for (const { locale, path, canonical, ogLocale, alternates } of PAGES) {
       expect(type('WebSite')).toHaveLength(1);
       expect(type('Person')).toHaveLength(1);
       expect(type('ProfilePage')).toMatchObject([{ url: canonical, inLanguage: locale }]);
-      expect(type('Person')[0]['@id']).toBe(`${ORIGIN}/#person`);
+      expect(type('Person')[0]!['@id']).toBe(`${ORIGIN}/#person`);
 
       const projects = await page.locator('#projects article').count();
-      const [list] = type('ItemList') as { itemListElement: unknown[] }[];
+      const list = (type('ItemList') as { itemListElement: unknown[] }[])[0]!;
       expect(list.itemListElement.length).toBeGreaterThan(0);
       expect(list.itemListElement).toHaveLength(projects);
 
@@ -123,7 +123,7 @@ test.describe('files for crawlers', () => {
 
   test('the sitemap lists exactly the canonical addresses, each with its alternates', async ({ request }) => {
     const index = await (await ok(request, `${ORIGIN}/sitemap-index.xml`)).text();
-    const sitemap = await (await ok(request, index.match(/<loc>([^<]+)<\/loc>/)![1])).text();
+    const sitemap = await (await ok(request, index.match(/<loc>([^<]+)<\/loc>/)![1]!)).text();
 
     expect([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])).toEqual(
       PAGES.map(page => page.canonical),

@@ -1,3 +1,5 @@
+import { at, pick } from '@/utils/list';
+
 import type { MatrixColors, Rgb } from './accent';
 import { createRng, pickGlyph, type Rng } from './glyphs';
 
@@ -114,7 +116,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     column.y = spread ? rng() * total * 1.2 - total * 0.2 : -rng() * 10;
     column.word = null;
     if (column.active && words.length > 0 && rng() < WORD_CHANCE) {
-      column.word = words[Math.floor(rng() * words.length)];
+      column.word = pick(words, rng());
       column.len = Math.max(column.len, column.word.length + WORD_SKIP + 3);
     }
   };
@@ -154,7 +156,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     const bottom = Math.floor((pointerY + radius) / size);
 
     for (let i = first; i <= last; i++) {
-      const column = columns[i];
+      const column = at(columns, i);
       const cells = field[i];
       for (let row = top; row <= bottom; row++) {
         const distance = Math.hypot(column.x + size / 2 - pointerX, row * size + size / 2 - pointerY);
@@ -162,8 +164,8 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
         if (column.active && row <= column.y && row > column.y - column.len) continue;
         if (!cells || row >= cells.length) continue;
         if (flipNow && rng() < 0.15) cells[row] = pickGlyph(rng);
-        ctx.fillStyle = tailStyles[step((1 - distance / radius) * 0.22)];
-        ctx.fillText(cells[row], column.x, row * size);
+        ctx.fillStyle = at(tailStyles, step((1 - distance / radius) * 0.22));
+        ctx.fillText(at(cells, row), column.x, row * size);
       }
     }
   };
@@ -193,12 +195,12 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
           y -= evaporation * evaporation * size * 4 * (0.5 + noise(k, column.x));
         }
 
-        let glyph = column.chars[k % column.chars.length];
+        let glyph = at(column.chars, k % column.chars.length);
         let isWord = false;
         if (column.word) {
           const index = column.word.length - 1 - (k - WORD_SKIP);
           if (k >= WORD_SKIP && index >= 0 && index < column.word.length) {
-            glyph = column.word[index];
+            glyph = at(column.word, index);
             isWord = glyph !== ' ';
           }
         }
@@ -212,7 +214,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
         let alpha = ((1 - t) ** 1.6 * options.brightness * mask(column.x, y) + light * 0.65) * (1 - evaporation) ** 1.5;
         if (isWord) alpha = alpha * 1.8 + 0.15;
 
-        ctx.fillStyle = k === 0 ? headStyles[step(alpha * 1.6 + 0.1)] : tailStyles[step(alpha)];
+        ctx.fillStyle = k === 0 ? at(headStyles, step(alpha * 1.6 + 0.1)) : at(tailStyles, step(alpha));
         ctx.fillText(glyph, column.x, y);
       }
     }
@@ -236,9 +238,10 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
 
     if (widthChanged || columns.length === 0) build();
     else
-      field = columns.map((_, i) =>
-        field[i].concat(Array.from({ length: Math.max(0, rows() - field[i].length) }, () => pickGlyph(rng))),
-      );
+      field = columns.map((_, i) => {
+        const cells = at(field, i);
+        return cells.concat(Array.from({ length: Math.max(0, rows() - cells.length) }, () => pickGlyph(rng)));
+      });
     if (isStill) draw();
   };
 

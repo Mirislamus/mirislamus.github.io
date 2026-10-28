@@ -1,3 +1,5 @@
+import { at } from '@/utils/list';
+
 import { getMotion, onMotionChange } from './matrix/motion';
 
 const SPEED = 0.55;
@@ -37,7 +39,7 @@ export const initCareerReveal = (section: HTMLElement) => {
 
   const lastIndex = items.length - 1;
   const dotX = items.map(item => item.offsetLeft + DOT_RADIUS);
-  const lineEnd = dotX[lastIndex];
+  const lineEnd = at(dotX, lastIndex);
 
   animate(track, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], {
     duration: (lineEnd - DOT_RADIUS) / SPEED,
@@ -46,7 +48,7 @@ export const initCareerReveal = (section: HTMLElement) => {
   });
 
   items.forEach((item, i) => {
-    const t = (dotX[i] - DOT_RADIUS) / SPEED;
+    const t = (at(dotX, i) - DOT_RADIUS) / SPEED;
     const current = item.hasAttribute('data-current');
     const circle = item.querySelector('[data-career-circle]');
 
@@ -132,7 +134,7 @@ export const initCareerReveal = (section: HTMLElement) => {
 
   const observer = new IntersectionObserver(
     ([entry]) => {
-      if (!entry.isIntersecting) return;
+      if (!entry?.isIntersecting) return;
       observer.disconnect();
       section.setAttribute('data-career-reveal', 'playing');
       for (const animation of animations) animation.play();

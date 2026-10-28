@@ -11,7 +11,7 @@ describe('levelsToText', () => {
     expect(rows).toHaveLength(2);
     rows.forEach((row, y) => {
       expect(row).toHaveLength(4);
-      [...row].forEach((char, x) => expect(levelOfChar(char)).toBe(Number(levels[y][x])));
+      [...row].forEach((char, x) => expect(levelOfChar(char)).toBe(Number(levels[y]![x])));
     });
   });
 

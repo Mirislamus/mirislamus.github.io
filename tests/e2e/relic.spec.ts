@@ -87,7 +87,7 @@ const painted = (page: Page) =>
         .getContext('2d')!
         .getImageData(0, 0, (canvas as HTMLCanvasElement).width, (canvas as HTMLCanvasElement).height);
       let count = 0;
-      for (let i = 3; i < data.length; i += 4) if (data[i] > 0) count++;
+      for (let i = 3; i < data.length; i += 4) if (data[i]! > 0) count++;
       return count;
     });
 

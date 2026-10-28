@@ -27,6 +27,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
       <div class={s.grid}>
         {data.items.map((project, index) => {
           const image = images[project.id];
+          if (!image) throw new Error(`No cover for project ${project.id}`);
           const isExtra = index >= INITIAL_COUNT;
 
           return (
@@ -100,7 +101,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
 
       new IntersectionObserver(
         ([entry], observer) => {
-          if (!entry.isIntersecting) return;
+          if (!entry?.isIntersecting) return;
           observer.disconnect();
           void import('@/shared/scripts/projects-fx').then(({ initProjectNames }) => initProjectNames(this));
         },

@@ -36,7 +36,7 @@ describe('arpStep', () => {
   it('plays the start of every bar and leaves rests between', () => {
     const rng = createScoreRng(20);
     const steps = Array.from({ length: 64 }, (_, i) => arpStep(i, rng));
-    for (let i = 0; i < 64; i += 8) expect(steps[i].note).not.toBeNull();
+    for (let i = 0; i < 64; i += 8) expect(steps[i]!.note).not.toBeNull();
     const rests = steps.filter(step => step.note === null).length;
     expect(rests).toBeGreaterThan(15);
     expect(rests).toBeLessThan(50);

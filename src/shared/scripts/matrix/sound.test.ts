@@ -111,11 +111,11 @@ describe('the sound of the scene', () => {
   it('can be opened again at once: the old context goes and a new one starts', () => {
     const contexts = [fakeContext(), fakeContext()];
     let n = 0;
-    const sound = createSound({ createContext: () => contexts[n++].context });
+    const sound = createSound({ createContext: () => contexts[n++]!.context });
     sound.start(false);
     sound.stop(0.4);
     sound.start(true);
-    expect(contexts[0].log.closed).toBe(1);
+    expect(contexts[0]!.log.closed).toBe(1);
     expect(n).toBe(2);
     expect(sound.playing).toBe(true);
   });

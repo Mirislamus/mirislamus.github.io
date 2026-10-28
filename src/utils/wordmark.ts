@@ -1,4 +1,5 @@
 import { createRng } from '@/shared/scripts/matrix/glyphs';
+import { at, pick } from '@/utils/list';
 
 export const ASCII_POOLS = [' ', '.:', '+*-=', '#$%&', '@7490'] as const;
 
@@ -13,8 +14,8 @@ export const levelsToText = (levels: readonly string[], seed: number): string =>
     .map(row =>
       [...row]
         .map(digit => {
-          const pool = ASCII_POOLS[Number(digit)];
-          return pool.length === 1 ? pool : pool[Math.floor(rng() * pool.length)];
+          const pool = at(ASCII_POOLS, Number(digit));
+          return pool.length === 1 ? pool : pick(pool, rng());
         })
         .join(''),
     )

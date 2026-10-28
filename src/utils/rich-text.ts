@@ -32,7 +32,8 @@ export const parseRichText = (input: string, vars: RichTextVars = {}): RichTextT
     } else if (highlight !== undefined) {
       tokens.push({ type: 'highlight', value: highlight });
     } else {
-      if (!(variable in vars)) throw new Error(`Unknown rich text variable "{{${variable}}}" in: ${input}`);
+      if (variable === undefined || !(variable in vars))
+        throw new Error(`Unknown rich text variable "{{${variable}}}" in: ${input}`);
       pushText(String(vars[variable]));
     }
   }

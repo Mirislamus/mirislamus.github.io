@@ -1,3 +1,4 @@
+import { at, pick } from '@/utils/list';
 import { levelOfChar } from '@/utils/wordmark';
 
 import { watchColors, type MatrixColors, type Rgb } from './accent';
@@ -52,15 +53,13 @@ export const initWordmark = (root: HTMLElement) => {
   let stop: (() => void) | undefined;
 
   const readGrid = () => {
-    const pre = pres.find(candidate => getComputedStyle(candidate).display !== 'none') ?? pres[0];
+    const pre = pres.find(candidate => getComputedStyle(candidate).display !== 'none') ?? at(pres, 0);
     const lines = (pre.textContent ?? '').split('\n').filter(line => line.trim() !== '');
     cols = Math.max(0, ...lines.map(line => line.length));
     levels = lines.map(line => Array.from({ length: cols }, (_, x) => levelOfChar(line[x] ?? ' ')));
     rows = levels.length;
     const rng = createRng(7);
-    glyphs = levels.map(row =>
-      row.map(level => (level > 0 ? POOLS[level][Math.floor(rng() * POOLS[level].length)] : '')),
-    );
+    glyphs = levels.map(row => row.map(level => (level > 0 ? pick(at(POOLS, level), rng()) : '')));
     flashes = new Float64Array(cols * rows);
     return pre;
   };
@@ -78,7 +77,7 @@ export const initWordmark = (root: HTMLElement) => {
     return true;
   };
 
-  const alphaOf = (level: number, x: number, y: number) => LEVEL_ALPHA[level] * (0.85 + 0.15 * hash(x, y, 1));
+  const alphaOf = (level: number, x: number, y: number) => at(LEVEL_ALPHA, level) * (0.85 + 0.15 * hash(x, y, 1));
 
   const draw = (now: number) => {
     if (!colors) return;
@@ -89,11 +88,13 @@ export const initWordmark = (root: HTMLElement) => {
     const t = assembleStart < 0 ? 0 : now - assembleStart;
 
     for (let y = 0; y < rows; y++) {
+      const levelRow = at(levels, y);
+      const glyphRow = at(glyphs, y);
       for (let x = 0; x < cols; x++) {
-        const level = levels[y][x];
+        const level = at(levelRow, x);
         if (level === 0) continue;
 
-        let glyph = glyphs[y][x];
+        let glyph = at(glyphRow, x);
         let alpha = alphaOf(level, x, y);
         let offset = 0;
 
@@ -105,11 +106,13 @@ export const initWordmark = (root: HTMLElement) => {
           if (progress === 0) continue;
           offset = (ASSEMBLE_FROM_MIN + hash(x, y, 5) * ASSEMBLE_FROM_SPREAD) * (1 - progress) ** 4;
           alpha *= Math.min(1, progress * 3);
-          if (progress < 1) glyph = POOLS[level][Math.floor(t / FLIP_MS + hash(x, y, 6) * 10) % POOLS[level].length];
+          const pool = at(POOLS, level);
+          if (progress < 1) glyph = at(pool, Math.floor(t / FLIP_MS + hash(x, y, 6) * 10) % pool.length);
         }
 
-        const flashAge = now - flashes[y * cols + x];
-        const flashing = flashes[y * cols + x] > 0 && flashAge < (hash(x, y, 7) > 0.5 ? FLASH_LONG_MS : FLASH_SHORT_MS);
+        const flashTime = at(flashes, y * cols + x);
+        const flashAge = now - flashTime;
+        const flashing = flashTime > 0 && flashAge < (hash(x, y, 7) > 0.5 ? FLASH_LONG_MS : FLASH_SHORT_MS);
         const px = x * cellW + cellW / 2;
         const py = (y - offset) * cellH + cellH / 2;
 
@@ -117,8 +120,7 @@ export const initWordmark = (root: HTMLElement) => {
           ctx.fillStyle = css(colors.accent);
           ctx.fillRect(x * cellW, y * cellH, cellW, cellH);
           ctx.fillStyle = css(colors.background);
-          const pool = POOLS[5 - level];
-          ctx.fillText(pool[Math.floor(Math.random() * pool.length)], px, py);
+          ctx.fillText(pick(at(POOLS, 5 - level), Math.random()), px, py);
         } else {
           ctx.fillStyle = css(colors.accent, alpha);
           ctx.fillText(glyph, px, py);
@@ -172,7 +174,7 @@ export const initWordmark = (root: HTMLElement) => {
     waiting = true;
     new IntersectionObserver(
       ([entry], observer) => {
-        if (!entry.isIntersecting || !waiting) return;
+        if (!entry?.isIntersecting || !waiting) return;
         observer.disconnect();
         if (motion.allowed) startAssembling();
         else showAtOnce();

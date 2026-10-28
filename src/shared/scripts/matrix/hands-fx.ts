@@ -1,4 +1,5 @@
 import handsJson from '@/data/matrix/hands.json';
+import { at, pick } from '@/utils/list';
 
 import { parseColor, type Rgb } from './accent';
 import { GLYPHS, createRng } from './glyphs';
@@ -77,9 +78,15 @@ export const createHands = (root: HTMLElement) => {
         if (digit === 0) return;
         const pill = digit >= 6;
         const level = pill ? digit - 5 : digit;
-        const pick = () => POOLS[level][Math.floor(rng() * POOLS[level].length)];
-        cells.push({ x, y, level, side: pill ? 'red' : null, glyph: pick() });
-        cells.push({ x: grid.cols + gap + (grid.cols - 1 - x), y, level, side: pill ? 'blue' : null, glyph: pick() });
+        const glyphFor = () => pick(at(POOLS, level), rng());
+        cells.push({ x, y, level, side: pill ? 'red' : null, glyph: glyphFor() });
+        cells.push({
+          x: grid.cols + gap + (grid.cols - 1 - x),
+          y,
+          level,
+          side: pill ? 'blue' : null,
+          glyph: glyphFor(),
+        });
       }),
     );
   };
@@ -93,7 +100,7 @@ export const createHands = (root: HTMLElement) => {
       target.fillRect(px, py, cellW, cellH);
       target.fillStyle = `rgba(${toward(color, light ? 0 : 255, light ? 0.3 : 0.35).join(',')},${alpha})`;
     } else {
-      target.fillStyle = `rgba(${ink.join(',')},${(light ? ALPHA_ON_LIGHT : ALPHA)[cell.level] * alpha})`;
+      target.fillStyle = `rgba(${ink.join(',')},${at(light ? ALPHA_ON_LIGHT : ALPHA, cell.level) * alpha})`;
     }
     target.fillText(glyph, px + cellW / 2, py + cellH / 2);
   };
@@ -160,9 +167,11 @@ export const createHands = (root: HTMLElement) => {
       if (progress === 0) continue;
 
       const offset = (3 + hash(cell.x, cell.y, 5) * 9) * (1 - progress) ** 4;
-      const pool = POOLS[cell.level];
+      const pool = at(POOLS, cell.level);
       const falling = progress < 1;
-      const glyph = falling ? pool[Math.floor(t / FLIP_MS + hash(cell.x, cell.y, 6) * 10) % pool.length] : cell.glyph;
+      const glyph = falling
+        ? at(pool, Math.floor(t / FLIP_MS + hash(cell.x, cell.y, 6) * 10) % pool.length)
+        : cell.glyph;
       paint(ctx, cell, offset, Math.min(1, progress * 3), glyph);
     }
 
@@ -180,9 +189,9 @@ export const createHands = (root: HTMLElement) => {
     if (now - lastFlicker >= FLICKER_EVERY_MS) {
       lastFlicker = now;
       while (flickers.length < FLICKERS) {
-        const cell = cells[Math.floor(Math.random() * cells.length)];
+        const cell = pick(cells, Math.random());
         if (cell.level < 2) continue;
-        flickers.push({ cell, glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)], until: now + FLICKER_MS });
+        flickers.push({ cell, glyph: pick(GLYPHS, Math.random()), until: now + FLICKER_MS });
         changed = true;
       }
     }

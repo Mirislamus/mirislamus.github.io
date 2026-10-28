@@ -117,9 +117,9 @@ const tintAround = (page: Page, button: 'Blue pill' | 'Red pill') =>
     let blue = 0;
     let red = 0;
     for (let i = 0; i < data.length; i += 4) {
-      if (data[i + 3] < 40) continue;
-      if (data[i + 2] > data[i] + 30) blue++;
-      if (data[i] > data[i + 2] + 30) red++;
+      if (data[i + 3]! < 40) continue;
+      if (data[i + 2]! > data[i]! + 30) blue++;
+      if (data[i]! > data[i + 2]! + 30) red++;
     }
     return { blue, red };
   }, button);
@@ -172,7 +172,7 @@ test.describe('glyph hands in motion', () => {
             .getContext('2d')!
             .getImageData(0, 0, (canvas as HTMLCanvasElement).width, (canvas as HTMLCanvasElement).height);
           let count = 0;
-          for (let i = 3; i < data.length; i += 4) if (data[i] > 40) count++;
+          for (let i = 3; i < data.length; i += 4) if (data[i]! > 40) count++;
           return count;
         });
 
@@ -206,8 +206,8 @@ test.describe('the scene follows the theme', () => {
       let sum = 0;
       let count = 0;
       for (let i = 0; i < data.length; i += 4) {
-        if (data[i + 3] > 60 && Math.abs(data[i] - data[i + 2]) < 20) {
-          sum += (data[i] + data[i + 1] + data[i + 2]) / 3;
+        if (data[i + 3]! > 60 && Math.abs(data[i]! - data[i + 2]!) < 20) {
+          sum += (data[i]! + data[i + 1]! + data[i + 2]!) / 3;
           count++;
         }
       }

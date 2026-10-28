@@ -58,7 +58,7 @@ describe('buildStructuredData', () => {
       if (Array.isArray(value)) return value.forEach(walk);
       if (value && typeof value === 'object') {
         const entries = Object.entries(value);
-        if (entries.length === 1 && entries[0][0] === '@id') references.push(entries[0][1] as string);
+        if (entries.length === 1 && entries[0]![0] === '@id') references.push(entries[0]![1] as string);
         entries.forEach(([, child]) => walk(child));
       }
     };
@@ -70,7 +70,7 @@ describe('buildStructuredData', () => {
 
   it.each(LOCALES)('describes the person from the site data for %s', locale => {
     const site = getSiteData(locale);
-    const [person] = ofType(locale, 'Person');
+    const person = ofType(locale, 'Person')[0]!;
 
     expect(person.name).toBe(site.meta.name);
     expect(person.alternateName).toContain('mirislamus');
@@ -94,7 +94,7 @@ describe('buildStructuredData', () => {
   });
 
   it('lists the career newest first, the current place without an end', () => {
-    const [person] = ofType('en', 'Person');
+    const person = ofType('en', 'Person')[0]!;
     const roles = person.worksFor;
 
     expect(roles).toHaveLength(getSiteData('en').career.items.length);
@@ -105,20 +105,20 @@ describe('buildStructuredData', () => {
 
   it.each(LOCALES)('lists the projects and the reviews as on the page for %s', locale => {
     const site = getSiteData(locale);
-    const [list] = ofType(locale, 'ItemList');
+    const list = ofType(locale, 'ItemList')[0]!;
     const reviews = ofType(locale, 'Review');
 
     expect(list.itemListElement.map((entry: { item: { name: string } }) => entry.item.name)).toEqual(
       site.projects.items.map(project => project.name),
     );
-    expect(list.itemListElement[0].item.description).toBe(site.projects.items[0].text);
+    expect(list.itemListElement[0].item.description).toBe(site.projects.items[0]!.text);
     expect(reviews.map(review => review.reviewBody)).toEqual(site.reviews.items.map(review => review.text));
     expect(reviews.every(review => review.inLanguage === locale && !('reviewRating' in review))).toBe(true);
-    expect(reviews[0].publisher.name).toBe(site.reviews.source);
+    expect(reviews[0]!.publisher.name).toBe(site.reviews.source);
   });
 
   it('marks every language version of the page', () => {
-    const [website] = ofType('ru', 'WebSite').filter(node => node['@id'] === `${ORIGIN}#website`);
+    const website = ofType('ru', 'WebSite').filter(node => node['@id'] === `${ORIGIN}#website`)[0]!;
     expect(website.inLanguage).toEqual([...LOCALES]);
     expect(ofType('ru', 'ProfilePage')[0]).toMatchObject({ url: `${ORIGIN}ru/`, inLanguage: 'ru' });
   });

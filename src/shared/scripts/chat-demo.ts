@@ -1,3 +1,5 @@
+import { at } from '@/utils/list';
+
 import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
 const TYPING = 1200;
@@ -52,7 +54,7 @@ export const initChatDemo = (root: HTMLElement) => {
   });
 
   messages.forEach((message, i) => {
-    const { start, shown, typed } = slots[i];
+    const { start, shown, typed } = at(slots, i);
 
     animate(
       list,
@@ -180,7 +182,7 @@ export const initChatDemo = (root: HTMLElement) => {
 
   const observer = new IntersectionObserver(
     ([entry]) => {
-      if (!entry.isIntersecting) return;
+      if (!entry?.isIntersecting) return;
       observer.disconnect();
       root.setAttribute('data-chat', 'playing');
       for (const animation of animations) animation.play();

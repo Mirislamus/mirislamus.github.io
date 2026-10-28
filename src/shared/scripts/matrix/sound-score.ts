@@ -1,3 +1,4 @@
+import { at } from '@/utils/list';
 const BPM = 72;
 export const BEAT = 60 / BPM;
 export const STEP = BEAT / 2;
@@ -20,7 +21,9 @@ const NOTE_INDEX: Record<string, number> = {
 export const noteToFrequency = (note: string): number => {
   const match = /^([A-G]#?)(-?\d)$/.exec(note);
   if (!match) throw new Error(`Not a note: ${note}`);
-  const semitones = NOTE_INDEX[match[1]] + (Number(match[2]) + 1) * 12 - 69;
+  const index = NOTE_INDEX[at(match, 1)];
+  if (index === undefined) throw new Error(`Not a note: ${note}`);
+  const semitones = index + (Number(match[2]) + 1) * 12 - 69;
   return 440 * 2 ** (semitones / 12);
 };
 
@@ -47,7 +50,7 @@ export const arpStep = (index: number, rng: () => number): ArpStep => {
   const rest = rng() < REST_CHANCE && index % 8 !== 0;
   if (rest) return { note: null, velocity: 0 };
   const walk = Math.floor(rng() * 3);
-  const note = ARP_NOTES[(index + walk) % ARP_NOTES.length];
+  const note = at(ARP_NOTES, (index + walk) % ARP_NOTES.length);
   return { note, velocity: index % 8 === 0 ? 1 : 0.6 + 0.25 * rng() };
 };
 

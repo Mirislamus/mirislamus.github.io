@@ -13,13 +13,13 @@ const bySlug = new Map(
 );
 
 const luminance = (hex: string) => {
-  const [r, g, b] = [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16) / 255);
+  const [r = 0, g = 0, b = 0] = [0, 2, 4].map(i => parseInt(hex.slice(i, i + 2), 16) / 255);
   const lin = (channel: number) => (channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4);
   return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 };
 
 export const contrast = (a: string, b: string) => {
-  const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  const [light = 0, dark = 0] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (light + 0.05) / (dark + 0.05);
 };
 

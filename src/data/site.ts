@@ -2,6 +2,7 @@ import type { z } from 'astro/zod';
 
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
 import { getExperienceYears } from '@/utils/experience';
+import { at } from '@/utils/list';
 import { interpolate } from '@/utils/rich-text';
 
 import a11yJson from './a11y/a11y.json';
@@ -209,7 +210,7 @@ const load = () => {
         ...project,
         stackIds: project.stack,
         stack: stackNames(`project "${project.id}"`, project.stack),
-        text: projectsText[locale].items[index].text,
+        text: at(projectsText[locale].items, index).text,
       })),
     },
     career: {
@@ -219,13 +220,13 @@ const load = () => {
         ...item,
         stack: stackNames(`career item "${item.id}"`, item.stack),
         year: item.end === null ? `${item.start} — ${careerText[locale].present}` : String(item.start),
-        description: careerText[locale].items[index].description,
+        description: at(careerText[locale].items, index).description,
       })),
     },
     reviews: {
       title: reviewsText[locale].title,
       source: reviewsText[locale].source,
-      items: reviewBase.map((review, index) => ({ ...review, text: reviewsText[locale].reviews[index].text })),
+      items: reviewBase.map((review, index) => ({ ...review, text: at(reviewsText[locale].reviews, index).text })),
     },
   });
 

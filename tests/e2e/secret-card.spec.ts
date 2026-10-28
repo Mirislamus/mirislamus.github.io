@@ -65,7 +65,7 @@ test.describe('the invite field', () => {
     page.on('request', request => requests.push(request.url()));
 
     await page.evaluate(() => {
-      const target = document.querySelectorAll('#approach article')[4];
+      const target = document.querySelectorAll('#approach article')[4]!;
       new MutationObserver(() => {
         if (target.hasAttribute('data-glitch')) (window as unknown as { glitched: boolean }).glitched = true;
       }).observe(target, { attributes: true, attributeFilter: ['data-glitch'] });

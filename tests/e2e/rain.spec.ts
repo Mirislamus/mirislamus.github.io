@@ -56,8 +56,8 @@ test.describe('when motion is allowed', () => {
         let red = 0;
         let green = 0;
         for (let i = 0; i < data.length; i += 4) {
-          red += data[i] * data[i + 3];
-          green += data[i + 1] * data[i + 3];
+          red += data[i]! * data[i + 3]!;
+          green += data[i + 1]! * data[i + 3]!;
         }
         return red > green ? 'orange' : 'green';
       });

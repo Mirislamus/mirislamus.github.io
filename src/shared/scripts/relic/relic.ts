@@ -1,3 +1,5 @@
+import { at, pick } from '@/utils/list';
+
 import { getMotion } from '../matrix/motion';
 import { getTicker } from '../matrix/ticker';
 import { hit, riser, startMusic, stopMusic } from './audio';
@@ -30,15 +32,15 @@ const setup = (root: HTMLDialogElement) => {
   let noise: number | undefined;
 
   const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
-  const randomBlock = () => NOISE[Math.floor(Math.random() * NOISE.length)];
+  const randomBlock = () => pick(NOISE, Math.random());
 
   const show = (index: number, count: number) => {
-    const text = LINES[index].slice(0, count);
-    lines[index].textContent = index === 0 ? text.replace(/[▓▒░]/g, randomBlock) : text;
+    const text = at(LINES, index).slice(0, count);
+    at(lines, index).textContent = index === 0 ? text.replace(/[▓▒░]/g, randomBlock) : text;
   };
 
   const type = (index: number, from: number) => {
-    const length = LINES[index].length;
+    const length = at(LINES, index).length;
     for (let count = 1; count <= length; count++) later(() => show(index, count), from + count * TYPE_MS);
   };
 
@@ -75,7 +77,7 @@ const setup = (root: HTMLDialogElement) => {
     startMusic();
     if (!motion.allowed) {
       mask?.open();
-      lines.forEach((_, index) => show(index, LINES[index].length));
+      lines.forEach((_, index) => show(index, at(LINES, index).length));
       if (subtitle) subtitle.hidden = false;
       later(() => close(true), READ_MS);
       return;
@@ -88,9 +90,9 @@ const setup = (root: HTMLDialogElement) => {
     type(1, START_MS.line2);
     later(
       () => {
-        noise = window.setInterval(() => show(0, LINES[0].length), NOISE_MS);
+        noise = window.setInterval(() => show(0, at(LINES, 0).length), NOISE_MS);
       },
-      START_MS.line1 + LINES[0].length * TYPE_MS,
+      START_MS.line1 + at(LINES, 0).length * TYPE_MS,
     );
     if (subtitle) later(() => (subtitle.hidden = false), START_MS.subtitle);
     later(() => riser(RISER_MS / 1000), START_MS.end - RISER_MS + 400);

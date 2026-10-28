@@ -1,9 +1,11 @@
+import { pick } from '@/utils/list';
+
 import { GLYPHS } from './matrix/glyphs';
 import { getMotion } from './matrix/motion';
 
 const DURATION = 420;
 
-const randomGlyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+const randomGlyph = () => pick(GLYPHS, Math.random());
 
 export const initProjectNames = (root: HTMLElement) => {
   const motion = getMotion();

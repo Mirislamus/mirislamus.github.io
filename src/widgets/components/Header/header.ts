@@ -149,7 +149,7 @@ class SiteHeader extends HTMLElement {
         focusWhenVisible(() => visibleFocusable(nav)[0]);
       } else {
         document.body.style.overflow = previousOverflow;
-        background.forEach((element, index) => (element.inert = previousInert[index]));
+        background.forEach((element, index) => (element.inert = previousInert[index] ?? false));
       }
     }
 

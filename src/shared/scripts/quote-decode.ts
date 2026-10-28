@@ -1,3 +1,5 @@
+import { pick } from '@/utils/list';
+
 import { GLYPHS } from './matrix/glyphs';
 import { getMotion } from './matrix/motion';
 
@@ -17,8 +19,7 @@ export const initQuoteDecode = (root: HTMLElement) => {
       const quote = (seen.target as HTMLElement).querySelector<HTMLElement>('[data-quote]');
       if (!quote) return;
       const mark = quote.textContent?.trim() ?? '“';
-      for (const step of STEPS)
-        setTimeout(() => (quote.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]), step);
+      for (const step of STEPS) setTimeout(() => (quote.textContent = pick(GLYPHS, Math.random())), step);
       setTimeout(() => (quote.textContent = mark), END);
     },
     { threshold: 0.9 },

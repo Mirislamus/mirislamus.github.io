@@ -10,6 +10,6 @@ interface Props {
 const { variant = 'row', radius, class: className } = Astro.props;
 ---
 
-<div class:list={[s.switcher, s[variant], { [s.radius]: radius }, className]}>
+<div class:list={[s.switcher, s[variant], radius && s.radius, className]}>
   <slot />
 </div>

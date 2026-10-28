@@ -1,3 +1,5 @@
+import { at } from '@/utils/list';
+
 import { LIQUID_POINTS, blobPath } from './liquid-path';
 
 const CENTER = 130;
@@ -72,14 +74,17 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
           else if (edge <= 0) target -= DENT * RADIUS * weight(angle, aimAngle);
         }
 
-        target = Math.min(target, reach[i]);
+        const limit = at(reach, i);
+        target = Math.min(target, limit);
 
-        velocities[i] += (STIFFNESS * (target - offsets[i]) - DAMPING * velocities[i]) * dt;
-        offsets[i] += velocities[i] * dt;
-        if (offsets[i] > reach[i]) {
-          offsets[i] = reach[i];
-          velocities[i] = Math.min(velocities[i], 0);
+        let velocity = at(velocities, i) + (STIFFNESS * (target - at(offsets, i)) - DAMPING * at(velocities, i)) * dt;
+        let offset = at(offsets, i) + velocity * dt;
+        if (offset > limit) {
+          offset = limit;
+          velocity = Math.min(velocity, 0);
         }
+        velocities[i] = velocity;
+        offsets[i] = offset;
       }
       shape.setAttribute('d', blobPath(offsets, RADIUS, CENTER, CENTER));
 
@@ -126,7 +131,7 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
       const rect = svg.getBoundingClientRect();
       const aimAngle = Math.atan2(clientY - (rect.top + rect.height / 2), clientX - (rect.left + rect.width / 2));
       for (let i = 0; i < LIQUID_POINTS; i++) {
-        velocities[i] -= TAP_IMPULSE * RADIUS * weight((i / LIQUID_POINTS) * Math.PI * 2, aimAngle);
+        velocities[i] = at(velocities, i) - TAP_IMPULSE * RADIUS * weight((i / LIQUID_POINTS) * Math.PI * 2, aimAngle);
       }
     },
   };

@@ -15,5 +15,7 @@ export function bootstrapTheme(storageKey: string, colors: Record<string, string
   const theme = dark ? 'dark' : 'light';
 
   document.documentElement.setAttribute('data-theme', theme);
-  document.querySelectorAll('meta[name="theme-color"]').forEach(meta => meta.setAttribute('content', colors[theme]));
+  document
+    .querySelectorAll('meta[name="theme-color"]')
+    .forEach(meta => meta.setAttribute('content', colors[theme] ?? ''));
 }

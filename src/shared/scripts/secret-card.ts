@@ -1,3 +1,5 @@
+import { at, pick } from '@/utils/list';
+
 import { GLYPHS } from './matrix/glyphs';
 import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
@@ -7,7 +9,7 @@ const COVER_UP = 300;
 const FLICKER = 60;
 const TURN = 3000;
 
-const randomGlyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+const randomGlyph = () => pick(GLYPHS, Math.random());
 
 export const initSecretCard = (root: HTMLElement) => {
   const motion = getMotion();
@@ -68,7 +70,7 @@ export const initSecretCard = (root: HTMLElement) => {
     };
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         observer.disconnect();
         for (const animation of animations) animation.play();
         count(performance.now());
@@ -127,7 +129,7 @@ export const initSecretCard = (root: HTMLElement) => {
     let timer = 0;
     const turn = () => {
       if (!motion.allowed) return;
-      decrypt(bars[next++ % bars.length]);
+      decrypt(at(bars, next++ % bars.length));
     };
     const stop = () => {
       clearInterval(timer);
@@ -136,7 +138,7 @@ export const initSecretCard = (root: HTMLElement) => {
     new IntersectionObserver(
       ([entry]) => {
         stop();
-        if (!entry.isIntersecting || bars.length === 0) return;
+        if (!entry?.isIntersecting || bars.length === 0) return;
         timer = window.setInterval(turn, TURN);
         window.setTimeout(turn, TURN / 3);
       },

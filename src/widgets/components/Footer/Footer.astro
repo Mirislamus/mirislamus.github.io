@@ -125,7 +125,7 @@ const {
     });
     new IntersectionObserver(
       ([entry], observer) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         observer.disconnect();
         chip.setAttribute('data-glitch', '');
         chip.addEventListener('animationend', () => chip.removeAttribute('data-glitch'), { once: true });
@@ -139,7 +139,7 @@ const {
   if (magnetic) {
     new IntersectionObserver(
       ([entry], observer) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         observer.disconnect();
         void import('@/shared/scripts/magnetic').then(({ initMagnetic }) => initMagnetic(magnetic));
       },

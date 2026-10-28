@@ -67,8 +67,8 @@ describe('the effects of the scene', () => {
     createEffects(sound).open();
     expect(sweeps()).toBe(1);
     expect(oscillators).toHaveLength(1);
-    expect(oscillators[0].type).toBe('sine');
-    expect(oscillators[0].frequency).toBeLessThan(100);
+    expect(oscillators[0]!.type).toBe('sine');
+    expect(oscillators[0]!.frequency).toBeLessThan(100);
   });
 
   it('blip: the blue pill is higher than the red one', () => {
@@ -77,9 +77,9 @@ describe('the effects of the scene', () => {
     const red = fake();
     createEffects(red.sound, () => 0).blip('red');
 
-    expect(blue.oscillators[0].frequency).toBeCloseTo(noteToFrequency('E5'), 3);
-    expect(red.oscillators[0].frequency).toBeCloseTo(noteToFrequency('A4'), 3);
-    expect(blue.oscillators[0].frequency).toBeGreaterThan(red.oscillators[0].frequency);
+    expect(blue.oscillators[0]!.frequency).toBeCloseTo(noteToFrequency('E5'), 3);
+    expect(red.oscillators[0]!.frequency).toBeCloseTo(noteToFrequency('A4'), 3);
+    expect(blue.oscillators[0]!.frequency).toBeGreaterThan(red.oscillators[0]!.frequency);
   });
 
   it('blip: not more than one in 120 ms', () => {

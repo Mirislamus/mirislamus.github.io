@@ -34,7 +34,7 @@ test.describe('with a mouse', () => {
 
     const text = await button(page)
       .locator('[data-magnet-text]')
-      .evaluate(element => parseFloat(getComputedStyle(element).translate.split(' ')[0]) || 0);
+      .evaluate(element => parseFloat(getComputedStyle(element).translate.split(' ')[0]!) || 0);
     expect(text).toBeGreaterThan(0);
     expect(text).toBeLessThanOrEqual(2.01);
   });

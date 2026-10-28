@@ -1,3 +1,5 @@
+import { at, pick } from '@/utils/list';
+
 import { createScoreRng, noteToFrequency } from '../matrix/sound-score';
 
 export { createScoreRng, noteToFrequency };
@@ -16,7 +18,7 @@ const CHORDS = [
 ] as const;
 
 export const barOf = (step: number) => Math.floor(step / STEPS_PER_BAR) % BARS;
-export const chordOf = (step: number) => CHORDS[barOf(step) % CHORDS.length];
+export const chordOf = (step: number) => at(CHORDS, barOf(step) % CHORDS.length);
 
 const raise = (note: string, octaves: number) => note.replace(/\d$/, digit => String(Number(digit) + octaves));
 
@@ -42,8 +44,8 @@ export const padNotes = (step: number): string[] => chordOf(step).tones.map(tone
 const ARP_SHAPE = [0, 1, 2, 3, 2, 1, 2, 1] as const;
 export const arpNote = (step: number): string => {
   const tones = chordOf(step).tones;
-  const index = ARP_SHAPE[step % ARP_SHAPE.length];
-  return index === 3 ? `${tones[0]}5` : `${tones[index]}4`;
+  const index = at(ARP_SHAPE, step % ARP_SHAPE.length);
+  return index === 3 ? `${at(tones, 0)}5` : `${at(tones, index)}4`;
 };
 export const arpVelocity = (step: number): number => (step % 4 === 0 ? 1 : step % 2 === 0 ? 0.7 : 0.5);
 export const arpCutoff = (step: number): number => 700 + (barOf(step) % BARS) * 380;
@@ -58,7 +60,7 @@ export interface LeadStep {
 export const leadStep = (step: number, rng: () => number): LeadStep => {
   if (barOf(step) < BARS / 2 || step % 2 !== 0) return { note: null, length: 0 };
   if (rng() > 0.3) return { note: null, length: 0 };
-  return { note: LEAD_NOTES[Math.floor(rng() * LEAD_NOTES.length)], length: 2 + Math.floor(rng() * 3) };
+  return { note: pick(LEAD_NOTES, rng()), length: 2 + Math.floor(rng() * 3) };
 };
 
 export const blipAt = (step: number, rng: () => number): number | null => {

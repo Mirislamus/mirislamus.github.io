@@ -92,7 +92,7 @@ test.describe('with a real audio context', () => {
     await page.keyboard.press('Escape');
     await expect(dialog(page)).not.toHaveAttribute('open', '', { timeout: 3000 });
     await expect
-      .poll(() => page.evaluate(() => (window as unknown as { realContexts: AudioContext[] }).realContexts[0].state), {
+      .poll(() => page.evaluate(() => (window as unknown as { realContexts: AudioContext[] }).realContexts[0]!.state), {
         timeout: 4000,
       })
       .toBe('closed');

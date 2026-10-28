@@ -188,7 +188,7 @@ test.describe('career carousel, how far the arrows go', () => {
       .poll(() =>
         page.evaluate(() => {
           const slides = [...document.querySelectorAll('#career [data-embla-slide]')];
-          return slides[slides.length - 1].getBoundingClientRect().right <= innerWidth;
+          return slides[slides.length - 1]!.getBoundingClientRect().right <= innerWidth;
         }),
       )
       .toBe(true);

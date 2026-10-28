@@ -69,7 +69,7 @@ test('the heading outline has no skipped levels', async ({ page }) => {
     .locator('h1, h2, h3, h4, h5, h6')
     .evaluateAll(headings => headings.map(heading => Number(heading.tagName[1])));
   expect(levels[0]).toBe(1);
-  levels.slice(1).forEach((level, index) => expect(level - levels[index]).toBeLessThanOrEqual(1));
+  levels.slice(1).forEach((level, index) => expect(level - levels[index]!).toBeLessThanOrEqual(1));
 });
 
 test('carousels stay keyboard-reachable before Embla loads, and drop the extra tab stop after', async ({ page }) => {

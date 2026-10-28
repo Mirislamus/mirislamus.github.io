@@ -84,7 +84,7 @@ export const initHeroFx = (section: HTMLElement) => {
   if (content) new ResizeObserver(measure).observe(content);
 
   new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
+    visible = entry?.isIntersecting ?? false;
     if (!visible) {
       rain.setPointer(null);
       liquid?.aim(null);

@@ -1,3 +1,5 @@
+import { at } from '@/utils/list';
+
 export const LIQUID_POINTS = 14;
 
 export const blobPath = (offsets: readonly number[], radius: number, cx: number, cy: number): string => {
@@ -8,12 +10,13 @@ export const blobPath = (offsets: readonly number[], radius: number, cx: number,
   });
   const n = (value: number) => value.toFixed(1);
 
-  let path = `M${n(points[0][0])} ${n(points[0][1])}`;
+  const start = at(points, 0);
+  let path = `M${n(start[0])} ${n(start[1])}`;
   for (let i = 0; i < count; i++) {
-    const p0 = points[(i - 1 + count) % count];
-    const p1 = points[i];
-    const p2 = points[(i + 1) % count];
-    const p3 = points[(i + 2) % count];
+    const p0 = at(points, (i - 1 + count) % count);
+    const p1 = at(points, i);
+    const p2 = at(points, (i + 1) % count);
+    const p3 = at(points, (i + 2) % count);
     path += `C${n(p1[0] + (p2[0] - p0[0]) / 6)} ${n(p1[1] + (p2[1] - p0[1]) / 6)} ${n(p2[0] - (p3[0] - p1[0]) / 6)} ${n(p2[1] - (p3[1] - p1[1]) / 6)} ${n(p2[0])} ${n(p2[1])}`;
   }
   return `${path}Z`;

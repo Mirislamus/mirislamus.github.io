@@ -8,7 +8,7 @@ interface Props extends Omit<HTMLAttributes<'div'>, 'class' | 'style'> {
   color?: string;
   speed?: string;
   thickness?: number;
-  class?: string | string[];
+  class?: string | (string | undefined)[];
   style?: string;
 }
 
