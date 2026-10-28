@@ -47,7 +47,7 @@ src/
 
 ## Реестр архитектурных решений
 
-Каталог `docs/decisions/` — реестр ADR шаблона ai-template. Нумерация сквозная. Бэкенд-ADR (0019–0023) не перенесены: бэкенда нет.
+Каталог `docs/decisions/` — реестр ADR шаблона ai-template. Нумерация сквозная.
 
 **Фронтенд (`docs/decisions/frontend/`):**
 
@@ -63,6 +63,14 @@ src/
 - `0016-i18n-standards.md` — словари, `astro:i18n`, `Intl`.
 - `0017-motion-and-animations.md` — GPU-анимации, `prefers-reduced-motion`, Scroll Reveal.
 - `0024-site-deviations.md` — принятые отступления сайта от шаблона.
+
+**Бэкенд (`docs/decisions/backend/`, в сайте не применяются: бэкенда нет):**
+
+- `0019-backend-architecture.md` — когда нужен бэкенд, монорепо, модули по фичам, очередь задач.
+- `0020-api-contract-and-errors.md` — Eden Treaty, адреса и формат данных, пагинация, ошибки RFC 9457.
+- `0021-database-and-migrations.md` — PostgreSQL, Drizzle, соглашения схемы, миграции, бэкапы.
+- `0022-auth-and-access.md` — Better Auth, сессии, способы входа, роли, проверка владельца, 2FA.
+- `0023-security-logging-and-config.md` — валидация, лимиты запросов, секреты, логи, алерты, файлы.
 
 **Общие (`docs/decisions/common/`):**
 

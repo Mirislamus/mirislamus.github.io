@@ -84,14 +84,14 @@
 
 ## 4. Бэкенд (опционально: своя БД, авторизация, админка, фоновые задачи)
 
-Подключается только по решению в [PRODUCT.md](../PRODUCT.md) (ADR 0019 §1); проект становится монорепо на Bun workspaces.
+Подключается только по решению в [PRODUCT.md](../PRODUCT.md) ([ADR 0019](decisions/backend/0019-backend-architecture.md) §1); проект становится монорепо на Bun workspaces.
 
 - **Рантайм и фреймворк:** Bun + Elysia, TypeScript strict.
-- **Клиент API во фронтенде:** Eden Treaty (`@elysia/eden`) внутри TanStack Query; `ky` — только для внешних API (ADR 0020).
+- **Клиент API во фронтенде:** Eden Treaty (`@elysia/eden`) внутри TanStack Query; `ky` — только для внешних API ([ADR 0020](decisions/backend/0020-api-contract-and-errors.md)).
 - **Валидация:** Zod (общие схемы — в `packages/shared`).
-- **База данных:** PostgreSQL 18 + Drizzle ORM (драйвер Bun SQL), миграции drizzle-kit (ADR 0021).
-- **Авторизация:** Better Auth: сессии в httpOnly-cookie, роли, 2FA (ADR 0022).
-- **Логирование:** pino; алерты в Telegram (ADR 0023).
+- **База данных:** PostgreSQL 18 + Drizzle ORM (драйвер Bun SQL), миграции drizzle-kit ([ADR 0021](decisions/backend/0021-database-and-migrations.md)).
+- **Авторизация:** Better Auth: сессии в httpOnly-cookie, роли, 2FA ([ADR 0022](decisions/backend/0022-auth-and-access.md)).
+- **Логирование:** pino; алерты в Telegram ([ADR 0023](decisions/backend/0023-security-logging-and-config.md)).
 - **Тесты:** `bun test` с реальной PostgreSQL ([ADR 0014](decisions/common/0014-testing-and-qa.md) §6).
 - **Деплой:** Docker Compose на собственном сервере, образ в GHCR ([ADR 0018](decisions/common/0018-deployment-and-caching.md) §5).
 

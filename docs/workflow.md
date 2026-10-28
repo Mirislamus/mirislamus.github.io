@@ -61,10 +61,13 @@
 | `explorer` | Поиск по коду и документации | haiku / low | Только чтение |
 | `frontend-dev` | Фронтенд уровня Low и Medium | sonnet / medium | Изменение файлов |
 | `frontend-dev-deep` | Фронтенд уровня High и XHigh | opus / xhigh | Изменение файлов |
+| `backend-dev` | Бэкенд уровня Low и Medium | sonnet / medium | Изменение файлов |
+| `backend-dev-deep` | Бэкенд уровня High и XHigh | opus / xhigh | Изменение файлов |
 | `reviewer` | Ревью diff по стандартам и спецификации (этап `$code-review` из [docs/skills.md](skills.md) §3) | opus / high | Только чтение и Git-команды чтения |
 | `qa` | Проверки из [AGENTS.md](../AGENTS.md) «Тесты и проверки», Definition of Done ([ADR 0014](decisions/common/0014-testing-and-qa.md) §4), браузер через `$agent-browser` | sonnet / medium | Запуск команд; код не изменяет |
 
 - Исполнитель выбирается по слою подзадачи, тир (`*-dev` или `*-dev-deep`) — по ее уровню. Модель при вызове не переопределяется: уровень выбирает файл исполнителя.
+- `backend-dev` и `backend-dev-deep` используются, только если бэкенд выбран в PRODUCT.md ([ADR 0019](decisions/backend/0019-backend-architecture.md) §1).
 - Модели указаны алиасами (`opus`, `sonnet`, `haiku`) и следуют за актуальными версиями. Если модель не поддерживает заданный effort, Claude Code понижает его до ближайшего доступного ([документация](https://code.claude.com/docs/en/model-config)).
 
 ---

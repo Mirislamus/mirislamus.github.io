@@ -70,7 +70,7 @@
 
 | Навык | Когда запускать | Что делает в проекте |
 | --- | --- | --- |
-| `$grilling` | Старт проекта, крупная фича, архитектурная развилка | Допрос по одному вопросу с рекомендацией; результат фиксируется в PRODUCT.md (PROMPT.md) |
+| `$grilling` | Старт проекта, крупная фича, архитектурная развилка | Допрос по одному вопросу с рекомендацией; результат фиксируется в PRODUCT.md ([PROMPT.md](../PROMPT.md)) |
 | `$figma` | Только при наличии макета Figma | Токены, ассеты и параметры макета для переноса в SCSS Modules |
 | `$impeccable` | После верстки секции или страницы: аудит и полировка | UX-аудит, иерархия, состояния интерфейса, устранение визуального шума — только командами и по правилам §2 |
 | `$emil-design-eng` | Интерактивные элементы и микровзаимодействия | Hover/active отклики, оптическое выравнивание, переходы — значения только из токенов (§2) |
@@ -84,7 +84,7 @@
 
 | Навык | Что он ожидает | Что использовать в проекте |
 | --- | --- | --- |
-| `$impeccable` | `PRODUCT.md`, `DESIGN.md`, `.impeccable/`; команды `init`, `document`, `doctor` | Только команды из §2; PRODUCT.md заполняется только через допрос по PROMPT.md и не перезаписывается навыком; `DESIGN.md` не создается, источник — [docs/design.md](design.md); каталог `.impeccable/` игнорируется Git |
+| `$impeccable` | `PRODUCT.md`, `DESIGN.md`, `.impeccable/`; команды `init`, `document`, `doctor` | Только команды из §2; PRODUCT.md заполняется только через допрос по [PROMPT.md](../PROMPT.md) и не перезаписывается навыком; `DESIGN.md` не создается, источник — [docs/design.md](design.md); каталог `.impeccable/` игнорируется Git |
 | `$emil-design-eng` | Motion (Framer Motion), собственные кривые и длительности | CSS-переходы и WAAPI, токены `--motion-*` и `--ease-out` (§2) |
 | `$code-review` | Issue tracker (`docs/agents/issue-tracker.md`), `CODING_STANDARDS.md` | Спецификация: `docs/pages/*.md` + PRODUCT.md + [docs/tasks.md](tasks.md); стандарты: AGENTS.md + [docs/decisions/](decisions/) + [docs/design.md](design.md) |
 | `$tdd`, `$diagnosing-bugs` | `CONTEXT.md`, `docs/adr/` | `CONTEXT.md` заменяют [ARCHITECTURE.md](../ARCHITECTURE.md) и [PRODUCT.md](../PRODUCT.md); ADR — [docs/decisions/](decisions/) |

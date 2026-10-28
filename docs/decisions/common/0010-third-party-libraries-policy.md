@@ -76,7 +76,7 @@
   - `dompurify` — санитизация сырого HTML.
   - `schema-dts` — типы JSON-LD (devDependency).
 - **Интеграции и адаптеры Astro:** `@astrojs/react`, `@astrojs/sitemap`, `@astrojs/check`, адаптеры `@astrojs/node`, `@astrojs/cloudflare`, `@astrojs/vercel`, `@astrojs/netlify` (по выбранному хостингу).
-- **Бэкенд (`apps/api`, ADR 0019–0023):**
+- **Бэкенд (`apps/api`, [ADR 0019](../backend/0019-backend-architecture.md)–[0023](../backend/0023-security-logging-and-config.md)):**
   - `elysia` — HTTP-фреймворк; `@elysia/eden` — типизированный клиент API (в `apps/web`); `@elysia/openapi` — документация API вне продакшена.
   - `drizzle-orm` — ORM; `drizzle-kit` — генерация миграций (devDependency).
   - `better-auth` + `@better-auth/drizzle-adapter` — авторизация и сессии.

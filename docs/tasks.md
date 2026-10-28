@@ -21,13 +21,13 @@
 | 013 | `tsconfig.json`: `noUncheckedIndexedAccess: true` | Medium | бэклог | [001 §3](tasks/001-ai-template-adoption.md#3-typescript) |
 | 014 | Приведения типов `as` → сужение типов и `satisfies` | Medium | бэклог | [001 §3](tasks/001-ai-template-adoption.md#3-typescript) |
 | 015 | `.then()` → `async/await`, мутирующие методы массивов, поиск DOM по `data-*` | Low | бэклог | [001 §3](tasks/001-ai-template-adoption.md#3-typescript) |
-| 016 | Паспорта страниц в `docs/pages/`: главная, 404, CV, OG | Medium | бэклог | [001 §4](tasks/001-ai-template-adoption.md#4-документация-и-приемка) |
+| 016 | Паспорта страниц в `docs/pages/`: главная, CV, OG | Medium | бэклог | [001 §4](tasks/001-ai-template-adoption.md#4-документация-и-приемка) |
 | 017 | Пост-деплой проверка: Rich Results Test, Schema.org Validator, W3C Nu HTML Checker | Low | бэклог | [001 §4](tasks/001-ai-template-adoption.md#4-документация-и-приемка) |
 | 018 | Допрос владельца по пустым разделам PRODUCT.md: цель, метрика, аудитория, регион | Low | бэклог | [001 §4](tasks/001-ai-template-adoption.md#4-документация-и-приемка) |
 | 019 | Решение владельца: единый алиас `@/*` вместо 12 алиасов | Medium | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
 | 020 | Решение владельца: структура `src/` под FSD-Lite и kebab-case папок | XHigh | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
 | 021 | Решение владельца: `trailingSlash: 'always'` или `'never'` (ADR 0013 §1) | High | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
-| 022 | Решение владельца: анти-шаблоны docs/design.md §9 в текстах и стилистике | Low | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
+| 022 | Решение владельца: анти-шаблоны docs/design.md §9 в текстах и стилистике, 404 без шапки и подвала | Low | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
 | 023 | Решение владельца: Prettier `trailingComma: 'all'` | Low | бэклог | [001 §5](tasks/001-ai-template-adoption.md#5-требуют-решения-владельца) |
 
 Статусы: бэклог, в работе, готово.

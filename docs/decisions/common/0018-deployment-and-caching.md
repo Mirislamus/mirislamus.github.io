@@ -8,7 +8,7 @@
 2. **Гибкость инфраструктуры:** бессерверные Edge CDN (Cloudflare Pages, Vercel, Netlify) либо собственный Linux-сервер с Nginx (деплой по SSH, PM2 для Node-процесса).
 3. **Автоматизированный CI/CD:** Quality Gate (проверки, тесты, сборка) перед любой выкаткой.
 4. **Сжатие трафика:** отдача статики через Brotli и Gzip на уровне веб-сервера.
-5. **Бэкенд в контейнерах:** проект с отдельным API (ADR 0019) деплоится Docker Compose на собственный сервер; миграции применяются отдельным шагом до выкатки.
+5. **Бэкенд в контейнерах:** проект с отдельным API ([ADR 0019](../backend/0019-backend-architecture.md)) деплоится Docker Compose на собственный сервер; миграции применяются отдельным шагом до выкатки.
 
 ---
 
@@ -149,7 +149,7 @@ server {
 
 - Сертификат выпускается certbot (Let's Encrypt). Пока файлов сертификата нет, блок `443` не включается: без них `nginx -t` завершается ошибкой.
 - Сборка `build.format: 'file'` создает `services.html` для адреса `/services`, поэтому `try_files` подбирает `$uri.html`.
-- Строка `error_page 404 /404.html;` отдает страницу 404 со статусом 404.
+- Строка `error_page 404 /404.html;` отдает страницу [404](../../pages/404.md) со статусом 404.
 - Заголовки `Content-Security-Policy` и `Strict-Transport-Security` в шаблон не входят: они настраиваются под конкретный проект.
 
 ---
@@ -168,23 +168,23 @@ server {
    - При падении любого шага слияние в `main` запрещено. Поскольку локальных хуков в шаблоне нет ([ADR 0011](0011-git-workflow-and-commits.md)), этот этап — единственная автоматическая проверка `check`.
    - **Дополнительно в проекте с бэкендом:**
      - `bun test` в `apps/api` с PostgreSQL 18 в service-контейнере GitHub Actions ([ADR 0014](0014-testing-and-qa.md) §6);
-     - `drizzle-kit generate` не создает новых файлов миграций, проверка через `git diff --exit-code` (ADR 0021 §5);
-     - `bun audit --audit-level=high` (ADR 0023 §8).
+     - `drizzle-kit generate` не создает новых файлов миграций, проверка через `git diff --exit-code` ([ADR 0021](../backend/0021-database-and-migrations.md) §5);
+     - `bun audit --audit-level=high` ([ADR 0023](../backend/0023-security-logging-and-config.md) §8).
 2. **Этап 2: Production Deploy (строго при слиянии в `main`):**
    - Публикация на CDN либо выкатка `rsync` по SSH на боевой Nginx-сервер.
    - **Бэкенд:** CI собирает Docker-образ API, тегирует его SHA коммита и публикует в GitHub Container Registry (GHCR). По SSH на сервере выполняются шаги §5: загрузка образа, миграции, перезапуск `api` и `worker`, проверка `/api/health`.
-   - **Откат:** повторный деплой образа с тегом предыдущего коммита. Миграции при откате не отменяются, поэтому разрушающие изменения схемы делаются в два релиза (ADR 0021 §5).
+   - **Откат:** повторный деплой образа с тегом предыдущего коммита. Миграции при откате не отменяются, поэтому разрушающие изменения схемы делаются в два релиза ([ADR 0021](../backend/0021-database-and-migrations.md) §5).
 
 ---
 
 ### 5. Сценарий В: бэкенд в Docker Compose
 
-- **Сервисы** `docker-compose.yml` (эталон — docs/setup/backend.md):
+- **Сервисы** `docker-compose.yml` (эталон — [docs/setup/backend.md](../../setup/backend.md)):
   - `db` — PostgreSQL 18, данные в именованном volume, смонтированном в `/var/lib/postgresql` (путь образов PostgreSQL 18 и новее, [Docker Hub](https://hub.docker.com/_/postgres)); порт не публикуется;
   - `api` — образ API, порт `127.0.0.1:3000`, каталог загрузок смонтирован с хоста;
-  - `worker` — тот же образ, команда `bun src/worker.ts` (ADR 0019 §5);
+  - `worker` — тот же образ, команда `bun src/worker.ts` ([ADR 0019](../backend/0019-backend-architecture.md) §5);
   - `migrate` — тот же образ, команда `bun src/db/migrate.ts`, запускается вручную (`profiles: [migrate]`).
-- **Переменные окружения:** `api`, `worker` и `migrate` получают только `api.env`; `.env` нужен для подстановки в `docker-compose.yml` и инициализации базы. Так пароль суперпользователя PostgreSQL не попадает в контейнеры приложения (ADR 0021 §1).
+- **Переменные окружения:** `api`, `worker` и `migrate` получают только `api.env`; `.env` нужен для подстановки в `docker-compose.yml` и инициализации базы. Так пароль суперпользователя PostgreSQL не попадает в контейнеры приложения ([ADR 0021](../backend/0021-database-and-migrations.md) §1).
 - **Порядок деплоя:**
   ```bash
   docker compose pull
@@ -193,7 +193,7 @@ server {
   curl -fsS https://domain.uz/api/health
   ```
   Если миграция завершилась ошибкой, следующие шаги не выполняются и продолжает работать прежняя версия.
-- **Логи контейнеров** пишутся драйвером `journald` и хранятся 14 дней (ADR 0023 §5).
+- **Логи контейнеров** пишутся драйвером `journald` и хранятся 14 дней ([ADR 0023](../backend/0023-security-logging-and-config.md) §5).
 - **Дополнения к конфигу Nginx §3.** Лимит запросов объявляется на уровне `http`:
   ```nginx
   # /etc/nginx/conf.d/api-limits.conf

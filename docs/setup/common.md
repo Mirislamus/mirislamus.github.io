@@ -1,6 +1,6 @@
 # Общая настройка проекта (docs/setup/common.md)
 
-Пошаговая инструкция для разработчиков и AI-агентов: структура репозитория, общие конфиги и переменные окружения. Порядок развертывания: этот документ → [frontend.md](frontend.md) → backend.md (только если бэкенд выбран в [PRODUCT.md](../../PRODUCT.md), ADR 0019 §1). Документы `docs/setup/` — единственный источник эталонных конфигов; ADR описывают правила и ссылаются сюда.
+Пошаговая инструкция для разработчиков и AI-агентов: структура репозитория, общие конфиги и переменные окружения. Порядок развертывания: этот документ → [frontend.md](frontend.md) → [backend.md](backend.md) (только если бэкенд выбран в [PRODUCT.md](../../PRODUCT.md), [ADR 0019](../decisions/backend/0019-backend-architecture.md) §1). Документы `docs/setup/` — единственный источник эталонных конфигов; ADR описывают правила и ссылаются сюда.
 
 Версии пакетов не фиксируются в документации: при старте проекта ставятся актуальные стабильные версии ([ADR 0010](../decisions/common/0010-third-party-libraries-policy.md) §1).
 
@@ -9,7 +9,7 @@
 ## 1. Структура репозитория
 
 - **Без бэкенда:** фронтенд — единственный пакет в корне репозитория, инициализация по [frontend.md](frontend.md).
-- **С бэкендом:** монорепо на Bun workspaces (ADR 0019 §2):
+- **С бэкендом:** монорепо на Bun workspaces ([ADR 0019](../decisions/backend/0019-backend-architecture.md) §2):
   ```text
   package.json          # Корень: workspaces и общие скрипты
   bun.lock              # Единый lockfile монорепо
@@ -32,7 +32,7 @@
 }
 ```
 
-Зависимости приложений от пакетов монорепо: в `apps/web` — `"shared": "workspace:*"` и `"api": "workspace:*"` (только для импорта типа `App`, ADR 0020 §1), в `apps/api` — `"shared": "workspace:*"`.
+Зависимости приложений от пакетов монорепо: в `apps/web` — `"shared": "workspace:*"` и `"api": "workspace:*"` (только для импорта типа `App`, [ADR 0020](../decisions/backend/0020-api-contract-and-errors.md) §1), в `apps/api` — `"shared": "workspace:*"`.
 
 ---
 
@@ -70,7 +70,7 @@
 ```
 
 - `bun run --filter` соблюдает порядок зависимостей между пакетами монорепо ([документация Bun](https://bun.com/docs/pm/filter)). Поэтому dev-серверы запускаются отдельными командами `dev:api` и `dev:web` в двух терминалах: общий `dev` ждал бы завершения dev-сервера API.
-- Скрипты `check`, `test`, `build` объявляются в каждом приложении ([frontend.md](frontend.md) §2.4, backend.md §3).
+- Скрипты `check`, `test`, `build` объявляются в каждом приложении ([frontend.md](frontend.md) §2.4, [backend.md](backend.md) §3).
 
 ---
 
@@ -82,7 +82,7 @@
 
 ## 4. Переменные окружения
 
-- Шаблон — .env.example. Локальный `.env` копируется из него и не коммитится.
+- Шаблон — [.env.example](../../.env.example). Локальный `.env` копируется из него и не коммитится.
 - **Без бэкенда** `.env` лежит в корне. **В монорепо** у каждого приложения свой файл: раздел фронтенда `.env.example` переносится в `apps/web/.env.example`, раздел бэкенда — в `apps/api/.env.example`; рабочие `.env` создаются рядом с ними.
 - Фронтенд читает переменные только через `astro:env` или `src/shared/config/env.ts` ([ADR 0004](../decisions/common/0004-ts-js-standards.md) §13).
-- Бэкенд читает переменные только через `src/config/env.ts` (ADR 0023 §4, backend.md §4).
+- Бэкенд читает переменные только через `src/config/env.ts` ([ADR 0023](../decisions/backend/0023-security-logging-and-config.md) §4, [backend.md](backend.md) §4).
