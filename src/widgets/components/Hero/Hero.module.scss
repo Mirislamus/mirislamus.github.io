@@ -211,8 +211,8 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: top;
-    padding-bottom: 0.12em;
-    margin-bottom: -0.12em;
+    padding-bottom: calc(#{fluid(56)} * 0.12);
+    margin-bottom: calc(#{fluid(56)} * -0.12);
   }
 
   .wordInner {

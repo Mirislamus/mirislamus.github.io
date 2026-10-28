@@ -100,8 +100,8 @@
     }
     // The name rises from behind its own mask when the section appears.
     h3 {
-      margin-bottom: calc(var(--gap-10) - 0.15em);
-      padding-bottom: 0.15em;
+      margin-bottom: calc(var(--gap-10) - 4px);
+      padding-bottom: 4px;
       overflow: hidden;
     }
 
