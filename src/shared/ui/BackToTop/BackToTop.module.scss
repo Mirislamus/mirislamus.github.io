@@ -34,7 +34,7 @@
     }
   }
 
-  @media (width <= 767px) {
+  @include down(md) {
     right: max(var(--gap-16), env(safe-area-inset-right));
     bottom: max(var(--gap-16), env(safe-area-inset-bottom));
   }

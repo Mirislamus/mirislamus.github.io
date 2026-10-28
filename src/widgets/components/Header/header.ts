@@ -11,7 +11,7 @@ const focusWhenVisible = (find: () => HTMLElement | undefined, tries = 20) => {
 };
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
-const DESKTOP = '(width > 991px)';
+const DESKTOP = '(width >= 1024px)';
 
 const visibleFocusable = (root: ParentNode) =>
   [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(element => element.getClientRects().length > 0);

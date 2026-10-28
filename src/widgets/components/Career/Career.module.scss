@@ -4,7 +4,7 @@
   --fade-start: 0px;
   --fade-end: 0px;
 
-  @media (width <= 767px) {
+  @include down(md) {
     --fade-size: 24px;
   }
 
@@ -149,7 +149,7 @@
     border: 1px solid var(--tertiary);
     border-radius: 28px;
     content: '';
-    @media (width <= 767px) {
+    @include down(md) {
       top: 88px;
     }
   }
@@ -164,7 +164,7 @@
     border-radius: 2px;
     content: '';
     transform-origin: 0 50%;
-    @media (width <= 767px) {
+    @include down(md) {
       top: 97px;
     }
   }

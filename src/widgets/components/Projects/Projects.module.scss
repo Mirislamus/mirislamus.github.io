@@ -121,7 +121,7 @@
   margin-top: var(--gap-30);
 }
 
-@media (width <= 1279px) {
+@include down(xl) {
   .project {
     h3 {
       margin-bottom: var(--gap-16);
@@ -136,7 +136,7 @@
   }
 }
 
-@media (width <= 1023px) {
+@include down(lg) {
   .project {
     padding: var(--gap-16);
     h3 {
@@ -159,13 +159,13 @@
   }
 }
 
-@media (width <= 767px) {
+@include down(md) {
   .grid {
     grid-template-columns: 100%;
   }
 }
 
-@media (width <= 575px) {
+@include down(sm) {
   .bottom {
     flex-direction: column;
     gap: var(--gap-12);

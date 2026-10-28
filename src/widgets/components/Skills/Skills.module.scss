@@ -93,7 +93,7 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-@media (width <= 1199px) {
+@include down(xl) {
   .skill {
     font-size: 12px;
     .icon {
@@ -103,7 +103,7 @@
   }
 }
 
-@media (width <= 991px) {
+@include down(lg) {
   .groups {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -115,7 +115,7 @@
   }
 }
 
-@media (width <= 767px) {
+@include down(md) {
   .grid {
     --gap: var(--gap-10);
     --columns: var(--cols-sm);
@@ -126,7 +126,7 @@
   }
 }
 
-@media (width <= 575px) {
+@include down(sm) {
   .grid {
     --gap: var(--gap-8);
   }
@@ -208,7 +208,7 @@
   }
 }
 
-@media (width <= 767px) {
+@include down(md) {
   .skill:nth-child(4n + 1) .tip,
   .skill:nth-child(4n) .tip {
     right: auto;

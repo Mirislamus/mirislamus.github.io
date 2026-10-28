@@ -40,7 +40,7 @@ const TYPING_MS: [number, number] = [600, 1600];
 const TYPING_PER_CHAR = 18;
 const PAUSE_MS = 350;
 const STILL_TYPING_MS = 400;
-const PHONE = '(max-width: 767px)';
+const PHONE = '(width < 768px)';
 
 let panel: HTMLElement | undefined;
 let talk: Talk | undefined;

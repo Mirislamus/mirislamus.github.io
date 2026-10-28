@@ -40,6 +40,8 @@
 - Структура `src/` остается своей, FSD-Lite из [ADR 0001](0001-project-architecture.md) §2 не применяется (решение владельца, задача 020): секции в `widgets/components/<Name>/`, папки компонентов в PascalCase, `styles/`, `utils/`, `data/`, `i18n/`, `seo/` на верхнем уровне `src/`. Описание — [ARCHITECTURE.md](../../../ARCHITECTURE.md). Именование папок kebab-case из [ADR 0004](../common/0004-ts-js-standards.md) §7 к папкам компонентов не применяется.
 - Адреса страниц заканчиваются слэшем (`trailingSlash: 'always'`), вместо `'never'` из [ADR 0013](0013-seo-standards.md) §1 (решение владельца, задача 021): GitHub Pages отдает папки со слэшем, а адреса уже проиндексированы.
 
+- Медиазапросы идут через миксины `up()` и `down()` по шкале 576/768/1024/1280/1440 ([ADR 0003](0003-scss-standards.md) §1), но стили остаются в порядке «от десктопа к мобильным» (`down()`), а не mobile-first (решение владельца, задача 010).
+
 ### 6. Хостинг GitHub Pages
 
 - Сайт публикуется на GitHub Pages из `master`; ни один сценарий [ADR 0018](../common/0018-deployment-and-caching.md) §2 не подходит, заголовки `Cache-Control` и редиректы недоступны.

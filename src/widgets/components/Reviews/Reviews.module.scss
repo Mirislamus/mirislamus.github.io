@@ -18,11 +18,11 @@
   flex-basis: 100%;
   padding-left: var(--gap-16);
 
-  @media (width >= 768px) {
+  @include up(md) {
     flex-basis: 50%;
   }
 
-  @media (width >= 1024px) {
+  @include up(lg) {
     flex-basis: calc(100% / 3);
   }
 }

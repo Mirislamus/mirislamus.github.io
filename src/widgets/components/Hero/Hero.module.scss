@@ -121,7 +121,7 @@
   }
 }
 
-@media (width <= 767px) {
+@include down(md) {
   .hero {
     margin-top: 0;
     padding-top: 30px;

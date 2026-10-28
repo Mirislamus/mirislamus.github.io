@@ -209,13 +209,13 @@
   }
 }
 
-@media (width <= 1199px) {
+@include down(xl) {
   .bottom {
     font-size: 14px;
   }
 }
 
-@media (width <= 767px) {
+@include down(md) {
   .footer {
     h2 {
       margin-bottom: 24px;

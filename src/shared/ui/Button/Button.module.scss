@@ -59,7 +59,7 @@
   padding-inline: 24px;
   font-size: 16px;
 
-  @media (width <= 767px) {
+  @include down(md) {
     height: 44px;
   }
 }

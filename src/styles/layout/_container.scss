@@ -6,19 +6,16 @@
     width: 100%;
     margin-inline: auto;
     padding-inline: var(--gap);
-    @media (width >= 576px) {
+    @include up(sm) {
       max-width: 540px;
     }
-    @media (width >= 768px) {
+    @include up(md) {
       max-width: 740px;
     }
-    @media (width >= 992px) {
-      max-width: 940px;
-    }
-    @media (width >= 1024px) {
+    @include up(lg) {
       max-width: 980px;
     }
-    @media (width >= 1280px) {
+    @include up(xl) {
       max-width: calc(var(--gap) * 2 + 1240px);
     }
   }
