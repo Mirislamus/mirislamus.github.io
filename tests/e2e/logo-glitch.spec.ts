@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-const logo = (page: import('@playwright/test').Page) => page.locator('[data-logo]');
-const ghosts = (page: import('@playwright/test').Page) => page.locator('[data-logo-ghost]');
+const logo = (page: Page) => page.locator('[data-logo]');
+const ghosts = (page: Page) => page.locator('[data-logo-ghost]');
 
 test('the link keeps its name and the copies are hidden from assistive technology', async ({ page }) => {
   await page.goto('/');

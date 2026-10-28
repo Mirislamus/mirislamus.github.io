@@ -4,10 +4,10 @@
 //
 // Each word is drawn with Inter (the site font) in Chromium, cut to its ink box and averaged into cells that are as
 // tall as a monospace glyph (0.6 em wide, 1 em high). A cell becomes a digit 0..4 by how much of it is covered.
+import { chromium } from '@playwright/test';
 /* global FontFace, document */
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { chromium } from '@playwright/test';
 
 const OUT = fileURLToPath(new URL('../src/data/matrix/wordmark.json', import.meta.url));
 const FONT = fileURLToPath(new URL('../public/fonts/inter/inter-latin.woff2', import.meta.url));

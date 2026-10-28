@@ -2,10 +2,10 @@
 // and the OG pages into share pictures (dist/og/mirislam-usmanov-<locale>.jpg). Chromium (Playwright) does the
 // rendering. Used by the Astro integration in astro.config.ts, which runs it after every build and answers the same
 // addresses in the dev server, and by scripts/build-media.mjs.
-import { createServer } from 'node:http';
-import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { extname, join, normalize } from 'node:path';
 import { chromium } from '@playwright/test';
+import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { extname, join, normalize } from 'node:path';
 
 const MAX_PDF_BYTES = 300 * 1024;
 // WhatsApp ignores share pictures over 300 KB.

@@ -1,9 +1,9 @@
 import { watchColors } from './accent';
-import { getMotion } from './motion';
 import { createHands } from './hands-fx';
+import { getMotion } from './motion';
 import { DESKTOP_RAIN, createRain, type RainOptions } from './rain';
-import type { Effects } from './sound-fx';
 import type { Sound } from './sound';
+import type { Effects } from './sound-fx';
 import { getTicker } from './ticker';
 
 // The pill scene (easter egg), loaded when the white rabbit in the footer is clicked. A native modal <dialog>
@@ -23,10 +23,12 @@ let dialog: HTMLDialogElement | undefined;
 const setup = (root: HTMLDialogElement) => {
   const motion = getMotion();
   const ticker = getTicker();
-  const canvas = root.querySelector<HTMLCanvasElement>('[data-pills-rain]')!;
-  const result = root.querySelector<HTMLElement>('[data-pills-result]')!;
+  const canvas = root.querySelector<HTMLCanvasElement>('[data-pills-rain]');
+  const result = root.querySelector<HTMLElement>('[data-pills-result]');
+  const handsRoot = root.querySelector<HTMLElement>('[data-pills-hands]');
+  if (!canvas || !result || !handsRoot) return undefined;
   const options = { ...CALM };
-  const hands = createHands(root.querySelector<HTMLElement>('[data-pills-hands]')!);
+  const hands = createHands(handsRoot);
   const rain = createRain(canvas, options);
   const timers: number[] = [];
   let sound: Sound | undefined;
@@ -195,5 +197,5 @@ export const openPills = () => {
   if (!dialog) return;
   if (dialog.open) return;
   open ??= setup(dialog);
-  open();
+  open?.();
 };

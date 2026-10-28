@@ -1,9 +1,9 @@
 ---
-import type { SiteData } from '@/data/site';
 import { info } from '@/data/global';
+import type { SiteData } from '@/data/site';
+import { getSiteData } from '@/data/site';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, type Locale } from '@/i18n/locales';
 import { absoluteLocaleUrl } from '@/i18n/utils';
-import { getSiteData } from '@/data/site';
 import { getLastModified } from '@/seo/last-modified';
 import { buildStructuredData } from '@/seo/structured-data';
 import { getAvatarImage, getProjectImages } from '@/utils/images';

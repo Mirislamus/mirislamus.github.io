@@ -5,9 +5,11 @@
 // that does not depend on the locale (ids, links, colors, technology stacks, author names).
 // Everything is validated when it is first read, so a bad file fails `astro build` with a clear message.
 import type { z } from 'astro/zod';
+
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
 import { getExperienceYears } from '@/utils/experience';
 import { interpolate } from '@/utils/rich-text';
+
 import a11yJson from './a11y/a11y.json';
 import approachBaseJson from './approach/approach.base.json';
 import approachJson from './approach/approach.json';
@@ -19,16 +21,11 @@ import footerJson from './footer/footer.json';
 import heroJson from './hero/hero.json';
 import menuJson from './menu/menu.json';
 import metaJson from './meta/meta.json';
-import relicJson from './relic/relic.json';
 import projectsBaseJson from './projects/projects.base.json';
 import projectsJson from './projects/projects.json';
+import relicJson from './relic/relic.json';
 import reviewsBaseJson from './reviews/reviews.base.json';
 import reviewsJson from './reviews/reviews.json';
-import skillsBaseJson from './skills/skills.base.json';
-import statusBaseJson from './status/status.base.json';
-import statusJson from './status/status.json';
-import skillsJson from './skills/skills.json';
-import technologiesJson from './technologies.json';
 import {
   a11ySchema,
   approachBaseSchema,
@@ -53,6 +50,11 @@ import {
   statusSchema,
   technologySchema,
 } from './schemas';
+import skillsBaseJson from './skills/skills.base.json';
+import skillsJson from './skills/skills.json';
+import statusBaseJson from './status/status.base.json';
+import statusJson from './status/status.json';
+import technologiesJson from './technologies.json';
 
 const SKILLS_PER_GROUP = 8;
 

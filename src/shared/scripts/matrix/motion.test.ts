@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { MOTION_STORAGE_KEY, createMotion, type MotionEnv, parseDuration } from './motion';
 
 const memoryStorage = (initial: Record<string, string> = {}) => {

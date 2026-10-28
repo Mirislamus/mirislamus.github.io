@@ -2,10 +2,11 @@
 // unit-tested without Astro. The `@id`s do not depend on the language: every language version describes
 // the same person and the same projects, and search engines merge them into one entity.
 import type { Graph, ItemList, Organization, Person, ProfilePage, Review, WebSite } from 'schema-dts';
+
 import type { SiteData } from '@/data/site';
 import { LOCALES, type Locale } from '@/i18n/locales';
-import { toPlainText } from '@/utils/rich-text';
 import { getExperienceYears } from '@/utils/experience';
+import { toPlainText } from '@/utils/rich-text';
 
 // The first commit of the repository.
 const DATE_CREATED = '2025-03-26';

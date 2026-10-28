@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { isWithinWorkHours, type WorkHours } from './work-hours';
 
 // Tashkent is UTC+5 all year, so 10:00 there is 05:00 UTC.

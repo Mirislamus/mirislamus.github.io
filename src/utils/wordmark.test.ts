@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { ASCII_POOLS, levelOfChar, levelsToText } from './wordmark';
 
 describe('levelsToText', () => {

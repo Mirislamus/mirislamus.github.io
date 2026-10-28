@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { LIQUID_POINTS, blobPath } from './liquid-path';
 
 const flat = Array.from({ length: LIQUID_POINTS }, () => 0);

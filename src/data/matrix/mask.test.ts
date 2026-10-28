@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { mask, maskSchema } from './mask';
 
 const count = (levels: string[], test: (char: string) => boolean) =>

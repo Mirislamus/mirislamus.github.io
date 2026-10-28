@@ -1,5 +1,5 @@
-import { readFile, stat } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
+import { readFile, stat } from 'node:fs/promises';
 
 const LOCALES = ['en', 'ru', 'uz'] as const;
 const pdfPath = (locale: string) => new URL(`../../dist/cv/mirislam-usmanov-${locale}.pdf`, import.meta.url);

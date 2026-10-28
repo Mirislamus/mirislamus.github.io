@@ -1,4 +1,5 @@
 import handsJson from '@/data/matrix/hands.json';
+
 import { parseColor, type Rgb } from './accent';
 import { GLYPHS, createRng } from './glyphs';
 import { handsGap } from './hands-layout';
@@ -60,7 +61,8 @@ export const createHands = (root: HTMLElement) => {
 
   const motion = getMotion();
   const base = document.createElement('canvas');
-  const baseCtx = base.getContext('2d')!;
+  const baseCtx = base.getContext('2d');
+  if (!baseCtx) throw new Error('2D canvas is not available');
   let ink: Rgb = [255, 255, 255]; // the colour of the hands: the text colour of the page, so they follow the theme
   let light = false; // a light page
   let cells: Cell[] = [];

@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+
 import type { Sound } from './sound';
 import { RED_GLITCH_AT, createEffects } from './sound-fx';
 import { noteToFrequency } from './sound-score';

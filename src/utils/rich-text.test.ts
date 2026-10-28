@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { interpolate, parseRichText, toPlainText } from './rich-text';
 
 describe('parseRichText', () => {

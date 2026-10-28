@@ -1,8 +1,9 @@
 // Runs Lighthouse (mobile) on the three language versions of a finished build. The SEO category must be 100;
 // the other categories are only reported. The site is served from `dist` with its public address replaced by the
 // local one, so canonical and hreflang are judged as they would be on the real domain.
-import { fileURLToPath } from 'node:url';
 import lighthouse from 'lighthouse';
+import { fileURLToPath } from 'node:url';
+
 import { withSite } from './render.mjs';
 
 const SITE = 'https://mirislamus.github.io';

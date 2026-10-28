@@ -1,5 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+
 import { audioLog, installFakeAudio } from './support/audio';
 
 // The scene takes about six seconds and some tests move a stepped clock, so these tests are slow under load.

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { wordmarkSchema, wordmarks } from './wordmark';
 
 describe('wordmark data', () => {

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { buildRainWords } from './rain-words';
 
 describe('buildRainWords', () => {

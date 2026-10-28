@@ -1,5 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 test('an unknown URL shows the site 404 page with a 404 status', async ({ page }) => {
   const response = await page.goto('/this-page-does-not-exist/');
@@ -49,7 +50,7 @@ test.describe('the language of the 404 page', () => {
 });
 
 test.describe('the Matrix 404', () => {
-  const rain = (page: import('@playwright/test').Page) => page.locator('canvas[data-backdrop]');
+  const rain = (page: Page) => page.locator('canvas[data-backdrop]');
 
   test.describe('when motion is allowed', () => {
     test.use({ reducedMotion: 'no-preference', locale: 'en-US' });

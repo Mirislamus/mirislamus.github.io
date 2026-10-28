@@ -1,6 +1,6 @@
 // Server-side only: imported from .astro frontmatter, never from client scripts.
-import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
 
 export interface ResponsiveImage {
   avif: string;
@@ -26,10 +26,7 @@ const srcSet = async (image: ImageMetadata, format: 'avif' | 'webp') => {
 export const getProjectImages = async (): Promise<Record<string, ResponsiveImage>> => {
   const entries = await Promise.all(
     Object.entries(projectFiles).map(async ([path, module]) => {
-      const id = path
-        .split('/')
-        .pop()!
-        .replace(/\.jpg$/, '');
+      const id = path.slice(path.lastIndexOf('/') + 1).replace(/\.jpg$/, '');
       const image = module.default;
       const fallback = await getImage({ src: image, width: PROJECT_WIDTH, format: 'webp', quality: QUALITY });
 

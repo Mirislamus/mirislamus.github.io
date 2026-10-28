@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-const toggle = (page: import('@playwright/test').Page) => page.locator('motion-toggle button');
-const rain = (page: import('@playwright/test').Page) => page.locator('canvas[data-rain]');
+const toggle = (page: Page) => page.locator('motion-toggle button');
+const rain = (page: Page) => page.locator('canvas[data-rain]');
 
 test.describe('when motion is allowed', () => {
   test.use({ reducedMotion: 'no-preference' });

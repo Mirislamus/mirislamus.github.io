@@ -13,7 +13,7 @@ export const installFakeAudio = (page: Page) =>
     };
     const param = () => ({
       value: 0,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
       setValueAtTime(_value?: number) {},
       linearRampToValueAtTime(value: number) {
         log.ramps.push(value);

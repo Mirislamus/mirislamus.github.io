@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { LOCALES, type Locale } from '@/i18n/locales';
+
 import { getSiteData } from '@/data/site';
+import { LOCALES, type Locale } from '@/i18n/locales';
+
 import { buildStructuredData } from './structured-data';
 
 const ORIGIN = 'https://example.com/';

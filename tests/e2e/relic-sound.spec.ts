@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+
 import { audioLog, installFakeAudio } from './support/audio';
 
 // The scene takes about six seconds and one test moves a stepped clock through the takeover: slow under load.

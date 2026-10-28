@@ -1,13 +1,14 @@
 ---
 import { getSiteData } from '@/data/site';
+import { getLocale } from '@/i18n/utils';
 import Avatar from '@/shared/ui/Avatar/Avatar.astro';
 import Button from '@/shared/ui/Button/Button.astro';
-import { getLocale } from '@/i18n/utils';
 import MotionToggle from '@/shared/ui/MotionToggle/MotionToggle.astro';
 import RichText from '@/shared/ui/RichText/RichText.astro';
 import { getExperienceYears } from '@/utils/experience';
-import { buildRainWords } from '@/utils/rain-words';
 import { getAvatarSrc } from '@/utils/images';
+import { buildRainWords } from '@/utils/rain-words';
+
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);

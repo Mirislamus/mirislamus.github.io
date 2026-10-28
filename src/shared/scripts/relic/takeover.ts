@@ -1,9 +1,9 @@
 import { createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 import { collapseMusic } from './audio';
+import { startChat, stopChat } from './chat';
 import { GLITCH_EVENT } from './events';
 import { hidePlate, showPlate } from './plate';
-import { startChat, stopChat } from './chat';
 
 // The takeover of the site by the netrunner (J-03). `data-relic` on the root turns on everything that is CSS:
 // the red palette (_variables.scss), the word NETRUNNER instead of the logo (Header) and the replaced texts (data-swap, see swapTexts).

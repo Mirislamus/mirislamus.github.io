@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+
 import { audioLog, installFakeAudio } from './support/audio';
 
 const dialog = (page: Page) => page.locator('dialog[data-pills]');

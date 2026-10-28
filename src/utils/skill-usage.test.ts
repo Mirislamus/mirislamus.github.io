@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { formatUsage, projectsUsing } from './skill-usage';
 
 const projects = [

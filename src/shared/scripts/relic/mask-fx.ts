@@ -1,4 +1,5 @@
 import maskJson from '@/data/matrix/mask.json';
+
 import { GLYPHS, createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 
@@ -68,7 +69,8 @@ export const createMask = (canvas: HTMLCanvasElement) => {
 
   const motion = getMotion();
   const base = document.createElement('canvas');
-  const baseCtx = base.getContext('2d')!;
+  const baseCtx = base.getContext('2d');
+  if (!baseCtx) throw new Error('2D canvas is not available');
   let cells: Cell[] = [];
   let rows = 0;
   let cols = 0;

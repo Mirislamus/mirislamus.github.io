@@ -56,7 +56,12 @@ const timers: number[] = [];
 
 const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
 const isSection = (id: string): id is Section => (SECTIONS as readonly string[]).includes(id);
-const part = <T extends Element>(selector: string) => panel!.querySelector<T>(selector)!;
+const find = <T extends Element>(root: ParentNode | undefined, selector: string) => {
+  const element = root?.querySelector<T>(selector);
+  if (!element) throw new Error(`[relic chat] ${selector} is missing`);
+  return element;
+};
+const part = <T extends Element>(selector: string) => find<T>(panel, selector);
 
 const clock = () => {
   const now = new Date();
@@ -88,16 +93,18 @@ const scrollToEnd = () => {
 const append = (from: Person | 'you', text: string, reply?: Reply) => {
   if (!panel || !talk) return;
   const template = part<HTMLTemplateElement>('[data-relic-chat-message]');
-  const item = template.content.firstElementChild!.cloneNode(true) as HTMLElement;
+  const source = template.content.firstElementChild;
+  if (!source) return;
+  const item = source.cloneNode(true) as HTMLElement;
   const name = from === 'you' ? talk.you : talk.people[from];
   item.dataset.from = from;
-  item.querySelector('[data-avatar]')!.textContent = name.charAt(0);
-  item.querySelector('[data-who]')!.textContent = name;
-  item.querySelector('[data-time]')!.textContent = clock();
-  item.querySelector('[data-text]')!.textContent = text;
-  const replies = item.querySelector<HTMLElement>('[data-replies]')!;
+  find(item, '[data-avatar]').textContent = name.charAt(0);
+  find(item, '[data-who]').textContent = name;
+  find(item, '[data-time]').textContent = clock();
+  find(item, '[data-text]').textContent = text;
+  const replies = find<HTMLElement>(item, '[data-replies]');
   if (reply) {
-    const button = replies.querySelector<HTMLButtonElement>('[data-reply]')!;
+    const button = find<HTMLButtonElement>(replies, '[data-reply]');
     button.textContent = reply.label;
     button.addEventListener('click', () => answer(reply, replies), { once: true });
     replies.hidden = false;
@@ -180,7 +187,7 @@ export const startChat = () => {
   showFolded();
   say('start');
 
-  observer = new IntersectionObserver(
+  const watcher = new IntersectionObserver(
     entries => {
       for (const { target, isIntersecting } of entries) {
         if (!isSection(target.id)) continue;
@@ -198,8 +205,9 @@ export const startChat = () => {
   );
   SECTIONS.forEach(id => {
     const element = document.getElementById(id);
-    if (element) observer!.observe(element);
+    if (element) watcher.observe(element);
   });
+  observer = watcher;
 };
 
 export const stopChat = () => {

@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+
 import { LOCALES } from '@/i18n/locales';
+
 import { getSiteData } from './site';
 
 describe('getSiteData', () => {

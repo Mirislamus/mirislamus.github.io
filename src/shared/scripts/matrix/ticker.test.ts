@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { MAX_DT, createTicker, type TickerEnv } from './ticker';
 
 const setup = (maxFps = 60) => {

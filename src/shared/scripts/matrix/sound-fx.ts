@@ -1,5 +1,5 @@
-import { noteToFrequency } from './sound-score';
 import type { Sound } from './sound';
+import { noteToFrequency } from './sound-score';
 
 // The effects of the pill scene (S-03), all synthesized, 0.1 to 3.8 seconds long:
 //   open   a rising whoosh and a low boom;

@@ -25,7 +25,11 @@ class SiteHeader extends HTMLElement {
     const { signal } = abort;
     this.#cleanup.push(() => abort.abort());
 
-    const one = <T extends HTMLElement>(selector: string) => this.querySelector<T>(selector)!;
+    const one = <T extends HTMLElement>(selector: string) => {
+      const element = this.querySelector<T>(selector);
+      if (!element) throw new Error(`[site-header] ${selector} is missing`);
+      return element;
+    };
     const all = <T extends HTMLElement>(selector: string) => [...this.querySelectorAll<T>(selector)];
 
     const bar = one('header');

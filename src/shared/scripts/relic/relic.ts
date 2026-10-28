@@ -27,10 +27,12 @@ let dialog: HTMLDialogElement | undefined;
 
 const setup = (root: HTMLDialogElement) => {
   const motion = getMotion();
-  const mask = createMask(root.querySelector<HTMLCanvasElement>('[data-relic-mask]')!);
+  const maskCanvas = root.querySelector<HTMLCanvasElement>('[data-relic-mask]');
+  const lines = LINES.flatMap((_, index) => root.querySelector<HTMLElement>(`[data-relic-line="${index + 1}"]`) ?? []);
+  if (!maskCanvas || lines.length !== LINES.length) return undefined;
+  const mask = createMask(maskCanvas);
   const ticker = getTicker();
   let stopTicker: (() => void) | undefined;
-  const lines = LINES.map((_, index) => root.querySelector<HTMLElement>(`[data-relic-line="${index + 1}"]`)!);
   const subtitle = root.querySelector<HTMLElement>('[data-relic-subtitle]');
   const timers: number[] = [];
   let noise: number | undefined;
@@ -129,5 +131,5 @@ export const openRelic = (): void => {
   dialog ??= document.querySelector<HTMLDialogElement>('[data-relic-scene]') ?? undefined;
   if (!dialog || dialog.open || isTakenOver()) return;
   open ??= setup(dialog);
-  open();
+  open?.();
 };

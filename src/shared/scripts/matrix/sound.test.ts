@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { createSound } from './sound';
 
 // A context that only records what is made of it: no audio, and the clock is ours.

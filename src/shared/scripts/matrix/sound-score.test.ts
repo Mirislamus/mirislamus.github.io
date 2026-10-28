@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { ARP_NOTES, BEAT, STEP, arpStep, createScoreRng, moodFor, noteToFrequency } from './sound-score';
 
 describe('noteToFrequency', () => {

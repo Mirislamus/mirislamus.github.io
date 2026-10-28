@@ -1,7 +1,8 @@
 import sitemap from '@astrojs/sitemap';
-import type { AstroIntegration, AstroUserConfig } from 'astro';
 import { chromium, type Browser } from '@playwright/test';
+import type { AstroIntegration, AstroUserConfig } from 'astro';
 import { fileURLToPath } from 'node:url';
+
 import { buildMedia, ogName, pdfName, printPdf, screenshotOg } from './scripts/render.mjs';
 import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
 import { getLastModified } from './src/seo/last-modified';

@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
-const stand = (page: import('@playwright/test').Page) => page.locator('ui-sandbox');
+const stand = (page: Page) => page.locator('ui-sandbox');
 
 test('the switch is a real switch that lights up the stand', async ({ page }) => {
   await page.goto('/');

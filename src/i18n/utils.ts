@@ -1,4 +1,5 @@
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from 'astro:i18n';
+
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, isLocale, type Locale } from './locales';
 
 // Server-side only: imported from .astro frontmatter.

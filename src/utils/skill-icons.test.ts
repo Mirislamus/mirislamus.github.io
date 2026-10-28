@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { getSkillIcon, monogramOf, contrast } from './skill-icons';
 
 describe('contrast', () => {
