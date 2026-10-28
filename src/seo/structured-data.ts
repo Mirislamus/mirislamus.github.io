@@ -52,7 +52,7 @@ export const buildStructuredData = (input: StructuredDataInput): Graph => {
     dateModified: modified.toISOString(),
   };
 
-  const jobs = [...site.career.items].reverse();
+  const jobs = site.career.items.toReversed();
   const personNode: Person = {
     '@type': 'Person',
     '@id': personId,

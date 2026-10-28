@@ -103,7 +103,10 @@ const hasMore = data.items.length > INITIAL_COUNT;
         ([entry], observer) => {
           if (!entry?.isIntersecting) return;
           observer.disconnect();
-          void import('@/shared/scripts/projects-fx').then(({ initProjectNames }) => initProjectNames(this));
+          void (async () => {
+            const { initProjectNames } = await import('@/shared/scripts/projects-fx');
+            initProjectNames(this);
+          })();
         },
         { rootMargin: '400px' },
       ).observe(this);

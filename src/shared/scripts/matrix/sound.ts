@@ -9,7 +9,7 @@ export interface SoundEnv {
   createContext: () => AudioContext;
 }
 
-export const defaultEnv: SoundEnv = { createContext: () => new AudioContext() };
+const defaultEnv: SoundEnv = { createContext: () => new AudioContext() };
 
 export interface Sound {
   start: (light: boolean) => void;
@@ -188,7 +188,9 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     clearTimeout(closing);
     closing = undefined;
     globalThis.document?.removeEventListener('visibilitychange', visibility);
-    for (const node of nodes.splice(0)) {
+    const stopping = [...nodes];
+    nodes.length = 0;
+    for (const node of stopping) {
       try {
         node.stop();
       } catch {}

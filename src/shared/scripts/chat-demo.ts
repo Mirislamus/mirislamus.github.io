@@ -1,3 +1,4 @@
+import { afterAnimations } from '@/utils/animations';
 import { at } from '@/utils/list';
 
 import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
@@ -187,7 +188,7 @@ export const initChatDemo = (root: HTMLElement) => {
       root.setAttribute('data-chat', 'playing');
       for (const animation of animations) animation.play();
       typeAnswers();
-      void Promise.all(animations.map(animation => animation.finished)).then(cleanup, cleanup);
+      void afterAnimations(animations, cleanup);
     },
     { threshold: 0.5 },
   );

@@ -211,7 +211,8 @@ export const startChat = () => {
 export const stopChat = () => {
   observer?.disconnect();
   observer = undefined;
-  timers.splice(0).forEach(window.clearTimeout);
+  timers.forEach(window.clearTimeout);
+  timers.length = 0;
   queue = [];
   busy = false;
   if (!panel) return;

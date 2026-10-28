@@ -7,8 +7,6 @@ import { TAKEOVER_EVENT } from './events';
 import { createMask } from './mask-fx';
 import { isTakenOver, startTakeover } from './takeover';
 
-export { TAKEOVER_EVENT };
-
 const LINES = ['Wake the f▓▒░ up, Samurai.', 'We have a city to burn.'];
 const NOISE = '▓▒░█▌▐';
 const TYPE_MS = 35;
@@ -45,7 +43,8 @@ const setup = (root: HTMLDialogElement) => {
   };
 
   const reset = () => {
-    timers.splice(0).forEach(window.clearTimeout);
+    timers.forEach(window.clearTimeout);
+    timers.length = 0;
     window.clearInterval(noise);
     noise = undefined;
     stopTicker?.();

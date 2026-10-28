@@ -1,3 +1,4 @@
+import { afterAnimations } from '@/utils/animations';
 import { at, pick } from '@/utils/list';
 
 import { GLYPHS } from './matrix/glyphs';
@@ -74,7 +75,7 @@ export const initSecretCard = (root: HTMLElement) => {
         observer.disconnect();
         for (const animation of animations) animation.play();
         count(performance.now());
-        void Promise.all(animations.map(animation => animation.finished)).then(settle, settle);
+        void afterAnimations(animations, settle);
       },
       { threshold: 0.5 },
     );

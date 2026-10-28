@@ -1,3 +1,4 @@
+import { afterAnimations } from '@/utils/animations';
 import { at } from '@/utils/list';
 
 import { getMotion, onMotionChange } from './matrix/motion';
@@ -138,7 +139,7 @@ export const initCareerReveal = (section: HTMLElement) => {
       observer.disconnect();
       section.setAttribute('data-career-reveal', 'playing');
       for (const animation of animations) animation.play();
-      void Promise.all(animations.map(animation => animation.finished)).then(cleanup, cleanup);
+      void afterAnimations(animations, cleanup);
     },
     { threshold: 0.3 },
   );

@@ -79,28 +79,33 @@ export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
 
   const transition = document.startViewTransition(() => commit(mode));
 
-  transition.ready
-    .then(() => {
-      const radius = Math.hypot(Math.max(origin.x, innerWidth - origin.x), Math.max(origin.y, innerHeight - origin.y));
-      root.animate(
-        {
-          clipPath: [
-            `circle(0px at ${origin.x}px ${origin.y}px)`,
-            `circle(${radius}px at ${origin.x}px ${origin.y}px)`,
-          ],
-        },
-        {
-          duration: readTokenMs('--dur-slow', 400),
-          easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim() || 'ease-in-out',
-          pseudoElement: '::view-transition-new(root)',
-        },
-      );
-    })
-    .catch(() => {});
-
-  void transition.finished.finally(() => {
-    if (id === transitionId) root.classList.remove('theme-transition');
-  });
+  const grow = async () => {
+    try {
+      await transition.ready;
+    } catch {
+      return;
+    }
+    const radius = Math.hypot(Math.max(origin.x, innerWidth - origin.x), Math.max(origin.y, innerHeight - origin.y));
+    root.animate(
+      {
+        clipPath: [`circle(0px at ${origin.x}px ${origin.y}px)`, `circle(${radius}px at ${origin.x}px ${origin.y}px)`],
+      },
+      {
+        duration: readTokenMs('--dur-slow', 400),
+        easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim() || 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      },
+    );
+  };
+  const settle = async () => {
+    try {
+      await transition.finished;
+    } finally {
+      if (id === transitionId) root.classList.remove('theme-transition');
+    }
+  };
+  void grow();
+  void settle();
 };
 
 export const initTheme = () => {

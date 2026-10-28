@@ -357,13 +357,24 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
 
   const chat = document.querySelector<HTMLElement>('#approach chat-demo');
   if (chat)
-    whenNear(chat, () => void import('@/shared/scripts/chat-demo').then(({ initChatDemo }) => initChatDemo(chat)));
+    whenNear(
+      chat,
+      () =>
+        void (async () => {
+          const { initChatDemo } = await import('@/shared/scripts/chat-demo');
+          initChatDemo(chat);
+        })(),
+    );
 
   const secret = document.querySelector<HTMLElement>('#approach secret-card');
   if (secret) {
     whenNear(
       secret,
-      () => void import('@/shared/scripts/secret-card').then(({ initSecretCard }) => initSecretCard(secret)),
+      () =>
+        void (async () => {
+          const { initSecretCard } = await import('@/shared/scripts/secret-card');
+          initSecretCard(secret);
+        })(),
     );
   }
 

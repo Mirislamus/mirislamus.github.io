@@ -114,14 +114,20 @@ const {
 
 <script>
   document.querySelector('[data-rabbit]')?.addEventListener('click', () => {
-    void import('@/shared/scripts/matrix/pills').then(({ openPills }) => openPills());
+    void (async () => {
+      const { openPills } = await import('@/shared/scripts/matrix/pills');
+      openPills();
+    })();
   });
 
   const chip = document.querySelector<HTMLElement>('button[data-relic]');
 
   if (chip) {
     chip.addEventListener('click', () => {
-      void import('@/shared/scripts/relic/relic').then(({ openRelic }) => openRelic());
+      void (async () => {
+        const { openRelic } = await import('@/shared/scripts/relic/relic');
+        openRelic();
+      })();
     });
     new IntersectionObserver(
       ([entry], observer) => {
@@ -141,7 +147,10 @@ const {
       ([entry], observer) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
-        void import('@/shared/scripts/magnetic').then(({ initMagnetic }) => initMagnetic(magnetic));
+        void (async () => {
+          const { initMagnetic } = await import('@/shared/scripts/magnetic');
+          initMagnetic(magnetic);
+        })();
       },
       { rootMargin: '400px' },
     ).observe(magnetic);

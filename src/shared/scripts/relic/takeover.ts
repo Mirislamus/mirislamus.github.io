@@ -100,7 +100,8 @@ export const startTakeover = () => {
 
 const stopTakeover = () => {
   window.clearTimeout(timer);
-  pending.splice(0).forEach(window.clearTimeout);
+  pending.forEach(window.clearTimeout);
+  pending.length = 0;
   collapseMusic(0.6);
   hidePlate();
   stopChat();

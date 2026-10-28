@@ -260,10 +260,11 @@ class SiteHeader extends HTMLElement {
     const resize = new ResizeObserver(moveLine);
     resize.observe(nav);
     this.#cleanup.push(() => resize.disconnect());
-    void document.fonts.ready.then(() => {
+    void (async () => {
+      await document.fonts.ready;
       moveLine();
       requestAnimationFrame(() => line.toggleAttribute('data-ready', true));
-    });
+    })();
 
     const SHOW_ABOVE = 120;
     const HIDE_AFTER = 8;

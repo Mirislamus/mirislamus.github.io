@@ -39,14 +39,15 @@ export const startMusic = () => {
   wanted = true;
   document.addEventListener(GLITCH_EVENT, crunch);
   unwatch = watchColors(colors => {
-    light = (colors.background[0] + colors.background[1] + colors.background[2]) / 3 > 128;
+    light = colors.background.reduce((sum, channel) => sum + channel, 0) / 3 > 128;
     sound?.setTheme(light);
   });
-  void import('./sound-relic').then(({ createRelicSound }) => {
+  void (async () => {
+    const { createRelicSound } = await import('./sound-relic');
     if (!wanted) return;
     sound ??= createRelicSound();
     sound.start(light);
-  });
+  })();
 };
 
 const forget = () => {

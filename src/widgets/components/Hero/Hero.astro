@@ -27,7 +27,7 @@ const titleHtml = data.title
   .join(' ');
 ---
 
-<section class={s.hero} id="about">
+<section class={s.hero} id="about" data-hero>
   <canvas class={s.rain} data-rain data-words={rainWords} aria-hidden="true"></canvas>
   <div class="container">
     <div class={s.content} data-hero-content>
@@ -64,7 +64,11 @@ const titleHtml = data.title
   const section = document.querySelector<HTMLElement>('#about');
 
   if (section) {
-    const load = () => void import('@/shared/scripts/matrix/hero-fx').then(({ initHeroFx }) => initHeroFx(section));
+    const load = () =>
+      void (async () => {
+        const { initHeroFx } = await import('@/shared/scripts/matrix/hero-fx');
+        initHeroFx(section);
+      })();
     const whenIdle = () =>
       'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 200);
 

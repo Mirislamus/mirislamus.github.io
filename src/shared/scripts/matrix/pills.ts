@@ -55,19 +55,21 @@ const setup = (root: HTMLDialogElement) => {
 
   const startSound = () => {
     if (!soundWanted()) return;
-    void Promise.all([import('./sound'), import('./sound-fx')]).then(([{ createSound }, { createEffects }]) => {
+    void (async () => {
+      const [{ createSound }, { createEffects }] = await Promise.all([import('./sound'), import('./sound-fx')]);
       if (!root.open) return;
       sound ??= createSound();
       effects ??= createEffects(sound);
       sound.start(light);
       effects.open();
-    });
+    })();
   };
 
   const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
 
   const reset = () => {
-    timers.splice(0).forEach(window.clearTimeout);
+    timers.forEach(window.clearTimeout);
+    timers.length = 0;
     Object.assign(options, CALM);
     root.removeAttribute('data-chosen');
     root.removeAttribute('data-closing');

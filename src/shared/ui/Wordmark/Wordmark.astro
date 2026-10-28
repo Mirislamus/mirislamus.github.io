@@ -33,7 +33,10 @@ const variants = [
   class GlyphWordmark extends HTMLElement {
     connectedCallback() {
       const load = () =>
-        void import('@/shared/scripts/matrix/wordmark-fx').then(({ initWordmark }) => initWordmark(this));
+        void (async () => {
+          const { initWordmark } = await import('@/shared/scripts/matrix/wordmark-fx');
+          initWordmark(this);
+        })();
 
       if (this.hasAttribute('data-eager')) {
         load();

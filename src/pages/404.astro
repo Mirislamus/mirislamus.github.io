@@ -64,7 +64,10 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
       const canvas = document.querySelector<HTMLCanvasElement>('canvas[data-backdrop]');
       if (canvas) {
         const content = document.querySelector<HTMLElement>('[data-content]');
-        void import('@/shared/scripts/matrix/backdrop-fx').then(({ initBackdrop }) => initBackdrop(canvas, content));
+        void (async () => {
+          const { initBackdrop } = await import('@/shared/scripts/matrix/backdrop-fx');
+          initBackdrop(canvas, content);
+        })();
       }
     </script>
   </body>

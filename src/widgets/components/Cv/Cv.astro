@@ -21,7 +21,7 @@ const hrefs = [`mailto:${info.email}`, site.href, info.github, info.linkedin, in
 
 const years = getExperienceYears();
 
-const jobs = [...career.items].reverse();
+const jobs = career.items.toReversed();
 ---
 
 <article class={s.cv}>

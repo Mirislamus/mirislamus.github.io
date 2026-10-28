@@ -6,7 +6,7 @@ const LEAVE_MS = 250;
 let timer: number | undefined;
 
 export const showToast = (message: string, kind: ToastKind = 'success') => {
-  const region = document.getElementById('toast-region');
+  const region = document.querySelector('[data-toast-region]');
   const template = document.querySelector<HTMLTemplateElement>(`template[data-toast="${kind}"]`);
   const toast = template?.content.firstElementChild?.cloneNode(true);
   if (!(toast instanceof HTMLElement)) return;

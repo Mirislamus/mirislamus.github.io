@@ -19,7 +19,7 @@ const luminance = (hex: string) => {
 };
 
 export const contrast = (a: string, b: string) => {
-  const [light = 0, dark = 0] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  const [light = 0, dark = 0] = [luminance(a), luminance(b)].toSorted((x, y) => y - x);
   return (light + 0.05) / (dark + 0.05);
 };
 

@@ -73,8 +73,8 @@ const parseList = <S extends z.ZodType>(file: string, schema: S, value: unknown)
 
 const parseLocalized = <S extends z.ZodType>(file: string, schema: S, value: unknown): Record<Locale, z.infer<S>> => {
   const raw = isRecord(value) ? value : {};
-  const keys = Object.keys(raw).sort();
-  if (keys.join() !== [...LOCALES].sort().join()) {
+  const keys = Object.keys(raw).toSorted();
+  if (keys.join() !== LOCALES.toSorted().join()) {
     fail(`${file} must have exactly the locales [${LOCALES.join(', ')}], found [${keys.join(', ')}]`);
   }
   return fromKeys(LOCALES, locale => parse(`${file} → ${locale}`, schema, raw[locale]));

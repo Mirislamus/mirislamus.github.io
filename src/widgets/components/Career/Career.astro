@@ -89,7 +89,10 @@ const slideLabel = (index: number) =>
       ([entry], observer) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
-        void import('@/shared/scripts/career-reveal').then(({ initCareerReveal }) => initCareerReveal(section));
+        void (async () => {
+          const { initCareerReveal } = await import('@/shared/scripts/career-reveal');
+          initCareerReveal(section);
+        })();
       },
       { rootMargin: '400px' },
     ).observe(section);

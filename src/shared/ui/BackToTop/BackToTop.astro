@@ -24,7 +24,7 @@ const { label } = Astro.props;
   class BackToTop extends HTMLElement {
     connectedCallback() {
       const button = this.querySelector<HTMLButtonElement>('button');
-      const hero = document.getElementById('about');
+      const hero = document.querySelector('[data-hero]');
       if (!button) return;
 
       const observer = new IntersectionObserver(([entry]) =>

@@ -59,7 +59,10 @@ const slideLabel = (index: number) =>
       ([entry], observer) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
-        void import('@/shared/scripts/quote-decode').then(({ initQuoteDecode }) => initQuoteDecode(section));
+        void (async () => {
+          const { initQuoteDecode } = await import('@/shared/scripts/quote-decode');
+          initQuoteDecode(section);
+        })();
       },
       { rootMargin: '400px' },
     ).observe(section);
