@@ -121,7 +121,7 @@
 Перед коммитом, пропорционально изменению (это же проверяет job `verify` в `.github/workflows/deploy.yml`):
 
 - `bun run check` (Prettier, ESLint, Stylelint, типы), `bun run knip`;
-- `bun run test` (Vitest), `bun run test:e2e` (Playwright, нужен `bunx playwright install chromium`);
+- `bun run test` (Vitest), `bun run test:e2e` (Playwright, нужен `bunx playwright install chromium webkit`);
 - `bun run build`, затем `bun run check:bundle` и `bun run validate:html`.
 
 `bun run test:visual` локально только прогоняет сценарии: эталонные скриншоты сравниваются в CI. Не запускай `prettier --write` на всю папку `src/`: форматируй только свои файлы.

@@ -1,4 +1,4 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4399;
 const isCI = Boolean(process.env.CI);
@@ -51,6 +51,11 @@ export default defineConfig({
       name: 'e2e',
       testMatch: 'e2e/**/*.spec.ts',
       use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'e2e-mobile',
+      testMatch: 'e2e/smoke.spec.ts',
+      use: { ...devices['iPhone 14'] },
     },
   ],
   webServer: {
