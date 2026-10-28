@@ -31,7 +31,7 @@ const { status, locale } = Astro.props;
 </local-time>
 
 <script>
-  import { isWithinWorkHours, type WorkHours } from '@/utils/work-hours';
+  import { isWithinWorkHours, isWorkHours } from '@/utils/work-hours';
 
   class LocalTime extends HTMLElement {
     #timer = 0;
@@ -71,10 +71,11 @@ const { status, locale } = Astro.props;
 
       const status = this.querySelector<HTMLElement>('[data-status]');
       if (status && this.hasAttribute('data-open')) {
-        const hours = { timezone, ...JSON.parse(this.dataset.workHours ?? '{}') } as WorkHours;
+        const hours: unknown = { timezone, ...JSON.parse(this.dataset.workHours ?? '{}') };
+        if (!isWorkHours(hours)) return;
         const online = isWithinWorkHours(now, hours);
-        status.querySelector('[data-status-text]')!.textContent =
-          (online ? this.dataset.online : this.dataset.offline) ?? '';
+        const text = status.querySelector('[data-status-text]');
+        if (text) text.textContent = (online ? this.dataset.online : this.dataset.offline) ?? '';
         status.toggleAttribute('data-online', online);
         status.hidden = false;
       }

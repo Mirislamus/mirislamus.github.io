@@ -138,7 +138,7 @@ export const createHands = (root: HTMLElement) => {
     readTheme();
     const rect = canvas.getBoundingClientRect();
     if (!rect.width) return false;
-    const grid = (rect.width < 520 ? handsJson.mobile : handsJson.desktop) as Grid;
+    const grid: Grid = rect.width < 520 ? handsJson.mobile : handsJson.desktop;
     build(grid);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     for (const target of [canvas, base]) {

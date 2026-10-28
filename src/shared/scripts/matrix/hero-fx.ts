@@ -20,7 +20,8 @@ export const initHeroFx = (section: HTMLElement) => {
   const liquid = avatar ? createLiquid(avatar) : null;
 
   try {
-    rain.setWords(JSON.parse(canvas.dataset.words ?? '[]') as string[]);
+    const words: unknown = JSON.parse(canvas.dataset.words ?? '[]');
+    if (Array.isArray(words)) rain.setWords(words.filter((word): word is string => typeof word === 'string'));
   } catch {}
 
   let visible = true;

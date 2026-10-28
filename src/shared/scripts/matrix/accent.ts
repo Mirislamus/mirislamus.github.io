@@ -10,15 +10,18 @@ export const parseColor = (value: string): Rgb | null => {
   if (hex) {
     const digits = at(hex, 1);
     const full = digits.length === 3 ? [...digits].map(c => c + c).join('') : digits;
-    return [0, 2, 4].map(i => parseInt(full.slice(i, i + 2), 16)) as Rgb;
+    const channel = (start: number) => parseInt(full.slice(start, start + 2), 16);
+    return [channel(0), channel(2), channel(4)];
   }
 
   const rgb = /^rgba?\(\s*(\d+(?:\.\d+)?)[\s,]+(\d+(?:\.\d+)?)[\s,]+(\d+(?:\.\d+)?)/.exec(text);
-  return rgb ? ([rgb[1], rgb[2], rgb[3]].map(Number) as Rgb) : null;
+  return rgb ? [Number(rgb[1]), Number(rgb[2]), Number(rgb[3])] : null;
 };
 
-export const mix = (a: Rgb, b: Rgb, amount: number): Rgb =>
-  a.map((channel, i) => Math.round(channel * (1 - amount) + at(b, i) * amount)) as Rgb;
+export const mix = (a: Rgb, b: Rgb, amount: number): Rgb => {
+  const blend = (i: 0 | 1 | 2) => Math.round(a[i] * (1 - amount) + b[i] * amount);
+  return [blend(0), blend(1), blend(2)];
+};
 
 export interface MatrixColors {
   accent: Rgb;

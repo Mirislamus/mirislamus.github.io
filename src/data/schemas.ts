@@ -1,5 +1,7 @@
 import { z } from 'astro/zod';
 
+import { fromKeys } from '@/utils/object';
+
 const text = z.string().min(1);
 const url = z.url();
 const id = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'id must be kebab-case');
@@ -79,12 +81,7 @@ export const approachSchema = z.strictObject({
     switcher: text,
     stack: text,
     stages: text,
-    types: z.strictObject(
-      Object.fromEntries(PROJECT_TYPES.map(type => [type, projectTypeText])) as Record<
-        ProjectType,
-        typeof projectTypeText
-      >,
-    ),
+    types: z.strictObject(fromKeys(PROJECT_TYPES, () => projectTypeText)),
   }),
   ui: z.strictObject({
     ...cardText,

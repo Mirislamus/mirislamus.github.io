@@ -42,18 +42,22 @@ export const initProjectNames = (root: HTMLElement) => {
   };
 
   const nameOf = (target: EventTarget | null) =>
-    (target as HTMLElement | null)?.closest('article')?.querySelector<HTMLElement>('[data-name]');
+    (target instanceof Element ? target : null)?.closest('article')?.querySelector<HTMLElement>('[data-name]');
 
   root.addEventListener('pointerover', event => {
-    const card = (event.target as HTMLElement).closest('article');
-    if (!card || event.pointerType !== 'mouse' || card.contains(event.relatedTarget as Node | null)) return;
+    if (!(event.target instanceof Element)) return;
+    const card = event.target.closest('article');
+    const from = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (!card || event.pointerType !== 'mouse' || card.contains(from)) return;
     const name = nameOf(card);
     if (name) play(name);
   });
   root.addEventListener('focusin', event => {
-    const card = (event.target as HTMLElement).closest('article');
-    if (!card || card.contains(event.relatedTarget as Node | null)) return;
-    if (!(event.target as HTMLElement).matches(':focus-visible')) return;
+    if (!(event.target instanceof Element)) return;
+    const card = event.target.closest('article');
+    const from = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (!card || card.contains(from)) return;
+    if (!event.target.matches(':focus-visible')) return;
     const name = nameOf(card);
     if (name) play(name);
   });

@@ -9,6 +9,8 @@ const { lang } = Astro.params;
 if (!isLocale(lang)) throw new Error(`Unsupported CV locale "${lang}"`);
 
 const data = getSiteData(lang);
+const site = Astro.site;
+if (!site) throw new Error('site is not set in astro.config.ts');
 ---
 
 <!doctype html>
@@ -21,7 +23,7 @@ const data = getSiteData(lang);
     <title>{data.hero.title} — {data.hero.role}</title>
   </head>
   <body>
-    <Cv data={data} site={Astro.site as URL} />
+    <Cv data={data} site={site} />
   </body>
 </html>
 

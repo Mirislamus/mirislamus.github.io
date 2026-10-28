@@ -1,3 +1,5 @@
+import { isOneOf, isRecord } from '@/utils/object';
+
 import { getMotion } from '../matrix/motion';
 
 const SECTIONS = ['about', 'approach', 'projects', 'skills', 'career', 'reviews', 'contacts'] as const;
@@ -27,6 +29,12 @@ interface Talk {
   beats: Record<'start' | Section, Beat>;
 }
 
+const isTalk = (value: unknown): value is Talk =>
+  isRecord(value) &&
+  ['open', 'close', 'unread', 'typing', 'you'].every(key => typeof value[key] === 'string') &&
+  isRecord(value.people) &&
+  isRecord(value.beats);
+
 const VISIBLE = 0.4;
 const TYPING_MS: [number, number] = [600, 1600];
 const TYPING_PER_CHAR = 18;
@@ -46,7 +54,7 @@ let unread = 0;
 const timers: number[] = [];
 
 const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
-const isSection = (id: string): id is Section => (SECTIONS as readonly string[]).includes(id);
+const isSection = (id: string): id is Section => isOneOf(SECTIONS, id);
 const find = <T extends Element>(root: ParentNode | undefined, selector: string) => {
   const element = root?.querySelector<T>(selector);
   if (!element) throw new Error(`[relic chat] ${selector} is missing`);
@@ -85,7 +93,8 @@ const append = (from: Person | 'you', text: string, reply?: Reply) => {
   const template = part<HTMLTemplateElement>('[data-relic-chat-message]');
   const source = template.content.firstElementChild;
   if (!source) return;
-  const item = source.cloneNode(true) as HTMLElement;
+  const item = source.cloneNode(true);
+  if (!(item instanceof HTMLElement)) return;
   const name = from === 'you' ? talk.you : talk.people[from];
   item.dataset.from = from;
   find(item, '[data-avatar]').textContent = name.charAt(0);
@@ -159,7 +168,9 @@ let wired = false;
 export const startChat = () => {
   panel = document.querySelector<HTMLElement>('[data-relic-chat]') ?? undefined;
   if (!panel || observer) return;
-  talk = JSON.parse(panel.dataset.chat ?? '{}') as Talk;
+  const data: unknown = JSON.parse(panel.dataset.chat ?? '{}');
+  if (!isTalk(data)) return;
+  talk = data;
   if (!wired) {
     wired = true;
     part('[data-relic-chat-toggle]').addEventListener('click', toggle);

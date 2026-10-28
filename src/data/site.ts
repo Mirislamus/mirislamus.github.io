@@ -3,6 +3,7 @@ import type { z } from 'astro/zod';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
 import { getExperienceYears } from '@/utils/experience';
 import { at } from '@/utils/list';
+import { fromKeys, isRecord } from '@/utils/object';
 import { interpolate } from '@/utils/rich-text';
 
 import a11yJson from './a11y/a11y.json';
@@ -71,14 +72,12 @@ const parseList = <S extends z.ZodType>(file: string, schema: S, value: unknown)
 };
 
 const parseLocalized = <S extends z.ZodType>(file: string, schema: S, value: unknown): Record<Locale, z.infer<S>> => {
-  const raw = (value ?? {}) as Record<string, unknown>;
+  const raw = isRecord(value) ? value : {};
   const keys = Object.keys(raw).sort();
   if (keys.join() !== [...LOCALES].sort().join()) {
     fail(`${file} must have exactly the locales [${LOCALES.join(', ')}], found [${keys.join(', ')}]`);
   }
-  return Object.fromEntries(
-    LOCALES.map(locale => [locale, parse(`${file} → ${locale}`, schema, raw[locale])]),
-  ) as Record<Locale, z.infer<S>>;
+  return fromKeys(LOCALES, locale => parse(`${file} → ${locale}`, schema, raw[locale]));
 };
 
 const sameIds = (file: string, locale: Locale, actual: string[], expected: string[], expectedFrom: string) => {
@@ -94,7 +93,7 @@ const load = () => {
   const stackNames = (owner: string, ids: string[]) => {
     const unknown = ids.filter(id => !technologyNames.has(id));
     if (unknown.length > 0) fail(`${owner} uses unknown technologies: ${unknown.join(', ')}`);
-    return ids.map(id => technologyNames.get(id) as string);
+    return ids.map(id => technologyNames.get(id) ?? fail(`${owner} uses an unknown technology: ${id}`));
   };
 
   const statusBase = parse('status.base.json', statusBaseSchema, statusBaseJson);
@@ -230,7 +229,7 @@ const load = () => {
     },
   });
 
-  return Object.fromEntries(LOCALES.map(locale => [locale, build(locale)])) as Record<Locale, ReturnType<typeof build>>;
+  return fromKeys(LOCALES, build);
 };
 
 let cache: ReturnType<typeof load> | undefined;

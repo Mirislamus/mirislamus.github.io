@@ -1,5 +1,6 @@
 export type Theme = 'light' | 'dark';
-export type ThemeMode = Theme | 'system';
+export const THEME_MODES = ['light', 'dark', 'system'] as const;
+export type ThemeMode = (typeof THEME_MODES)[number];
 
 export const THEME_STORAGE_KEY = 'theme';
 

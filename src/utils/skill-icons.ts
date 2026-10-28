@@ -7,7 +7,7 @@ interface SimpleIcon {
 }
 
 const bySlug = new Map(
-  Object.values(simpleIcons as Record<string, unknown>)
+  Object.values<unknown>(simpleIcons)
     .filter((value): value is SimpleIcon => typeof value === 'object' && value !== null && 'slug' in value)
     .map(icon => [icon.slug, icon]),
 );

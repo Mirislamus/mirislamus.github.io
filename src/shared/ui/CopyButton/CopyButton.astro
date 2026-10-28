@@ -19,7 +19,7 @@ const { text, success, error } = Astro.props;
   class CopyButton extends HTMLElement {
     connectedCallback() {
       this.addEventListener('click', async event => {
-        if (!(event.target as Element).closest('button')) return;
+        if (!(event.target instanceof Element) || !event.target.closest('button')) return;
 
         const copied = await copyText(this.dataset.text ?? '');
         showToast((copied ? this.dataset.success : this.dataset.error) ?? '', copied ? 'success' : 'error');

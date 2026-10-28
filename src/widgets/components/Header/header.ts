@@ -1,4 +1,6 @@
-import { getThemeMode, setThemeMode, subscribeTheme, type ThemeMode } from '@/utils/theme';
+import { isOneOf } from '@/utils/object';
+import { getThemeMode, setThemeMode, subscribeTheme } from '@/utils/theme';
+import { THEME_MODES } from '@/utils/theme-bootstrap';
 
 const focus = (element: HTMLElement | undefined | null) => element?.focus({ preventScroll: true });
 
@@ -51,7 +53,9 @@ class SiteHeader extends HTMLElement {
         'click',
         () => {
           const rect = button.getBoundingClientRect();
-          setThemeMode(button.dataset.themeMode as ThemeMode, {
+          const mode = button.dataset.themeMode;
+          if (!isOneOf(THEME_MODES, mode)) return;
+          setThemeMode(mode, {
             x: rect.left + rect.width / 2,
             y: rect.top + rect.height / 2,
           });
@@ -96,7 +100,7 @@ class SiteHeader extends HTMLElement {
     langsList.addEventListener(
       'keydown',
       event => {
-        const index = langLinks.indexOf(document.activeElement as HTMLAnchorElement);
+        const index = langLinks.findIndex(link => link === document.activeElement);
         const move = { ArrowDown: index + 1, ArrowUp: index - 1, Home: 0, End: langLinks.length - 1 }[event.key];
         if (move === undefined) return;
 
@@ -108,7 +112,7 @@ class SiteHeader extends HTMLElement {
     langsList.addEventListener(
       'focusout',
       event => {
-        const next = event.relatedTarget as Node | null;
+        const next = event.relatedTarget instanceof Node ? event.relatedTarget : null;
         if (next && !langsList.contains(next) && next !== langsButton) setLangs(false);
       },
       { signal },
@@ -116,7 +120,7 @@ class SiteHeader extends HTMLElement {
     document.addEventListener(
       'pointerdown',
       event => {
-        const target = event.target as Node;
+        const target = event.target instanceof Node ? event.target : null;
         if (langsOpen && !langsList.contains(target) && !langsButton.contains(target)) setLangs(false);
       },
       { signal },

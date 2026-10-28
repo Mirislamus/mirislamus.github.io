@@ -16,7 +16,7 @@ export const initQuoteDecode = (root: HTMLElement) => {
       const seen = entries.find(entry => entry.isIntersecting);
       if (!seen) return;
       observer.disconnect();
-      const quote = (seen.target as HTMLElement).querySelector<HTMLElement>('[data-quote]');
+      const quote = seen.target.querySelector<HTMLElement>('[data-quote]');
       if (!quote) return;
       const mark = quote.textContent?.trim() ?? '“';
       for (const step of STEPS) setTimeout(() => (quote.textContent = pick(GLYPHS, Math.random())), step);

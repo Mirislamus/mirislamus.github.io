@@ -8,6 +8,7 @@ import { getLastModified } from '@/seo/last-modified';
 import { buildStructuredData } from '@/seo/structured-data';
 import { getAvatarImage, getProjectImages } from '@/utils/images';
 import { INTRO_STORAGE_KEY, bootstrapIntro } from '@/utils/intro-bootstrap';
+import { fromKeys } from '@/utils/object';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@/utils/theme-bootstrap';
 
 interface Props {
@@ -32,7 +33,7 @@ const avatar = await getAvatarImage();
 const structuredData = buildStructuredData({
   locale,
   site,
-  names: Object.fromEntries(LOCALES.map(code => [code, getSiteData(code).meta.name])) as Record<Locale, string>,
+  names: fromKeys(LOCALES, code => getSiteData(code).meta.name),
   origin: toUrl('/'),
   canonical,
   avatar: { url: toUrl(avatar.src), width: avatar.width, height: avatar.height },

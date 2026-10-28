@@ -146,17 +146,20 @@ export const initSecretCard = (root: HTMLElement) => {
     ).observe(card);
   }
 
-  const fileOf = (target: EventTarget | null) => (target as HTMLElement | null)?.closest<HTMLElement>('[data-file]');
+  const fileOf = (target: EventTarget | null) =>
+    target instanceof Element ? target.closest<HTMLElement>('[data-file]') : null;
+  const nodeOf = (target: EventTarget | null) => (target instanceof Node ? target : null);
   root.addEventListener('pointerover', event => {
     const file = fileOf(event.target);
-    if (file && event.pointerType === 'mouse' && !file.contains(event.relatedTarget as Node | null)) decrypt(file);
+    if (file && event.pointerType === 'mouse' && !file.contains(nodeOf(event.relatedTarget))) decrypt(file);
   });
   root.addEventListener('focusin', event => {
     const file = fileOf(event.target);
     if (
       file &&
-      !file.contains(event.relatedTarget as Node | null) &&
-      (event.target as HTMLElement).matches(':focus-visible')
+      !file.contains(nodeOf(event.relatedTarget)) &&
+      event.target instanceof Element &&
+      event.target.matches(':focus-visible')
     ) {
       decrypt(file);
     }

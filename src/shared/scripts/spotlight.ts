@@ -66,7 +66,8 @@ document.addEventListener(
   event => {
     if (!(event.target instanceof Element)) return;
     const card = event.target.closest<HTMLElement>('[data-spotlight][data-tilt]');
-    if (card && !card.contains(event.relatedTarget as Node | null)) tiltTo(card, 0, 0);
+    const to = event.relatedTarget instanceof Node ? event.relatedTarget : null;
+    if (card && !card.contains(to)) tiltTo(card, 0, 0);
   },
   { passive: true },
 );

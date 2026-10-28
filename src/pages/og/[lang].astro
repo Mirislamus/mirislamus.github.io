@@ -12,7 +12,8 @@ if (!isLocale(lang)) throw new Error(`Unsupported OG locale "${lang}"`);
 
 const { hero, meta } = getSiteData(lang);
 const avatar = await getAvatarSrc();
-const host = (Astro.site as URL).host;
+if (!Astro.site) throw new Error('site is not set in astro.config.ts');
+const host = Astro.site.host;
 
 const shape = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 170 20 100C30 30 70 20 130 10Z';
 ---

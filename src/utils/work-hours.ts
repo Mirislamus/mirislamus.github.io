@@ -1,9 +1,18 @@
+import { isRecord } from '@/utils/object';
 export interface WorkHours {
   timezone: string;
   days: number[];
   from: string;
   to: string;
 }
+
+export const isWorkHours = (value: unknown): value is WorkHours =>
+  isRecord(value) &&
+  typeof value.timezone === 'string' &&
+  typeof value.from === 'string' &&
+  typeof value.to === 'string' &&
+  Array.isArray(value.days) &&
+  value.days.every(day => typeof day === 'number');
 
 const WEEKDAYS: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
 

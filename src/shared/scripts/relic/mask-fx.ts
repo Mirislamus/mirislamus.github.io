@@ -128,7 +128,8 @@ export const createMask = (canvas: HTMLCanvasElement) => {
   const layout = () => {
     const rect = canvas.getBoundingClientRect();
     if (!rect.width) return false;
-    build((rect.width < 340 ? maskJson.mobile : maskJson.desktop) as Grid);
+    const grid: Grid = rect.width < 340 ? maskJson.mobile : maskJson.desktop;
+    build(grid);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     for (const target of [canvas, base]) {
       target.width = Math.round(rect.width * dpr);

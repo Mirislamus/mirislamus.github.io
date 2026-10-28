@@ -94,7 +94,7 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
     let armed: HTMLElement | null = null;
 
     document.addEventListener('click', event => {
-      const tile = (event.target as Element).closest<HTMLElement>('#skills a[data-tip]');
+      const tile = event.target instanceof Element ? event.target.closest<HTMLElement>('#skills a[data-tip]') : null;
       if (tile && touch.matches && tile !== armed) {
         event.preventDefault();
         armed?.removeAttribute('data-open');

@@ -1,3 +1,4 @@
+import { isOneOf } from '@/utils/object';
 export const LOCALES = ['en', 'ru', 'uz'] as const;
 
 export type Locale = (typeof LOCALES)[number];
@@ -10,4 +11,4 @@ export const LOCALE_META: Record<Locale, { label: string; ogLocale: string }> = 
   uz: { label: 'UZ', ogLocale: 'uz_UZ' },
 };
 
-export const isLocale = (value: unknown): value is Locale => LOCALES.includes(value as Locale);
+export const isLocale = (value: unknown): value is Locale => isOneOf(LOCALES, value);
