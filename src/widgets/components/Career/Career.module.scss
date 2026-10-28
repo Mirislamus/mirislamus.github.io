@@ -113,8 +113,10 @@
     text-decoration: underline transparent;
     color: var(--blue);
     transition: var(--transition-ease);
-    &:hover {
-      text-decoration-color: currentColor;
+    @include hover {
+      &:hover {
+        text-decoration-color: currentColor;
+      }
     }
   }
 }

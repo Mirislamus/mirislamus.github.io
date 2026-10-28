@@ -41,16 +41,14 @@
     box-shadow: 0 0 0 3px var(--accent-alpha);
   }
 
-  &:hover {
-    .tag {
+  @include hover {
+    &:hover .tag {
       border-color: var(--grey-4);
     }
-    img {
+    &:hover img {
       transform: scale(1.12);
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      img {
+      @media (prefers-reduced-motion: reduce) {
         transform: none;
       }
     }

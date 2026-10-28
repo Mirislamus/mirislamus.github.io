@@ -14,9 +14,14 @@
   opacity: 0.6;
   transition: opacity var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     opacity: 1;
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 1;
+    }
   }
   &::after {
     position: absolute;
@@ -35,9 +40,14 @@
     content: attr(data-label);
   }
 
-  &:hover::after,
   &:focus-visible::after {
     opacity: 1;
+  }
+
+  @include hover {
+    &:hover::after {
+      opacity: 1;
+    }
   }
 
   .play,

@@ -19,8 +19,13 @@
     content: '';
   }
 
-  :global([data-spotlight]:hover) &::before,
   :global([data-spotlight]:focus-within) &::before {
     opacity: 0.2;
+  }
+
+  @include hover {
+    :global([data-spotlight]:hover) &::before {
+      opacity: 0.2;
+    }
   }
 }

@@ -761,9 +761,14 @@
   border-radius: var(--radius-16);
   transition: border-color var(--dur-fast) ease;
 
-  &:hover,
   &:focus-visible {
     border-color: var(--accent);
+  }
+
+  @include hover {
+    &:hover {
+      border-color: var(--accent);
+    }
   }
 
   &:focus-visible {
@@ -991,15 +996,26 @@
     );
   }
 
-  &:hover::before,
   &:focus-within::before {
     opacity: 1;
   }
 
-  &:hover::after,
+  @include hover {
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
   &:focus-within::after {
     opacity: 0.9;
     animation: run-around var(--dur-run) linear infinite;
+  }
+
+  @include hover {
+    &:hover::after {
+      opacity: 0.9;
+      animation: run-around var(--dur-run) linear infinite;
+    }
   }
 }
 

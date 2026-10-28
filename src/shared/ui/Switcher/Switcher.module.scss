@@ -54,11 +54,9 @@
     transition: inherit;
   }
 
-  &:not([aria-pressed='true'], [aria-current='page']) {
-    &:hover {
-      svg {
-        color: var(--accent-text);
-      }
+  @include hover {
+    &:not([aria-pressed='true'], [aria-current='page']):hover svg {
+      color: var(--accent-text);
     }
   }
 

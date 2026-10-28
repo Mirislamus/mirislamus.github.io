@@ -28,8 +28,10 @@
     transition-delay: 0s;
   }
 
-  &:hover {
-    color: var(--accent-text);
+  @include hover {
+    &:hover {
+      color: var(--accent-text);
+    }
   }
 
   @media (width <= 767px) {

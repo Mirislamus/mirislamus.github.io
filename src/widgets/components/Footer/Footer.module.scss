@@ -57,9 +57,14 @@
   opacity: 0.35;
   transition: opacity var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     opacity: 1;
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .ear {
@@ -68,9 +73,14 @@
     transform-origin: bottom center;
   }
 
-  &:hover .ear:last-of-type,
   &:focus-visible .ear:last-of-type {
     rotate: 14deg;
+  }
+
+  @include hover {
+    &:hover .ear:last-of-type {
+      rotate: 14deg;
+    }
   }
 }
 .chip {
@@ -81,9 +91,14 @@
   opacity: 0.35;
   transition: opacity var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     opacity: 1;
+  }
+
+  @include hover {
+    &:hover {
+      opacity: 1;
+    }
   }
 
   :global(:root[data-relic]) & {
@@ -173,8 +188,10 @@
   a {
     gap: var(--gap-4);
     transition: var(--transition-ease);
-    &:hover {
-      color: var(--text);
+    @include hover {
+      &:hover {
+        color: var(--text);
+      }
     }
   }
 }

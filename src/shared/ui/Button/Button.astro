@@ -35,7 +35,7 @@ const Tag = href === undefined ? 'button' : 'a';
   type={href === undefined ? type : undefined}
   disabled={href === undefined ? disabled : undefined}
   data-ripple
-  class:list={[s.button, s[variant], s[size], { [s.fluid]: fluid, [s.disabled]: disabled }, className]}
+  class:list={[s.button, s[variant], s[size], { [s.fluid]: fluid }, className]}
   {...rest}
 >
   <slot />

@@ -82,8 +82,10 @@
   a {
     transition: var(--transition);
 
-    &:hover {
-      color: var(--accent-text);
+    @include hover {
+      &:hover {
+        color: var(--accent-text);
+      }
     }
     &[aria-current='true'] {
       color: var(--accent-text);

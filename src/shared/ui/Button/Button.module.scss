@@ -12,11 +12,9 @@
   &:focus-visible {
     box-shadow: 0 0 0 3px var(--accent-alpha);
   }
-  &:disabled,
-  &[disabled] {
-    opacity: 0.6;
+  &:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
-    pointer-events: none;
   }
 }
 
@@ -24,23 +22,27 @@
   color: var(--accent-contrast);
   background-color: var(--accent);
   border: 1px solid var(--accent);
-  &:hover {
-    color: var(--text);
-    background-color: var(--accent-alpha);
+  @include hover {
+    &:hover {
+      color: var(--text);
+      background-color: var(--accent-alpha);
+    }
   }
   &:active {
-    scale: 0.97;
+    scale: 0.98;
   }
 }
 
 .outline {
   color: var(--text);
   border: 1px solid var(--tertiary);
-  &:hover {
-    color: var(--accent-text);
-    border-color: var(--grey-5);
+  @include hover {
+    &:hover {
+      color: var(--accent-text);
+      border-color: var(--grey-5);
+    }
   }
-  &:focus {
+  &:focus-visible {
     color: var(--accent-text);
     border-color: var(--grey-6);
   }

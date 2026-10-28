@@ -15,10 +15,12 @@
   border-radius: var(--radius-10);
   transition: var(--transition);
 
-  &:hover {
-    border-color: var(--grey-5);
+  @include hover {
+    &:hover {
+      border-color: var(--grey-5);
+    }
   }
-  &:focus {
+  &:focus-visible {
     border-color: var(--grey-6);
   }
 

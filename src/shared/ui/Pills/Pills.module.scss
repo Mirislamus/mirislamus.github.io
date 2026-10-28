@@ -98,9 +98,14 @@
     background-color var(--dur-base) var(--ease-out);
   translate: -50% -50%;
 
-  &:hover,
   &:focus-visible {
     scale: 1.08;
+  }
+
+  @include hover {
+    &:hover {
+      scale: 1.08;
+    }
   }
 
   &:focus-visible {
@@ -111,18 +116,28 @@
   &.blue {
     left: var(--blue-x);
 
-    &:hover,
     &:focus-visible {
       background-color: rgb(62 123 250 / 22%);
+    }
+
+    @include hover {
+      &:hover {
+        background-color: rgb(62 123 250 / 22%);
+      }
     }
   }
 
   &.red {
     left: var(--red-x);
 
-    &:hover,
     &:focus-visible {
       background-color: rgb(229 72 77 / 22%);
+    }
+
+    @include hover {
+      &:hover {
+        background-color: rgb(229 72 77 / 22%);
+      }
     }
   }
 }
@@ -161,9 +176,14 @@
   border-radius: 50%;
   transition: color var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     color: var(--text);
+  }
+
+  @include hover {
+    &:hover {
+      color: var(--text);
+    }
   }
 }
 :global(html[data-glitch]) :global(body) {
@@ -205,9 +225,14 @@
   border-radius: 50%;
   transition: color var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     color: var(--text);
+  }
+
+  @include hover {
+    &:hover {
+      color: var(--text);
+    }
   }
 
   &:focus-visible {

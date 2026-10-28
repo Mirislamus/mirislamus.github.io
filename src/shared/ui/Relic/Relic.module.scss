@@ -129,9 +129,14 @@
   border-radius: 50%;
   transition: color var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     color: #fff;
+  }
+
+  @include hover {
+    &:hover {
+      color: #fff;
+    }
   }
 
   &:focus-visible {
@@ -267,9 +272,14 @@
   border-radius: var(--radius-8);
   transition: color var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     color: #fff;
+  }
+
+  @include hover {
+    &:hover {
+      color: #fff;
+    }
   }
 
   &:focus-visible {
@@ -419,10 +429,16 @@
     background-color var(--dur-base) var(--ease-out),
     color var(--dur-base) var(--ease-out);
 
-  &:hover,
   &:focus-visible {
     color: #0a060c;
     background-color: var(--relic-cyan);
+  }
+
+  @include hover {
+    &:hover {
+      color: #0a060c;
+      background-color: var(--relic-cyan);
+    }
   }
 
   &:focus-visible {
@@ -480,8 +496,10 @@
     background-color var(--dur-base) var(--ease-out),
     color var(--dur-base) var(--ease-out);
 
-  &:hover {
-    background-color: rgb(255 46 99 / 22%);
+  @include hover {
+    &:hover {
+      background-color: rgb(255 46 99 / 22%);
+    }
   }
 
   &:focus-visible {
