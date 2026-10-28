@@ -14,11 +14,11 @@ interface Props extends Omit<HTMLAttributes<'div'>, 'class' | 'style'> {
 
 const { tag = 'div', color = 'white', speed = '6s', thickness = 1, class: className, style, ...rest } = Astro.props;
 const Tag = tag as 'div';
-const glow = `background:radial-gradient(circle, ${color}, transparent 10%);animation-duration:${speed}`;
+const vars = `--star-color: ${color}; --star-speed: ${speed}; --star-thickness: ${thickness}px;`;
 ---
 
-<Tag class:list={[s.container, className]} style={`padding:${thickness}px 0;${style ?? ''}`} {...rest}>
-  <div class={s.gradientBottom} style={glow}></div>
-  <div class={s.gradientTop} style={glow}></div>
+<Tag class:list={[s.container, className]} style={`${vars}${style ?? ''}`} {...rest}>
+  <div class={s.gradientBottom}></div>
+  <div class={s.gradientTop}></div>
   <slot />
 </Tag>

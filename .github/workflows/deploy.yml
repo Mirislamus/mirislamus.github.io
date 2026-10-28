@@ -41,6 +41,7 @@ jobs:
         run: bunx playwright install --with-deps chromium
       - run: bun run build
       - run: bun run check:bundle
+      - run: bun run validate:html
 
       - run: bun run test:e2e
 

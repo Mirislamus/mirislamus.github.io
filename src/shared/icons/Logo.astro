@@ -3,10 +3,10 @@ import type { HTMLAttributes } from 'astro/types';
 
 type Props = HTMLAttributes<'svg'>;
 
-const props = Astro.props;
+const { width = 40, height = 40, ...props } = Astro.props;
 ---
 
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" {...props}>
+<svg width={width} height={height} viewBox="0 0 40 40" fill="none" aria-hidden="true" {...props}>
   <path
     d="M20.0077 0C8.88769 0 0.00769043 8.96 0.00769043 20C0.00769043 31.04 8.96769 40 20.0077 40C31.0477 40 40.0077 31.04 40.0077 20C40.0077 8.96 31.0477 0 20.0077 0ZM20.0077 37.52C10.2477 37.52 2.40769 29.68 2.40769 19.92C2.40769 10.16 10.2477 2.32 20.0077 2.32C29.7677 2.32 37.6077 10.16 37.6077 19.92C37.5277 29.68 29.6877 37.52 20.0077 37.52Z"
     fill="currentColor"

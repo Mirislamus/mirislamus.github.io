@@ -223,3 +223,13 @@
   white-space: nowrap;
   vertical-align: bottom;
 }
+
+// Without JavaScript there is nothing to expand: show every project, no button.
+@media (scripting: none) {
+  [data-extra] {
+    display: block;
+  }
+  [data-more-wrap] {
+    display: none;
+  }
+}

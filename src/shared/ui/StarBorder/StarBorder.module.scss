@@ -1,6 +1,7 @@
 .container {
   position: relative;
   display: inline-block;
+  padding: var(--star-thickness) 0;
   overflow: hidden;
   border-radius: var(--radius-24);
 }
@@ -12,8 +13,9 @@
   z-index: 0;
   width: 300%;
   height: 50%;
+  background: radial-gradient(circle, var(--star-color), transparent 10%);
   border-radius: 50%;
-  animation: star-movement-bottom linear infinite alternate;
+  animation: star-movement-bottom var(--star-speed) linear infinite alternate;
 }
 
 .gradientTop {
@@ -23,8 +25,9 @@
   z-index: 0;
   width: 300%;
   height: 50%;
+  background: radial-gradient(circle, var(--star-color), transparent 10%);
   border-radius: 50%;
-  animation: star-movement-top linear infinite alternate;
+  animation: star-movement-top var(--star-speed) linear infinite alternate;
 }
 
 @keyframes star-movement-bottom {

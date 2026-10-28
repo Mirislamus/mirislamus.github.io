@@ -30,6 +30,7 @@ bun run dev        # http://localhost:3000
 | `bun run test`                           | юнит‑тесты (Vitest)                                                |
 | `bun run test:e2e`                       | e2e и axe (Playwright; нужен `bunx playwright install chromium`)   |
 | `bun run test:visual`                    | сценарии скриншотов; сравнение с эталоном — только в CI (см. ниже) |
+| `bun run validate:html`                  | проверка собранного HTML в `dist/` (`html-validate`)               |
 | `bun run check:bundle`                   | бюджет JS: 15 КБ gzip сразу, 10 КБ на чанк                         |
 | `bun run check:links`                    | проверка внешних ссылок (в CI раз в неделю)                        |
 
