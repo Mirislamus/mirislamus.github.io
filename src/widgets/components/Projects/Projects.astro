@@ -55,7 +55,6 @@ const hasMore = data.items.length > INITIAL_COUNT;
                 </picture>
               </div>
               <h3>
-                {/* The name is read from aria-label; the letters inside are what the "decrypting" plays with. */}
                 <a
                   class={s.link}
                   href={project.link}
@@ -99,7 +98,6 @@ const hasMore = data.items.length > INITIAL_COUNT;
       const more = this.querySelector<HTMLElement>('[data-more]');
       const wrap = this.querySelector<HTMLElement>('[data-more-wrap]');
 
-      // The name "decrypting" is a separate chunk, loaded when the list is about to be seen.
       new IntersectionObserver(
         ([entry], observer) => {
           if (!entry.isIntersecting) return;
@@ -116,7 +114,6 @@ const hasMore = data.items.length > INITIAL_COUNT;
           card.style.setProperty('--i', String(index % 2));
         });
         if (wrap) wrap.hidden = true;
-        // The button disappears, so keyboard users continue from the first new card.
         extra[0]?.querySelector<HTMLElement>('a')?.focus();
       });
     }

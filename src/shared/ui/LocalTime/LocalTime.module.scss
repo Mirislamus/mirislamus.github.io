@@ -6,8 +6,6 @@
   justify-content: center;
   font-size: 14px;
   color: var(--text-muted);
-
-  // Separators are drawn between the visible parts only.
   > :not([hidden]) + :not([hidden])::before {
     margin-right: var(--gap-12);
     content: '·';

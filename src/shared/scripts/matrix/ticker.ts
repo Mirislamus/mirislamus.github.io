@@ -1,5 +1,3 @@
-// The one requestAnimationFrame loop shared by every Matrix effect. It runs only while somebody is
-// subscribed and the tab is visible, caps the frame rate, and never hands out a huge dt after a pause.
 export type TickCallback = (dt: number, now: number) => void;
 
 export interface TickerEnv {
@@ -15,7 +13,7 @@ export interface Ticker {
   readonly running: boolean;
 }
 
-export const MAX_DT = 0.05; // seconds
+export const MAX_DT = 0.05;
 
 export const createTicker = (env: TickerEnv, initialMaxFps = 60): Ticker => {
   const callbacks = new Set<TickCallback>();
@@ -29,7 +27,6 @@ export const createTicker = (env: TickerEnv, initialMaxFps = 60): Ticker => {
     frame = env.raf(loop);
 
     const elapsed = now - last;
-    // A small tolerance, so a 60 Hz screen is not throttled to 30 by timestamp jitter.
     if (last !== 0 && elapsed < minInterval - 2) return;
 
     const dt = last === 0 ? 0 : Math.min(MAX_DT, elapsed / 1000);

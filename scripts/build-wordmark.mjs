@@ -1,21 +1,13 @@
-// Turns words into a grid of "density levels" for the glyph wordmarks (the footer name and the 404). Run by hand
-// when a word or its size changes: `bun run build:wordmark`. The result is committed (src/data/matrix/wordmark.json),
-// nothing here runs at build time or in the browser.
-//
-// Each word is drawn with Inter (the site font) in Chromium, cut to its ink box and averaged into cells that are as
-// tall as a monospace glyph (0.6 em wide, 1 em high). A cell becomes a digit 0..4 by how much of it is covered.
 import { chromium } from '@playwright/test';
-/* global FontFace, document */
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const OUT = fileURLToPath(new URL('../src/data/matrix/wordmark.json', import.meta.url));
 const FONT = fileURLToPath(new URL('../public/fonts/inter/inter-latin.woff2', import.meta.url));
 
-const GLYPH_ASPECT = 0.6; // monospace glyph width / height
-const THRESHOLDS = [0.12, 0.35, 0.6, 0.82]; // coverage that starts level 1, 2, 3, 4
+const GLYPH_ASPECT = 0.6;
+const THRESHOLDS = [0.12, 0.35, 0.6, 0.82];
 
-// `cols` is the width of the grid in glyphs; rows follow from the shape of the word.
 const TARGETS = {
   mirislamus: {
     desktop: { lines: ['MIRISLAMUS'], cols: 180 },
@@ -52,12 +44,12 @@ try {
 
         canvas.width = Math.ceil(widest + FONT_PX * 0.4);
         canvas.height = Math.ceil(cap + lineStep * (lines.length - 1) + FONT_PX * 0.4);
-        ctx.font = `700 ${FONT_PX}px InterWordmark`; // resizing resets the context
+        ctx.font = `700 ${FONT_PX}px InterWordmark`;
         ctx.textBaseline = 'alphabetic';
         ctx.fillStyle = '#000';
         ctx.strokeStyle = '#000';
         ctx.lineJoin = 'round';
-        ctx.lineWidth = FONT_PX * 0.035; // Inter stops at 700, a stroke makes the letters a bit heavier
+        ctx.lineWidth = FONT_PX * 0.035;
 
         lines.forEach((line, i) => {
           const x = (canvas.width - ctx.measureText(line).width) / 2;
@@ -66,7 +58,6 @@ try {
           ctx.strokeText(line, x, y);
         });
 
-        // The ink box.
         const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
         let minX = canvas.width;
         let maxX = 0;

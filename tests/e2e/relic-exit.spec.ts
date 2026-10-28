@@ -3,7 +3,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { audioLog, installFakeAudio } from './support/audio';
 
-// The scene takes about six seconds and some tests move a stepped clock, so these tests are slow under load.
 test.setTimeout(90_000);
 
 const html = (page: Page) => page.locator('html');
@@ -12,7 +11,6 @@ const eject = (page: Page) => page.locator('[data-relic-eject]');
 const sound = (page: Page) => page.locator('[data-relic-sound]');
 const chip = (page: Page) => page.locator('button[data-relic]');
 
-// The scene runs about 6 seconds; the tests wait for the takeover to begin.
 const takeOver = async (page: Page, path = '/') => {
   await page.goto(path);
   await page.locator('#contacts').scrollIntoViewIfNeeded();
@@ -70,7 +68,6 @@ test.describe('when motion is allowed', () => {
     await expect(plate(page)).toBeHidden();
     await expect(page.locator('[data-logo]').getByText('NETRUNNER')).toBeHidden();
     await expect(page.locator('[data-logo] svg:not([data-logo-ghost])')).toBeVisible();
-    // The texts are exactly as before: nothing of the replacement is left in the page.
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov Frontend Engineer');
     await expect(page.locator('[data-swap-real], [data-swap-fake]')).toHaveCount(0);
     expect(

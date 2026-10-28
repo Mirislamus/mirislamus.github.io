@@ -47,7 +47,6 @@ const {
       <div class={s.bottom}>
         <span class={s.copyright}>
           &copy; {new Date().getFullYear()} mirislamus.github.io
-          {/* The way into the easter egg: quiet, but it is there. */}
           <button type="button" class={s.rabbit} data-rabbit aria-label={easter.rabbit}>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
               <ellipse class={s.ear} cx="9.2" cy="5.2" rx="1.7" ry="4.4" transform="rotate(-12 9.2 5.2)" />
@@ -57,7 +56,6 @@ const {
               <circle cx="19" cy="19.4" r="1.5" />
             </svg>
           </button>
-          {/* The second way in, and a different one: the Relic chip opens the netrunner. */}
           <button type="button" class={s.chip} data-relic aria-label={relic.chip}>
             <svg
               viewBox="0 0 24 24"
@@ -115,13 +113,10 @@ const {
 <Relic texts={relic} />
 
 <script>
-  // The scene is a separate chunk, loaded only when the rabbit is clicked.
   document.querySelector('[data-rabbit]')?.addEventListener('click', () => {
     void import('@/shared/scripts/matrix/pills').then(({ openPills }) => openPills());
   });
 
-  // The Relic chip (J-01) is a chunk of its own as well. It glitches once the first time the footer is seen; hover and
-  // focus play the same glitch from CSS.
   const chip = document.querySelector<HTMLElement>('button[data-relic]');
 
   if (chip) {
@@ -139,7 +134,6 @@ const {
     ).observe(chip);
   }
 
-  // The buttons that lean towards the cursor (A-11) are a small chunk, loaded when the footer is about to be seen.
   const magnetic = document.querySelector<HTMLElement>('[data-magnetic]');
 
   if (magnetic) {

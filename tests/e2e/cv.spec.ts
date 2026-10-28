@@ -30,7 +30,6 @@ test.describe('CV pages and PDF files', () => {
       expect(size).toBeLessThanOrEqual(300 * 1024);
       expect(bytes.startsWith('%PDF-')).toBe(true);
       expect(bytes).toMatch(/\/FontName\s*\/[A-Z]{6}\+Inter/);
-      // A text mapping means the words can be selected and searched, not just drawn.
       expect(bytes).toContain('/ToUnicode');
     });
   }

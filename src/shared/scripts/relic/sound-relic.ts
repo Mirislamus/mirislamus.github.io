@@ -20,37 +20,22 @@ import {
   type RelicMood,
 } from './relic-score';
 
-// The sound of the takeover (J-05, remade as cyberpunk synthwave in J-08): our own music, synthesized with Web Audio,
-// nothing is downloaded.
-//   - a rolling bass in sixteenth notes (saw waves through a low-pass filter and a soft distortion, a sine sub under it);
-//   - a kick on every beat that ducks the synths (the pump), a snare with a long reverb, open and closed hats;
-//   - a running arpeggio through a dotted echo, its filter opening bar by bar;
-//   - a supersaw pad on the chords Cm–Ab–Eb–Bb, and in the second half of the loop a supersaw lead;
-//   - now and then a short high blip, like a terminal answering.
-// Like the sound of the pills it lives only while the takeover does: the context is made by the click on the chip (a
-// gesture, so the browser lets it play), the only code that runs meanwhile is one timer every 25 ms that puts the next
-// notes on the audio clock a little ahead, and the context is closed when the sound stops.
-const LOOKAHEAD = 0.12; // seconds of notes put on the clock in advance
-const TICK = 25; // ms between two looks at the clock
-const MASTER = 0.25; // the ceiling of the volume
-const FADE_IN = 1.5; // seconds
-const DUCK = 0.25; // how far the synths go down on a kick, and the time they take to come back
+const LOOKAHEAD = 0.12;
+const TICK = 25;
+const MASTER = 0.25;
+const FADE_IN = 1.5;
+const DUCK = 0.25;
 const DUCK_BACK = 0.2;
 
 const defaultEnv: SoundEnv = { createContext: () => new AudioContext() };
 
 export interface RelicSound extends Sound {
-  /** A rise of noise and pitch over `seconds`, up to the moment of the hit. */
   riser: (seconds: number) => void;
-  /** The blow that starts the takeover: a deep boom and a crash. */
   hit: () => void;
-  /** A short digital crunch for a glitch of the page. */
   crunch: () => void;
-  /** The music collapses downwards in pitch and fades out over `seconds`; the context closes afterwards. */
   collapse: (seconds: number) => void;
 }
 
-// A soft clipping curve: the more `amount`, the more the sound bites.
 const distortionCurve = (amount: number) => {
   const samples = 1024;
   const curve = new Float32Array(samples);
@@ -58,7 +43,6 @@ const distortionCurve = (amount: number) => {
   return curve;
 };
 
-// A synthetic room: noise that dies away.
 const impulse = (ctx: BaseAudioContext, seconds: number) => {
   const length = Math.floor(ctx.sampleRate * seconds);
   const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
@@ -73,12 +57,12 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
   let ctx: AudioContext | null = null;
   let master: GainNode | null = null;
   let bus: GainNode | null = null;
-  let synths: GainNode | null = null; // the pad, the arpeggio and the lead: they duck on a kick
+  let synths: GainNode | null = null;
   let bassFilter: BiquadFilterNode | null = null;
   let arpFilter: BiquadFilterNode | null = null;
   let padFilter: BiquadFilterNode | null = null;
   let leadFilter: BiquadFilterNode | null = null;
-  let reverb: GainNode | null = null; // where the snare and the lead send their sound to the room
+  let reverb: GainNode | null = null;
   let noiseBuffer: AudioBuffer | null = null;
   let timer: ReturnType<typeof setTimeout> | undefined;
   let closing: ReturnType<typeof setTimeout> | undefined;
@@ -95,7 +79,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
 
   const level = () => MASTER * mood.volume;
 
-  // One short sound: a tone that decays.
   const tone = (
     type: OscillatorType,
     from: number,
@@ -119,7 +102,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     osc.stop(time + length + 0.05);
   };
 
-  // A burst of noise through a filter.
   const burst = (
     type: BiquadFilterType,
     frequency: number,
@@ -145,7 +127,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     source.stop(time + length + 0.05);
   };
 
-  // A fat sound: three saws, a little out of tune with each other.
   const supersaw = (
     frequency: number,
     time: number,
@@ -170,7 +151,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     }
   };
 
-  // ── the notes ──
   const bass = (time: number, step: number) => {
     if (!ctx || !bassFilter || !bus) return;
     const frequency = bassFrequency(step);
@@ -185,7 +165,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     osc.connect(gain).connect(bassFilter);
     osc.start(time);
     osc.stop(time + STEP);
-    // The sub: a sine an octave below, which carries the weight on small speakers too.
     tone('sine', frequency / 2, frequency / 2, time, STEP * 0.95, 0.35, bus);
   };
 
@@ -220,14 +199,12 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
       const time = nextStep;
       const step = stepIndex;
       if (step % 16 === 0) {
-        // The filters follow the bars: the bass opens on every second one, the arpeggio opens over the loop.
         bassFilter?.frequency.setTargetAtTime(bassCutoff(step) * mood.brightness, time, 0.25);
         arpFilter?.frequency.setTargetAtTime(arpCutoff(step) * mood.brightness, time, 0.4);
       }
       bass(time, step);
       if (kickAt(step)) tone('sine', 120, 42, time, 0.32, 1, bus);
       if (duckAt(step)) {
-        // The pump: the synths go down with the kick and swell back before the next one.
         synths.gain.setValueAtTime(DUCK, time);
         synths.gain.linearRampToValueAtTime(1, time + DUCK_BACK);
       }
@@ -251,7 +228,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     timer = setTimeout(schedule, TICK);
   };
 
-  // ── the graph ──
   const build = (context: AudioContext) => {
     master = context.createGain();
     master.gain.value = 0;
@@ -263,7 +239,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     bus = context.createGain();
     bus.connect(master);
 
-    // The room: a reverb with a little of its own sound level.
     const room = context.createConvolver();
     room.buffer = impulse(context, 2.4);
     reverb = context.createGain();
@@ -277,7 +252,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     const data = noiseBuffer.getChannelData(0);
     for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
 
-    // The bass: a filter that opens, then the distortion.
     bassFilter = context.createBiquadFilter();
     bassFilter.type = 'lowpass';
     bassFilter.frequency.value = bassCutoff(0) * mood.brightness;
@@ -288,7 +262,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     bassGain.gain.value = 0.32;
     bassFilter.connect(shaper).connect(bassGain).connect(bus);
 
-    // The synths all go through one gain that the kick pushes down.
     synths = context.createGain();
     synths.connect(bus);
 
@@ -299,7 +272,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     padGain.gain.value = 0.06;
     padFilter.connect(padGain).connect(synths);
 
-    // The arpeggio and the lead share a dotted echo.
     const delay = context.createDelay(1);
     delay.delayTime.value = (60 / 128) * 0.75;
     const feedback = context.createGain();
@@ -342,7 +314,6 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
 
   return {
     start(light) {
-      // Started again while the last fade is still going: the old context goes at once.
       if (ctx && closing) release();
       if (ctx) return;
       mood = relicMoodFor(light);
@@ -359,7 +330,7 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
 
     stop(seconds) {
       if (!ctx || !master) return;
-      clearTimeout(timer); // no new notes
+      clearTimeout(timer);
       const now = ctx.currentTime;
       master.gain.cancelScheduledValues(now);
       master.gain.setValueAtTime(master.gain.value, now);

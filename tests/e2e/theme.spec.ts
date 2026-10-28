@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 const background = (page: Page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
-// The header behavior is a custom element: clicks before it is defined would do nothing.
 const headerReady = (page: Page) => page.waitForFunction(() => customElements.get('site-header') !== undefined);
 
 const LIGHT = 'rgb(255, 255, 255)';
@@ -51,7 +50,6 @@ test.describe('without JavaScript', () => {
     const light = await iconColor();
 
     expect(dark).not.toBe(light);
-    // Light icons on a dark page, dark icons on a light one.
     const brightness = (value: string) =>
       value
         .match(/[0-9]+/g)!

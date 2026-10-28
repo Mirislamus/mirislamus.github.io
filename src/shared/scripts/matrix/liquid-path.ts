@@ -1,5 +1,3 @@
-// The outline of the liquid avatar: a closed curve through N points around a center, drawn as a
-// Catmull-Rom spline converted to cubic Béziers ("M" + N × "C" + "Z"), like the old SMIL shapes.
 export const LIQUID_POINTS = 14;
 
 export const blobPath = (offsets: readonly number[], radius: number, cx: number, cy: number): string => {

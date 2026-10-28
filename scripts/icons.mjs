@@ -1,5 +1,3 @@
-// Makes the raster icons from public/favicon-dark.svg. Run once (`bun run build:icons`) and commit the result.
-// The dark variant is used everywhere: it stays readable on light and dark backgrounds alike.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -12,14 +10,12 @@ await writeFile(out('apple-touch-icon.png'), await png(180));
 await writeFile(out('icon-192.png'), await png(192));
 await writeFile(out('icon-512.png'), await png(512));
 
-// Maskable icons are cropped by the OS to a circle or squircle: the logo goes into the central safe zone.
 const logo = await sharp(source, { density: 384 }).resize(320, 320).png().toBuffer();
 await sharp({ create: { width: 512, height: 512, channels: 4, background: '#202020' } })
   .composite([{ input: logo, gravity: 'center' }])
   .png({ compressionLevel: 9 })
   .toFile(fileURLToPath(out('icon-maskable-512.png')));
 
-// favicon.ico: PNG images packed into an ICO container (supported since Windows Vista and by all browsers).
 const sizes = [16, 32, 48];
 const images = await Promise.all(sizes.map(png));
 const header = Buffer.alloc(6);

@@ -1,14 +1,5 @@
 import { getMotion } from '../matrix/motion';
 
-// The secure channel of the takeover (J-10): the fixer gives the netrunner a gig, "check out this frontend dev", and as the
-// visitor scrolls the site the netrunner reports what is found in each section and the fixer answers.
-//   - the talk opens with the gig; each section that comes into view (40 %) has its turn once per takeover; the contacts
-//     wait until the reviews have had theirs, so the talk does not end before it starts;
-//   - messages come one after another, each after "… is typing" for a moment (longer for a longer message);
-//   - under some messages there is a quick reply: the visitor sends it, someone answers and the page scrolls to the section;
-//   - the panel folds into its header with a counter of unread messages; on a phone it starts folded;
-//   - the log is a polite live region, so a screen reader hears each message once, whole.
-// The talk is in data-chat on the panel (relic.json → chat), a message is cloned from the template in Relic.astro.
 const SECTIONS = ['about', 'approach', 'projects', 'skills', 'career', 'reviews', 'contacts'] as const;
 type Section = (typeof SECTIONS)[number];
 type Person = 'fixer' | 'runner';
@@ -37,10 +28,10 @@ interface Talk {
 }
 
 const VISIBLE = 0.4;
-const TYPING_MS: [number, number] = [600, 1600]; // "… is typing": the shortest and the longest
-const TYPING_PER_CHAR = 18; // ms for each character of the message
-const PAUSE_MS = 350; // between two messages
-const STILL_TYPING_MS = 400; // with reduced motion there is no wait to watch, only a short pause
+const TYPING_MS: [number, number] = [600, 1600];
+const TYPING_PER_CHAR = 18;
+const PAUSE_MS = 350;
+const STILL_TYPING_MS = 400;
 const PHONE = '(max-width: 767px)';
 
 let panel: HTMLElement | undefined;
@@ -89,7 +80,6 @@ const scrollToEnd = () => {
   log.scrollTop = log.scrollHeight;
 };
 
-// One message in the log; a quick reply goes under it when there is one.
 const append = (from: Person | 'you', text: string, reply?: Reply) => {
   if (!panel || !talk) return;
   const template = part<HTMLTemplateElement>('[data-relic-chat-message]');
@@ -143,12 +133,10 @@ const say = (beat: 'start' | Section) => {
   spoken.add(beat);
   const { lines, reply } = talk.beats[beat];
   lines.forEach((line, index) => queue.push({ line, reply: index === lines.length - 1 ? reply : undefined }));
-  // The contacts waited for the reviews; if they are on the screen already, their turn comes now.
   if (beat === 'reviews' && visible.has('contacts')) say('contacts');
   next();
 };
 
-// The visitor sends a quick reply: it is in the log at once, the buttons go, someone answers, the page goes to the section.
 function answer(reply: Reply, replies: HTMLElement) {
   replies.remove();
   append('you', reply.label);
@@ -196,7 +184,6 @@ export const startChat = () => {
           continue;
         }
         visible.add(target.id);
-        // The contacts close the talk: not before the reviews have been talked about.
         if (target.id === 'contacts' && !spoken.has('reviews')) continue;
         say(target.id);
       }

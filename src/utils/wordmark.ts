@@ -1,8 +1,5 @@
 import { createRng } from '@/shared/scripts/matrix/glyphs';
 
-// The text version of a wordmark, used before and without JavaScript. ASCII only on purpose: it must line up
-// in any monospace font, while the canvas version (shared/scripts/matrix/wordmark-fx.ts) uses katakana too.
-// The pools do not overlap, so the level of a cell can be read back from its character.
 export const ASCII_POOLS = [' ', '.:', '+*-=', '#$%&', '@7490'] as const;
 
 export const levelOfChar = (char: string): number => {

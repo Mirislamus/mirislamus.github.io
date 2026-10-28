@@ -1,4 +1,3 @@
-// Server-side only: imported from .astro frontmatter, never from client scripts.
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 

@@ -17,7 +17,6 @@ const avatarSrc = await getAvatarSrc();
 const coreSkills = skills.groups.find(group => group.id === 'core')?.items.map(skill => skill.name) ?? [];
 const rainWords = JSON.stringify(buildRainWords(status.open, coreSkills));
 
-// Words are wrapped for the intro; the heading text stays exactly the same string.
 const escape = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const titleHtml = data.title
   .split(' ')
@@ -39,7 +38,6 @@ const titleHtml = data.title
           {status.text.badge}
         </p>
       )}
-      {/* The role sits inside the heading: the page's main heading is "name + role". */}
       <h1>
         <Fragment set:html={titleHtml} />{' '}
         <span class:list={[s.role, 'text-xl', 'medium', 'accent']} data-swap={relic.swaps.role}>
@@ -63,7 +61,6 @@ const titleHtml = data.title
 </section>
 
 <script>
-  // The rain lives in its own chunk, loaded once the page has settled so it never competes with the first paint.
   const section = document.querySelector<HTMLElement>('#about');
 
   if (section) {
@@ -71,7 +68,6 @@ const titleHtml = data.title
     const whenIdle = () =>
       'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 200);
 
-    // During the intro the rain is part of the choreography, so it is loaded right away.
     if (document.documentElement.hasAttribute('data-intro')) load();
     else if (document.readyState === 'complete') whenIdle();
     else window.addEventListener('load', whenIdle, { once: true });

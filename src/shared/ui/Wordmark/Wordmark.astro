@@ -6,7 +6,6 @@ import s from './Wordmark.module.scss';
 
 interface Props {
   name: WordmarkName;
-  /** Load the effects at once instead of when the wordmark is close to the screen (the 404 page). */
   eager?: boolean;
 }
 
@@ -18,7 +17,6 @@ const variants = [
 ];
 ---
 
-<!-- Decorative: the same word is in the heading or the page text, so the whole thing is hidden from assistive tech. -->
 <glyph-wordmark class={s.wordmark} data-eager={eager ? '' : undefined} aria-hidden="true">
   <div class={s.art}>
     {variants.map(variant => <pre
@@ -32,7 +30,6 @@ const variants = [
 </glyph-wordmark>
 
 <script>
-  // The effects are a separate chunk, loaded when the wordmark is about to be seen.
   class GlyphWordmark extends HTMLElement {
     connectedCallback() {
       const load = () =>

@@ -40,7 +40,6 @@ test.describe('when motion is allowed', () => {
     const box = (await page.locator('[data-avatar]').boundingBox())!;
     const y = box.y + box.height / 2;
     await page.mouse.move(box.x + box.width + 15, y, { steps: 6 });
-    // At rest the right edge is at 250 (viewBox units); breathing moves it by about ±9.
     await expect.poll(async () => (await extent(page)).maxX).toBeGreaterThan(285);
 
     await page.mouse.move(8, 880, { steps: 6 });
@@ -51,7 +50,6 @@ test.describe('when motion is allowed', () => {
     await page.goto('/#about');
     await expect(page.locator('canvas[data-rain]')).toHaveAttribute('data-state', 'running');
     const box = (await page.locator('[data-avatar]').boundingBox())!;
-    // The cursor right below the avatar pulls the bottom edge as far as it will go.
     await page.mouse.move(box.x + box.width / 2, box.y + box.height + 20, { steps: 6 });
     await page.waitForTimeout(900);
     const lowest = await page.locator('[data-avatar-shape]').evaluate(path => {
@@ -90,7 +88,6 @@ test.describe('with a touch screen', () => {
     await expect.poll(async () => (await outline(page)) !== SHAPE_A).toBe(true);
 
     const box = (await page.locator('[data-avatar]').boundingBox())!;
-    // The path starts at the rightmost point: 250 in viewBox units, ±13 from breathing. A tap pushes it in by ~35.
     const rightmost = page.evaluate(
       () =>
         new Promise<number>(resolve => {

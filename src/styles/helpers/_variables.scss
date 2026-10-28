@@ -37,10 +37,9 @@
 @layer base {
   :root {
     --font: 'Inter', sans-serif;
-    // Motion tokens. All animation timing in components comes from here (enforced by stylelint).
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1); // entrances, reveals
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); // moving between positions
-    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); // tiny accents only: icons, switches
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --dur-fast: 150ms;
     --dur-base: 250ms;
@@ -48,12 +47,12 @@
     --dur-intro: 800ms;
     --dur-ripple: 600ms;
     --dur-glitch: 450ms;
-    --dur-line: 700ms; // a line drawn between the steps of a card
+    --dur-line: 700ms;
     --stagger-slow: 140ms;
-    --dur-logo-glitch: 300ms; // the glitch of the logo on hover
-    --dur-run: 3200ms; // one round of the light along the border of a hovered card
+    --dur-logo-glitch: 300ms;
+    --dur-run: 3200ms;
     --stagger: 60ms;
-    --intro-step: 100ms; // unit of the Hero intro choreography
+    --intro-step: 100ms;
 
     --transition: var(--dur-base) ease-in;
     --transition-ease: var(--dur-base) ease;
@@ -82,7 +81,6 @@
     --orange-alpha: rgb(255 134 96 / 35%);
     --blue: #157ce1;
     --purple: #ad5aff;
-    // The pills of the easter egg (Morpheus): the same two colours paint the avatar blob and the hands.
     --pill-blue: #3e7bfa;
     --pill-red: #e5484d;
 
@@ -118,8 +116,6 @@
 
     @include light-tokens;
   }
-
-  // An explicit choice wins; without JS (no attribute) the system preference decides.
   :root[data-theme='dark'] {
     @include dark-tokens;
   }
@@ -129,9 +125,6 @@
       @include dark-tokens;
     }
   }
-
-  // The takeover of the netrunner (J-03): the accent turns neon red, with a cyan beside it. It wins over both themes;
-  // the light one has a darker red, so text on a white page keeps its contrast (AA, 5.3:1).
   :root[data-relic] {
     --accent: #ff2e63;
     --accent-text: #ff2e63;
@@ -146,9 +139,6 @@
     --relic-cyan: #00a8a0;
   }
 }
-
-// One switch for reduced motion: every token duration becomes 0, so transitions and animations end
-// at once and elements are simply in their final state.
 @layer base {
   @media (prefers-reduced-motion: reduce) {
     :root {

@@ -51,8 +51,6 @@
     transform: translate(100%, 0%);
   }
 }
-
-// The endless glow is decorative: reduced motion gets a still border instead.
 @media (prefers-reduced-motion: reduce) {
   .gradientBottom,
   .gradientTop {

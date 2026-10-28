@@ -6,7 +6,6 @@ on:
   pull_request:
   workflow_dispatch:
   schedule:
-    # Rebuild monthly so build-time values (years of experience, copyright year) stay current.
     - cron: '0 3 1 * *'
 
 permissions:
@@ -32,11 +31,9 @@ jobs:
           bun-version: ${{ steps.bun.outputs.version }}
 
       - run: bun install --frozen-lockfile
-      # Prettier, ESLint, Stylelint and types in one go.
       - run: bun run check
       - run: bun run knip
       - run: bun run test
-      # Chromium makes the CV PDFs and the share pictures at the end of the build, so it comes first.
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium
       - run: bun run build
@@ -45,7 +42,6 @@ jobs:
 
       - run: bun run test:e2e
 
-      # SEO must stay at 100; the other categories are only printed.
       - run: bun run check:lighthouse
 
       - name: Upload e2e report

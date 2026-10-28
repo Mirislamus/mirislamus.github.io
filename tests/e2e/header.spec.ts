@@ -44,7 +44,6 @@ test.describe('language list', () => {
     await page.evaluate(() => document.getElementById('projects')?.scrollIntoView());
     await expect(page.locator('[data-link][aria-current="true"]')).toHaveAttribute('href', '#projects');
 
-    // dispatchEvent: Playwright's own click would scroll the sticky header's button into view first.
     await page.locator('[data-langs-button]').dispatchEvent('click');
     const hrefs = await page
       .locator('[data-lang-link]')
@@ -104,7 +103,6 @@ test.describe('mobile menu', () => {
     expect(await page.evaluate(() => document.body.style.overflow)).toBe('hidden');
     await expect(nav.getByRole('link').first()).toBeFocused();
 
-    // Focus never leaves the menu.
     for (let index = 0; index < 14; index += 1) {
       await page.keyboard.press('Tab');
       const inside = await page.evaluate(() => {
@@ -131,7 +129,6 @@ test.describe('mobile menu', () => {
     await expect(page.locator('#main-navigation')).toBeHidden();
 
     await button.click();
-    // The drawer covers the right part of the screen; the blurred page is what is left of it.
     await page.mouse.click(15, 700);
     await expect(page.locator('#main-navigation')).toBeHidden();
   });

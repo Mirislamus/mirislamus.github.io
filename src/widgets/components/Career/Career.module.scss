@@ -1,8 +1,5 @@
 .career {
   overflow: hidden;
-
-  // The side that still has cards behind it fades out (the arrow that is still active says which one).
-  // On a phone the fade is short, so it does not eat the text of the card at the edge.
   --fade-size: 96px;
   --fade-start: 0px;
   --fade-end: 0px;
@@ -32,7 +29,6 @@
     display: flex;
     flex-direction: column;
   }
-  // Above the timeline pill, which is a positioned pseudo-element.
   .circle {
     position: relative;
     z-index: var(--z-base);
@@ -42,8 +38,6 @@
     border: 4px solid var(--accent);
     border-radius: 50%;
   }
-
-  // One ring that spreads from the dot when the line reaches it (the reveal plays it; it is invisible otherwise).
   .ping {
     position: absolute;
     inset: -4px;
@@ -52,8 +46,6 @@
     opacity: 0;
     pointer-events: none;
   }
-
-  // The current place: the line goes on into the future, dashed, and dissolves.
   article[data-current] .circle::after {
     position: absolute;
     top: calc(50% - 1px);
@@ -98,7 +90,6 @@
       transform-origin: top;
     }
   }
-  // The name rises from behind its own mask when the section appears.
   h3 {
     margin-bottom: calc(var(--gap-10) - 4px);
     padding-bottom: 4px;
@@ -127,11 +118,6 @@
     }
   }
 }
-
-// The cards bleed to the edge of the screen and the section clips them: instead of a hard cut through the text
-// they fade out. Only the row of cards is masked, so the title and the arrows above it are never covered.
-// The wrapper is as wide as the screen and keeps the viewport where it was; the vertical padding is room for
-// the focus ring of the viewport, which the mask would otherwise cut.
 .bleed {
   margin: -8px calc(50% - 50vw);
   padding: 8px calc(50vw - 50%);
@@ -143,16 +129,12 @@
     transparent 100%
   );
 }
-
-// Cards bleed to the page edge; the section itself clips them.
 :global(embla-carousel-root[data-ready]) .viewport {
   overflow: visible;
 }
 
 .track {
   position: relative;
-
-  // The timeline pill behind the cards.
   &::before {
     position: absolute;
     top: 94px;
@@ -169,9 +151,6 @@
       top: 88px;
     }
   }
-
-  // The line of the path travelled: accent, through the middle of the pill, from the first dot to the last.
-  // (The card widths are fixed above: 260 + 283 + 283 + 373 = 1199, the dots are 18 px wide.)
   &::after {
     position: absolute;
     top: 103px;
@@ -200,8 +179,6 @@
   gap: var(--gap-4);
   margin-top: var(--gap-8);
 }
-
-// Everything fits on the screen: nothing to scroll, so no arrows.
 .controls {
   :global(embla-carousel-root[data-static]) & {
     display: none;

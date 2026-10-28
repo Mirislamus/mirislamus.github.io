@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 const career = (page: Page) => page.locator('#career');
 
-// Brings the section to 300 px below the fold, waits until the reveal is set up, then scrolls it into view.
 const scrollTowards = async (page: Page) => {
   await page.goto('/');
   const top = await page.evaluate(() => document.querySelector('#career')!.getBoundingClientRect().top + scrollY);
@@ -20,7 +19,6 @@ test.describe('when motion is allowed', () => {
     await expect(career(page)).toHaveAttribute('data-career-reveal', 'playing');
     await expect(career(page)).not.toHaveAttribute('data-career-reveal', /.*/, { timeout: 8000 });
 
-    // The final look is the natural one: everything visible, the dots in the accent color.
     await expect(page.locator('[data-career-name]').first()).toBeVisible();
     const state = await page.evaluate(() => ({
       text: getComputedStyle(document.querySelector('[data-career-text]')!).opacity,
@@ -31,7 +29,6 @@ test.describe('when motion is allowed', () => {
     expect(state.dot).not.toBe('rgba(0, 0, 0, 0)');
     expect(['none', 'matrix(1, 0, 0, 1, 0, 0)']).toContain(state.line);
 
-    // Back and forth: it does not play again.
     await page.evaluate(y => scrollTo(0, y - 2000), top);
     await page.evaluate(y => scrollTo(0, y - 100), top);
     await expect(career(page)).not.toHaveAttribute('data-career-reveal', /.*/);

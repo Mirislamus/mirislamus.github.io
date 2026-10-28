@@ -38,7 +38,7 @@ test.describe('when motion is allowed', () => {
   test('glyphs flash under the cursor and settle again', async ({ page }) => {
     await toFooter(page);
     await expect.poll(() => painted(page)).toBe(true);
-    await page.waitForTimeout(2000); // the assembly takes about 1.4 s
+    await page.waitForTimeout(2000);
 
     expect(await opaqueAccentPixels(page)).toBe(0);
     const box = (await canvas(page).boundingBox())!;
@@ -65,7 +65,6 @@ test.describe('on a phone', () => {
     await expect(root(page).locator('pre[data-variant="desktop"]')).toHaveCSS('display', 'none');
     await expect.poll(() => painted(page)).toBe(true);
     const box = (await canvas(page).boundingBox())!;
-    // One row of letters: about 7 rows of glyphs, not two lines of words.
     expect(box.height).toBeLessThan(110);
     expect(box.x).toBeGreaterThanOrEqual(0);
     expect(box.x + box.width).toBeLessThanOrEqual(390);

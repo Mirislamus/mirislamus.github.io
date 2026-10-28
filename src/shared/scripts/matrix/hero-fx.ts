@@ -6,9 +6,6 @@ import { getTicker } from './ticker';
 
 const INTRO_BURST_DEADLINE_MS = 600;
 
-// The Hero effects chunk: the digital rain (M-01) and the liquid avatar (M-03). Loaded with import() after the page is interactive,
-// so none of it is in the main bundle. `data-state` on the canvas says what it is doing:
-// running (animating), idle (not on screen or the tab is hidden) or static (one still frame).
 export const initHeroFx = (section: HTMLElement) => {
   const canvas = section.querySelector<HTMLCanvasElement>('canvas[data-rain]');
   const content = section.querySelector<HTMLElement>('[data-hero-content]');
@@ -24,9 +21,7 @@ export const initHeroFx = (section: HTMLElement) => {
 
   try {
     rain.setWords(JSON.parse(canvas.dataset.words ?? '[]') as string[]);
-  } catch {
-    // No words: plain rain.
-  }
+  } catch {}
 
   let visible = true;
   let stop: (() => void) | undefined;
@@ -39,7 +34,6 @@ export const initHeroFx = (section: HTMLElement) => {
   };
 
   const measure = () => {
-    // The Hero starts below the top of the page (the header sits there); the rain reaches the very top edge.
     section.style.setProperty(
       '--rain-bleed',
       `${Math.max(0, Math.round(section.getBoundingClientRect().top + window.scrollY))}px`,
@@ -78,8 +72,6 @@ export const initHeroFx = (section: HTMLElement) => {
 
   measure();
 
-  // The intro downpour only makes sense if the rain is up soon after navigation started; on a slow
-  // connection it would arrive after the choreography and look random, so the rain just fades in then.
   const introPlaying = document.documentElement.hasAttribute('data-intro');
   if (introPlaying && motion.allowed && performance.now() < INTRO_BURST_DEADLINE_MS) {
     rain.burst();
@@ -118,7 +110,6 @@ export const initHeroFx = (section: HTMLElement) => {
     liquid?.aim(null);
   });
 
-  // Touch screens have no cursor: a tap on the avatar makes the drop wobble.
   avatar?.addEventListener('pointerdown', event => {
     if (event.pointerType !== 'mouse' && motion.allowed) liquid?.tap(event.clientX, event.clientY);
   });

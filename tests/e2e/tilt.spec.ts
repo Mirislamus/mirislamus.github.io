@@ -19,8 +19,6 @@ test.describe('with a mouse and motion allowed', () => {
   test('a project card leans towards the cursor by at most 4 degrees', async ({ page }) => {
     const { card, box } = await openProjects(page);
 
-    // Near the top left corner (inside the rounded shape): the card leans up-left.
-    // Keep moving until the page script is ready (under load it can start after the first move).
     await expect
       .poll(async () => {
         await page.mouse.move(box.x + 36, box.y + 36);
@@ -31,8 +29,8 @@ test.describe('with a mouse and motion allowed', () => {
     await page.waitForTimeout(600);
     const tilt = (await angles(card))!;
 
-    expect(tilt.x).toBeGreaterThan(1); // rotateX > 0: the top edge leans back
-    expect(tilt.y).toBeLessThan(-1); // rotateY < 0: the left edge leans back
+    expect(tilt.x).toBeGreaterThan(1);
+    expect(tilt.y).toBeLessThan(-1);
     expect(Math.abs(tilt.x)).toBeLessThanOrEqual(4.01);
     expect(Math.abs(tilt.y)).toBeLessThanOrEqual(4.01);
   });

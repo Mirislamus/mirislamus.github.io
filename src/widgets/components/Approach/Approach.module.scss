@@ -56,7 +56,6 @@
   h3 {
     max-width: 340px;
   }
-  // The stand sits under the text and is cut off by the bottom edge of the card.
   .sandbox {
     position: static;
     align-self: flex-end;
@@ -69,7 +68,6 @@
   grid-row: 3 / 4;
   align-items: center;
   justify-content: center;
-  // The star border's own thickness (StarBorder), not the card padding.
   padding: var(--star-thickness) 0;
   text-align: center;
 }
@@ -150,9 +148,6 @@
     grid-row: auto;
   }
 }
-
-// The "UI" card: a small live stand made of native controls. It sits in the bottom right corner and
-// is cut off by the card like the picture it replaced.
 .sandbox {
   position: absolute;
   right: var(--gap-24);
@@ -199,8 +194,6 @@
   transition: background-color var(--dur-fast) ease;
   cursor: pointer;
   appearance: none;
-
-  // A larger hit area than the visible switch.
   &::before {
     position: absolute;
     inset: -6px;
@@ -278,9 +271,6 @@
     transform-origin: left;
   }
 }
-
-// The conversation of the first card: a messenger window. All the messages are always in the layout, so
-// nothing moves when the scene plays; before it plays they are only hidden by the animation (chat-demo.ts).
 .chat {
   display: flex;
   flex: 1;
@@ -331,8 +321,6 @@
     font-weight: 600;
   }
 }
-
-// "online" and "typing…" lie in one cell; the scene only swaps their opacity.
 .state {
   display: grid;
   font-size: 11px;
@@ -357,9 +345,6 @@
   color: var(--accent-text);
   opacity: 0;
 }
-
-// The window of the messages: the list inside is moved up as new messages arrive, and the old ones fade out
-// at the top.
 .scroll {
   padding: var(--gap-12) var(--gap-12) var(--gap-8);
   overflow: hidden;
@@ -451,8 +436,6 @@
   border-radius: var(--radius-100);
   inset-inline-start: 10px;
 }
-
-// "typing…" sits where the bubble will be and is only ever shown by the animation.
 .typing {
   position: absolute;
   display: inline-flex;
@@ -503,10 +486,6 @@
   background-color: var(--accent);
   border-radius: 50%;
 }
-
-// The "project type" card (A-04): a switcher of three native radio buttons and the panel of the chosen
-// type. It works without JS: the panel is picked with :has(). The panels lie in one grid cell, so the card
-// is as tall as the biggest one and never changes its height.
 .types {
   display: flex;
   flex-direction: column;
@@ -525,9 +504,6 @@
   padding: var(--pill-gap);
   background-color: color-mix(in srgb, var(--text) 8%, transparent);
   border-radius: var(--radius-100);
-
-  // The "magic line": one accent pill under the labels that jumps to the chosen type, springs past it and
-  // settles. While it travels it stretches and flattens a little. CSS only: the pill is placed by :has().
   &::before {
     position: absolute;
     inset-block: var(--pill-gap);
@@ -567,8 +543,6 @@
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
-
-  // Three columns on a 375 px phone are about 90 px each: the icon goes above the name.
   @media (width <= 479px) {
     label {
       flex-direction: column;
@@ -581,9 +555,6 @@
     }
   }
 }
-
-// Where the pill stands; the stretch on the way is played after the first change (data-moved, set by the
-// script), so nothing wiggles when the page loads. Three names, so choosing another type plays it again.
 @each $type, $index in (landing: 0, store: 1, service: 2) {
   .switcher:has(input[value='#{$type}']:checked) {
     --at: #{$index};
@@ -635,8 +606,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-
-  // The line between the first and the last node; it is drawn when the panel is picked.
   &::before {
     position: absolute;
     inset-inline: 11px;
@@ -662,8 +631,6 @@
     text-align: center;
     overflow-wrap: anywhere;
     hyphens: auto;
-
-    // The first and the last step stand at the edges, so the line runs the whole width.
     &:first-child {
       align-items: flex-start;
       text-align: start;
@@ -683,15 +650,11 @@
   border: 3px solid var(--accent);
   border-radius: 50%;
 }
-
-// What the chosen panel shows: chips and nodes rise one after another, the line is drawn.
 .stack li,
 .stages li {
   opacity: 0;
   transform: translateY(10px);
 }
-
-// Chips are as big as buttons.
 .stack .chip {
   height: 44px;
   padding-inline: var(--gap-20);
@@ -702,8 +665,6 @@
 @each $type in landing, store, service {
   .types:has(input[value='#{$type}']:checked) .panel[data-type='#{$type}'] {
     visibility: visible;
-
-    // Slowly: the chips one after another, the line is drawn in a second and a node lights when the line reaches it.
     .stack li {
       opacity: 1;
       transform: none;
@@ -726,9 +687,6 @@
     }
   }
 }
-
-// The "Top secret" card (A-05): a stamp, two classified files with black bars and readiness, and a field for
-// an invite code that always says no.
 .secret {
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
@@ -813,8 +771,6 @@
     outline-offset: 2px;
   }
 }
-
-// The black bar: every block is a cell of the same width, so a glyph put in its place changes nothing.
 .redacted {
   display: flex;
   flex-wrap: wrap;
@@ -833,8 +789,6 @@
   width: 1ch;
   overflow: hidden;
   text-align: center;
-
-  // A solid black bar (no seams between the blocks, whatever the font); a glyph replaces a block while decrypting.
   color: transparent;
   background-color: color-mix(in srgb, var(--text) 90%, transparent);
 
@@ -874,8 +828,6 @@
   background-color: transparent;
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-100);
-
-  // The border lights up (the transparent outline is what high-contrast mode shows).
   &:focus-visible {
     border-color: var(--accent);
     box-shadow: 0 0 0 1px var(--accent);
@@ -890,8 +842,6 @@
   line-height: 1.4;
   color: var(--text-muted);
 }
-
-// A wrong code makes the card glitch for a moment: three jumps and a shifted hue (A-05).
 .item_5[data-glitch] {
   animation: glitch var(--dur-glitch) steps(1, end);
 
@@ -921,8 +871,6 @@
     filter: none;
   }
 }
-
-// A classified file: a big ring with the readiness (it is drawn and counted once) and the black bars next to it.
 .fileBody {
   display: flex;
   flex: 1;
@@ -960,8 +908,6 @@
   overflow: visible;
   fill: none;
 }
-
-// A fine scale around the ring and the glowing arc of the readiness.
 .ringTicks {
   opacity: 0.45;
   stroke: var(--text-muted);
@@ -982,8 +928,6 @@
   stroke-dashoffset: calc((100 - var(--p, 0) * 100) * 1px);
   filter: drop-shadow(0 0 5px var(--accent)) drop-shadow(0 0 12px var(--accent-alpha));
 }
-
-// The bright head at the end of the arc.
 .ringTip {
   transform: rotate(calc(var(--p, 0) * 360deg));
   fill: var(--accent);
@@ -1002,10 +946,6 @@
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
-
-// ── The glass of the Approach cards: a frosted pane that lights up at the border under the cursor, and a
-// light that runs round the border while the card is hovered. The coloured blobs behind give the glass
-// something to blur.
 @property --run-angle {
   syntax: '<angle>';
   inherits: false;
@@ -1022,8 +962,6 @@
     color-mix(in srgb, var(--secondary) 72%, transparent);
   border-color: color-mix(in srgb, var(--text) 12%, transparent);
   backdrop-filter: blur(18px) saturate(1.3);
-
-  // Both lights are drawn only on the 1px border: the whole card is masked out, the border stays.
   &::before,
   &::after {
     position: absolute;
@@ -1040,13 +978,9 @@
       linear-gradient(#000 0 0);
     mask-composite: exclude;
   }
-
-  // The light under the cursor.
   &::before {
     background: radial-gradient(280px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), var(--accent), transparent 70%);
   }
-
-  // The light that runs round the border.
   &::after {
     background: conic-gradient(
       from var(--run-angle),
@@ -1074,8 +1008,6 @@
     --run-angle: 360deg;
   }
 }
-
-// The cards come in one after another: from below, turned a little and blurred, and settle sharp.
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .item[data-reveal] {
@@ -1085,8 +1017,6 @@
     }
   }
 }
-
-// Only a start: the end is what the card is (and what the tilt sets), so the tilt is not overwritten.
 @keyframes approach-in {
   from {
     opacity: 0;
@@ -1094,9 +1024,6 @@
     filter: blur(14px);
   }
 }
-
-// When "I" answer, the text is typed into the field and sent (chat-demo.ts): the typed text is the colour of the text
-// and has a caret; at rest the field shows its placeholder.
 .fieldText {
   min-width: 0;
   overflow: hidden;

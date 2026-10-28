@@ -93,7 +93,6 @@ test.describe('reviews carousel', () => {
     await expect(reviews.locator('[data-embla-dots] button')).toHaveCount(8);
     await expect(reviews.locator('[data-embla-dots] button[aria-current="true"]')).toHaveCount(1);
 
-    // Both arrows stay enabled: it is an endless loop.
     await expect(reviews.locator('[data-embla-prev]')).toBeEnabled();
     await expect(reviews.locator('[data-embla-next]')).toBeEnabled();
   });
@@ -206,7 +205,6 @@ test.describe('career carousel, how far the arrows go', () => {
     const last = (await slides.last().boundingBox())!;
     expect(last.x + last.width).toBeLessThanOrEqual(2400);
 
-    // Back to a narrow window: the arrows are back.
     await page.setViewportSize({ width: 1200, height: 900 });
     await expect(page.locator('#career [data-embla-next]')).toBeVisible();
     await expect(page.locator('#career embla-carousel-root')).not.toHaveAttribute('data-static', /.*/);

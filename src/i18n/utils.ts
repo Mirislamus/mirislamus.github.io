@@ -2,7 +2,6 @@ import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from 'astro:i18n';
 
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, isLocale, type Locale } from './locales';
 
-// Server-side only: imported from .astro frontmatter.
 export const getLocale = (astro: { currentLocale?: string }): Locale =>
   isLocale(astro.currentLocale) ? astro.currentLocale : DEFAULT_LOCALE;
 

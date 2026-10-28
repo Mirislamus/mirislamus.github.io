@@ -1,7 +1,4 @@
 @use 'sass:math';
-
-// A size that grows with the viewport width: the design value at 1440px wide is 12.5% larger than
-// the base value, it never gets smaller than the base value and never larger than 25% above it.
 @function fluid($value) {
   @return clamp(#{$value}px, #{math.div($value * 1.125, 1440) * 100}vw, #{$value * 1.25}px);
 }

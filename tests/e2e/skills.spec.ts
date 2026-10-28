@@ -145,7 +145,6 @@ test.describe('icons', () => {
   });
 
   test('a colour that would be lost on the page is replaced by the accent', async ({ page }) => {
-    // Next.js is black: it is the brand on a light page, but on a dark page the accent takes its place.
     await page.emulateMedia({ colorScheme: 'dark' });
     await page.goto('/');
     const tile = page.locator('#skills a[aria-label="Next.js"]');

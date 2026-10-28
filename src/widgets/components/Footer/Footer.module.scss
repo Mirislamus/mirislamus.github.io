@@ -10,11 +10,7 @@
 
 .footerText {
   display: block;
-
-  // Plays as the footer scrolls into view (it used to run at page load, off screen, so nobody saw it).
   @supports (animation-timeline: view()) {
-    // Longhands on purpose: the CSS minifier would fold `animation` + `animation-timeline` into one shorthand,
-    // which not every browser understands.
     animation-name: footer-text-enter;
     animation-timing-function: linear;
     animation-fill-mode: both;
@@ -54,8 +50,6 @@
   gap: var(--gap-8);
   align-items: center;
 }
-
-// The white rabbit: easy to miss, and a small nod when it is noticed.
 .rabbit {
   display: inline-flex;
   padding: 4px;
@@ -79,9 +73,6 @@
     rotate: 14deg;
   }
 }
-
-// The Relic chip (J-01): quiet like the rabbit, with the same red and cyan glitch as the logo. While the netrunner is in the
-// site (`data-relic` on the root) the chip burns red.
 .chip {
   position: relative;
   display: inline-flex;
@@ -99,8 +90,6 @@
     color: var(--pill-red);
     opacity: 1;
   }
-
-  // The copies take no part in the layout or the clicks.
   .ghost {
     position: absolute;
     inset: 4px;
@@ -235,11 +224,7 @@
     padding-block: 16px;
   }
 }
-
-// The buttons lean towards the cursor (magnetic.ts): at rest there is no transform at all, and when the cursor goes away
-// the button springs back.
 .magnet {
-  // The colours keep their hover transition; only the lean springs.
   transition:
     var(--transition-ease),
     translate var(--dur-base) var(--ease-spring);

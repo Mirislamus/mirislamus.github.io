@@ -5,36 +5,28 @@ import { GLYPHS, createRng } from './glyphs';
 import { handsGap } from './hands-layout';
 import { getMotion } from './motion';
 
-// The glyph hands of the pill scene (A-06). A grid of density levels made by scripts/build-hands.mjs (a hand lit
-// and traced with rays) is drawn with glyphs: the density of the glyph and its opacity show the light, the cells
-// of the capsule are painted blue (right hand) and red (left hand, as in the film, the mirror image).
-//   - when the scene opens the hands assemble out of falling glyphs, like the wordmark in the footer;
-//   - now and then a single glyph flickers;
-//   - the whole scene leans a little after the cursor (a mouse only).
-// The hands take the colour of the text of the page, so on a light page they are dark on white.
-// With reduced motion or pause the hands are a still picture: no assembly, no flicker, no lean.
 const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
 const ALPHA = [0, 0.32, 0.55, 0.78, 1];
-const ALPHA_ON_LIGHT = [0, 0.42, 0.66, 0.86, 1]; // dark glyphs on white need a little more
-const PILL: Record<'blue' | 'red', Rgb> = { blue: [62, 123, 250], red: [229, 72, 77] }; // until the tokens are read
+const ALPHA_ON_LIGHT = [0, 0.42, 0.66, 0.86, 1];
+const PILL: Record<'blue' | 'red', Rgb> = { blue: [62, 123, 250], red: [229, 72, 77] };
 const FONT = 'ui-monospace, Consolas, monospace';
 
-const ASSEMBLE_COLUMN_DELAY = 700; // ms, by column
-const ASSEMBLE_ROW_DELAY = 150; // ms, by row
-const ASSEMBLE_MIN = 500; // ms a glyph needs to land
+const ASSEMBLE_COLUMN_DELAY = 700;
+const ASSEMBLE_ROW_DELAY = 150;
+const ASSEMBLE_MIN = 500;
 const ASSEMBLE_SPREAD = 400;
-const FLIP_MS = 60; // while falling, a glyph changes this often
+const FLIP_MS = 60;
 const FLICKER_EVERY_MS = 110;
 const FLICKER_MS = 140;
-const FLICKERS = 4; // glyphs flickering at a time
+const FLICKERS = 4;
 const TILT_DEG = 6;
 
 type Side = 'blue' | 'red';
 interface Cell {
-  x: number; // column in the whole scene
+  x: number;
   y: number;
   level: number;
-  side: Side | null; // the capsule
+  side: Side | null;
   glyph: string;
 }
 interface Grid {
@@ -43,13 +35,11 @@ interface Grid {
   levels: string[];
 }
 
-// A stable pseudo-random number in [0, 1) for a cell.
 const hash = (x: number, y: number, salt: number) => {
   const value = Math.sin(x * 12.9898 + y * 78.233 + salt * 37.719) * 43758.5453;
   return value - Math.floor(value);
 };
 
-// The pill glyphs are lighter than the capsule on a dark page and darker on a light one.
 const toward = (rgb: readonly number[], target: number, amount: number) =>
   rgb.map(value => Math.round(value + (target - value) * amount));
 
@@ -63,14 +53,14 @@ export const createHands = (root: HTMLElement) => {
   const base = document.createElement('canvas');
   const baseCtx = base.getContext('2d');
   if (!baseCtx) throw new Error('2D canvas is not available');
-  let ink: Rgb = [255, 255, 255]; // the colour of the hands: the text colour of the page, so they follow the theme
-  let light = false; // a light page
+  let ink: Rgb = [255, 255, 255];
+  let light = false;
   let cells: Cell[] = [];
   let rows = 0;
   let cols = 0;
   let cellW = 0;
   let cellH = 0;
-  let assembleStart = -1; // ms; -1 when it is not playing
+  let assembleStart = -1;
   let flickers: { cell: Cell; glyph: string; until: number }[] = [];
   let lastFlicker = 0;
   const tilt = { x: 0, y: 0, targetX: 0, targetY: 0 };
@@ -121,7 +111,6 @@ export const createHands = (root: HTMLElement) => {
   };
 
   const present = () => {
-    // Pixel for pixel: the canvas has the scale of the screen set for drawing glyphs, the picture must not get it too.
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -216,14 +205,12 @@ export const createHands = (root: HTMLElement) => {
   };
 
   return {
-    // The scene opens: the hands assemble, or just stand there when nothing may move.
     open() {
       if (!layout()) return;
       flickers = [];
       if (motion.allowed) assembleStart = performance.now();
       else present();
     },
-    // The theme was switched while the scene is open: the same hands in the colours of the new theme.
     retheme() {
       if (cells.length === 0) return;
       readTheme();
@@ -241,7 +228,6 @@ export const createHands = (root: HTMLElement) => {
       else flicker(now);
       applyTilt(dt);
     },
-    // A mouse leans the scene; the touch and the keyboard do not.
     pointer(event: PointerEvent) {
       if (event.pointerType !== 'mouse') return;
       tilt.targetY = (event.clientX / window.innerWidth - 0.5) * 2 * TILT_DEG;

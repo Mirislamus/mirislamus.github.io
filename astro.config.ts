@@ -8,7 +8,6 @@ import { buildMedia, ogName, pdfName, printPdf, screenshotOg } from './scripts/r
 import { DEFAULT_LOCALE, LOCALES } from './src/i18n/locales';
 import { getLastModified } from './src/seo/last-modified';
 
-// The downloadable CV and the share pictures: made after every build, and on request by the dev server.
 const media = (): AstroIntegration => {
   let browser: Browser | undefined;
 
@@ -64,11 +63,9 @@ const config = {
   integrations: [
     media(),
     sitemap({
-      // The CV and OG pages only exist to be turned into a PDF and a picture.
       filter: page => !page.includes('/cv/') && !page.includes('/og/'),
       lastmod: lastModified,
       serialize: item => {
-        // x-default points every language version to the default one.
         const links = item.links ?? [];
         const fallback = links.find(link => link.lang === DEFAULT_LOCALE);
         if (fallback) item.links = [...links, { url: fallback.url, lang: 'x-default' }];

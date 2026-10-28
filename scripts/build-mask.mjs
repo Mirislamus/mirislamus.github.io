@@ -1,17 +1,3 @@
-// Draws the netrunner of the takeover (J-07, redrawn in J-09) into a grid of "density levels" for glyphs. Run by hand when
-// the drawing changes: `bun run build:mask`. The result is committed (src/data/matrix/mask.json); nothing here runs at
-// build time or in the browser. `bun run build:mask -- --preview` also prints the grid as text.
-//
-// The drawing is ours, a netrunner as a type, not any character: a head in a close-fitting cowl of the suit with its
-// seams, a glowing visor across the eyes that wraps round the head, a respirator with vents and two filters over the
-// lower face, jacks on the temples, cables running down from the head, and a collar on the shoulders. It is rasterised
-// with sharp and every cell takes the share of it that is covered.
-//
-// Three layers, one character per cell:
-//   0       empty
-//   1 … 4   the suit and the respirator (pale), the density of the glyph grows with the number
-//   6 … 9   the visor and the lights of the jacks (cyan)
-//   a … d   the cables (red)
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
@@ -19,12 +5,10 @@ import sharp from 'sharp';
 const OUT = fileURLToPath(new URL('../src/data/matrix/mask.json', import.meta.url));
 const PREVIEW = process.argv.includes('--preview');
 
-// Every grid has the same picture; a cell is taller than wide (a glyph is about 0.6 × 1), so the picture is drawn
-// stretched, and it is un-stretched when it is shown.
 const GRIDS = { desktop: { cols: 66, rows: 52 }, mobile: { cols: 44, rows: 34 } };
-const SAMPLES = 4; // the raster has this many pixels per cell on a side
-const VIEW = { width: 200, height: 260 }; // the whole figure, with a margin
-const LINE = 1.7; // the lines are drawn thicker than they look: a thin line is only a few dots in a grid of glyphs
+const SAMPLES = 4;
+const VIEW = { width: 200, height: 260 };
+const LINE = 1.7;
 
 const svg = body =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${VIEW.width} ${VIEW.height}" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
@@ -35,17 +19,14 @@ const path = (d, { w = 3, fill = 'none' } = {}) =>
 const circle = (x, y, r, fill = 1) =>
   `<circle cx="${x}" cy="${y}" r="${r}" fill="#000" fill-opacity="${fill}" stroke="none"/>`;
 
-// A shape and its mirror image across the middle of the figure (x = 100).
 const MIDDLE = 100;
 const mirrored = (d, options) =>
   path(d, options) + `<g transform="translate(${MIDDLE * 2} 0) scale(-1 1)">${path(d, options)}</g>`;
 const mirroredCircle = (x, y, r, fill) => circle(x, y, r, fill) + circle(MIDDLE * 2 - x, y, r, fill);
 
-// ── the cowl of the suit: a plane of its own, dimmer than the respirator ──
 const COWL = 'M100 18C142 18 164 50 164 96C164 140 152 170 134 188H66C48 170 36 140 36 96C36 50 58 18 100 18Z';
 const suit = svg(path(COWL, { fill: 1, w: 0 }));
 
-// ── the bright parts: the edge of the cowl, its seams, the respirator, the filters, the collar ──
 const RESPIRATOR = 'M68 124C80 117 120 117 132 124L138 150C130 170 70 170 62 150Z';
 const bright = svg(
   [
@@ -61,7 +42,6 @@ const bright = svg(
   ].join(''),
 );
 
-// ── what is carved out of the bright parts: the vents of the respirator and the rings of the filters ──
 const carve = svg(
   [
     path('M84 134H116M80 143H120M84 152H116', { w: 2.2 }),
@@ -70,18 +50,15 @@ const carve = svg(
   ].join(''),
 );
 
-// ── the visor (cyan): a band across the eyes that wraps round the head, brighter where the eyes are ──
 const visor = svg(
   [
     path('M38 84C60 72 140 72 162 84L160 112C140 103 60 103 40 112Z', { fill: 0.5, w: 2 }),
     mirrored('M54 92C62 86 80 86 88 92C80 98 62 98 54 92Z', { fill: 1, w: 1 }),
-    // the lights of the jacks on the temples and on the collar
     mirroredCircle(36, 120, 4.5),
     mirroredCircle(86, 222, 3.5),
   ].join(''),
 );
 
-// ── the cables (red): from the back of the head down past the shoulders ──
 const cables = svg(
   [
     mirrored('M42 128C30 156 22 194 28 256', { w: 3 }),
@@ -91,7 +68,6 @@ const cables = svg(
   ].join(''),
 );
 
-// ── from drawing to cells ──
 const coverage = async (image, { cols, rows }) => {
   const width = cols * SAMPLES;
   const height = rows * SAMPLES;
@@ -109,7 +85,7 @@ const coverage = async (image, { cols, rows }) => {
 
 const level = share => (share < 0.05 ? 0 : share < 0.16 ? 1 : share < 0.34 ? 2 : share < 0.6 ? 3 : 4);
 
-const SUIT = 0.3; // the cowl is a dim plane of sparse glyphs, so the bright parts stand out on it
+const SUIT = 0.3;
 
 const render = async grid => {
   const [suitCover, brightCover, carveCover, visorCover, cableCover] = await Promise.all(

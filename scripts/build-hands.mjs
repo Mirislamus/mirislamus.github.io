@@ -1,20 +1,9 @@
-// Renders the two hands of the pill scene (A-06) into a grid of "density levels" for glyphs. Run by hand when the
-// shape or the light changes: `bun run build:hands`. The result is committed (src/data/matrix/hands.json), nothing
-// here runs at build time or in the browser. `bun run build:hands -- --preview` also prints the grid as text.
-//
-// No models and no libraries: the hand is described with signed distance fields (a palm, rounded fingers that are
-// bent a little towards the viewer, a thumb, a wrist) and traced with rays, one set per cell. The light is a key light
-// from above and the side, a weaker fill light, soft shadows and a darkening in the folds. The result is the
-// brightness of every cell; a cell on the capsule is told apart so the browser can paint it blue or red.
-//
-// Only one hand is stored: the other one is its mirror image.
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const OUT = fileURLToPath(new URL('../src/data/matrix/hands.json', import.meta.url));
 const PREVIEW = process.argv.includes('--preview');
 
-// ── vectors ────────────────────────────────────────────────────────────────────────────────────────────────────
 const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
 const mul = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
@@ -27,7 +16,6 @@ const rotX = (p, a) => [p[0], p[1] * Math.cos(a) - p[2] * Math.sin(a), p[1] * Ma
 const rotY = (p, a) => [p[0] * Math.cos(a) + p[2] * Math.sin(a), p[1], -p[0] * Math.sin(a) + p[2] * Math.cos(a)];
 const rotZ = (p, a) => [p[0] * Math.cos(a) - p[1] * Math.sin(a), p[0] * Math.sin(a) + p[1] * Math.cos(a), p[2]];
 
-// ── distance fields ────────────────────────────────────────────────────────────────────────────────────────────
 const smin = (a, b, k) => {
   const h = Math.max(k - Math.abs(a - b), 0) / k;
   return Math.min(a, b) - h * h * k * 0.25;
@@ -38,7 +26,6 @@ const roundBox = (p, c, half, r) => {
   return len([Math.max(q[0], 0), Math.max(q[1], 0), Math.max(q[2], 0)]) + Math.min(Math.max(q[0], q[1], q[2]), 0) - r;
 };
 
-// A capsule whose radius changes from r1 at a to r2 at b.
 const cone = (p, a, b, r1, r2) => {
   const pa = sub(p, a);
   const ba = sub(b, a);
@@ -46,14 +33,11 @@ const cone = (p, a, b, r1, r2) => {
   return len(sub(pa, mul(ba, h))) - (r1 + (r2 - r1) * h);
 };
 
-// ── the hand (units are about a centimetre; x to the right, y up, z to the viewer; the thumb is on the +x side) ──
-// Fingers: base x, length, fan (degrees away from the middle), and how much each joint bends towards the viewer.
 const FINGERS = [
-  // x and y: where the finger starts (the knuckles lie on an arc, the middle finger is the highest)
-  { x: -3.1, y: 2.7, length: 6.8, fan: 13, bend: [16, 30, 24] }, // little finger
-  { x: -1.05, y: 3.5, length: 8.5, fan: 5, bend: [14, 28, 22] }, // ring
-  { x: 1.0, y: 3.8, length: 9.3, fan: -1, bend: [12, 26, 20] }, // middle
-  { x: 3.0, y: 3.6, length: 8.4, fan: -9, bend: [10, 24, 18] }, // index, next to the thumb
+  { x: -3.1, y: 2.7, length: 6.8, fan: 13, bend: [16, 30, 24] },
+  { x: -1.05, y: 3.5, length: 8.5, fan: 5, bend: [14, 28, 22] },
+  { x: 1.0, y: 3.8, length: 9.3, fan: -1, bend: [12, 26, 20] },
+  { x: 3.0, y: 3.6, length: 8.4, fan: -9, bend: [10, 24, 18] },
 ];
 const SEGMENT_SHARE = [0.44, 0.31, 0.25];
 
@@ -77,27 +61,21 @@ const chain = (base, length, fan, bends, r1, r2) => {
 const fingers = FINGERS.flatMap(finger =>
   chain([finger.x, finger.y, 0], finger.length, finger.fan, finger.bend, 0.76, 0.54),
 );
-// The thumb: three bones, starting low on the palm, with the muscle at its base (the thenar) in handDistance.
 const thumb = [
   { from: [2.9, -4.2, 0.5], to: [5.2, -2.3, 1.0], r1: 1.1, r2: 0.95 },
   { from: [5.2, -2.3, 1.0], to: [6.9, -0.9, 1.6], r1: 0.95, r2: 0.84 },
   { from: [6.9, -0.9, 1.6], to: [7.9, 0.3, 2.0], r1: 0.84, r2: 0.7 },
 ];
 
-// The world is the hand turned a little: the palm looks a bit towards the middle of the scene and the top leans back.
-// Palms up, held out to the viewer, like Morpheus in the film: the hand is turned so that the fingers point at the viewer
-// and the palm looks up, and the camera is above and in front, so the palm is seen at a slant. Each hand also turns
-// a little towards the middle of the scene.
-const CAMERA = rad(-52); // how far above the hands the camera is
+const CAMERA = rad(-52);
 const YAW = rad(0);
-const ROLL = rad(17); // the hand is turned in the picture plane: the fingers point down and to the middle
+const ROLL = rad(17);
 const toLocal = p => rotY(rotX(rotY(rotX(rotZ(p, ROLL), CAMERA), YAW), -rad(90)), -rad(180));
 const pillAxis = norm(toLocal([1, 0, 0]));
 const pillCentre = [0, -0.6, 1.9];
 const pill = { from: sub(pillCentre, mul(pillAxis, 1.25)), to: add(pillCentre, mul(pillAxis, 1.25)), r: 0.72 };
 
 const handDistance = q => {
-  // The palm is narrower at the wrist than at the knuckles.
   const taper = 0.8 + 0.2 * Math.min(1, Math.max(0, (q[1] + 5) / 9));
   const palm = roundBox([q[0] / taper, q[1], q[2]], [0, -1.0, 0], [3.05, 4.0, 0.35], 0.8) * taper;
   const thenar = cone(q, [2.4, -1.2, 0.6], [2.0, -4.4, 0.5], 1.3, 1.1);
@@ -153,12 +131,10 @@ const occlusion = (p, n) => {
   return Math.max(0, Math.min(1, 1 - 1.6 * sum));
 };
 
-// ── light ──────────────────────────────────────────────────────────────────────────────────────────────────────
 const KEY = norm([0.8, 0.55, 0.5]);
 const FILL = norm([-0.7, -0.2, 0.6]);
 const VIEW = [0, 0, 1];
 
-// Brightness 0..1 of the surface point, and whether it is on the capsule.
 const shade = hit => {
   const { p, material } = hit;
   const n = normalAt(p);
@@ -186,9 +162,7 @@ const trace = (x, y) => {
   return null;
 };
 
-// ── the grid ───────────────────────────────────────────────────────────────────────────────────────────────────
-const GLYPH_ASPECT = 0.6; // a monospace glyph is this much wider than ... tall
-// The part of the world shown, the same for every size: the box around the hand with a margin.
+const GLYPH_ASPECT = 0.6;
 const WINDOW = { x: [-8, 8], y: [8, -8] };
 const fitWindow = () => {
   let minX = Infinity;
@@ -223,7 +197,6 @@ const render = cols => {
   const cellHeight = cellWidth / GLYPH_ASPECT;
   const rows = Math.round((WINDOW.y[0] - WINDOW.y[1]) / cellHeight);
 
-  // Pass 1: the brightness of every cell, and what it is made of.
   const cells = [];
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -245,7 +218,6 @@ const render = cols => {
         }
       }
 
-      // The wrist dissolves along the arm.
       const fade = hits ? Math.min(1, Math.max(0, (up / hits + 9) / 3.5)) : 0;
       if (hits / (SAMPLES * SAMPLES) < 0.4 || fade <= 0) {
         cells.push(null);
@@ -256,7 +228,6 @@ const render = cols => {
     }
   }
 
-  // Pass 2: levels 1..4 by quantiles of the hand, so the whole range of glyph densities shows the form.
   const handValues = cells
     .filter(cell => cell && !cell.capsule)
     .map(cell => cell.brightness)
@@ -286,8 +257,6 @@ const render = cols => {
         continue;
       }
       let level = cell.brightness < cuts[0] ? 1 : cell.brightness < cuts[1] ? 2 : cell.brightness < cuts[2] ? 3 : 4;
-      // The outline: a cell next to an empty one is never faint, so the silhouette (and the gaps between the
-      // fingers) can always be read, even on the dark side.
       const empty = (dx, dy) => {
         const x = col + dx;
         const y = row + dy;
@@ -300,7 +269,6 @@ const render = cols => {
     lines.push(line);
   }
 
-  // The middle of the capsule, in cells, for the button that lies over it.
   const centre = capsuleCells
     .reduce((sum, [c, r]) => [sum[0] + c + 0.5, sum[1] + r + 0.5], [0, 0])
     .map(value => value / capsuleCells.length);

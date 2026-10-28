@@ -38,7 +38,6 @@ test.describe('the music of the scene', () => {
     await expect(dialog(page)).not.toHaveAttribute('open', '', { timeout: 3000 });
     await expect.poll(async () => (await audioLog(page)).closed, { timeout: 4000 }).toBe(1);
 
-    // It can be opened again and plays again.
     await page.locator('[data-rabbit]').click();
     await expect.poll(async () => (await audioLog(page)).contexts, { timeout: 5000 }).toBe(2);
   });
@@ -146,7 +145,6 @@ test.describe('the effects of the scene', () => {
   test('the blue pill plays a falling chord and the music goes quiet', async ({ page }) => {
     await openAndWait(page);
     await page.getByRole('button', { name: 'Blue pill' }).click();
-    // E4, B3 and G3.
     await expect
       .poll(async () => {
         const list = await tones(page);
@@ -162,7 +160,6 @@ test.describe('the effects of the scene', () => {
     await expect
       .poll(async () => (await tones(page)).some(tone => tone.type === 'sawtooth' && tone.freq === 80))
       .toBe(true);
-    // The glitches are put on the audio clock ahead: they are made at once and start at 3.1 s.
     await expect.poll(async () => (await tones(page)).filter(tone => tone.type === 'square').length).toBe(3);
   });
 });

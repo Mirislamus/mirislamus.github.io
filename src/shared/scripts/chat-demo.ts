@@ -1,20 +1,12 @@
 import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
-// The conversation in the first Approach card (A-03) plays once per load, when the card is half on screen.
-// When the client writes, the header says "typing…" and three dots jump in the place of the bubble. When "I"
-// answer, the text is typed into the input field letter by letter and sent. Then the list scrolls up, the bubble pops
-// out of its corner with a spring and its words come one after another. Ticks of my messages turn into "read", and
-// a reaction splashes under one of them.
-//
-// Everything is Web Animations. Without this chunk (no JS, reduced motion, a deep link, pause) all the
-// messages are simply there: the natural styles are the final state, and the place is reserved from the start.
-const TYPING = 1200; // ms of "typing…" before a message of the client
-const PER_CHAR = 55; // ms per typed letter in my answers
-const BEFORE_TYPING = 300; // ms before I start typing
-const BEFORE_SEND = 350; // ms the typed text is looked at before it is sent
-const AFTER = 1200; // ms after a message is shown, before the next one starts
-const SCROLL = 550; // ms the list takes to move up for a new message
-const WORD = 80; // ms between the words of a message
+const TYPING = 1200;
+const PER_CHAR = 55;
+const BEFORE_TYPING = 300;
+const BEFORE_SEND = 350;
+const AFTER = 1200;
+const SCROLL = 550;
+const WORD = 80;
 
 const token = (name: string, fallback: string) =>
   getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
@@ -34,11 +26,10 @@ export const initChatDemo = (root: HTMLElement) => {
   const animate = (element: Element | null, keyframes: Keyframe[], options: KeyframeAnimationOptions) => {
     if (!element) return;
     const animation = element.animate(keyframes, { fill: 'both', easing: 'linear', ...options });
-    animation.pause(); // shows the hidden first frame now, plays when the card is seen
+    animation.pause();
     animations.push(animation);
   };
 
-  // How far the list must be pushed down so that the messages from `index` on are below the window.
   const gap = parseFloat(getComputedStyle(list).rowGap) || 0;
   const heights = messages.map(
     message => message.offsetHeight + (parseFloat(getComputedStyle(message).marginBottom) || 0) + gap,
@@ -51,7 +42,6 @@ export const initChatDemo = (root: HTMLElement) => {
   const send = root.querySelector<HTMLElement>('[data-chat-send]');
   const placeholder = field?.textContent?.trim() ?? '';
 
-  // When every message starts and is shown: the client "types" for a moment, I type my answer into the field.
   let clock = 0;
   const slots = messages.map(message => {
     const typed = message.dataset.typed ?? null;
@@ -64,12 +54,9 @@ export const initChatDemo = (root: HTMLElement) => {
   messages.forEach((message, i) => {
     const { start, shown, typed } = slots[i];
 
-    // The list moves up so that the place of this message is in the window, and the first frame is "pushed down".
-    // My answer is sent from the field, so the list moves just before it appears.
     animate(
       list,
       [{ transform: `translateY(${hiddenFrom(i)}px)` }, { transform: `translateY(${hiddenFrom(i + 1)}px)` }],
-      // Only the first step holds its first frame: a later step's "before" would win over the earlier ones.
       {
         duration: SCROLL,
         delay: typed === null ? start : shown - SCROLL * 0.4,
@@ -79,7 +66,6 @@ export const initChatDemo = (root: HTMLElement) => {
     );
 
     if (typed === null) {
-      // "typing…" in the header and the dots in the place of the bubble.
       const typing = [{ opacity: 0 }, { opacity: 1, offset: 0.12 }, { opacity: 1, offset: 0.88 }, { opacity: 0 }];
       animate(writing, typing, { duration: TYPING, delay: start });
       animate(online, [{ opacity: 1 }, { opacity: 0, offset: 0.12 }, { opacity: 0, offset: 0.88 }, { opacity: 1 }], {
@@ -102,7 +88,6 @@ export const initChatDemo = (root: HTMLElement) => {
       );
     }
 
-    // The bubble grows out of its corner with a spring.
     animate(
       message,
       [
@@ -112,7 +97,6 @@ export const initChatDemo = (root: HTMLElement) => {
       { duration: pop, delay: shown, easing: spring },
     );
 
-    // Its words come one after another.
     message.querySelectorAll('[data-chat-word]').forEach((word, k) =>
       animate(
         word,
@@ -124,7 +108,6 @@ export const initChatDemo = (root: HTMLElement) => {
       ),
     );
 
-    // The second tick appears and the message is "read".
     animate(
       message.querySelector('[data-chat-read]'),
       [
@@ -134,7 +117,6 @@ export const initChatDemo = (root: HTMLElement) => {
       { duration: 400, delay: shown + 1400, easing: spring },
     );
 
-    // A reaction splashes.
     animate(
       message.querySelector('[data-chat-reaction]'),
       [
@@ -148,8 +130,6 @@ export const initChatDemo = (root: HTMLElement) => {
 
   root.setAttribute('data-chat', 'pending');
 
-  // My answers are typed into the field with timers (a text cannot be animated): started with the scene and
-  // cancelled with it.
   const timers: number[] = [];
   const restoreField = () => {
     if (!field) return;
@@ -171,7 +151,6 @@ export const initChatDemo = (root: HTMLElement) => {
           window.setTimeout(() => (field.textContent = typed.slice(0, k)), start + BEFORE_TYPING + (k - 1) * PER_CHAR),
         );
       }
-      // The send button presses, the field empties and the bubble appears.
       timers.push(
         window.setTimeout(() => {
           send?.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.78)' }, { transform: 'scale(1)' }], {
@@ -188,7 +167,7 @@ export const initChatDemo = (root: HTMLElement) => {
     for (const timer of timers) clearTimeout(timer);
     timers.length = 0;
     restoreField();
-    for (const animation of animations) animation.cancel(); // the natural styles are the final state
+    for (const animation of animations) animation.cancel();
     animations.length = 0;
     root.removeAttribute('data-chat');
     observer.disconnect();

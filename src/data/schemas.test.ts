@@ -77,8 +77,8 @@ describe('data schemas', () => {
     const row = { id: 'ks', code: 'PROJECT KS', mask: [6, 7], progress: 70 };
     const parse = (secret: unknown) => approachBaseSchema.safeParse({ types, secret }).success;
     expect(parse([row])).toBe(true);
-    expect(parse([{ ...row, code: 'Real Name' }])).toBe(false); // a code name is capital letters only
-    expect(parse([{ ...row, description: 'text' }])).toBe(false); // no room for a description
+    expect(parse([{ ...row, code: 'Real Name' }])).toBe(false);
+    expect(parse([{ ...row, description: 'text' }])).toBe(false);
     expect(parse([{ ...row, progress: 101 }])).toBe(false);
     expect(parse([])).toBe(false);
   });

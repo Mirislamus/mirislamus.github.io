@@ -1,12 +1,10 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
-// Some tests move a stepped clock through minutes of the takeover, which takes a while under load.
 test.setTimeout(90_000);
 
 const html = (page: Page) => page.locator('html');
 
-// Opens the scene and waits until it has closed by itself: the takeover has begun.
 const takeOver = async (page: Page, path = '/') => {
   await page.goto(path);
   await page.locator('#contacts').scrollIntoViewIfNeeded();
@@ -45,7 +43,6 @@ test.describe('when motion is allowed', () => {
     await page.evaluate(() => scrollTo(0, 0));
     const heading = page.getByRole('heading', { level: 1 });
     await expect(heading).toContainText('Netrunner');
-    // The accessible name still has the real role, and the replaced text is hidden from assistive technology.
     await expect(heading).toHaveAccessibleName(/Frontend Engineer/);
     await expect(heading).not.toHaveAccessibleName(/Netrunner/);
     await expect(page.getByRole('link', { name: 'Discuss a project' })).toBeVisible();
@@ -65,9 +62,9 @@ test.describe('when motion is allowed', () => {
     await page.clock.runFor(7000);
     await expect(html(page)).toHaveAttribute('data-relic', '');
     const base = await page.evaluate(() => (window as unknown as { glitches: number }).glitches);
-    expect(base).toBe(1); // the one that covers the change
+    expect(base).toBe(1);
     await page.clock.runFor(9000);
-    expect(await page.evaluate(() => (window as unknown as { glitches: number }).glitches)).toBe(base); // not before 10 s
+    expect(await page.evaluate(() => (window as unknown as { glitches: number }).glitches)).toBe(base);
     await page.clock.runFor(60_000);
     const count = (await page.evaluate(() => (window as unknown as { glitches: number }).glitches)) - base;
     expect(count).toBeGreaterThanOrEqual(4);

@@ -1,9 +1,3 @@
-// Server-side only: imported from .astro frontmatter. Islands receive the resolved data as props
-// and import only the `SiteData` type from here, so nothing of this module (or zod) reaches the client.
-//
-// Files keyed by locale (`en`, `ru`, `uz`) hold localized text; `*.base.json` files hold everything
-// that does not depend on the locale (ids, links, colors, technology stacks, author names).
-// Everything is validated when it is first read, so a bad file fails `astro build` with a clear message.
 import type { z } from 'astro/zod';
 
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
@@ -75,7 +69,6 @@ const parseList = <S extends z.ZodType>(file: string, schema: S, value: unknown)
   return value.map((item, index) => parse(`${file}[${index}]`, schema, item));
 };
 
-// A file keyed by locale: every supported locale must be present and no other keys are allowed.
 const parseLocalized = <S extends z.ZodType>(file: string, schema: S, value: unknown): Record<Locale, z.infer<S>> => {
   const raw = (value ?? {}) as Record<string, unknown>;
   const keys = Object.keys(raw).sort();
@@ -111,7 +104,6 @@ const load = () => {
     if (skill.tech && !technologyNames.has(skill.tech))
       fail(`skills.base.json: skill "${skill.id}" names an unknown technology "${skill.tech}"`);
   }
-  // A group is a block of the same size on the page: change this number on purpose, together with the data.
   for (const group of SKILL_GROUPS) {
     const count = skills.filter(skill => skill.group === group).length;
     if (count !== SKILLS_PER_GROUP)
@@ -136,7 +128,6 @@ const load = () => {
   const careerText = parseLocalized('career.json', careerSchema, careerJson);
   const reviewsText = parseLocalized('reviews.json', reviewsSchema, reviewsJson);
 
-  // The order of a list comes from the base file; every locale must list the same ids in the same order.
   for (const locale of LOCALES) {
     sameIds(
       'projects.json',
@@ -161,7 +152,6 @@ const load = () => {
     );
   }
 
-  // Every locale describes the same languages.
   const languageCodes = (locale: Locale) => cv[locale].languages.items.map(item => item.code).join();
   for (const locale of LOCALES) {
     if (languageCodes(locale) !== languageCodes(DEFAULT_LOCALE)) {
@@ -184,7 +174,6 @@ const load = () => {
       },
       flexibility: {
         ...approach[locale].flexibility,
-        // The order comes from the base file; the texts of a type are found by its id.
         types: approachBase.types.map(type => ({
           id: type.id,
           stack: type.stack,
@@ -207,7 +196,6 @@ const load = () => {
     skills: {
       title: skillsText[locale].title,
       usage: skillsText[locale].usage,
-      // Groups keep the fixed order of SKILL_GROUPS; skills keep the order of the file inside a group.
       groups: SKILL_GROUPS.map(group => ({
         id: group,
         title: skillsText[locale].groups[group],
@@ -230,7 +218,6 @@ const load = () => {
       items: careerBase.map((item, index) => ({
         ...item,
         stack: stackNames(`career item "${item.id}"`, item.stack),
-        // The past places show their first year only; the current one shows "2024 — Present".
         year: item.end === null ? `${item.start} — ${careerText[locale].present}` : String(item.start),
         description: careerText[locale].items[index].description,
       })),

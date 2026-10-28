@@ -1,4 +1,3 @@
-// A printable A4 page. It is always light and does not use the site's tokens: paper does not have themes.
 .cv {
   max-width: 180mm;
   margin-inline: auto;
@@ -74,7 +73,6 @@
 
 .item {
   margin-top: 8pt;
-  // A job or a project is never split between two pages.
   break-inside: avoid;
 }
 

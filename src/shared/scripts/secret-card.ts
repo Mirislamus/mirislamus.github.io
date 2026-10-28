@@ -1,20 +1,11 @@
 import { GLYPHS } from './matrix/glyphs';
 import { cssDuration, getMotion, onMotionChange } from './matrix/motion';
 
-// The "Top secret" card (A-05). The names and descriptions of the two projects are not on the page at all:
-// the black bars are only `█`, and the lengths come from the data. This chunk adds the play:
-//  - the readiness rings are drawn and counted once when the card is half on screen;
-//  - a bar "decrypts" under the cursor or focus: the blocks turn into random glyphs left to right and grow
-//    over again. The glyphs never make up any text. Without a cursor (a touch screen) the bars take turns on
-//    their own, on an interval, while the card is on screen;
-//  - a code in the invite field is always refused, nothing is sent or stored anywhere.
-//
-// Without this chunk (no JS, reduced motion, pause) the bars are in their final state and nothing moves.
 const COVER = '█';
-const DECODE = 900; // ms for the blocks to turn into glyphs
-const COVER_UP = 300; // ms for them to grow over again
-const FLICKER = 60; // ms between two sets of glyphs
-const TURN = 3000; // ms between two bars decrypting by themselves on a touch screen
+const DECODE = 900;
+const COVER_UP = 300;
+const FLICKER = 60;
+const TURN = 3000;
 
 const randomGlyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
 
@@ -22,9 +13,8 @@ export const initSecretCard = (root: HTMLElement) => {
   const motion = getMotion();
   const card = root.closest<HTMLElement>('article') ?? root;
   const running = new WeakSet<HTMLElement>();
-  root.setAttribute('data-secret', 'ready'); // the listeners below are in place
+  root.setAttribute('data-secret', 'ready');
 
-  // The readiness rings, once: each ring is drawn round, its bright head runs ahead of it and the number counts up.
   const rings = [...root.querySelectorAll<SVGElement>('[data-ring]')];
   if (rings.length > 0 && motion.allowed && window.location.hash !== '#approach') {
     const duration = cssDuration('--dur-intro', 800) * 1.6;
@@ -42,7 +32,7 @@ export const initSecretCard = (root: HTMLElement) => {
         easing,
         fill: 'both',
       });
-      draw.pause(); // the first frame (an empty ring) now, the drawing when the card is seen
+      draw.pause();
       animations.push(draw);
       if (tip) {
         const run = tip.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${value * 360}deg)` }], {
@@ -62,7 +52,7 @@ export const initSecretCard = (root: HTMLElement) => {
     let frame = 0;
     const settle = () => {
       cancelAnimationFrame(frame);
-      for (const animation of animations) animation.cancel(); // the natural style is the final state
+      for (const animation of animations) animation.cancel();
       for (const { element, value } of counters) element.textContent = `${value}%`;
       observer.disconnect();
       stopMotion();
@@ -89,7 +79,6 @@ export const initSecretCard = (root: HTMLElement) => {
     observer.observe(card);
   }
 
-  // "Decrypting" a black bar.
   const decrypt = (file: HTMLElement) => {
     const chars = [...file.querySelectorAll<HTMLElement>('[data-ch]')];
     if (!motion.allowed || chars.length === 0 || running.has(file)) return;
@@ -132,7 +121,6 @@ export const initSecretCard = (root: HTMLElement) => {
     frame = requestAnimationFrame(tick);
   };
 
-  // A touch screen has no cursor to hover with, so while the card is on screen the bars take turns on their own.
   if (window.matchMedia('(hover: none)').matches) {
     const bars = [...root.querySelectorAll<HTMLElement>('[data-file]')];
     let next = 0;
@@ -150,13 +138,12 @@ export const initSecretCard = (root: HTMLElement) => {
         stop();
         if (!entry.isIntersecting || bars.length === 0) return;
         timer = window.setInterval(turn, TURN);
-        window.setTimeout(turn, TURN / 3); // the first one soon after the card appears
+        window.setTimeout(turn, TURN / 3);
       },
       { threshold: 0.5 },
     ).observe(card);
   }
 
-  // Only a mouse and the keyboard, not a touch. One listener for both bars.
   const fileOf = (target: EventTarget | null) => (target as HTMLElement | null)?.closest<HTMLElement>('[data-file]');
   root.addEventListener('pointerover', event => {
     const file = fileOf(event.target);
@@ -173,7 +160,6 @@ export const initSecretCard = (root: HTMLElement) => {
     }
   });
 
-  // The invite field: every code is refused, an empty one asks for a code.
   const form = root.querySelector<HTMLFormElement>('[data-invite]');
   const input = form?.querySelector<HTMLInputElement>('input');
   const status = form?.querySelector<HTMLElement>('[data-invite-status]');
@@ -190,7 +176,6 @@ export const initSecretCard = (root: HTMLElement) => {
       glitchTimer = window.setTimeout(() => card.removeAttribute('data-glitch'), cssDuration('--dur-glitch', 450));
     }
 
-    // Emptied first so the same message is announced again.
     status.textContent = '';
     window.setTimeout(() => (status.textContent = message ?? ''), 50);
   });

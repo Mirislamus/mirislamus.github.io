@@ -35,8 +35,6 @@ const slideLabel = (index: number) =>
         </div>
       </div>
       <div class={s.bleed}>
-        {/* A scrollable region must be reachable by keyboard until Embla takes over (it removes tabindex). */}
-        {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
         <div class={s.viewport} data-embla-viewport tabindex="0" role="group" aria-labelledby="career-title">
           <div class={s.track} data-embla-container>
             {data.items.map((item, index) => (
@@ -84,7 +82,6 @@ const slideLabel = (index: number) =>
 </section>
 
 <script>
-  // The reveal is a separate chunk, loaded when the section is about to be seen.
   const section = document.querySelector<HTMLElement>('[data-career]');
 
   if (section) {

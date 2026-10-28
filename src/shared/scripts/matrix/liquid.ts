@@ -1,30 +1,23 @@
 import { LIQUID_POINTS, blobPath } from './liquid-path';
 
-// The liquid avatar (M-03): the outline is a ring of springs. At rest it slowly "breathes"; the edge
-// nearest to the cursor stretches towards it like a drop and springs back with a wobble when the
-// cursor leaves; a tap on touch screens dents the edge. The photo also drifts a few pixels with the cursor.
-const CENTER = 130; // viewBox is 260 × 260
+const CENTER = 130;
 const RADIUS = 120;
 const STIFFNESS = 180;
 const DAMPING = 9;
-const REACH_PX = 120; // the cursor starts to pull when it is closer than this to the edge
-const PULL = 0.5; // × RADIUS at the edge
-const DENT = 0.06; // × RADIUS with the cursor inside
-const TAP_IMPULSE = 5; // × RADIUS per second
+const REACH_PX = 120;
+const PULL = 0.5;
+const DENT = 0.06;
+const TAP_IMPULSE = 5;
 const PHOTO_SHIFT_PX = 6;
-// The photo ends at y = 295 (and drifts by a few px): the outline must never go lower than this, or the cut
-// bottom edge of the photo would show. Below the center the edge may only move as far as this allows.
 const LOWEST_EDGE = 285;
-const PHOTO_LERP = 0.12; // per frame at 60 fps
-const SWAY = 0.6; // rad: how far the gradient turns each way (blue and red slowly trade places)
-const SWAY_SPEED = 0.35; // rad per second of the phase
+const PHOTO_LERP = 0.12;
+const SWAY = 0.6;
+const SWAY_SPEED = 0.35;
 const GRADIENT_REACH = 110;
 
 export interface Liquid {
   tick: (dt: number) => void;
-  /** Back to the static outline and a still photo. */
   still: () => void;
-  /** Cursor in client px with the Hero rect for the photo drift; null when it is gone. */
   aim: (pointer: { x: number; y: number } | null, hero?: DOMRect) => void;
   tap: (clientX: number, clientY: number) => void;
 }
@@ -50,7 +43,6 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
 
   const weight = (pointAngle: number, aimAngle: number) => Math.max(0, Math.cos(pointAngle - aimAngle)) ** 6;
 
-  // How far each point may move outwards: only the points that face down are limited.
   const reach = Array.from({ length: LIQUID_POINTS }, (_, i) => {
     const down = Math.sin((i / LIQUID_POINTS) * Math.PI * 2);
     return down > 0.05 ? (LOWEST_EDGE - CENTER) / down - RADIUS : Infinity;
@@ -73,7 +65,7 @@ export const createLiquid = (svg: SVGSVGElement): Liquid | null => {
 
       for (let i = 0; i < LIQUID_POINTS; i++) {
         const angle = (i / LIQUID_POINTS) * Math.PI * 2;
-        let target = RADIUS * (0.045 * Math.sin(1.6 * time + 1.3 * i) + 0.03 * Math.sin(0.9 * time - 2.1 * i)); // breathing
+        let target = RADIUS * (0.045 * Math.sin(1.6 * time + 1.3 * i) + 0.03 * Math.sin(0.9 * time - 2.1 * i));
 
         if (pointer) {
           if (edge > 0 && edge < REACH_PX) target += PULL * RADIUS * (1 - edge / REACH_PX) * weight(angle, aimAngle);

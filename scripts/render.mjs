@@ -1,7 +1,3 @@
-// Turns pages of a finished build into files: the CV pages into PDFs (dist/cv/mirislam-usmanov-<locale>.pdf)
-// and the OG pages into share pictures (dist/og/mirislam-usmanov-<locale>.jpg). Chromium (Playwright) does the
-// rendering. Used by the Astro integration in astro.config.ts, which runs it after every build and answers the same
-// addresses in the dev server, and by scripts/build-media.mjs.
 import { chromium } from '@playwright/test';
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
@@ -9,7 +5,6 @@ import { extname, join, normalize } from 'node:path';
 import { gzipSync } from 'node:zlib';
 
 const MAX_PDF_BYTES = 300 * 1024;
-// WhatsApp ignores share pictures over 300 KB.
 const MAX_OG_BYTES = 300 * 1024;
 const OG_QUALITIES = [90, 82, 74, 66];
 const TYPES = {
@@ -42,11 +37,9 @@ const render = async (browser, url, options, capture) => {
   }
 };
 
-// One page of the running site -> PDF bytes.
 export const printPdf = (browser, url) =>
   render(browser, url, undefined, page => page.pdf({ preferCSSPageSize: true, printBackground: true }));
 
-// One page of the running site -> JPEG bytes (1200×630), as good as it gets under the size limit.
 export const screenshotOg = (browser, url) =>
   render(browser, url, { viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 }, async page => {
     for (const quality of OG_QUALITIES) {
@@ -56,8 +49,6 @@ export const screenshotOg = (browser, url) =>
     throw new Error(`${url} does not fit ${MAX_OG_BYTES} bytes even at quality ${OG_QUALITIES.at(-1)}`);
   });
 
-// `site`: the public address of the site. When given, it is replaced with the address of this server in text
-// files, so that canonical, hreflang and the sitemap point at the page that is being tested.
 const serve = (dist, site) =>
   createServer(async (request, response) => {
     try {
@@ -91,7 +82,6 @@ const localesOf = async (dist, folder) => {
   return locales;
 };
 
-// A static server over `dist` and a browser for the time of `task`. `launch` are the browser options, `site` see `serve`.
 export const withSite = async (dist, task, { launch, site } = {}) => {
   const server = serve(dist, site);
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -113,7 +103,6 @@ const write = async (output, bytes, limit, log, label) => {
   log(`${label}: ${(size / 1024).toFixed(0)} KB`);
 };
 
-// dist/cv/<locale>/ -> dist/cv/mirislam-usmanov-<locale>.pdf, dist/og/<locale>/ -> dist/og/mirislam-usmanov-<locale>.jpg.
 export const buildMedia = async (dist, log = console.log) => {
   const cv = await localesOf(dist, 'cv');
   const og = await localesOf(dist, 'og');

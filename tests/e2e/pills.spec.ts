@@ -18,7 +18,6 @@ test.describe('when motion is allowed', () => {
     await expect(page.getByRole('dialog', { name: 'Last chance' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Blue pill' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Red pill' })).toBeVisible();
-    // Modal: the focus is inside, the page behind is not reachable.
     expect(await page.evaluate(() => document.querySelector('dialog')!.contains(document.activeElement))).toBe(true);
   });
 
@@ -55,7 +54,6 @@ test.describe('when motion is allowed', () => {
     await expect(page.locator('html')).toHaveAttribute('data-glitch', '', { timeout: 5000 });
     await expect(dialog(page)).not.toHaveAttribute('open', '', { timeout: 6000 });
     await expect(page.locator('html')).not.toHaveAttribute('data-glitch', /.*/, { timeout: 3000 });
-    // It can be opened again and starts from the beginning.
     await page.locator('[data-rabbit]').click();
     await expect(dialog(page).locator('[data-pills-result]')).toBeHidden();
     await expect(page.getByRole('button', { name: 'Red pill' })).toBeVisible();
@@ -99,7 +97,6 @@ test('the rabbit is a quiet button with a name, and without JavaScript it simply
   await context.close();
 });
 
-// The glyph hands (A-06) are on a canvas: the tests read its pixels.
 const tintAround = (page: Page, button: 'Blue pill' | 'Red pill') =>
   page.evaluate(name => {
     const root = document.querySelector<HTMLElement>('dialog[data-pills] [data-pills-hands]')!;
@@ -132,7 +129,6 @@ test.describe('glyph hands', () => {
 
   test('are drawn at once, and every button lies over a capsule of its colour', async ({ page }) => {
     await openScene(page);
-    // As in the film: the red pill on the left hand, the blue one on the right.
     const left = await tintAround(page, 'Red pill');
     const right = await tintAround(page, 'Blue pill');
     expect(left.red).toBeGreaterThan(40);
@@ -181,7 +177,6 @@ test.describe('glyph hands in motion', () => {
         });
 
     const early = await painted();
-    // The picture grows while the glyphs land and then stands: it is never less than at the start, and it is full at the end.
     await expect.poll(painted, { timeout: 5000 }).toBeGreaterThanOrEqual(early);
     await expect.poll(painted, { timeout: 5000 }).toBeGreaterThan(30000);
 
@@ -211,7 +206,6 @@ test.describe('the scene follows the theme', () => {
       let sum = 0;
       let count = 0;
       for (let i = 0; i < data.length; i += 4) {
-        // The glyphs without the coloured capsules: grey ones (the channels are close).
         if (data[i + 3] > 60 && Math.abs(data[i] - data[i + 2]) < 20) {
           sum += (data[i] + data[i + 1] + data[i + 2]) / 3;
           count++;

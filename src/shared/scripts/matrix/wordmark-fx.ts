@@ -5,32 +5,22 @@ import { GLYPHS, createRng } from './glyphs';
 import { getMotion } from './motion';
 import { getTicker } from './ticker';
 
-// The glyph wordmark (M-05): the name made of glyphs, drawn on a canvas over its text version.
-// Once per page load it assembles itself out of falling glyphs; under the cursor (or a finger) the glyphs
-// flash and flip, like on lukebaffait.fr. Without this chunk the text version (ASCII) stays visible.
-const POOLS: readonly (readonly string[])[] = [
-  [],
-  [...'.:·'],
-  [...'+*<>-='],
-  [...'{}/#$;'],
-  GLYPHS, // level 4: katakana, code, digits
-];
+const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
 const LEVEL_ALPHA = [0, 0.35, 0.55, 0.75, 0.9];
 
-const ASSEMBLE_COLUMN_DELAY = 300; // ms, by column
-const ASSEMBLE_ROW_DELAY = 80; // ms, by row
-const ASSEMBLE_MIN = 600; // ms a glyph needs to land
+const ASSEMBLE_COLUMN_DELAY = 300;
+const ASSEMBLE_ROW_DELAY = 80;
+const ASSEMBLE_MIN = 600;
 const ASSEMBLE_SPREAD = 400;
-const ASSEMBLE_FROM_MIN = 3; // rows above its place a glyph starts
+const ASSEMBLE_FROM_MIN = 3;
 const ASSEMBLE_FROM_SPREAD = 9;
-const FLIP_MS = 60; // while falling, a glyph changes this often
+const FLIP_MS = 60;
 
 const FLASH_RADIUS_PX = 40;
 const FLASH_SHORT_MS = 100;
 const FLASH_LONG_MS = 200;
 const FONT = 'ui-monospace, Consolas, monospace';
 
-// A stable pseudo-random number in [0, 1) for a cell, so every cell keeps its own timing and flash noise.
 const hash = (x: number, y: number, salt: number) => {
   const value = Math.sin(x * 12.9898 + y * 78.233 + salt * 37.719) * 43758.5453;
   return value - Math.floor(value);
@@ -56,19 +46,17 @@ export const initWordmark = (root: HTMLElement) => {
   let cellW = 0;
   let cellH = 0;
   let flashes = new Float64Array(0);
-  let assembleStart = -1; // ms, -1 while it has not started
+  let assembleStart = -1;
   let assembled = false;
-  let waiting = false; // visible on the page but not yet scrolled into view enough to assemble
+  let waiting = false;
   let stop: (() => void) | undefined;
 
-  // Reads the grid from the visible text version: its characters carry the density level.
   const readGrid = () => {
     const pre = pres.find(candidate => getComputedStyle(candidate).display !== 'none') ?? pres[0];
     const lines = (pre.textContent ?? '').split('\n').filter(line => line.trim() !== '');
     cols = Math.max(0, ...lines.map(line => line.length));
     levels = lines.map(line => Array.from({ length: cols }, (_, x) => levelOfChar(line[x] ?? ' ')));
     rows = levels.length;
-    // The same seed every time, so a resize does not reshuffle the glyphs.
     const rng = createRng(7);
     glyphs = levels.map(row =>
       row.map(level => (level > 0 ? POOLS[level][Math.floor(rng() * POOLS[level].length)] : '')),
@@ -107,10 +95,10 @@ export const initWordmark = (root: HTMLElement) => {
 
         let glyph = glyphs[y][x];
         let alpha = alphaOf(level, x, y);
-        let offset = 0; // rows above its place
+        let offset = 0;
 
         if (!assembled) {
-          if (assembleStart < 0) continue; // nothing has fallen yet
+          if (assembleStart < 0) continue;
           const delay = hash(x, 0, 2) * ASSEMBLE_COLUMN_DELAY + hash(0, y, 3) * ASSEMBLE_ROW_DELAY;
           const duration = ASSEMBLE_MIN + hash(x, y, 4) * ASSEMBLE_SPREAD;
           const progress = Math.min(1, Math.max(0, (t - delay) / duration));
@@ -129,7 +117,6 @@ export const initWordmark = (root: HTMLElement) => {
           ctx.fillStyle = css(colors.accent);
           ctx.fillRect(x * cellW, y * cellH, cellW, cellH);
           ctx.fillStyle = css(colors.background);
-          // The "opposite" density: dense cells flash with light glyphs and the other way round.
           const pool = POOLS[5 - level];
           ctx.fillText(pool[Math.floor(Math.random() * pool.length)], px, py);
         } else {
@@ -181,7 +168,6 @@ export const initWordmark = (root: HTMLElement) => {
     if (assembled && !stop) draw(performance.now());
   });
 
-  // Assemble once, when about a third of the wordmark is on screen; with no motion it just appears.
   if (motion.allowed) {
     waiting = true;
     new IntersectionObserver(
@@ -226,7 +212,6 @@ export const initWordmark = (root: HTMLElement) => {
   root.addEventListener('pointermove', flash, { passive: true });
   root.addEventListener('pointerdown', flash, { passive: true });
 
-  // A new size or the other variant (phone / desktop) means a new grid.
   const relayout = () => {
     if (!measure()) return;
     if (assembled) draw(performance.now());

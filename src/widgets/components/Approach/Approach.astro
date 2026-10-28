@@ -22,7 +22,6 @@ interface Props {
 const { data } = Astro.props;
 const typeIcons = { landing: LayoutTemplate, store: ShoppingCart, service: Server };
 const chat = data.cooperation.chat;
-// The conversation: who writes what and when (the times are the same in every language).
 const messages = [
   { text: chat.ask, time: '10:24', mine: false },
   { text: chat.reply, link: chat.link, time: '10:25', mine: true },
@@ -249,8 +248,6 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
           <ul class={s.files}>
             {secret.rows.map(row => (
               <li>
-                {/* A bar decrypts on keyboard focus too; the group is named by its sentence. */}
-                {/* eslint-disable-next-line astro/jsx-a11y/no-noninteractive-tabindex */}
                 <div class={s.file} role="group" tabindex="0" aria-label={row.label} data-file>
                   <div class={s.fileBody} aria-hidden="true">
                     <div class={s.ring}>
@@ -346,7 +343,6 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
     }
   }
 
-  // The chat scene and the classified card live in separate chunks, loaded a little before they are seen.
   const whenNear = (element: Element | null, load: () => void) => {
     if (!element) return;
     new IntersectionObserver(
@@ -371,7 +367,6 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
     );
   }
 
-  // The pill of the type switcher stretches on its way; not on load, only once the visitor has chosen a type.
   const switcher = document.querySelector<HTMLElement>('#approach [role="radiogroup"]');
   switcher?.addEventListener('change', () => switcher.setAttribute('data-moved', ''), { once: true });
 

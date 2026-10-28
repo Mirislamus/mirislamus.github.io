@@ -55,13 +55,13 @@ describe('the bass', () => {
     expect(bassNote(11)).toBe('C3');
     expect(bassNote(14)).toBe('C3');
     expect(bassNote(4)).toBe('C2');
-    expect(bassNote(BAR)).toBe('G#1'); // the second bar is Ab
+    expect(bassNote(BAR)).toBe('G#1');
     expect(bassNote(BAR + 3)).toBe('G#2');
   });
 
   it('turns notes into frequencies', () => {
-    expect(bassFrequency(0)).toBeCloseTo(65.41, 1); // C2
-    expect(bassFrequency(3)).toBeCloseTo(130.81, 1); // C3
+    expect(bassFrequency(0)).toBeCloseTo(65.41, 1);
+    expect(bassFrequency(3)).toBeCloseTo(130.81, 1);
   });
 
   it('opens the filter every second bar', () => {
@@ -96,7 +96,7 @@ describe('the arpeggio', () => {
   it('runs over the chord on every sixteenth: root, third, fifth, octave, fifth, third…', () => {
     const bar = Array.from({ length: 8 }, (_, step) => arpNote(step));
     expect(bar).toEqual(['C4', 'D#4', 'G4', 'C5', 'G4', 'D#4', 'G4', 'D#4']);
-    expect(arpNote(BAR)).toBe('G#4'); // Ab
+    expect(arpNote(BAR)).toBe('G#4');
   });
 
   it('is louder on the beat', () => {

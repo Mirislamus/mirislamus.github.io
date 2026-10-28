@@ -1,6 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
 
-// The browser serializes custom property values in its own way (".15s", "cubic-bezier(.16,1,.3,1)").
 const ms = (page: Page, name: string) =>
   page.evaluate(property => {
     const value = getComputedStyle(document.documentElement).getPropertyValue(property).trim();

@@ -11,9 +11,6 @@ const locale = getLocale(Astro);
 const site = getSiteData(locale);
 const { skills } = site;
 
-// Columns for a group so that its rows are as even as possible and none is left half empty:
-// 9 tiles at most 5 across make 5 + 4, 6 tiles make 3 + 3, 5 tiles make 3 + 2 (never a single row, so the
-// groups side by side have the same height). The tiles of a row stretch to fill it.
 const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Math.ceil(count / max)));
 ---
 
@@ -34,8 +31,6 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
           >
             {group.items.map(skill => {
               const icon = skill.icon ? getSkillIcon(skill.icon) : null;
-              // At rest the icon is the colour of the text; under the cursor it takes the colour of the brand (the accent
-              // when the brand colour would be lost on the page).
               const brand = icon
                 ? `--brand: ${icon.brandLight ?? 'var(--accent-text)'}; --brand-dark: ${icon.brandDark ?? 'var(--accent-text)'}`
                 : undefined;
@@ -92,8 +87,6 @@ const columns = (count: number, max: number) => Math.ceil(count / Math.max(2, Ma
 </section>
 
 <script>
-  // On a touch screen there is no hover: the first tap on a tile that has a tooltip shows it, the second one opens the
-  // link. A tap anywhere else closes it. A mouse never gets here.
   const section = document.querySelector<HTMLElement>('#skills');
 
   if (section) {

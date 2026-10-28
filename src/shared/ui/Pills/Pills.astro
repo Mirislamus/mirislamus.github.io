@@ -11,8 +11,6 @@ interface Props {
 
 const { texts } = Astro.props;
 
-// The hands are glyphs on a canvas (shared/scripts/matrix/hands-fx.ts); the page only knows where the two capsules
-// are, to put the real buttons over them. Both sizes of the grid have the same proportions, so one set is enough.
 const grid = hands.desktop;
 const gap = handsGap(grid.cols);
 const total = grid.cols * 2 + gap;
@@ -51,7 +49,6 @@ const where = {
 
   <p class={s.result} data-pills-result hidden></p>
 
-  {/* Named by what it does: the label changes with the state (data-on / data-off hold both texts). */}
   <button
     type="button"
     class={s.sound}

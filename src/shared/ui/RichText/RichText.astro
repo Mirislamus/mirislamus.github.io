@@ -11,8 +11,6 @@ const { text, vars } = Astro.props;
 const escape = (value: string) =>
   value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
-// Built as a string on purpose: whitespace around inline elements is significant, and a formatter
-// must not be able to add any.
 const html = parseRichText(text, vars)
   .map(token => {
     if (token.type === 'highlight') return `<span class="accent">${escape(token.value)}</span>`;

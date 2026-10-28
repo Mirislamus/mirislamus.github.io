@@ -12,7 +12,6 @@ interface Props {
 const { prevLabel, nextLabel } = Astro.props;
 ---
 
-<!-- Buttons are wired up by <embla-carousel-root>; until then they are inert decoration. -->
 <div class={s.arrowControls}>
   <button type="button" data-embla-prev data-ripple class:list={[s.button, s.prev]} aria-label={prevLabel}>
     <ArrowLeft size={24} aria-hidden="true" />

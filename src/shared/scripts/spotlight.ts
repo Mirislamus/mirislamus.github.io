@@ -1,11 +1,7 @@
-// One delegated pointer listener for every `[data-spotlight]` card:
-//  - the highlight follows the cursor (--mouse-x / --mouse-y);
-//  - cards that also have `data-tilt` lean a few degrees towards the cursor and settle back.
-// Only for a real mouse, and never when the user prefers reduced motion.
 const fineMouse = window.matchMedia('(hover: hover) and (pointer: fine)');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-const MAX_TILT = 4; // degrees
+const MAX_TILT = 4;
 const LERP = 0.12;
 const SETTLED = 0.01;
 
@@ -26,7 +22,6 @@ const render = (card: HTMLElement, state: TiltState) => {
   const settled = Math.abs(state.targetX - state.x) + Math.abs(state.targetY - state.y) < SETTLED;
   const resting = settled && state.targetX === 0 && state.targetY === 0;
 
-  // At rest the transform is removed completely, so text is never left slightly blurred.
   card.style.transform = resting
     ? ''
     : `perspective(1000px) rotateX(${(state.y * -MAX_TILT).toFixed(2)}deg) rotateY(${(state.x * MAX_TILT).toFixed(2)}deg)`;
@@ -66,7 +61,6 @@ document.addEventListener(
   { passive: true },
 );
 
-// Leaving a card lets it settle back.
 document.addEventListener(
   'pointerout',
   event => {

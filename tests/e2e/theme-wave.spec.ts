@@ -1,6 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
 
-// Counts calls of the View Transitions API so tests can tell whether the wave was used.
 const spyOnTransitions = (page: Page) =>
   page.addInitScript(() => {
     const original = document.startViewTransition?.bind(document);
@@ -33,7 +32,6 @@ test.describe('when motion is allowed', () => {
     await page.evaluate(() => {
       document.querySelector<HTMLElement>('[data-theme-mode="dark"]:not([aria-hidden])')?.click();
     });
-    // The circle starts once the transition is ready, which takes longer on a busy runner.
     await page.waitForFunction(hasClip);
     await expect(page.locator('html')).toHaveClass(/theme-transition/);
 

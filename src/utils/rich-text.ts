@@ -1,9 +1,3 @@
-// The tiny markup used inside JSON strings, in one place:
-//   |accent|          -> highlighted text
-//   ||domain.com/x||  -> external link (https:// is added)
-//   {{name}}          -> variable substituted from `vars`
-// Anything that does not match (for example an unclosed `|`) stays literal text.
-
 export type RichTextVars = Record<string, string | number>;
 
 export type RichTextToken =
@@ -11,7 +5,6 @@ export type RichTextToken =
   | { type: 'highlight'; value: string }
   | { type: 'link'; href: string; label: string };
 
-// `||link||` is tried before `|highlight|`, so the double bars are never split into two highlights.
 const PATTERN = /\|\|([a-zA-Z0-9\-._/]+)\|\||\|([^|]+)\||\{\{(\w+)\}\}/g;
 
 const cleanDomain = (value: string) => value.replace(/^\/+|[/.]+$/g, '');
@@ -48,13 +41,11 @@ export const parseRichText = (input: string, vars: RichTextVars = {}): RichTextT
   return tokens;
 };
 
-// For plain strings (for example a <meta> description) that only use {{variables}}.
 export const interpolate = (input: string, vars: RichTextVars): string =>
   parseRichText(input, vars)
     .map(token => (token.type === 'text' ? token.value : ''))
     .join('');
 
-// The text without any markup (highlights and links keep their visible words), for documents such as the CV.
 export const toPlainText = (input: string, vars: RichTextVars = {}): string =>
   parseRichText(input, vars)
     .map(token => (token.type === 'link' ? token.label : token.value))

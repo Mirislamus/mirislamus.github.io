@@ -2,7 +2,6 @@ import { subscribeTheme } from '@/utils/theme';
 
 export type Rgb = [number, number, number];
 
-// Reads the colors a browser reports for custom properties: "#44ff62", "rgb(68, 255, 98)" or "rgb(68 255 98 / 35%)".
 export const parseColor = (value: string): Rgb | null => {
   const text = value.trim().toLowerCase();
 
@@ -22,13 +21,11 @@ export const mix = (a: Rgb, b: Rgb, amount: number): Rgb =>
 export interface MatrixColors {
   accent: Rgb;
   head: Rgb;
-  /** The page background, for glyphs drawn on an accent fill. */
   background: Rgb;
 }
 
 const FALLBACK: MatrixColors = { accent: [68, 255, 98], head: [225, 255, 230], background: [18, 18, 18] };
 
-// The accent of the current theme and the brighter color of a column head (accent mixed 55/45 with the text color).
 const readColors = (root: HTMLElement = document.documentElement): MatrixColors => {
   const style = getComputedStyle(root);
   const accent = parseColor(style.getPropertyValue('--accent-text'));
@@ -38,8 +35,6 @@ const readColors = (root: HTMLElement = document.documentElement): MatrixColors 
   return { accent, head: text ? mix(accent, text, 0.45) : accent, background };
 };
 
-// Calls `listener` with fresh colors now and after every theme change.
-// The takeover of the netrunner (`data-relic` on the root, J-03) repaints the accent as well, so it counts as a change.
 export const watchColors = (listener: (colors: MatrixColors) => void) => {
   const update = () => listener(readColors());
   update();

@@ -9,9 +9,6 @@ import Wordmark from '@/shared/ui/Wordmark/Wordmark.astro';
 import { pickLanguage } from '@/utils/language-bootstrap';
 import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@/utils/theme-bootstrap';
 
-// One static page serves every path that does not exist (GitHub Pages has a single 404.html), so all three
-// texts are in it and a tiny script shows the one that fits: the language in the URL (/ru/nope/), else the
-// browser language, else English. Without JavaScript it is English.
 const messages = {
   en: { title: 'Page not found', text: 'This page does not exist or has moved.', home: 'Go to the home page' },
   ru: { title: 'Страница не найдена', text: 'Такой страницы нет или она переехала.', home: 'На главную' },
@@ -64,7 +61,6 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
       import { initTheme } from '@/utils/theme';
       initTheme();
 
-      // The rain is decorative and comes after everything else.
       const canvas = document.querySelector<HTMLCanvasElement>('canvas[data-backdrop]');
       if (canvas) {
         const content = document.querySelector<HTMLElement>('[data-content]');
@@ -85,8 +81,6 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
     padding: var(--gap-24) var(--gap-16);
     text-align: center;
   }
-
-  /* Rain behind the page: fixed, never in the way of clicks. */
   .rain {
     position: fixed;
     inset: 0;

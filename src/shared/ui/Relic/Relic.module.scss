@@ -1,4 +1,3 @@
-// The scene of the Relic chip: always dark, red and cyan like the glitch of the logo.
 .dialog {
   --relic-red: #ff2e63;
   --relic-cyan: #00e5d1;
@@ -34,8 +33,6 @@
     background-color: #0a060c;
   }
 }
-
-// The scene opens with a split into red and cyan that settles in three steps.
 @keyframes relic-in {
   0% {
     opacity: 0;
@@ -71,15 +68,11 @@
   width: min(520px, 82vw, 54dvh);
   aspect-ratio: var(--ratio);
 }
-
-// The mask is glyphs on a canvas; it is drawn by mask-fx.ts.
 .figure {
   display: block;
   width: 100%;
   height: 100%;
 }
-
-// The lines of the scan lie over the figure; the layer does not take part in clicks.
 .scan {
   position: absolute;
   inset: 0;
@@ -146,9 +139,6 @@
     outline-offset: 2px;
   }
 }
-
-// The glitch of the page during the takeover (J-03): the content shifts, splits into red and cyan and skews, three steps,
-// once. The heading that was hit does the same with its text. Only the element is moved, so fixed things keep their place.
 :global(html[data-relic-glitch]) :global(main) {
   animation: relic-page-glitch var(--dur-logo-glitch) steps(3, end) 1 both;
 }
@@ -200,9 +190,6 @@
     text-shadow: none;
   }
 }
-
-// The texts that the takeover replaces (data-swap, takeover.ts): the real one is only for assistive technology while
-// the netrunner is in the site (the same trick as .visually-hidden), the other one is hidden from it.
 :global(:root[data-relic]) :global([data-swap-real]) {
   position: absolute;
   width: 1px;
@@ -214,9 +201,6 @@
   border: 0;
   clip-path: inset(50%);
 }
-
-// The secure channel (J-10): a messenger panel bottom left, above the plate (J-06); the button to the top is on the other
-// side. Always dark like the scene, so its text keeps its contrast on any page. Folded, only the header is left.
 .chat {
   --relic-red: #ff2e63;
   --relic-cyan: #00e5d1;
@@ -252,8 +236,6 @@
     border-bottom-color: transparent;
   }
 }
-
-// A green light: the channel is up.
 .chatDot {
   flex: none;
   width: 8px;
@@ -303,8 +285,6 @@
     rotate: 180deg;
   }
 }
-
-// How many messages came while the chat was folded.
 .badge {
   min-width: 20px;
   padding: 1px 6px;
@@ -329,8 +309,6 @@
     display: none;
   }
 }
-
-// The log scrolls; the list inside it holds the messages.
 .log {
   max-height: min(340px, 46dvh);
   padding: var(--gap-12);
@@ -351,8 +329,6 @@
   display: flex;
   gap: var(--gap-8);
   animation: relic-remark-in var(--dur-base) var(--ease-out) both;
-
-  // What the visitor sends sits on the right, like in any messenger.
   &[data-from='you'] {
     flex-direction: row-reverse;
     text-align: right;
@@ -430,8 +406,6 @@
     display: none;
   }
 }
-
-// A quick reply: the visitor's line, sent with one press.
 .reply {
   min-height: 36px;
   padding: 6px var(--gap-12);
@@ -473,9 +447,6 @@
     translate: 0 8px;
   }
 }
-
-// The plate of the netrunner's takeover (J-06): bottom left, with the way out and the sound. Always dark like the scene, so it
-// reads on any page; the chat (J-10) sits above it, the button to the top is on the other side.
 .plate {
   position: fixed;
   bottom: max(var(--gap-16), env(safe-area-inset-bottom));

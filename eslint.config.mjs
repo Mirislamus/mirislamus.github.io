@@ -25,7 +25,6 @@ export default defineConfig([
     },
   },
   {
-    // Rules that need type information (ADR 0009 §2).
     files: ['**/*.ts'],
     languageOptions: {
       parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
@@ -52,7 +51,6 @@ export default defineConfig([
           message: 'enum is not allowed (ADR 0004 §4): use a union type or an as const object.',
         },
       ],
-      // Import order from ADR 0004 §8: external, then @/ aliases, then relative, a blank line between groups.
       'perfectionist/sort-imports': [
         'error',
         {
@@ -67,17 +65,25 @@ export default defineConfig([
           ],
         },
       ],
+      'astro/jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['group'] }],
+      'no-empty': ['error', { allowEmptyCatch: true }],
     },
   },
   {
-    // In a test `!` means "fail if it is missing", and the test does fail (ADR 0024 §8).
     files: ['tests/**/*.ts'],
     rules: { '@typescript-eslint/no-non-null-assertion': 'off' },
   },
   {
-    // Build and check scripts report to the terminal.
+    files: ['**/*.test.ts'],
+    rules: { '@typescript-eslint/no-explicit-any': 'off' },
+  },
+  {
     files: ['scripts/**/*.{js,mjs,cjs,ts}'],
     rules: { 'no-console': 'off' },
+  },
+  {
+    files: ['scripts/build-wordmark.mjs'],
+    languageOptions: { globals: { FontFace: 'readonly', document: 'readonly' } },
   },
   prettier,
 ]);

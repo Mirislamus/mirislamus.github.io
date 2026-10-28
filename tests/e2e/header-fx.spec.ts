@@ -39,7 +39,7 @@ test.describe('sliding pill', () => {
         const link = document.querySelector<HTMLElement>('[data-link][aria-current="true"]')!.getBoundingClientRect();
         const line = document.querySelector<HTMLElement>('[data-line]')!;
         const before = line.getBoundingClientRect();
-        const caps = 36; // both round ends, in px
+        const caps = 36;
         return {
           href: document.querySelector('[data-link][aria-current="true"]')!.getAttribute('href'),
           center: before.left + before.width / 2,
@@ -63,7 +63,7 @@ test.describe('sliding pill', () => {
 test.describe('smart hide', () => {
   test('hides while scrolling down, returns on any upward scroll, never near the top', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(900); // the bar ignores scrolling right after the page loads
+    await page.waitForTimeout(900);
     await page.mouse.wheel(0, 60);
     await page.waitForTimeout(150);
     expect(await hidden(page)).toBe(false);
@@ -90,7 +90,7 @@ test.describe('smart hide', () => {
 
   test('stays visible while a header control has keyboard focus or the language list is open', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(900); // the bar ignores scrolling right after the page loads
+    await page.waitForTimeout(900);
     await page.mouse.wheel(0, 900);
     await expect.poll(() => hidden(page)).toBe(true);
 
@@ -115,7 +115,6 @@ test.describe('mobile drawer', () => {
     await page.goto('/');
     const nav = page.locator('#main-navigation');
 
-    // Fixed elements end where the viewport ends (a classic scrollbar gutter is not part of it).
     const edge = await page.locator('[data-overlay]').evaluate(element => element.getBoundingClientRect().right);
     const closed = await nav.evaluate(element => element.getBoundingClientRect().left);
     expect(closed).toBeGreaterThanOrEqual(edge);
@@ -225,7 +224,6 @@ test.describe('mobile menu items', () => {
         element => element && Number.parseFloat(getComputedStyle(element).getPropertyValue('--i')),
       ),
     );
-    // positions 0..6 for the links, the switcher after them
     expect(delays.slice(0, -1)).toEqual([0, 1, 2, 3, 4, 5, 6]);
 
     await page.locator('[data-menu-button]').tap();
@@ -237,7 +235,7 @@ test.describe('mobile menu items', () => {
     const first = Number.parseFloat(await delayOf(0));
     const last = Number.parseFloat(await delayOf(6));
     expect(last).toBeGreaterThan(first);
-    expect(last).toBeLessThan(0.8); // seconds: lively, not slow
+    expect(last).toBeLessThan(0.8);
     await expect(page.locator('[data-nav] li').nth(6)).toHaveCSS('opacity', '1');
   });
 

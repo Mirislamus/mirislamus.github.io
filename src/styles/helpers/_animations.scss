@@ -7,8 +7,6 @@
   animation: none;
   mix-blend-mode: normal;
 }
-
-// Theme wave: header and content join the root snapshot so the circle clips everything.
 :root.theme-transition body * {
   view-transition-name: none;
 }
@@ -86,14 +84,11 @@
 }
 
 @layer utilities {
-  // Content settles in once as it scrolls into view. Driven by scroll position, so it needs no
-  // JavaScript; browsers without support (and reduced motion) just show the content.
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
       [data-reveal] {
         animation: reveal-up var(--ease-out) both;
         animation-timeline: view();
-        // Each element in a group starts a little later (--i is set on the element, 0 to 4).
         animation-range: entry calc(var(--i, 0) * 4%) entry calc(40% + var(--i, 0) * 4%);
       }
     }

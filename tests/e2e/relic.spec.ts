@@ -79,7 +79,6 @@ test('axe finds no violations on the chip', async ({ page }) => {
 
 const scene = (page: Page) => page.locator('dialog[data-relic-scene]');
 
-// How many pixels of the glyph mask are painted.
 const painted = (page: Page) =>
   scene(page)
     .locator('[data-relic-mask]')

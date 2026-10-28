@@ -3,7 +3,6 @@ import { expect, test, type Page } from '@playwright/test';
 const card = (page: Page, index = 0) => page.locator('#projects article').nth(index);
 const name = (page: Page, index = 0) => card(page, index).locator('[data-name]');
 
-// The effect lives in a chunk that loads when the list is near: bring the first card into view and wait for the listeners.
 const open = async (page: Page) => {
   await page.goto('/');
   await card(page).scrollIntoViewIfNeeded();
@@ -26,7 +25,6 @@ test('the screenshot is drawn open by a curtain as the card comes into view', as
     const image = picture.querySelector('img')!;
     return [getComputedStyle(picture).animationName, getComputedStyle(image).animationName];
   });
-  // Browsers without scroll-driven animations just show the picture.
   const supported = await page.evaluate(() => CSS.supports('animation-timeline: view()'));
   if (supported) {
     expect(names[0]).toContain('curtain');
@@ -38,7 +36,6 @@ test('the screenshot is drawn open by a curtain as the card comes into view', as
 test.describe('the name decrypts', () => {
   test.use({ reducedMotion: 'no-preference' });
 
-  // The effect is short: what the name looked like is recorded in the page, not polled.
   const record = (page: Page) =>
     name(page).evaluate(element => {
       const seen: { text: string; width: number }[] = [];
@@ -63,7 +60,6 @@ test.describe('the name decrypts', () => {
     const seen = await recorded(page);
     expect(seen.some(step => step.text !== 'Dafna')).toBe(true);
     for (const step of seen) expect(Math.abs(step.width - before)).toBeLessThan(1);
-    // The name of the link is the real one all the time.
     await expect(link).toHaveAccessibleName('Dafna');
     expect(await name(page).evaluate(element => element.style.inlineSize)).toBe('');
   });
@@ -71,7 +67,7 @@ test.describe('the name decrypts', () => {
   test('also on keyboard focus', async ({ page }) => {
     await open(page);
     await record(page);
-    await page.keyboard.press('Tab'); // some earlier link; walk to the card by focusing it
+    await page.keyboard.press('Tab');
     await card(page).getByRole('link').focus();
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Tab');

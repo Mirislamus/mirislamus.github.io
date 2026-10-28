@@ -3,11 +3,8 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
-// Budgets are in gzip KB of JS in dist/_astro (ADR 0024 §4).
 const BUDGETS = {
-  // everything that is not behind a dynamic import()
   initial: 15,
-  // any single chunk, including the ones loaded on demand
   perChunk: 10,
 };
 
@@ -18,8 +15,6 @@ const limits = BUDGETS;
 const kb = bytes => bytes / 1024;
 const chunkSize = async file => gzipSync(await readFile(join(ASTRO_DIR, file)), { level: 9 }).length;
 
-// A chunk is "deferred" when it is loaded by import() or when everything that imports it is deferred itself
-// (a module shared by two lazy chunks gets a chunk of its own, but it is still not part of the first load).
 const importsOf = (source, pattern) => [...source.matchAll(pattern)].map(m => m[1]);
 const dynamicImports = source => importsOf(source, /import\(\s*["']\.\/([^"']+\.js)["']\s*\)/g);
 const staticImports = source => importsOf(source, /(?:from|import)\s*["']\.\/([^"']+\.js)["']/g);

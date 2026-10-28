@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createSound } from './sound';
 
-// A context that only records what is made of it: no audio, and the clock is ours.
 const fakeContext = () => {
   const log = { oscillators: 0, gains: 0, started: 0, closed: 0, suspended: 0, resumed: 0 };
   const param = () => ({
@@ -74,7 +73,6 @@ describe('the sound of the scene', () => {
     sound.start(false);
 
     expect(sound.playing).toBe(true);
-    // Three drone waves and the filter breathing.
     expect(fake.log.oscillators).toBeGreaterThanOrEqual(4);
     expect(fake.log.resumed).toBe(1);
     expect(sound.bus).toBeTruthy();
@@ -86,13 +84,11 @@ describe('the sound of the scene', () => {
     sound.start(false);
     const first = fake.log.oscillators;
 
-    // Time passes on the audio clock; the timer looks at it every 25 ms.
     for (let i = 0; i < 80; i++) {
       fake.raw.currentTime += 0.025;
       vi.advanceTimersByTime(25);
     }
-    expect(fake.log.oscillators).toBeGreaterThan(first + 2); // beats and plucks were scheduled
-    // Never far ahead: after 2 s of music the notes are scheduled up to about 2 s, not 20.
+    expect(fake.log.oscillators).toBeGreaterThan(first + 2);
     expect(fake.log.oscillators).toBeLessThan(first + 40);
   });
 
@@ -101,14 +97,14 @@ describe('the sound of the scene', () => {
     const sound = createSound({ createContext: () => fake.context });
     sound.start(false);
     sound.stop(0.4);
-    expect(fake.log.closed).toBe(0); // still fading
+    expect(fake.log.closed).toBe(0);
     vi.advanceTimersByTime(600);
     expect(fake.log.closed).toBe(1);
     expect(sound.playing).toBe(false);
 
     const scheduled = fake.log.oscillators;
     vi.advanceTimersByTime(2000);
-    expect(fake.log.oscillators).toBe(scheduled); // the scheduler is gone
+    expect(fake.log.oscillators).toBe(scheduled);
     expect(vi.getTimerCount()).toBe(0);
   });
 

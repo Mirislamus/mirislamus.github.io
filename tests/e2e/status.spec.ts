@@ -1,9 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-// Tashkent is UTC+5: 06:00 UTC is 11:00 there on a Wednesday.
 const WORKING = new Date('2026-09-30T06:00:00Z');
-const EVENING = new Date('2026-09-30T15:00:00Z'); // 20:00
-const SATURDAY = new Date('2026-10-03T08:00:00Z'); // 13:00
+const EVENING = new Date('2026-09-30T15:00:00Z');
+const SATURDAY = new Date('2026-10-03T08:00:00Z');
 
 test.describe('hero badge', () => {
   test('sits between the avatar and the name and is decorative-dot only', async ({ page }) => {

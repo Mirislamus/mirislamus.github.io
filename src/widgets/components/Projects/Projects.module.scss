@@ -30,9 +30,6 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-
-  // The whole card is clickable through the title link (a "stretched link"), so a screen reader
-  // announces the project name once instead of the image, title, text and every tag.
   .link::after {
     position: absolute;
     inset: 0;
@@ -177,9 +174,6 @@
     align-items: flex-start;
   }
 }
-
-// A curtain over the screenshot: it is drawn open as the card comes into view (scroll-driven, no JavaScript) and
-// the picture settles from a little larger. Without support the picture is simply there.
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .projectImage picture {
@@ -187,8 +181,6 @@
       animation-timeline: view();
       animation-range: entry calc(10% + var(--i, 0) * 6%) cover calc(35% + var(--i, 0) * 6%);
     }
-
-    // The scale property, not transform: the zoom of the hover is a transform and must not be overwritten.
     .projectImage img {
       animation: settle var(--scroll-ease, linear) both;
       animation-timeline: view();
@@ -216,16 +208,12 @@
     scale: 1;
   }
 }
-
-// The name of a project while it is "decrypted" (projects-fx.ts): the width is fixed, so nothing around moves.
 .name {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   vertical-align: bottom;
 }
-
-// Without JavaScript there is nothing to expand: show every project, no button.
 @media (scripting: none) {
   [data-extra] {
     display: block;

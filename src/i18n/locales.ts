@@ -1,5 +1,3 @@
-// The single source of truth for supported locales. Everything else (Astro config, routes,
-// <head> tags, the language switcher, data typing) derives from this list.
 export const LOCALES = ['en', 'ru', 'uz'] as const;
 
 export type Locale = (typeof LOCALES)[number];

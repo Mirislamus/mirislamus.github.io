@@ -5,14 +5,6 @@ import { TAKEOVER_EVENT } from './events';
 import { createMask } from './mask-fx';
 import { isTakenOver, startTakeover } from './takeover';
 
-// The scene of the netrunner (wave 9, J-02; the mask is glyphs since J-07), loaded when the Relic chip in the footer is clicked. A native modal
-// <dialog> (focus trapped, page behind inert, Escape closes and the focus goes back to the chip), always dark.
-//   0 s     the relic glitches (the dialog opens with a red and cyan split)
-//   0.4 s   the mask assembles out of falling glyphs
-//   1.4 s   "Wake the f▓▒░ up, Samurai." is typed; the profanity is eaten by noise and never shows
-//   3 s     "We have a city to burn.", then the subtitle in the language of the page
-//   5.6 s   the scene closes by itself and the takeover begins (takeover.ts; also a `relic:takeover` event).
-// Escape, the close button and a click on the dark area leave the scene without the takeover.
 export { TAKEOVER_EVENT };
 
 const LINES = ['Wake the f▓▒░ up, Samurai.', 'We have a city to burn.'];
@@ -20,8 +12,8 @@ const NOISE = '▓▒░█▌▐';
 const TYPE_MS = 35;
 const START_MS = { figure: 400, line1: 1400, line2: 3000, subtitle: 3900, end: 5600 };
 const NOISE_MS = 90;
-const RISER_MS = 1200; // the rise of the sound ends a little after the scene does, at the moment of the hit
-const READ_MS = 4500; // without motion everything is there at once; this is the time to read it
+const RISER_MS = 1200;
+const READ_MS = 4500;
 
 let dialog: HTMLDialogElement | undefined;
 
@@ -40,7 +32,6 @@ const setup = (root: HTMLDialogElement) => {
   const later = (callback: () => void, ms: number) => timers.push(window.setTimeout(callback, ms));
   const randomBlock = () => NOISE[Math.floor(Math.random() * NOISE.length)];
 
-  // The part of a line that is shown; the three blocks of line 1 are shown as noise that keeps changing.
   const show = (index: number, count: number) => {
     const text = LINES[index].slice(0, count);
     lines[index].textContent = index === 0 ? text.replace(/[▓▒░]/g, randomBlock) : text;
@@ -83,7 +74,6 @@ const setup = (root: HTMLDialogElement) => {
   const run = () => {
     startMusic();
     if (!motion.allowed) {
-      // Everything at once, no assembling and no typing; the visitor has time to read it.
       mask?.open();
       lines.forEach((_, index) => show(index, LINES[index].length));
       if (subtitle) subtitle.hidden = false;
@@ -96,7 +86,6 @@ const setup = (root: HTMLDialogElement) => {
     }, START_MS.figure);
     type(0, START_MS.line1);
     type(1, START_MS.line2);
-    // The blocks keep changing while the first line is on the screen.
     later(
       () => {
         noise = window.setInterval(() => show(0, LINES[0].length), NOISE_MS);

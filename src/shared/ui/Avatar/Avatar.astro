@@ -7,12 +7,9 @@ interface Props extends Omit<HTMLAttributes<'svg'>, 'src'> {
 
 const { src, ...rest } = Astro.props;
 
-// The outline without JavaScript, and while the animation is paused. With the Hero effects loaded the
-// mask is redrawn every frame as a liquid blob (shared/scripts/matrix/liquid.ts).
 const shapeA = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 170 20 100C30 30 70 20 130 10Z';
 ---
 
-<!-- Decorative: the name is already in the page heading. -->
 <svg data-avatar width="260" height="260" viewBox="0 0 260 260" fill="none" aria-hidden="true" {...rest}>
   <defs>
     <linearGradient
@@ -33,7 +30,6 @@ const shapeA = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 1
   </defs>
 
   <g mask="url(#avatar-mask)">
-    {/* Larger than the viewBox: a stretched drop reaches beyond it. */}
     <rect fill="url(#avatar-gradient)" x="-100" y="-100" width="460" height="460"></rect>
     <g data-photo>
       <image href={src} width="260" height="260" preserveAspectRatio="xMidYMid" transform="translate(20 35)" />

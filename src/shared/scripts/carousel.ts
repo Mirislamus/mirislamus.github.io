@@ -1,7 +1,5 @@
 import type { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel';
 
-// Without JavaScript the viewport is a native scroll-snap scroller. This element upgrades it to
-// Embla when it comes near the screen; the library is a separate chunk that loads only then.
 class EmblaCarouselRoot extends HTMLElement {
   #embla?: EmblaCarouselType;
   #observer?: IntersectionObserver;
@@ -34,7 +32,6 @@ class EmblaCarouselRoot extends HTMLElement {
     const options: EmblaOptionsType = JSON.parse(this.dataset.options ?? '{}');
     if (reduceMotion) Object.assign(options, { dragFree: false, duration: 0 });
 
-    // The native scroller was focusable so keyboard users could scroll it; Embla has buttons and arrow keys.
     viewport.removeAttribute('tabindex');
     viewport.removeAttribute('role');
     viewport.removeAttribute('aria-labelledby');
@@ -48,14 +45,10 @@ class EmblaCarouselRoot extends HTMLElement {
     const dots = this.querySelector<HTMLElement>('[data-embla-dots]');
     const slides = embla.slideNodes();
 
-    // `data-page-scroll`: an arrow moves by whole cards until the one that was cut by the screen edge is fully
-    // in view (and back), instead of by one card; the arrows are not needed when all cards fit on the screen.
     const pageScroll = this.hasAttribute('data-page-scroll');
-    // The width of the cards themselves (decorations of the container, like the timeline pill, do not count).
     const contentWidth = () =>
       slides.length ? slides[slides.length - 1].offsetLeft + slides[slides.length - 1].offsetWidth : 0;
 
-    // The scroll snap that brings `slide` to the left edge (the last snaps are trimmed, so it may stop earlier).
     const snapFor = (offset: number) => {
       const maxScroll = Math.max(1, contentWidth() - viewport.clientWidth);
       const px = embla.scrollSnapList().map(progress => progress * maxScroll);
@@ -95,7 +88,6 @@ class EmblaCarouselRoot extends HTMLElement {
       { signal },
     );
 
-    // Slides that are off screen must not be reachable with Tab.
     const syncSlides = () => {
       const visible = new Set(embla.slidesInView());
       slides.forEach((slide, index) => slide.toggleAttribute('inert', !visible.has(index)));
@@ -130,8 +122,6 @@ class EmblaCarouselRoot extends HTMLElement {
       });
     };
 
-    // All cards fit on the screen (the row may use the space to its right up to the edge of the page): nothing to
-    // scroll, so no arrows and no dragging.
     const syncStatic = () => {
       if (!pageScroll) return;
       const room = window.innerWidth - viewport.getBoundingClientRect().left - 12;

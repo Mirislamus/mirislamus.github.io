@@ -1,17 +1,9 @@
 import { BEAT, STEP, arpStep, createScoreRng, moodFor, noteToFrequency, type Mood } from './sound-score';
 
-// The sound of the pill scene (S-02): everything is synthesized with Web Audio, no file is downloaded.
-//   - a drone: two detuned saw waves on A1 and a sine on A0 under a low-pass filter that "breathes";
-//   - a pulse like a heartbeat, every fourth beat a little stronger;
-//   - a sparse arpeggio in A minor through a delay and a synthetic reverb;
-//   - short bursts of filtered noise, like the rain of glyphs.
-// The audio context lives only while the scene is open: it is created by the click on the rabbit (a user gesture, so
-// the browser lets it play) and closed after the scene fades out. The only JavaScript that runs meanwhile is one timer
-// every 25 ms that puts the next notes on the audio clock a little ahead of time.
-const LOOKAHEAD = 0.12; // seconds of notes put on the clock in advance
-const TICK = 25; // ms between two looks at the clock
-const MASTER = 0.25; // the ceiling of the volume: nothing is ever loud
-const FADE_IN = 1.2; // seconds
+const LOOKAHEAD = 0.12;
+const TICK = 25;
+const MASTER = 0.25;
+const FADE_IN = 1.2;
 
 export interface SoundEnv {
   createContext: () => AudioContext;
@@ -20,18 +12,12 @@ export interface SoundEnv {
 export const defaultEnv: SoundEnv = { createContext: () => new AudioContext() };
 
 export interface Sound {
-  /** Starts the music (fades in). The context is made here, so call it from a click. */
   start: (light: boolean) => void;
-  /** Fades out over `seconds` and then closes the context. */
   stop: (seconds: number) => void;
-  /** Moves the volume of everything to `ratio` of the normal level over `seconds`, after `delay` seconds. */
   ramp: (ratio: number, seconds: number, delay?: number) => void;
-  /** Moves the music to the mood of another theme. */
   setTheme: (light: boolean) => void;
   readonly playing: boolean;
-  /** The audio context while it exists (the effects of S-03 use it). */
   readonly context: AudioContext | null;
-  /** The node that the effects connect to, in front of the master volume. */
   readonly bus: AudioNode | null;
 }
 
@@ -70,7 +56,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
 
   const level = () => MASTER * mood.volume;
 
-  // ── the notes ──
   const pulse = (time: number, strong: boolean) => {
     if (!ctx || !bus) return;
     const osc = ctx.createOscillator();
@@ -135,7 +120,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     timer = setTimeout(schedule, TICK);
   };
 
-  // ── the graph ──
   const build = (context: AudioContext) => {
     master = context.createGain();
     master.gain.value = 0;
@@ -144,10 +128,9 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     compressor.ratio.value = 4;
     master.connect(compressor).connect(context.destination);
 
-    bus = context.createGain(); // everything but the arpeggio goes here
+    bus = context.createGain();
     bus.connect(master);
 
-    // The reverb and the echo of the arpeggio.
     const reverb = context.createConvolver();
     reverb.buffer = impulse(context, 2.2);
     const wet = context.createGain();
@@ -166,7 +149,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     delay.connect(master);
     arpSend = send;
 
-    // The drone.
     droneFilter = context.createBiquadFilter();
     droneFilter.type = 'lowpass';
     droneFilter.frequency.value = mood.droneCutoff;
@@ -187,7 +169,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
       osc.start();
       nodes.push(osc);
     }
-    // The filter breathes: a very slow LFO moves its cutoff.
     const lfo = context.createOscillator();
     const depth = context.createGain();
     lfo.frequency.value = 0.07;
@@ -210,9 +191,7 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     for (const node of nodes.splice(0)) {
       try {
         node.stop();
-      } catch {
-        // already stopped
-      }
+      } catch {}
     }
     const old = ctx;
     ctx = master = bus = droneFilter = arpSend = null;
@@ -222,7 +201,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
 
   return {
     start(light) {
-      // Opened again while the last fade is still going: the old context goes at once.
       if (ctx && closing) release();
       if (ctx) return;
       mood = moodFor(light);
@@ -239,7 +217,7 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
 
     stop(seconds) {
       if (!ctx || !master) return;
-      clearTimeout(timer); // no new notes
+      clearTimeout(timer);
       const now = ctx.currentTime;
       master.gain.cancelScheduledValues(now);
       master.gain.setValueAtTime(master.gain.value, now);
@@ -251,7 +229,6 @@ export const createSound = (env: SoundEnv = defaultEnv): Sound => {
     ramp(ratio, seconds, delay = 0) {
       if (!ctx || !master) return;
       const now = ctx.currentTime;
-      // A first ramp starts from where the volume is; one that follows another continues after its end.
       if (delay === 0) {
         master.gain.cancelScheduledValues(now);
         master.gain.setValueAtTime(master.gain.value, now);

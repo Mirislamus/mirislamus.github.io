@@ -59,7 +59,6 @@ describe('ticker', () => {
 
     for (let now = 1000; now <= 1200; now += 16.7) frame(now);
 
-    // first call has dt 0, then roughly every other frame (~33 ms)
     expect(dts.length).toBeLessThanOrEqual(7);
     expect(dts.slice(1).every(dt => dt > 0.03)).toBe(true);
   });

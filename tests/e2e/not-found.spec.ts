@@ -9,7 +9,6 @@ test('an unknown URL shows the site 404 page with a 404 status', async ({ page }
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Page not found');
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
 
-  // Exactly one language is visible: English for a browser in English.
   await expect(page.locator('main section:not([hidden])')).toHaveCount(1);
   await expect(page.getByRole('link', { name: 'Go to the home page' })).toHaveAttribute('href', '/');
 });
@@ -62,13 +61,12 @@ test.describe('the Matrix 404', () => {
       await expect(page.locator('glyph-wordmark')).toHaveAttribute('data-ready', '');
       await expect(page.getByText('There is no spoon.')).toBeVisible();
 
-      // The rain covers the screen and never takes a click.
       const box = (await rain(page).boundingBox())!;
       const view = await page.evaluate(() => ({
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight,
       }));
-      expect(Math.abs(box.width - view.width)).toBeLessThan(20); // a scrollbar may take some
+      expect(Math.abs(box.width - view.width)).toBeLessThan(20);
       expect(box.height).toBeCloseTo(view.height, 0);
       await page.getByRole('link', { name: 'Go to the home page' }).click();
       await expect(page).toHaveURL(/\/$/);

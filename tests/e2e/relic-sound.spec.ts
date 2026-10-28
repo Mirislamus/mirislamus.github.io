@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { audioLog, installFakeAudio } from './support/audio';
 
-// The scene takes about six seconds and one test moves a stepped clock through the takeover: slow under load.
 test.setTimeout(90_000);
 
 const scene = (page: Page) => page.locator('dialog[data-relic-scene]');
@@ -56,20 +55,18 @@ test.describe('the music of the takeover', () => {
     await page.locator('button[data-relic]').click();
     await expect(scene(page)).toHaveAttribute('open', '');
     await page.clock.runFor(2000);
-    // The riser is not there yet: it comes shortly before the end of the scene (a rising saw from 110 Hz).
     expect((await tones(page)).some(tone => tone.type === 'sawtooth' && tone.freq === 110)).toBe(false);
     await page.clock.runFor(5000);
     await expect(page.locator('html')).toHaveAttribute('data-relic', '');
     const heard = await tones(page);
-    expect(heard.some(tone => tone.type === 'sawtooth' && tone.freq === 110)).toBe(true); // the riser
-    expect(heard.some(tone => tone.type === 'sine' && tone.freq === 80)).toBe(true); // the hit
+    expect(heard.some(tone => tone.type === 'sawtooth' && tone.freq === 110)).toBe(true);
+    expect(heard.some(tone => tone.type === 'sine' && tone.freq === 80)).toBe(true);
     const crunches = () =>
       tones(page).then(list => list.filter(tone => tone.type === 'square' && tone.freq === 220).length);
     const first = await crunches();
-    expect(first).toBeGreaterThanOrEqual(1); // the glitch that covers the change
+    expect(first).toBeGreaterThanOrEqual(1);
     await page.clock.runFor(16_000);
     expect(await crunches()).toBeGreaterThan(first);
-    // The music is still on: one context, not closed.
     const log = await audioLog(page);
     expect(log.contexts).toBe(1);
     expect(log.closed).toBe(0);
@@ -146,7 +143,7 @@ test.describe('with a real audio context', () => {
       return context ? { time: context.currentTime, state: context.state } : null;
     });
     expect(state).not.toBeNull();
-    expect(state!.time).toBeGreaterThan(5); // the clock of the music has been running since the scene opened
+    expect(state!.time).toBeGreaterThan(5);
     expect(errors).toEqual([]);
   });
 });

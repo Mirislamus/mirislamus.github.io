@@ -1,12 +1,6 @@
 import { getMotion, onMotionChange } from './matrix/motion';
 
-// The Career section draws itself once (F-17): the accent line runs through the pill, and when it reaches
-// a card's dot the dot lights up, the dashed line grows down, and the text appears layer by layer. The
-// current place also pulses and the line goes on, dashed, into the future.
-//
-// Everything is Web Animations: the whole scene can be finished at once. Without this chunk (no JS, reduced
-// motion, a deep link, pause) nothing is hidden: the natural styles already are the final state.
-const SPEED = 0.55; // px per ms
+const SPEED = 0.55;
 const DOT_RADIUS = 9;
 
 const token = (name: string, fallback: string) =>
@@ -18,7 +12,6 @@ export const initCareerReveal = (section: HTMLElement) => {
   const items = [...section.querySelectorAll<HTMLElement>('[data-career-item]')];
   if (!track || items.length === 0 || section.hasAttribute('data-career-reveal')) return;
 
-  // Already on screen (loaded there, or scrolled fast), opened by a link or no motion wanted: leave it as it is.
   const rect = section.getBoundingClientRect();
   if (!motion.allowed || window.location.hash === '#career' || rect.top < window.innerHeight * 0.7) return;
 
@@ -33,7 +26,7 @@ export const initCareerReveal = (section: HTMLElement) => {
   ) => {
     if (!element) return;
     const animation = element.animate(keyframes, { fill: 'both', easing: easeOut, ...options });
-    animation.pause(); // shows the hidden first frame now, plays when the section is seen
+    animation.pause();
     animations.push(animation);
   };
 
@@ -46,7 +39,6 @@ export const initCareerReveal = (section: HTMLElement) => {
   const dotX = items.map(item => item.offsetLeft + DOT_RADIUS);
   const lineEnd = dotX[lastIndex];
 
-  // The line of the path travelled.
   animate(track, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], {
     duration: (lineEnd - DOT_RADIUS) / SPEED,
     easing: 'linear',
@@ -54,7 +46,7 @@ export const initCareerReveal = (section: HTMLElement) => {
   });
 
   items.forEach((item, i) => {
-    const t = (dotX[i] - DOT_RADIUS) / SPEED; // the moment the line reaches the dot
+    const t = (dotX[i] - DOT_RADIUS) / SPEED;
     const current = item.hasAttribute('data-current');
     const circle = item.querySelector('[data-career-circle]');
 
@@ -87,7 +79,6 @@ export const initCareerReveal = (section: HTMLElement) => {
     animate(item.querySelector('[data-career-meta]'), fadeUp, { duration: 400, delay: t + 150 });
     animate(item.querySelector('[data-career-text]'), fadeUp, { duration: 400, delay: t + 250 });
 
-    // "Technologies:" (first card only) and the tags, one after another.
     const tags = [...item.querySelectorAll('[data-career-tech] > span, [data-career-stack] > *')];
     tags.forEach((tag, j) =>
       animate(
@@ -100,7 +91,6 @@ export const initCareerReveal = (section: HTMLElement) => {
       ),
     );
 
-    // The line goes on into the future from the current place.
     if (current) {
       animate(
         circle,
@@ -116,17 +106,15 @@ export const initCareerReveal = (section: HTMLElement) => {
   section.setAttribute('data-career-reveal', 'pending');
 
   const cleanup = () => {
-    for (const animation of animations) animation.cancel(); // the natural styles are the final state
+    for (const animation of animations) animation.cancel();
     animations.length = 0;
     section.removeAttribute('data-career-reveal');
     stop();
   };
 
-  // The visitor takes over (a swipe, an arrow, the keyboard) or motion is switched off: the scene ends at once.
-  // Cancelling is enough, the natural styles are the final state.
   const interrupt = () => cleanup();
   const sideways = (event: WheelEvent) => {
-    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) cleanup(); // a vertical wheel is just scrolling the page
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) cleanup();
   };
   const stopMotion = onMotionChange(() => {
     if (!motion.allowed) cleanup();

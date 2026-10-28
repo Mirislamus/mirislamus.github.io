@@ -7,7 +7,6 @@ const PAGES = [
   { locale: 'uz', path: '/uz/', canonical: `${ORIGIN}/uz/`, ogLocale: 'uz_UZ', alternates: ['en_US', 'ru_RU'] },
 ];
 
-// The address of a public page on the site under test (the tests run against the local preview).
 const local = (url: string) => url.replace(ORIGIN, '');
 
 const meta = (page: Page, selector: string) => page.locator(`head > ${selector}`).getAttribute('content');
@@ -77,7 +76,6 @@ for (const { locale, path, canonical, ogLocale, alternates } of PAGES) {
       expect(response.headers()['content-type']).toBe('image/jpeg');
       const bytes = await response.body();
       expect(bytes.length).toBeLessThanOrEqual(300 * 1024);
-      // The size of a JPEG is in its SOF0/SOF2 marker: height, then width.
       const marker = bytes.findIndex((byte, index) => byte === 0xff && [0xc0, 0xc2].includes(bytes[index + 1]));
       expect([bytes.readUInt16BE(marker + 7), bytes.readUInt16BE(marker + 5)]).toEqual([1200, 630]);
     });
@@ -99,7 +97,6 @@ for (const { locale, path, canonical, ogLocale, alternates } of PAGES) {
 
       const reviews = type('Review');
       expect(reviews.length).toBeGreaterThan(0);
-      // Every review text of the graph is on the page, in the language of the page.
       const text = (await page.locator('#reviews').textContent()) ?? '';
       const flat = (value: string) => value.replace(/\s+/g, ' ').trim();
       for (const review of reviews) expect(flat(text)).toContain(flat(review.reviewBody as string));

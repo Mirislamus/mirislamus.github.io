@@ -1,4 +1,3 @@
-// The glyph set of the Matrix effects: half-width katakana (twice as likely), code symbols and digits.
 const KATAKANA = 'ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
 const CODE = '{}<>/=;()[]$#*+';
 const DIGITS = '0123456789';
@@ -7,7 +6,6 @@ export const GLYPHS: readonly string[] = [...KATAKANA, ...KATAKANA, ...CODE, ...
 
 export type Rng = () => number;
 
-// mulberry32: a tiny seeded generator. Every still frame (reduced motion, pause, screenshots) is the same on each run.
 export const createRng = (seed: number): Rng => {
   let state = seed >>> 0;
   return () => {

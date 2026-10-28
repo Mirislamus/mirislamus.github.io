@@ -30,8 +30,6 @@ const build = (locale: Locale) => {
   });
 };
 
-// The graph as plain JSON, so the tests can read any field without a cast per node.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Json = Record<string, any>;
 const nodes = (locale: Locale): Json[] => JSON.parse(JSON.stringify(build(locale)['@graph']));
 const ofType = (locale: Locale, type: string) => nodes(locale).filter(node => node['@type'] === type);

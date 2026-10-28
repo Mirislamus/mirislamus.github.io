@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createRelicSound } from './sound-relic';
 
-// A context that only records what is made of it: no audio, and the clock is ours.
 const fakeContext = () => {
   const log = {
     oscillators: [] as { type: string; freq: number }[],
@@ -77,7 +76,6 @@ const fakeContext = () => {
   return { context: context as unknown as AudioContext, raw: context, log };
 };
 
-// Lets the audio clock run for `seconds`, the way the timer of the engine sees it.
 const play = (fake: ReturnType<typeof fakeContext>, seconds: number) => {
   for (let i = 0; i < seconds / 0.025; i++) {
     fake.raw.currentTime += 0.025;
@@ -109,21 +107,17 @@ describe('the sound of the takeover', () => {
     const fake = fakeContext();
     const sound = createRelicSound({ createContext: () => fake.context });
     sound.start(false);
-    play(fake, 2.2); // a bit more than the first bar (4 × 0.536 s)
+    play(fake, 2.2);
     const saws = fake.log.oscillators.filter(osc => osc.type === 'sawtooth');
-    // The bass starts on C2 (65.4 Hz) and goes up an octave on the pushes, the sub sine is an octave below.
     expect(saws[0].freq).toBeCloseTo(65.41, 0);
     expect(saws.map(osc => osc.freq)).toContainEqual(expect.closeTo(130.81, 0));
     expect(saws.filter(osc => osc.freq < 140).length).toBeGreaterThanOrEqual(15);
     expect(fake.log.oscillators.some(osc => osc.type === 'sine' && Math.abs(osc.freq - 32.7) < 0.5)).toBe(true);
-    // The arpeggio on C4, D#4 and G4 and the pad on C3 are there too.
     expect(saws.some(osc => Math.abs(osc.freq - 261.63) < 0.5)).toBe(true);
     expect(saws.some(osc => Math.abs(osc.freq - 130.81) < 0.5)).toBe(true);
-    // The kick: a sine that falls from 120 Hz, four times in the first bar.
     const kicks = fake.log.oscillators.filter(osc => osc.type === 'sine' && Math.round(osc.freq) === 120);
     expect(kicks.length).toBeGreaterThanOrEqual(4);
     expect(kicks.length).toBeLessThanOrEqual(5);
-    // The snare has its tone, the hats and the snare their noise.
     expect(fake.log.oscillators.some(osc => osc.type === 'triangle' && osc.freq === 190)).toBe(true);
     expect(fake.log.sources).toBeGreaterThan(3);
   });
@@ -134,7 +128,7 @@ describe('the sound of the takeover', () => {
     sound.start(false);
     play(fake, 5);
     expect(fake.log.targets.length).toBeGreaterThanOrEqual(2);
-    expect(new Set(fake.log.targets).size).toBeGreaterThan(1); // closed on one bar, open on the next
+    expect(new Set(fake.log.targets).size).toBeGreaterThan(1);
   });
 
   it('puts notes on the clock only a little ahead', () => {
@@ -143,7 +137,6 @@ describe('the sound of the takeover', () => {
     sound.start(false);
     const first = fake.log.oscillators.length;
     play(fake, 1);
-    // One second of music is some fifty oscillators, not hundreds.
     expect(fake.log.oscillators.length - first).toBeLessThan(160);
   });
 
@@ -176,7 +169,7 @@ describe('the sound of the takeover', () => {
     sound.start(false);
     sound.collapse(0.6);
     expect(fake.log.oscillators.some(osc => osc.type === 'sawtooth' && osc.freq === 220)).toBe(true);
-    expect(fake.log.closed).toBe(0); // still fading
+    expect(fake.log.closed).toBe(0);
     vi.advanceTimersByTime(900);
     expect(fake.log.closed).toBe(1);
     expect(sound.playing).toBe(false);

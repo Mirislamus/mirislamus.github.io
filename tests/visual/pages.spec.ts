@@ -9,7 +9,6 @@ const LOCALES = [
 const THEMES = ['light', 'dark'] as const;
 type Theme = (typeof THEMES)[number];
 
-// Hidden images (the other theme variant of a skill icon) are lazy and are never fetched.
 const visibleImagesLoaded = () =>
   Array.from(document.images)
     .filter(image => image.getClientRects().length > 0)
@@ -22,8 +21,6 @@ const openPage = async (page: Page, path: string, theme: Theme) => {
   await settle(page);
 };
 
-// Scrolls through the whole page so that `client:visible` islands hydrate and lazy images load,
-// then returns to the top. Screenshots must not depend on what happened to be in the viewport.
 const settle = async (page: Page) => {
   await page.evaluate(async () => {
     await document.fonts.ready;

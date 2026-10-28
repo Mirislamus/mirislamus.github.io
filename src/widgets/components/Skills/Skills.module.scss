@@ -3,8 +3,6 @@
     text-align: center;
   }
 }
-
-// Four groups: 2 x 2 on wide screens, one column below that.
 .groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -20,8 +18,6 @@
     text-align: left;
   }
 }
-
-// Rows are filled edge to edge: the tiles of the last row stretch instead of leaving a gap.
 .grid {
   --gap: var(--gap-12);
   --columns: var(--cols);
@@ -34,7 +30,6 @@
 .skill {
   position: relative;
   display: flex;
-  // The 0.5px keeps rounding from pushing the last tile of a row onto the next one.
   flex: 1 1 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns) - 0.5px);
   flex-direction: column;
   gap: var(--gap-12);
@@ -87,8 +82,6 @@
     }
   }
 }
-
-// One style of icons: a Simple Icons glyph or a monogram in a rounded frame, both 24 x 24.
 .icon {
   flex: none;
   width: 48px;
@@ -153,9 +146,6 @@
     }
   }
 }
-
-// "Where I use it" (A-09): a small pill above the tile, shown with the mouse and the keyboard focus (or the first tap on
-// a touch screen, see the script of the section). The tiles at the edges of a row keep it inside the row.
 .tip {
   position: absolute;
   bottom: calc(100% + var(--gap-8));
@@ -219,7 +209,6 @@
 }
 
 @media (width <= 767px) {
-  // Three tiles in a row on a phone.
   .skill:nth-child(4n + 1) .tip,
   .skill:nth-child(4n) .tip {
     right: auto;

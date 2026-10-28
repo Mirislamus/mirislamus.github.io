@@ -5,15 +5,10 @@
   margin-top: 20px;
   transition: translate var(--dur-slow) var(--ease-out);
   view-transition-name: site-header;
-
-  // Scrolling down hides the bar, scrolling up brings it back (see header.ts).
   &[data-hidden] {
     translate: 0 calc(-100% - 40px);
   }
 }
-
-// The glass (background, border, blur) lives on a pseudo-element: a backdrop-filter on .wrap itself
-// would make it the containing block of the fixed mobile drawer.
 .wrap {
   position: relative;
   display: flex;
@@ -34,8 +29,6 @@
     backdrop-filter: blur(5px);
   }
 }
-
-// Reading progress: a thin line along the bottom edge, clipped by the rounded bar.
 .progress {
   position: absolute;
   inset: 0;
@@ -67,8 +60,6 @@
     }
 
     .progressBar {
-      // Longhands on purpose: the CSS minifier would fold `animation` + `animation-timeline` into one shorthand,
-      // which not every browser understands.
       animation-name: pageProgress;
       animation-timing-function: linear;
       animation-fill-mode: both;
@@ -99,10 +90,6 @@
     }
   }
 }
-
-// The active-section pill slides behind the links. It is one 100px-wide rectangle that is moved and
-// stretched with transforms only; the round ends are pseudo-elements that are scaled back, so they
-// stay circles. header.ts sets --width (link width + 16) and --offset (link left - 8) as plain numbers.
 .line {
   --height: 36;
   --scale: calc((var(--width, 100) - var(--height)) / 100);
@@ -113,7 +100,6 @@
   z-index: 0;
   width: 100px;
   height: calc(var(--height) * 1px);
-  // Opaque on purpose: the round ends overlap the middle, which would show as seams with any alpha.
   background-color: color-mix(in srgb, var(--accent) 22%, var(--secondary));
   opacity: 0;
   transform: translateX(calc(var(--offset, 0) * 1px + var(--height) * 0.5px)) scaleX(var(--scale));
@@ -193,8 +179,6 @@
   .wrap {
     padding: 10px 14px;
   }
-
-  // The drawer slides in from the right over a blurred page.
   .nav {
     position: fixed;
     inset: 0 0 0 auto;
@@ -209,7 +193,6 @@
     background-color: var(--secondary);
     border-left: 1px solid var(--tertiary);
     border-radius: var(--radius-24) 0 0 var(--radius-24);
-    // Visible right away when opening (so focus can move in), hidden only after it has slid out.
     transition:
       translate var(--dur-slow) var(--ease-out),
       visibility 0s linear var(--dur-slow);
@@ -222,9 +205,6 @@
       translate: 0 0;
       transition-delay: 0s;
     }
-
-    // The items pop out one after another once the drawer has started to slide in (a closing drawer takes
-    // them back at once). --i is the position of an item, the theme switcher comes last.
     li,
     .mobileSwitcher {
       opacity: 0;
@@ -303,12 +283,9 @@
   }
 
   .end {
-    // The hamburger doubles as the close button, so it stays above the drawer.
     position: relative;
     z-index: calc(var(--z-dropdown) + 1);
   }
-
-  // With the drawer open only the close button is available at the top right.
   .wrap[data-open] .end > :not(.hamburger) {
     visibility: hidden;
   }
@@ -377,10 +354,6 @@
   animation: introHeader var(--dur-base) var(--ease-out) both;
   animation-delay: calc(var(--intro-step) * 8);
 }
-
-// The logo glitches once when the mouse comes in or the keyboard focus arrives (A-12): two copies, red and cyan, shift by
-// 2 px in opposite directions and show a few stripes of the logo that jump about. CSS only; with reduced motion the
-// duration is 0 and nothing shows. The copies never take part in the layout or the clicks.
 .logo {
   position: relative;
   display: inline-block;
@@ -415,8 +388,6 @@
     }
   }
 }
-
-// The takeover of the netrunner (J-03): the logo turns into a word, with the same glitch as on hover while it changes.
 .samurai {
   display: none;
   font-family: ui-monospace, Consolas, monospace;

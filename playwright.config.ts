@@ -3,8 +3,6 @@ import { defineConfig } from '@playwright/test';
 const PORT = 4399;
 const isCI = Boolean(process.env.CI);
 
-// WHY: fonts render differently on Windows/macOS and Linux, so screenshots are compared
-// only in CI (ubuntu-latest). Locally the scenarios run without comparison.
 export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',

@@ -9,8 +9,6 @@
 .wrapper {
   position: relative;
 }
-
-// The gutter between cards is the left padding of each slide, cancelled out here.
 .track {
   margin-left: calc(-1 * var(--gap-16));
 }
@@ -42,7 +40,7 @@
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
   p {
-    padding-right: 36px; // clear of the quotation mark in the corner
+    padding-right: 36px;
     color: var(--text-muted);
   }
   cite {
@@ -62,7 +60,7 @@
   gap: var(--gap-8);
   align-items: center;
   justify-content: center;
-  margin-top: var(--gap-24); // below the cards on every screen
+  margin-top: var(--gap-24);
 
   &:empty {
     display: none;
@@ -95,8 +93,6 @@
     }
   }
 }
-
-// A big decorative quotation mark in the corner of a card (the glyphs of the Matrix get into it once, see quote-decode.ts).
 .quote {
   position: absolute;
   top: -6px;
@@ -112,10 +108,6 @@
 .review > :not(.quote) {
   position: relative;
 }
-
-// The cards come in one after another as the section comes into view: scroll-driven, no JavaScript. The timeline is
-// the one of the viewport (the cards themselves move sideways with the carousel), the step is --k. Without support
-// the cards are simply there.
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .viewport {

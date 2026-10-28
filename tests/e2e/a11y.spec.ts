@@ -4,12 +4,9 @@ import { expect, test, type Page } from '@playwright/test';
 const LOCALES = ['/', '/ru/', '/uz/'];
 const THEMES = ['light', 'dark'] as const;
 
-// The brand accent text color (#ff6433) has a low contrast on white. The owner accepted it
-// (ADR 0024 §4); every other contrast problem is still reported.
 const ACCEPTED_ACCENT = '#ff6433';
 
 const scanPage = async (page: Page) => {
-  // Lazy images and below-the-fold content must be present before scanning.
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 600) {
       window.scrollTo(0, y);

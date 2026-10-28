@@ -1,7 +1,6 @@
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
-// The chat runs on real timers (each message after "… is typing"), so these tests wait for messages, not for frames.
 test.setTimeout(90_000);
 
 const chat = (page: Page) => page.locator('[data-relic-chat]');
@@ -43,20 +42,19 @@ test.describe('when motion is allowed', () => {
     await expect(messages(page).nth(1)).toHaveAttribute('data-from', 'runner');
     await expect(messages(page).nth(1)).toContainText('Copy. Jacking into the network.');
     await expect(messages(page).nth(2)).toHaveAttribute('data-from', 'fixer');
-    // The avatars and the typing line are for the eyes only.
     await expect(messages(page).nth(0).locator('[data-avatar]')).toHaveAttribute('aria-hidden', 'true');
     await expect(page.locator('[data-relic-chat-typing]')).toHaveAttribute('aria-hidden', 'true');
   });
 
   test('a section has its turn once; the contacts wait for the reviews', async ({ page }) => {
-    await takeOver(page); // the visitor is at the contacts: they must not speak yet
+    await takeOver(page);
     await expect(messages(page)).toHaveCount(3, { timeout: 10_000 });
     await page.waitForTimeout(1500);
     await expect(log(page)).not.toContainText('Channel is open.');
     await goTo(page, 'approach');
     await expect(log(page)).toContainText('the process bends to the task', { timeout: 6000 });
     await goTo(page, 'about');
-    await page.waitForTimeout(400); // the observer sees the section on a real frame
+    await page.waitForTimeout(400);
     await goTo(page, 'approach');
     await expect(log(page)).toContainText('Don’t relax.', { timeout: 6000 });
     await page.waitForTimeout(2500);

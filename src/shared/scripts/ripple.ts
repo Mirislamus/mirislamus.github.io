@@ -1,4 +1,3 @@
-// One delegated listener for every `[data-ripple]` element (replaces the per-button React hook).
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 document.addEventListener('click', event => {

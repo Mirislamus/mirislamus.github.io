@@ -1,6 +1,3 @@
-// "May things move?" for the Matrix effects: false when the system asks for reduced motion or when the
-// visitor pressed the pause button (remembered in localStorage). Changes are announced as a
-// `motionchange` event on the document.
 export const MOTION_STORAGE_KEY = 'motion-paused';
 const MOTION_EVENT = 'motionchange';
 
@@ -22,7 +19,7 @@ export const createMotion = (env: MotionEnv): Motion => {
     try {
       return env.storage?.getItem(MOTION_STORAGE_KEY) === '1';
     } catch {
-      return false; // storage is blocked: the choice still applies to this page view
+      return false;
     }
   };
 
@@ -45,9 +42,7 @@ export const createMotion = (env: MotionEnv): Motion => {
       try {
         if (next) env.storage?.setItem(MOTION_STORAGE_KEY, '1');
         else env.storage?.removeItem(MOTION_STORAGE_KEY);
-      } catch {
-        // Not remembered, but applied now.
-      }
+      } catch {}
       env.emit();
     },
   };
@@ -60,9 +55,7 @@ export const getMotion = (): Motion =>
     let storage: MotionEnv['storage'] = null;
     try {
       storage = window.localStorage;
-    } catch {
-      // Accessing localStorage can throw when site data is blocked.
-    }
+    } catch {}
     return createMotion({
       storage,
       reducedQuery: window.matchMedia('(prefers-reduced-motion: reduce)'),
@@ -75,7 +68,6 @@ export const onMotionChange = (listener: () => void) => {
   return () => document.removeEventListener(MOTION_EVENT, listener);
 };
 
-// A CSS time token in milliseconds. The build minifies "400ms" to ".4s", so both units must be read.
 export const parseDuration = (value: string, fallback: number): number => {
   const match = /^\s*(-?\d*\.?\d+)(ms|s)\s*$/.exec(value);
   if (!match) return fallback;

@@ -8,7 +8,6 @@ const opacities = (page: Page) =>
     ),
   );
 
-// Brings the card to 300 px below the fold, waits until the scene is set up, then scrolls it into view.
 const scrollTowards = async (page: Page) => {
   await page.goto('/');
   const top = await page.evaluate(
@@ -29,14 +28,12 @@ test.describe('when motion is allowed', () => {
     await page.evaluate(y => scrollTo(0, y - 100), top);
     await expect(chat(page)).toHaveAttribute('data-chat', 'playing');
 
-    // The typing indicator comes first, then the first bubble, and the others are still hidden.
     await expect.poll(async () => (await opacities(page))[0], { timeout: 3000 }).toBeGreaterThan(0.5);
     expect((await opacities(page))[4]).toBe(0);
 
     await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 20000 });
     expect(await opacities(page)).toEqual([1, 1, 1, 1, 1]);
 
-    // Back and forth: it does not play again.
     await page.evaluate(y => scrollTo(0, y - 2000), top);
     await page.evaluate(y => scrollTo(0, y - 100), top);
     await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/);
@@ -125,7 +122,6 @@ test.describe('my answers are typed into the field and sent', () => {
     await expect(chat(page)).not.toHaveAttribute('data-chat', /.*/, { timeout: 25000 });
 
     const seen = await page.evaluate(() => (window as unknown as { typedSeen: string[] }).typedSeen);
-    // It starts empty, grows letter by letter to the whole answer and goes back to the placeholder.
     expect(seen).toContain('D');
     expect(seen).toContain('Done.');
     expect(seen.some(text => text.startsWith('Done. Here’s the preview'))).toBe(true);

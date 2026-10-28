@@ -2,8 +2,6 @@ import { THEME_COLORS, THEME_STORAGE_KEY, type Theme, type ThemeMode } from './t
 
 export type { Theme, ThemeMode };
 
-// A tiny external store for the theme: the DOM (`data-theme`) is the source of truth for styles,
-// this module keeps the chosen mode and tells subscribers (React islands, buttons) when it changes.
 const systemQuery = () => window.matchMedia('(prefers-color-scheme: dark)');
 
 const readStoredMode = (): ThemeMode => {
@@ -19,9 +17,7 @@ const writeStoredMode = (mode: ThemeMode) => {
   try {
     if (mode === 'system') localStorage.removeItem(THEME_STORAGE_KEY);
     else localStorage.setItem(THEME_STORAGE_KEY, mode);
-  } catch {
-    // Storage is blocked: the choice still applies to this page view.
-  }
+  } catch {}
 };
 
 const resolve = (mode: ThemeMode): Theme => (mode === 'system' ? (systemQuery().matches ? 'dark' : 'light') : mode);
@@ -60,7 +56,6 @@ const commit = (mode: ThemeMode) => {
   notify();
 };
 
-// Reads a duration token such as "400ms" from CSS, so the wave uses the same timing as the rest of the site.
 const readTokenMs = (name: string, fallback: number) => {
   const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   const match = /^(\d*\.?\d+)(ms|s)$/.exec(value);
@@ -69,9 +64,6 @@ const readTokenMs = (name: string, fallback: number) => {
 
 let transitionId = 0;
 
-// Switches the theme. With an origin (the clicked button) the new theme spreads from that point as a
-// circle, using the View Transitions API; without support, without an origin, when motion is reduced
-// or when the theme would not visibly change, it switches at once.
 export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
   const root = document.documentElement;
   const willChange = resolve(mode) !== root.getAttribute('data-theme');
@@ -82,8 +74,6 @@ export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
     return;
   }
 
-  // The header and the content have their own transition names for language changes; during the
-  // wave they must be part of the one root snapshot, or they would not be clipped by the circle.
   const id = ++transitionId;
   root.classList.add('theme-transition');
 
@@ -106,29 +96,24 @@ export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
         },
       );
     })
-    .catch(() => {
-      // The transition was skipped (for example by a newer one): the theme is already applied.
-    });
+    .catch(() => {});
 
   void transition.finished.finally(() => {
     if (id === transitionId) root.classList.remove('theme-transition');
   });
 };
 
-// Called once per page load from Layout.astro.
 export const initTheme = () => {
   currentMode = readStoredMode();
   apply();
   notify();
 
-  // Follow the system theme while the mode is "system".
   systemQuery().addEventListener('change', () => {
     if (getThemeMode() !== 'system') return;
     apply();
     notify();
   });
 
-  // Another tab changed the theme.
   window.addEventListener('storage', event => {
     if (event.key !== THEME_STORAGE_KEY && event.key !== null) return;
     currentMode = readStoredMode();

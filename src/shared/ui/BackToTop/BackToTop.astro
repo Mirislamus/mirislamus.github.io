@@ -27,7 +27,6 @@ const { label } = Astro.props;
       const hero = document.getElementById('about');
       if (!button) return;
 
-      // Shown once the first screen has scrolled out of view.
       const observer = new IntersectionObserver(([entry]) =>
         this.toggleAttribute('data-visible', !entry.isIntersecting),
       );
@@ -37,7 +36,6 @@ const { label } = Astro.props;
       button.addEventListener('click', () => {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'instant' : 'smooth' });
-        // Continue from the top of the page for keyboard users.
         document.querySelector<HTMLElement>('[data-logo]')?.focus({ preventScroll: true });
       });
     }

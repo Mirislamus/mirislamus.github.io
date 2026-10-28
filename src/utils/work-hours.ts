@@ -1,9 +1,8 @@
 export interface WorkHours {
   timezone: string;
-  // ISO weekdays: 1 = Monday ... 7 = Sunday
   days: number[];
-  from: string; // "10:00"
-  to: string; // "19:00"
+  from: string;
+  to: string;
 }
 
 const WEEKDAYS: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
@@ -13,8 +12,6 @@ const toMinutes = (time: string) => {
   return hours * 60 + minutes;
 };
 
-// True while `now` falls inside the working days and hours, judged in the given time zone (not the
-// visitor's): the start is included, the end is not.
 export const isWithinWorkHours = (now: Date, { timezone, days, from, to }: WorkHours): boolean => {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: timezone,

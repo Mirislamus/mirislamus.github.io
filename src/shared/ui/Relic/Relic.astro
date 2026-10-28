@@ -11,7 +11,6 @@ interface Props {
 const { texts } = Astro.props;
 ---
 
-{/* The scene of the Relic chip (J-02): a modal dialog like the one with the pills, always dark. The mask is glyphs on a canvas (J-07). */}
 <dialog class={s.dialog} data-relic-scene aria-label={texts.title}>
   <div class={s.stage} style={`--ratio:${mask.ratio}`}>
     <canvas class={s.figure} data-relic-mask aria-hidden="true"></canvas>
@@ -19,7 +18,6 @@ const { texts } = Astro.props;
   </div>
 
   <div class={s.words}>
-    {/* The shown line is noise to a screen reader, so it gets the whole quote in one clean piece. */}
     <p class="visually-hidden" lang="en">
       Wake up, Samurai. We have a city to burn.
     </p>
@@ -47,8 +45,6 @@ const { texts } = Astro.props;
   </button>
 </dialog>
 
-{/* The secure channel (J-10): the fixer and the netrunner talk about the section that comes into view. Shown and filled
-    only during the takeover; the log is a polite live region. The talk itself is in data-chat, the template is a message. */}
 <section
   class={s.chat}
   data-relic-chat
@@ -110,7 +106,6 @@ const { texts } = Astro.props;
   </template>
 </section>
 
-{/* The plate that stays while the netrunner is in the site (J-06): the way out, and the sound. */}
 <div class={s.plate} data-relic-plate hidden>
   <button type="button" class={s.eject} data-relic-eject>
     {texts.eject}

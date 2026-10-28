@@ -23,7 +23,6 @@ const defaultUrl = absoluteLocaleUrl(DEFAULT_LOCALE);
 const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, ${JSON.stringify(THEME_COLORS)})`;
 const introScript = `(${bootstrapIntro})(${JSON.stringify(INTRO_STORAGE_KEY)})`;
 const site = getSiteData(locale);
-// The card is made from /og/<locale>/ after the build (scripts/render.mjs).
 const ogImage = toUrl(`/og/mirislam-usmanov-${locale}.jpg`);
 const [firstName, ...rest] = site.meta.name.split(' ');
 const lastName = rest.join(' ');

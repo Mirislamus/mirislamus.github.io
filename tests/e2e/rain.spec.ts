@@ -13,11 +13,9 @@ test.describe('when motion is allowed', () => {
 
     const box = await rain(page).boundingBox();
     const hero = await page.locator('#about').boundingBox();
-    // The canvas also covers the strip above the Hero (up to the top edge of the page).
     expect(box?.width).toBeCloseTo(hero!.width, 0);
     expect(box!.y + box!.height).toBeCloseTo(hero!.y + hero!.height, 0);
 
-    // The canvas actually has painted glyphs.
     const painted = await rain(page).evaluate(canvas => {
       const element = canvas as HTMLCanvasElement;
       const data = element.getContext('2d')!.getImageData(0, 0, element.width, element.height).data;
@@ -86,9 +84,6 @@ test.describe('intro downpour', () => {
   test.use({ reducedMotion: 'no-preference' });
 
   test('the rain joins the intro with a downpour that calms down', async ({ page }) => {
-    // The downpour is skipped when the rain is late (600 ms after navigation), which depends on how busy the
-    // machine is. Freeze the page clock so the test checks the behavior, not the load.
-    // The same goes for the intro itself, which ends 1.6 s after load: keep it on while the machine is busy.
     await page.addInitScript(() => {
       performance.now = () => 0;
       const setTimeoutNative = window.setTimeout.bind(window);
@@ -113,7 +108,7 @@ test.describe('intro downpour', () => {
   });
 
   test('there is no downpour without the intro', async ({ page }) => {
-    await page.goto('/#about'); // a deep link skips the intro
+    await page.goto('/#about');
     await expect(rain(page)).toHaveAttribute('data-state', 'running');
     await expect(rain(page)).not.toHaveAttribute('data-burst', /.*/);
   });

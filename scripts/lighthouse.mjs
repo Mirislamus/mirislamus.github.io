@@ -1,6 +1,3 @@
-// Runs Lighthouse (mobile) on the three language versions of a finished build and fails below the thresholds of
-// docs/quality.md §2. The site is served from `dist` with its public address replaced by the local one, so canonical
-// and hreflang are judged as they would be on the real domain.
 import lighthouse from 'lighthouse';
 import { fileURLToPath } from 'node:url';
 

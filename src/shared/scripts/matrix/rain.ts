@@ -1,19 +1,14 @@
 import type { MatrixColors, Rgb } from './accent';
 import { createRng, pickGlyph, type Rng } from './glyphs';
 
-// The digital rain of the Hero (M-01). Smooth mode: a column slides down continuously and its glyphs
-// are bound to the column, not to grid cells. The core is separate from the page so it can be reused
-// (the 404 page) and so the still frame is the same every time (fixed seed).
 export interface RainOptions {
-  fontSize: number; // px, also the column pitch
-  density: number; // share of active columns, 0..1
-  speed: number; // cells per second, before the per-column multiplier
-  brightness: number; // max opacity of a tail, 0..1
+  fontSize: number;
+  density: number;
+  speed: number;
+  brightness: number;
   seed: number;
   maxDpr: number;
-  /** Radius of the cursor flashlight in px; 0 turns it off. */
   flashlight: number;
-  /** The lowest share of the canvas where the rain dissolves instead of being cut off; 0 turns it off. */
   evaporate: number;
 }
 
@@ -30,7 +25,6 @@ export const DESKTOP_RAIN: RainOptions = {
 
 export const TOUCH_RAIN: RainOptions = { ...DESKTOP_RAIN, density: 0.45, flashlight: 0 };
 
-/** An ellipse (center and half-axes, in px) behind which the rain fades out so the text stays readable. */
 export interface SafeZone {
   cx: number;
   cy: number;
@@ -39,18 +33,13 @@ export interface SafeZone {
 }
 
 export interface Rain {
-  /** Advances the rain by `dt` seconds and draws it. */
   tick: (dt: number) => void;
-  /** Draws one deterministic frame without any motion. */
   still: () => void;
-  /** Re-measures the canvas; call when its box changes. */
   resize: () => void;
   setColors: (colors: MatrixColors) => void;
   setWords: (words: readonly string[]) => void;
-  /** Cursor position in canvas px, or null when there is no cursor. */
   setPointer: (x: number | null, y?: number) => void;
   setSafeZone: (zone: SafeZone | null) => void;
-  /** The intro downpour: every column starts above the screen and falls fast, then calms down to normal. */
   burst: () => void;
   readonly bursting: boolean;
   readonly drawn: boolean;
@@ -58,7 +47,6 @@ export interface Rain {
 
 interface Column {
   x: number;
-  /** Head position, in rows from the top of the canvas (fractional: the motion is smooth). */
   y: number;
   len: number;
   speed: number;
@@ -71,16 +59,15 @@ const TAIL_MIN = 10;
 const TAIL_MAX = 26;
 const CHARS_PER_COLUMN = 40;
 const WORD_CHANCE = 0.06;
-const WORD_SKIP = 2; // glyphs between the head and the last letter of a word
+const WORD_SKIP = 2;
 const ALPHA_STEPS = 32;
-const FLASH_STEP = 0.12; // seconds between glyph flips under the flashlight
+const FLASH_STEP = 0.12;
 const MUTATIONS_PER_GLYPH_PER_SECOND = 0.9;
-const BURST_SPEED = 3.2; // times the normal speed at the start of the downpour
+const BURST_SPEED = 3.2;
 const BURST_SECONDS = 0.9;
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 
-// A stable pseudo-random number in [0, 1) for a pair of numbers.
 const noise = (a: number, b: number) => {
   const value = Math.sin(a * 12.9898 + b * 78.233) * 43758.5453;
   return value - Math.floor(value);
@@ -106,8 +93,8 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
   let flipNow = false;
   let isStill = false;
   let drawn = false;
-  let burstLeft = 0; // seconds of the downpour that are left
-  let field: string[][] = []; // static glyphs that show up under the flashlight, [column][row]
+  let burstLeft = 0;
+  let field: string[][] = [];
 
   const rows = () => Math.ceil(height / options.fontSize) + 2;
 
@@ -150,7 +137,6 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     field = columns.map(() => Array.from({ length: rows() }, () => pickGlyph(rng)));
   };
 
-  // 0.08 inside the safe zone, growing to 1 at its edge.
   const mask = (x: number, y: number) => {
     let factor = 1;
     if (zone) {
@@ -160,7 +146,6 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     return factor;
   };
 
-  // Under the flashlight the empty cells show a faint field of glyphs, so the cursor "reveals" the code.
   const drawField = (radius: number) => {
     const size = options.fontSize;
     const first = Math.max(0, Math.floor((pointerX - radius) / size));
@@ -174,7 +159,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
       for (let row = top; row <= bottom; row++) {
         const distance = Math.hypot(column.x + size / 2 - pointerX, row * size + size / 2 - pointerY);
         if (distance > radius) continue;
-        if (column.active && row <= column.y && row > column.y - column.len) continue; // the tail is drawn there
+        if (column.active && row <= column.y && row > column.y - column.len) continue;
         if (!cells || row >= cells.length) continue;
         if (flipNow && rng() < 0.15) cells[row] = pickGlyph(rng);
         ctx.fillStyle = tailStyles[step((1 - distance / radius) * 0.22)];
@@ -200,7 +185,6 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
         const t = k / column.len;
         if (y < -size || y > height) continue;
 
-        // Near the bottom the glyphs evaporate: they thin out, drift up and fade, so the rain never ends in a cut.
         const evaporation =
           options.evaporate > 0 ? clamp01((y - height * (1 - options.evaporate)) / (height * options.evaporate)) : 0;
         if (evaporation > 0) {
@@ -250,7 +234,6 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // A new height alone (for example the mobile address bar) must not restart the rain.
     if (widthChanged || columns.length === 0) build();
     else
       field = columns.map((_, i) =>
@@ -259,20 +242,17 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     if (isStill) draw();
   };
 
-  // Falls linearly from BURST_SPEED to 1 during the downpour.
   const boost = () => 1 + (BURST_SPEED - 1) * (burstLeft / BURST_SECONDS);
 
   const advance = (column: Column, dt: number) => {
     column.y += column.speed * options.speed * boost() * dt;
     if (column.active) {
-      // Every glyph of the tail changes about once a second.
       let budget = MUTATIONS_PER_GLYPH_PER_SECOND * column.len * dt;
       while (budget > 0) {
         if (budget >= 1 || rng() < budget) column.chars[Math.floor(rng() * column.chars.length)] = pickGlyph(rng);
         budget -= 1;
       }
     }
-    // Inactive columns still "fall" unseen, so the density stays the same over time.
     if (column.y - column.len > height / options.fontSize) restart(column, false);
   };
 
@@ -314,7 +294,6 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
       burstLeft = BURST_SECONDS;
       for (const column of columns) {
         restart(column, false);
-        // Everyone joins the downpour; the columns the density leaves out fade as they fall out below.
         column.active = true;
       }
     },

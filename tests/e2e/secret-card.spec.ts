@@ -4,14 +4,12 @@ const card = (page: Page) => page.locator('#approach article').nth(4);
 const files = (page: Page) => card(page).locator('[data-file]');
 const status = (page: Page) => card(page).getByRole('status');
 const stored = (page: Page) => page.evaluate(() => JSON.stringify([{ ...localStorage }, { ...sessionStorage }]));
-// How much of the ring is drawn, 0..1 (the arc is 100 long and its offset is what is not drawn yet).
 const meterScale = (page: Page, index = 0) =>
   card(page)
     .locator('[data-ring]')
     .nth(index)
     .evaluate(element => 1 - parseFloat(getComputedStyle(element).strokeDashoffset) / 100);
 
-// The play lives in a chunk that loads when the card is near: bring it into view and wait for the listeners.
 const open = async (page: Page, path = '/') => {
   await page.goto(path);
   await card(page).scrollIntoViewIfNeeded();
@@ -25,7 +23,6 @@ test.describe('what is on the page', () => {
     const redacted = await card(page).locator('[data-redacted]').allTextContents();
     for (const text of redacted) expect(text.replace(/\s/g, '')).toMatch(/^█+$/);
 
-    // Apart from the bars there is only the code name and the percent of each file.
     const codes = await card(page).locator('[data-code]').allTextContents();
     const counts = await card(page).locator('[data-count]').allTextContents();
     expect(codes.map(text => text.trim())).toEqual(['PROJECT KS', 'PROJECT IE']);
@@ -76,7 +73,6 @@ test.describe('the invite field', () => {
     await card(page).getByRole('textbox', { name: 'Invite code' }).fill('LET-ME-IN');
     await card(page).getByRole('button', { name: 'Enter' }).click();
 
-    // The glitch is short: it is recorded, not polled.
     await expect.poll(() => page.evaluate(() => (window as unknown as { glitched: boolean }).glitched)).toBe(true);
     await expect(status(page)).toHaveText('Access denied. Invites coming soon.');
     await expect(card(page)).not.toHaveAttribute('data-glitch', '', { timeout: 2000 });
@@ -105,14 +101,12 @@ test.describe('decrypting a bar', () => {
 
   test('turns the blocks into glyphs under the mouse and covers them again', async ({ page }) => {
     await open(page);
-    // Let the chunk load and the readiness bars finish.
     await expect.poll(() => meterScale(page), { timeout: 5000 }).toBeCloseTo(0.7, 1);
 
     const blocks = files(page).first().locator('[data-ch]');
     const count = await blocks.count();
     await files(page).first().hover();
     await expect(files(page).first().locator('[data-glyph]').first()).toBeAttached({ timeout: 1000 });
-    // The width does not change while it plays.
     const widths = await blocks.evaluateAll(all => all.map(element => element.getBoundingClientRect().width));
     expect(new Set(widths.map(width => Math.round(width))).size).toBe(1);
 
@@ -125,7 +119,6 @@ test.describe('decrypting a bar', () => {
   test('also on keyboard focus', async ({ page }) => {
     await open(page);
     await expect.poll(() => meterScale(page), { timeout: 5000 }).toBeCloseTo(0.7, 1);
-    // Walk back from the link over the button and the field to the last file, so the focus is a keyboard one.
     await card(page).getByRole('link', { name: 'I want an invite' }).focus();
     await page.keyboard.press('Shift+Tab');
     await page.keyboard.press('Shift+Tab');

@@ -26,7 +26,6 @@ test.describe('when motion is allowed', () => {
 
   test('hovering plays the glitch once: about 300 ms, one iteration, red and cyan', async ({ page }) => {
     await page.goto('/');
-    // The header slides in during the intro; a hover in the middle of it would lose the logo from under the pointer.
     await expect(page.locator('html')).not.toHaveAttribute('data-intro', /.*/, { timeout: 4000 });
     await logo(page).hover();
     await expect
@@ -61,7 +60,6 @@ test.describe('when motion is allowed', () => {
           .evaluate(element => getComputedStyle(element).animationName),
       )
       .toContain('logo-glitch');
-    // It is over after a moment: the copies are invisible again.
     await expect(ghosts(page).first()).toHaveCSS('opacity', '0', { timeout: 2000 });
   });
 });

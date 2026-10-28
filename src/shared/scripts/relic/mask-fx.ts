@@ -3,36 +3,27 @@ import maskJson from '@/data/matrix/mask.json';
 import { GLYPHS, createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 
-// The glyph mask of the netrunner (J-07). A grid made by scripts/build-mask.mjs is drawn with glyphs, like the rain: the
-// density of the glyph and its opacity show the shape. The suit and the respirator are pale, the visor is cyan,
-// the cables are red.
-//   - when the scene opens the mask assembles out of falling glyphs, like the hands of the pills and the wordmark;
-//   - now and then a few glyphs flicker, and for a moment a band of rows slips sideways (a glitch);
-//   - with reduced motion or a pause it is a still picture.
-// The scene is always dark, so the colours are fixed.
 type Layer = 'pale' | 'cyan' | 'red';
 const COLORS: Record<Layer, readonly [number, number, number]> = {
   pale: [244, 238, 242],
   cyan: [0, 229, 209],
-  red: [255, 46, 99], // the cables
+  red: [255, 46, 99],
 };
 const POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+*<>-='], [...'{}/#$;'], GLYPHS];
-// The suit and the respirator are drawn with dense, similar-looking glyphs so that their shape reads; the visor and the
-// cables get the rain-like mix.
 const PALE_POOLS: readonly (readonly string[])[] = [[], [...'.:·'], [...'+=*x'], [...'#%$&'], [...'@8#%&$']];
 const ALPHA = [0, 0.5, 0.74, 0.9, 1];
 const FONT = 'ui-monospace, Consolas, monospace';
 
-const ASSEMBLE_COLUMN_DELAY = 800; // ms, by column
-const ASSEMBLE_ROW_DELAY = 200; // ms, by row
-const ASSEMBLE_MIN = 500; // ms a glyph needs to land
+const ASSEMBLE_COLUMN_DELAY = 800;
+const ASSEMBLE_ROW_DELAY = 200;
+const ASSEMBLE_MIN = 500;
 const ASSEMBLE_SPREAD = 400;
-const FLIP_MS = 60; // while falling, a glyph changes this often
+const FLIP_MS = 60;
 const FLICKER_EVERY_MS = 110;
 const FLICKER_MS = 140;
-const FLICKERS = 5; // glyphs flickering at a time
-const GLITCH_EVERY_MS = 2600; // a band of rows slips sideways this often…
-const GLITCH_MS = 170; // …for this long
+const FLICKERS = 5;
+const GLITCH_EVERY_MS = 2600;
+const GLITCH_MS = 170;
 
 interface Cell {
   x: number;
@@ -47,7 +38,6 @@ interface Grid {
   levels: string[];
 }
 
-// A stable pseudo-random number in [0, 1) for a cell.
 const hash = (x: number, y: number, salt: number) => {
   const value = Math.sin(x * 12.9898 + y * 78.233 + salt * 37.719) * 43758.5453;
   return value - Math.floor(value);
@@ -76,7 +66,7 @@ export const createMask = (canvas: HTMLCanvasElement) => {
   let cols = 0;
   let cellW = 0;
   let cellH = 0;
-  let assembleStart = -1; // ms; -1 when it is not playing
+  let assembleStart = -1;
   let flickers: { cell: Cell; glyph: string; until: number }[] = [];
   let lastFlicker = 0;
   let lastGlitch = 0;
@@ -118,7 +108,6 @@ export const createMask = (canvas: HTMLCanvasElement) => {
     for (const cell of cells) paint(baseCtx, cell);
   };
 
-  // The picture as it stands: the still one, with the band of the glitch moved when there is one.
   const present = () => {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -217,7 +206,6 @@ export const createMask = (canvas: HTMLCanvasElement) => {
   };
 
   return {
-    // The scene shows the mask: it assembles, or just stands there when nothing may move.
     open() {
       if (!layout()) return;
       flickers = [];

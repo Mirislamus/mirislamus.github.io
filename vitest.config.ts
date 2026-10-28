@@ -3,7 +3,6 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   resolve: {
-    // Same alias as astro.config.ts and tsconfig.json.
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },

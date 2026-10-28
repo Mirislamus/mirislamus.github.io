@@ -1,11 +1,8 @@
 import { GLYPHS } from './matrix/glyphs';
 import { getMotion } from './matrix/motion';
 
-// The quotation mark in the corner of the first review that is seen is, for about half a second, two or three glyphs
-// of the Matrix and then the mark itself (A-10). Once per page load. Without this chunk (or with reduced motion and
-// pause) it is simply the mark.
-const STEPS = [0, 170, 340]; // ms at which a new glyph is shown
-const END = 520; // ms: the real mark is back
+const STEPS = [0, 170, 340];
+const END = 520;
 
 export const initQuoteDecode = (root: HTMLElement) => {
   const quotes = [...root.querySelectorAll<HTMLElement>('[data-quote]')];

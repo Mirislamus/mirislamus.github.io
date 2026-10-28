@@ -5,8 +5,6 @@ import { LOCALES, isLocale } from '@/i18n/locales';
 import Logo from '@/shared/icons/Logo.astro';
 import { getAvatarSrc } from '@/utils/images';
 
-// The source of the share pictures (see scripts/render.mjs): a 1200×630 card per language, made into a JPEG
-// after every build. The page itself is not part of the site: out of the sitemap and hidden from search engines.
 export const getStaticPaths = () => LOCALES.map(lang => ({ params: { lang } }));
 
 const { lang } = Astro.params;
@@ -16,7 +14,6 @@ const { hero, meta } = getSiteData(lang);
 const avatar = await getAvatarSrc();
 const host = (Astro.site as URL).host;
 
-// The same outline as the avatar on the site (Avatar.astro), standing still.
 const shape = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 170 20 100C30 30 70 20 130 10Z';
 ---
 
@@ -31,7 +28,6 @@ const shape = 'M130 10C190 0 260 70 250 130C240 200 170 250 100 240C30 230 10 17
   <body>
     <main>
       <Logo class="logo" width="56" height="56" />
-      <!-- The important part stays in the central square: messengers crop the card to it. -->
       <svg class="avatar" width="240" height="240" viewBox="0 0 260 260" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="gradient" x1="20" y1="128" x2="240" y2="130" gradientUnits="userSpaceOnUse">

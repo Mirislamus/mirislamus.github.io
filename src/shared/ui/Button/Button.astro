@@ -24,7 +24,6 @@ const {
   ...rest
 } = Astro.props;
 
-// Only real web links open in a new tab; mailto:, tel: and in-page anchors do not.
 const isExternal = href !== undefined && /^https?:\/\//.test(href);
 const Tag = href === undefined ? 'button' : 'a';
 ---

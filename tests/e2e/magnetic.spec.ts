@@ -2,7 +2,6 @@ import { expect, test, type Page } from '@playwright/test';
 
 const button = (page: Page, index = 0) => page.locator('#contacts [data-magnet]').nth(index);
 
-// Moves of the mouse count only once the chunk has loaded: bring the footer into view first.
 const open = async (page: Page) => {
   await page.goto('/');
   await page.locator('#contacts').scrollIntoViewIfNeeded();
@@ -27,7 +26,6 @@ test.describe('with a mouse', () => {
     await open(page);
     const box = (await button(page).boundingBox())!;
 
-    // 20 px to the right of the button, in the middle of its height.
     await page.mouse.move(box.x + box.width + 20, box.y + box.height / 2);
     await expect.poll(async () => (await shift(page)).x, { timeout: 2000 }).toBeGreaterThan(1);
     const { x, y } = await shift(page);

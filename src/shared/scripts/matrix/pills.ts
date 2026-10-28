@@ -6,17 +6,12 @@ import type { Sound } from './sound';
 import type { Effects } from './sound-fx';
 import { getTicker } from './ticker';
 
-// The pill scene (easter egg), loaded when the white rabbit in the footer is clicked. A native modal <dialog>
-// does the heavy lifting: focus is trapped inside, the page behind is inert, Escape closes it and focus goes
-// back to the rabbit.
-//   blue pill: the scene ends with a line and the page scrolls back to the top;
-//   red pill:  a downpour of glyphs, the page glitches for a moment, "Welcome to the real world".
 const CALM: RainOptions = { ...DESKTOP_RAIN, flashlight: 0, evaporate: 0, density: 0.55, brightness: 0.2, speed: 8 };
 const END_MS = { blue: 2600, red: 3800 };
 const GLITCH_MS = 1300;
-const SOUND_KEY = 'pills-sound'; // '1' on, '0' off: what the visitor chose last time
-const SOUND_FADE = 0.3; // seconds for the sound to go when it is switched off
-const GLITCH_BEFORE_END_MS = 700; // the page breaks up while the scene fades out, so it can be seen
+const SOUND_KEY = 'pills-sound';
+const SOUND_FADE = 0.3;
+const GLITCH_BEFORE_END_MS = 700;
 
 let dialog: HTMLDialogElement | undefined;
 
@@ -40,14 +35,12 @@ const setup = (root: HTMLDialogElement) => {
   const isLight = (colors: { background: number[] }) =>
     (colors.background[0] + colors.background[1] + colors.background[2]) / 3 > 128;
 
-  // The sound is a separate chunk, loaded when the scene opens; it plays only if nothing is asked to stand still.
-  // On by default; off by default when something is asked to stand still. A choice of the visitor beats the default.
   const soundButton = root.querySelector<HTMLButtonElement>('[data-pills-sound]');
   const stored = () => {
     try {
       return localStorage.getItem(SOUND_KEY);
     } catch {
-      return null; // blocked: the choice only lives while the page does
+      return null;
     }
   };
   let chosen: boolean | undefined;
@@ -106,7 +99,6 @@ const setup = (root: HTMLDialogElement) => {
       reset();
       root.close();
     };
-    // The fade takes the length of the token; with reduced motion it is 0 and the dialog closes at once.
     const fade = Number.parseFloat(getComputedStyle(root).animationDuration) * 1000 || 0;
     later(done, fade);
   };
@@ -114,7 +106,7 @@ const setup = (root: HTMLDialogElement) => {
   const choose = (pill: 'blue' | 'red') => {
     if (root.hasAttribute('data-chosen')) return;
     root.setAttribute('data-chosen', '');
-    effects?.choose(pill); // the red riser is timed to the glitch below (3.1 s)
+    effects?.choose(pill);
     result.textContent = root.dataset[pill === 'blue' ? 'endBlue' : 'endRed'] ?? '';
     result.hidden = false;
 
@@ -143,27 +135,21 @@ const setup = (root: HTMLDialogElement) => {
       chosen = !soundWanted();
       try {
         localStorage.setItem(SOUND_KEY, chosen ? '1' : '0');
-      } catch {
-        // Not remembered, but applied now.
-      }
+      } catch {}
       showSoundState();
-      if (chosen)
-        startSound(); // a click: the browser lets the sound start
+      if (chosen) startSound();
       else sound?.stop(SOUND_FADE);
     });
   }
-  // A soft tick under a pill, for the mouse and for the keyboard focus.
   root.querySelectorAll<HTMLButtonElement>('[data-pill]').forEach(button => {
     const pill = button.dataset.pill === 'red' ? 'red' : 'blue';
     button.addEventListener('pointerenter', event => event.pointerType === 'mouse' && effects?.blip(pill));
     button.addEventListener('focus', () => button.matches(':focus-visible') && effects?.blip(pill));
   });
-  // Escape: fade out like every other way of leaving.
   root.addEventListener('cancel', event => {
     event.preventDefault();
     close();
   });
-  // A click on the empty dark area (the dialog itself, not its content) closes it too.
   root.addEventListener('click', event => {
     if (event.target === root) close();
   });
@@ -176,7 +162,7 @@ const setup = (root: HTMLDialogElement) => {
 
   return () => {
     reset();
-    chosen = undefined; // the memory is read again every time the scene opens
+    chosen = undefined;
     showSoundState();
     root.showModal();
     unwatch = watchColors(colors => {

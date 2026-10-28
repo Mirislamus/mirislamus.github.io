@@ -5,13 +5,8 @@ import type { SiteData } from '@/data/site';
 
 interface Props {
   a11y: SiteData['a11y'];
-  // id of the heading that names the carousel
   labelledby: string;
   options?: EmblaOptionsType;
-  /**
-   * For a row that does not fit on the screen: an arrow moves by a whole screenful of cards, so the card that was
-   * cut by the edge becomes fully visible; when everything fits on the screen, the arrows go away.
-   */
   pageScroll?: boolean;
   class?: string;
 }
@@ -39,8 +34,6 @@ const { a11y, labelledby, options = {}, pageScroll = false, class: className } =
     embla-carousel-root {
       display: block;
     }
-
-    /* Before (or without) JavaScript: a native scroll-snap scroller. */
     [data-embla-viewport] {
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -49,7 +42,6 @@ const { a11y, labelledby, options = {}, pageScroll = false, class: className } =
 
     [data-embla-container] {
       display: flex;
-      /* Horizontal swipes belong to the carousel; without this a touch screen scrolls the page instead. */
       touch-action: pan-y pinch-zoom;
     }
 

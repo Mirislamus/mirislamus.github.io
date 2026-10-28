@@ -5,7 +5,6 @@ const LEAVE_MS = 250;
 
 let timer: number | undefined;
 
-// One toast at a time, announced politely through the live region rendered by Toast.astro.
 export const showToast = (message: string, kind: ToastKind = 'success') => {
   const region = document.getElementById('toast-region');
   const template = document.querySelector<HTMLTemplateElement>(`template[data-toast="${kind}"]`);

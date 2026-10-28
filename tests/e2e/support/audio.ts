@@ -1,6 +1,5 @@
 import type { Page } from '@playwright/test';
 
-// A stand-in for AudioContext that only counts what is done with it: the tests listen to the code, not to the sound.
 export const installFakeAudio = (page: Page) =>
   page.addInitScript(() => {
     const log = {

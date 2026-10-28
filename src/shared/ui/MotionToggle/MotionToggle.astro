@@ -7,14 +7,12 @@ import s from './MotionToggle.module.scss';
 interface Props {
   pauseLabel: string;
   playLabel: string;
-  /** Pinned to the viewport corner (the 404 page) instead of the corner of its positioned parent (the Hero). */
   fixed?: boolean;
 }
 
 const { pauseLabel, playLabel, fixed = false } = Astro.props;
 ---
 
-<!-- Hidden until the script knows that there is something to pause (and the system does not already ask for reduced motion). -->
 <motion-toggle hidden>
   <button
     type="button"
@@ -33,7 +31,6 @@ const { pauseLabel, playLabel, fixed = false } = Astro.props;
 <script>
   import { getMotion, onMotionChange } from '@/shared/scripts/matrix/motion';
 
-  // Pause, Stop, Hide (WCAG 2.2.2): the Matrix effects never stop on their own, so there is a button.
   class MotionToggle extends HTMLElement {
     connectedCallback() {
       const button = this.querySelector('button');
@@ -41,7 +38,6 @@ const { pauseLabel, playLabel, fixed = false } = Astro.props;
       const motion = getMotion();
 
       const render = () => {
-        // With reduced motion nothing moves, so there is nothing to pause.
         this.hidden = motion.reduced;
         button.setAttribute('aria-pressed', String(motion.paused));
         const label = (motion.paused ? button.dataset.playLabel : button.dataset.pauseLabel) ?? '';

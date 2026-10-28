@@ -3,11 +3,7 @@ import { getMotion } from '../matrix/motion';
 import { GLITCH_EVENT } from './events';
 import type { RelicSound } from './sound-relic';
 
-// The music of the takeover (J-05) as the rest of the code sees it: a few calls that do nothing if the sound is off or
-// not loaded yet. The engine itself (sound-relic.ts, a chunk of its own) is loaded the first time the music is wanted.
-//   scene opens: music fades in → a riser before the end of the scene → the hit when the netrunner takes the site over →
-//   a crunch for every glitch of the page → on leaving the music collapses and fades out.
-const SOUND_KEY = 'relic-sound'; // '1' on, '0' off: what the visitor chose last time
+const SOUND_KEY = 'relic-sound';
 
 let sound: RelicSound | undefined;
 let wanted = false;
@@ -18,26 +14,22 @@ const stored = () => {
   try {
     return localStorage.getItem(SOUND_KEY);
   } catch {
-    return null; // blocked: the choice only lives while the page does
+    return null;
   }
 };
 
-// On by default; off by default when something is asked to stand still. A choice of the visitor beats the default.
-let chosen: boolean | undefined; // also when the storage is blocked: the choice lives as long as the page
+let chosen: boolean | undefined;
 export const soundWanted = () => {
   if (chosen !== undefined) return chosen;
   const choice = stored();
   return choice === null ? getMotion().allowed : choice === '1';
 };
 
-// The visitor's choice (the button of the plate): remembered, and applied now.
 export const setSoundWanted = (on: boolean) => {
   chosen = on;
   try {
     localStorage.setItem(SOUND_KEY, on ? '1' : '0');
-  } catch {
-    // Not remembered, but applied now.
-  }
+  } catch {}
 };
 
 const crunch = () => sound?.crunch();
@@ -51,7 +43,7 @@ export const startMusic = () => {
     sound?.setTheme(light);
   });
   void import('./sound-relic').then(({ createRelicSound }) => {
-    if (!wanted) return; // left before the engine arrived
+    if (!wanted) return;
     sound ??= createRelicSound();
     sound.start(light);
   });
@@ -64,19 +56,15 @@ const forget = () => {
   unwatch = undefined;
 };
 
-/** A rise before the hit. */
 export const riser = (seconds: number) => sound?.riser(seconds);
 
-/** The blow that opens the takeover. */
 export const hit = () => sound?.hit();
 
-/** Fades out and closes the context (the scene was left without the takeover, or the sound was switched off). */
 export const stopMusic = (seconds: number) => {
   sound?.stop(seconds);
   forget();
 };
 
-/** Leaving the takeover: the music collapses downwards and fades out. */
 export const collapseMusic = (seconds: number) => {
   sound?.collapse(seconds);
   forget();

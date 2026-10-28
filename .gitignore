@@ -1,42 +1,31 @@
-# build output
 dist/
 stats.html
 
-# generated types
 .astro/
 
-# dependencies
 node_modules/
 
-# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
 .env
 .env.production
 
-# macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
 .idea/
 
-# playwright
 test-results/
 playwright-report/
 blob-report/
 
-# logs and system files
 *.log
 Thumbs.db
 
-# environment templates stay tracked
 .env.*
 !.env.example
 
-# AI tools: local settings and design-skill artifacts (docs/skills.md)
 .claude/settings.local.json
 .impeccable/

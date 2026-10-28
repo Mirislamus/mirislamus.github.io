@@ -1,15 +1,9 @@
 import type { Sound } from './sound';
 import { noteToFrequency } from './sound-score';
 
-// The effects of the pill scene (S-03), all synthesized, 0.1 to 3.8 seconds long:
-//   open   a rising whoosh and a low boom;
-//   blip   a soft tick under a pill: the blue one higher, the red one lower;
-//   blue   a calm falling chord, the music fades out to silence;
-//   red    a riser, three short glitches at the moment the page breaks up, the music swells and goes.
-// They go to the same bus as the music, so the master volume and the fade-out of the scene apply to them too.
-const BLIP_GAP = 0.12; // seconds: not more than one blip in this time
-const BLUE_FADE = 1.8; // seconds for the music to go quiet
-export const RED_GLITCH_AT = 3.1; // seconds after the red pill is chosen: when the page glitches (pills.ts)
+const BLIP_GAP = 0.12;
+const BLUE_FADE = 1.8;
+export const RED_GLITCH_AT = 3.1;
 const BLIPS = { blue: 'E5', red: 'A4' } as const;
 
 export type Pill = keyof typeof BLIPS;
@@ -56,7 +50,6 @@ export const createEffects = (sound: Sound, now: () => number = () => performanc
     osc.stop(start + length + 0.05);
   };
 
-  // Filtered noise whose pass band moves from one frequency to another.
   const sweep = (from: number, to: number, start: number, length: number, peak: number, q = 4) => {
     const ctx = sound.context;
     const bus = sound.bus;
@@ -83,7 +76,7 @@ export const createEffects = (sound: Sound, now: () => number = () => performanc
       if (!ctx) return;
       const t = ctx.currentTime + 0.05;
       sweep(300, 4200, t, 1.1, 0.3);
-      tone('sine', 72, 34, t + 0.7, 1.3, 0.8, 0.02); // the boom at the end of the whoosh
+      tone('sine', 72, 34, t + 0.7, 1.3, 0.8, 0.02);
     },
 
     blip(pill) {
@@ -104,7 +97,6 @@ export const createEffects = (sound: Sound, now: () => number = () => performanc
       const t = ctx.currentTime + 0.02;
 
       if (pill === 'blue') {
-        // A calm chord, falling a little, and the music goes quiet.
         for (const note of ['E4', 'B3', 'G3'] as const) {
           const frequency = noteToFrequency(note);
           tone('sine', frequency, frequency * 0.89, t, 1.8, 0.14, 0.05);
@@ -113,16 +105,14 @@ export const createEffects = (sound: Sound, now: () => number = () => performanc
         return;
       }
 
-      // The riser, then the page glitches: three short bursts of a square wave and noise.
       tone('sawtooth', 80, 420, t, RED_GLITCH_AT, 0.2, RED_GLITCH_AT * 0.8);
       sweep(200, 5000, t, RED_GLITCH_AT, 0.25, 2);
-      sound.ramp(1.4, RED_GLITCH_AT); // the music swells…
+      sound.ramp(1.4, RED_GLITCH_AT);
       for (let i = 0; i < 3; i++) {
         const at = t + RED_GLITCH_AT + i * 0.16;
         tone('square', 180 + ((i * 397) % 900), 90 + ((i * 211) % 500), at, 0.09, 0.3, 0.004);
         sweep(1500, 7000, at, 0.08, 0.2, 1);
       }
-      // …and goes out with the scene (the dialog fades it away when it closes).
       sound.ramp(0, 1.4, RED_GLITCH_AT);
     },
   };

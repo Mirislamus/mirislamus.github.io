@@ -1,8 +1,6 @@
 import { setSoundWanted, soundWanted, startMusic, stopMusic } from './audio';
 
-// The plate that stays on the page while the netrunner is in the site (J-06): "Eject the chip" and the button of the sound.
-// The markup is in Relic.astro; it is shown by the takeover and hidden when the chip is out.
-const SOUND_FADE = 0.3; // seconds for the music to go when it is switched off
+const SOUND_FADE = 0.3;
 
 let wired = false;
 let onEject: (() => void) | undefined;
@@ -18,7 +16,6 @@ const showSoundState = () => {
   button.setAttribute('aria-label', (on ? button.dataset.off : button.dataset.on) ?? '');
 };
 
-// Escape takes the chip out too, unless a dialog is open: then Escape belongs to the dialog.
 const onKey = (event: KeyboardEvent) => {
   if (event.key !== 'Escape' || event.defaultPrevented || document.querySelector('dialog[open]')) return;
   onEject?.();
@@ -35,8 +32,7 @@ const wire = () => {
       const on = !soundWanted();
       setSoundWanted(on);
       showSoundState();
-      if (on)
-        startMusic(); // a click: the browser lets the sound start
+      if (on) startMusic();
       else stopMusic(SOUND_FADE);
     });
   }

@@ -1,9 +1,7 @@
 import { getThemeMode, setThemeMode, subscribeTheme, type ThemeMode } from '@/utils/theme';
 
-// Focusing an element inside the sticky header must not scroll the page back to the top.
 const focus = (element: HTMLElement | undefined | null) => element?.focus({ preventScroll: true });
 
-// Elements inside the drawer become focusable only once it is visible; retry for a few frames.
 const focusWhenVisible = (find: () => HTMLElement | undefined, tries = 20) => {
   const element = find();
   if (element && getComputedStyle(element).visibility !== 'hidden') focus(element);
@@ -11,7 +9,6 @@ const focusWhenVisible = (find: () => HTMLElement | undefined, tries = 20) => {
 };
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
-// Same as the mobile breakpoint in Header.module.scss.
 const DESKTOP = '(width > 991px)';
 
 const visibleFocusable = (root: ParentNode) =>
@@ -36,7 +33,6 @@ class SiteHeader extends HTMLElement {
     const wrap = one('[data-wrap]');
     const nav = one('[data-nav]');
     const overlay = one('[data-overlay]');
-    // Reachable by Tab from the drawer, but not part of it: made inert while the drawer is open.
     const outside = [one('[data-logo]'), one('[data-langs]')];
     const line = one('[data-line]');
     const menuButton = one<HTMLButtonElement>('[data-menu-button]');
@@ -46,7 +42,6 @@ class SiteHeader extends HTMLElement {
     const langLinks = all<HTMLAnchorElement>('[data-lang-link]');
     const modeButtons = all<HTMLButtonElement>('[data-theme-mode]');
 
-    // --- Theme buttons -------------------------------------------------------------------------
     const syncModes = () => {
       const mode = getThemeMode();
       modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeMode === mode)));
@@ -55,7 +50,6 @@ class SiteHeader extends HTMLElement {
       button.addEventListener(
         'click',
         () => {
-          // The wave starts at the middle of the clicked button.
           const rect = button.getBoundingClientRect();
           setThemeMode(button.dataset.themeMode as ThemeMode, {
             x: rect.left + rect.width / 2,
@@ -68,7 +62,6 @@ class SiteHeader extends HTMLElement {
     this.#cleanup.push(subscribeTheme(syncModes));
     syncModes();
 
-    // --- Language list -------------------------------------------------------------------------
     let langsOpen = false;
 
     const setLangs = (open: boolean, target?: 'active' | 'first' | 'last') => {
@@ -112,7 +105,6 @@ class SiteHeader extends HTMLElement {
       },
       { signal },
     );
-    // Tabbing away from the list closes it.
     langsList.addEventListener(
       'focusout',
       event => {
@@ -130,7 +122,6 @@ class SiteHeader extends HTMLElement {
       { signal },
     );
 
-    // --- Mobile menu ---------------------------------------------------------------------------
     let menuOpen = false;
     let previousOverflow = '';
     let background: HTMLElement[] = [];
@@ -166,7 +157,6 @@ class SiteHeader extends HTMLElement {
     overlay.addEventListener('click', () => setMenu(false), { signal });
     links.forEach(link => link.addEventListener('click', () => setMenu(false), { signal }));
 
-    // The drawer only exists on narrow screens; do not leave the page locked after a resize.
     const desktop = window.matchMedia(DESKTOP);
     desktop.addEventListener('change', () => desktop.matches && setMenu(false), { signal });
 
@@ -204,7 +194,6 @@ class SiteHeader extends HTMLElement {
       { signal },
     );
 
-    // --- Active section and the sliding line ----------------------------------------------------
     const sections = links
       .map(link => document.getElementById(link.hash.slice(1)))
       .filter((section): section is HTMLElement => section !== null);
@@ -224,7 +213,6 @@ class SiteHeader extends HTMLElement {
         if (link.hash === `#${id}`) link.setAttribute('aria-current', 'true');
         else link.removeAttribute('aria-current');
       });
-      // Switching language keeps the section; the first section is the top of the page.
       langLinks.forEach(link => {
         const base = link.dataset.baseHref ?? '';
         link.href = id && id !== sections[0]?.id ? `${base}#${id}` : base;
@@ -242,13 +230,11 @@ class SiteHeader extends HTMLElement {
         const current = sections.findLast(section => visible.has(section.id));
         if (current) setActive(current.id);
       },
-      // A thin band at 35% of the viewport height: the section crossing it is the active one.
       { rootMargin: '-35% 0px -64% 0px' },
     );
     sections.forEach(section => observer.observe(section));
     this.#cleanup.push(() => observer.disconnect());
 
-    // When the page is scrolled to the very bottom, the last section wins even if it is short.
     let frame = 0;
     window.addEventListener(
       'scroll',
@@ -267,21 +253,17 @@ class SiteHeader extends HTMLElement {
 
     setActive(sections[0]?.id ?? '');
 
-    // Ligature/font swaps and resizes change link widths, so re-measure the line.
     const resize = new ResizeObserver(moveLine);
     resize.observe(nav);
     this.#cleanup.push(() => resize.disconnect());
-    // Until the fonts have settled the first measure may be off; show the pill (without sliding) after that.
     void document.fonts.ready.then(() => {
       moveLine();
       requestAnimationFrame(() => line.toggleAttribute('data-ready', true));
     });
 
-    // --- Smart hide: the bar leaves while scrolling down and returns on any upward scroll ------------
-    const SHOW_ABOVE = 120; // px from the top: always shown
-    const HIDE_AFTER = 8; // px of downward scrolling
-    const SHOW_AFTER = 2; // px of upward scrolling
-    // Landing on a deep link, or an anchor jump, is not the reader scrolling down: keep the bar.
+    const SHOW_ABOVE = 120;
+    const HIDE_AFTER = 8;
+    const SHOW_AFTER = 2;
     const settleUntil = performance.now() + 800;
     let anchorY = window.scrollY;
     let hideFrame = 0;

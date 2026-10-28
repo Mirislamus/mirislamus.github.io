@@ -3,9 +3,6 @@ import { getMotion, onMotionChange } from './motion';
 import { DESKTOP_RAIN, TOUCH_RAIN, createRain } from './rain';
 import { getTicker } from './ticker';
 
-// Rain behind a whole page (the 404): the same engine as the Hero, but no flashlight, no hidden words and
-// no evaporation at the bottom, because the canvas covers the screen. `data-state` as in the Hero:
-// running, idle (the tab is hidden) or static (one still frame).
 export const initBackdrop = (canvas: HTMLCanvasElement, content: HTMLElement | null) => {
   if (canvas.dataset.state) return;
 

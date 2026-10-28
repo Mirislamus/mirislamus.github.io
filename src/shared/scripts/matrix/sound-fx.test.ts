@@ -4,7 +4,6 @@ import type { Sound } from './sound';
 import { RED_GLITCH_AT, createEffects } from './sound-fx';
 import { noteToFrequency } from './sound-score';
 
-// A context that records the oscillators (type, first frequency, start time) and the noise sweeps.
 const fake = () => {
   const oscillators: { type: string; frequency: number; start: number; gains: number[] }[] = [];
   let sweeps = 0;
@@ -39,7 +38,6 @@ const fake = () => {
         }),
         start: (time: number) => (record.start = time),
       });
-      // A real node has the type as a property; the record learns it from there.
       Object.defineProperty(osc, 'type', { get: () => record.type, set: (value: string) => (record.type = value) });
       return osc;
     },
@@ -88,12 +86,11 @@ describe('the effects of the scene', () => {
     const { sound, oscillators } = fake();
     let time = 0;
     const effects = createEffects(sound, () => time);
-    effects.blip('blue'); // t = 0
+    effects.blip('blue');
     time = 0.05;
-    effects.blip('red'); // too soon
+    effects.blip('red');
     time = 0.13;
-    effects.blip('red'); // fine
-    // Every blip is two oscillators (the tone and its octave).
+    effects.blip('red');
     expect(oscillators).toHaveLength(4);
   });
 
@@ -112,7 +109,7 @@ describe('the effects of the scene', () => {
     const glitches = oscillators.filter(osc => osc.type === 'square');
     expect(glitches).toHaveLength(3);
     for (const glitch of glitches) expect(glitch.start).toBeGreaterThanOrEqual(10 + RED_GLITCH_AT);
-    expect(sweeps()).toBe(4); // the riser noise and a burst with every glitch
+    expect(sweeps()).toBe(4);
     expect(ramp).toHaveBeenNthCalledWith(1, 1.4, RED_GLITCH_AT);
     expect(ramp).toHaveBeenNthCalledWith(2, 0, 1.4, RED_GLITCH_AT);
   });

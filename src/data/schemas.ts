@@ -29,7 +29,6 @@ export const a11ySchema = z.strictObject({
   slideOf: text,
 });
 
-// The project types of the second Approach card: the switcher, the stack and four stages of each one.
 const PROJECT_TYPES = ['landing', 'store', 'service'] as const;
 export type ProjectType = (typeof PROJECT_TYPES)[number];
 
@@ -41,8 +40,6 @@ export const approachBaseSchema = z.strictObject({
     .refine(types => types.map(type => type.id).join() === PROJECT_TYPES.join(), {
       message: `types must list ${PROJECT_TYPES.join(', ')} in this order`,
     }),
-  // The classified projects: only a code name, the length of the black bars and the readiness. Real names
-  // and descriptions must never get into the data, so they cannot get into the page.
   secret: z
     .array(
       z.strictObject({
@@ -55,7 +52,6 @@ export const approachBaseSchema = z.strictObject({
     .min(1),
 });
 
-// Each card of the Approach section: a statement and a line of facts under it.
 const cardText = { title: text, fact: text };
 
 export const approachSchema = z.strictObject({
@@ -99,7 +95,7 @@ export const approachSchema = z.strictObject({
     stamp: text,
     title: text,
     line: text,
-    row: text, // "{{code}}: classified, {{progress}}% ready", read by screen readers instead of the bar
+    row: text,
     form: z.strictObject({ heading: text, label: text, submit: text, empty: text, denied: text }),
     invite: z.strictObject({ button: text, text }),
   }),
@@ -109,7 +105,6 @@ export const heroSchema = z.strictObject({ role: text, title: text, text, button
 
 export const footerSchema = z.strictObject({ ready: text, text });
 
-// The Matrix easter egg: the white rabbit in the footer and the choice of a pill.
 export const easterSchema = z.strictObject({
   rabbit: text,
   title: text,
@@ -124,8 +119,6 @@ export const easterSchema = z.strictObject({
   soundOff: text,
 });
 
-// One message of the channel, and one turn of the talk: a few messages and, under the last one, maybe a quick reply that
-// the visitor can send (it scrolls the page to `target`, and someone answers).
 const chatLine = z.strictObject({ from: z.enum(['fixer', 'runner']), text });
 const chatBeat = z.strictObject({
   lines: z.array(chatLine).min(1),
@@ -138,29 +131,20 @@ const chatBeat = z.strictObject({
     .optional(),
 });
 
-// The Cyberpunk easter egg: the Relic chip in the footer, the netrunner and his takeover of the site.
 export const relicSchema = z.strictObject({
   chip: text,
-  // The name of the scene for assistive technology.
   title: text,
   close: text,
-  // The plate that stays while the netrunner is in the site: the button that takes the chip out and the one for the sound.
   eject: text,
   soundOn: text,
   soundOff: text,
-  // The quote is always in English; the subtitle is its translation (none on the English page).
   subtitle: text.optional(),
-  // Texts of the page that the takeover replaces by others (visually only, see the Swap component).
   swaps: z.strictObject({ role: text, button: text }),
-  // What the netrunner says when a section comes into view; the keys are the ids of the sections.
-  // The secure channel on the left (J-10): the fixer and the netrunner talk about the site as the visitor scrolls it.
   chat: z.strictObject({
     title: text,
     open: text,
     close: text,
-    // `{{count}}`: how many messages came while the chat was folded.
     unread: text,
-    // `{{name}}`: who is typing.
     typing: text,
     you: text,
     people: z.strictObject({ fixer: text, runner: text }),
@@ -177,10 +161,8 @@ export const relicSchema = z.strictObject({
   }),
 });
 
-// Only used by the printable CV page; none of this appears on the site itself.
 export const cvSchema = z.strictObject({
   contacts: text,
-  // The profile text of the CV (only there): `{{years}}` is the years of experience.
   summary: z.strictObject({ title: text, paragraphs: z.array(text).min(1) }),
   education: z.strictObject({
     title: text,
@@ -188,7 +170,6 @@ export const cvSchema = z.strictObject({
   }),
   languages: z.strictObject({
     title: text,
-    // `code` is the BCP 47 language tag used by the structured data.
     items: z.array(z.strictObject({ code: z.string().regex(/^[a-z]{2,3}$/), name: text, level: text })).min(1),
   }),
 });
@@ -202,7 +183,6 @@ export const metaSchema = z.strictObject({
   title: text,
   description: text,
   imageAlt: text,
-  // The line under the role on the share picture; `{{years}}` is the years of experience.
   imageLine: text,
 });
 
@@ -213,16 +193,13 @@ export const skillBaseSchema = z.strictObject({
   name: text,
   link: url,
   group: z.enum(SKILL_GROUPS),
-  // The slug of the icon in Simple Icons, or null when the brand is not there: then the tile gets a monogram.
   icon: text.nullable(),
-  // The id in technologies.json when it is not the same as the id of the skill (the projects are matched by it).
   tech: id.optional(),
 });
 
 export const skillsSchema = z.strictObject({
   title: text,
   groups: z.strictObject({ core: text, data: text, ui: text, tooling: text }),
-  // "In N projects: A, B, +2": the plural forms depend on the language (Intl.PluralRules).
   usage: z.strictObject({
     zero: text.optional(),
     one: text.optional(),
@@ -251,7 +228,6 @@ export const careerBaseSchema = z.strictObject({
   id,
   company: text,
   position: text,
-  // Years only: the visible label and the structured data are both made from them.
   start: z.number().int().min(1990),
   end: z.number().int().min(1990).nullable(),
   url: url.optional(),
@@ -261,7 +237,6 @@ export const careerBaseSchema = z.strictObject({
 export const careerSchema = z.strictObject({
   title: text,
   technologies: text,
-  // The word after the dash for the current place: "2024 — Present".
   present: text,
   items: z.array(z.strictObject({ id, description: text })).min(1),
 });
@@ -270,7 +245,6 @@ export const reviewBaseSchema = z.strictObject({ id, author: text });
 
 export const reviewsSchema = z.strictObject({
   title: text,
-  // Where the reviews come from; only used by the structured data.
   source: text,
   reviews: z.array(z.strictObject({ id, text })).min(1),
 });
@@ -286,7 +260,6 @@ const timezone = text.refine(value => {
 const clock = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'must look like 10:00');
 
 export const statusBaseSchema = z.strictObject({
-  // The one switch for the "open to new projects" badge and the "online now" status.
   open: z.boolean(),
   timezone,
   workHours: z.strictObject({

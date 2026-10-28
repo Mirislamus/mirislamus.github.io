@@ -8,18 +8,14 @@
   margin-top: -62px;
   padding-block: fluid(66);
   isolation: isolate;
-
-  // The content sits above the rain canvas.
   > :global(.container) {
     position: relative;
     z-index: var(--z-base);
   }
 }
-
-// Digital rain (M-01): decorative, behind everything. It fades in once the first frame is drawn.
 .rain {
   position: absolute;
-  top: calc(var(--rain-bleed, 0px) * -1); // up to the top edge of the page, behind the header
+  top: calc(var(--rain-bleed, 0px) * -1);
   left: 0;
   z-index: 0;
   width: 100%;
@@ -32,8 +28,6 @@
     opacity: 1;
   }
 }
-
-// "Open to new projects": a small capsule with a pulsing dot (three pulses, then still).
 .badge {
   display: flex;
   gap: var(--gap-8);
@@ -86,7 +80,7 @@
   width: fluid(260);
   height: fluid(260);
   margin-bottom: fluid(24);
-  overflow: visible; // a stretched drop reaches beyond the box
+  overflow: visible;
 }
 
 .content {
@@ -168,11 +162,6 @@
     }
   }
 }
-
-// ---- Intro: plays once per session (see utils/intro-bootstrap.ts), only while html has data-intro.
-// Timeline in --intro-step units (100ms): avatar 0, words 1.5+, role 4.5, text 6, button 7; the header
-// comes last (Header.module.scss). Only opacity and the individual translate/scale properties are
-// animated, so the heading text is never hidden behind opacity 0 and the cursor tilt keeps `transform`.
 .word {
   display: inline;
 }
@@ -205,8 +194,6 @@
   .avatar {
     animation: introAvatar var(--dur-slow) var(--ease-out) both;
   }
-
-  // Each word slides up from behind its own mask.
   .word {
     display: inline-block;
     margin-bottom: calc(#{fluid(56)} * -0.12);
