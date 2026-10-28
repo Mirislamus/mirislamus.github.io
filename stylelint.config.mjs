@@ -1,5 +1,6 @@
 export default {
   extends: ['stylelint-config-standard-scss'],
+  plugins: ['stylelint-order'],
   overrides: [
     { files: ['**/*.astro'], customSyntax: 'postcss-html' },
     {
@@ -11,9 +12,18 @@ export default {
   rules: {
     // Project rules
     'declaration-no-important': true,
+    // ADR 0009 §3. Attribute qualifiers (input[type], [hidden] on a tag, custom elements) are how the reset and
+    // the scripts' hooks are written, so only class and id qualifiers are refused.
+    'selector-max-id': 0,
+    'selector-no-qualifying-type': [true, { ignore: ['attribute'] }],
+    'max-nesting-depth': 3,
+    'color-named': 'never',
+    'unit-disallowed-list': ['rem', 'em'],
     // Stacking order comes from the --z-* tokens; only 0 and calc() on a token are allowed.
     'declaration-property-value-disallowed-list': {
       'z-index': ['/^-?[1-9]\\d*$/'],
+      // No `transition: all` (ADR 0003 §15).
+      '/^transition/': ['/\\ball\\b/'],
       // Timing comes from the motion tokens in _variables.scss.
       '/^(transition|animation)(-duration|-delay|-timing-function)?$/': [
         '/cubic-bezier\\(/',

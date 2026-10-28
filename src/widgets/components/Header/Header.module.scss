@@ -334,15 +334,11 @@
           transform: rotateY(180deg);
         }
       }
-      &[data-open] {
-        svg {
-          &:nth-child(1) {
-            transform: rotateY(180deg);
-          }
-          &:nth-child(2) {
-            transform: rotateY(360deg);
-          }
-        }
+      &[data-open] svg:nth-child(1) {
+        transform: rotateY(180deg);
+      }
+      &[data-open] svg:nth-child(2) {
+        transform: rotateY(360deg);
       }
     }
   }

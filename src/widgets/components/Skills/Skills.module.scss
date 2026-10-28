@@ -62,16 +62,16 @@
   }
 
   @include hover {
-    &:hover {
-      .icon {
-        scale: 0.88;
-        translate: 0 -12px;
-        color: var(--brand, var(--accent-text));
+    &:hover .icon {
+      scale: 0.88;
+      translate: 0 -12px;
+      color: var(--brand, var(--accent-text));
 
-        @include on-dark {
-          color: var(--brand-dark, var(--accent-text));
-        }
+      @include on-dark {
+        color: var(--brand-dark, var(--accent-text));
       }
+    }
+    &:hover {
       .label {
         translate: 0 0;
         opacity: 1;
