@@ -96,7 +96,6 @@ const config = {
       sourcemap: false,
       assetsInlineLimit: 0,
       cssMinify: true,
-      // A chunk over 250 KB before compression is an architecture defect (ADR 0012 §2).
       chunkSizeWarningLimit: 250,
     },
     plugins: process.env.ANALYZE ? [visualizer({ filename: 'stats.html', gzipSize: true })] : [],
@@ -115,6 +114,7 @@ const config = {
   },
   prefetch: true,
   compressHTML: true,
+  build: { inlineStylesheets: 'always' },
 } satisfies AstroUserConfig;
 
 export default config;

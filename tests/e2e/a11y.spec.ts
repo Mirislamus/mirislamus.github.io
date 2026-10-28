@@ -5,7 +5,7 @@ const LOCALES = ['/', '/ru/', '/uz/'];
 const THEMES = ['light', 'dark'] as const;
 
 // The brand accent text color (#ff6433) has a low contrast on white. The owner accepted it
-// (docs/tz.md, RF-15); every other contrast problem is still reported.
+// (ADR 0024 §4); every other contrast problem is still reported.
 const ACCEPTED_ACCENT = '#ff6433';
 
 const scanPage = async (page: Page) => {

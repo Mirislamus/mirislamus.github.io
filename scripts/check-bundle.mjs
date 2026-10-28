@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
-// Budgets are in gzip KB of JS in dist/_astro (docs/tz.md, section 7).
+// Budgets are in gzip KB of JS in dist/_astro (ADR 0024 §4).
 const BUDGETS = {
   // everything that is not behind a dynamic import()
   initial: 15,

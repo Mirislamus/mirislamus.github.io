@@ -6,6 +6,7 @@ import { chromium } from '@playwright/test';
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, normalize } from 'node:path';
+import { gzipSync } from 'node:zlib';
 
 const MAX_PDF_BYTES = 300 * 1024;
 // WhatsApp ignores share pictures over 300 KB.
@@ -18,6 +19,11 @@ const TYPES = {
   '.woff2': 'font/woff2',
   '.svg': 'image/svg+xml',
   '.webp': 'image/webp',
+  '.avif': 'image/avif',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
+  '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
 };
@@ -64,6 +70,11 @@ const serve = (dist, site) =>
       if (site && /^text\/|xml/.test(type))
         body = Buffer.from(body.toString().replaceAll(site, `http://${request.headers.host}`));
 
+      if (/^text\/|xml/.test(type) && /gzip/.test(request.headers['accept-encoding'] ?? '')) {
+        response.writeHead(200, { 'content-type': type, 'content-encoding': 'gzip' });
+        response.end(gzipSync(body));
+        return;
+      }
       response.writeHead(200, { 'content-type': type });
       response.end(body);
     } catch {
