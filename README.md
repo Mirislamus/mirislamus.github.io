@@ -17,20 +17,21 @@ bun run dev        # http://localhost:3000
 
 Нужен [Bun](https://bun.sh) (версия указана в `packageManager` в `package.json`).
 
-| Команда                           | Что делает                                                         |
-| --------------------------------- | ------------------------------------------------------------------ |
-| `bun run dev`                     | dev‑сервер                                                         |
-| `bun run build`                   | production‑сборка в `dist/`                                        |
-| `bun run preview`                 | локальный просмотр сборки                                          |
-| `bun run check`                   | типы (`astro check`)                                               |
-| `bun run lint` / `lint:styles`    | ESLint / Stylelint                                                 |
-| `bun run format` / `format:check` | Prettier (записать / проверить)                                    |
-| `bun run knip`                    | неиспользуемые файлы, экспорты и зависимости                       |
-| `bun run test`                    | юнит‑тесты (Vitest)                                                |
-| `bun run test:e2e`                | e2e и axe (Playwright; нужен `bunx playwright install chromium`)   |
-| `bun run test:visual`             | сценарии скриншотов; сравнение с эталоном — только в CI (см. ниже) |
-| `bun run check:bundle`            | бюджет JS: 15 КБ gzip сразу, 10 КБ на чанк                         |
-| `bun run check:links`             | проверка внешних ссылок (в CI раз в неделю)                        |
+| Команда                                  | Что делает                                                         |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| `bun run dev`                            | dev‑сервер                                                         |
+| `bun run build`                          | production‑сборка в `dist/`                                        |
+| `bun run preview`                        | локальный просмотр сборки                                          |
+| `bun run check`                          | Prettier, ESLint, Stylelint и типы — перед каждым коммитом         |
+| `bun run typecheck`                      | типы (`astro check`)                                               |
+| `bun run lint` (`lint:js`, `lint:style`) | ESLint и Stylelint без предупреждений                              |
+| `bun run format` / `format:check`        | Prettier (записать / проверить)                                    |
+| `bun run knip`                           | неиспользуемые файлы, экспорты и зависимости                       |
+| `bun run test`                           | юнит‑тесты (Vitest)                                                |
+| `bun run test:e2e`                       | e2e и axe (Playwright; нужен `bunx playwright install chromium`)   |
+| `bun run test:visual`                    | сценарии скриншотов; сравнение с эталоном — только в CI (см. ниже) |
+| `bun run check:bundle`                   | бюджет JS: 15 КБ gzip сразу, 10 КБ на чанк                         |
+| `bun run check:links`                    | проверка внешних ссылок (в CI раз в неделю)                        |
 
 ## Структура
 

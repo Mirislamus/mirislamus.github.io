@@ -32,12 +32,10 @@ jobs:
           bun-version: ${{ steps.bun.outputs.version }}
 
       - run: bun install --frozen-lockfile
-      - run: bun run format:check
-      - run: bun run lint
-      - run: bun run lint:styles
+      # Prettier, ESLint, Stylelint and types in one go.
+      - run: bun run check
       - run: bun run knip
       - run: bun run test
-      - run: bun run check
       # Chromium makes the CV PDFs and the share pictures at the end of the build, so it comes first.
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium

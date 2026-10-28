@@ -11,7 +11,8 @@
     "build:wordmark": "node scripts/build-wordmark.mjs",
     "build:hands": "node scripts/build-hands.mjs",
     "build:mask": "node scripts/build-mask.mjs",
-    "check": "astro check",
+    "typecheck": "astro check",
+    "check": "bun run format:check && bun run lint && bun run typecheck",
     "check:links": "bun scripts/check-links.mjs",
     "check:lighthouse": "node scripts/lighthouse.mjs",
     "preview": "astro preview",
@@ -19,13 +20,14 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:bundle": "node scripts/check-bundle.mjs",
-    "lint": "eslint .",
+    "lint:js": "eslint . --max-warnings 0",
+    "lint:style": "stylelint \"src/**/*.{scss,astro}\" --max-warnings 0",
+    "lint": "bun run lint:js && bun run lint:style",
     "test:visual": "playwright test tests/visual",
     "test:visual:update": "playwright test tests/visual --update-snapshots",
     "knip": "knip --include files,exports,dependencies",
     "test": "vitest run",
-    "test:e2e": "playwright test tests/e2e",
-    "lint:styles": "stylelint \"src/**/*.{scss,astro}\""
+    "test:e2e": "playwright test tests/e2e"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

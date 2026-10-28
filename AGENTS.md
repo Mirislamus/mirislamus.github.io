@@ -120,7 +120,7 @@
 
 Перед коммитом, пропорционально изменению (это же проверяет job `verify` в `.github/workflows/deploy.yml`):
 
-- `bun run format:check`, `bun run lint`, `bun run lint:styles`, `bun run knip`, `bun run check` (типы);
+- `bun run check` (Prettier, ESLint, Stylelint, типы), `bun run knip`;
 - `bun run test` (Vitest), `bun run test:e2e` (Playwright, нужен `bunx playwright install chromium`);
 - `bun run build`, затем `bun run check:bundle`.
 
