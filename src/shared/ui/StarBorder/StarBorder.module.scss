@@ -1,51 +1,51 @@
 .container {
-  display: inline-block;
   position: relative;
-  border-radius: var(--radius-24);
+  display: inline-block;
   overflow: hidden;
+  border-radius: var(--radius-24);
 }
 
 .gradientBottom {
   position: absolute;
+  right: -250%;
+  bottom: -45px;
+  z-index: 0;
   width: 300%;
   height: 50%;
-  bottom: -45px;
-  right: -250%;
   border-radius: 50%;
   animation: star-movement-bottom linear infinite alternate;
-  z-index: 0;
 }
 
 .gradientTop {
   position: absolute;
-  width: 300%;
-  height: 50%;
   top: -45px;
   left: -250%;
+  z-index: 0;
+  width: 300%;
+  height: 50%;
   border-radius: 50%;
   animation: star-movement-top linear infinite alternate;
-  z-index: 0;
 }
 
 @keyframes star-movement-bottom {
   0% {
-    transform: translate(0%, 0%);
     opacity: 1;
+    transform: translate(0%, 0%);
   }
   100% {
-    transform: translate(-100%, 0%);
     opacity: 0;
+    transform: translate(-100%, 0%);
   }
 }
 
 @keyframes star-movement-top {
   0% {
-    transform: translate(0%, 0%);
     opacity: 1;
+    transform: translate(0%, 0%);
   }
   100% {
-    transform: translate(100%, 0%);
     opacity: 0;
+    transform: translate(100%, 0%);
   }
 }
 
@@ -53,7 +53,7 @@
 @media (prefers-reduced-motion: reduce) {
   .gradientBottom,
   .gradientTop {
-    animation: none;
     opacity: 0;
+    animation: none;
   }
 }

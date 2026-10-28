@@ -31,16 +31,16 @@
 
 .review {
   position: relative;
-  overflow: hidden;
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 24px;
   gap: 12px;
+  padding: 24px;
+  overflow: hidden;
+  line-height: 1.5;
   background-color: var(--secondary-alpha);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
-  line-height: 1.5;
   p {
     padding-right: 36px; // clear of the quotation mark in the corner
     color: var(--text-muted);
@@ -53,15 +53,15 @@
 
 .reviewsControls {
   display: flex;
-  align-items: center;
   gap: var(--gap-20);
+  align-items: center;
 }
 
 .pagination {
   display: flex;
+  gap: var(--gap-8);
   align-items: center;
   justify-content: center;
-  gap: var(--gap-8);
   margin-top: var(--gap-24); // below the cards on every screen
 
   &:empty {
@@ -72,22 +72,22 @@
     position: relative;
     width: 25px;
     height: 25px;
-    border-radius: 50%;
     background-color: var(--secondary-alpha);
     border: 1px solid var(--tertiary);
+    border-radius: 50%;
     transition: var(--transition-ease);
 
     &::after {
-      content: '';
       position: absolute;
       inset: 0;
       width: 15px;
       height: 15px;
       margin: auto;
-      border-radius: 50%;
       background-color: var(--accent);
-      scale: 0;
+      border-radius: 50%;
       transition: var(--transition-ease);
+      content: '';
+      scale: 0;
     }
 
     &[aria-current='true']::after {
@@ -105,8 +105,8 @@
   font-weight: 700;
   line-height: 1;
   color: color-mix(in srgb, var(--accent-text) 15%, transparent);
-  user-select: none;
   pointer-events: none;
+  user-select: none;
 }
 
 .review > :not(.quote) {

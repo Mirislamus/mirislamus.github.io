@@ -1,14 +1,14 @@
 .button {
+  position: relative;
   display: flex;
+  gap: var(--gap-8);
   align-items: center;
   justify-content: center;
   width: fit-content;
-  gap: var(--gap-8);
-  border-radius: var(--radius-50);
-  font-weight: 500;
-  transition: var(--transition-ease);
   overflow: hidden;
-  position: relative;
+  font-weight: 500;
+  border-radius: var(--radius-50);
+  transition: var(--transition-ease);
   &:focus-visible {
     box-shadow: 0 0 0 3px var(--accent-alpha);
   }
@@ -22,11 +22,11 @@
 
 .fill {
   color: var(--accent-contrast);
-  border: 1px solid var(--accent);
   background-color: var(--accent);
+  border: 1px solid var(--accent);
   &:hover {
-    background-color: var(--accent-alpha);
     color: var(--text);
+    background-color: var(--accent-alpha);
   }
   &:active {
     scale: 0.97;
@@ -37,25 +37,25 @@
   color: var(--text);
   border: 1px solid var(--tertiary);
   &:hover {
-    border-color: var(--grey-5);
     color: var(--accent-text);
+    border-color: var(--grey-5);
   }
   &:focus {
-    border-color: var(--grey-6);
     color: var(--accent-text);
+    border-color: var(--grey-6);
   }
 }
 
 .sm {
-  font-size: 14px;
-  padding-inline: 16px;
   height: 40px;
+  padding-inline: 16px;
+  font-size: 14px;
 }
 
 .lg {
-  font-size: 16px;
-  padding-inline: 24px;
   height: 48px;
+  padding-inline: 24px;
+  font-size: 16px;
 
   @media (width <= 767px) {
     height: 44px;

@@ -76,12 +76,12 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
 
 <style>
   .not-found {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    gap: var(--gap-30);
     align-items: center;
     justify-content: center;
-    gap: var(--gap-30);
+    min-height: 100vh;
     padding: var(--gap-24) var(--gap-16);
     text-align: center;
   }
@@ -106,9 +106,9 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
   }
 
   .spoon {
-    color: var(--accent-text);
-    font-size: 18px;
     margin-top: calc(var(--gap-12) * -1);
+    font-size: 18px;
+    color: var(--accent-text);
   }
 
   section[hidden] {
@@ -118,8 +118,8 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
   section {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--gap-12);
+    align-items: center;
   }
 
   h1 {

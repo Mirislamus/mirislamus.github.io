@@ -2,12 +2,12 @@
 
 .hero {
   position: relative;
-  isolation: isolate;
-  padding-block: fluid(66);
-  min-height: 100vh;
-  margin-top: -62px;
   display: flex;
   align-items: center;
+  min-height: 100vh;
+  margin-top: -62px;
+  padding-block: fluid(66);
+  isolation: isolate;
 
   // The content sits above the rain canvas.
   > :global(.container) {
@@ -19,14 +19,14 @@
 // Digital rain (M-01): decorative, behind everything. It fades in once the first frame is drawn.
 .rain {
   position: absolute;
-  left: 0;
   top: calc(var(--rain-bleed, 0px) * -1); // up to the top edge of the page, behind the header
+  left: 0;
   z-index: 0;
   width: 100%;
   height: calc(100% + var(--rain-bleed, 0px));
-  pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-slow) var(--ease-out);
+  pointer-events: none;
 
   &[data-state] {
     opacity: 1;
@@ -36,33 +36,33 @@
 // "Open to new projects": a small capsule with a pulsing dot (three pulses, then still).
 .badge {
   display: flex;
-  width: fit-content;
-  align-items: center;
   gap: var(--gap-8);
+  align-items: center;
+  width: fit-content;
   margin: 0 auto fluid(16);
   padding: 6px 14px;
-  border: 1px solid var(--tertiary);
-  border-radius: var(--radius-100);
-  background-color: var(--secondary-alpha);
-  color: var(--text-muted);
   font-size: 14px;
   line-height: 1.2;
+  color: var(--text-muted);
+  background-color: var(--secondary-alpha);
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-100);
 }
 
 .dot {
   position: relative;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
   background-color: var(--green);
+  border-radius: 50%;
 
   &::after {
-    content: '';
     position: absolute;
     inset: 0;
-    border-radius: inherit;
     background-color: var(--green);
+    border-radius: inherit;
     opacity: 0;
+    content: '';
     animation-name: pulse;
     animation-duration: calc(var(--dur-slow) * 4);
     animation-timing-function: var(--ease-out);
@@ -83,16 +83,16 @@
 }
 
 .avatar {
-  overflow: visible; // a stretched drop reaches beyond the box
-  margin-bottom: fluid(24);
   width: fluid(260);
   height: fluid(260);
+  margin-bottom: fluid(24);
+  overflow: visible; // a stretched drop reaches beyond the box
 }
 
 .content {
   width: min(fluid(620), 100%);
-  text-align: center;
   margin-inline: auto;
+  text-align: center;
   h1 {
     margin-bottom: fluid(22);
     font-size: fluid(56);
@@ -104,34 +104,34 @@
     color: var(--accent-text);
   }
   .text {
-    color: var(--text-muted);
-    font-size: fluid(18);
     width: min(fluid(540), 100%);
     margin-inline: auto;
+    font-size: fluid(18);
+    color: var(--text-muted);
   }
 }
 
 .btns {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: fluid(12);
+  justify-content: center;
   margin-top: fluid(22);
   button,
   a {
     min-width: fluid(200);
-    white-space: nowrap;
-    font-size: fluid(18);
     height: fluid(48);
+    font-size: fluid(18);
+    white-space: nowrap;
     border-radius: fluid(100);
   }
 }
 
 @media (width <= 767px) {
   .hero {
+    margin-top: 0;
     padding-top: 30px;
     padding-bottom: 80px;
-    margin-top: 0;
   }
 
   .avatar {
@@ -142,12 +142,12 @@
 
   .content {
     h1 {
-      font-size: 32px;
       margin-bottom: 20px;
+      font-size: 32px;
     }
     .role {
-      font-size: 18px;
       margin-top: 16px;
+      font-size: 18px;
     }
     .text {
       font-size: 14px;
@@ -156,14 +156,14 @@
     .btns {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 12px;
+      justify-content: center;
       margin-top: 26px;
       button,
       a {
         width: auto;
-        font-size: 16px;
         height: 44px;
+        font-size: 16px;
       }
     }
   }
@@ -209,10 +209,10 @@
   // Each word slides up from behind its own mask.
   .word {
     display: inline-block;
+    margin-bottom: calc(#{fluid(56)} * -0.12);
+    padding-bottom: calc(#{fluid(56)} * 0.12);
     overflow: hidden;
     vertical-align: top;
-    padding-bottom: calc(#{fluid(56)} * 0.12);
-    margin-bottom: calc(#{fluid(56)} * -0.12);
   }
 
   .wordInner {

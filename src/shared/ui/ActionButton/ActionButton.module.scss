@@ -1,19 +1,19 @@
 .actionButton {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 42px;
   width: 42px;
+  height: 42px;
+  overflow: hidden;
   font-size: 18px;
   font-weight: 500;
-  text-transform: uppercase;
   letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
   color: var(--text);
-  border-radius: var(--radius-10);
   border: 1px solid var(--tertiary);
+  border-radius: var(--radius-10);
   transition: var(--transition);
-  position: relative;
-  overflow: hidden;
 
   &:hover {
     border-color: var(--grey-5);
@@ -23,7 +23,7 @@
   }
 
   @media (width <= 767px) {
-    height: 40px;
     width: 40px;
+    height: 40px;
   }
 }

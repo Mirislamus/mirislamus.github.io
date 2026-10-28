@@ -4,8 +4,8 @@
   .container {
     --gap: 12px;
     width: 100%;
-    padding-inline: var(--gap);
     margin-inline: auto;
+    padding-inline: var(--gap);
     @media (width >= 576px) {
       max-width: 540px;
     }

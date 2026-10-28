@@ -32,21 +32,21 @@
 }
 
 .skill {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  // The 0.5px keeps rounding from pushing the last tile of a row onto the next one.
+  flex: 1 1 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns) - 0.5px);
   flex-direction: column;
   gap: var(--gap-12);
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 110px;
+  padding: 15px;
   background-color: var(--secondary-alpha);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-16);
-  padding: 15px;
-  height: 110px;
-  // The 0.5px keeps rounding from pushing the last tile of a row onto the next one.
-  flex: 1 1 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns) - 0.5px);
-  min-width: 0;
   transition: var(--transition-ease);
-  position: relative;
 
   .icon,
   .label {
@@ -56,16 +56,16 @@
   .label {
     position: absolute;
     bottom: 15px;
-    translate: 0 12px;
-    opacity: 0;
     text-align: center;
+    opacity: 0;
+    translate: 0 12px;
   }
 
   @include hover {
     &:hover .icon {
+      color: var(--brand, var(--accent-text));
       scale: 0.88;
       translate: 0 -12px;
-      color: var(--brand, var(--accent-text));
 
       @include on-dark {
         color: var(--brand-dark, var(--accent-text));
@@ -73,8 +73,8 @@
     }
     &:hover {
       .label {
-        translate: 0 0;
         opacity: 1;
+        translate: 0 0;
       }
     }
   }
@@ -164,18 +164,18 @@
   width: max-content;
   max-width: min(220px, 80vw);
   padding: 6px 10px;
-  border-radius: var(--radius-8);
   font-size: 12px;
   line-height: 1.3;
   text-align: center;
   color: var(--background);
   background-color: var(--text);
+  border-radius: var(--radius-8);
   opacity: 0;
-  translate: -50% 4px;
-  pointer-events: none;
   transition:
     opacity var(--dur-fast) ease,
     translate var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+  translate: -50% 4px;
 }
 
 .skill {
@@ -222,8 +222,8 @@
   // Three tiles in a row on a phone.
   .skill:nth-child(4n + 1) .tip,
   .skill:nth-child(4n) .tip {
-    left: 50%;
     right: auto;
+    left: 50%;
     translate: -50% 4px;
   }
 

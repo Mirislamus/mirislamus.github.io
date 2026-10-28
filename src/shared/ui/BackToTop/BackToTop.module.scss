@@ -9,18 +9,18 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  background-color: var(--secondary);
-  color: var(--text);
   overflow: hidden;
+  color: var(--text);
+  background-color: var(--secondary);
+  border-radius: 50%;
   opacity: 0;
-  visibility: hidden;
-  translate: 0 8px;
   transition:
     opacity var(--dur-base) var(--ease-out),
     translate var(--dur-base) var(--ease-out),
     visibility 0s linear var(--dur-base),
     color var(--dur-base) ease;
+  visibility: hidden;
+  translate: 0 8px;
 
   :global(back-to-top[data-visible]) & {
     opacity: 1;
@@ -59,11 +59,11 @@
 
 // The reading progress: the ring fills as the page scrolls (browsers without scroll timelines keep the track).
 .progress {
+  display: none;
   stroke: var(--accent);
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  display: none;
 }
 
 @keyframes fillRing {

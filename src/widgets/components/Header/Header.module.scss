@@ -1,10 +1,10 @@
 .header {
   position: sticky;
   top: 20px;
-  margin-top: 20px;
   z-index: var(--z-overlay);
-  view-transition-name: site-header;
+  margin-top: 20px;
   transition: translate var(--dur-slow) var(--ease-out);
+  view-transition-name: site-header;
 
   // Scrolling down hides the bar, scrolling up brings it back (see header.ts).
   &[data-hidden] {
@@ -16,32 +16,32 @@
 // would make it the containing block of the fixed mobile drawer.
 .wrap {
   position: relative;
-  isolation: isolate;
-  border: 1px solid transparent;
-  border-radius: var(--radius-100);
-  padding: 10px 20px;
   display: flex;
   align-items: center;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-100);
+  isolation: isolate;
 
   &::before {
-    content: '';
     position: absolute;
     inset: 0;
     z-index: calc(var(--z-base) * -1);
-    border-radius: inherit;
     background-color: var(--secondary-alpha);
     border: 1px solid var(--tertiary);
+    border-radius: inherit;
+    content: '';
     backdrop-filter: blur(5px);
   }
 }
 
 // Reading progress: a thin line along the bottom edge, clipped by the rounded bar.
 .progress {
-  display: none;
   position: absolute;
   inset: 0;
-  border-radius: inherit;
+  display: none;
   overflow: hidden;
+  border-radius: inherit;
   pointer-events: none;
 }
 
@@ -50,8 +50,8 @@
   inset: auto 0 0;
   height: 2px;
   background-color: var(--accent);
-  transform-origin: left;
   transform: scaleX(0);
+  transform-origin: left;
 }
 
 @keyframes pageProgress {
@@ -80,8 +80,8 @@
 .nav {
   position: relative;
   margin-left: 50px;
-  letter-spacing: var(--letter-spacing);
   line-height: 1.35;
+  letter-spacing: var(--letter-spacing);
   ul {
     position: relative;
     z-index: var(--z-base);
@@ -108,16 +108,16 @@
   --scale: calc((var(--width, 100) - var(--height)) / 100);
 
   position: absolute;
-  left: 0;
   top: calc(50% - var(--height) * 0.5px);
+  left: 0;
+  z-index: 0;
   width: 100px;
   height: calc(var(--height) * 1px);
   // Opaque on purpose: the round ends overlap the middle, which would show as seams with any alpha.
   background-color: color-mix(in srgb, var(--accent) 22%, var(--secondary));
+  opacity: 0;
   transform: translateX(calc(var(--offset, 0) * 1px + var(--height) * 0.5px)) scaleX(var(--scale));
   transform-origin: left;
-  opacity: 0;
-  z-index: 0;
 
   &[data-ready] {
     opacity: 1;
@@ -128,14 +128,14 @@
 
   &::before,
   &::after {
-    content: '';
     position: absolute;
     top: 0;
     width: calc(var(--height) * 1px);
     height: 100%;
-    border-radius: 50%;
     background-color: inherit;
+    border-radius: 50%;
     transform: scaleX(calc(1 / var(--scale)));
+    content: '';
   }
 
   &::before {
@@ -149,8 +149,8 @@
 
 .end {
   display: flex;
-  margin-left: auto;
   gap: var(--gap-4);
+  margin-left: auto;
 }
 
 .langsSwitcher {
@@ -170,8 +170,8 @@
 
 .langsList {
   position: absolute;
-  right: 0;
   top: 58px;
+  right: 0;
   overflow: hidden;
 }
 
@@ -198,24 +198,24 @@
   .nav {
     position: fixed;
     inset: 0 0 0 auto;
-    width: min(360px, 85vw);
-    margin-left: 0;
+    z-index: var(--z-dropdown);
     display: flex;
     flex-direction: column;
     gap: var(--gap-24);
+    width: min(360px, 85vw);
+    margin-left: 0;
     padding: 96px var(--gap-24) max(var(--gap-24), env(safe-area-inset-bottom));
+    overflow-y: auto;
     background-color: var(--secondary);
     border-left: 1px solid var(--tertiary);
     border-radius: var(--radius-24) 0 0 var(--radius-24);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    visibility: hidden;
-    translate: 100% 0;
-    z-index: var(--z-dropdown);
     // Visible right away when opening (so focus can move in), hidden only after it has slid out.
     transition:
       translate var(--dur-slow) var(--ease-out),
       visibility 0s linear var(--dur-slow);
+    overscroll-behavior: contain;
+    visibility: hidden;
+    translate: 100% 0;
 
     &[data-open] {
       visibility: visible;
@@ -228,10 +228,10 @@
     li,
     .mobileSwitcher {
       opacity: 0;
-      translate: var(--gap-24) 0;
       transition:
         opacity var(--dur-fast) var(--ease-out),
         translate var(--dur-fast) var(--ease-out);
+      translate: var(--gap-24) 0;
     }
 
     .mobileSwitcher {
@@ -241,36 +241,36 @@
     &[data-open] li,
     &[data-open] .mobileSwitcher {
       opacity: 1;
-      translate: 0 0;
       transition:
         opacity var(--dur-slow) var(--ease-out),
         translate var(--dur-slow) var(--ease-out);
+      translate: 0 0;
       transition-delay: calc(var(--dur-base) * 0.5 + var(--stagger) * 0.75 * var(--i));
     }
 
     ul {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       gap: var(--gap-24);
+      align-items: flex-start;
       font-size: 24px;
     }
 
     a {
-      display: block;
       position: relative;
+      display: block;
       transition: var(--transition);
       &::after {
-        content: '';
         position: absolute;
+        bottom: -4px;
+        left: 0;
         width: 100%;
         height: 2px;
-        left: 0;
-        bottom: -4px;
         background-color: currentColor;
         transform: scaleX(0);
-        transform-origin: left;
         transition: var(--transition);
+        content: '';
+        transform-origin: left;
       }
       &[aria-current='true'] {
         &::after {
@@ -283,14 +283,14 @@
   .overlay {
     position: fixed;
     inset: 0;
+    z-index: var(--z-overlay);
     background-color: var(--black-1-alpha-2);
-    backdrop-filter: blur(8px);
     opacity: 0;
-    visibility: hidden;
     transition:
       opacity var(--dur-slow) var(--ease-out),
       visibility 0s linear var(--dur-slow);
-    z-index: var(--z-overlay);
+    backdrop-filter: blur(8px);
+    visibility: hidden;
     &[data-open] {
       opacity: 1;
       visibility: visible;
@@ -422,8 +422,8 @@
   font-family: ui-monospace, Consolas, monospace;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 1.2px;
   line-height: 42px;
+  letter-spacing: 1.2px;
   color: var(--accent-text);
 }
 

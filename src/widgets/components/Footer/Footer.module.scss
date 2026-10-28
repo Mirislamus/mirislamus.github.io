@@ -1,7 +1,7 @@
 .footer {
   h2 {
-    text-align: center;
     margin-bottom: 30px;
+    text-align: center;
     strong {
       display: block;
     }
@@ -31,16 +31,16 @@
 }
 
 .content {
+  width: 100%;
+  margin-block: auto;
   padding-top: calc(48px + 30px + 50px);
   padding-bottom: 96px;
-  margin-block: auto;
-  width: 100%;
 }
 
 .buttons {
-  width: min(480px, 100%);
   display: flex;
   gap: var(--gap-20);
+  width: min(480px, 100%);
   margin-inline: auto;
 }
 
@@ -51,8 +51,8 @@
 
 .copyright {
   display: inline-flex;
-  align-items: center;
   gap: var(--gap-8);
+  align-items: center;
 }
 
 // The white rabbit: easy to miss, and a small nod when it is noticed.
@@ -69,9 +69,9 @@
   }
 
   .ear {
+    transition: rotate var(--dur-base) var(--ease-spring);
     transform-box: fill-box;
     transform-origin: bottom center;
-    transition: rotate var(--dur-base) var(--ease-spring);
   }
 
   &:hover .ear:last-of-type,
@@ -96,8 +96,8 @@
   }
 
   :global(:root[data-relic]) & {
-    opacity: 1;
     color: var(--pill-red);
+    opacity: 1;
   }
 
   // The copies take no part in the layout or the clicks.
@@ -165,11 +165,11 @@
 }
 
 .bottom {
-  width: 100%;
-  padding-block: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding-block: 32px;
   color: var(--text-muted);
 
   ul,
@@ -222,17 +222,17 @@
   .buttons {
     gap: var(--gap-12);
     a {
-      font-size: 14px;
       padding-inline: var(--gap-12);
+      font-size: 14px;
     }
   }
 
   .bottom {
-    padding-block: 16px;
     flex-direction: column-reverse;
-    justify-content: flex-start;
-    align-items: flex-start;
     gap: var(--gap-12);
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-block: 16px;
   }
 }
 

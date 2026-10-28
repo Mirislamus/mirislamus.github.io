@@ -1,12 +1,12 @@
 @layer utilities {
   .visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
+    position: absolute;
+    width: 1px;
     height: 1px;
     overflow: hidden;
-    position: absolute;
     white-space: nowrap;
-    width: 1px;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
   }
 
   .img-fluid {
@@ -20,18 +20,18 @@
 
   .ripple {
     position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
     background: var(--text);
+    border-radius: 50%;
     opacity: 0.15;
     transform: scale(0);
     animation: ripple var(--dur-ripple) ease-out;
+    pointer-events: none;
   }
 
   @keyframes ripple {
     to {
-      transform: scale(4);
       opacity: 0;
+      transform: scale(4);
     }
   }
 }

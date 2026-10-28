@@ -12,12 +12,12 @@
 }
 
 .project {
+  position: relative;
+  padding: var(--gap-24);
+  overflow: hidden;
   background-color: var(--secondary);
   border: 1px solid var(--tertiary);
   border-radius: var(--radius-24);
-  padding: var(--gap-24);
-  position: relative;
-  overflow: hidden;
 
   &Image,
   p,
@@ -27,13 +27,13 @@
   }
 
   &Image {
-    overflow: hidden;
-    border-radius: var(--radius-16);
-    background-color: var(--tertiary);
     display: flex;
     align-items: flex-end;
     justify-content: center;
     margin-bottom: var(--gap-30);
+    overflow: hidden;
+    background-color: var(--tertiary);
+    border-radius: var(--radius-16);
 
     picture {
       display: flex;
@@ -53,21 +53,21 @@
   }
 
   p {
-    color: var(--text-muted);
-    margin-bottom: var(--gap-24);
     display: -webkit-box;
+    margin-bottom: var(--gap-24);
+    overflow: hidden;
+    color: var(--text-muted);
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   // The whole card is clickable through the title link (a "stretched link"), so a screen reader
   // announces the project name once instead of the image, title, text and every tag.
   .link::after {
-    content: '';
     position: absolute;
     inset: 0;
     z-index: calc(var(--z-base) + 1);
+    content: '';
   }
 
   &:has(.link:focus-visible) {
@@ -106,8 +106,8 @@
 
 .bottom {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .stack {
@@ -219,7 +219,7 @@
 // The name of a project while it is "decrypted" (projects-fx.ts): the width is fixed, so nothing around moves.
 .name {
   display: inline-block;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
   vertical-align: bottom;
 }

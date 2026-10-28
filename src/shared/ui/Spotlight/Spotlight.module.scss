@@ -7,7 +7,6 @@
   pointer-events: none;
 
   &::before {
-    content: '';
     position: absolute;
     inset: 0;
     background: radial-gradient(
@@ -17,6 +16,7 @@
     );
     opacity: 0;
     transition: var(--transition-ease);
+    content: '';
   }
 
   :global([data-spotlight]:hover) &::before,

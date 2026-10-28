@@ -4,17 +4,17 @@
 .dialog {
   position: fixed;
   inset: 0;
+  z-index: var(--z-modal);
   width: 100vw;
   max-width: none;
   height: 100dvh;
   max-height: none;
   margin: 0;
   padding: 0;
-  border: 0;
-  background-color: var(--background);
-  color: var(--text);
   overflow: hidden;
-  z-index: var(--z-modal);
+  color: var(--text);
+  background-color: var(--background);
+  border: 0;
 
   &[open] {
     display: grid;
@@ -55,8 +55,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--gap-12);
+  align-items: center;
   width: min(980px, 100%);
   padding: var(--gap-24);
   text-align: center;
@@ -100,11 +100,11 @@
   top: var(--pill-y);
   width: 17%;
   aspect-ratio: 1;
-  translate: -50% -50%;
   border-radius: 50%;
   transition:
     scale var(--dur-base) var(--ease-spring),
     background-color var(--dur-base) var(--ease-out);
+  translate: -50% -50%;
 
   &:hover,
   &:focus-visible {
@@ -141,9 +141,9 @@
   display: grid;
   place-items: center;
   padding: var(--gap-24);
-  text-align: center;
   font-family: ui-monospace, Consolas, monospace;
   font-size: clamp(22px, 5vw, 40px);
+  text-align: center;
   color: var(--accent-text);
   pointer-events: none;
 
@@ -165,8 +165,8 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
   color: var(--text-muted);
+  border-radius: 50%;
   transition: color var(--dur-base) var(--ease-out);
 
   &:hover,
@@ -214,8 +214,8 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%;
   color: var(--text-muted);
+  border-radius: 50%;
   transition: color var(--dur-base) var(--ease-out);
 
   &:hover,

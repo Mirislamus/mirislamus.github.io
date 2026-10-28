@@ -1,11 +1,11 @@
 .arrowControls {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  border-radius: var(--radius-100);
   overflow: hidden;
   background-color: var(--secondary);
   border: 1px solid var(--tertiary);
-  position: relative;
+  border-radius: var(--radius-100);
 }
 
 .line {
@@ -15,15 +15,15 @@
 }
 
 .button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 48px;
   height: 48px;
+  overflow: hidden;
   color: var(--text);
   transition: var(--transition-ease);
-  position: relative;
-  overflow: hidden;
 
   &:hover {
     color: var(--accent-text);

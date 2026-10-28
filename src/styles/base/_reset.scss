@@ -17,31 +17,31 @@
   }
 
   button {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    color: inherit;
     background: none;
     border: none;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
     cursor: pointer;
-    text-align: left;
   }
 
   a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
     cursor: pointer;
   }
 
   :where(input, textarea) {
-    border: none;
-    outline: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
     font: inherit;
     color: inherit;
     background: none;
-    padding: 0;
-    margin: 0;
-    min-width: 0;
+    border: none;
+    outline: none;
   }
 
   table {
@@ -52,8 +52,8 @@
     th,
     td {
       padding: 0;
-      text-align: inherit;
       font: inherit;
+      text-align: inherit;
     }
   }
 
@@ -94,8 +94,8 @@
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      appearance: none;
       margin: 0;
+      appearance: none;
     }
   }
 
