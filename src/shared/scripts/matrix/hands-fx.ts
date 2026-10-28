@@ -1,4 +1,4 @@
-import handsJson from '@data/matrix/hands.json';
+import handsJson from '@/data/matrix/hands.json';
 import { parseColor, type Rgb } from './accent';
 import { GLYPHS, createRng } from './glyphs';
 import { handsGap } from './hands-layout';

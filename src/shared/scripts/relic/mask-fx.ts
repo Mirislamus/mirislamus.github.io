@@ -1,4 +1,4 @@
-import maskJson from '@data/matrix/mask.json';
+import maskJson from '@/data/matrix/mask.json';
 import { GLYPHS, createRng } from '../matrix/glyphs';
 import { getMotion } from '../matrix/motion';
 

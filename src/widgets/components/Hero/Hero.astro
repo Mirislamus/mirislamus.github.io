@@ -1,13 +1,13 @@
 ---
-import { getSiteData } from '@data/site';
-import Avatar from '@shared/ui/Avatar/Avatar.astro';
-import Button from '@shared/ui/Button/Button.astro';
-import { getLocale } from '@i18n/utils';
-import MotionToggle from '@shared/ui/MotionToggle/MotionToggle.astro';
-import RichText from '@shared/ui/RichText/RichText.astro';
-import { getExperienceYears } from '@utils/experience';
-import { buildRainWords } from '@utils/rain-words';
-import { getAvatarSrc } from '@utils/images';
+import { getSiteData } from '@/data/site';
+import Avatar from '@/shared/ui/Avatar/Avatar.astro';
+import Button from '@/shared/ui/Button/Button.astro';
+import { getLocale } from '@/i18n/utils';
+import MotionToggle from '@/shared/ui/MotionToggle/MotionToggle.astro';
+import RichText from '@/shared/ui/RichText/RichText.astro';
+import { getExperienceYears } from '@/utils/experience';
+import { buildRainWords } from '@/utils/rain-words';
+import { getAvatarSrc } from '@/utils/images';
 import s from './Hero.module.scss';
 
 const locale = getLocale(Astro);
@@ -66,7 +66,7 @@ const titleHtml = data.title
   const section = document.querySelector<HTMLElement>('#about');
 
   if (section) {
-    const load = () => void import('@shared/scripts/matrix/hero-fx').then(({ initHeroFx }) => initHeroFx(section));
+    const load = () => void import('@/shared/scripts/matrix/hero-fx').then(({ initHeroFx }) => initHeroFx(section));
     const whenIdle = () =>
       'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : setTimeout(load, 200);
 

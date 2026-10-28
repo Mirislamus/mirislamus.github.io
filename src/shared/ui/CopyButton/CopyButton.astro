@@ -13,8 +13,8 @@ const { text, success, error } = Astro.props;
 </copy-button>
 
 <script>
-  import { copyText } from '@shared/scripts/clipboard';
-  import { showToast } from '@shared/scripts/toast';
+  import { copyText } from '@/shared/scripts/clipboard';
+  import { showToast } from '@/shared/scripts/toast';
 
   class CopyButton extends HTMLElement {
     connectedCallback() {

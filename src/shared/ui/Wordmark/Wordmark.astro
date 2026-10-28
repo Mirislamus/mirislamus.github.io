@@ -1,6 +1,6 @@
 ---
-import { wordmarks, type WordmarkName } from '@data/matrix/wordmark';
-import { levelsToText } from '@utils/wordmark';
+import { wordmarks, type WordmarkName } from '@/data/matrix/wordmark';
+import { levelsToText } from '@/utils/wordmark';
 import s from './Wordmark.module.scss';
 
 interface Props {
@@ -35,7 +35,7 @@ const variants = [
   class GlyphWordmark extends HTMLElement {
     connectedCallback() {
       const load = () =>
-        void import('@shared/scripts/matrix/wordmark-fx').then(({ initWordmark }) => initWordmark(this));
+        void import('@/shared/scripts/matrix/wordmark-fx').then(({ initWordmark }) => initWordmark(this));
 
       if (this.hasAttribute('data-eager')) {
         load();

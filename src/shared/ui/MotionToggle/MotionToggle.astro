@@ -30,7 +30,7 @@ const { pauseLabel, playLabel, fixed = false } = Astro.props;
 </motion-toggle>
 
 <script>
-  import { getMotion, onMotionChange } from '@shared/scripts/matrix/motion';
+  import { getMotion, onMotionChange } from '@/shared/scripts/matrix/motion';
 
   // Pause, Stop, Hide (WCAG 2.2.2): the Matrix effects never stop on their own, so there is a button.
   class MotionToggle extends HTMLElement {

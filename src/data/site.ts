@@ -5,9 +5,9 @@
 // that does not depend on the locale (ids, links, colors, technology stacks, author names).
 // Everything is validated when it is first read, so a bad file fails `astro build` with a clear message.
 import type { z } from 'astro/zod';
-import { DEFAULT_LOCALE, LOCALES, type Locale } from '@i18n/locales';
-import { getExperienceYears } from '@utils/experience';
-import { interpolate } from '@utils/rich-text';
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
+import { getExperienceYears } from '@/utils/experience';
+import { interpolate } from '@/utils/rich-text';
 import a11yJson from './a11y/a11y.json';
 import approachBaseJson from './approach/approach.base.json';
 import approachJson from './approach/approach.json';

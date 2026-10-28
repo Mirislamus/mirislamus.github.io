@@ -37,7 +37,7 @@ src/
 
 - Секции в `widgets/components/` не импортируют друг друга.
 - `shared`, `data`, `utils` не импортируют `widgets`, `layouts` и `pages`.
-- Пути — алиасы из `tsconfig.json` (`@shared/*`, `@widgets/*`, `@data/*` и др.); относительные пути — только внутри папки компонента.
+- Пути — единый алиас `@/*` на `src/` (`tsconfig.json`, `astro.config.ts`, `vitest.config.ts`); относительные пути — только внутри папки компонента.
 
 ## Данные и состояние
 

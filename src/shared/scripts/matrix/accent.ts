@@ -1,4 +1,4 @@
-import { subscribeTheme } from '@utils/theme';
+import { subscribeTheme } from '@/utils/theme';
 
 export type Rgb = [number, number, number];
 

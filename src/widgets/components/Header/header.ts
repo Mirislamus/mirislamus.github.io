@@ -1,4 +1,4 @@
-import { getThemeMode, setThemeMode, subscribeTheme, type ThemeMode } from '@utils/theme';
+import { getThemeMode, setThemeMode, subscribeTheme, type ThemeMode } from '@/utils/theme';
 
 // Focusing an element inside the sticky header must not scroll the page back to the top.
 const focus = (element: HTMLElement | undefined | null) => element?.focus({ preventScroll: true });

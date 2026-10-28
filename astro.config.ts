@@ -86,18 +86,7 @@ const config = {
   vite: {
     resolve: {
       alias: {
-        '@typings': '/src/typings',
-        '@shared': '/src/shared',
-        '@icons': '/src/shared/icons',
-        '@hooks': '/src/shared/hooks',
-        '@widgets': '/src/widgets',
-        '@utils': '/src/utils',
-        '@styles': '/src/styles',
-        '@layouts': '/src/layouts',
-        '@data': '/src/data',
-        '@assets': '/src/assets',
-        '@i18n': '/src/i18n',
-        '@seo': '/src/seo',
+        '@': '/src',
       },
     },
     build: {
@@ -110,7 +99,7 @@ const config = {
       postcss: './postcss.config.js',
       preprocessorOptions: {
         scss: {
-          additionalData: `@use '@styles/helpers/mixins' as *;`,
+          additionalData: `@use '@/styles/helpers/mixins' as *;`,
         },
       },
     },

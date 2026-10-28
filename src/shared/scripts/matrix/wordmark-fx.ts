@@ -1,4 +1,4 @@
-import { levelOfChar } from '@utils/wordmark';
+import { levelOfChar } from '@/utils/wordmark';
 import { watchColors, type MatrixColors, type Rgb } from './accent';
 import { GLYPHS, createRng } from './glyphs';
 import { getMotion } from './motion';

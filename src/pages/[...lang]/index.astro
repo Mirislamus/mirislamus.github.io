@@ -1,13 +1,13 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Approach from '@widgets/components/Approach/Approach.astro';
-import Career from '@widgets/components/Career/Career.astro';
-import Hero from '@widgets/components/Hero/Hero.astro';
-import Projects from '@widgets/components/Projects/Projects.astro';
-import Reviews from '@widgets/components/Reviews/Reviews.astro';
-import Skills from '@widgets/components/Skills/Skills.astro';
-import { getSiteData } from '@data/site';
-import { getLocale, staticLocalePaths } from '@i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+import Approach from '@/widgets/components/Approach/Approach.astro';
+import Career from '@/widgets/components/Career/Career.astro';
+import Hero from '@/widgets/components/Hero/Hero.astro';
+import Projects from '@/widgets/components/Projects/Projects.astro';
+import Reviews from '@/widgets/components/Reviews/Reviews.astro';
+import Skills from '@/widgets/components/Skills/Skills.astro';
+import { getSiteData } from '@/data/site';
+import { getLocale, staticLocalePaths } from '@/i18n/utils';
 
 export const getStaticPaths = staticLocalePaths;
 

@@ -1,5 +1,5 @@
 ---
-import type { SiteData } from '@data/site';
+import type { SiteData } from '@/data/site';
 import s from './LocalTime.module.scss';
 
 interface Props {
@@ -31,7 +31,7 @@ const { status, locale } = Astro.props;
 </local-time>
 
 <script>
-  import { isWithinWorkHours, type WorkHours } from '@utils/work-hours';
+  import { isWithinWorkHours, type WorkHours } from '@/utils/work-hours';
 
   class LocalTime extends HTMLElement {
     #timer = 0;

@@ -1,10 +1,10 @@
 ---
-import type { SiteData } from '@data/site';
-import { getProjectImages } from '@utils/images';
-import Button from '@shared/ui/Button/Button.astro';
-import RichText from '@shared/ui/RichText/RichText.astro';
-import Spotlight from '@shared/ui/Spotlight/Spotlight.astro';
-import Tag from '@shared/ui/Tag/Tag.astro';
+import type { SiteData } from '@/data/site';
+import { getProjectImages } from '@/utils/images';
+import Button from '@/shared/ui/Button/Button.astro';
+import RichText from '@/shared/ui/RichText/RichText.astro';
+import Spotlight from '@/shared/ui/Spotlight/Spotlight.astro';
+import Tag from '@/shared/ui/Tag/Tag.astro';
 import s from './Projects.module.scss';
 
 interface Props {
@@ -115,7 +115,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
         ([entry], observer) => {
           if (!entry.isIntersecting) return;
           observer.disconnect();
-          void import('@shared/scripts/projects-fx').then(({ initProjectNames }) => initProjectNames(this));
+          void import('@/shared/scripts/projects-fx').then(({ initProjectNames }) => initProjectNames(this));
         },
         { rootMargin: '400px' },
       ).observe(this);

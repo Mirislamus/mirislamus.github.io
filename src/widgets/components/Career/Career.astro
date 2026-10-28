@@ -1,9 +1,9 @@
 ---
-import type { SiteData } from '@data/site';
-import ArrowControls from '@shared/ui/ArrowControls/ArrowControls.astro';
-import Carousel from '@shared/ui/Carousel/Carousel.astro';
-import RichText from '@shared/ui/RichText/RichText.astro';
-import Tag from '@shared/ui/Tag/Tag.astro';
+import type { SiteData } from '@/data/site';
+import ArrowControls from '@/shared/ui/ArrowControls/ArrowControls.astro';
+import Carousel from '@/shared/ui/Carousel/Carousel.astro';
+import RichText from '@/shared/ui/RichText/RichText.astro';
+import Tag from '@/shared/ui/Tag/Tag.astro';
 import s from './Career.module.scss';
 
 interface Props {
@@ -91,7 +91,7 @@ const slideLabel = (index: number) =>
       ([entry], observer) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        void import('@shared/scripts/career-reveal').then(({ initCareerReveal }) => initCareerReveal(section));
+        void import('@/shared/scripts/career-reveal').then(({ initCareerReveal }) => initCareerReveal(section));
       },
       { rootMargin: '400px' },
     ).observe(section);

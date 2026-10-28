@@ -1,4 +1,4 @@
-import { createRng } from '@shared/scripts/matrix/glyphs';
+import { createRng } from '@/shared/scripts/matrix/glyphs';
 
 // The text version of a wordmark, used before and without JavaScript. ASCII only on purpose: it must line up
 // in any monospace font, while the canvas version (shared/scripts/matrix/wordmark-fx.ts) uses katakana too.

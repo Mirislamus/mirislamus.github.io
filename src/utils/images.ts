@@ -11,7 +11,7 @@ export interface ResponsiveImage {
 }
 
 const projectFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/projects/*.jpg', { eager: true });
-const avatarFile = (await import('@assets/avatar.png')).default;
+const avatarFile = (await import('@/assets/avatar.png')).default;
 
 const PROJECT_WIDTH = 600;
 const QUALITY = 90;

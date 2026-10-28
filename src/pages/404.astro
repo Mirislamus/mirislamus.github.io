@@ -1,13 +1,13 @@
 ---
-import '@styles/global.scss';
-import { DEFAULT_LOCALE, LOCALES } from '@i18n/locales';
-import { localeUrl } from '@i18n/utils';
-import { getSiteData } from '@data/site';
-import Button from '@shared/ui/Button/Button.astro';
-import MotionToggle from '@shared/ui/MotionToggle/MotionToggle.astro';
-import Wordmark from '@shared/ui/Wordmark/Wordmark.astro';
-import { pickLanguage } from '@utils/language-bootstrap';
-import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@utils/theme-bootstrap';
+import '@/styles/global.scss';
+import { DEFAULT_LOCALE, LOCALES } from '@/i18n/locales';
+import { localeUrl } from '@/i18n/utils';
+import { getSiteData } from '@/data/site';
+import Button from '@/shared/ui/Button/Button.astro';
+import MotionToggle from '@/shared/ui/MotionToggle/MotionToggle.astro';
+import Wordmark from '@/shared/ui/Wordmark/Wordmark.astro';
+import { pickLanguage } from '@/utils/language-bootstrap';
+import { THEME_COLORS, THEME_STORAGE_KEY, bootstrapTheme } from '@/utils/theme-bootstrap';
 
 // One static page serves every path that does not exist (GitHub Pages has a single 404.html), so all three
 // texts are in it and a tiny script shows the one that fits: the language in the URL (/ru/nope/), else the
@@ -60,15 +60,15 @@ const themeScript = `(${bootstrapTheme})(${JSON.stringify(THEME_STORAGE_KEY)}, $
     </main>
     <script is:inline set:html={languageScript}></script>
     <script>
-      import '@shared/scripts/ripple';
-      import { initTheme } from '@utils/theme';
+      import '@/shared/scripts/ripple';
+      import { initTheme } from '@/utils/theme';
       initTheme();
 
       // The rain is decorative and comes after everything else.
       const canvas = document.querySelector<HTMLCanvasElement>('canvas[data-backdrop]');
       if (canvas) {
         const content = document.querySelector<HTMLElement>('[data-content]');
-        void import('@shared/scripts/matrix/backdrop-fx').then(({ initBackdrop }) => initBackdrop(canvas, content));
+        void import('@/shared/scripts/matrix/backdrop-fx').then(({ initBackdrop }) => initBackdrop(canvas, content));
       }
     </script>
   </body>

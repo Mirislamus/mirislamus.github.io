@@ -1,9 +1,9 @@
 ---
-import { getSiteData } from '@data/site';
-import { getLocale } from '@i18n/utils';
-import { getSkillIcon, monogramOf } from '@utils/skill-icons';
-import { formatUsage, projectsUsing } from '@utils/skill-usage';
-import RichText from '@shared/ui/RichText/RichText.astro';
+import { getSiteData } from '@/data/site';
+import { getLocale } from '@/i18n/utils';
+import { getSkillIcon, monogramOf } from '@/utils/skill-icons';
+import { formatUsage, projectsUsing } from '@/utils/skill-usage';
+import RichText from '@/shared/ui/RichText/RichText.astro';
 import s from './Skills.module.scss';
 
 const locale = getLocale(Astro);

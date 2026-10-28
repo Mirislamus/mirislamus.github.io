@@ -1,9 +1,9 @@
 ---
-import '@styles/base/_fonts.scss';
-import Logo from '@icons/Logo.astro';
-import { getSiteData } from '@data/site';
-import { LOCALES, isLocale } from '@i18n/locales';
-import { getAvatarSrc } from '@utils/images';
+import '@/styles/base/_fonts.scss';
+import Logo from '@/shared/icons/Logo.astro';
+import { getSiteData } from '@/data/site';
+import { LOCALES, isLocale } from '@/i18n/locales';
+import { getAvatarSrc } from '@/utils/images';
 
 // The source of the share pictures (see scripts/render.mjs): a 1200×630 card per language, made into a JPEG
 // after every build. The page itself is not part of the site: out of the sitemap and hidden from search engines.

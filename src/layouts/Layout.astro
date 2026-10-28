@@ -1,12 +1,12 @@
 ---
-import '@styles/global.scss';
-import Head from '@layouts/Head.astro';
-import Footer from '@widgets/components/Footer/Footer.astro';
-import Header from '@widgets/components/Header/Header.astro';
-import BackToTop from '@shared/ui/BackToTop/BackToTop.astro';
-import Toast from '@shared/ui/Toast/Toast.astro';
-import { getLanguageLinks, getLocale, localeUrl } from '@i18n/utils';
-import { getSiteData } from '@data/site';
+import '@/styles/global.scss';
+import Head from '@/layouts/Head.astro';
+import Footer from '@/widgets/components/Footer/Footer.astro';
+import Header from '@/widgets/components/Header/Header.astro';
+import BackToTop from '@/shared/ui/BackToTop/BackToTop.astro';
+import Toast from '@/shared/ui/Toast/Toast.astro';
+import { getLanguageLinks, getLocale, localeUrl } from '@/i18n/utils';
+import { getSiteData } from '@/data/site';
 
 const locale = getLocale(Astro);
 const { a11y, meta, menu } = getSiteData(locale);
@@ -20,10 +20,10 @@ const { a11y, meta, menu } = getSiteData(locale);
       {a11y.skipToContent}
     </a>
     <script>
-      import '@shared/scripts/intro';
-      import '@shared/scripts/ripple';
-      import '@shared/scripts/spotlight';
-      import { initTheme } from '@utils/theme';
+      import '@/shared/scripts/intro';
+      import '@/shared/scripts/ripple';
+      import '@/shared/scripts/spotlight';
+      import { initTheme } from '@/utils/theme';
       initTheme();
     </script>
     <Header locale={locale} homeHref={localeUrl(locale)} languages={getLanguageLinks(locale)} menu={menu} a11y={a11y} />

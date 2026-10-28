@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { handsGap } from '@shared/scripts/matrix/hands-layout';
+import { handsGap } from '@/shared/scripts/matrix/hands-layout';
 import { hands, handsSchema } from './hands';
 
 describe('hands data', () => {
