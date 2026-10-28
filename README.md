@@ -48,7 +48,7 @@ src/
 tests/
   e2e/               Playwright + axe
   visual/            скриншоты (эталон в tests/visual/__screenshots__)
-docs/                ТЗ, план фич, чеклист задач
+docs/                стандарты шаблона ai-template, ADR, задачи
 ```
 
 Как устроен клиентский код: страницы рендерятся на сервере, поведение — маленькие скрипты и custom elements (`<site-header>`, `<copy-button>`, `<embla-carousel-root>`, `<projects-list>`). Без JS страница читается целиком (тема следует системной, карусели листаются нативно, все проекты видны).
@@ -107,6 +107,12 @@ docs/                ТЗ, план фич, чеклист задач
 
 ## Документация
 
-- [`docs/tz.md`](docs/tz.md) — ТЗ и разбор решений;
-- [`docs/features.md`](docs/features.md) — анимации и новые фичи (в планах);
-- [`docs/tasks.md`](docs/tasks.md) — чеклист задач и прогресс.
+Репозиторий ведется по шаблону ai-template: правила для AI-агентов и разработчиков — [`AGENTS.md`](AGENTS.md), субагенты Claude Code — `.claude/agents/`.
+
+- [`PRODUCT.md`](PRODUCT.md) — паспорт продукта; [`STATE.md`](STATE.md) — текущее состояние и следующий шаг;
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — структура `src/`, правило импортов, реестр ADR;
+- [`docs/tasks.md`](docs/tasks.md) — индекс задач, карточки — `docs/tasks/`; [`docs/workflow.md`](docs/workflow.md) — уровни задач и субагенты;
+- [`docs/decisions/`](docs/decisions/) — ADR шаблона; отступления сайта от них — [ADR 0024](docs/decisions/frontend/0024-site-deviations.md);
+- [`docs/design.md`](docs/design.md), [`docs/quality.md`](docs/quality.md), [`docs/seo.md`](docs/seo.md), [`docs/content.md`](docs/content.md) — стандарты; [`docs/tech.md`](docs/tech.md) — стек; [`docs/skills.md`](docs/skills.md) — AI-навыки.
+
+Прежние ТЗ и план фич (`docs/tz.md`, `docs/features.md`, старый `docs/tasks.md`) удалены и доступны в git-истории.

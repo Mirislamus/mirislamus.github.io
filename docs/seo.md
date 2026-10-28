@@ -1,171 +1,118 @@
-# SEO: структурированные данные, мета-теги, индексация
+# Оперативные стандарты поисковой оптимизации (SEO)
 
-Задачи `SEO-01…SEO-09`. Выполняются в ветке `refactor/site-v2` так же, как RF и F: одна задача → коммит → отчёт → «дальше». Прогресс ведётся в [`tasks.md`](./tasks.md), раздел «SEO».
+Документ является практическим руководством для авторов страниц, разработчиков и контент-менеджеров. Он регламентирует метаданные, текстовую семантику и правила оформления страниц для максимального поискового охвата в Яндексе и Google.
 
-## Цель и рамки
+---
 
-Сайт должен находиться по имени (первое место и карточка с фото и ссылками), а также по профессиональным запросам трёх аудиторий:
+## 1. Метаданные страницы: Title и Description
 
-| Аудитория                          | Версия | Примеры запросов                                                 |
-| ---------------------------------- | ------ | ---------------------------------------------------------------- |
-| Рекрутеры и компании по всему миру | EN     | `Mirislam Usmanov`, `frontend engineer React Next.js TypeScript` |
-| Клиенты в Узбекистане              | RU, UZ | `frontend разработчик Ташкент`, `frontend dasturchi Toshkent`    |
-| Удалённые заказчики из СНГ         | RU     | `frontend разработчик React фриланс`                             |
+Каждая страница сайта обязана содержать уникальный набор мета-тегов:
 
-**Решения владельца (2026-09-30):**
+### Заголовок страницы (`<title>`):
 
-- Домен остаётся `mirislamus.github.io`.
-- Новых страниц нет: ни кейсов, ни раздела «Услуги». Работаем только с техникой и текстами.
-- В разметку schema.org идут: расширенный `Person` (город, email, образование, языки), проекты, карьера, отзывы.
-- Отзывы размечаются текстом на языке страницы, без рейтингов. Источник — Хабр Фриланс (площадка закрыта, поэтому без ссылки).
-- Title и description: роль + стек + город. В RU/UZ title используется поисковая форма «Frontend-разработчик» / «Frontend dasturchi»; должность в Hero и в JSON-LD остаётся `Frontend Engineer` (решение из `tz.md`, RF-21 п. 9).
-- OG-картинка своя для каждого языка, генерируется при сборке.
-- **Не делаем:** IndexNow, Bing Webmaster Tools, `llms.txt`, блокировку AI-краулеров, узбекский в списке языков резюме, рейтинги и `AggregateRating`.
+- **Длина:** строго **50–60 символов** (не более 580–600 px ширины сниппета).
+- **Формула:** `[Главное ключевое слово / Суть страницы] — [Бренд / Город]`
+- **Примеры:**
+  - Главная: `Разработка быстрых сайтов под ключ для бизнеса — WebStudio`
+  - Услуга: `Создание интернет-магазинов на Astro в Москве — WebStudio`
+  - Статья: `Как ускорить сайт до 100 баллов Lighthouse — Блог WebStudio`
+- **Правило:** главный поисковый запрос ставится ближе к началу заголовка. Запрещено дублировать одинаковый `title` на разных URL.
 
-## Аудит текущего состояния
+### Мета-описание (`<meta name="description">`):
 
-Уже есть: canonical и `hreflang` без редиректов, `og:*` и `twitter:*`, sitemap с языковыми альтернативами, JSON-LD `ProfilePage` + `Person`, верификация Google и Яндекса, `noindex` у `/cv/*` и 404, `lang` у `<html>`, один `h1`, заголовки без пропусков.
+- **Длина:** строго **140–160 символов**.
+- **Структура:** Емкое УТП + конкретные факты/цифры + призыв к действию (CTA).
+- **Пример:** `Создаем быстрые сайты с оценкой Lighthouse 100 и чистым кодом. Гарантия сроков по договору. Оставьте заявку и получите расчет стоимости за 15 минут!`
+- **Запрет:** категорически запрещено перечисление ключевых слов через запятую (пессимизация за поисковый спам).
 
-| # | Проблема | Где |
-| --- | --- | --- |
-| S1 | Нет `robots.txt`: `/robots.txt` отдаёт 404, sitemap нигде не объявлен (Яндекс и прочие роботы узнают о нём только из Вебмастера). | `public/` |
-| S2 | В sitemap нет `x-default` и `lastmod`. | `astro.config.ts` |
-| S3 | Нет `favicon.ico`, `apple-touch-icon`, web manifest. Поисковики берут фавиконку для выдачи из `/favicon.ico` или из первой `<link rel="icon">`; у нас две SVG с `media`, которые роботы не учитывают. | `Head.astro`, `public/` |
-| S4 | `Person` минимальный: нет альтернативных написаний имени, города, email, места работы, образования, языков. `knowsAbout` — захардкоженный список из 8 пунктов, расходится с 26 навыками в данных. `image` указывает на баннер 1200×630, а не на фото. | `Head.astro:22-40` |
-| S5 | Нет узла `WebSite` (Google берёт из него название сайта для выдачи); у `ProfilePage` нет `dateCreated`/`dateModified`. Проекты, карьера и отзывы в разметке не описаны. | `Head.astro` |
-| S6 | OG-картинка одна на все языки и устарела: подпись «Front-end developer» зелёным, а сейчас роль `Frontend Engineer` и акцент `#ff6433`. Нет `og:site_name`, `og:locale:alternate`; `og:type` = `website` вместо `profile`. | `public/opengraph.jpg`, `Head.astro` |
-| S7 | Title — только имя и роль, description без стека и города: по профессиональным и локальным запросам страница почти не ранжируется. | `meta.json` |
-| S8 | В `h1` только имя, роль — соседний `<strong>`. | `Hero.astro:36-37` |
-| S9 | Нет автоматических проверок SEO: мета-теги и JSON-LD не тестируются, цель Lighthouse SEO = 100 из `tz.md` не замерялась. | `tests/`, CI |
-| S10 | Нет `<meta name="robots" content="max-image-preview:large">`: Google может показывать в выдаче только маленькое превью картинки. | `Head.astro` |
+### Обязательные базовые теги в `<head>`:
 
-## Задачи
+```html
+<title>Разработка быстрых сайтов под ключ для бизнеса — WebStudio</title>
+<meta name="description" content="..." />
+<link rel="canonical" href="https://domain.uz/services/web-design" />
+<meta name="robots" content="index, follow" />
+```
 
-### SEO-01. Индексация: robots.txt, sitemap, meta robots
+---
 
-- **Приоритет:** P0 (закрывает S1, S2, S10). **Оценка:** 1,5 ч.
-- **Файлы:** `public/robots.txt`, `astro.config.ts`, `src/seo/last-modified.ts`, `Head.astro`.
-- **Что сделать:**
-  1. `robots.txt`: `User-agent: *`, `Allow: /`, `Sitemap: https://mirislamus.github.io/sitemap-index.xml`. `/cv/` не закрываем: HTML-страницы CV уже `noindex` (робот должен их прочитать, чтобы увидеть это), а PDF-резюме в выдаче по имени — плюс. Адрес сайта берётся из `site` (генерировать файл при сборке, а не хардкодить).
-  2. `src/seo/last-modified.ts` — дата последнего коммита (`git log -1 --format=%cI`); если git недоступен — время сборки. Одна функция для sitemap и JSON-LD (SEO-03).
-  3. Sitemap: `lastmod` из п. 2; через `serialize` добавить `x-default` → `/` к альтернативам каждого URL.
-  4. `Head.astro`: `<meta name="robots" content="max-image-preview:large">` на основных страницах; у CV и 404 остаётся `noindex`.
-- **Приёмка:** `/robots.txt` отдаёт 200 со строкой `Sitemap`; у каждого `<url>` в `sitemap-0.xml` есть `lastmod` и четыре `xhtml:link` (en, ru, uz, x-default); `/cv/` и `/404` в sitemap по-прежнему нет.
+## 2. Иерархия и текстовая семантика заголовков
 
-### SEO-02. Иконки и web manifest
+Для роботов поисковых систем страница представляет собой смысловой документ с четким древовидным оглавлением:
 
-- **Приоритет:** P2 (закрывает S3). **Оценка:** 1,5 ч.
-- **Файлы:** `public/favicon.ico`, `public/apple-touch-icon.png`, `public/icon-192.png`, `public/icon-512.png`, `public/icon-maskable-512.png`, `public/manifest.webmanifest`, `scripts/icons.mjs`, `Head.astro`.
-- **Что сделать:**
-  1. `scripts/icons.mjs` — одноразовый генератор PNG/ICO из существующего логотипа (через `sharp`, который уже есть в зависимостях Astro). Результат коммитится в `public/`; скрипт остаётся в репозитории для пересборки.
-  2. `favicon.ico` (16, 32, 48) — нейтральный вариант, читаемый и на светлом, и на тёмном фоне (для выдачи поисковиков). SVG-фавиконки с `media` для браузеров остаются.
-  3. `manifest.webmanifest`: `name`, `short_name`, `icons` (192, 512, maskable), `theme_color`/`background_color` из `THEME_COLORS`, `start_url: "/"`, `display: "browser"` (сайт не PWA, сервис-воркера нет).
-  4. `Head.astro`: `<link rel="icon" href="/favicon.ico" sizes="48x48">` (первым), `apple-touch-icon`, `manifest`.
-- **Приёмка:** все файлы отдают 200; manifest валиден (DevTools → Application без ошибок); вкладка браузера в обеих темах показывает прежнюю SVG-иконку.
+1. **Главный заголовок `<h1>`:**
+   - **Ровно один** на всю страницу.
+   - Отражает главное назначение документа с вхождением ключевого запроса.
+   - Не должен дублировать `<title>` слово в слово (в `<h1>` формулировка более естественная для восприятия читателем).
+2. **Заголовки секций `<h2>`:**
+   - Каждая смысловая секция (`<section>`) обязана начинаться с заголовка `<h2>` (например: «Преимущества», «Тарифы», «Отзывы клиентов», «Часто задаваемые вопросы»).
+   - Если по дизайну заголовок секции не предусмотрен визуально — добавляется семантический `<h2>` с классом `.visually-hidden` (виден роботам и скринридерам, скрыт визуально).
+3. **Подразделы и карточки `<h3>`:**
+   - Названия конкретных услуг, шаги процессов, карточки кейсов внутри секций озаглавливаются тегами `<h3>`.
+4. **Строгий запрет пропуска уровней:**
+   - Недопустимо перескакивать через уровни (например, ставить `<h4>` сразу после `<h2>`, минуя `<h3>`).
+5. **Запрет стилистического использования тегов заголовков:**
+   - Запрещено использовать теги `<h4>`–`<h6>` только ради мелкого размера шрифта. Визуальный размер задается в CSS, а тег отражает только иерархию документа.
 
-### SEO-03. Модуль структурированных данных
+---
 
-- **Приоритет:** P1 (закрывает S5, основа для SEO-04/05). **Оценка:** 3 ч.
-- **Файлы:** `src/seo/structured-data.ts`, `src/seo/structured-data.test.ts`, `Head.astro`, `package.json` (devDependency `schema-dts`).
-- **Что сделать:**
-  1. Вынести JSON-LD из `Head.astro` в чистую функцию `buildStructuredData(locale, site)`: на вход — локаль и `SiteData`, на выход — один объект `{ '@context', '@graph': [...] }`. Типизация через `schema-dts` (только типы, в сборку не попадают).
-  2. Узлы и стабильные `@id` (одинаковые на всех языках, чтобы поисковик склеил их в одну сущность):
-     - `WebSite` — `https://mirislamus.github.io/#website`: `url`, `name` = «Mirislam Usmanov», `alternateName` = имена на RU/UZ и `mirislamus`, `inLanguage` = все локали, `publisher` → `#person`.
-     - `ProfilePage` — `{canonical}#profile-page`: `url`, `name`, `description`, `inLanguage`, `isPartOf` → `#website`, `mainEntity` → `#person`, `dateCreated` = `2025-03-26` (первый коммит репозитория; владелец может поправить), `dateModified` из SEO-01 п. 2.
-     - `Person` — `https://mirislamus.github.io/#person`: пока текущие поля; расширяется в SEO-04.
-  3. Никаких строк вне данных: имя, описание, должность берутся из `SiteData`; плейсхолдеры (`{{years}}`) подставлены, разметка rich-text (`|…|`, `||…||`) снята через `toPlainText`.
-  4. Unit-тесты: валидный JSON, нет `{{` и `|`, `@id` одинаковые во всех локалях, все ссылки `{ '@id' }` указывают на существующие узлы графа.
-- **Приёмка:** HTML страниц отличается от прежнего только содержимым `<script type="application/ld+json">`; тесты проходят; Rich Results Test на локальном HTML (вставка кода) — 0 ошибок, распознан «Profile page».
+## 3. Текстовые альтернативы изображений (`alt`)
 
-### SEO-04. Person: данные о человеке
+Атрибут `alt` индексируется роботами Яндекс и Google Картинок и озвучивается скринридерами:
 
-- **Приоритет:** P1 (закрывает S4). **Оценка:** 2,5 ч.
-- **Файлы:** `src/seo/structured-data.ts`, `src/data/cv/cv.json`, `src/data/schemas.ts`, `src/utils/images.ts`.
-- **Что сделать:** у `Person` появляются поля (все из существующих данных сайта):
+### Смысловые контентные изображения:
 
-  | Поле | Источник |
-  | --- | --- |
-  | `name` | `meta.name` текущей локали |
-  | `alternateName` | имена двух других локалей + `mirislamus` |
-  | `jobTitle` | `hero.role` (`Frontend Engineer`) |
-  | `description` | текст Hero с подставленным стажем |
-  | `image` | `ImageObject` с фото из `avatar.png` (абсолютный URL собранного файла, `width`, `height`) |
-  | `email` | `mailto:` из `global.ts` |
-  | `address` | `PostalAddress`: `addressLocality` = `status.city` текущей локали, `addressCountry` = `UZ` |
-  | `knowsAbout` | названия всех навыков из `skills.base.json` (вместо захардкоженного списка) |
-  | `knowsLanguage` | `Language` из `cv.json → languages`; в элементы добавляется поле `code` (`ru`, `en`), схема проверяет одинаковые коды во всех локалях |
-  | `alumniOf` | `EducationalOrganization` из `cv.json → education` (`name` = `institution`) |
-  | `sameAs` | Telegram, GitHub, LinkedIn (как сейчас) |
+- **Обязателен осмысленный текст:** краткое, емкое описание того, что изображено на картинке (1 предложение).
+- **Хорошо:** `alt="Интерфейс мобильного приложения аналитики на экране планшета"`
+- **Плохо (спам):** `alt="купить заказать сайт москва дешево отзывы"`
+- **Плохо (мусор):** `alt="image.png"`, `alt="фото 1"`, `alt="баннер"`
 
-- **Приёмка:** unit-тест проверяет каждое поле по данным; при добавлении навыка в `skills.base.json` он появляется в `knowsAbout` без правок кода; телефон и дата рождения в разметку не попадают.
+### Декоративные элементы и иконки:
 
-### SEO-05. Карьера, проекты и отзывы в разметке
+- Для декоративных стрелок, абстрактных фонов, галочек и разделителей у `<img>` **обязателен пустой атрибут** `alt=""`; inline SVG-иконки скрываются атрибутом `aria-hidden="true"`.
+- Скринридеры игнорируют элементы с пустым `alt=""`, избавляя незрячих пользователей от прослушивания технического визуального шума.
 
-- **Приоритет:** P1 (закрывает S5). **Оценка:** 4 ч.
-- **Файлы:** `src/seo/structured-data.ts`, `src/data/career/career.base.json`, `src/data/career/career.json`, `src/data/schemas.ts`, `Career.astro`, `Cv.astro`.
-- **Что сделать:**
-  1. **Данные карьеры.** Сейчас годы — свободный текст в каждой локали (`"2024 — Present"`). В `career.base.json` добавить `start` (год), `end` (год или `null` для текущего места) и необязательный `url` компании; в `career.json` поле `year` заменить одной строкой `present` на локаль. Видимая подпись собирается из этих полей и остаётся прежней (у прошлых мест — год начала, у текущего — «2024 — Present»). Годы окончания по умолчанию — год начала следующего места; **владелец проверяет их перед коммитом**.
-  2. **Карьера.** `Person.worksFor` — массив `EmployeeRole` (новое сверху): `roleName` = должность, `startDate`, `endDate` (у текущего места нет), `worksFor` = `Organization` (`name`, `url`, если есть).
-  3. **Проекты.** Узел `ItemList` — `{canonical}#projects`: `name` = заголовок секции, `itemListElement` = `ListItem` → `WebSite` (`@id` = `https://mirislamus.github.io/#project-{id}`, `name`, `url`, `description` на языке страницы, `image` = абсолютный URL скриншота, `keywords` = стек, `creator` → `#person`). Порядок как на странице.
-  4. **Отзывы.** Узлы `Review` (`@id` = `https://mirislamus.github.io/#review-{id}`): `itemReviewed` → `#person`, `author` = `Person` (`name`), `reviewBody` = текст на языке страницы, `inLanguage`, `publisher` = `Organization` «Habr Freelance» / «Хабр Фриланс» (по локали, без `url`). Без `reviewRating`: рейтингов на сайте нет, выдумывать их нельзя. Звёзд в выдаче не будет — Google не показывает review-сниппеты для `Person`; цель — связать отзывы с сущностью.
-- **Приёмка:** видимая карьера на трёх языках и в PDF-резюме не изменилась (визуальная регрессия проходит); количество и порядок проектов и отзывов в разметке совпадают со страницей; validator.schema.org — 0 ошибок и 0 предупреждений на всех трёх локалях (вставка HTML).
+### Логотип сайта:
 
-### SEO-06. Title, description, h1
+- `alt="[Название компании] — [сфера деятельности]"` (например: `alt="WebStudio — студия разработки сайтов"`).
 
-- **Приоритет:** P1 (закрывает S7, S8). **Оценка:** 1,5 ч.
-- **Файлы:** `src/data/meta/meta.json`, `Hero.astro`, `Hero.module.scss`, `src/shared/scripts/intro.ts`.
-- **Что сделать:**
-  1. Title и description (черновик; **владелец утверждает формулировки, UZ стоит показать носителю**). Длина после подстановки стажа: title ≤ 70 символов, description ≤ 160.
+---
 
-     |  | Title | Description |
-     | --- | --- | --- |
-     | EN | Mirislam Usmanov — Frontend Engineer \| React, Next.js, TypeScript (65) | Frontend Engineer in Tashkent with {{years}}+ years of experience building fast, accessible websites and web apps with React, Next.js and TypeScript. (≈140) |
-     | RU | Мирислам Усманов — Frontend-разработчик в Ташкенте \| React, Next.js (67) | Frontend-разработчик в Ташкенте, опыт более {{years}} лет: быстрые и доступные сайты и веб-приложения на React, Next.js и TypeScript. Проекты, отзывы, контакты. (≈152) |
-     | UZ | Mirislam Usmonov — Frontend dasturchi, Toshkent \| React, Next.js (64) | Toshkentdagi Frontend dasturchi, {{years}}+ yillik tajriba: React, Next.js va TypeScript’da tezkor va qulay veb-saytlar hamda ilovalar. Loyihalar, fikrlar, aloqa. (≈154) |
+## 4. Разметка OpenGraph для социальных сетей и мессенджеров
 
-  2. `meta.imageAlt` не меняется: он описывает картинку, а не страницу.
-  3. `h1`: роль переносится внутрь заголовка отдельным блоком — `<h1><span>Mirislam Usmanov</span> <span class="role">Frontend Engineer</span></h1>`. Внешний вид, интро-анимация по словам (только имя) и размеры не меняются. Скрытого текста не добавляем.
-- **Приёмка:** визуальная регрессия проходит без обновления эталонов; `h1` на странице один и содержит имя и роль; длины в пределах (проверяется тестом в SEO-08).
+Каждая страница обязана содержать мета-теги OpenGraph для формирования красивого кликабельного превью при отправке ссылки в Telegram, VK, WhatsApp:
 
-### SEO-07. OG-картинки по языкам и OG-теги
+```html
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Разработка быстрых сайтов под ключ для бизнеса — WebStudio" />
+<meta
+  property="og:description"
+  content="Создаем быстрые сайты с оценкой Lighthouse 100. Бесплатный расчет за 15 минут!"
+/>
+<meta property="og:url" content="https://domain.uz/services" />
+<meta property="og:image" content="https://domain.uz/images/og-services.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://domain.uz/images/og-services.jpg" />
+```
 
-- **Приоритет:** P2 (закрывает S6). **Оценка:** 4 ч.
-- **Файлы:** `src/pages/og/[lang].astro`, `scripts/render.mjs` (общий механизм рендера CV и OG), `scripts/build-media.mjs`, `astro.config.ts`, `Head.astro`, `public/opengraph.jpg` (удалить).
-- **Что сделать:**
-  1. Страница-шаблон `/og/{en,ru,uz}/` (`noindex`, вне sitemap, как CV): 1200×630, тёмная тема сайта, логотип, фото из `avatar.png`, имя на языке страницы, роль `Frontend Engineer` акцентом `#ff6433`, строка «{{years}}+ лет опыта · Ташкент» на языке страницы, адрес сайта. Шрифт Inter из сайта. Важное держать в центральной зоне (≈ 630×630): Telegram и WhatsApp обрезают картинку до квадрата.
-  2. Рендер при сборке тем же механизмом, что PDF резюме (Playwright, `astro:build:done`; в dev — middleware): скриншот в `dist/og/mirislam-usmanov-{lang}.jpg`, JPEG, ≤ 300 КБ (ограничение WhatsApp). Общий код CV и OG вынести, а не копировать. Ежемесячная пересборка из RF-19 обновляет стаж на картинке.
-  3. `Head.astro`: `og:image`/`twitter:image` → картинка текущей локали, `og:image:type`, `og:site_name` = «Mirislam Usmanov», `og:locale:alternate` для двух других локалей, `og:type` = `profile` + `profile:first_name`, `profile:last_name`, `profile:username` = `mirislamus`.
-  4. `public/opengraph.jpg` удалить (после SEO-04 на него ничего не ссылается).
-- **Приёмка:** три JPEG 1200×630 ≤ 300 КБ в `dist/og/`; у каждой локали свой `og:image`, ответ 200; без Chromium сборка предупреждает, а CI падает на тесте SEO-08; превью в Telegram (через @WebpageBot) и LinkedIn Post Inspector проверяет владелец после деплоя (SEO-09).
+- **Требования к картинке `og:image`:**
+  - Разрешение: строго **1200 × 630 px**.
+  - Ссылка обязана быть **абсолютной** (с указанием протокола `https://` и домена).
+  - Важные графические элементы и текст располагаются в безопасной центральной зоне, чтобы не обрезаться круглыми превью.
 
-### SEO-08. Автотесты SEO и Lighthouse в CI
+---
 
-- **Приоритет:** P1 (закрывает S9). **Оценка:** 3 ч.
-- **Файлы:** `tests/e2e/seo.spec.ts`, `scripts/lighthouse.mjs`, `package.json`, `.github/workflows/deploy.yml`.
-- **Что сделать:**
-  1. e2e `tests/e2e/seo.spec.ts` для `/`, `/ru/`, `/uz/`:
-     - title ≤ 70 и description ≤ 160 символов, без `{{`; один `h1` с именем и ролью;
-     - canonical = URL страницы; `hreflang` для всех локалей + `x-default`, все отвечают 200;
-     - `og:*`: `og:url` = canonical, `og:image` своей локали отвечает 200 и имеет размер 1200×630, есть `og:locale:alternate`;
-     - JSON-LD: парсится, в `@graph` есть `WebSite`, `ProfilePage`, `Person`, `ItemList`, `Review`; `@id` у `#person` одинаковый во всех локалях; число проектов и отзывов совпадает с DOM;
-     - `robots.txt`, `sitemap-index.xml`, `favicon.ico`, `manifest.webmanifest` отвечают 200; URL в sitemap побайтно совпадают с canonical.
-  2. Lighthouse (devDependency `lighthouse` с точной версией, Chromium из Playwright): `bun run check:lighthouse` проверяет SEO, Best Practices и Accessibility на трёх локалях на собранном сайте. Порог: SEO = 100, остальные категории выводятся в отчёт. Шаг в CI после e2e.
-- **Приёмка:** тесты и Lighthouse проходят в CI; если сломать canonical, title или JSON-LD, падает понятный тест (проверено вручную).
+## 5. Чеклист готовности страницы перед публикацией
 
-### SEO-09. После деплоя (владелец) ⏸
+Перед сдачей страницы контент-менеджер или разработчик проверяет:
 
-Выполняется после мёржа в `master` и деплоя. Делает владелец, мне — отметить результаты в `tasks.md`.
-
-- [ ] Rich Results Test и validator.schema.org для `/`, `/ru/`, `/uz/`: 0 ошибок.
-- [ ] Google Search Console: отправить `sitemap-index.xml` заново; «Проверить URL» → «Запросить индексирование» для трёх страниц.
-- [ ] Яндекс Вебмастер: sitemap, «Переобход страниц» для трёх URL, «Региональность» → Ташкент.
-- [ ] Превью ссылок: Telegram (@WebpageBot сбрасывает кэш), LinkedIn Post Inspector, WhatsApp.
-- [ ] Через 4–6 недель: в Search Console в отчёте «Страница профиля» нет ошибок; по запросу «Mirislam Usmanov» сайт на первом месте, а в выдаче показывается название сайта «Mirislam Usmanov», а не `mirislamus.github.io`.
-
-## Порядок и зависимости
-
-SEO-01 → SEO-02 → SEO-03 → SEO-04 → SEO-05 → SEO-06 → SEO-07 → SEO-08 → SEO-09. SEO-04 и SEO-05 опираются на модуль из SEO-03; тесты SEO-08 проверяют результат всех предыдущих задач, поэтому идут последними. Итого ≈ 21 ч.
-
-## Вне рамок
-
-Свой домен, страницы кейсов, раздел «Услуги», блог, IndexNow, Bing Webmaster Tools, `llms.txt`, блокировка AI-краулеров, рейтинги в отзывах, Google Business Profile. Производительность (Core Web Vitals) уже закрыта в `tz.md`.
+- [ ] Тег `<title>` уникален, содержит главный ключ в начале и укладывается в 50–60 символов.
+- [ ] Тег `description` емко передает УТП, содержит призыв к действию и укладывается в 140–160 символов.
+- [ ] Тег `<link rel="canonical">` указывает абсолютный адрес без параметров и без слэша на конце (кроме корня домена `https://domain.uz/`).
+- [ ] На странице присутствует ровно один `<h1>`.
+- [ ] Все секции имеют `<h2>` (включая скрытые через `.visually-hidden`), иерархия заголовков не нарушена.
+- [ ] Все контентные изображения имеют понятный `alt`, декоративные элементы — `alt=""`.
+- [ ] Настроены теги `og:image` и `twitter:image` (1200×630 px) с абсолютными URL.
+- [ ] Страница включена в автоматический файл `sitemap.xml`.
