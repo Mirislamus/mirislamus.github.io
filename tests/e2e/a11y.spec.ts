@@ -51,7 +51,7 @@ test('no violations with the mobile menu open', async ({ page }) => {
   await expect(page.locator('#main-navigation')).toBeVisible();
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
   expect(
-    results.violations.filter(violation => violation.id !== 'color-contrast').map(violation => violation.id)
+    results.violations.filter(violation => violation.id !== 'color-contrast').map(violation => violation.id),
   ).toEqual([]);
 });
 

@@ -22,7 +22,7 @@ const titleHtml = data.title
   .split(' ')
   .map(
     (word, index) =>
-      `<span class="${s.word}"><span class="${s.wordInner}" style="--i: ${index}">${escape(word)}</span></span>`
+      `<span class="${s.word}"><span class="${s.wordInner}" style="--i: ${index}">${escape(word)}</span></span>`,
   )
   .join(' ');
 ---

@@ -77,8 +77,8 @@ test.describe('when motion is allowed', () => {
     await expect
       .poll(() =>
         photo.evaluate(element =>
-          Math.abs(parseFloat((element as HTMLElement).style.transform.replace('translate(', '')))
-        )
+          Math.abs(parseFloat((element as HTMLElement).style.transform.replace('translate(', ''))),
+        ),
       )
       .toBeLessThan(1);
   });

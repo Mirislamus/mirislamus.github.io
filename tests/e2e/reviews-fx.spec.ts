@@ -23,7 +23,7 @@ test('the cards come in with a cascade driven by the scroll (no JavaScript)', as
   const supported = await page.evaluate(() => CSS.supports('animation-timeline: view()'));
   if (supported) {
     const names = await page.evaluate(() =>
-      [...document.querySelectorAll('#reviews article')].slice(0, 3).map(card => getComputedStyle(card).animationName)
+      [...document.querySelectorAll('#reviews article')].slice(0, 3).map(card => getComputedStyle(card).animationName),
     );
     for (const name of names) expect(name).toContain('reviews-in');
   }

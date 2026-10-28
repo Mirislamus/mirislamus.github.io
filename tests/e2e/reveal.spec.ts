@@ -53,8 +53,8 @@ test.describe('scroll-driven animations survive minification', () => {
 
     const names = await page.evaluate(() =>
       ['#contacts h2 span.accent', '[data-progress]', 'back-to-top circle:last-child'].map(
-        selector => getComputedStyle(document.querySelector(selector)!).animationName
-      )
+        selector => getComputedStyle(document.querySelector(selector)!).animationName,
+      ),
     );
     for (const name of names) expect(name).not.toBe('none');
   });

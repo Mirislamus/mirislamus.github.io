@@ -88,7 +88,7 @@ export const createHands = (root: HTMLElement) => {
         const pick = () => POOLS[level][Math.floor(rng() * POOLS[level].length)];
         cells.push({ x, y, level, side: pill ? 'red' : null, glyph: pick() });
         cells.push({ x: grid.cols + gap + (grid.cols - 1 - x), y, level, side: pill ? 'blue' : null, glyph: pick() });
-      })
+      }),
     );
   };
 

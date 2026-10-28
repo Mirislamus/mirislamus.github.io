@@ -129,7 +129,7 @@ test.describe('files for crawlers', () => {
     const sitemap = await (await ok(request, index.match(/<loc>([^<]+)<\/loc>/)![1])).text();
 
     expect([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])).toEqual(
-      PAGES.map(page => page.canonical)
+      PAGES.map(page => page.canonical),
     );
     expect(sitemap.match(/<lastmod>/g)).toHaveLength(PAGES.length);
     expect(sitemap.match(/hreflang="x-default"/g)).toHaveLength(PAGES.length);

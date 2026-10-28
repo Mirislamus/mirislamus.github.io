@@ -24,11 +24,11 @@ test.describe('when motion is allowed', () => {
     await takeOver(page);
     await page.evaluate(() => scrollTo(0, 0));
     expect(
-      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text'))
+      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text')),
     ).toBe('#ff2e63');
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
     expect(
-      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text'))
+      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text')),
     ).toBe('#d4123f');
   });
 

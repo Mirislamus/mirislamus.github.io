@@ -19,8 +19,8 @@ test('motion tokens have their design values', async ({ page }) => {
   expect(await ms(page, '--stagger')).toBe(60);
   expect(
     await page.evaluate(() =>
-      getComputedStyle(document.documentElement).getPropertyValue('--ease-out').replace(/\s/g, '')
-    )
+      getComputedStyle(document.documentElement).getPropertyValue('--ease-out').replace(/\s/g, ''),
+    ),
   ).toBe('cubic-bezier(.16,1,.3,1)');
 });
 

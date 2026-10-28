@@ -33,7 +33,7 @@ describe('data schemas', () => {
   it('rejects a missing key (a translation that lost a field)', () => {
     expect(heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text' }).success).toBe(false);
     expect(
-      heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text', button: 'Go', cv: 'CV' }).success
+      heroSchema.safeParse({ role: 'Engineer', title: 'Name', text: 'Text', button: 'Go', cv: 'CV' }).success,
     ).toBe(true);
   });
 
@@ -63,7 +63,7 @@ describe('data schemas', () => {
     expect(approachBaseSchema.safeParse({ types, secret }).success).toBe(true);
     expect(approachBaseSchema.safeParse({ types: types.slice(0, 2), secret }).success).toBe(false);
     expect(
-      approachBaseSchema.safeParse({ types: [{ ...types[0], stack: [] }, ...types.slice(1)], secret }).success
+      approachBaseSchema.safeParse({ types: [{ ...types[0], stack: [] }, ...types.slice(1)], secret }).success,
     ).toBe(false);
   });
 

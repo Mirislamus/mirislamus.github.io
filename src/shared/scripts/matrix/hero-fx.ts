@@ -42,7 +42,7 @@ export const initHeroFx = (section: HTMLElement) => {
     // The Hero starts below the top of the page (the header sits there); the rain reaches the very top edge.
     section.style.setProperty(
       '--rain-bleed',
-      `${Math.max(0, Math.round(section.getBoundingClientRect().top + window.scrollY))}px`
+      `${Math.max(0, Math.round(section.getBoundingClientRect().top + window.scrollY))}px`,
     );
     rain.resize();
     if (!content) return;
@@ -111,7 +111,7 @@ export const initHeroFx = (section: HTMLElement) => {
       rain.setPointer(event.clientX - area.left, event.clientY - area.top);
       liquid?.aim({ x: event.clientX, y: event.clientY }, section.getBoundingClientRect());
     },
-    { passive: true }
+    { passive: true },
   );
   section.addEventListener('pointerleave', () => {
     rain.setPointer(null);

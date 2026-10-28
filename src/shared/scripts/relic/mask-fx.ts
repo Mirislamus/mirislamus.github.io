@@ -95,7 +95,7 @@ export const createMask = (canvas: HTMLCanvasElement) => {
           ...cell,
           glyph: poolOf(cell.layer, cell.level)[Math.floor(rng() * poolOf(cell.layer, cell.level).length)],
         });
-      })
+      }),
     );
   };
 

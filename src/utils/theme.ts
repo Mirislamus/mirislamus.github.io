@@ -103,7 +103,7 @@ export const setThemeMode = (mode: ThemeMode, origin?: ThemeOrigin) => {
           duration: readTokenMs('--dur-slow', 400),
           easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim() || 'ease-in-out',
           pseudoElement: '::view-transition-new(root)',
-        }
+        },
       );
     })
     .catch(() => {

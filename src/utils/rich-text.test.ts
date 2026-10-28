@@ -90,7 +90,7 @@ describe('interpolate', () => {
 describe('toPlainText', () => {
   it('keeps the visible words of highlights and links and substitutes variables', () => {
     expect(toPlainText('Recent |projects|, see ||dafna.uz|| for {{years}}+ years', { years: 8 })).toBe(
-      'Recent projects, see dafna.uz for 8+ years'
+      'Recent projects, see dafna.uz for 8+ years',
     );
   });
 });

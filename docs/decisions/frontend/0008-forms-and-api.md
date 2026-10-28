@@ -61,7 +61,7 @@
 
     export async function fetchSchema<TSchema extends ZodType>(
       request: Promise<unknown>,
-      schema: TSchema
+      schema: TSchema,
     ): Promise<z.infer<TSchema>> {
       const data = await request;
       return schema.parse(data);

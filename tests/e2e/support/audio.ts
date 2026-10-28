@@ -82,5 +82,5 @@ export const audioLog = (page: Page) =>
   page.evaluate(
     () =>
       (window as unknown as { audioLog: { contexts: number; oscillators: number; closed: number; resumed: number } })
-        .audioLog
+        .audioLog,
   );

@@ -54,7 +54,7 @@ test.describe('when motion is allowed', () => {
     await page.locator('#career [data-embla-next]').click();
     await expect(career(page)).not.toHaveAttribute('data-career-reveal', /.*/, { timeout: 1000 });
     expect(await page.evaluate(() => getComputedStyle(document.querySelector('[data-career-text]')!).opacity)).toBe(
-      '1'
+      '1',
     );
   });
 
@@ -92,7 +92,7 @@ test.describe('when motion is reduced', () => {
     await page.waitForTimeout(800);
     await expect(career(page)).not.toHaveAttribute('data-career-reveal', /.*/);
     expect(await page.evaluate(() => getComputedStyle(document.querySelector('[data-career-text]')!).opacity)).toBe(
-      '1'
+      '1',
     );
   });
 });

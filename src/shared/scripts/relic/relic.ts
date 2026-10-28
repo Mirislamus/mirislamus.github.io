@@ -99,7 +99,7 @@ const setup = (root: HTMLDialogElement) => {
       () => {
         noise = window.setInterval(() => show(0, LINES[0].length), NOISE_MS);
       },
-      START_MS.line1 + LINES[0].length * TYPE_MS
+      START_MS.line1 + LINES[0].length * TYPE_MS,
     );
     if (subtitle) later(() => (subtitle.hidden = false), START_MS.subtitle);
     later(() => riser(RISER_MS / 1000), START_MS.end - RISER_MS + 400);

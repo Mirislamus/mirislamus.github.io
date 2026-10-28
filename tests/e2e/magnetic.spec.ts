@@ -7,7 +7,7 @@ const open = async (page: Page) => {
   await page.goto('/');
   await page.locator('#contacts').scrollIntoViewIfNeeded();
   await page.waitForFunction(() =>
-    performance.getEntriesByType('resource').some(entry => entry.name.includes('magnetic'))
+    performance.getEntriesByType('resource').some(entry => entry.name.includes('magnetic')),
   );
   await page.waitForTimeout(200);
 };

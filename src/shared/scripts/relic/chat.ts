@@ -75,7 +75,7 @@ const showFolded = () => {
   const label = folded ? talk.open : talk.close;
   toggle.setAttribute(
     'aria-label',
-    folded && unread > 0 ? `${label}. ${talk.unread.replace('{{count}}', String(unread))}` : label
+    folded && unread > 0 ? `${label}. ${talk.unread.replace('{{count}}', String(unread))}` : label,
   );
 };
 
@@ -194,7 +194,7 @@ export const startChat = () => {
         say(target.id);
       }
     },
-    { threshold: VISIBLE }
+    { threshold: VISIBLE },
   );
   SECTIONS.forEach(id => {
     const element = document.getElementById(id);

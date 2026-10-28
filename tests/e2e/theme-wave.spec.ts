@@ -27,7 +27,7 @@ test.describe('when motion is allowed', () => {
       document
         .getAnimations()
         .some(
-          animation => (animation.effect as KeyframeEffect | null)?.pseudoElement === '::view-transition-new(root)'
+          animation => (animation.effect as KeyframeEffect | null)?.pseudoElement === '::view-transition-new(root)',
         );
 
     await page.evaluate(() => {

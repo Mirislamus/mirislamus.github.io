@@ -93,7 +93,7 @@ const slideLabel = (index: number) =>
         observer.disconnect();
         void import('@shared/scripts/career-reveal').then(({ initCareerReveal }) => initCareerReveal(section));
       },
-      { rootMargin: '400px' }
+      { rootMargin: '400px' },
     ).observe(section);
   }
 </script>

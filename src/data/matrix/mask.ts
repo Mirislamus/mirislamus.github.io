@@ -14,7 +14,7 @@ const gridSchema = z
     grid =>
       grid.levels.length === grid.rows &&
       grid.levels.every(row => row.length === grid.cols && /^[0-46-9a-d]+$/.test(row)),
-    'levels must be rows × cols characters 0..4, 6..9 and a..d'
+    'levels must be rows × cols characters 0..4, 6..9 and a..d',
   );
 
 export const maskSchema = z.strictObject({

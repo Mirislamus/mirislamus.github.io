@@ -32,7 +32,7 @@ test.describe('when motion is allowed', () => {
       .poll(() =>
         ghosts(page)
           .first()
-          .evaluate(element => getComputedStyle(element).animationName)
+          .evaluate(element => getComputedStyle(element).animationName),
       )
       .toContain('logo-glitch');
     const timing = await ghosts(page)
@@ -57,7 +57,7 @@ test.describe('when motion is allowed', () => {
       .poll(() =>
         ghosts(page)
           .first()
-          .evaluate(element => getComputedStyle(element).animationName)
+          .evaluate(element => getComputedStyle(element).animationName),
       )
       .toContain('logo-glitch');
     // It is over after a moment: the copies are invisible again.
@@ -74,7 +74,7 @@ test('with reduced motion there is no animation', async ({ browser }) => {
   expect(
     await ghosts(page)
       .first()
-      .evaluate(element => getComputedStyle(element).animationName)
+      .evaluate(element => getComputedStyle(element).animationName),
   ).toBe('none');
   await expect(ghosts(page).first()).toHaveCSS('opacity', '0');
   await context.close();

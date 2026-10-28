@@ -119,10 +119,10 @@ try {
         Object.entries(targets).map(([key, variants]) => [
           key,
           Object.fromEntries(Object.entries(variants).map(([name, config]) => [name, toLevels(config)])),
-        ])
+        ]),
       );
     },
-    { fontBase64, targets: TARGETS, glyphAspect: GLYPH_ASPECT, thresholds: THRESHOLDS }
+    { fontBase64, targets: TARGETS, glyphAspect: GLYPH_ASPECT, thresholds: THRESHOLDS },
   );
 
   await writeFile(OUT, `${JSON.stringify(result, null, 2)}\n`);

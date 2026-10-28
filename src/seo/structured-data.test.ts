@@ -109,7 +109,7 @@ describe('buildStructuredData', () => {
     const reviews = ofType(locale, 'Review');
 
     expect(list.itemListElement.map((entry: { item: { name: string } }) => entry.item.name)).toEqual(
-      site.projects.items.map(project => project.name)
+      site.projects.items.map(project => project.name),
     );
     expect(list.itemListElement[0].item.description).toBe(site.projects.items[0].text);
     expect(reviews.map(review => review.reviewBody)).toEqual(site.reviews.items.map(review => review.text));

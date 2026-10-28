@@ -24,7 +24,7 @@ export const initQuoteDecode = (root: HTMLElement) => {
         setTimeout(() => (quote.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)]), step);
       setTimeout(() => (quote.textContent = mark), END);
     },
-    { threshold: 0.9 }
+    { threshold: 0.9 },
   );
   quotes.forEach(quote => observer.observe(quote.closest('article') ?? quote));
 };

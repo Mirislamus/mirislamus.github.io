@@ -105,7 +105,7 @@
         observer.unobserve(entry.target); // Однократное срабатывание
       }
     },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
   );
 
   for (const element of document.querySelectorAll<HTMLElement>('[data-reveal]')) {

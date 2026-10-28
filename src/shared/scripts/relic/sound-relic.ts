@@ -103,7 +103,7 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     time: number,
     length: number,
     peak: number,
-    target: AudioNode
+    target: AudioNode,
   ) => {
     if (!ctx) return;
     const osc = ctx.createOscillator();
@@ -127,7 +127,7 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     time: number,
     length: number,
     peak: number,
-    target: AudioNode
+    target: AudioNode,
   ) => {
     if (!ctx || !noiseBuffer) return;
     const source = ctx.createBufferSource();
@@ -152,7 +152,7 @@ export const createRelicSound = (env: SoundEnv = defaultEnv): RelicSound => {
     peak: number,
     attack: number,
     length: number,
-    target: AudioNode
+    target: AudioNode,
   ) => {
     if (!ctx) return;
     for (const detune of [-13, 0, 13]) {

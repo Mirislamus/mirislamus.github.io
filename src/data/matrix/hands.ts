@@ -15,7 +15,7 @@ const gridSchema = z
   .refine(
     grid =>
       grid.levels.length === grid.rows && grid.levels.every(row => row.length === grid.cols && /^[0-46-9]+$/.test(row)),
-    'levels must be rows × cols digits 0..4 and 6..9'
+    'levels must be rows × cols digits 0..4 and 6..9',
   );
 
 export const handsSchema = z.strictObject({ desktop: gridSchema, mobile: gridSchema });

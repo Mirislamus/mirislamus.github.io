@@ -18,7 +18,7 @@ const QUALITY = 90;
 
 const srcSet = async (image: ImageMetadata, format: 'avif' | 'webp') => {
   const [x1, x2] = await Promise.all(
-    [PROJECT_WIDTH, PROJECT_WIDTH * 2].map(width => getImage({ src: image, width, format, quality: QUALITY }))
+    [PROJECT_WIDTH, PROJECT_WIDTH * 2].map(width => getImage({ src: image, width, format, quality: QUALITY })),
   );
   return `${x1.src} 1x, ${x2.src} 2x`;
 };
@@ -43,7 +43,7 @@ export const getProjectImages = async (): Promise<Record<string, ResponsiveImage
           height: 630,
         },
       ] as const;
-    })
+    }),
   );
 
   return Object.fromEntries(entries);

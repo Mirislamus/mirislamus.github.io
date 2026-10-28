@@ -254,7 +254,7 @@ export const createRain = (canvas: HTMLCanvasElement, options: RainOptions): Rai
     if (widthChanged || columns.length === 0) build();
     else
       field = columns.map((_, i) =>
-        field[i].concat(Array.from({ length: Math.max(0, rows() - field[i].length) }, () => pickGlyph(rng)))
+        field[i].concat(Array.from({ length: Math.max(0, rows() - field[i].length) }, () => pickGlyph(rng))),
       );
     if (isStill) draw();
   };

@@ -84,7 +84,7 @@ export const initSecretCard = (root: HTMLElement) => {
         count(performance.now());
         void Promise.all(animations.map(animation => animation.finished)).then(settle, settle);
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
     observer.observe(card);
   }
@@ -152,7 +152,7 @@ export const initSecretCard = (root: HTMLElement) => {
         timer = window.setInterval(turn, TURN);
         window.setTimeout(turn, TURN / 3); // the first one soon after the card appears
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     ).observe(card);
   }
 

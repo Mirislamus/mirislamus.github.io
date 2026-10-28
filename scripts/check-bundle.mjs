@@ -26,7 +26,7 @@ const staticImports = source => importsOf(source, /(?:from|import)\s*["']\.\/([^
 
 const files = (await readdir(ASTRO_DIR)).filter(file => file.endsWith('.js'));
 const sources = new Map(
-  await Promise.all(files.map(async file => [file, await readFile(join(ASTRO_DIR, file), 'utf8')]))
+  await Promise.all(files.map(async file => [file, await readFile(join(ASTRO_DIR, file), 'utf8')])),
 );
 
 const deferredSet = new Set([...sources.values()].flatMap(dynamicImports));

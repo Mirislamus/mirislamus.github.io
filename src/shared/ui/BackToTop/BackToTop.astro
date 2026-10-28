@@ -28,7 +28,7 @@ const { label } = Astro.props;
 
       // Shown once the first screen has scrolled out of view.
       const observer = new IntersectionObserver(([entry]) =>
-        this.toggleAttribute('data-visible', !entry.isIntersecting)
+        this.toggleAttribute('data-visible', !entry.isIntersecting),
       );
       if (hero) observer.observe(hero);
       else this.setAttribute('data-visible', '');

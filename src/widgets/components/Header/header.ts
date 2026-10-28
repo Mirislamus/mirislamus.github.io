@@ -58,8 +58,8 @@ class SiteHeader extends HTMLElement {
             y: rect.top + rect.height / 2,
           });
         },
-        { signal }
-      )
+        { signal },
+      ),
     );
     this.#cleanup.push(subscribeTheme(syncModes));
     syncModes();
@@ -94,7 +94,7 @@ class SiteHeader extends HTMLElement {
           setLangs(true, 'last');
         }
       },
-      { signal }
+      { signal },
     );
     langsList.addEventListener(
       'keydown',
@@ -106,7 +106,7 @@ class SiteHeader extends HTMLElement {
         event.preventDefault();
         focus(langLinks[(move + langLinks.length) % langLinks.length]);
       },
-      { signal }
+      { signal },
     );
     // Tabbing away from the list closes it.
     langsList.addEventListener(
@@ -115,7 +115,7 @@ class SiteHeader extends HTMLElement {
         const next = event.relatedTarget as Node | null;
         if (next && !langsList.contains(next) && next !== langsButton) setLangs(false);
       },
-      { signal }
+      { signal },
     );
     document.addEventListener(
       'pointerdown',
@@ -123,7 +123,7 @@ class SiteHeader extends HTMLElement {
         const target = event.target as Node;
         if (langsOpen && !langsList.contains(target) && !langsButton.contains(target)) setLangs(false);
       },
-      { signal }
+      { signal },
     );
 
     // --- Mobile menu ---------------------------------------------------------------------------
@@ -141,7 +141,7 @@ class SiteHeader extends HTMLElement {
       menuButton.setAttribute('aria-expanded', String(open));
       menuButton.setAttribute(
         'aria-label',
-        (open ? menuButton.dataset.closeLabel : menuButton.dataset.openLabel) ?? ''
+        (open ? menuButton.dataset.closeLabel : menuButton.dataset.openLabel) ?? '',
       );
 
       if (open) {
@@ -197,7 +197,7 @@ class SiteHeader extends HTMLElement {
           focus(first);
         }
       },
-      { signal }
+      { signal },
     );
 
     // --- Active section and the sliding line ----------------------------------------------------
@@ -239,7 +239,7 @@ class SiteHeader extends HTMLElement {
         if (current) setActive(current.id);
       },
       // A thin band at 35% of the viewport height: the section crossing it is the active one.
-      { rootMargin: '-35% 0px -64% 0px' }
+      { rootMargin: '-35% 0px -64% 0px' },
     );
     sections.forEach(section => observer.observe(section));
     this.#cleanup.push(() => observer.disconnect());
@@ -258,7 +258,7 @@ class SiteHeader extends HTMLElement {
           }
         });
       },
-      { passive: true, signal }
+      { passive: true, signal },
     );
 
     setActive(sections[0]?.id ?? '');

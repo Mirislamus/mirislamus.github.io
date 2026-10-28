@@ -56,7 +56,7 @@ export const initMagnetic = (block: HTMLElement) => {
       pointer = { x: event.clientX, y: event.clientY };
       if (!frame) frame = requestAnimationFrame(tick);
     },
-    { passive: true }
+    { passive: true },
   );
   document.documentElement.addEventListener('pointerleave', () => {
     pointer = null;

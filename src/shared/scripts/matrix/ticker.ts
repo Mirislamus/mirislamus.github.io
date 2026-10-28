@@ -80,6 +80,6 @@ export const getTicker = (): Ticker =>
         isHidden: () => document.hidden,
         onVisibilityChange: listener => document.addEventListener('visibilitychange', listener),
       },
-      coarse ? 30 : 60
+      coarse ? 30 : 60,
     );
   })());

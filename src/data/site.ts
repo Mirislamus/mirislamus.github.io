@@ -81,7 +81,7 @@ const parseLocalized = <S extends z.ZodType>(file: string, schema: S, value: unk
     fail(`${file} must have exactly the locales [${LOCALES.join(', ')}], found [${keys.join(', ')}]`);
   }
   return Object.fromEntries(
-    LOCALES.map(locale => [locale, parse(`${file} → ${locale}`, schema, raw[locale])])
+    LOCALES.map(locale => [locale, parse(`${file} → ${locale}`, schema, raw[locale])]),
   ) as Record<Locale, z.infer<S>>;
 };
 
@@ -141,21 +141,21 @@ const load = () => {
       locale,
       projectsText[locale].items.map(item => item.id),
       projectBase.map(item => item.id),
-      'projects.base.json'
+      'projects.base.json',
     );
     sameIds(
       'career.json',
       locale,
       careerText[locale].items.map(item => item.id),
       careerBase.map(item => item.id),
-      'career.base.json'
+      'career.base.json',
     );
     sameIds(
       'reviews.json',
       locale,
       reviewsText[locale].reviews.map(item => item.id),
       reviewBase.map(item => item.id),
-      'reviews.base.json'
+      'reviews.base.json',
     );
   }
 
@@ -164,7 +164,7 @@ const load = () => {
   for (const locale of LOCALES) {
     if (languageCodes(locale) !== languageCodes(DEFAULT_LOCALE)) {
       fail(
-        `cv.json → ${locale} lists languages [${languageCodes(locale)}] but ${DEFAULT_LOCALE} lists [${languageCodes(DEFAULT_LOCALE)}]`
+        `cv.json → ${locale} lists languages [${languageCodes(locale)}] but ${DEFAULT_LOCALE} lists [${languageCodes(DEFAULT_LOCALE)}]`,
       );
     }
   }

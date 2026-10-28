@@ -59,11 +59,11 @@ document.addEventListener(
       tiltTo(
         card,
         ((event.clientX - rect.left) / rect.width) * 2 - 1,
-        ((event.clientY - rect.top) / rect.height) * 2 - 1
+        ((event.clientY - rect.top) / rect.height) * 2 - 1,
       );
     }
   },
-  { passive: true }
+  { passive: true },
 );
 
 // Leaving a card lets it settle back.
@@ -74,7 +74,7 @@ document.addEventListener(
     const card = event.target.closest<HTMLElement>('[data-spotlight][data-tilt]');
     if (card && !card.contains(event.relatedTarget as Node | null)) tiltTo(card, 0, 0);
   },
-  { passive: true }
+  { passive: true },
 );
 
 export {};

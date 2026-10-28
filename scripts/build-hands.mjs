@@ -75,7 +75,7 @@ const chain = (base, length, fan, bends, r1, r2) => {
 };
 
 const fingers = FINGERS.flatMap(finger =>
-  chain([finger.x, finger.y, 0], finger.length, finger.fan, finger.bend, 0.76, 0.54)
+  chain([finger.x, finger.y, 0], finger.length, finger.fan, finger.bend, 0.76, 0.54),
 );
 // The thumb: three bones, starting low on the palm, with the muscle at its base (the thenar) in handDistance.
 const thumb = [

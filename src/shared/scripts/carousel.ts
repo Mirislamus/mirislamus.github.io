@@ -14,7 +14,7 @@ class EmblaCarouselRoot extends HTMLElement {
         this.#observer?.disconnect();
         void this.#init();
       },
-      { rootMargin: '200px' }
+      { rootMargin: '200px' },
     );
     this.#observer.observe(this);
   }
@@ -92,7 +92,7 @@ class EmblaCarouselRoot extends HTMLElement {
         if (event.key === 'ArrowLeft') goPrevious();
         else if (event.key === 'ArrowRight') goNext();
       },
-      { signal }
+      { signal },
     );
 
     // Slides that are off screen must not be reachable with Tab.
@@ -117,7 +117,7 @@ class EmblaCarouselRoot extends HTMLElement {
           dot.setAttribute('aria-label', label.replace('{{index}}', String(index + 1)));
           dot.addEventListener('click', () => embla.scrollTo(index), { signal });
           return dot;
-        })
+        }),
       );
     };
 

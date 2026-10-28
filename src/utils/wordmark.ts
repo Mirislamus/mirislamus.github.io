@@ -19,7 +19,7 @@ export const levelsToText = (levels: readonly string[], seed: number): string =>
           const pool = ASCII_POOLS[Number(digit)];
           return pool.length === 1 ? pool : pool[Math.floor(rng() * pool.length)];
         })
-        .join('')
+        .join(''),
     )
     .join('\n');
 };

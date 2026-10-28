@@ -132,7 +132,7 @@ test.describe('reviews carousel', () => {
     await ready(page, 'reviews');
     await expect(page.locator('#reviews [data-embla-dots] button').first()).toHaveAttribute(
       'aria-label',
-      'Перейти к отзыву 1'
+      'Перейти к отзыву 1',
     );
     await expect(page.locator('#reviews [data-embla-slide]').first()).toHaveAttribute('aria-label', '1 из 8');
   });
@@ -190,7 +190,7 @@ test.describe('career carousel, how far the arrows go', () => {
         page.evaluate(() => {
           const slides = [...document.querySelectorAll('#career [data-embla-slide]')];
           return slides[slides.length - 1].getBoundingClientRect().right <= innerWidth;
-        })
+        }),
       )
       .toBe(true);
     await page.locator('#career [data-embla-prev]').click();

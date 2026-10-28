@@ -37,7 +37,7 @@ await withSite(
       }
     }
   },
-  { launch: { args: [`--remote-debugging-port=${PORT}`] }, site: SITE }
+  { launch: { args: [`--remote-debugging-port=${PORT}`] }, site: SITE },
 );
 
 if (failures.length > 0) {

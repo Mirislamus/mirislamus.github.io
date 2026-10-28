@@ -69,7 +69,7 @@ test.describe('when motion is allowed', () => {
       .poll(() => page.locator('[data-photo]').evaluate(element => (element as unknown as HTMLElement).style.transform))
       .toMatch(/translate\(-[1-9]/);
     expect(await page.locator('[data-avatar]').evaluate(svg => (svg as unknown as HTMLElement).style.transform)).toBe(
-      ''
+      '',
     );
   });
 
@@ -103,7 +103,7 @@ test.describe('with a touch screen', () => {
             else resolve(min);
           };
           look();
-        })
+        }),
     );
     await page.touchscreen.tap(box.x + box.width - 6, box.y + box.height / 2);
     expect(await rightmost).toBeLessThan(238);

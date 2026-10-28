@@ -84,7 +84,7 @@ test.describe('the Matrix 404', () => {
       await page.goto('/ru/nope/');
       await expect(page.locator('section:not([hidden]) motion-toggle button')).toHaveAttribute('aria-pressed', 'true');
       await expect(page.locator('section:not([hidden]) motion-toggle button')).toHaveAccessibleName(
-        'Запустить анимацию'
+        'Запустить анимацию',
       );
     });
   });

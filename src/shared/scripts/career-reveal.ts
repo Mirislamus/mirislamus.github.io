@@ -29,7 +29,7 @@ export const initCareerReveal = (section: HTMLElement) => {
   const animate = (
     element: Element | null,
     keyframes: Keyframe[],
-    options: KeyframeAnimationOptions & { pseudoElement?: string }
+    options: KeyframeAnimationOptions & { pseudoElement?: string },
   ) => {
     if (!element) return;
     const animation = element.animate(keyframes, { fill: 'both', easing: easeOut, ...options });
@@ -64,7 +64,7 @@ export const initCareerReveal = (section: HTMLElement) => {
         { transform: 'scale(0.6)', borderColor: 'var(--tertiary)' },
         { transform: 'scale(1)', borderColor: 'var(--accent)' },
       ],
-      { duration: 400, delay: t, easing: easeSpring }
+      { duration: 400, delay: t, easing: easeSpring },
     );
     animate(
       item.querySelector('[data-career-ping]'),
@@ -72,7 +72,7 @@ export const initCareerReveal = (section: HTMLElement) => {
         { transform: 'scale(1)', opacity: 0.6 },
         { transform: 'scale(2.6)', opacity: 0 },
       ],
-      current ? { duration: 1600, delay: t, iterations: 3 } : { duration: 600, delay: t }
+      current ? { duration: 1600, delay: t, iterations: 3 } : { duration: 600, delay: t },
     );
     animate(item.querySelector('[data-career-content]'), [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], {
       duration: 400,
@@ -82,7 +82,7 @@ export const initCareerReveal = (section: HTMLElement) => {
     animate(
       item.querySelector('[data-career-name]'),
       [{ transform: 'translateY(110%)' }, { transform: 'translateY(0)' }],
-      { duration: 500, delay: t + 50 }
+      { duration: 500, delay: t + 50 },
     );
     animate(item.querySelector('[data-career-meta]'), fadeUp, { duration: 400, delay: t + 150 });
     animate(item.querySelector('[data-career-text]'), fadeUp, { duration: 400, delay: t + 250 });
@@ -96,8 +96,8 @@ export const initCareerReveal = (section: HTMLElement) => {
           { opacity: 0, transform: 'scale(0.9)' },
           { opacity: 1, transform: 'scale(1)' },
         ],
-        { duration: 250, delay: t + 350 + j * 30 }
-      )
+        { duration: 250, delay: t + 350 + j * 30 },
+      ),
     );
 
     // The line goes on into the future from the current place.
@@ -108,7 +108,7 @@ export const initCareerReveal = (section: HTMLElement) => {
           { transform: 'scaleX(0)', opacity: 0 },
           { transform: 'scaleX(1)', opacity: 1 },
         ],
-        { duration: 600, delay: t + 200, pseudoElement: '::after' }
+        { duration: 600, delay: t + 200, pseudoElement: '::after' },
       );
     }
   });
@@ -150,7 +150,7 @@ export const initCareerReveal = (section: HTMLElement) => {
       for (const animation of animations) animation.play();
       void Promise.all(animations.map(animation => animation.finished)).then(cleanup, cleanup);
     },
-    { threshold: 0.3 }
+    { threshold: 0.3 },
   );
   observer.observe(section);
 };

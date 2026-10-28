@@ -12,7 +12,7 @@ const gridSchema = z
   .refine(
     grid =>
       grid.levels.length === grid.rows && grid.levels.every(row => row.length === grid.cols && /^[0-4]+$/.test(row)),
-    'levels must be rows × cols digits 0..4'
+    'levels must be rows × cols digits 0..4',
   );
 
 const variantsSchema = z.strictObject({ desktop: gridSchema, mobile: gridSchema });

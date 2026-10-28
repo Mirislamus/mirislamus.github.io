@@ -73,7 +73,7 @@ test.describe('when motion is allowed', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Mirislam Usmanov Frontend Engineer');
     await expect(page.locator('[data-swap-real], [data-swap-fake]')).toHaveCount(0);
     expect(
-      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text'))
+      await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent-text')),
     ).not.toBe('#ff2e63');
     await expect(html(page)).not.toHaveAttribute('data-relic-glitch', '');
     await expect(html(page)).not.toHaveAttribute('data-relic-swapping', '');

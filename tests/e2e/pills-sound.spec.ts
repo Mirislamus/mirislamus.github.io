@@ -105,7 +105,7 @@ test.describe('the effects of the scene', () => {
 
   const tones = (page: Page) =>
     page.evaluate(
-      () => (window as unknown as { audioLog: { tones: { type: string; freq: number }[] } }).audioLog.tones
+      () => (window as unknown as { audioLog: { tones: { type: string; freq: number }[] } }).audioLog.tones,
     );
   const ramps = (page: Page) =>
     page.evaluate(() => (window as unknown as { audioLog: { ramps: number[] } }).audioLog.ramps);
@@ -137,7 +137,7 @@ test.describe('the effects of the scene', () => {
     await page.keyboard.press('Tab');
     await expect
       .poll(async () =>
-        (await tones(page)).some(tone => Math.abs(tone.freq - 659.26) < 1 || Math.abs(tone.freq - 440) < 1)
+        (await tones(page)).some(tone => Math.abs(tone.freq - 659.26) < 1 || Math.abs(tone.freq - 440) < 1),
       )
       .toBe(true);
   });

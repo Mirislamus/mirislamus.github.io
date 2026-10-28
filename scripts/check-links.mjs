@@ -14,7 +14,7 @@ const collectFiles = async directory => {
     entries.map(async entry => {
       const path = join(directory, entry.name);
       return entry.isDirectory() ? collectFiles(path) : SOURCE_EXTENSIONS.has(extname(entry.name)) ? [path] : [];
-    })
+    }),
   );
 
   return files.flat();

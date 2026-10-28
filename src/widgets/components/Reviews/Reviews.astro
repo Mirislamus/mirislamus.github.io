@@ -63,7 +63,7 @@ const slideLabel = (index: number) =>
         observer.disconnect();
         void import('@shared/scripts/quote-decode').then(({ initQuoteDecode }) => initQuoteDecode(section));
       },
-      { rootMargin: '400px' }
+      { rootMargin: '400px' },
     ).observe(section);
   }
 </script>

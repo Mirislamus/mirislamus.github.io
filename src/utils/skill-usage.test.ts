@@ -45,7 +45,7 @@ describe('formatUsage', () => {
     expect(formatUsage(['A', 'B'], RU, 'ru')).toBe('В 2 проектах: A, B');
     expect(formatUsage(['A', 'B', 'C', 'D', 'E'], RU, 'ru')).toBe('В 5 проектах: A, B, +3');
     expect(formatUsage(['A', 'B', 'C', 'D'], { other: '{{count}} ta loyihada: {{names}}' }, 'uz')).toBe(
-      '4 ta loyihada: A, B, +2'
+      '4 ta loyihada: A, B, +2',
     );
   });
 });

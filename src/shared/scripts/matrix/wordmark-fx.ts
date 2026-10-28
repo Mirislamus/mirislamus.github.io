@@ -70,7 +70,7 @@ export const initWordmark = (root: HTMLElement) => {
     // The same seed every time, so a resize does not reshuffle the glyphs.
     const rng = createRng(7);
     glyphs = levels.map(row =>
-      row.map(level => (level > 0 ? POOLS[level][Math.floor(rng() * POOLS[level].length)] : ''))
+      row.map(level => (level > 0 ? POOLS[level][Math.floor(rng() * POOLS[level].length)] : '')),
     );
     flashes = new Float64Array(cols * rows);
     return pre;
@@ -190,7 +190,7 @@ export const initWordmark = (root: HTMLElement) => {
         if (motion.allowed) startAssembling();
         else showAtOnce();
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     ).observe(root);
   } else {
     showAtOnce();

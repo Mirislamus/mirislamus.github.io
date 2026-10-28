@@ -152,7 +152,7 @@ test.describe('icons', () => {
     await tile.scrollIntoViewIfNeeded();
     await tile.hover();
     const accent = await page.evaluate(() =>
-      getComputedStyle(document.documentElement).getPropertyValue('--accent-text').trim()
+      getComputedStyle(document.documentElement).getPropertyValue('--accent-text').trim(),
     );
     await expect.poll(() => tile.locator('svg').evaluate(svg => getComputedStyle(svg).color)).not.toBe('rgb(0, 0, 0)');
     expect(accent.length).toBeGreaterThan(0);

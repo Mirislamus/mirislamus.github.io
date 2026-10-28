@@ -4,15 +4,15 @@ const chat = (page: Page) => page.locator('#approach chat-demo');
 const opacities = (page: Page) =>
   page.evaluate(() =>
     [...document.querySelectorAll('#approach chat-demo [data-chat-list] > li')].map(item =>
-      Number(getComputedStyle(item).opacity)
-    )
+      Number(getComputedStyle(item).opacity),
+    ),
   );
 
 // Brings the card to 300 px below the fold, waits until the scene is set up, then scrolls it into view.
 const scrollTowards = async (page: Page) => {
   await page.goto('/');
   const top = await page.evaluate(
-    () => document.querySelector('#approach article')!.getBoundingClientRect().top + scrollY
+    () => document.querySelector('#approach article')!.getBoundingClientRect().top + scrollY,
   );
   await page.evaluate(y => scrollTo(0, y - innerHeight - 300), top);
   await expect(chat(page)).toHaveAttribute('data-chat', 'pending');
@@ -107,7 +107,7 @@ test.describe('my answers are typed into the field and sent', () => {
   test('the field shows my text letter by letter, then it is empty again and the bubble comes', async ({ page }) => {
     await page.goto('/');
     const top = await page.evaluate(
-      () => document.querySelector('#approach article')!.getBoundingClientRect().top + scrollY
+      () => document.querySelector('#approach article')!.getBoundingClientRect().top + scrollY,
     );
     await page.evaluate(y => scrollTo(0, y - innerHeight - 300), top);
     await expect(chat(page)).toHaveAttribute('data-chat', 'pending');

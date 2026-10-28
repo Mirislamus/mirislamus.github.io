@@ -45,7 +45,7 @@ const media = (): AstroIntegration => {
           await buildMedia(fileURLToPath(dir), message => logger.info(message));
         } catch (error) {
           logger.warn(
-            `CV PDFs and share pictures were not created (is Chromium installed? bunx playwright install chromium): ${error}`
+            `CV PDFs and share pictures were not created (is Chromium installed? bunx playwright install chromium): ${error}`,
           );
         }
       },

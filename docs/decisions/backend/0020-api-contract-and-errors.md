@@ -122,7 +122,7 @@
     constructor(
       readonly status: number,
       readonly code: string,
-      readonly detail?: string
+      readonly detail?: string,
     ) {
       super(code);
     }
@@ -131,7 +131,7 @@
   export function problem(status: number, code: string, requestId: string, extra: Record<string, unknown> = {}) {
     return Response.json(
       { status, title: STATUS_TITLES[status] ?? 'Error', code, requestId, ...extra },
-      { status, headers: { 'Content-Type': 'application/problem+json' } }
+      { status, headers: { 'Content-Type': 'application/problem+json' } },
     );
   }
   ```

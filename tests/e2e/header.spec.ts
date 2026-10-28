@@ -169,7 +169,7 @@ test('the bar stays at the top of the window while the page scrolls', async ({ p
       page
         .locator('header')
         .first()
-        .evaluate(element => Math.round(element.getBoundingClientRect().top))
+        .evaluate(element => Math.round(element.getBoundingClientRect().top)),
     )
     .toBeGreaterThanOrEqual(0);
   const top = await page

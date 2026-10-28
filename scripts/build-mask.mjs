@@ -58,7 +58,7 @@ const bright = svg(
     path('M78 188C78 202 74 214 64 224M122 188C122 202 126 214 136 224', { w: 2.5 }),
     path('M60 226C82 216 118 216 140 226', { w: 3 }),
     mirrored('M60 226C42 234 26 244 14 258', { w: 3 }),
-  ].join('')
+  ].join(''),
 );
 
 // ── what is carved out of the bright parts: the vents of the respirator and the rings of the filters ──
@@ -67,7 +67,7 @@ const carve = svg(
     path('M84 134H116M80 143H120M84 152H116', { w: 2.2 }),
     mirrored('M56 152m-6 0a6 6 0 1 0 12 0a6 6 0 1 0 -12 0', { w: 1.8 }),
     path('M100 166V178', { w: 1.6 }),
-  ].join('')
+  ].join(''),
 );
 
 // ── the visor (cyan): a band across the eyes that wraps round the head, brighter where the eyes are ──
@@ -78,7 +78,7 @@ const visor = svg(
     // the lights of the jacks on the temples and on the collar
     mirroredCircle(36, 120, 4.5),
     mirroredCircle(86, 222, 3.5),
-  ].join('')
+  ].join(''),
 );
 
 // ── the cables (red): from the back of the head down past the shoulders ──
@@ -88,7 +88,7 @@ const cables = svg(
     mirrored('M50 150C42 178 40 216 50 256', { w: 2.6 }),
     mirrored('M36 104C24 118 16 140 12 168', { w: 2.4 }),
     mirroredCircle(42, 128, 5),
-  ].join('')
+  ].join(''),
 );
 
 // ── from drawing to cells ──
@@ -113,7 +113,7 @@ const SUIT = 0.3; // the cowl is a dim plane of sparse glyphs, so the bright par
 
 const render = async grid => {
   const [suitCover, brightCover, carveCover, visorCover, cableCover] = await Promise.all(
-    [suit, bright, carve, visor, cables].map(layer => coverage(layer, grid))
+    [suit, bright, carve, visor, cables].map(layer => coverage(layer, grid)),
   );
   const levels = [];
   for (let y = 0; y < grid.rows; y++) {

@@ -53,7 +53,7 @@ test.describe('when motion is allowed', () => {
         page
           .locator('[data-relic-ghost]')
           .first()
-          .evaluate(element => getComputedStyle(element).animationName)
+          .evaluate(element => getComputedStyle(element).animationName),
       )
       .toContain('chip-glitch');
     const count = await page
@@ -106,7 +106,7 @@ test.describe('the scene, when motion is allowed', () => {
     await expect(page.getByRole('dialog', { name: 'Netrunner' })).toBeVisible();
     await expect(scene(page).getByText('Wake up, Samurai. We have a city to burn.')).toBeAttached();
     expect(await page.evaluate(() => document.querySelector('dialog[open]')!.contains(document.activeElement))).toBe(
-      true
+      true,
     );
   });
 
@@ -177,7 +177,7 @@ test('the subtitle is in the language of the page and the quote stays English', 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openScene(page, '/ru/');
   await expect(scene(page).locator('[data-relic-subtitle]')).toHaveText(
-    'Проснись, самурай. У нас есть город, который надо сжечь.'
+    'Проснись, самурай. У нас есть город, который надо сжечь.',
   );
   await expect(page.getByRole('dialog', { name: 'Нетраннер' })).toBeVisible();
   await expect(scene(page).locator('[data-relic-line="2"]')).toHaveText('We have a city to burn.');

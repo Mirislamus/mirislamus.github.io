@@ -50,7 +50,7 @@ export const approachBaseSchema = z.strictObject({
         code: z.string().regex(/^[A-Z]+(?: [A-Z]+)*$/, 'a code name is capital letters only'),
         mask: z.array(z.int().min(1).max(12)).min(1).max(4),
         progress: z.int().min(0).max(100),
-      })
+      }),
     )
     .min(1),
 });
@@ -87,7 +87,7 @@ export const approachSchema = z.strictObject({
       Object.fromEntries(PROJECT_TYPES.map(type => [type, projectTypeText])) as Record<
         ProjectType,
         typeof projectTypeText
-      >
+      >,
     ),
   }),
   ui: z.strictObject({

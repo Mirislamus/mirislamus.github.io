@@ -134,7 +134,7 @@ const {
         chip.setAttribute('data-glitch', '');
         chip.addEventListener('animationend', () => chip.removeAttribute('data-glitch'), { once: true });
       },
-      { threshold: 1 }
+      { threshold: 1 },
     ).observe(chip);
   }
 
@@ -148,7 +148,7 @@ const {
         observer.disconnect();
         void import('@shared/scripts/magnetic').then(({ initMagnetic }) => initMagnetic(magnetic));
       },
-      { rootMargin: '400px' }
+      { rootMargin: '400px' },
     ).observe(magnetic);
   }
 </script>

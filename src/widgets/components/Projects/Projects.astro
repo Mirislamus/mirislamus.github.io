@@ -117,7 +117,7 @@ const hasMore = data.items.length > INITIAL_COUNT;
           observer.disconnect();
           void import('@shared/scripts/projects-fx').then(({ initProjectNames }) => initProjectNames(this));
         },
-        { rootMargin: '400px' }
+        { rootMargin: '400px' },
       ).observe(this);
 
       more?.addEventListener('click', () => {

@@ -38,7 +38,7 @@ export const createEffects = (sound: Sound, now: () => number = () => performanc
     start: number,
     length: number,
     peak: number,
-    attack = 0.01
+    attack = 0.01,
   ) => {
     const ctx = sound.context;
     const bus = sound.bus;

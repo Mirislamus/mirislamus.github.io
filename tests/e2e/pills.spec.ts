@@ -115,7 +115,7 @@ const tintAround = (page: Page, button: 'Blue pill' | 'Red pill') =>
         Math.round((spot.left + spot.width / 2 - box.left) * scale - size / 2),
         Math.round((spot.top + spot.height / 2 - box.top) * scale - size / 2),
         size,
-        size
+        size,
       ).data;
     let blue = 0;
     let red = 0;
@@ -148,7 +148,7 @@ test.describe('glyph hands', () => {
     expect(
       await dialog(page)
         .locator('[data-pills-hands]')
-        .evaluate(element => element.style.transform)
+        .evaluate(element => element.style.transform),
     ).toBe('');
   });
 
@@ -194,7 +194,7 @@ test.describe('glyph hands in motion', () => {
             .evaluate(element => element.style.transform),
         {
           timeout: 2000,
-        }
+        },
       )
       .toContain('rotateY(');
   });

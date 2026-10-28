@@ -43,7 +43,7 @@ test.describe('the name decrypts', () => {
     name(page).evaluate(element => {
       const seen: { text: string; width: number }[] = [];
       new MutationObserver(() =>
-        seen.push({ text: (element.textContent ?? '').trim(), width: (element as HTMLElement).offsetWidth })
+        seen.push({ text: (element.textContent ?? '').trim(), width: (element as HTMLElement).offsetWidth }),
       ).observe(element, { childList: true, characterData: true, subtree: true });
       (window as unknown as { seen: typeof seen }).seen = seen;
     });

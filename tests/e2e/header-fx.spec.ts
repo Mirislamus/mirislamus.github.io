@@ -75,7 +75,7 @@ test.describe('smart hide', () => {
         page
           .locator('header')
           .first()
-          .evaluate(element => element.getBoundingClientRect().bottom)
+          .evaluate(element => element.getBoundingClientRect().bottom),
       )
       .toBeLessThanOrEqual(0);
 
@@ -222,8 +222,8 @@ test.describe('mobile menu items', () => {
     await page.goto('/#about');
     const delays = await page.evaluate(() =>
       [...document.querySelectorAll('[data-nav] li'), document.querySelector('[data-nav] > div:last-child')].map(
-        element => element && Number.parseFloat(getComputedStyle(element).getPropertyValue('--i'))
-      )
+        element => element && Number.parseFloat(getComputedStyle(element).getPropertyValue('--i')),
+      ),
     );
     // positions 0..6 for the links, the switcher after them
     expect(delays.slice(0, -1)).toEqual([0, 1, 2, 3, 4, 5, 6]);

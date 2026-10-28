@@ -41,7 +41,7 @@ export const initChatDemo = (root: HTMLElement) => {
   // How far the list must be pushed down so that the messages from `index` on are below the window.
   const gap = parseFloat(getComputedStyle(list).rowGap) || 0;
   const heights = messages.map(
-    message => message.offsetHeight + (parseFloat(getComputedStyle(message).marginBottom) || 0) + gap
+    message => message.offsetHeight + (parseFloat(getComputedStyle(message).marginBottom) || 0) + gap,
   );
   const hiddenFrom = (index: number) => heights.slice(index).reduce((sum, height) => sum + height, 0);
 
@@ -75,7 +75,7 @@ export const initChatDemo = (root: HTMLElement) => {
         delay: typed === null ? start : shown - SCROLL * 0.4,
         easing: easeOut,
         fill: i === 0 ? 'both' : 'forwards',
-      }
+      },
     );
 
     if (typed === null) {
@@ -97,8 +97,8 @@ export const initChatDemo = (root: HTMLElement) => {
             delay: start + SCROLL / 2 + k * 150,
             iterations: 1.5,
             easing: 'ease-in-out',
-          }
-        )
+          },
+        ),
       );
     }
 
@@ -109,7 +109,7 @@ export const initChatDemo = (root: HTMLElement) => {
         { opacity: 0, transform: 'scale(0.4) translateY(12px)' },
         { opacity: 1, transform: 'scale(1) translateY(0)', offset: 1 },
       ],
-      { duration: pop, delay: shown, easing: spring }
+      { duration: pop, delay: shown, easing: spring },
     );
 
     // Its words come one after another.
@@ -120,8 +120,8 @@ export const initChatDemo = (root: HTMLElement) => {
           { opacity: 0, transform: 'translateY(5px)' },
           { opacity: 1, transform: 'translateY(0)' },
         ],
-        { duration: 320, delay: shown + 160 + k * WORD, easing: easeOut }
-      )
+        { duration: 320, delay: shown + 160 + k * WORD, easing: easeOut },
+      ),
     );
 
     // The second tick appears and the message is "read".
@@ -131,7 +131,7 @@ export const initChatDemo = (root: HTMLElement) => {
         { opacity: 0, transform: 'scale(0.5)' },
         { opacity: 1, transform: 'scale(1)' },
       ],
-      { duration: 400, delay: shown + 1400, easing: spring }
+      { duration: 400, delay: shown + 1400, easing: spring },
     );
 
     // A reaction splashes.
@@ -142,7 +142,7 @@ export const initChatDemo = (root: HTMLElement) => {
         { opacity: 1, transform: 'scale(1.35)', offset: 0.6 },
         { opacity: 1, transform: 'scale(1)' },
       ],
-      { duration: 600, delay: shown + 1000, easing: easeOut }
+      { duration: 600, delay: shown + 1000, easing: easeOut },
     );
   });
 
@@ -164,11 +164,11 @@ export const initChatDemo = (root: HTMLElement) => {
         window.setTimeout(() => {
           field.textContent = '';
           field.setAttribute('data-typing', '');
-        }, start + BEFORE_TYPING)
+        }, start + BEFORE_TYPING),
       );
       for (let k = 1; k <= typed.length; k++) {
         timers.push(
-          window.setTimeout(() => (field.textContent = typed.slice(0, k)), start + BEFORE_TYPING + (k - 1) * PER_CHAR)
+          window.setTimeout(() => (field.textContent = typed.slice(0, k)), start + BEFORE_TYPING + (k - 1) * PER_CHAR),
         );
       }
       // The send button presses, the field empties and the bubble appears.
@@ -178,7 +178,7 @@ export const initChatDemo = (root: HTMLElement) => {
             duration: 260,
             easing: spring,
           });
-        }, shown - 140)
+        }, shown - 140),
       );
       timers.push(window.setTimeout(restoreField, shown));
     });
@@ -208,7 +208,7 @@ export const initChatDemo = (root: HTMLElement) => {
       typeAnswers();
       void Promise.all(animations.map(animation => animation.finished)).then(cleanup, cleanup);
     },
-    { threshold: 0.5 }
+    { threshold: 0.5 },
   );
   observer.observe(root.closest('article') ?? root);
 };

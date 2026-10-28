@@ -353,7 +353,7 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
         observer.disconnect();
         load();
       },
-      { rootMargin: '400px' }
+      { rootMargin: '400px' },
     ).observe(element);
   };
 
@@ -365,7 +365,7 @@ const inviteHref = `${info.telegram}?text=${encodeURIComponent(secret.invite.tex
   if (secret) {
     whenNear(
       secret,
-      () => void import('@shared/scripts/secret-card').then(({ initSecretCard }) => initSecretCard(secret))
+      () => void import('@shared/scripts/secret-card').then(({ initSecretCard }) => initSecretCard(secret)),
     );
   }
 

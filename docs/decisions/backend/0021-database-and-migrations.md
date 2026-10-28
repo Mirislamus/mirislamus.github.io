@@ -57,7 +57,7 @@
         .defaultNow()
         .$onUpdate(() => new Date()),
     },
-    table => [check('orders_status_check', sql`${table.status} in ('new', 'paid', 'cancelled')`)]
+    table => [check('orders_status_check', sql`${table.status} in ('new', 'paid', 'cancelled')`)],
   );
   ```
 

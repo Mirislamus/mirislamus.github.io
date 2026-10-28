@@ -70,7 +70,7 @@ test.describe('with a mouse and motion allowed', () => {
     const { card } = await openProjects(page);
     await card.evaluate(element => {
       element.dispatchEvent(
-        new PointerEvent('pointermove', { pointerType: 'touch', clientX: 50, clientY: 50, bubbles: true })
+        new PointerEvent('pointermove', { pointerType: 'touch', clientX: 50, clientY: 50, bubbles: true }),
       );
     });
     await page.waitForTimeout(200);

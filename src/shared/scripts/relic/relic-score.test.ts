@@ -134,7 +134,7 @@ describe('the data blips', () => {
   it('never fall on a beat, are rare, high, and the same for the same seed', () => {
     const rng = createScoreRng(3);
     const found = Array.from({ length: BARS * BAR }, (_, step) => [step, blipAt(step, rng)] as const).filter(
-      ([, hz]) => hz !== null
+      ([, hz]) => hz !== null,
     );
     expect(found.length).toBeGreaterThan(0);
     expect(found.length).toBeLessThan(BARS * BAR * 0.2);
