@@ -2,15 +2,15 @@
 
 ## Текущий статус
 
-- **Фаза:** сайт опубликован; внедрен шаблон ai-template ([задача 001](docs/tasks/001-ai-template-adoption.md)).
-- **Текущая цель:** владелец выбирает задачи из бэклога 002–023 ([docs/tasks.md](docs/tasks.md)) и решает вопросы 019–023.
+- **Фаза:** сайт опубликован; шаблон ai-template внедрен ([задача 001](docs/tasks/001-ai-template-adoption.md)), бэклог расхождений 002–024 выполнен в ветке `chore/ai-template` ([docs/tasks.md](docs/tasks.md)).
+- **Текущая цель:** владелец смотрит ветку и решает, пушить ли ее и вливать в `master`.
 - **Блокеры:** отсутствуют.
 
 ## Проверки
 
-- Код сайта при внедрении не менялся (база — `master`, `824a6c9`); линтеры, тесты и сборка в задаче 001 не запускались.
-- Состав проверок перед коммитом — [AGENTS.md](AGENTS.md) «Команды проекта».
+- Локально на ветке: `bun run check`, `bun run knip`, `bun run test` (156), `bun run test:e2e` (362 в Chromium и WebKit), `bun run check:bundle` (14,6 из 15 КБ), `bun run validate:html`, `bun run check:lighthouse` (Performance 95–97, Accessibility 97–100, Best Practices и SEO 100) — проходят.
+- Не проверено: visual regression (эталон снимается только в CI, после правок стилей его нужно обновить workflow «Visual regression» с `update`), job `production` (запустится после деплоя), Rich Results Test и Schema.org Validator (вручную после деплоя).
 
 ## Следующий шаг
 
-- Решения владельца по задачам 019–023, затем задачи 002–008 (инструменты и проверки).
+- Пуш ветки, прогон CI и обновление эталонных скриншотов; затем мерж в `master` с разрешения владельца.
