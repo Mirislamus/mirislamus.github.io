@@ -39,7 +39,7 @@
 
 ### Шаг 4: Верстка страниц
 
-Верстка идет по паспортам страниц в `docs/pages/` (копия [docs/pages/page-template.md](docs/pages/page-template.md) с метаданными по [docs/seo.md](docs/seo.md), секциями, типами компонентов и источниками данных). Паспорт 404 есть; главной, CV и OG — задача 016.
+Верстка идет по паспортам страниц в `docs/pages/` (копия [docs/pages/page-template.md](docs/pages/page-template.md) с метаданными по [docs/seo.md](docs/seo.md), секциями, типами компонентов и источниками данных). Паспорта есть у всех страниц сайта: [главная](docs/pages/home.md), [404](docs/pages/404.md), [CV](docs/pages/cv.md), [OG](docs/pages/og.md).
 
 1. Новую страницу без паспорта не верстать: сначала паспорт.
 2. Структура кода — [ARCHITECTURE.md](ARCHITECTURE.md).
