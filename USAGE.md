@@ -52,7 +52,7 @@
 1. Команды из [AGENTS.md](AGENTS.md) «Команды проекта»; `validate:html` в сайте пока нет (задача 005).
 2. Чеклист геометрии и пороги Lighthouse — [docs/quality.md](docs/quality.md); в CI сейчас блокирует только SEO (задача 007).
 3. Мобильная верстка 360–390 px без горизонтального скролла; форм на сайте нет.
-4. Пост-деплой проверка живого сайта в браузере (Google Rich Results Test для поддерживаемых типов, Schema.org Validator, W3C Nu HTML Checker) — [ADR 0013](docs/decisions/frontend/0013-seo-standards.md) §4, задача 017.
+4. Пост-деплой проверка живого сайта ([ADR 0013](docs/decisions/frontend/0013-seo-standards.md) §4): W3C Nu HTML Checker — `bun run check:production`, сам запускается в CI после деплоя (job `production`); Google Rich Results Test и Schema.org Validator — вручную по тем же страницам.
 
 ---
 

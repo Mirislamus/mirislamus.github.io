@@ -21,7 +21,7 @@ const { status, locale } = Astro.props;
   data-offline={status.text.offline}
 >
   <span>{status.text.city}</span>
-  <time data-time hidden></time>
+  <time datetime="00:00" data-time hidden></time>
   {status.open && (
     <span class={s.status} data-status hidden>
       <span class={s.dot} aria-hidden="true" />

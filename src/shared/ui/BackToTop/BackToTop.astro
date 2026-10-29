@@ -13,8 +13,8 @@ const { label } = Astro.props;
 <back-to-top>
   <button type="button" class={s.button} aria-label={label} data-ripple>
     <svg class={s.ring} viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <circle class={s.track} cx="24" cy="24" r="22.5" pathLength="1"></circle>
-      <circle class={s.progress} cx="24" cy="24" r="22.5" pathLength="1"></circle>
+      <path class={s.track} d="M46.5 24A22.5 22.5 0 1 1 1.5 24A22.5 22.5 0 1 1 46.5 24" pathLength="1"></path>
+      <path class={s.progress} d="M46.5 24A22.5 22.5 0 1 1 1.5 24A22.5 22.5 0 1 1 46.5 24" pathLength="1"></path>
     </svg>
     <ArrowUp size={20} aria-hidden="true" />
   </button>

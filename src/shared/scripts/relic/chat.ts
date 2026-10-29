@@ -99,7 +99,10 @@ const append = (from: Person | 'you', text: string, reply?: Reply) => {
   item.dataset.from = from;
   find(item, '[data-avatar]').textContent = name.charAt(0);
   find(item, '[data-who]').textContent = name;
-  find(item, '[data-time]').textContent = clock();
+  const time = find(item, '[data-time]');
+  const stamp = clock();
+  time.textContent = stamp;
+  time.setAttribute('datetime', stamp);
   find(item, '[data-text]').textContent = text;
   const replies = find<HTMLElement>(item, '[data-replies]');
   if (reply) {

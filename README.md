@@ -33,6 +33,7 @@ bun run dev        # http://localhost:3000
 | `bun run validate:html`                  | проверка собранного HTML в `dist/` (`html-validate`)                    |
 | `bun run build:analyze`                  | сборка с картой бандла `stats.html`                                     |
 | `bun run check:bundle`                   | бюджет JS: 15 КБ gzip сразу, 10 КБ на чанк                              |
+| `bun run check:production`               | W3C-валидация живого сайта (в CI после деплоя)                          |
 | `bun run check:links`                    | проверка внешних ссылок (в CI раз в неделю)                             |
 
 ## Структура

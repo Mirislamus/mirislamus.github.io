@@ -14,6 +14,7 @@
     "build:mask": "node scripts/build-mask.mjs",
     "typecheck": "astro check",
     "check": "bun run format:check && bun run lint && bun run typecheck",
+    "check:production": "node scripts/check-production.mjs",
     "check:links": "bun scripts/check-links.mjs",
     "check:lighthouse": "node scripts/lighthouse.mjs",
     "preview": "astro preview",

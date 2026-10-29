@@ -206,7 +206,7 @@ test.describe('back to top', () => {
       await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }));
       const offset = () =>
         page
-          .locator('back-to-top circle')
+          .locator('back-to-top path')
           .last()
           .evaluate(element => parseFloat(getComputedStyle(element).strokeDashoffset));
       await expect.poll(offset).toBeLessThan(0.05);
